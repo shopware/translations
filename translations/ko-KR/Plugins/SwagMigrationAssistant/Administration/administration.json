@@ -1,0 +1,691 @@
+{
+  "global": {
+    "error-codes": {
+      "SWAG_MIGRATION_CONNECTION_NAME_ALREADY_EXISTS": "연결 이름이 이미 있습니다.",
+      "SWAG_MIGRATION_CONNECTION_NAME_TO_SHORT": "연결 이름은 최소 6자 이상이어야 합니다.",
+      "SWAG_MIGRATION_INVALID_API_KEY": "API 키의 길이가 올바르지 않습니다 ({length}/40자)."
+    }
+  },
+  "swag-migration": {
+    "dashboard": {
+      "button": "마이그레이션 지원 열기",
+      "headline": "쇼핑웨어로 이동",
+      "information": "우선 기존 상점 시스템을 연결하는 것입니다. 마이그레이션 도우미가 도움을 줄 것입니다.",
+      "shopInfoCard": {
+        "button": "열기",
+        "header": "마이그레이션 지원",
+        "resetButton": "마침"
+      },
+      "title": "마이그레이션 지원"
+    },
+    "emptyScreen": {
+      "connectButton": "연결 만들기",
+      "description": "시스템 간에 연결이 설정되었는지 확인합니다.이 작업은 마이그레이션에 필요합니다.자세한 내용은 여기에서 찾을 수 있습니다:{linebreak}{link}",
+      "link": "설명서: 쇼핑웨어로의 마이그레이션 6",
+      "title": "연결 없음"
+    },
+    "general": {
+      "descriptionTextModule": "데이터 마이그레이션을 위한 모듈",
+      "mainMenuItemGeneral": "마이그레이션 지원",
+      "tabDataSelector": "데이터 선택",
+      "tabHistory": "역사",
+      "tabMain": "일반"
+    },
+    "history": {
+      "clearRunDialog": {
+        "content": "마이그레이션 데이터를 삭제하면 로그 항목, 미디어 파일 항목, 임시 마이그레이션 데이터 레코드 및 마이그레이션 실행이 제거되며 마이그레이션 기록에서 더 이상 사용할 수 없습니다.",
+        "contentHint": "정말로 데이터를 삭제하시겠습니까?",
+        "title": "마이그레이션 데이터 삭제"
+      },
+      "connectionName": "연결 이름",
+      "contextMenu": {
+        "clearLogs": "마이그레이션 데이터 삭제",
+        "details": "세부 정보 표시",
+        "downloadLogs": "다운로드 로그"
+      },
+      "detailPage": {
+        "close": "닫기",
+        "data": "데이터",
+        "dataCount": "데이터 집합",
+        "dataName": "이름",
+        "errorCode": "오류 메시지",
+        "errorCount": "카운트",
+        "errors": "세부 정보",
+        "logDescription": "자세한 내용은 {link}",
+        "logDownload": "로그 파일을 다운로드합니다.",
+        "noErrorsOccurred": "오류가 발생하지 않았습니다.",
+        "runStatus": "마이그레이션 상태:",
+        "status": {
+          "aborted": "중단됨",
+          "finished": "완성됨",
+          "running": "달리기"
+        },
+        "timestamp": "시간:",
+        "title": "마이그레이션 세부 정보"
+      },
+      "importDateTime": "시작 시간",
+      "noData": "마이그레이션을 찾을 수 없습니다.",
+      "profileAndGateway": "프로필 및 게이트웨이",
+      "selectedData": "데이터",
+      "shopDomain": "쇼핑 도메인",
+      "shopSystem": "매장 시스템",
+      "status": "상태"
+    },
+    "index": {
+      "abortButton": "취소",
+      "assistantCard": {
+        "connection": {
+          "content": "마이그레이션 도우미는 매장 시스템과 Shopware 6 간의 연결을 설정하여 데이터를 전송하고 마이그레이션하는 데 도움을 줍니다.",
+          "link": "도움말 및 문서",
+          "title": "연결 설정"
+        },
+        "dataSelection": {
+          "content": "마이그레이션할 데이터를 선택합니다.Shopware 6에서 이미 플러그인을 사용할 수 있는 경우 플러그인 데이터도 포함할 수 있습니다.Shopware 계정에서 플러그인 사용 가능 여부를 확인하십시오.",
+          "title": "마이그레이션할 데이터 지정"
+        },
+        "finish": "완료!",
+        "headline": "마이그레이션 작동 방식",
+        "migrationOverview": {
+          "content": "1.자동 프로세스가 선택한 데이터에 누락된 과제가 있는지 확인합니다.수동 과제를 추가하여 자동 프로세스를 완료할 준비를 하세요.\n2.매장 데이터를 읽고 할당합니다.\n3.선택되고 적절하게 할당된 모든 데이터는 Shopware 6으로 전송됩니다.\n4.미디어 항목이 다운로드되었습니다.",
+          "title": "마이그레이션 단계"
+        },
+        "title": "정보"
+      },
+      "backButton": "개요",
+      "confirmAbortDialog": {
+        "cancelPause": "일시 중지",
+        "cancelRunning": "계속",
+        "confirm": "마이그레이션 중지",
+        "content": "마이그레이션이 완전히 완료되지 않았습니다.이미 마이그레이션된 데이터를 사용할 수 없습니다.지금 종료하면 마이그레이션 프로세스를 완전히 다시 실행해야 합니다.",
+        "hint": "마이그레이션을 중지하시겠습니까?",
+        "title": "마이그레이션 중지"
+      },
+      "confirmWarningCard": {
+        "currencyMismatch": {
+          "checkboxLabel": "예, 계속하고 싶습니다.",
+          "question": "데이터를 표준 통화 [{targetSystemCurrency}] 로 마이그레이션해야 합니까?",
+          "text": "마이그레이션할 데이터의 통화가 표준 통화 [{targetSystemCurrency}] 과 일치하지 않습니다.[{sourceSystemCurrency}] 의 데이터는 여전히 마이그레이션할 수 있지만 자동으로 변환되지는 않습니다.나중에 수동으로 가격을 조정할 수 있습니다.",
+          "title": "마이그레이션이 다른 통화를 인식했습니다."
+        },
+        "languageMismatch": {
+          "checkboxLabel": "예, 계속하고 싶습니다.",
+          "question": "데이터를 표준 언어 [{targetSystemLanguage}] 로 마이그레이션해야 합니까?",
+          "text": "마이그레이션할 데이터의 언어가 표준 언어 [{targetSystemLanguage}] 과 일치하지 않습니다.[{sourceSystemLanguage}] 의 데이터는 여전히 마이그레이션할 수 있지만 자동으로 변환되지는 않습니다.나중에 수동으로 번역을 조정할 수 있습니다.",
+          "title": "마이그레이션이 다른 언어를 인식했습니다."
+        }
+      },
+      "continueButton": "계속",
+      "error": {
+        "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
+          "description": "{parentEntity} 상위 엔티티의 ID가 \"{parentSourceId}“인 {entity} 하위 엔티티를 변환할 수 없습니다.",
+          "title": "{entity} 하위 엔티티를 변환할 수 없습니다."
+        },
+        "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
+          "description": "소스 ID가 \"{sourceId}“인 {entity} 엔티티를 변환할 수 없습니다.",
+          "title": "{entity} 엔티티를 변환할 수 없습니다."
+        },
+        "SWAG_MIGRATION_CANNOT_GET_FILE": {
+          "description": "uri가 \"{uri}“이고 미디어 ID가\"{sourceId}“인 {entity} 파일은 다운로드하거나 복사할 수 없습니다.",
+          "title": "{entity} 파일은 다운로드/복사 할 수 없습니다."
+        },
+        "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
+          "description": "소스 ID가 \"{sourceId}“인 {entity} 엔티티가 이미 존재하므로 쓸 수 없습니다.",
+          "title": "{entity} 엔티티가 이미 있습니다."
+        },
+        "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
+          "description": "소스 ID가 \"{sourceId}“인 {entity} 엔티티는\"{emptyField}\"필드를\"{replacementField}“로 대체했습니다.",
+          "title": "{entity} 엔터티에는 다시 할당된 필드가 있습니다."
+        },
+        "SWAG_MIGRATION_ENTITY_UNKNOWN": {
+          "description": "소스 ID가 \"{requiredForSourceId}“인 {requiredForEntity} 엔티티는 소스 ID가\"{sourceId}“인 종속 {entity} 엔티티를 찾을 수 없습니다.",
+          "title": "{entity}찾을 수 없습니다"
+        },
+        "SWAG_MIGRATION_RUN_EXCEPTION": {
+          "description": "{description}",
+          "title": "예외가 발생했습니다."
+        },
+        "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
+          "description": "개체 {entity} 의 전체 개수를 읽을 수 없습니다.소스 시스템에 \"{table}\" 테이블이 있고 선택적 조건 \"{condition}“가 유효한지 확인하십시오.예외 메시지: {exceptionMessage}",
+          "title": "엔터티 수를 읽을 수 없습니다."
+        },
+        "SWAG_MIGRATION__DATASET_NOT_FOUND": {
+          "description": "프로파일 \"{profileName}\" 및 엔티티 \"{entity}“에 대한 데이터세트를 찾을 수 없습니다.ID가 \"{sourceId}“인 개체를 처리할 수 없습니다.",
+          "title": "데이터 집합을 찾을 수 없음"
+        },
+        "SWAG_MIGRATION__DEBUG": {
+          "description": "{logData}",
+          "title": "디버그 출력"
+        },
+        "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
+          "description": "문서 유형 \"{type}“가 지원되지 않으므로 소스 ID가\"{sourceId}“인 문서를 변환할 수 없습니다.",
+          "title": "문서 유형이 지원되지 않습니다."
+        },
+        "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
+          "description": "소스 ID가 \"{sourceId}“인 {entity}  엔티티의 이메일 주소가 잘못되었습니다: {email}",
+          "title": "잘못된 이메일 주소"
+        },
+        "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
+          "description": "프로파일 \"{profileName}“, 게이트웨이\"{gatewayName}\"및 엔티티\"{entity}“의 프로세서를 찾을 수 없습니다.",
+          "title": "프로세서를 찾을 수 없음"
+        },
+        "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
+          "description": "소스 ID가 \"{sourceId}“인 {missingEntity} 을 (를) 찾을 수 없지만 {requiredFor}에는 필수 항목입니다.",
+          "title": "관련 {entity} 찾을 수 없음"
+        },
+        "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
+          "description": "소스 파일을 복사할 수 없습니다.파일: {path}",
+          "title": "소스 파일을 찾을 수 없습니다."
+        },
+        "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
+          "description": "미디어를 다운로드할 수 없습니다.영향을 받는 파일: {uri}",
+          "title": "미디어를 다운로드할 수 없습니다."
+        },
+        "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
+          "description": "소스 ID가 \"{sourceId}“인 {entity} 엔티티에는\"{emptyField}\"필드에 필요한 데이터가 없습니다.",
+          "title": "{entity} 엔티티에는 빈 필수 필드가 있습니다."
+        },
+        "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
+          "description": "소스 ID가 \"{sourceId}“인 {entity} 엔티티는\"{unserializedEntity}\"엔티티의 직렬화되지 않은 개체 데이터가 유효하지 않고 원시 데이터가 {serializedData}이므로 변환할 수 없습니다.",
+          "title": "잘못된 직렬화되지 않은 데이터"
+        },
+        "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
+          "description": "“{entity}\" 자녀에 대한 상위 개체를 찾을 수 없습니다.",
+          "title": "상위 엔티티를 찾을 수 없음"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
+          "description": "지원되지 않는 유형: {type}때문에 소스 ID가 \"{sourceId}“인 NumberRange-엔티티를 변환할 수 없습니다.",
+          "title": "지원되지 않는 숫자 범위 유형"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
+          "description": "소스 ID가 “{sourceId}“인 객체 유형 “{objectType}“의{entity} 을 (를) 변환할 수 없습니다.",
+          "title": "지원되지 않는 객체 유형"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
+          "description": "지원되지 않는 계산 유형: {type}때문에 소스 ID가 \"{sourceId}“인 배송 방법 엔티티를 변환할 수 없습니다.",
+          "title": "지원되지 않는 배송 계산 유형"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
+          "description": "요소 가격 계산이 지원되지 않으므로 배송 방법 \"{shippingMethodId}“의 소스 ID가\"{sourceId}“인 배송 가격 개체를 변환할 수 없습니다.",
+          "title": "지원되지 않는 배송 요소 가격 계산"
+        },
+        "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
+          "description": "ID가 \"{sourceId}“인 테마를 컴파일할 수 없습니다.",
+          "title": "테마 컴파일 오류"
+        },
+        "SWAG_MIGRATION__WRITER_NOT_FOUND": {
+          "description": "“{entity}\" 엔티티에 대한 파일 기록기를 찾을 수 없습니다.",
+          "title": "파일 작성기를 찾을 수 없음"
+        },
+        "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
+          "description": "{description}",
+          "title": "쓰기 예외가 발생했습니다."
+        },
+        "authorizationError": {
+          "information": "인증 오류입니다.액세스 데이터가 올바르지 않습니다.확인하고 다시 시도하십시오."
+        },
+        "canNotConnectToServer": "서버에 연결되어 있지 않습니다.연결 문제를 확인하십시오.",
+        "customerExists": {
+          "information": "이메일이 \"{mail}“인 고객이 이미 있습니다.해당 이메일과 함께 이 사용자를 데이터베이스에 추가할 수 없습니다."
+        },
+        "gatewayNotFound": {
+          "information": "게이트웨이 \"{notFoundGateway}“를 찾을 수 없습니다."
+        },
+        "gatewayRead": {
+          "information": "게이트웨이 “{unreadableGateway}”을 읽을 수 없습니다."
+        },
+        "localeNotFound": {
+          "information": "로케일 항목 코드 \"{notFoundCode}“을 (를) 찾을"
+        },
+        "mediaProcessConnectionError": "미디어 데이터를 복사하는 동안 연결 오류가 발생했습니다.연결을 확인하십시오.",
+        "migrationContextPropertyMissing": {
+          "information": "마이그레이션 컨텍스트의 필수 속성 \"{notFoundProperty}“을 찾을 수 없습니다."
+        },
+        "migrationsWorkloadPropertyMissing": {
+          "information": "마이그레이션 워크로드의 필수 속성 \"{notFoundProperty}“을 찾을 수 없습니다."
+        },
+        "noFileSystemPermissions": {
+          "information": "파일 또는 디렉터리를 만들거나 쓸 수 있는 파일 시스템 권한이 없습니다.권한을 확인하십시오."
+        },
+        "profileNotFound": {
+          "information": "마이그레이션 프로필 \"{notFoundProfile}“이 (가) 없습니다."
+        },
+        "undefinedIndex": {
+          "detail": "알 수 없는 인덱스를 찾을 수 없습니다.",
+          "information": "인덱스 \"{unidentifiedIndex}“을 (를) 찾을 수 없습니다.데이터를 확인해 주세요.",
+          "title": "식별되지 않은 색인"
+        },
+        "unknownError": "알 수 없는 오류.자세한 내용은 데이터베이스의 로깅 테이블을 확인할 수 있습니다."
+      },
+      "errorTypes": {
+        "error": "오류",
+        "info": "정보",
+        "warning": "경고"
+      },
+      "finishButton": "마침",
+      "loadingScreenCard": {
+        "connectionLostScreen": {
+          "buttonNavigateToMain": "일반",
+          "message": "마이그레이션은 데이터 손실을 방지하기 위해 프로세스를 종료했습니다.인터넷 연결을 확인하고 새 마이그레이션을 시작하십시오.",
+          "title": "연결이 끊어졌습니다."
+        },
+        "flowChart": {
+          "fetchData": "읽기",
+          "finish": "완료",
+          "premapping": "체킹",
+          "processMedia": "다운로드 중",
+          "writeData": "글쓰기"
+        },
+        "mediaProcessScreen": {
+          "message": "프로세스가 백그라운드에서 실행 중입니다.",
+          "title": "미디어 다운로드 시작"
+        },
+        "pauseScreen": {
+          "message": "멈추지 않았어?인터넷에 연결되어 있지 않으면 데이터 손실을 방지하기 위해 마이그레이션이 자동으로 일시 중지 모드로 전환됩니다.",
+          "title": "마이그레이션이 일시 중지됨"
+        },
+        "result": {
+          "caption": "미디어 다운로드는 백그라운드에서 계속됩니다.대용량 파일은 시간이 걸릴 수 있습니다.",
+          "historyLink": "마이그레이션 세부 정보 보기",
+          "indexingNotification": {
+            "finished": {
+              "message": "인덱싱이 완료되었습니다.",
+              "title": "인덱싱 완료"
+            },
+            "running": {
+              "message": "현재 백그라운드에서 인덱싱됩니다.",
+              "title": "인덱싱 진행 중"
+            }
+          },
+          "notification": {
+            "actionLabel": "열려있는 역사",
+            "message": "로그 파일 보기 또는 다운로드",
+            "title": "마이그레이션 기록"
+          },
+          "survey": {
+            "buttonText": "지금 피드백 보내기",
+            "caption": "사용자 경험에 대한 피드백을 제공하여 마이그레이션 프로세스를 개선하는 데 도움을 주십시오.",
+            "link": "https://www.surveymonkey.de/r/RF7J3LV",
+            "title": "여러분의 생각은 중요합니다."
+          },
+          "title": "마이그레이션 지원이 완료되었습니다."
+        },
+        "status": {
+          "FETCH_DATA": {
+            "caption": "새 지정이 처리됩니다.",
+            "hint": "팁: 마이그레이션은 백그라운드에서 단계별로 계속되며 Shopware 6을 탐색합니다.",
+            "long": "시스템에서 데이터를 읽습니다.",
+            "short": "읽기"
+          },
+          "PROCESS_MEDIA_FILES": {
+            "caption": "큰 이미지 데이터를 처리하는 데 약간의 시간이 걸릴 수 있습니다.",
+            "hint": "팁: 연결이 좋지 않은 경우 다운로드를 일시 중지하고 나중에 계속하십시오.",
+            "long": "미디어를 다운로드 중입니다.",
+            "short": "다운로드 중"
+          },
+          "WRITE_DATA": {
+            "caption": "상점 크기에 따라 몇 분 정도 걸릴 수 있습니다.",
+            "hint": "팁: 언제든지 마이그레이션 프로세스를 일시 중지했다가 다시 시작할 수 있습니다.",
+            "long": "데이터는 숍웨어 6에 기록되고 있습니다.",
+            "short": "글쓰기"
+          },
+          "finish": "완료"
+        },
+        "takeoverScreen": {
+          "abortModal": {
+            "cancel": "취소",
+            "confirm": "마이그레이션 취소",
+            "hint": "마이그레이션을 취소하시겠습니까?",
+            "message": "현재 활성 마이그레이션을 인수하는 것은 불가능합니다.원하는 경우 활성 마이그레이션을 취소하고 나중에 직접 새 마이그레이션을 시작할 수 있습니다.",
+            "title": "마이그레이션 취소"
+          },
+          "aborted": {
+            "message": "다른 사용자가 별도의 브라우저 또는 브라우저 탭에서 마이그레이션 프로세스를 취소했습니다.새 마이그레이션을 시작하십시오.",
+            "title": "마이그레이션이 취소되었습니다."
+          },
+          "buttonCheck": "상태 확인",
+          "buttonRedirect": "일반",
+          "forbidden": {
+            "message": "다른 브라우저 또는 브라우저 탭에서 마이그레이션이 이미 시작되었습니다.마이그레이션 프로세스를 보려면 이 탭으로 전환하십시오.",
+            "title": "마이그레이션이 이미 시작됨"
+          },
+          "interrupted": {
+            "message": "마이그레이션 프로세스가 다른 브라우저 또는 브라우저 탭에서 수행되었습니다.마이그레이션의 현재 상태에 따라 프로세스를 취소하거나 인수할 수 있습니다.",
+            "title": "마이그레이션이 수행되었습니다."
+          },
+          "redirectModal": {
+            "confirm": "일반",
+            "message": "마이그레이션이 이미 다른 브라우저 또는 브라우저 탭에서 완료되었습니다.",
+            "title": "마이그레이션 완료"
+          },
+          "running": {
+            "message": "이미 다른 브라우저 또는 브라우저 탭에서 실행 중인 마이그레이션이 있습니다.이제 실행중인 마이그레이션을 인수하거나 취소 할 수 있습니다.",
+            "title": "마이그레이션이 이미 시작됨"
+          },
+          "takeoverModal": {
+            "cancel": "취소",
+            "confirm": "마이그레이션 인수",
+            "hint": "마이그레이션을 인수하고 싶습니까?",
+            "message": "활성 마이그레이션을 인수하는 것이 가능합니다.원하는 경우 이 브라우저 창에서 마이그레이션을 계속할 수 있습니다.",
+            "title": "마이그레이션 인수"
+          }
+        }
+      },
+      "migrateButton": "마이그레이션 시작",
+      "migrationAlreadyRunning": "마이그레이션이 이미 시작되었습니다.",
+      "pauseButton": "일시 중지",
+      "pluginVersionText": "소스 시스템 {sourceSystem}에서 플러그인 업데이트를 사용할 수 있는 것으로 확인되었습니다.마이그레이션을 시작하기 전에 플러그인 \"{pluginName}“를 업데이트하세요.",
+      "premappingCard": {
+        "collapseTitle": "처리된 할당 표시",
+        "expandTitle": "처리된 할당 숨기기",
+        "filledCardTitle": "처리된 발령",
+        "group": {
+          "delivery_time": "배송 시간",
+          "manufacturer": "제조 업체",
+          "newsletter_status": "뉴스레터 현황",
+          "order_delivery_state": "주문 배송 상태",
+          "order_state": "주문 상태",
+          "payment_method": "결제 방법",
+          "salesChannel": "뉴스레터 영업 채널",
+          "salutation": "인사말",
+          "shipping_availability_rule": "배송 방법 이용 가능 여부",
+          "transaction_state": "트랜잭션 상태"
+        },
+        "loadingCaption": "기존 데이터가 확인되었습니다.",
+        "loadingTitle": "데이터 검사가 실행 중입니다.",
+        "newAssignmentTitle": "새 과제",
+        "placeholder": "선택하십시오.",
+        "previousTitle": "이전",
+        "unfilledAlert": "수동 할당이 필요한 데이터가 있음을 발견했습니다.",
+        "unfilledCaption": "수동 지정이 완료된 후에만 계속할 수 있습니다.",
+        "unfilledCardTitle": "수동 할당",
+        "unfilledTitle": "데이터 검사가 완료되었습니다.",
+        "validCaption": "데이터를 진행할 준비가 되었습니다.",
+        "validTitle": "데이터 검사가 완료되었습니다."
+      },
+      "savePremapping": {
+        "message": "사전 매핑이 저장되었습니다.",
+        "saveButton": "프리매핑 저장"
+      },
+      "selectDataCard": {
+        "cardTitle": "데이터 선택",
+        "dataHeader": "데이터",
+        "dataSelection": {
+          "basicSettings": "기본 데이터",
+          "cms": "레이아웃",
+          "customerWishlists": "위시리스트",
+          "customersOrders": "고객 및 주문",
+          "media": "미디어",
+          "newsletterRecipient": "뉴스레터 수신자",
+          "processMediaFiles": "미디어",
+          "productReviews": "제품 리뷰",
+          "products": "제품 소개",
+          "promotions": "프로모션",
+          "seoUrls": "검색 엔진 최적화 URL"
+        },
+        "dataTypes": {
+          "basicData": "쇼핑 데이터",
+          "pluginData": "플러그인 데이터"
+        },
+        "entities": {
+          "category": "카테고리:",
+          "category_association": "카테고리 협회:",
+          "category_cms_page_association": "범주 레이아웃 연관:",
+          "category_product_stream_association": "카테고리: 동적 제품 그룹 연결:",
+          "cms_page": "레이아웃:",
+          "country": "국가:",
+          "country_state": "국가 국가:",
+          "currency": "통화:",
+          "custom_field_set": "사용자 정의 필드 세트:",
+          "customer": "고객:",
+          "customer_group": "고객 그룹:",
+          "customer_wishlist": "위시리스트:",
+          "delivery_time": "배송 시간:",
+          "language": "언어:",
+          "mail_template": "이메일 템플릿:",
+          "main_variant_relation": "주요 변형 관계:",
+          "media": "미디어:",
+          "media_folder": "미디어 폴더:",
+          "media_folder_inheritance": "미디어 폴더 상속:",
+          "number_range": "숫자 범위:",
+          "order": "주문:",
+          "order_document": "주문 문서:",
+          "order_document_base_config": "문서 구성:",
+          "order_document_inheritance": "문서 관계 순서:",
+          "page_system_config": "페이지 기본 정보:",
+          "product": "제품:",
+          "product_cross_selling": "교차 판매:",
+          "product_feature_set": "필수 특성:",
+          "product_manufacturer": "제품 제조업체:",
+          "product_option_relation": "제품 옵션:",
+          "product_property_relation": "제품 속성:",
+          "product_review": "리뷰:",
+          "product_sorting": "제품 분류:",
+          "product_stream": "동적 제품 그룹:",
+          "product_stream_filter_inheritance": "동적 제품 그룹 필터:",
+          "promotion": "프로모션:",
+          "property_group": "속성 그룹:",
+          "property_group_option": "등록 정보:",
+          "rule": "규칙:",
+          "sales_channel": "판매 채널:",
+          "sales_channel_domain": "도메인:",
+          "salutation": "인사회:",
+          "seo_url": "검색 엔진 최적화 URL:",
+          "seo_url_template": "검색 엔진 최적화 URL 템플릿:",
+          "shipping_method": "배송 방법:",
+          "snippet": "스니펫:",
+          "snippet_set": "코드 조각 세트:",
+          "system_config": "기본 정보:",
+          "tax": "세율:",
+          "tax_rule": "세금 규칙:",
+          "translation": "번역:",
+          "unit": "축척 단위:"
+        },
+        "headers": {
+          "dataType": "유형",
+          "name": "이름",
+          "total": "데이터 세트"
+        },
+        "noData": "마이그레이션할 항목이 없습니다."
+      },
+      "shopInfoCard": {
+        "buttonCreateConnection": "새 연결 만들기",
+        "buttonEditSettings": "연결 편집",
+        "buttonProfileInstallation": "다른 프로파일 설치",
+        "buttonRemoveCredentials": "액세스 데이터 삭제",
+        "buttonResetChecksums": "체크섬 재설정",
+        "buttonResetMigration": "완벽한 마이그레이션",
+        "buttonSelectConnection": "연결 변경",
+        "cardTitle": "매장 시스템",
+        "connected": "커넥티드",
+        "connectionCheck": "연결 확인:",
+        "displayDateTime": "{time} - {date}",
+        "gateway": "게이트웨이:",
+        "lastMigration": "마지막 마이그레이션:",
+        "noMigrationDoneYet": "-",
+        "notConnected": "연결되지 않음",
+        "profile": "시스템 프로필:",
+        "removeCredentialsConfirmDialog": {
+          "abortButtonText": "취소",
+          "confirmButtonText": "예, 삭제",
+          "content": "이 후에는 활성 연결이 없습니다.연결을 복원하려면 액세스 데이터를 다시 입력합니다.",
+          "contentHint": "현재 액세스 데이터를 삭제하시겠습니까?",
+          "title": "액세스 데이터 삭제"
+        },
+        "resetChecksumsConfirmDialog": {
+          "abortButtonText": "취소",
+          "confirmButtonText": "예, 재설정",
+          "content": "체크섬을 재설정하면 다음 마이그레이션 시 소스 시스템의 모든 데이터가 인식됩니다.여기에는 이미 마이그레이션되거나 변경되지 않은 데이터 세트가 포함됩니다. <br><br><strong>중요:</strong> Shopware에서 만든 데이터 레코드에 대한 변경 사항 6 마지막 마이그레이션 이후 덮어 씁니다.소스 시스템 데이터에 우선 순위가 있습니다.",
+          "contentHint": "체크섬을 재설정하시겠습니까?",
+          "title": "체크섬 재설정"
+        },
+        "resetMigrationConfirmDialog": {
+          "abortButtonText": "취소",
+          "confirmButtonText": "지금 마무리",
+          "content": "좋아요!이제 마이그레이션을 마무리하고 임시 파일과 사용되지 않는 데이터를 정리해 보겠습니다. <strong>참고:</strong> 마이그레이션을 마무리하는 것은 터미널입니다.현재 연결을 통해 더 이상 데이터를 마이그레이션 할 수 없습니다.",
+          "contentHint": "지금 마이그레이션을 완료하시겠습니까?",
+          "errorNotification": {
+            "message": "마이그레이션이 현재 진행 중입니다.",
+            "title": "마이그레이션을 마무리하는 동안 오류가 발생했습니다."
+          },
+          "header": "공장 데이터 마이그레이션을 마쳤습니까?",
+          "title": "마이그레이션 완료"
+        }
+      },
+      "shopwareMajorVersionText": "소스 시스템 {sourceSystem} 버전이 대상 시스템 {targetSystem} 버전과 일치하지 않는 것으로 확인되었습니다.마이그레이션을 시작하기 전에 두 시스템에서 동일한 메이저 버전을 사용해야 합니다.",
+      "startButton": "계속",
+      "title": "일반"
+    },
+    "wizard": {
+      "buttonAbort": "취소",
+      "buttonConnect": "연결",
+      "buttonConnectionCreate": "연결 설정",
+      "buttonConnectionSelect": "연결 변경",
+      "buttonEdit": "연결 편집",
+      "buttonFinish": "완료",
+      "buttonLater": "닫기",
+      "buttonLetsGo": "시작",
+      "buttonNext": "계속",
+      "buttonToProfileInformation": "정보",
+      "buttonUseSsl": "HTTPS 사용",
+      "pages": {
+        "connectionCreate": {
+          "connectionLabel": "연결 이름",
+          "connectionPlaceholder": "이름 입력",
+          "connectionTooltip": "연결의 고유한 이름을 입력합니다.",
+          "contentInformation": "마이그레이션을 수행하려면 다음 정보가 필요합니다.",
+          "gatewayLabel": "게이트웨이",
+          "gatewayPlaceholder": "게이트웨이 선택",
+          "gatewayTooltip": "시스템 간의 연결 유형입니다.",
+          "gateways": {
+            "shopwareApi": "API",
+            "shopwareLocal": "로컬 데이터베이스"
+          },
+          "hint": {
+            "local": "참고: 공장 시스템은 동일한 서버에 있어야 합니다.데이터베이스에 대한 액세스 데이터가 필요합니다."
+          },
+          "profileInstall": "다른 프로파일 설치",
+          "profileLabel": "매장 시스템 프로필",
+          "profilePlaceholder": "프로필 선택",
+          "title": "마이그레이션 — 새 연결 만들기"
+        },
+        "connectionSelect": {
+          "connectionLabel": "연결 이름",
+          "connectionPlaceholder": "연결을 선택하십시오",
+          "contentInformation": "목록에서 기존 연결을 선택하여 데이터를 업데이트합니다.",
+          "title": "마이그레이션 — 연결 변경"
+        },
+        "credentials": {
+          "emptyState": "죄송합니다. 선택한 프로필에 대한 양식을 찾을 수 없습니다.",
+          "error": {
+            "SWAG_MIGRATION__CONNECTION_AUTHENTICATION_INVALID": "자격 증명이 잘못되었습니다.확인하고 다시 시도하십시오.",
+            "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "데이터베이스 연결을 설정할 수 없습니다.",
+            "SWAG_MIGRATION__GATEWAY_READ": "서버에 연결할 수 없습니다.주어진 상점 도메인을 확인하십시오.",
+            "SWAG_MIGRATION__IS_RUNNING": "마이그레이션이 현재 진행 중입니다.따라서 마이그레이션이 완료될 때까지 자격 증명을 편집할 수 없습니다.",
+            "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "필요한 플러그인 “마이그레이션 커넥터”가 Shopware 5에 설치되어 있지 않습니다.무료 플러그인을 설치하고 다시 시도하십시오.",
+            "SWAG_MIGRATION__SSL_REQUIRED": "우리는 주어진 상점 도메인이 SSL 연결이 필요하다고 판단했습니다.",
+            "alertErrorTitle": "주의 사항",
+            "contentTitle": "연결 없음",
+            "undefinedErrorMsg": "내부 서버 오류입니다.다시 시도하십시오."
+          },
+          "shopware55": {
+            "api": {
+              "apiKeyLabel": "API 키",
+              "apiKeyPlaceholder": "키 입력",
+              "apiKeyTooltip": "API 키는 보안 및 식별에 사용됩니다.",
+              "apiUserLabel": "사용자 이름 (API 사용자)",
+              "apiUserPlaceholder": "사용자 이름 입력",
+              "apiUserTooltip": "귀하의 쇼핑 웨어 5 백엔드의 사용자 이름.",
+              "contentInformation": "Shopware 5와 Shopware 6 간의 연결을 설정하려면 유효한 API 자격 증명이 필요합니다.API 자격 증명은 Shopware 5 백엔드에서 “사용자 관리”에서 찾을 수 있습니다.API 액세스를 활성화하고 저장하여 확인해야합니다.",
+              "endpointLabel": "쇼핑 도메인",
+              "endpointPlaceholder": "분류: 데모샵닷컴",
+              "endpointSSLLabel": "내 가게는 보안 연결 (SSL) 을 사용합니다."
+            },
+            "local": {
+              "contentInformation": "Shopware 5 데이터베이스에 연결하려면 여전히 액세스 데이터가 필요합니다.",
+              "dbHostLabel": "호스트",
+              "dbHostPlaceholder": "호스트 입력",
+              "dbNameLabel": "데이터베이스 이름",
+              "dbNamePlaceholder": "이름 입력",
+              "dbPasswordLabel": "비밀번호",
+              "dbPasswordPlaceholder": "비밀번호 입력",
+              "dbPortLabel": "포트",
+              "dbUserLabel": "사용자",
+              "dbUserPlaceholder": "사용자 이름 입력",
+              "installationRoot": "쇼핑 설치 폴더",
+              "installationRootPlaceholder": "설치 루트 입력"
+            }
+          },
+          "shopware6": {
+            "api": {
+              "apiPasswordLabel": "보안 액세스 키",
+              "apiPasswordPlaceholder": "보안 액세스 키 입력",
+              "apiPasswordTooltip": "보안 액세스 키는 보안 및 식별에 사용됩니다.",
+              "apiUserLabel": "액세스 키 ID",
+              "apiUserPlaceholder": "액세스 키 ID 입력",
+              "apiUserTooltip": "통합의 키 ID에 액세스합니다.",
+              "contentInformation": "소스 및 대상 Shopware 6 인스턴스 간에 연결을 설정하려면 유효한 API 자격 증명이 필요합니다.소스 시스템에서 통합을 만들 때 얻을 수 있습니다.",
+              "endpointLabel": "쇼핑 도메인",
+              "endpointPlaceholder": "분류: 데모샵닷컴",
+              "endpointSSLLabel": "내 가게는 보안 연결 (SSL) 을 사용합니다."
+            }
+          },
+          "statusTitle": "연결 확인",
+          "success": {
+            "SWAG_MIGRATION__REQUEST_CERTIFICATE_INVALID": "지정된 상점 도메인의 SSL 인증서가 안전하지 않다고 판단했습니다.자신의 보안을 위해 인증서를 확인합니다.",
+            "contentInformation": "마이그레이션을 시작할 수 있습니다.",
+            "contentTitle": "연결에 성공했습니다.",
+            "undefinedErrorMsg": "지정한 Shop 도메인에서 SSL 인증서를 확인하는 동안 알 수 없는 오류가 발생했습니다."
+          },
+          "title": "마이그레이션 — 연결 설정"
+        },
+        "introduction": {
+          "contentHeadline": "몇 가지를 옮겨 봅시다.",
+          "contentInformation": "함께 매장 시스템을 Shopware 6에 연결합니다.그런 다음 마이그레이션 지원을 통해 데이터를 단계별로 마이그레이션할 수 있습니다.",
+          "title": "마이그레이션 지원"
+        },
+        "profileInformation": {
+          "shopware55Api": {
+            "contentInformation": "필요한 플러그인 “마이그레이션 커넥터”는 무료이며 플러그인 관리자> 확장 > 마이그레이션 도구에서 Shopware 5 백엔드에서 찾을 수 있습니다.계속하려면 플러그인을 설치하고 활성화하십시오.",
+            "contentTitle": "플러그인 필요",
+            "pluginLink": "플러그인에 대한 추가 정보"
+          },
+          "shopware6Api": {
+            "contentTitle": "요구 사항",
+            "integration": {
+              "description": "설정 > 시스템 > 통합을 통해 소스 시스템에 통합을 생성합니다.다음 단계에서는 생성된 액세스 키 ID와 비밀 액세스 키가 필요합니다.",
+              "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+              "linkText": "통합에 대해 자세히 알아보기",
+              "title": "통합"
+            },
+            "plugin": {
+              "description": "소스 시스템에 마이그레이션 어시스턴트 확장을 설치합니다.",
+              "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+              "linkText": "마이그레이션 지원 확장에 대해 자세히 알아보기",
+              "title": "확장"
+            }
+          },
+          "title": "마이그레이션 - 연결 준비"
+        },
+        "profileInstallation": {
+          "availabilityHeadline": "이전에 사용 가능:",
+          "availableVersionHeadline": "지원 대상:",
+          "content": "데이터를 마이그레이션할 매장 시스템을 선택하고 해당 프로필 플러그인도 설치해야 합니다.",
+          "installationButton": "설치",
+          "installedHint": "설치됨",
+          "magentoProfileHeadline": "마젠토 - 프로필",
+          "profileManufacturer": "쇼핑웨어 AG",
+          "shopwareProfileHeadline": "숍웨어 - 프로필",
+          "title": "마이그레이션 - 상점 시스템 프로파일"
+        }
+      }
+    },
+    "worker-listener": {
+      "mediaProcessing": {
+        "message": "남은 파일이 없습니다. | 파일이 하나 남았습니다. | {n} 파일이 남아 있습니다.",
+        "messageSuccess": "미디어 다운로드가 완료되었습니다.",
+        "title": "미디어를 다운로드 중입니다.",
+        "titleSuccess": "미디어 다운로드 완료"
+      }
+    }
+  }
+}

@@ -1,0 +1,691 @@
+{
+  "global": {
+    "error-codes": {
+      "SWAG_MIGRATION_CONNECTION_NAME_ALREADY_EXISTS": "El nom de connexió ja existeix.",
+      "SWAG_MIGRATION_CONNECTION_NAME_TO_SHORT": "El nom de la connexió ha de tenir com a mínim 6 caràcters de longitud.",
+      "SWAG_MIGRATION_INVALID_API_KEY": "La clau API no té la longitud correcta ({length}/40 caràcters)."
+    }
+  },
+  "swag-migration": {
+    "dashboard": {
+      "button": "Auxiliar de migració oberta",
+      "headline": "Passar a Shopware",
+      "information": "El primer és enllaçar el vostre sistema de botiga existent: l'Assistent de migració us ajudarà en el camí.",
+      "shopInfoCard": {
+        "button": "Obert",
+        "header": "Assistent de migració",
+        "resetButton": "Acabat"
+      },
+      "title": "Assistent de migració"
+    },
+    "emptyScreen": {
+      "connectButton": "Crear connexió",
+      "description": "Assegureu-vos que s'ha establert una connexió entre els sistemes. Això és necessari per a la migració. Podeu trobar més informació aquí:{linebreak}{link}",
+      "link": "Documentació: Migració a Shopware 6",
+      "title": "Sense connexió"
+    },
+    "general": {
+      "descriptionTextModule": "Mòdul per migrar dades",
+      "mainMenuItemGeneral": "Assistent de migració",
+      "tabDataSelector": "Selecció de dades",
+      "tabHistory": "Història",
+      "tabMain": "General"
+    },
+    "history": {
+      "clearRunDialog": {
+        "content": "L'eliminació de les dades de migració eliminarà les entrades de registre, les entrades de fitxers multimèdia, els registres de dades de migració temporal i l'execució de migració, que després ja no estaran disponibles a l'historial de migracions.",
+        "contentHint": "Realment vols eliminar les dades?",
+        "title": "Eliminar dades de migració"
+      },
+      "connectionName": "Nom de la connexió",
+      "contextMenu": {
+        "clearLogs": "Eliminar dades de migració",
+        "details": "Mostrar detalls",
+        "downloadLogs": "Registre de descàrregues"
+      },
+      "detailPage": {
+        "close": "Tancar",
+        "data": "Dades",
+        "dataCount": "Conjunts de dades",
+        "dataName": "Nom",
+        "errorCode": "Missatge d'error",
+        "errorCount": "Recompte",
+        "errors": "Detalls",
+        "logDescription": "Per a més detalls {link}",
+        "logDownload": "descarregar el fitxer de registre.",
+        "noErrorsOccurred": "No s'han produït errors.",
+        "runStatus": "Estat de migració:",
+        "status": {
+          "aborted": "Avortat",
+          "finished": "Acabat",
+          "running": "Córrer"
+        },
+        "timestamp": "Hora:",
+        "title": "Detalls de la migració"
+      },
+      "importDateTime": "Hora d'inici",
+      "noData": "No s'han trobat migracions.",
+      "profileAndGateway": "Perfil i passarel·la",
+      "selectedData": "Dades",
+      "shopDomain": "Domini de la botiga",
+      "shopSystem": "Sistema de botiga",
+      "status": "Estatus"
+    },
+    "index": {
+      "abortButton": "Cancel·lar",
+      "assistantCard": {
+        "connection": {
+          "content": "L'assistent de migració ajudarà a establir una connexió entre el seu sistema de botiga i Shopware 6 per transferir i migrar les seves dades.",
+          "link": "Ajuda i documentació",
+          "title": "Configurar una connexió"
+        },
+        "dataSelection": {
+          "content": "Seleccioneu les dades que voleu migrar. És possible incloure dades del connector també, si el connector ja està disponible per a Shopware 6. Comproveu la disponibilitat del connector al vostre compte de Shopware.",
+          "title": "Especificar dades per a la migració"
+        },
+        "finish": "Fet!",
+        "headline": "Com funciona la migració",
+        "migrationOverview": {
+          "content": "1. Un procés automàtic comprova les dades seleccionades per a les assignacions que falten. Prepareu-vos per completar el procés automàtic afegint assignacions manuals.\n2. Les dades de la vostra botiga són llegides i assignades.\n3. Totes les dades seleccionades i correctament assignades es transfereixen a Shopware 6.\n4. Els elements multimèdia es descarreguen.",
+          "title": "Passos de migració"
+        },
+        "title": "Informació"
+      },
+      "backButton": "Resum",
+      "confirmAbortDialog": {
+        "cancelPause": "Pausa",
+        "cancelRunning": "Continuar",
+        "confirm": "Aturar la migració",
+        "content": "La migració no està completament completa. Les dades ja migrades podrien ser inutilitzables. Si abandoneu ara, haureu de tornar a executar completament el procés de migració.",
+        "hint": "Voleu aturar la migració?",
+        "title": "Aturar la migració"
+      },
+      "confirmWarningCard": {
+        "currencyMismatch": {
+          "checkboxLabel": "Sí, m'agradaria continuar",
+          "question": "Estàs segur que les dades s'han de migrar en la moneda estàndard [{targetSystemCurrency}]?",
+          "text": "La moneda de les dades a migrar no coincideix amb la moneda estàndard [{targetSystemCurrency}]. Les dades amb [{sourceSystemCurrency}] encara es poden migrar, però no es convertiran automàticament. Podeu ajustar els preus manualment després.",
+          "title": "La migració reconeix una altra moneda"
+        },
+        "languageMismatch": {
+          "checkboxLabel": "Sí, m'agradaria continuar",
+          "question": "Estàs segur que les dades s'han de migrar en l'idioma estàndard [{targetSystemLanguage}]?",
+          "text": "L'idioma de les dades a migrar no coincideix amb el llenguatge estàndard [{targetSystemLanguage}]. Les dades amb [{sourceSystemLanguage}] encara es poden migrar, però no es convertiran automàticament. Podeu ajustar les traduccions manualment després.",
+          "title": "La migració ha reconegut una altra llengua"
+        }
+      },
+      "continueButton": "Continuar",
+      "error": {
+        "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
+          "description": "L'entitat infantil {entity} des de l'entitat matriu {parentEntity} amb l'id \"{parentSourceId}\" no s'ha pogut convertir.",
+          "title": "L'entitat infantil {entity} no es va poder convertir"
+        },
+        "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
+          "description": "L'entitat {entity} amb l'id d'origen \"{sourceId}\" no s'ha pogut convertir.",
+          "title": "L'entitat {entity} no es va poder convertir"
+        },
+        "SWAG_MIGRATION_CANNOT_GET_FILE": {
+          "description": "El fitxer {entity} amb l'uri \"{uri}\" i l'id multimèdia \"{sourceId}\" no es pot descarregar/copiar.",
+          "title": "El fitxer {entity} no es pot descarregar/copiar"
+        },
+        "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
+          "description": "L'entitat {entity} amb id d'origen \"{sourceId}\" ja existeix i no es pot escriure.",
+          "title": "L'entitat {entity} ja existeix"
+        },
+        "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
+          "description": "L'entitat {entity} amb l'id d'origen \"{sourceId}\" va obtenir el camp \"{emptyField}\" substituït per \"{replacementField}”.",
+          "title": "L'entitat {entity} compta amb un camp que va ser reassignat"
+        },
+        "SWAG_MIGRATION_ENTITY_UNKNOWN": {
+          "description": "L'entitat {requiredForEntity} amb l'id d'origen \"{requiredForSourceId}\" no pot trobar l'entitat {entity} depenent amb l'id d'origen \"{sourceId}”.",
+          "title": "No es pot trobar {entity}"
+        },
+        "SWAG_MIGRATION_RUN_EXCEPTION": {
+          "description": "{description}",
+          "title": "Es va produir una excepció"
+        },
+        "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
+          "description": "No s'ha pogut llegir el recompte total de l'entitat {entity} . Assegureu-vos que la taula \"{table}\" existeix al vostre sistema d'origen i que la condició opcional \"{condition}\" sigui vàlida. Missatge d'excepció: {exceptionMessage}",
+          "title": "No s'ha pogut llegir el recompte d'entitats"
+        },
+        "SWAG_MIGRATION__DATASET_NOT_FOUND": {
+          "description": "No s'ha trobat el conjunt de dades del perfil \"{profileName}\" i de l'entitat \"{entity}\". Entitat amb id \"{sourceId}\" no s'ha pogut processar.",
+          "title": "El conjunt de dades no s'ha trobat"
+        },
+        "SWAG_MIGRATION__DEBUG": {
+          "description": "{logData}",
+          "title": "Sortida de depuració"
+        },
+        "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
+          "description": "El document amb l'id d'origen \"{sourceId}\" no s'ha pogut convertir perquè el tipus de document \"{type}\" no és compatible.",
+          "title": "El tipus de document no és compatible"
+        },
+        "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
+          "description": "L'adreça de correu electrònic de l'entitat {entity}  amb id d'origen \"{sourceId}\" no és vàlida: {email}",
+          "title": "Adreça de correu electrònic no vàlida"
+        },
+        "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
+          "description": "No s'ha trobat el processador per al perfil \"{profileName}“, passarel·la\"{gatewayName}\"i l'entitat\"{entity}\".",
+          "title": "No s'ha trobat el processador"
+        },
+        "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
+          "description": "El {missingEntity} amb l'id d'origen \"{sourceId}\" no es pot trobar però és requerit per {requiredFor}.",
+          "title": "{entity} associat no s'ha trobat"
+        },
+        "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
+          "description": "El fitxer d'origen no s'ha pogut copiar. Fitxer: {path}",
+          "title": "L'arxiu d'origen no s'ha trobat"
+        },
+        "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
+          "description": "No es pot descarregar mitjans de comunicació. Fitxer afectat: {uri}",
+          "title": "No es pot descarregar multimèdia"
+        },
+        "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
+          "description": "L'entitat {entity} amb l'id d'origen \"{sourceId}\" no té les dades necessàries per al camp \"{emptyField}”",
+          "title": "L'entitat {entity} té un camp necessari buit"
+        },
+        "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
+          "description": "L'entitat {entity} amb id d'origen \"{sourceId}\" no s'ha pogut convertir a causa de dades d'objectes no serialitzats invàlids per a l'entitat \"{unserializedEntity}\" i les dades en brut són: {serializedData}",
+          "title": "Dades no serialitzades no vàlides"
+        },
+        "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
+          "description": "No s'ha trobat l'entitat pare de fill de \"{entity}\".",
+          "title": "L'entitat mare no s'ha trobat"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
+          "description": "Nombrerange-entitat amb id d'origen \"{sourceId}\" no s'ha pogut convertir a causa del tipus no suportat: {type}.",
+          "title": "Tipus d'interval de nombres no suportat"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
+          "description": "{entity} del tipus d'objecte “{objectType}“amb id d'origen “{sourceId}“no s'ha pogut convertir.",
+          "title": "Tipus d'objecte no suportat"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
+          "description": "L'entitat del mètode d'enviament amb id d'origen \"{sourceId}\" no s'ha pogut convertir a causa del tipus de càlcul no suportat: {type}.",
+          "title": "Tipus de càlcul d'enviament no suportat"
+        },
+        "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
+          "description": "L'entitat del preu d'enviament amb id d'origen \"{sourceId}\" del mètode d'enviament \"{shippingMethodId}\" no s'ha pogut convertir a causa del càlcul del preu del factor no suportat.",
+          "title": "Càlcul del preu del factor d'enviament no compatible"
+        },
+        "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
+          "description": "El tema amb id \"{sourceId}\" no s'ha pogut compilar.",
+          "title": "Error de compilació del tema"
+        },
+        "SWAG_MIGRATION__WRITER_NOT_FOUND": {
+          "description": "No s'ha trobat l'escriptor d'arxius per a l'entitat \"{entity}\".",
+          "title": "No s'ha trobat l'escriptor d'arxius"
+        },
+        "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
+          "description": "{description}",
+          "title": "S'ha produït una excepció d'escriptura"
+        },
+        "authorizationError": {
+          "information": "Error d'autorització. Les seves dades d'accés no són correctes. Si us plau, comproveu-ho i torneu-ho a provar."
+        },
+        "canNotConnectToServer": "No hi ha connexió amb el servidor. Si us plau, comproveu la connexió per si hi ha problemes.",
+        "customerExists": {
+          "information": "Client amb correu electrònic \"{mail}\" ja existeix. No podeu afegir aquest usuari amb aquest correu electrònic a la vostra base de dades."
+        },
+        "gatewayNotFound": {
+          "information": "Gateway \"{notFoundGateway}\" no s'ha trobat."
+        },
+        "gatewayRead": {
+          "information": "No s'ha pogut llegir la porta d'entrada \"{unreadableGateway}”."
+        },
+        "localeNotFound": {
+          "information": "No s'ha trobat el codi d'entrada a la configuració regional \"{notFoundCode}\"."
+        },
+        "mediaProcessConnectionError": "S'ha produït un error de connexió en copiar les dades dels mitjans de comunicació. Si us plau, comproveu la connexió.",
+        "migrationContextPropertyMissing": {
+          "information": "No s'ha trobat la propietat requerida \"{notFoundProperty}\" per al context de migració."
+        },
+        "migrationsWorkloadPropertyMissing": {
+          "information": "No s'ha trobat la propietat requerida \"{notFoundProperty}\" per a la càrrega de treball de migració."
+        },
+        "noFileSystemPermissions": {
+          "information": "Sense permisos del sistema de fitxers per crear o escriure fitxers o directoris. Si us plau, comproveu els vostres permisos."
+        },
+        "profileNotFound": {
+          "information": "El perfil de migració \"{notFoundProfile}\" no s'ha trobat."
+        },
+        "undefinedIndex": {
+          "detail": "No s'ha pogut trobar un índex no identificat.",
+          "information": "No s'ha trobat índex \"{unidentifiedIndex}\". Si us plau, comproveu les vostres dades.",
+          "title": "Índex no identificat"
+        },
+        "unknownError": "Error desconegut. Podeu consultar la taula de registre de la vostra base de dades per obtenir més informació."
+      },
+      "errorTypes": {
+        "error": "Error",
+        "info": "Informació",
+        "warning": "Avís"
+      },
+      "finishButton": "Acabat",
+      "loadingScreenCard": {
+        "connectionLostScreen": {
+          "buttonNavigateToMain": "General",
+          "message": "La migració va acabar el procés per evitar la pèrdua de dades. Comproveu la connexió a Internet i inicieu una nova migració.",
+          "title": "La connexió s'ha perdut"
+        },
+        "flowChart": {
+          "fetchData": "Lectura",
+          "finish": "Fet",
+          "premapping": "Comprovació",
+          "processMedia": "Descàrrega",
+          "writeData": "Escriure"
+        },
+        "mediaProcessScreen": {
+          "message": "El procés s'està executant en segon pla",
+          "title": "Començant la descàrrega de mitjans"
+        },
+        "pauseScreen": {
+          "message": "No has fet una pausa? Si no hi ha connexió a Internet, la migració canvia automàticament al mode de pausa per evitar la pèrdua de dades.",
+          "title": "La migració està pausada"
+        },
+        "result": {
+          "caption": "La descàrrega de mitjans continua en segon pla. Els fitxers grans poden trigar un temps.",
+          "historyLink": "Veure detalls de la migració",
+          "indexingNotification": {
+            "finished": {
+              "message": "S'ha completat la indexació.",
+              "title": "Indexació finalitzada"
+            },
+            "running": {
+              "message": "Actualment la indexació en segon pla.",
+              "title": "Indexació en curs"
+            }
+          },
+          "notification": {
+            "actionLabel": "Historial obert",
+            "message": "Visualitza o descarrega el fitxer de registre",
+            "title": "Història de les migracions"
+          },
+          "survey": {
+            "buttonText": "Doneu comentaris ara",
+            "caption": "Si us plau, ajudeu-nos a millorar el procés de migració proporcionant comentaris de la vostra experiència.",
+            "link": "https://www.surveymonkey.de/r/RF7J3LV",
+            "title": "Els teus pensaments són importants"
+          },
+          "title": "L'assistent de migració està fet"
+        },
+        "status": {
+          "FETCH_DATA": {
+            "caption": "Es tramiten les noves assignacions.",
+            "hint": "Consell: La migració continua pas a pas en segon pla, exploreu Shopware 6.",
+            "long": "Les dades es llegiran des del seu sistema",
+            "short": "Lectura"
+          },
+          "PROCESS_MEDIA_FILES": {
+            "caption": "Les dades d'imatges grans poden trigar un temps a processar.",
+            "hint": "Consell: Si la connexió és deficient, pausa la descàrrega i continua més tard.",
+            "long": "Els mitjans de comunicació s'estan descarregant",
+            "short": "Descàrrega"
+          },
+          "WRITE_DATA": {
+            "caption": "Depenent de la mida de la botiga pot trigar uns moments.",
+            "hint": "Consell: podeu fer una pausa i reprendre el procés de migració en qualsevol moment.",
+            "long": "Les dades s'estan escrivint a Shopware 6",
+            "short": "Escriure"
+          },
+          "finish": "Fet"
+        },
+        "takeoverScreen": {
+          "abortModal": {
+            "cancel": "Cancel·lar",
+            "confirm": "Cancel·la la migració",
+            "hint": "Voleu cancel·lar la migració?",
+            "message": "De moment no és possible assumir la migració activa. Si voleu, ara podeu cancel·lar la migració activa i iniciar-ne una de nova directament després.",
+            "title": "Cancel·la la migració"
+          },
+          "aborted": {
+            "message": "Un altre usuari ha cancel·lat el procés de migració en un navegador o una pestanya del navegador separat. Si us plau, inicieu una nova migració.",
+            "title": "La migració ha estat cancel·lada"
+          },
+          "buttonCheck": "Comprovar l'estat",
+          "buttonRedirect": "General",
+          "forbidden": {
+            "message": "Ja s'ha iniciat una migració en un altre navegador o pestanya del navegador. Si us plau, canvieu a aquesta pestanya per veure el procés de migració.",
+            "title": "La migració ja començada"
+          },
+          "interrupted": {
+            "message": "El procés de migració va ser assumit des d'un altre navegador o pestanya del navegador. Podeu cancel·lar o assumir el procés, depenent de l'estat actual de la migració.",
+            "title": "La migració ha estat assumida"
+          },
+          "redirectModal": {
+            "confirm": "General",
+            "message": "La migració ja s'ha completat en un altre navegador o pestanya del navegador.",
+            "title": "La migració completa"
+          },
+          "running": {
+            "message": "Ja hi ha una migració que s'executa en un altre navegador o pestanya del navegador. Ara podeu assumir la migració en execució o cancel·lar-la.",
+            "title": "La migració ja començada"
+          },
+          "takeoverModal": {
+            "cancel": "Cancel·lar",
+            "confirm": "Assumir la migració",
+            "hint": "T'agradaria assumir la migració?",
+            "message": "És possible assumir la migració activa. Si voleu, podeu continuar la migració en aquesta finestra del navegador.",
+            "title": "Assumir la migració"
+          }
+        }
+      },
+      "migrateButton": "Iniciar la migració",
+      "migrationAlreadyRunning": "La migració ja està començada.",
+      "pauseButton": "Pausa",
+      "pluginVersionText": "Hem notat que una actualització de plugin està disponible en el seu sistema d'origen {sourceSystem}. Si us plau, actualitzeu el connector \"{pluginName}\" abans d'iniciar la migració.",
+      "premappingCard": {
+        "collapseTitle": "Mostra les assignacions processades",
+        "expandTitle": "Amaga assignacions processades",
+        "filledCardTitle": "Assignacions processades",
+        "group": {
+          "delivery_time": "Termini de lliurament",
+          "manufacturer": "Fabricants",
+          "newsletter_status": "Estat del butlletí",
+          "order_delivery_state": "Estats de lliurament de comandes",
+          "order_state": "Estats d'ordre",
+          "payment_method": "Formes de pagament",
+          "salesChannel": "Canal de venda de butlletins",
+          "salutation": "Salutació",
+          "shipping_availability_rule": "Disponibilitat del mètode d'enviament",
+          "transaction_state": "Estats de transacció"
+        },
+        "loadingCaption": "S'han comprovat les dades existents.",
+        "loadingTitle": "La comprovació de dades s'està executant",
+        "newAssignmentTitle": "Nous encàrrecs",
+        "placeholder": "Si us plau, seleccioneu",
+        "previousTitle": "Anterior",
+        "unfilledAlert": "Hem detectat que hi ha dades que requereixen assignació manual.",
+        "unfilledCaption": "Només es pot continuar després que s'hagi completat l'assignació manual.",
+        "unfilledCardTitle": "Assignacions manuals",
+        "unfilledTitle": "S'ha completat la comprovació de dades",
+        "validCaption": "Les dades estan preparades per procedir",
+        "validTitle": "La comprovació de dades ha finalitzat"
+      },
+      "savePremapping": {
+        "message": "El premapping s'ha salvat.",
+        "saveButton": "Guardar premapping"
+      },
+      "selectDataCard": {
+        "cardTitle": "Selecció de dades",
+        "dataHeader": "Dades",
+        "dataSelection": {
+          "basicSettings": "Dades bàsiques",
+          "cms": "Dissenys",
+          "customerWishlists": "Llistes de desitjos",
+          "customersOrders": "Clients i comandes",
+          "media": "Mitjans",
+          "newsletterRecipient": "Receptor del butlletí",
+          "processMediaFiles": "Mitjans",
+          "productReviews": "Ressenyes de productes",
+          "products": "Productes",
+          "promotions": "Promocions",
+          "seoUrls": "URL SEO"
+        },
+        "dataTypes": {
+          "basicData": "Dades de la botiga",
+          "pluginData": "Dades del connector"
+        },
+        "entities": {
+          "category": "Categories:",
+          "category_association": "Categoria associacions:",
+          "category_cms_page_association": "Associacions de disseny de categories:",
+          "category_product_stream_association": "Associacions dinàmiques de grups de productes de categoria:",
+          "cms_page": "Dissenys:",
+          "country": "Països:",
+          "country_state": "Estats del país:",
+          "currency": "Monedes:",
+          "custom_field_set": "Conjunts de camps personalitzats:",
+          "customer": "Clients:",
+          "customer_group": "Grups de clients:",
+          "customer_wishlist": "Llistes de desitjos:",
+          "delivery_time": "Termini de lliurament:",
+          "language": "Idiomes:",
+          "mail_template": "Plantilles de correu electrònic:",
+          "main_variant_relation": "Relacions principals de variants:",
+          "media": "Mitjans de comunicació:",
+          "media_folder": "Carpetes multimèdia:",
+          "media_folder_inheritance": "Herències de carpetes multimèdia:",
+          "number_range": "Ranges de nombre:",
+          "order": "Comandes:",
+          "order_document": "Documents de comanda:",
+          "order_document_base_config": "Configuració del document:",
+          "order_document_inheritance": "Relacions de documents d'ordre:",
+          "page_system_config": "Informació bàsica de la pàgina:",
+          "product": "Productes:",
+          "product_cross_selling": "Venda creuada:",
+          "product_feature_set": "Característiques essencials:",
+          "product_manufacturer": "Fabricants de productes:",
+          "product_option_relation": "Opcions de producte:",
+          "product_property_relation": "Propietats del producte:",
+          "product_review": "Ressenyes:",
+          "product_sorting": "Classificació de productes:",
+          "product_stream": "Grups dinàmics de productes:",
+          "product_stream_filter_inheritance": "Filtres dinàmics del grup de productes:",
+          "promotion": "Promocions:",
+          "property_group": "Grups de propietats:",
+          "property_group_option": "Propietats:",
+          "rule": "Regles:",
+          "sales_channel": "Canals de venda:",
+          "sales_channel_domain": "Dominis:",
+          "salutation": "Salutacions:",
+          "seo_url": "URL de SEO:",
+          "seo_url_template": "Plantilles URL SEO:",
+          "shipping_method": "Mètodes d'enviament:",
+          "snippet": "Fragments:",
+          "snippet_set": "Conjunts de fragments:",
+          "system_config": "Informació bàsica:",
+          "tax": "Tipus impositius:",
+          "tax_rule": "Normes fiscals:",
+          "translation": "Traduccions:",
+          "unit": "Unitats d'escala:"
+        },
+        "headers": {
+          "dataType": "Tipus",
+          "name": "Nom",
+          "total": "Conjunts de dades"
+        },
+        "noData": "No s'ha trobat res per migrar."
+      },
+      "shopInfoCard": {
+        "buttonCreateConnection": "Crear una nova connexió",
+        "buttonEditSettings": "Editar la connexió",
+        "buttonProfileInstallation": "Instal·lar un altre perfil",
+        "buttonRemoveCredentials": "Eliminar dades d'accés",
+        "buttonResetChecksums": "Restablir sumes de verificació",
+        "buttonResetMigration": "Migració completa",
+        "buttonSelectConnection": "Canviar la connexió",
+        "cardTitle": "Sistema de botiga",
+        "connected": "Connectat",
+        "connectionCheck": "Comprovació de connexió:",
+        "displayDateTime": "{time} - {date}",
+        "gateway": "Passarel·la:",
+        "lastMigration": "Última migració:",
+        "noMigrationDoneYet": "-",
+        "notConnected": "No connectat",
+        "profile": "Perfil del sistema:",
+        "removeCredentialsConfirmDialog": {
+          "abortButtonText": "Cancel·lar",
+          "confirmButtonText": "Sí, esborrar",
+          "content": "No hi haurà connexió activa després d'això. Introduïu de nou les vostres dades d'accés per restaurar la connexió.",
+          "contentHint": "Vols eliminar les dades d'accés actuals?",
+          "title": "Eliminar dades d'accés"
+        },
+        "resetChecksumsConfirmDialog": {
+          "abortButtonText": "Cancel·lar",
+          "confirmButtonText": "Sí, restableix",
+          "content": "Si restabliu les sumes de verificació, totes les dades del sistema d'origen es reconeixeran en la següent migració. Això inclou conjunts de dades ja migrats o sense canvis. <br><br><strong>Important:</strong> Els canvis en els registres de dades que heu fet al Shopware 6 des de l'última migració, seran sobreescrits. Les dades d'origen del sistema tenen prioritat.",
+          "contentHint": "Vols restablir les sumes de verificació?",
+          "title": "Restablir sumes de verificació"
+        },
+        "resetMigrationConfirmDialog": {
+          "abortButtonText": "Cancel·lar",
+          "confirmButtonText": "Finalitza ara",
+          "content": "Genial! Finalitzem ara la migració i netegem fitxers temporals i dades no utilitzades. <strong>Tingueu en compte:</strong> Finalitzar la migració és terminal. No podreu migrar més dades a través de la connexió actual.",
+          "contentHint": "Voleu acabar la migració ara?",
+          "errorNotification": {
+            "message": "Actualment està en marxa una migració.",
+            "title": "S'ha produït un error en finalitzar la migració"
+          },
+          "header": "Has acabat de migrar les dades de la teva botiga?",
+          "title": "Finalitzar la migració"
+        }
+      },
+      "shopwareMajorVersionText": "Hem notat que la versió del vostre sistema d'origen {sourceSystem} no coincideix amb la versió {targetSystem} del vostre sistema de destinació. Si us plau, assegureu-vos d'utilitzar la mateixa versió principal per als dos sistemes abans d'iniciar la migració.",
+      "startButton": "Continuar",
+      "title": "General"
+    },
+    "wizard": {
+      "buttonAbort": "Cancel·lar",
+      "buttonConnect": "Connecta",
+      "buttonConnectionCreate": "Establir connexió",
+      "buttonConnectionSelect": "Canviar la connexió",
+      "buttonEdit": "Editar la connexió",
+      "buttonFinish": "Fet",
+      "buttonLater": "Tancar",
+      "buttonLetsGo": "Començar",
+      "buttonNext": "Continuar",
+      "buttonToProfileInformation": "Informació",
+      "buttonUseSsl": "Utilitzeu HTTPS",
+      "pages": {
+        "connectionCreate": {
+          "connectionLabel": "Nom de la connexió",
+          "connectionPlaceholder": "Introduïu el nom",
+          "connectionTooltip": "Introduïu un nom únic per a la connexió.",
+          "contentInformation": "La informació següent és necessària per dur a terme la migració.",
+          "gatewayLabel": "pòrtic",
+          "gatewayPlaceholder": "Seleccionar passarel·la",
+          "gatewayTooltip": "El tipus de connexió entre els sistemes.",
+          "gateways": {
+            "shopwareApi": "API",
+            "shopwareLocal": "Base de dades local"
+          },
+          "hint": {
+            "local": "Nota: Els sistemes de la botiga han d'estar al mateix servidor. Necessiteu dades d'accés a la base de dades."
+          },
+          "profileInstall": "Instal·lar un altre perfil",
+          "profileLabel": "Perfil del sistema de botiga",
+          "profilePlaceholder": "Seleccionar perfil",
+          "title": "Migració — Crear nova connexió"
+        },
+        "connectionSelect": {
+          "connectionLabel": "Nom de la connexió",
+          "connectionPlaceholder": "Seleccioneu una connexió",
+          "contentInformation": "Seleccioneu una connexió existent de la llista per actualitzar les dades.",
+          "title": "Migració — Canvi de la connexió"
+        },
+        "credentials": {
+          "emptyState": "Ho sentim no s'ha trobat cap formulari per al perfil seleccionat.",
+          "error": {
+            "SWAG_MIGRATION__CONNECTION_AUTHENTICATION_INVALID": "Les seves credencials són incorrectes. Si us plau, comproveu-los i torneu-ho a provar.",
+            "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "No s'ha pogut establir la connexió de la base de dades.",
+            "SWAG_MIGRATION__GATEWAY_READ": "No s'ha pogut connectar al servidor. Si us plau, comproveu el domini de la botiga indicat.",
+            "SWAG_MIGRATION__IS_RUNNING": "Actualment està en marxa una migració. Per tant, no podeu editar les credencials fins que no s'hagi completat la migració.",
+            "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "El complement requerit “Connector de migració” no està instal·lat a Shopware 5. Si us plau, instal·leu el connector gratuït i torneu a provar.",
+            "SWAG_MIGRATION__SSL_REQUIRED": "Hem determinat que el domini de la botiga donat és necessària una connexió SSL.",
+            "alertErrorTitle": "Atenció",
+            "contentTitle": "Sense connexió",
+            "undefinedErrorMsg": "Error intern del servidor. Si us plau, torneu a intentar."
+          },
+          "shopware55": {
+            "api": {
+              "apiKeyLabel": "Clau API",
+              "apiKeyPlaceholder": "Introduïu clau",
+              "apiKeyTooltip": "La clau API s'utilitza per a la seguretat i la identificació.",
+              "apiUserLabel": "Nom d'usuari (usuari API)",
+              "apiUserPlaceholder": "Introduïu nom d'usuari",
+              "apiUserTooltip": "Nom d'usuari del vostre backend de Shopware 5.",
+              "contentInformation": "Necessiteu credencials d'API vàlides per establir una connexió entre Shopware 5 i Shopware 6. Les vostres credencials de l'API es poden trobar al vostre backend de Shopware 5 sota “Administració d'usuaris”. L'accés a l'API ha de ser activat allà i confirmat guardant.",
+              "endpointLabel": "Domini de la botiga",
+              "endpointPlaceholder": "www.demoshop.com",
+              "endpointSSLLabel": "La meva botiga utilitza una connexió segura (SSL)"
+            },
+            "local": {
+              "contentInformation": "Encara necessitem dades d'accés per connectar-nos a la seva base de dades Shopware 5.",
+              "dbHostLabel": "Amfitrió",
+              "dbHostPlaceholder": "Introduïu el host",
+              "dbNameLabel": "Nom de la base de dades",
+              "dbNamePlaceholder": "Introduïu el nom",
+              "dbPasswordLabel": "Contrasenya",
+              "dbPasswordPlaceholder": "Introduir contrasenya",
+              "dbPortLabel": "Port",
+              "dbUserLabel": "Usuari",
+              "dbUserPlaceholder": "Introduïu nom d'usuari",
+              "installationRoot": "Carpeta d'instal·lació de la botiga",
+              "installationRootPlaceholder": "Introduïu l'arrel d'instal·lació"
+            }
+          },
+          "shopware6": {
+            "api": {
+              "apiPasswordLabel": "Clau d'accés secreta",
+              "apiPasswordPlaceholder": "Introduïu la clau d'accés secreta",
+              "apiPasswordTooltip": "La clau d'accés secreta s'utilitza per a la seguretat i la identificació.",
+              "apiUserLabel": "ID de clau d'accés",
+              "apiUserPlaceholder": "Introduïu l'ID de la clau d'accés",
+              "apiUserTooltip": "Accedeix a l'ID de la clau de la teva integració.",
+              "contentInformation": "Necessiteu credencials d'API vàlides per establir una connexió entre la vostra instància de Shopware 6 d'origen i objectiu. Obteniu aquests quan creeu una integració en el vostre sistema d'origen.",
+              "endpointLabel": "Domini de la botiga",
+              "endpointPlaceholder": "www.demoshop.com",
+              "endpointSSLLabel": "La meva botiga utilitza una connexió segura (SSL)"
+            }
+          },
+          "statusTitle": "Comprovació de connexió",
+          "success": {
+            "SWAG_MIGRATION__REQUEST_CERTIFICATE_INVALID": "Hem determinat que el certificat SSL del domini de la botiga especificat no és segur. Comproveu el certificat per a la vostra pròpia seguretat.",
+            "contentInformation": "Podeu iniciar la vostra migració.",
+            "contentTitle": "La connexió reeixida",
+            "undefinedErrorMsg": "Es va produir un error desconegut mentre es comprova el certificat SSL des del domini de la botiga especificat."
+          },
+          "title": "Migració — Establir una connexió"
+        },
+        "introduction": {
+          "contentHeadline": "Anem a moure algunes coses",
+          "contentInformation": "Junts connectarem el vostre sistema de botiga a Shopware 6. Després, l'Auxiliar de migració us ajudarà a migrar les vostres dades pas a pas.",
+          "title": "Assistent de migració"
+        },
+        "profileInformation": {
+          "shopware55Api": {
+            "contentInformation": "El connector necessari “Connector de migració” és gratuït i es pot trobar al dorsal del Shopware 5 a Plugin Manager > Extensions > Eines de migració. Si us plau, instal·leu i activeu el connector per continuar.",
+            "contentTitle": "Es requereix un plugin",
+            "pluginLink": "Més informació sobre el connector"
+          },
+          "shopware6Api": {
+            "contentTitle": "Requisits",
+            "integration": {
+              "description": "Crear una integració en el sistema d'origen mitjançant Configuració > Sistema > Integracions. Necessitareu l'ID de la clau d'accés generada i la clau d'accés secreta en el següent pas.",
+              "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+              "linkText": "Més informació sobre integracions",
+              "title": "Integració"
+            },
+            "plugin": {
+              "description": "Instal·leu l'extensió Auxiliar de migració al sistema d'origen.",
+              "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+              "linkText": "Més informació sobre l'extensió Migration Assistant",
+              "title": "Extensió"
+            }
+          },
+          "title": "Migració - Preparació de connexió"
+        },
+        "profileInstallation": {
+          "availabilityHeadline": "Prèviament disponible:",
+          "availableVersionHeadline": "recolzat:",
+          "content": "Trieu el sistema de botiga per migrar les dades i assegureu-vos d'instal·lar el connector de perfil corresponent també.",
+          "installationButton": "Instal·lar",
+          "installedHint": "Instal·lat",
+          "magentoProfileHeadline": "Magento - Perfil",
+          "profileManufacturer": "shopware AG",
+          "shopwareProfileHeadline": "Shopware - Perfil",
+          "title": "Migració - Shopsystem-Profile"
+        }
+      }
+    },
+    "worker-listener": {
+      "mediaProcessing": {
+        "message": "No queden fitxers. | Queden un fitxer. | Els fitxers {n} queden.",
+        "messageSuccess": "S'ha completat la descàrrega de mitjans de comunicació.",
+        "title": "Els mitjans de comunicació s'estan descarregant",
+        "titleSuccess": "Finalitzada la descàrrega de mitjans"
+      }
+    }
+  }
+}
