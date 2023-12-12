@@ -1,4 +1,10 @@
 {
+    "sw-order-detail": {
+        "payPalCarrierDescription": "このPayPalオーダーの配送方法を変更したい場合は、 <a target=\"_blank\" href=\"{orderLink}\">ここをクリック</a>",
+        "payPalCarrierHelpText": "<a class=\"sw-internal-link sw-internal-link--inline\" href=\"#/sw/settings/shipping/index\">配送方法<sw-icon name=\"regular-long-arrow-right\" small /></a>でPayPalのデフォルトの配送方法を設定および変更できます。 ただし、これはすでに受付済みの注文には影響しません。",
+        "payPalCarrierLabel": "デフォルトの配送業者",
+        "payPalCarrierPlaceholder": "未設定"
+    },
     "sw-privileges": {
         "permissions": {
             "parents": {
@@ -12,62 +18,97 @@
             }
         }
     },
-    "sw-settings-payment-list": {
-        "needOnboardingTooltip": "オンボーディングを完了して、この支払い方法を有効化してください"
-    },
     "sw-settings-payment-detail": {
         "tooltip": "<a class=\"swag-paypal-go-to-settings-link\" href=\"#/swag/paypal/index\">PayPalの拡張機能設定 →</a> に移動し、PayPalコマースプラットフォームを有効にしてこの支払い方法を有効にします。"
     },
+    "sw-settings-payment-list": {
+        "needOnboardingTooltip": "オンボーディングを完了して、この支払い方法を有効化してください"
+    },
     "swag-paypal": {
+        "general": {
+            "descriptionTextModule": "PayPal設定",
+            "mainMenuItemGeneral": "PayPal"
+        },
         "header": "PayPal",
+        "messageNotBlank": "この値は空白にできません。",
         "saleschannelCard": {
             "button": {
                 "description": "このボタンをクリックしてPayPalを有効にし、選択した販売チャネルのデフォルトとして選択します。",
                 "label": "PayPalをデフォルトとして設定する"
             }
         },
-        "tabs": {
-            "general": "一般設定",
-            "storefront": "ストアフロントプレゼンテーション"
-        },
-        "general": {
-            "mainMenuItemGeneral": "PayPal",
-            "descriptionTextModule": "PayPal設定"
-        },
-        "messageNotBlank": "この値は空白にできません。",
         "settingForm": {
-            "testLive": "テストAPI認証情報",
-            "testSandbox": "サンドボックス API 認証情報をテストする",
+            "acdc": {
+                "acdcForce3DS": {
+                    "helpText": "3Dセキュアが利用できない場合、取引は受け付けられません。",
+                    "label": "3Dセキュアのみで取引を実行"
+                },
+                "cardTitle": "クレジットカードまたはデビットカード"
+            },
+            "behavior": {
+                "brandName": {
+                    "label": "PayPalページに表示するブランド名",
+                    "tooltipText": "このテキストは、PayPal の支払いページにブランド名として表示されます。"
+                },
+                "cardTitle": "挙動",
+                "excludedProductIds": {
+                    "label": "除外された商品",
+                    "tooltipText": "ここで選択した商品はPayPalでは購入できません。"
+                },
+                "excludedProductStreamIds": {
+                    "label": "除外された動的商品グループ",
+                    "tooltipText": "ここで選択した動的商品グループに含まれる商品は、PayPalでは購入できません。"
+                },
+                "intent": {
+                    "AUTHORIZE": "手動での支払い回収 (インテントオーソライズ)",
+                    "CAPTURE": "自動支払い回収 (インテントキャプチャ)",
+                    "label": "支払い取得"
+                },
+                "landingPage": {
+                    "helpText": {
+                        "billing": "登録: PayPalサイトには、ランディングページとして登録フォームが表示されます。",
+                        "login": "ログイン: PayPalサイトは、ランディングページとしてログイン画面を表示します。",
+                        "no_preference": "指定なし: PayPal は、お客様が PayPal と以前に行ったやり取りに応じて、どのページを表示するかを決定します。"
+                    },
+                    "label": "PayPal ランディングページ",
+                    "options": {
+                        "billing": "登録",
+                        "login": "ログイン",
+                        "no_preference": "指定なし"
+                    }
+                },
+                "loggingLevel": {
+                    "label": "デバッグ",
+                    "options": {
+                        "advanced": "アドバンスド",
+                        "basic": "ベーシック"
+                    },
+                    "tooltipText": "高度なデバッグを使用する場合、チェックアウト時にエラーを検出するために追加のデータが記録されます。一時的にのみ使用してください。"
+                },
+                "merchantLocation": {
+                    "germany": "ドイツ",
+                    "label": "マーチャントの場所",
+                    "other": "その他の出品者の場所"
+                },
+                "orderNumberPrefix": {
+                    "label": "注文番号プレフィックス",
+                    "tooltipText": "このテキストは元の注文番号 (MyShop_SW20001 など) の前に表示されます。これは、支払いが行われたショップを特定するのに役立ちます。PayPal ダッシュボードで請求書 ID として確認できます。"
+                },
+                "orderNumberSuffix": {
+                    "label": "注文番号サフィックス",
+                    "tooltipText": "このテキストは元の注文番号 (例:SW20001_Myshop) の後に表示されます。これは、支払いが行われたショップを特定するのに役立ちます。PayPal ダッシュボードで請求書 ID として確認できます。"
+                },
+                "sendOrderNumber": {
+                    "helpText": "このオプションが有効な場合、注文番号はチェックアウト時に請求書 ID として PayPal に送信されます。",
+                    "label": "注文番号を送信"
+                },
+                "submitCart": {
+                    "helpText": "このオプションが有効な場合、カートデータはチェックアウト時に PayPal に送信されます。",
+                    "label": "カートを送信"
+                }
+            },
             "checkout": {
-                "cardTitle": "PayPalチェックアウト",
-                "settingsLink": "設定",
-                "header": "PayPalの1つのソリューションでより多くの支払い方法を",
-                "description": "PayPal Checkoutは、マーケットプレイスやその他のコマースプラットフォームで強力で柔軟な支払い処理機能を提供できる新しいオールインワンソリューションです。",
-                "banner": "PayPal Checkoutを使用すると、請求書、クレジットカード、その他の現地支払い方法による支払いを顧客に提供できます。PayPal Checkoutは最新のテクノロジーでお客様をサポートし、最大限の柔軟性をもたらします。既存の支払い方法はそのままで、手数料は変わりません！ショップで支払い方法が重複しないように、PayPal Checkoutを有効にし、PayPal PLUSを非アクティブ化してください。 <a href=\"https://www.shopware.com/en/news/paypal-launches-new-product/?utm_source=product&utm_medium=sw6-onprem&utm_campaign=paypal-checkout&utm_content=link-en-blog\" target=\"_blank\">詳細情報</a>",
-                "button": {
-                    "liveTitle": "PayPalアカウントを接続",
-                    "sandboxTitle": "サンドボックスアカウントを接続",
-                    "changeLiveTitle": "別のアカウントを接続",
-                    "changeSandboxTitle": "別のサンドボックスアカウントを接続",
-                    "onboardingLiveTitle": "PayPalチェックアウトのオンボーディングを開始",
-                    "onboardingSandboxTitle": "PayPalチェックアウトのサンドボックスオンボーディングを開始",
-                    "restartOnboardingLiveTitle": "PayPal チェックアウトのオンボーディングを再開",
-                    "restartOnboardingSandboxTitle": "PayPal チェックアウトサンドボックスオンボーディングを再開"
-                },
-                "sandbox": {
-                    "label": "サンドボックス",
-                    "onlySandboxTooltip": "今のところ、接続されているのはサンドボックスPayPalアカウントのみです。",
-                    "onlyLiveTooltip": "今のところ、接続されているのはライブPayPalアカウントのみです。",
-                    "helpText": "PayPalインテグレーションをテストする場合は有効にします。"
-                },
-                "switch": {
-                    "label": "有効"
-                },
-                "paymentMethodText": "支払方法",
-                "showCredentials": "認証情報を表示",
                 "appImageAlt": "PayPal",
-                "editDetail": "詳細を編集",
-                "startOnboardingButtonLabel": "オンボーディングを開始する",
                 "availabilityToolTip": {
                     "bancontactapmhandler": "Bancontactは以下の国でご利用いただけます: ベルギー",
                     "blikapmhandler": "BLIKは以下の国でご利用いただけます: ポーランド",
@@ -83,16 +124,40 @@
                     "puihandler": "Pay upon invoiceは、以下の国でご利用いただけます: ドイツ",
                     "sepahandler": "SEPA Lastschriftは以下の国でご利用いただけます: ドイツ",
                     "sofortapmhandler": "Sofortは以下の国でご利用いただけます: オーストリア、ベルギー、ドイツ、イタリア、オランダ、スペイン、イギリス",
-                    "venmohandler": "Venmoは以下の国でご利用いただけます: アメリカ",
-                    "trustlyapmhandler": "Trustlyは以下の国で利用できます：エストニア、フィンランド、オランダ、スウェーデン"
+                    "trustlyapmhandler": "Trustlyは以下の国で利用できます：エストニア、フィンランド、オランダ、スウェーデン",
+                    "venmohandler": "Venmoは以下の国でご利用いただけます: アメリカ"
                 },
+                "banner": "PayPal Checkoutを使用すると、請求書、クレジットカード、その他の現地支払い方法による支払いを顧客に提供できます。PayPal Checkoutは最新のテクノロジーでお客様をサポートし、最大限の柔軟性をもたらします。既存の支払い方法はそのままで、手数料は変わりません！ショップで支払い方法が重複しないように、PayPal Checkoutを有効にし、PayPal PLUSを非アクティブ化してください。 <a href=\"https://www.shopware.com/en/news/paypal-launches-new-product/?utm_source=product&utm_medium=sw6-onprem&utm_campaign=paypal-checkout&utm_content=link-en-blog\" target=\"_blank\">詳細情報</a>",
+                "button": {
+                    "changeLiveTitle": "別のアカウントを接続",
+                    "changeSandboxTitle": "別のサンドボックスアカウントを接続",
+                    "liveTitle": "PayPalアカウントを接続",
+                    "onboardingLiveTitle": "PayPalチェックアウトのオンボーディングを開始",
+                    "onboardingSandboxTitle": "PayPalチェックアウトのサンドボックスオンボーディングを開始",
+                    "restartOnboardingLiveTitle": "PayPal チェックアウトのオンボーディングを再開",
+                    "restartOnboardingSandboxTitle": "PayPal チェックアウトサンドボックスオンボーディングを再開",
+                    "sandboxTitle": "サンドボックスアカウントを接続"
+                },
+                "cardTitle": "PayPalチェックアウト",
+                "deactivatePayPalPlusModal": {
+                    "button": {
+                        "cancel": "キャンセル",
+                        "deactivate": "PayPal PLUSを無効にする"
+                    },
+                    "text": "おめでとうございます！PayPal Checkoutに切り替えることで、関連するすべての最新のテクノロジーを使用した支払い方法を引き続き使用できます。",
+                    "title": "PayPal PLUSを無効にする",
+                    "warning": "重複した支払い方法を表示しないように、PayPal PLUSを無効にします。"
+                },
+                "description": "PayPal Checkoutは、マーケットプレイスやその他のコマースプラットフォームで強力で柔軟な支払い処理機能を提供できる新しいオールインワンソリューションです。",
+                "editDetail": "詳細を編集",
+                "header": "PayPalの1つのソリューションでより多くの支払い方法を",
                 "onboardingStatusText": {
                     "active": "承認済み",
-                    "limited": "制限",
-                    "pending": "承認待ちの状態",
-                    "ineligible": "不適格",
                     "inactive": "オンボーディングが必要です",
-                    "mybank": "制限"
+                    "ineligible": "不適格",
+                    "limited": "制限",
+                    "mybank": "制限",
+                    "pending": "承認待ちの状態"
                 },
                 "onboardingStatusTooltip": {
                     "ineligible": "PayPal から、この支払い方法は現在お客様のアカウントでは利用できないとの通知がありました。",
@@ -103,37 +168,46 @@
                     "active": "支払い方法「{name}」は現在有効です。",
                     "inactive": "支払い方法「{name}」は現在無効になっています。"
                 },
-                "deactivatePayPalPlusModal": {
-                    "title": "PayPal PLUSを無効にする",
-                    "text": "おめでとうございます！PayPal Checkoutに切り替えることで、関連するすべての最新のテクノロジーを使用した支払い方法を引き続き使用できます。",
-                    "warning": "重複した支払い方法を表示しないように、PayPal PLUSを無効にします。",
-                    "button": {
-                        "deactivate": "PayPal PLUSを無効にする",
-                        "cancel": "キャンセル"
-                    }
+                "paymentMethodText": "支払方法",
+                "sandbox": {
+                    "helpText": "PayPalインテグレーションをテストする場合は有効にします。",
+                    "label": "サンドボックス",
+                    "onlyLiveTooltip": "今のところ、接続されているのはライブPayPalアカウントのみです。",
+                    "onlySandboxTooltip": "今のところ、接続されているのはサンドボックスPayPalアカウントのみです。"
+                },
+                "settingsLink": "設定",
+                "showCredentials": "認証情報を表示",
+                "startOnboardingButtonLabel": "オンボーディングを開始する",
+                "switch": {
+                    "label": "有効"
                 }
             },
             "credentials": {
+                "button": {
+                    "messageFetchedError": "もう一度試すか、認証情報を手動で入力します。",
+                    "title": "API 認証情報を取得する",
+                    "titleSandbox": "サンドボックス API 認証情報を取得する"
+                },
                 "cardTitle": "API認証情報",
                 "clientId": {
                     "label": "クライアントID",
                     "tooltipText": "REST API クライアント ID は、PayPal API でこのプラグインを認証するために使用されます。"
                 },
-                "clientSecret": {
-                    "label": "クライアントシークレット",
-                    "tooltipText": "REST API クライアントシークレットは、PayPal API でこのプラグインを認証するために使用されます。"
-                },
-                "merchantPayerId": {
-                    "label": "PayPalマーチャントID",
-                    "tooltipText": "PayPalアカウントに割り当てられたPayPalマーチャントID（PayPalアカウント設定の「ビジネス情報」を参照）。"
-                },
                 "clientIdSandbox": {
                     "label": "サンドボックスクライアント ID",
                     "tooltipText": "REST API クライアント ID は、PayPal API でこのプラグインを認証するためにテスト中に使用されます。"
                 },
+                "clientSecret": {
+                    "label": "クライアントシークレット",
+                    "tooltipText": "REST API クライアントシークレットは、PayPal API でこのプラグインを認証するために使用されます。"
+                },
                 "clientSecretSandbox": {
                     "label": "サンドボックスクライアントシークレット",
                     "tooltipText": "REST API クライアントシークレットは、PayPal API でこのプラグインを認証するためにテスト中に使用されます。"
+                },
+                "merchantPayerId": {
+                    "label": "PayPalマーチャントID",
+                    "tooltipText": "PayPalアカウントに割り当てられたPayPalマーチャントID（PayPalアカウント設定の「ビジネス情報」を参照）。"
                 },
                 "merchantPayerIdSandbox": {
                     "label": "Sandbox PayPal Merchant ID",
@@ -142,107 +216,24 @@
                 "sandbox": {
                     "label": "サンドボックスを有効にする",
                     "tooltipText": "PayPalインテグレーションをテストする場合は有効にします。"
-                },
-                "button": {
-                    "title": "API 認証情報を取得する",
-                    "titleSandbox": "サンドボックス API 認証情報を取得する",
-                    "messageFetchedError": "もう一度試すか、認証情報を手動で入力します。"
-                }
-            },
-            "behavior": {
-                "cardTitle": "挙動",
-                "merchantLocation": {
-                    "label": "マーチャントの場所",
-                    "germany": "ドイツ",
-                    "other": "その他の出品者の場所"
-                },
-                "intent": {
-                    "label": "支払い取得",
-                    "CAPTURE": "自動支払い回収 (インテントキャプチャ)",
-                    "AUTHORIZE": "手動での支払い回収 (インテントオーソライズ)"
-                },
-                "submitCart": {
-                    "label": "カートを送信",
-                    "helpText": "このオプションが有効な場合、カートデータはチェックアウト時に PayPal に送信されます。"
-                },
-                "brandName": {
-                    "label": "PayPalページに表示するブランド名",
-                    "tooltipText": "このテキストは、PayPal の支払いページにブランド名として表示されます。"
-                },
-                "landingPage": {
-                    "label": "PayPal ランディングページ",
-                    "helpText": {
-                        "login": "ログイン: PayPalサイトは、ランディングページとしてログイン画面を表示します。",
-                        "billing": "登録: PayPalサイトには、ランディングページとして登録フォームが表示されます。",
-                        "no_preference": "指定なし: PayPal は、お客様が PayPal と以前に行ったやり取りに応じて、どのページを表示するかを決定します。"
-                    },
-                    "options": {
-                        "login": "ログイン",
-                        "billing": "登録",
-                        "no_preference": "指定なし"
-                    }
-                },
-                "sendOrderNumber": {
-                    "label": "注文番号を送信",
-                    "helpText": "このオプションが有効な場合、注文番号はチェックアウト時に請求書 ID として PayPal に送信されます。"
-                },
-                "orderNumberPrefix": {
-                    "label": "注文番号プレフィックス",
-                    "tooltipText": "このテキストは元の注文番号 (MyShop_SW20001 など) の前に表示されます。これは、支払いが行われたショップを特定するのに役立ちます。PayPal ダッシュボードで請求書 ID として確認できます。"
-                },
-                "orderNumberSuffix": {
-                    "label": "注文番号サフィックス",
-                    "tooltipText": "このテキストは元の注文番号 (例:SW20001_Myshop) の後に表示されます。これは、支払いが行われたショップを特定するのに役立ちます。PayPal ダッシュボードで請求書 ID として確認できます。"
-                },
-                "loggingLevel": {
-                    "label": "デバッグ",
-                    "tooltipText": "高度なデバッグを使用する場合、チェックアウト時にエラーを検出するために追加のデータが記録されます。一時的にのみ使用してください。",
-                    "options": {
-                        "basic": "ベーシック",
-                        "advanced": "アドバンスド"
-                    }
-                },
-                "excludedProductIds": {
-                    "label": "除外された商品",
-                    "tooltipText": "ここで選択した商品はPayPalでは購入できません。"
-                },
-                "excludedProductStreamIds": {
-                    "label": "除外された動的商品グループ",
-                    "tooltipText": "ここで選択した動的商品グループに含まれる商品は、PayPalでは購入できません。"
                 }
             },
             "express": {
-                "cardTitle": "エクスプレスチェックアウトショートカット",
                 "cardSubtitle": "エクスプレスチェックアウトは、ショップのコンバージョン率を高め、マーチャントとしての財務上のリスクはありません。有効にしておくことをおすすめします。 ",
-                "ecsDetailEnabled": {
-                    "label": "詳細ページの 'PayPal チェックアウト'",
-                    "helpText": "このオプションが有効な場合、各商品詳細ページにエクスプレスチェックアウトボタンが表示されます。"
-                },
-                "ecsCartEnabled": {
-                    "label": "カートの 'PayPalチェックアウト'",
-                    "helpText": "このオプションが有効な場合、エクスプレスチェックアウトボタンがカートに表示されます。"
-                },
-                "ecsOffCanvasEnabled": {
-                    "label": "オフキャンバスカートの 'PayPalチェックアウト'",
-                    "helpText": "このオプションが有効な場合、Express Checkout ボタンが Off-Canvas カートに表示されます。"
-                },
-                "ecsLoginEnabled": {
-                    "label": "ログインページの 'PayPalチェックアウト'",
-                    "helpText": "このオプションが有効な場合、ログインおよび登録ページに [エクスプレスチェックアウト] ボタンが表示されます。"
-                },
-                "ecsListingEnabled": {
-                    "label": "一覧ページの 'PayPalチェックアウト'",
-                    "helpText": "このオプションが有効な場合、リストページにエクスプレスチェックアウトボタンが表示されます。"
-                },
+                "cardTitle": "エクスプレスチェックアウトショートカット",
                 "ecsButtonColor": {
                     "label": "ボタンの色",
                     "options": {
-                        "blue": "青",
                         "black": "黒",
+                        "blue": "青",
                         "gold": "ゴールド (推奨)",
                         "silver": "シルバー",
                         "white": "白"
                     }
+                },
+                "ecsButtonLanguageIso": {
+                    "helpText": "設定されていない場合は、販売チャネルの言語が使用されます。",
+                    "label": "ボタンの言語"
                 },
                 "ecsButtonShape": {
                     "label": "ボタンの形",
@@ -251,218 +242,187 @@
                         "rect": "長方形"
                     }
                 },
-                "ecsSubmitCart": {
-                    "label": "送信",
-                    "helpText": "このオプションが有効な場合、カートはエクスプレス注文のためにPayPalに送信されます。"
+                "ecsCartEnabled": {
+                    "helpText": "このオプションが有効な場合、エクスプレスチェックアウトボタンがカートに表示されます。",
+                    "label": "カートの 'PayPalチェックアウト'"
                 },
-                "ecsButtonLanguageIso": {
-                    "label": "ボタンの言語",
-                    "helpText": "設定されていない場合は、販売チャネルの言語が使用されます。"
+                "ecsDetailEnabled": {
+                    "helpText": "このオプションが有効な場合、各商品詳細ページにエクスプレスチェックアウトボタンが表示されます。",
+                    "label": "詳細ページの 'PayPal チェックアウト'"
+                },
+                "ecsListingEnabled": {
+                    "helpText": "このオプションが有効な場合、リストページにエクスプレスチェックアウトボタンが表示されます。",
+                    "label": "一覧ページの 'PayPalチェックアウト'"
+                },
+                "ecsLoginEnabled": {
+                    "helpText": "このオプションが有効な場合、ログインおよび登録ページに [エクスプレスチェックアウト] ボタンが表示されます。",
+                    "label": "ログインページの 'PayPalチェックアウト'"
+                },
+                "ecsOffCanvasEnabled": {
+                    "helpText": "このオプションが有効な場合、Express Checkout ボタンが Off-Canvas カートに表示されます。",
+                    "label": "オフキャンバスカートの 'PayPalチェックアウト'"
                 },
                 "ecsShowPayLater": {
-                    "label": "'PayPal チェックアウト' ボタンの横に '後で支払う' ボタンを表示する",
-                    "helpText": "'後で支払う' ボタンは、'PayPal チェックアウト' ボタンと同じページ、同じデザインで表示されます。"
+                    "helpText": "'後で支払う' ボタンは、'PayPal チェックアウト' ボタンと同じページ、同じデザインで表示されます。",
+                    "label": "'PayPal チェックアウト' ボタンの横に '後で支払う' ボタンを表示する"
+                },
+                "ecsSubmitCart": {
+                    "helpText": "このオプションが有効な場合、カートはエクスプレス注文のためにPayPalに送信されます。",
+                    "label": "送信"
                 }
             },
             "installment": {
-                "cardTitle": "'後で支払う' バナー",
                 "cardSubtitle": "バナーはショップのコンバージョン率を高め、マーチャントに金銭的なリスクをもたらすことはありません。バナーは有効のままにしておくことをおすすめします。",
+                "cardTitle": "'後で支払う' バナー",
                 "installmentBannerEnabled": {
-                    "detailPage": {
-                        "label": "詳細ページの「後払い」バナー",
-                        "helpText": "このオプションが有効な場合、各商品詳細ページに「後払い」バナーが表示されます。"
-                    },
                     "cart": {
-                        "label": "カートの「後払い」バナー",
-                        "helpText": "このオプションが有効な場合、カートに「後払い」バナーが表示されます。"
+                        "helpText": "このオプションが有効な場合、カートに「後払い」バナーが表示されます。",
+                        "label": "カートの「後払い」バナー"
                     },
-                    "offCanvasCart": {
-                        "label": "オフカンバスカートの「後払い」バナー",
-                        "helpText": "このオプションが有効な場合、オフカンバスのカートに「後払い」バナーが表示されます。"
-                    },
-                    "loginPage": {
-                        "label": "ログインページの「後払い」バナー",
-                        "helpText": "このオプションが有効な場合、ログインおよび登録ページに「後払い」バナーが表示されます。"
+                    "detailPage": {
+                        "helpText": "このオプションが有効な場合、各商品詳細ページに「後払い」バナーが表示されます。",
+                        "label": "詳細ページの「後払い」バナー"
                     },
                     "footer": {
-                        "label": "フッターの「後払い」バナー",
-                        "helpText": "このオプションが有効な場合、フッターに「後払い」バナーが表示されます。"
+                        "helpText": "このオプションが有効な場合、フッターに「後払い」バナーが表示されます。",
+                        "label": "フッターの「後払い」バナー"
+                    },
+                    "loginPage": {
+                        "helpText": "このオプションが有効な場合、ログインおよび登録ページに「後払い」バナーが表示されます。",
+                        "label": "ログインページの「後払い」バナー"
+                    },
+                    "offCanvasCart": {
+                        "helpText": "このオプションが有効な場合、オフカンバスのカートに「後払い」バナーが表示されます。",
+                        "label": "オフカンバスカートの「後払い」バナー"
                     }
                 }
             },
-            "acdc": {
-                "cardTitle": "クレジットカードまたはデビットカード",
-                "acdcForce3DS": {
-                    "label": "3Dセキュアのみで取引を実行",
-                    "helpText": "3Dセキュアが利用できない場合、取引は受け付けられません。"
+            "locale-field": {
+                "error": {
+                    "detail": "指定したロケールコードが PayPal で必要な形式と一致しません。有効な形式は「en_GB」です。"
+                },
+                "infobox": {
+                    "href": "ここ",
+                    "text": "有効なロケールコードの一覧を表示するには、 "
                 }
             },
-            "pui": {
-                "cardTitle": "請求書払い",
-                "customerServiceInstructions": {
-                    "label": "請求書払いのカスタマーサービスの説明",
-                    "helpText": "これらの手順はPayPalとRatePayに送信され、お客様のメールに表示されます。"
-                }
-            },
-            "spb": {
-                "cardTitle": "スマートペイメントボタン",
-                "spbCheckoutEnabled": {
-                    "label": "スマート支払いボタンを有効にする"
-                },
-                "spbButtonLanguageIso": {
-                    "label": "ボタンの言語",
-                    "helpText": "設定されていない場合は、販売チャネルの言語が使用されます。"
-                },
-                "spbAlternativePaymentMethodsEnabled": {
-                    "label": "Smart Payment Buttonsの代替支払い方法を有効にします。",
-                    "helpText": "代替の支払い方法には、クレジットカードやデビットカードなどがあります。"
-                },
-                "spbShowPayLater": {
-                    "label": "PayPalボタンの隣に '後で支払う' ボタンを表示する"
-                }
-            },
+            "messageSaveSuccess": "PayPal の設定が保存されました。",
+            "messageTestError": "API 認証情報を検証できませんでした。",
+            "messageTestSuccess": "API 認証情報が検証されました。",
+            "messageWebhookCreated": "Webhook が登録されました。",
+            "messageWebhookError": "Webhookを保存できませんでした。次のエラーが発生しました：",
+            "messageWebhookUpdated": "Webhook が更新されました。",
             "plus": {
                 "cardTitle": "PayPal PLUS",
+                "hint": "注: PayPal PLUSは、支払い取得「セール」でのみ機能します。自動的に設定されます。",
                 "introduction": "<strong>PayPal PLUS:</strong> PayPal、口座引き落とし、クレジットカード、請求書払いを含む完全なオールインワン決済ソリューションです。PayPal PLUSは、顧客が希望する支払い方法を選択する際に完全な柔軟性を提供します。売り手としてのあなたの利点は何でしょうか？1つの契約当事者、1つのアカウント、およびすべての受信支払いを表示する1つのトランザクションの概要だけで簡単に決済ができます。購入者が注文プロセスを完了すると、直接料金の受け取りができます。<br>PayPal Plusへのお申込みは <a href='https://www.paypal.com/de/webapps/mpp/paypal-plus' target='_blank'>こちら</a>。",
                 "plusCheckoutEnabled": {
                     "label": "PayPalプラスを有効にする"
                 },
-                "hint": "注: PayPal PLUSは、支払い取得「セール」でのみ機能します。自動的に設定されます。",
                 "warning": {
                     "active": "PayPal Checkoutは、最新のテクノロジーに基づいて、お客様にお支払い方法を提供します。重複した支払い方法が表示されないように、PayPal Checkoutを今すぐ有効にし、PayPal PLUSを非アクティブ化してください。 <a href=\"https://www.shopware.com/en/news/paypal-launches-new-product/?utm_source=product&utm_medium=sw6-onprem&utm_campaign=paypal-checkout&utm_content=link-en-blog\" target=\"_blank\">詳細情報</a>",
                     "inactive": "重複した支払い方法を表示しないようにし、PayPal PLUSを無効にしてください。 <a href=\"https://www.shopware.com/en/news/paypal-launches-new-product/?utm_source=product&utm_medium=sw6-onprem&utm_campaign=paypal-checkout&utm_content=link-en-blog\" target=\"_blank\">詳細情報</a>"
                 }
             },
-            "locale-field": {
-                "infobox": {
-                    "text": "有効なロケールコードの一覧を表示するには、 ",
-                    "href": "ここ"
-                },
-                "error": {
-                    "detail": "指定したロケールコードが PayPal で必要な形式と一致しません。有効な形式は「en_GB」です。"
+            "pui": {
+                "cardTitle": "請求書払い",
+                "customerServiceInstructions": {
+                    "helpText": "これらの手順はPayPalとRatePayに送信され、お客様のメールに表示されます。",
+                    "label": "請求書払いのカスタマーサービスの説明"
                 }
             },
-            "messageSaveSuccess": "PayPal の設定が保存されました。",
-            "messageTestSuccess": "API 認証情報が検証されました。",
-            "messageTestError": "API 認証情報を検証できませんでした。",
-            "messageWebhookCreated": "Webhook が登録されました。",
-            "messageWebhookUpdated": "Webhook が更新されました。",
-            "messageWebhookError": "Webhookを保存できませんでした。次のエラーが発生しました："
-        }
-    },
-    "swag-paypal-payment": {
-        "general": {
-            "title": "注文"
+            "spb": {
+                "cardTitle": "スマートペイメントボタン",
+                "spbAlternativePaymentMethodsEnabled": {
+                    "helpText": "代替の支払い方法には、クレジットカードやデビットカードなどがあります。",
+                    "label": "Smart Payment Buttonsの代替支払い方法を有効にします。"
+                },
+                "spbButtonLanguageIso": {
+                    "helpText": "設定されていない場合は、販売チャネルの言語が使用されます。",
+                    "label": "ボタンの言語"
+                },
+                "spbCheckoutEnabled": {
+                    "label": "スマート支払いボタンを有効にする"
+                },
+                "spbShowPayLater": {
+                    "label": "PayPalボタンの隣に '後で支払う' ボタンを表示する"
+                }
+            },
+            "testLive": "テストAPI認証情報",
+            "testSandbox": "サンドボックス API 認証情報をテストする"
         },
         "tabs": {
-            "overview": "概要"
-        },
-        "paymentDetails": {
-            "cardTitle": "支払い",
-            "invoice": {
-                "heading": "請求額",
-                "totalAmount": "合計金額",
-                "subTotal": "小計:",
-                "shipping": "送料:",
-                "discount": "割引:",
-                "handling": "手数料:",
-                "insurance": "保険:",
-                "shipping_discount": "配送料割引:"
+            "general": "一般設定",
+            "storefront": "ストアフロントプレゼンテーション"
+        }
+    },
+    "swag-paypal-disputes": {
+        "common": {
+            "dispute_amount": "金額",
+            "dispute_id": "ID",
+            "dispute_life_cycle_stage": "ステージ",
+            "response_due_date": {
+                "buyer": "バイヤー",
+                "label": "回答期限",
+                "seller": "セラー"
             },
-            "payment": {
-                "heading": "支払詳細",
-                "intent": "インテント:",
-                "paymentId": "支払いID:",
-                "cartId": "カートID:",
-                "state": "都道府県:",
-                "createTime": "作成時間:",
-                "updateTime": "更新時間:"
-            },
-            "customer": {
-                "heading": "顧客",
-                "payerId": "支払者ID:"
-            },
-            "error": {
-                "title": "PayPal からの支払い詳細の取得中にエラーが発生しました"
-            }
+            "status": "ステータス",
+            "update_time": "更新時刻"
         },
-        "puiDetails": {
-            "cardTitle": "請求書の支払いデータ",
-            "buttonCopy": "コピー",
-            "bank": "銀行:",
-            "iban": "IBAN:",
-            "bic": "BIC:",
-            "accountHolder": "口座名義:",
-            "amount": "金額:",
-            "reference": "リファレンス:"
+        "detail": {
+            "copyButtonLabel": "生データのコピー",
+            "externalLinkText": "PayPal解決センターで異議申立てを開く",
+            "mainFieldsCardTitle": "詳細",
+            "orderModuleLinkText": "注文を開く",
+            "rawDataCardTitle": "生データ",
+            "title": "PayPalの紛争:",
+            "titleAddition": "(技術的な詳細)"
         },
-        "transactionHistory": {
-            "cardTitle": "支払履歴",
-            "states": {
-                "authorization": "認証",
-                "sale": "販売",
-                "refund": "払い戻し",
-                "capture": "キャプチャ",
-                "order": "注文"
+        "general": {
+            "descriptionTextModule": "PayPal の異議申し立ての管理はこちら",
+            "mainMenuItemGeneral": "PayPalの紛争"
+        },
+        "list": {
+            "emptyState": {
+                "subline": "フィルターを変更して、すべての異議申し立てを表示する。",
+                "title": "異議申立ては見つかりませんでした"
             },
-            "types": {
-                "type": "タイプ",
-                "amount": "金額",
-                "createTime": "作成日",
-                "updateTime": "更新日",
-                "state": "都道府県",
-                "trackingId": "トラッキングID:",
-                "transactionFee": "トランザクション手数料",
-                "paymentMode": "支払いモード"
-            }
-        },
+            "errorTitle": "PayPalから紛争情報の取得中にエラーが発生しました",
+            "title": "異議申し立て",
+            "titleSidebarItemFilter": "フィルター",
+            "titleSidebarItemRefresh": "更新"
+        }
+    },
+    "swag-paypal-frw-credentials": {
+        "buttonGetCredentials": "API 認証情報を取得する",
+        "labelClientId": "クライアントID",
+        "labelClientIdSandbox": "サンドボックスクライアント ID",
+        "labelClientSecret": "クライアントシークレット",
+        "labelClientSecretSandbox": "サンドボックスクライアントシークレット",
+        "labelMerchantPayerId": "PayPalマーチャントID",
+        "labelMerchantPayerIdSandbox": "Sandbox PayPal Merchant ID",
+        "labelSandbox": "サンドボックスを使用",
+        "labelSetDefault": "デフォルトの支払い方法として設定",
+        "messageFetchedError": "もう一度試すか、詳細設定を使用して認証情報を入力してください。",
+        "messageNoCredentials": "認証情報が提供されていません。",
+        "messageTestSuccess": "認証情報は有効です。",
+        "textFetchedSuccessful": "認証情報を取得しました。",
+        "textIntroPayPal": "PayPalを利用するには、PayPal APIの認証情報を入力するだけです。",
+        "tooltipSandbox": "Sandbox の有効化に応じて、別の認証情報が保存されます。",
+        "tooltipSetDefault": "PayPal は、すべての販売チャネルのデフォルトの支払い方法として設定されます。設定モジュールでは、販売チャネルごとに個別のデフォルト支払い方法を設定できます。"
+    },
+    "swag-paypal-payment": {
         "buttons": {
             "label": {
+                "capture": "キャプチャ",
                 "refund": "新しい払い戻しの作成",
-                "capture": "キャプチャ",
                 "void": "オーソリのキャンセル"
-            }
-        },
-        "modal": {
-            "title": {
-                "refund": "新しい返金",
-                "capture": "キャプチャ",
-                "void": "オーソリのキャンセル"
-            }
-        },
-        "refundAction": {
-            "successMessage": "払い戻しに成功しました。",
-            "invoiceSelect": {
-                "label": "キャプチャを選択"
-            },
-            "refundAmount": {
-                "label": "金額",
-                "helpText": "金額が「0」の場合、支払い全額が返金されます"
-            },
-            "refundDescription": {
-                "label": "説明",
-                "placeholder": "説明を入力"
-            },
-            "refundReason": {
-                "label": "理由",
-                "placeholder": "理由を入力"
-            },
-            "refundNoteToPayer": {
-                "label": "支払人へのメモ",
-                "placeholder": "支払人へのメモを入力"
-            },
-            "refundInvoiceNumber": {
-                "label": "請求書番号",
-                "placeholder": "請求書番号を入力してください"
-            },
-            "confirmButton": {
-                "text": "実行"
             }
         },
         "captureAction": {
-            "successMessage": "キャプチャは成功しました。",
-            "maxAmount": "上限額",
-            "currentAmount": "金額",
+            "button": {
+                "text": "売上確定"
+            },
             "captureInvoiceNumber": {
                 "label": "請求書番号",
                 "placeholder": "請求書番号を入力してください"
@@ -471,340 +431,380 @@
                 "label": "支払人へのメモ",
                 "placeholder": "支払人へのメモを入力"
             },
+            "currentAmount": "金額",
             "isFinal": "これが最終的なキャプチャです",
             "isFinalHint": "ヒント: 最終キャプチャとしてマークされていますが、全額がキャプチャされるわけではありません。",
-            "button": {
-                "text": "売上確定"
+            "maxAmount": "上限額",
+            "successMessage": "キャプチャは成功しました。"
+        },
+        "errorPage": {
+            "canceledPaymentContent": "PayPal から支払い詳細を取得中にエラーが発生しました。このメッセージが表示された場合は、購入者によってキャンセルされた支払いだった可能性があります。キャンセルされた支払いは、しばらくするとPayPalによって削除され、利用できなくなります。",
+            "other": "PayPal から支払い詳細を取得中にエラーが発生しました。",
+            "sandboxLiveContent": "PayPal から支払い詳細を取得中にエラーが発生しました。このメッセージが表示される場合は、Sandboxモードで受け付けた支払いの詳細を本番アカウントに要求しているか、またはその逆の場合です。PayPal の設定を修正するか、システムからテスト注文を削除してください。",
+            "title": "支払詳細は利用できません"
+        },
+        "general": {
+            "title": "注文"
+        },
+        "modal": {
+            "title": {
+                "capture": "キャプチャ",
+                "refund": "新しい返金",
+                "void": "オーソリのキャンセル"
+            }
+        },
+        "paymentDetails": {
+            "cardTitle": "支払い",
+            "customer": {
+                "heading": "顧客",
+                "payerId": "支払者ID:"
+            },
+            "error": {
+                "title": "PayPal からの支払い詳細の取得中にエラーが発生しました"
+            },
+            "invoice": {
+                "discount": "割引:",
+                "handling": "手数料:",
+                "heading": "請求額",
+                "insurance": "保険:",
+                "shipping": "送料:",
+                "shipping_discount": "配送料割引:",
+                "subTotal": "小計:",
+                "totalAmount": "合計金額"
+            },
+            "payment": {
+                "cartId": "カートID:",
+                "createTime": "作成時間:",
+                "heading": "支払詳細",
+                "intent": "インテント:",
+                "paymentId": "支払いID:",
+                "state": "都道府県:",
+                "updateTime": "更新時間:"
+            }
+        },
+        "puiDetails": {
+            "accountHolder": "口座名義:",
+            "amount": "金額:",
+            "bank": "銀行:",
+            "bic": "BIC:",
+            "buttonCopy": "コピー",
+            "cardTitle": "請求書の支払いデータ",
+            "iban": "IBAN:",
+            "reference": "リファレンス:"
+        },
+        "refundAction": {
+            "confirmButton": {
+                "text": "実行"
+            },
+            "invoiceSelect": {
+                "label": "キャプチャを選択"
+            },
+            "refundAmount": {
+                "helpText": "金額が「0」の場合、支払い全額が返金されます",
+                "label": "金額"
+            },
+            "refundDescription": {
+                "label": "説明",
+                "placeholder": "説明を入力"
+            },
+            "refundInvoiceNumber": {
+                "label": "請求書番号",
+                "placeholder": "請求書番号を入力してください"
+            },
+            "refundNoteToPayer": {
+                "label": "支払人へのメモ",
+                "placeholder": "支払人へのメモを入力"
+            },
+            "refundReason": {
+                "label": "理由",
+                "placeholder": "理由を入力"
+            },
+            "successMessage": "払い戻しに成功しました。"
+        },
+        "tabs": {
+            "overview": "概要"
+        },
+        "transactionHistory": {
+            "cardTitle": "支払履歴",
+            "states": {
+                "authorization": "認証",
+                "capture": "キャプチャ",
+                "order": "注文",
+                "refund": "払い戻し",
+                "sale": "販売"
+            },
+            "types": {
+                "amount": "金額",
+                "createTime": "作成日",
+                "paymentMode": "支払いモード",
+                "state": "都道府県",
+                "trackingId": "トラッキングID:",
+                "transactionFee": "トランザクション手数料",
+                "type": "タイプ",
+                "updateTime": "更新日"
             }
         },
         "voidAction": {
-            "successMessage": "支払いは正常に無効になりました。",
             "confirm": {
-                "message": "この支払いを本当にキャンセルしますか？",
                 "button": {
                     "confirm": "オーソリのキャンセル"
-                }
-            }
-        },
-        "errorPage": {
-            "title": "支払詳細は利用できません",
-            "canceledPaymentContent": "PayPal から支払い詳細を取得中にエラーが発生しました。このメッセージが表示された場合は、購入者によってキャンセルされた支払いだった可能性があります。キャンセルされた支払いは、しばらくするとPayPalによって削除され、利用できなくなります。",
-            "sandboxLiveContent": "PayPal から支払い詳細を取得中にエラーが発生しました。このメッセージが表示される場合は、Sandboxモードで受け付けた支払いの詳細を本番アカウントに要求しているか、またはその逆の場合です。PayPal の設定を修正するか、システムからテスト注文を削除してください。",
-            "other": "PayPal から支払い詳細を取得中にエラーが発生しました。"
+                },
+                "message": "この支払いを本当にキャンセルしますか？"
+            },
+            "successMessage": "支払いは正常に無効になりました。"
         }
     },
-    "sw-order-detail": {
-        "payPalCarrierLabel": "デフォルトの配送業者",
-        "payPalCarrierPlaceholder": "未設定",
-        "payPalCarrierHelpText": "<a class=\"sw-internal-link sw-internal-link--inline\" href=\"#/sw/settings/shipping/index\">配送方法<sw-icon name=\"regular-long-arrow-right\" small /></a>でPayPalのデフォルトの配送方法を設定および変更できます。 ただし、これはすでに受付済みの注文には影響しません。",
-        "payPalCarrierDescription": "このPayPalオーダーの配送方法を変更したい場合は、 <a target=\"_blank\" href=\"{orderLink}\">ここをクリック</a>"
-    },
     "swag-paypal-pos": {
-        "general": {
-            "moduleTitle": "Zettle by PayPal",
-            "salesChannelDetailDescription": {
-                "title": "Shopware と Zettle by PayPal でビジネスを拡大する",
-                "manufacturer": "Zettle by PayPal"
-            }
+        "account": {
+            "connectedStatus": "接続済",
+            "editConnection": "接続を編集",
+            "errorEmail": "API キーを確認できませんでした",
+            "errorName": "認証中のエラー",
+            "lastUpdated": "最終更新日",
+            "loadingEmail": "pos@example.com",
+            "loadingName": "ロード中...",
+            "manageAccount": "アカウントの管理",
+            "noConnectionStatus": "接続なし"
         },
-        "header": "Zettle セールスチャネル",
-        "tabTitle": {
-            "overview": "概要",
-            "syncedProducts": "同期された商品",
-            "settings": "設定",
-            "runs": "ログ",
-            "help": "ヘルプ"
+        "authentication": {
+            "apiKeyDescription": "APIキーはパスワードのように機能します。ShopwareはあなたのZettle APIキーを使用して、あなたのZettleアカウントへの安全な接続を確立します。",
+            "buttonGenerateKey": "API キーを生成",
+            "labelApiKey": "APIキー",
+            "messageDuplicateError": "このZettleアカウントはすでに別の販売チャネルで設定されています",
+            "messageTestError": "認証情報を検証できませんでした",
+            "placeholderApiKey": "APIキーを入力..."
         },
         "detail": {
+            "cleanLog": "ログのクリーンアップ",
             "disclaimer": {
                 "headline": "ZettleはPayPalのサービスです",
-                "subheadline": "PayPalの力で売上を増やすのに役立ちます。無料で始めましょう。",
                 "linkTarget": "https://www.paypal.com/jp/business",
-                "linkText": "ショップでPayPalを利用しよう"
-            },
-            "overview": {
-                "titleSync": "同期化",
-                "buttonSync": "今すぐ同期",
-                "buttonSyncProducts": "商品詳細を同期する",
-                "buttonSyncImages": "画像のアップロード",
-                "buttonSyncInventory": "インベントリを同期",
-                "buttonSyncAbort": "同期の中止",
-                "syncErrorTitle": "同期エラー",
-                "status": {
-                    "disabled": "販売チャネルが無効になっているため、同期が有効になっていません。",
-                    "message": {
-                        "syncing": "同期処理中",
-                        "noRunYet": "最近の実行\nが見つかりませんでした",
-                        "success": "正常に同期されました",
-                        "warning": "前回の同期は警告で終了しました",
-                        "error": "前回の同期はエラーで終了しました",
-                        "aborted": "前回の同期はユーザーによって中止されました"
-                    },
-                    "task": {
-                        "complete": "完了",
-                        "product": "商品",
-                        "image": "画像",
-                        "inventory": "在庫"
-                    },
-                    "lastSynced": "前回の同期",
-                    "lastSyncedComplete": "最終同期完了",
-                    "syncingDetail": "これには数分かかる場合があります。このプロセスはバックグラウンドで実行され、その間、いつものようにショップを使用することができます。"
-                },
-                "continueSetup": {
-                    "cardTitle": "セットアップ",
-                    "content": {
-                        "headline": "商品同期設定",
-                        "firstLine": "あなたのZettleとShopwareのアカウントは接続されました！これで商品の同期を設定できます。",
-                        "secondLine": "有効化されると、Zettle は自動的にショップウェア製品と同期されます。Zettle を通じて行われた販売もショップウェアと同期しており、管理者を使用して、Zettle やショップウェアの販売についても最新の状態に保つことができます。"
-                    }
-                }
-            },
-            "syncedProducts": {
-                "title": "同期済み商品",
-                "notSyncedYet": "まだ同期されていません",
-                "columns": {
-                    "name": "名前",
-                    "state": "ステータス",
-                    "date": "日付"
-                },
-                "emptyState": {
-                    "title": "製品が選択されていません",
-                    "message": "販売チャネルまたは動的な製品グループには製品がありません。"
-                },
-                "actions": {
-                    "productDetails": "商品詳細"
-                }
-            },
-            "settings": {
-                "titleGeneralSettings": "一般設定",
-                "domain": "あなたのショップドメイン",
-                "domainHelpText": "Zettle はこのドメインを使用して、同期された製品に関連付けられたメディアをダウンロードします。Zettleは安全なURL (https) のみを受け入れます。",
-                "productStream": "ダイナミック商品グループ",
-                "titleCredentials": "認証情報",
-                "titleSync": "同期化",
-                "titlePrices": "価格",
-                "syncPrices": "価格を同期する",
-                "replace": "Zettleに登録済みの商品を置換する",
-                "activeHelpText": "有効にすると、Zettleの同期はバックグラウンドで自動的に行われます。",
-                "saveAlert": "保存された変更は、Shopware と Zettle の間で現在実行中の同期が終了した後に利用できます。",
-                "optionsTitle": "オプション",
-                "reset": {
-                    "buttonTitle": "同期のリセット",
-                    "descriptionText": "問題が発生した場合は、すべての商品と画像を再アップロードできます。",
-                    "modalConfirmText": "販売チャネルの同期履歴をリセットします",
-                    "modalTextInfo": "すべてのアイテムは、次回の同期の際に再アップロードされます。これにはしばらく時間がかかる場合があります。Shopwareのデータは失われません。一部のデータはZettleで上書きされる可能性があります。",
-                    "modalTitle": "同期履歴のリセット中です",
-                    "modalButtonConfirm": "同期のリセット"
-                }
+                "linkText": "ショップでPayPalを利用しよう",
+                "subheadline": "PayPalの力で売上を増やすのに役立ちます。無料で始めましょう。"
             },
             "logs": {
                 "columnLastSync": "詳細",
                 "noEntry": "まだ同期されていません",
                 "states": {
-                    "success": "更新日",
+                    "aborted": "中断",
                     "failed": "失敗",
-                    "aborted": "中断"
+                    "success": "更新日"
                 }
             },
-            "runs": {
-                "title": "同期履歴",
-                "toolbarText": "「ログのクリーンアップ」はすべてのログを削除します。30 日以上経過したログは自動的に削除されます。",
-                "completeTask": "完了",
-                "productTask": "商品",
-                "inventoryTask": "在庫",
-                "imageTask": "画像",
-                "cloneVisibilityTask": "商品の表示",
-                "states": {
-                    "withWarnings": "警告付きで完了",
-                    "successful": "完了",
-                    "aborted": "ユーザーによる中断",
-                    "failed": "失敗"
+            "overview": {
+                "buttonSync": "今すぐ同期",
+                "buttonSyncAbort": "同期の中止",
+                "buttonSyncImages": "画像のアップロード",
+                "buttonSyncInventory": "インベントリを同期",
+                "buttonSyncProducts": "商品詳細を同期する",
+                "continueSetup": {
+                    "cardTitle": "セットアップ",
+                    "content": {
+                        "firstLine": "あなたのZettleとShopwareのアカウントは接続されました！これで商品の同期を設定できます。",
+                        "headline": "商品同期設定",
+                        "secondLine": "有効化されると、Zettle は自動的にショップウェア製品と同期されます。Zettle を通じて行われた販売もショップウェアと同期しており、管理者を使用して、Zettle やショップウェアの販売についても最新の状態に保つことができます。"
+                    }
                 },
+                "status": {
+                    "disabled": "販売チャネルが無効になっているため、同期が有効になっていません。",
+                    "lastSynced": "前回の同期",
+                    "lastSyncedComplete": "最終同期完了",
+                    "message": {
+                        "aborted": "前回の同期はユーザーによって中止されました",
+                        "error": "前回の同期はエラーで終了しました",
+                        "noRunYet": "最近の実行\nが見つかりませんでした",
+                        "success": "正常に同期されました",
+                        "syncing": "同期処理中",
+                        "warning": "前回の同期は警告で終了しました"
+                    },
+                    "syncingDetail": "これには数分かかる場合があります。このプロセスはバックグラウンドで実行され、その間、いつものようにショップを使用することができます。",
+                    "task": {
+                        "complete": "完了",
+                        "image": "画像",
+                        "inventory": "在庫",
+                        "product": "商品"
+                    }
+                },
+                "syncErrorTitle": "同期エラー",
+                "titleSync": "同期化"
+            },
+            "runs": {
                 "actions": {
                     "showDetails": "詳細を表示"
                 },
+                "cloneVisibilityTask": "商品の表示",
+                "columns": {
+                    "date": "日付",
+                    "state": "状態",
+                    "task": "タイプ"
+                },
+                "completeTask": "完了",
                 "emptyState": {
-                    "title": "完了した同期はありません",
-                    "message": "今すぐ同期してログを生成。"
+                    "message": "今すぐ同期してログを生成。",
+                    "title": "完了した同期はありません"
+                },
+                "imageTask": "画像",
+                "inventoryTask": "在庫",
+                "productTask": "商品",
+                "states": {
+                    "aborted": "ユーザーによる中断",
+                    "failed": "失敗",
+                    "successful": "完了",
+                    "withWarnings": "警告付きで完了"
+                },
+                "title": "同期履歴",
+                "toolbarText": "「ログのクリーンアップ」はすべてのログを削除します。30 日以上経過したログは自動的に削除されます。"
+            },
+            "settings": {
+                "activeHelpText": "有効にすると、Zettleの同期はバックグラウンドで自動的に行われます。",
+                "domain": "あなたのショップドメイン",
+                "domainHelpText": "Zettle はこのドメインを使用して、同期された製品に関連付けられたメディアをダウンロードします。Zettleは安全なURL (https) のみを受け入れます。",
+                "optionsTitle": "オプション",
+                "productStream": "ダイナミック商品グループ",
+                "replace": "Zettleに登録済みの商品を置換する",
+                "reset": {
+                    "buttonTitle": "同期のリセット",
+                    "descriptionText": "問題が発生した場合は、すべての商品と画像を再アップロードできます。",
+                    "modalButtonConfirm": "同期のリセット",
+                    "modalConfirmText": "販売チャネルの同期履歴をリセットします",
+                    "modalTextInfo": "すべてのアイテムは、次回の同期の際に再アップロードされます。これにはしばらく時間がかかる場合があります。Shopwareのデータは失われません。一部のデータはZettleで上書きされる可能性があります。",
+                    "modalTitle": "同期履歴のリセット中です"
+                },
+                "saveAlert": "保存された変更は、Shopware と Zettle の間で現在実行中の同期が終了した後に利用できます。",
+                "syncPrices": "価格を同期する",
+                "titleCredentials": "認証情報",
+                "titleGeneralSettings": "一般設定",
+                "titlePrices": "価格",
+                "titleSync": "同期化"
+            },
+            "syncedProducts": {
+                "actions": {
+                    "productDetails": "商品詳細"
                 },
                 "columns": {
-                    "task": "タイプ",
-                    "state": "状態",
-                    "date": "日付"
-                }
-            },
-            "cleanLog": "ログのクリーンアップ"
+                    "date": "日付",
+                    "name": "名前",
+                    "state": "ステータス"
+                },
+                "emptyState": {
+                    "message": "販売チャネルまたは動的な製品グループには製品がありません。",
+                    "title": "製品が選択されていません"
+                },
+                "notSyncedYet": "まだ同期されていません",
+                "title": "同期済み商品"
+            }
+        },
+        "general": {
+            "moduleTitle": "Zettle by PayPal",
+            "salesChannelDetailDescription": {
+                "manufacturer": "Zettle by PayPal",
+                "title": "Shopware と Zettle by PayPal でビジネスを拡大する"
+            }
+        },
+        "gettingStarted": {
+            "appHeadline": "Zettle Goアプリをダウンロード",
+            "appImageAlt": "Zettle アプリ",
+            "appText": "iOSとAndroidのタブレットと携帯電話で利用できます。<br>Zettleアカウントとカードリーダーを接続して販売を始めましょう。",
+            "cardTitle": "Zettle by PayPal で始めましょう",
+            "readerHeadline": "Zettleにログインして、Zettleカードリーダーを注文してください",
+            "readerImageAlt": "Zettleカードリーダー",
+            "readerLinkTarget": "https://shop.zettle.com",
+            "readerLinkText": "shop.zettle.com",
+            "readerText": "カードリーダーについての詳細を確認し、こちらでご注文ください："
+        },
+        "header": "Zettle セールスチャネル",
+        "messageCloneError": "別の販売チャネルから商品の可視性を転送できませんでした。",
+        "messageWebhookRegisterError": "WebhookをZettleに登録できませんでした",
+        "tabTitle": {
+            "help": "ヘルプ",
+            "overview": "概要",
+            "runs": "ログ",
+            "settings": "設定",
+            "syncedProducts": "同期された商品"
         },
         "wizard": {
+            "connection": {
+                "buttonCreateAccount": "Zettleアカウントを作成",
+                "buttonCreateAccountLink": "https://www.zettle.com/gb/integrations/e-commerce/shopware?utm_source=local_partnership&utm_medium=ecommerce&utm_campaign=shopware",
+                "headerConnect": "Zettleアカウントを接続",
+                "headerNewCustomer": "Zettleの新規?",
+                "modalTitle": "アカウントのセットアップ"
+            },
+            "connectionDisconnect": {
+                "disconnectButton": "アカウントの切断",
+                "disconnectErrorMessage": "切断中にエラーが発生しました。",
+                "headline": "Zettleから切断しようとしています",
+                "info": "アカウントを切断すると、表示されているZettleアカウントと商品の更新や同期は行われなくなります。",
+                "modalTitle": "Zettleアカウントを切断する"
+            },
+            "connectionSuccess": {
+                "disclaimer": "Shopware条の商品に加えた変更は、接続されているZettleアカウントで自動的に更新されるようになりました。",
+                "disconnectButton": "切断",
+                "fakeFirstName": "現在",
+                "fakeLastName": "読み込み中…",
+                "fakeMail": "pos@example.com",
+                "headline": "あなたのZettleアカウントとShopwareアカウントが接続されました！",
+                "info": "次のステップに従って、商品の同期設定を完了してください。",
+                "modalTitle": "接続が確立されました"
+            },
+            "customization": {
+                "labelDomain": "あなたのショップドメイン",
+                "modalTitle": "セールスチャネルの詳細",
+                "placeholderDomain": "www.my-store.shopware.com",
+                "salesChannelLabel": "セールスチャネルの名前",
+                "subtitle": "Zettleはこのドメインを使用して、同期した製品に関連するメディアをダウンロードします。"
+            },
+            "finish": {
+                "firstParagraph": "あなたのZettleアカウントはあなたの販売チャネルにリンクされ、あなたの製品はZettleに転送されます。今後セールを行う際に、Zettle と Shopware の在庫が更新されます。",
+                "header": "商品の同期設定が完了しました！",
+                "modalTitle": "完了",
+                "secondParagraph": "商品を更新する必要がある場合は、Shopware で行うことをお勧めします。これにより、Zettle アプリに自動的に同期されます。"
+            },
+            "productSelection": {
+                "info": "より早く開始するために、既存の販売チャネルから新しく作成した販売チャネルに製品を割り当てるオプションが追加されました。割り当てられたすべての製品は、Zettle POSで同期できるようになります。手動作業は必要ありません。",
+                "labelSelect": "セールスチャネル",
+                "labelToggle": "商品選択情報を送信",
+                "modalTitle": "既存の販売チャネルから商品を移植"
+            },
             "salesChannelPrototypeName": "Zettle POS",
             "stepItemTitle": {
                 "connection": "アカウントのセットアップ",
                 "connectionSuccess": "接続",
                 "customization": "カスタマイズ",
+                "finish": "完了",
                 "productSelection": "製品の選択",
                 "syncLibrary": "商品の同期",
-                "syncPrices": "価格の同期",
-                "finish": "完了"
-            },
-            "connection": {
-                "modalTitle": "アカウントのセットアップ",
-                "headerConnect": "Zettleアカウントを接続",
-                "headerNewCustomer": "Zettleの新規?",
-                "buttonCreateAccount": "Zettleアカウントを作成",
-                "buttonCreateAccountLink": "https://www.zettle.com/gb/integrations/e-commerce/shopware?utm_source=local_partnership&utm_medium=ecommerce&utm_campaign=shopware"
-            },
-            "connectionSuccess": {
-                "modalTitle": "接続が確立されました",
-                "headline": "あなたのZettleアカウントとShopwareアカウントが接続されました！",
-                "info": "次のステップに従って、商品の同期設定を完了してください。",
-                "disconnectButton": "切断",
-                "disclaimer": "Shopware条の商品に加えた変更は、接続されているZettleアカウントで自動的に更新されるようになりました。",
-                "fakeFirstName": "現在",
-                "fakeLastName": "読み込み中…",
-                "fakeMail": "pos@example.com"
-            },
-            "connectionDisconnect": {
-                "modalTitle": "Zettleアカウントを切断する",
-                "headline": "Zettleから切断しようとしています",
-                "info": "アカウントを切断すると、表示されているZettleアカウントと商品の更新や同期は行われなくなります。",
-                "disconnectButton": "アカウントの切断",
-                "disconnectErrorMessage": "切断中にエラーが発生しました。"
-            },
-            "customization": {
-                "salesChannelLabel": "セールスチャネルの名前",
-                "modalTitle": "セールスチャネルの詳細",
-                "labelDomain": "あなたのショップドメイン",
-                "subtitle": "Zettleはこのドメインを使用して、同期した製品に関連するメディアをダウンロードします。",
-                "placeholderDomain": "www.my-store.shopware.com"
-            },
-            "productSelection": {
-                "modalTitle": "既存の販売チャネルから商品を移植",
-                "labelSelect": "セールスチャネル",
-                "labelToggle": "商品選択情報を送信",
-                "info": "より早く開始するために、既存の販売チャネルから新しく作成した販売チャネルに製品を割り当てるオプションが追加されました。割り当てられたすべての製品は、Zettle POSで同期できるようになります。手動作業は必要ありません。"
+                "syncPrices": "価格の同期"
             },
             "syncLibrary": {
-                "modalTitle": "商品同期設定",
-                "header": "{shopwareProducts} と {posProducts} が見つかりました",
-                "shopwareProducts": "Shopware商品はありません | 1件のShopware商品 | {n} 件のShopware商品",
-                "posProducts": "Zettle製品はありません | 1つのZettle製品 | {n} 個のZettle製品",
                 "description": "すべての商品は、Shopwareで新しく作成した販売チャネルから同期されます。Zettleライブラリをどのようにセットアップしたいですか？",
-                "optionReplacePermanentlyLabel": "Shopware商品のみを使用する",
-                "optionReplacePermanentlyDescription": "Zettleライブラリには、Shopwareの商品と在庫数量のみが存在します。",
-                "optionReplaceOneTimeLabel": "Zettle ライブラリを置換",
-                "optionReplaceOneTimeDescription": "既存のZettleライブラリをShopwareの商品と在庫数量に一度置き換えてください。",
-                "optionReplaceNotLabel": "Shopware商品の追加",
+                "disclaimer": "これらの設定は後からいつでも変更できます。",
+                "header": "{shopwareProducts} と {posProducts} が見つかりました",
+                "modalTitle": "商品同期設定",
                 "optionReplaceNotDescription": "Shopwareの商品と在庫数は既存のZettleライブラリに追加されます。",
-                "disclaimer": "これらの設定は後からいつでも変更できます。"
+                "optionReplaceNotLabel": "Shopware商品の追加",
+                "optionReplaceOneTimeDescription": "既存のZettleライブラリをShopwareの商品と在庫数量に一度置き換えてください。",
+                "optionReplaceOneTimeLabel": "Zettle ライブラリを置換",
+                "optionReplacePermanentlyDescription": "Zettleライブラリには、Shopwareの商品と在庫数量のみが存在します。",
+                "optionReplacePermanentlyLabel": "Shopware商品のみを使用する",
+                "posProducts": "Zettle製品はありません | 1つのZettle製品 | {n} 個のZettle製品",
+                "shopwareProducts": "Shopware商品はありません | 1件のShopware商品 | {n} 件のShopware商品"
             },
             "syncPrices": {
-                "modalTitle": "商品同期設定",
-                "header": "製品価格をZettleとどのように同期させたいですか？",
                 "description": "Zettleと同期すると、商品の価格にはVATが含まれます。",
                 "disclaimer": "VATはZettle製品ライブラリで手動で編集できます。",
-                "optionTrueLabel": "価格をVAT込みで同期",
-                "optionTrueDescription": "Zettleに同期された価格には、付加価値税が含まれます。",
+                "header": "製品価格をZettleとどのように同期させたいですか？",
+                "modalTitle": "商品同期設定",
+                "optionFalseDescription": "商品の価格は同期時に転送されません。Zettle 商品ライブラリで設定できます。",
                 "optionFalseLabel": "価格を同期しない",
-                "optionFalseDescription": "商品の価格は同期時に転送されません。Zettle 商品ライブラリで設定できます。"
-            },
-            "finish": {
-                "modalTitle": "完了",
-                "header": "商品の同期設定が完了しました！",
-                "firstParagraph": "あなたのZettleアカウントはあなたの販売チャネルにリンクされ、あなたの製品はZettleに転送されます。今後セールを行う際に、Zettle と Shopware の在庫が更新されます。",
-                "secondParagraph": "商品を更新する必要がある場合は、Shopware で行うことをお勧めします。これにより、Zettle アプリに自動的に同期されます。"
+                "optionTrueDescription": "Zettleに同期された価格には、付加価値税が含まれます。",
+                "optionTrueLabel": "価格をVAT込みで同期"
             }
-        },
-        "authentication": {
-            "messageTestError": "認証情報を検証できませんでした",
-            "messageDuplicateError": "このZettleアカウントはすでに別の販売チャネルで設定されています",
-            "labelApiKey": "APIキー",
-            "placeholderApiKey": "APIキーを入力...",
-            "apiKeyDescription": "APIキーはパスワードのように機能します。ShopwareはあなたのZettle APIキーを使用して、あなたのZettleアカウントへの安全な接続を確立します。",
-            "buttonGenerateKey": "API キーを生成"
-        },
-        "account": {
-            "loadingName": "ロード中...",
-            "loadingEmail": "pos@example.com",
-            "errorName": "認証中のエラー",
-            "errorEmail": "API キーを確認できませんでした",
-            "connectedStatus": "接続済",
-            "noConnectionStatus": "接続なし",
-            "manageAccount": "アカウントの管理",
-            "editConnection": "接続を編集",
-            "lastUpdated": "最終更新日"
-        },
-        "gettingStarted": {
-            "cardTitle": "Zettle by PayPal で始めましょう",
-            "readerHeadline": "Zettleにログインして、Zettleカードリーダーを注文してください",
-            "readerText": "カードリーダーについての詳細を確認し、こちらでご注文ください：",
-            "readerLinkTarget": "https://shop.zettle.com",
-            "readerLinkText": "shop.zettle.com",
-            "readerImageAlt": "Zettleカードリーダー",
-            "appHeadline": "Zettle Goアプリをダウンロード",
-            "appText": "iOSとAndroidのタブレットと携帯電話で利用できます。<br>Zettleアカウントとカードリーダーを接続して販売を始めましょう。",
-            "appImageAlt": "Zettle アプリ"
-        },
-        "messageCloneError": "別の販売チャネルから商品の可視性を転送できませんでした。",
-        "messageWebhookRegisterError": "WebhookをZettleに登録できませんでした"
-    },
-    "swag-paypal-disputes": {
-        "general": {
-            "mainMenuItemGeneral": "PayPalの紛争",
-            "descriptionTextModule": "PayPal の異議申し立ての管理はこちら"
-        },
-        "common": {
-            "dispute_id": "ID",
-            "update_time": "更新時刻",
-            "response_due_date": {
-                "label": "回答期限",
-                "seller": "セラー",
-                "buyer": "バイヤー"
-            },
-            "status": "ステータス",
-            "dispute_life_cycle_stage": "ステージ",
-            "dispute_amount": "金額"
-        },
-        "list": {
-            "title": "異議申し立て",
-            "titleSidebarItemRefresh": "更新",
-            "titleSidebarItemFilter": "フィルター",
-            "errorTitle": "PayPalから紛争情報の取得中にエラーが発生しました",
-            "emptyState": {
-                "title": "異議申立ては見つかりませんでした",
-                "subline": "フィルターを変更して、すべての異議申し立てを表示する。"
-            }
-        },
-        "detail": {
-            "title": "PayPalの紛争:",
-            "titleAddition": "(技術的な詳細)",
-            "mainFieldsCardTitle": "詳細",
-            "externalLinkText": "PayPal解決センターで異議申立てを開く",
-            "orderModuleLinkText": "注文を開く",
-            "rawDataCardTitle": "生データ",
-            "copyButtonLabel": "生データのコピー"
         }
     },
-    "swag-paypal-frw-credentials": {
-        "buttonGetCredentials": "API 認証情報を取得する",
-        "textIntroPayPal": "PayPalを利用するには、PayPal APIの認証情報を入力するだけです。",
-        "labelClientId": "クライアントID",
-        "labelClientSecret": "クライアントシークレット",
-        "labelMerchantPayerId": "PayPalマーチャントID",
-        "labelClientIdSandbox": "サンドボックスクライアント ID",
-        "labelClientSecretSandbox": "サンドボックスクライアントシークレット",
-        "labelMerchantPayerIdSandbox": "Sandbox PayPal Merchant ID",
-        "labelSandbox": "サンドボックスを使用",
-        "tooltipSandbox": "Sandbox の有効化に応じて、別の認証情報が保存されます。",
-        "labelSetDefault": "デフォルトの支払い方法として設定",
-        "tooltipSetDefault": "PayPal は、すべての販売チャネルのデフォルトの支払い方法として設定されます。設定モジュールでは、販売チャネルごとに個別のデフォルト支払い方法を設定できます。",
-        "messageFetchedError": "もう一度試すか、詳細設定を使用して認証情報を入力してください。",
-        "textFetchedSuccessful": "認証情報を取得しました。",
-        "messageNoCredentials": "認証情報が提供されていません。",
-        "messageTestSuccess": "認証情報は有効です。"
-    },
     "swag-paypal-settings-shipping-carrier": {
-        "cardTitle": "デフォルトの配送業者",
         "cardHelpText": "追跡情報がPayPalに送信されます",
+        "cardTitle": "デフォルトの配送業者",
         "description": "PayPalはPayPalを通じて処理された注文の追跡を提供しています。これを使用するには、注文で上書きできるデフォルトの配送業者を指定してください。 すべての配送業者のリストは <a target=\"_blank\" href=\"https://developer.paypal.com/docs/tracking/reference/carriers/\">こちら</a>で確認できます。",
         "inputLabel": "配送業者コード",
         "inputPlaceholder": "PayPalのキャリアコードを入力してください（例：DHL_GLOBAL_ECOMMERCE）..."
