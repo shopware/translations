@@ -1,2 +1,2 @@
 # translations
-EXPERIMENTAL: Contains all translation files, automatically extracted from crowdin for Shopware 6
+Contains all translation files, automatically extracted from crowdin for Shopware 6
