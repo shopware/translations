@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "La devolución del pedido entra en estado abierto",
             "state_enter_quote_state_accepted": "La cotización ingresa el estado de aceptada",
             "state_enter_quote_state_declined": "La cotización entra en estado rechazado",
+            "state_enter_quote_state_draft": "La cotización entra en estado de borrador",
+            "state_enter_quote_state_expired": "La cotización entra en estado caducado",
             "state_enter_quote_state_in_review": "La cotización introduce el estado en revisión",
             "state_enter_quote_state_open": "La cotización entra en estado abierto",
+            "state_enter_quote_state_reopen": "La cotización entra en estado de reapertura",
             "state_enter_quote_state_replied": "La cotización ingresa el estado de enviada",
             "state_leave_order_return_state_cancelled": "La devolución del pedido deja el estado cancelado",
             "state_leave_order_return_state_done": "La devolución del pedido deja el estado realizado",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "La devolución del pedido deja el estado abierto",
             "state_leave_quote_state_accepted": "La cotización deja el estado aceptado",
             "state_leave_quote_state_declined": "La cotización deja el estado rechazado",
+            "state_leave_quote_state_draft": "La cotización deja el borrador de estado",
+            "state_leave_quote_state_expired": "La cotización deja el estado caducado",
             "state_leave_quote_state_in_review": "La cotización deja el estado en revisión",
             "state_leave_quote_state_open": "La cotización deja el estado abierto",
+            "state_leave_quote_state_reopen": "La cotización deja el estado reabierto",
             "state_leave_quote_state_replied": "La cotización deja el estado enviado"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Copiloto de IA abierta"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "Objeto 3D"
+            },
+            "element": {
+                "label": "Objeto 3D"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Activar: {activate}",
+            "labelGenerateQuoteDoc": "Generar documento de cotización"
+        },
+        "modal": {
+            "helpTextActivate": "Configúralo como el documento actual.",
+            "labelActivate": "Activar",
+            "titleActivate": "Documento actual",
+            "titleGenerateQuoteDocModal": "Generar documento de cotización"
+        },
         "triggers": {
             "accepted": "Aceptado",
             "changeRequest": "Solicitud de cambio",
             "created": "Creado",
             "declined": "Rechazado",
             "done": "Terminado",
+            "draft": "Borrador",
             "employee": "Empleado",
             "expired": "Caducado",
             "inReview": "En revisión",
@@ -620,6 +648,7 @@
             "open": "Abierto",
             "orderReturn": "Devolución de pedidos",
             "quote": "Cita",
+            "reopen": "Reabrir",
             "replied": "Enviado",
             "requested": "Solicitada",
             "return": "Regreso",
@@ -993,6 +1022,11 @@
             "commentType": "Cliente",
             "contextMenuRemove": "Eliminar de la cotización",
             "contextMenuShowProduct": "Mostrar producto",
+            "createdAtColumn": "Añadido el",
+            "currentDocument": "Actual",
+            "customDocument": "Adjuntar documento personalizado",
+            "downloadDocument": "Descargar documento",
+            "generatedDocument": "Generar y adjuntar documento",
             "gridHeaderAmount": "Cantidad",
             "gridHeaderDiscount": "Descuento",
             "gridHeaderItem": "Nombre",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Empresa",
             "labelCustomer": "Cliente",
             "labelCustomerNumber": "Número de cliente",
+            "labelDocument": "Adjuntar documento",
             "labelEmail": "Dirección de correo electrónico",
             "labelExpirationDate": "Fecha de caducidad",
             "labelExpirationDateError": "Esta fecha está en el pasado",
@@ -1033,9 +1068,13 @@
             "labelVAT": "IVA ({number}%)",
             "messageCreateSuccess": "Se ha creado la cita \"{quoteNumber}».",
             "messageEmptyItem": "Todavía no existen partidas",
+            "messageNoFoundItem": "No se encontró ningún artículo",
             "messageSaveAsDraftSuccess": "La cita \"{quoteNumber}\" se ha guardado como borrador.",
             "messageSaveSuccess": "La cita \"{name}\" se ha guardado.",
+            "nameColumn": "Nombre",
+            "noDocumentOption": "Sin documento",
             "notificationCancelQuoteErrorMessage": "Hemos detectado un error al procesar tu solicitud de cancelación.",
+            "openDocument": "Abrir documento",
             "placeHolderSetExpireDate": "Selecciona una fecha...",
             "placeholderComment": "Añade un mensaje...",
             "placeholderExpirationDate": "Selecciona una fecha...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "La eliminación de este borrador de cotización será permanente.",
             "textInfo": "General",
             "textNewQuote": "Nueva cotización",
+            "titleDocument": "Documento",
             "titleDraftDeletion": "Eliminar borrador",
             "titleQuote": "Cita {quoteNumber}",
             "titleSendMessageOnly": "Enviar mensaje",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Esta función tiene un límite diario de 300 solicitudes.",
-                "card": {
-                    "subtitle": "Permite al cliente describir lo que busca utilizando un lenguaje natural y encontrar los productos con mayor facilidad.",
-                    "title": "Búsqueda por contexto"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Tus clientes pueden encontrar productos en tu tienda online subiendo imágenes.",
+                        "title": "Búsqueda por imagen"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Esta función tiene un límite diario de 300 solicitudes.",
+                    "card": {
+                        "subtitle": "Permite al cliente describir lo que busca utilizando un lenguaje natural y encontrar los productos con mayor facilidad.",
+                        "title": "Búsqueda por contexto"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Contexto",
+                    "descriptionPlaceholder": "Introduce palabras clave...",
+                    "salesChannelDescriptionSubTitle": "Para obtener los mejores resultados, describe tu empresa con unas pocas palabras clave (máximo 100 caracteres).",
+                    "salesChannelDescriptionTitle": "Contexto del canal de ventas",
+                    "title": "Contexto del canal de ventas"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Se ha producido un error al guardar la configuración de los ajustes de búsqueda.",
             "saveSuccess": "La configuración se guardó correctamente."
         }
     },

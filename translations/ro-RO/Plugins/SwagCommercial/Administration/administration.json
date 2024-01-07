@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Returnarea comenzii intră în starea deschisă",
             "state_enter_quote_state_accepted": "Oferta intră în starea acceptată",
             "state_enter_quote_state_declined": "Cotația intră în starea refuzată",
+            "state_enter_quote_state_draft": "Cotația intră în schița de stare",
+            "state_enter_quote_state_expired": "Oferta intră în starea expirată",
             "state_enter_quote_state_in_review": "Cotația introduce starea în revizuire",
             "state_enter_quote_state_open": "Cotația intră în stare deschisă",
+            "state_enter_quote_state_reopen": "Oferta intră în stare redeschisă",
             "state_enter_quote_state_replied": "Oferta introduce starea trimisă",
             "state_leave_order_return_state_cancelled": "Returnarea comenzii lasă statutul anulat",
             "state_leave_order_return_state_done": "Returnarea comenzii lasă starea finalizată",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Returnarea comenzii lasă starea deschisă",
             "state_leave_quote_state_accepted": "Cotația lasă statutul acceptat",
             "state_leave_quote_state_declined": "Cotația lasă statutul refuzat",
+            "state_leave_quote_state_draft": "Citatul lasă schița de stare",
+            "state_leave_quote_state_expired": "Cotația lasă statutul expirat",
             "state_leave_quote_state_in_review": "Citatul lasă statutul în revizuire",
             "state_leave_quote_state_open": "Cotația lasă starea deschisă",
+            "state_leave_quote_state_reopen": "Cotația lasă statutul redeschis",
             "state_leave_quote_state_replied": "Oferta lasă starea trimisă"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Deschide Situl AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "Obiect 3D"
+            },
+            "element": {
+                "label": "Obiect 3D"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Activați: {activate}",
+            "labelGenerateQuoteDoc": "Generați documentul de ofertă"
+        },
+        "modal": {
+            "helpTextActivate": "Setați-l ca document curent.",
+            "labelActivate": "Activează",
+            "titleActivate": "Documentul curent",
+            "titleGenerateQuoteDocModal": "Generați documentul de ofertă"
+        },
         "triggers": {
             "accepted": "Acceptat",
             "changeRequest": "Solicitare de modificare",
             "created": "Creat",
             "declined": "Refuzat",
             "done": "Terminat",
+            "draft": "Proiect",
             "employee": "Angajat",
             "expired": "Expirat",
             "inReview": "În revizuire",
@@ -620,6 +648,7 @@
             "open": "Deschidere",
             "orderReturn": "Returnarea comenzii",
             "quote": "Citat",
+            "reopen": "Redeschidere",
             "replied": "Trimis",
             "requested": "Solicitat",
             "return": "Întoarcerea",
@@ -993,6 +1022,11 @@
             "commentType": "Client",
             "contextMenuRemove": "Eliminați din citat",
             "contextMenuShowProduct": "Arată produsul",
+            "createdAtColumn": "Creat la",
+            "currentDocument": "Curent",
+            "customDocument": "Atașați documentul personalizat",
+            "downloadDocument": "Descarcă documentul",
+            "generatedDocument": "Generați și atașați documentul",
             "gridHeaderAmount": "Cantitate",
             "gridHeaderDiscount": "Reducere",
             "gridHeaderItem": "Articol",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Companie",
             "labelCustomer": "Client",
             "labelCustomerNumber": "Număr de client",
+            "labelDocument": "Atașați documentul",
             "labelEmail": "Adresă de e-mail",
             "labelExpirationDate": "Data expirării",
             "labelExpirationDateError": "Această dată este în trecut",
@@ -1033,9 +1068,13 @@
             "labelVAT": "TVA ({number}%)",
             "messageCreateSuccess": "Citatul „{quoteNumber}” a fost creat.",
             "messageEmptyItem": "Niciun produs adăugat încă",
+            "messageNoFoundItem": "Nu au fost găsite articole",
             "messageSaveAsDraftSuccess": "Citatul \"{quoteNumber}\" a fost salvat ca schiță.",
             "messageSaveSuccess": "Citatul \"{name}\" a fost salvat.",
+            "nameColumn": "Nume",
+            "noDocumentOption": "Niciun document",
             "notificationCancelQuoteErrorMessage": "Am întâmpinat o eroare în timpul procesării solicitării dvs. de anulare.",
+            "openDocument": "Deschideți documentul",
             "placeHolderSetExpireDate": "Selectați o dată...",
             "placeholderComment": "Adaugă un mesaj...",
             "placeholderExpirationDate": "Selectați o dată...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Ștergerea acestui proiect de ofertă va fi permanentă.",
             "textInfo": "General",
             "textNewQuote": "Citat nou",
+            "titleDocument": "Document",
             "titleDraftDeletion": "Ștergeți schița",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Trimite mesaj",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Această funcție are o limită zilnică de 300 de solicitări.",
-                "card": {
-                    "subtitle": "Permite clientului să descrie ceea ce caută folosind un limbaj natural și să găsească mai ușor produsele.",
-                    "title": "Căutare după context"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Clienții dvs. pot găsi produse în magazinul dvs. online încărcând imagini.",
+                        "title": "Căutare după imagine"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Această funcție are o limită zilnică de 300 de solicitări.",
+                    "card": {
+                        "subtitle": "Permite clientului să descrie ceea ce caută folosind un limbaj natural și să găsească mai ușor produsele.",
+                        "title": "Căutare după context"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Context",
+                    "descriptionPlaceholder": "Introduceți cuvinte cheie...",
+                    "salesChannelDescriptionSubTitle": "Pentru a obține cele mai bune rezultate, descrieți afacerea dvs. în câteva cuvinte cheie (maxim 100 de caractere).",
+                    "salesChannelDescriptionTitle": "Contextul canalului de vânzări",
+                    "title": "Contextul canalului de vânzări"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "A apărut o eroare la salvarea configurației setărilor de căutare.",
             "saveSuccess": "Setările au fost salvate cu succes."
         }
     },

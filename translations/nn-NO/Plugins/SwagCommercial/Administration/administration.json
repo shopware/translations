@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Ordreretur går inn i status åpen",
             "state_enter_quote_state_accepted": "Tilbudet angir status akseptert",
             "state_enter_quote_state_declined": "Tilbudet angir status avslått",
+            "state_enter_quote_state_draft": "Tilbud går inn i statusutkast",
+            "state_enter_quote_state_expired": "Tilbudet angir status utløpt",
             "state_enter_quote_state_in_review": "Tilbud angir status i gjennomgang",
             "state_enter_quote_state_open": "Tilbudet går inn i status åpen",
+            "state_enter_quote_state_reopen": "Tilbudet går inn i status gjenåpnet",
             "state_enter_quote_state_replied": "Tilbud angir status sendt",
             "state_leave_order_return_state_cancelled": "Bestillingsretur etterlater status kansellert",
             "state_leave_order_return_state_done": "Bestillingsretur etterlater status ferdig",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Ordreretur etterlater status åpen",
             "state_leave_quote_state_accepted": "Tilbudet etterlater status akseptert",
             "state_leave_quote_state_declined": "Tilbudet etterlater status avslått",
+            "state_leave_quote_state_draft": "Tilbudet etterlater statusutkast",
+            "state_leave_quote_state_expired": "Tilbudet etterlater status utløpt",
             "state_leave_quote_state_in_review": "Sitat etterlater status i gjennomgang",
             "state_leave_quote_state_open": "Tilbudet etterlater status åpen",
+            "state_leave_quote_state_reopen": "Tilbudet etterlater status gjenåpen",
             "state_leave_quote_state_replied": "Tilbudet etterlater status sendt"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Åpne Webside AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D-objekt"
+            },
+            "element": {
+                "label": "3D-objekt"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktiver: {activate}",
+            "labelGenerateQuoteDoc": "Generer tilbudsdokument"
+        },
+        "modal": {
+            "helpTextActivate": "Angi det som gjeldende dokument.",
+            "labelActivate": "Aktiver",
+            "titleActivate": "Gjeldende dokument",
+            "titleGenerateQuoteDocModal": "Generer tilbudsdokument"
+        },
         "triggers": {
             "accepted": "Akseptert",
             "changeRequest": "Endre forespørsel",
             "created": "Opprettet",
             "declined": "Avvist",
             "done": "Ferdig",
+            "draft": "Utkast",
             "employee": "Ansatt",
             "expired": "Utløpt",
             "inReview": "I gjennomgang",
@@ -620,6 +648,7 @@
             "open": "Åpen",
             "orderReturn": "Bestill retur",
             "quote": "Sitat",
+            "reopen": "Gjenåpne",
             "replied": "Sendt",
             "requested": "Forespurt",
             "return": "Retur",
@@ -993,6 +1022,11 @@
             "commentType": "Kunden",
             "contextMenuRemove": "Fjern fra sitatet",
             "contextMenuShowProduct": "Vis produkt",
+            "createdAtColumn": "Opprettet på",
+            "currentDocument": "Nåværende",
+            "customDocument": "Legg ved egendefinert dokument",
+            "downloadDocument": "Last ned dokument",
+            "generatedDocument": "Generer og legg ved dokument",
             "gridHeaderAmount": "Mengde",
             "gridHeaderDiscount": "Rabatt",
             "gridHeaderItem": "Element",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Selskap",
             "labelCustomer": "Kunden",
             "labelCustomerNumber": "Kundenummer",
+            "labelDocument": "Legg ved dokument",
             "labelEmail": "E-postadresse",
             "labelExpirationDate": "Utløpsdato",
             "labelExpirationDateError": "Denne datoen er i fortiden",
@@ -1033,9 +1068,13 @@
             "labelVAT": "MVA ({number}%)",
             "messageCreateSuccess": "Sitatet \"{quoteNumber}\" er opprettet.",
             "messageEmptyItem": "Ingen elementer lagt til ennå",
+            "messageNoFoundItem": "Ingen gjenstander funnet",
             "messageSaveAsDraftSuccess": "Sitatet \"{quoteNumber}\" er lagret som utkast.",
             "messageSaveSuccess": "Sitatet \"{name}\" er lagret.",
+            "nameColumn": "Navn",
+            "noDocumentOption": "Ingen dokument",
             "notificationCancelQuoteErrorMessage": "Vi oppdaget en feil under behandlingen av kanselleringsforespørselen din.",
+            "openDocument": "Åpne dokument",
             "placeHolderSetExpireDate": "Velg en dato...",
             "placeholderComment": "Legg til en melding...",
             "placeholderExpirationDate": "Velg en dato...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Å slette dette sitatutkastet vil være permanent.",
             "textInfo": "Generell",
             "textNewQuote": "Nytt tilbud",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Slett utkast",
             "titleQuote": "Sitat {quoteNumber}",
             "titleSendMessageOnly": "Send melding",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Denne funksjonen har en daglig grense på 300 forespørsler.",
-                "card": {
-                    "subtitle": "Lar kunden beskrive hva de leter etter ved hjelp av naturlig språk og lettere finne produkter.",
-                    "title": "Søk etter kontekst"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Kundene dine kan finne produkter i nettbutikken din ved å laste opp bilder.",
+                        "title": "Søk etter bilde"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Denne funksjonen har en daglig grense på 300 forespørsler.",
+                    "card": {
+                        "subtitle": "Lar kunden beskrive hva de leter etter ved hjelp av naturlig språk og lettere finne produkter.",
+                        "title": "Søk etter kontekst"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontekst",
+                    "descriptionPlaceholder": "Skriv inn nøkkelord...",
+                    "salesChannelDescriptionSubTitle": "For å få de beste resultatene, beskriv virksomheten din med noen få søkeord (maks 100 tegn).",
+                    "salesChannelDescriptionTitle": "Salgskanalkontekst",
+                    "title": "Salgskanalkontekst"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Det oppstod en feil under lagring av søkeinnstillingskonfigurasjonen.",
             "saveSuccess": "Innstillinger lagret med hell."
         }
     },

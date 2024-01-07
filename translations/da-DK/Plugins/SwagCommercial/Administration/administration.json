@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Ordreretur indtaster status åben",
             "state_enter_quote_state_accepted": "Tilbuddet indtaster status accepteret",
             "state_enter_quote_state_declined": "Tilbuddet indtaster status afvist",
+            "state_enter_quote_state_draft": "Tilbud indtaster statusudkast",
+            "state_enter_quote_state_expired": "Tilbuddet indtaster status Udløbet",
             "state_enter_quote_state_in_review": "Citat indtaster status under gennemgang",
             "state_enter_quote_state_open": "Tilbuddet indtaster status åbent",
+            "state_enter_quote_state_reopen": "Tilbuddet indtaster status genåbn",
             "state_enter_quote_state_replied": "Tilbuddet indtaster status sendt",
             "state_leave_order_return_state_cancelled": "Ordreretur efterlader status annulleret",
             "state_leave_order_return_state_done": "Ordreretur efterlader status færdig",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Ordreretur efterlader status åben",
             "state_leave_quote_state_accepted": "Tilbud efterlader status accepteret",
             "state_leave_quote_state_declined": "Tilbuddet efterlader status afvist",
+            "state_leave_quote_state_draft": "Tilbud efterlader statusudkast",
+            "state_leave_quote_state_expired": "Tilbuddet efterlader status udløbet",
             "state_leave_quote_state_in_review": "Citatet efterlader status i gennemgang",
             "state_leave_quote_state_open": "Tilbuddet efterlader status åben",
+            "state_leave_quote_state_reopen": "Tilbuddet efterlader status genåbnet",
             "state_leave_quote_state_replied": "Tilbuddet efterlader status sendt"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Åben AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D-objekt"
+            },
+            "element": {
+                "label": "3D-objekt"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktivér: {activate}",
+            "labelGenerateQuoteDoc": "Generer tilbudsdokument"
+        },
+        "modal": {
+            "helpTextActivate": "Indstil det som det aktuelle dokument.",
+            "labelActivate": "Aktiver",
+            "titleActivate": "Aktuelt dokument",
+            "titleGenerateQuoteDocModal": "Generer tilbudsdokument"
+        },
         "triggers": {
             "accepted": "Accepteret",
             "changeRequest": "Ændringsanmodning",
             "created": "Oprettet",
             "declined": "Afvist",
             "done": "Færdig",
+            "draft": "Udkast",
             "employee": "Medarbejder",
             "expired": "Udløbet",
             "inReview": "I gennemgang",
@@ -620,6 +648,7 @@
             "open": "Åben",
             "orderReturn": "Bestil returnering",
             "quote": "Citat",
+            "reopen": "Genåbn",
             "replied": "Sendt",
             "requested": "anmodet om",
             "return": "Retur",
@@ -993,6 +1022,11 @@
             "commentType": "Kunder",
             "contextMenuRemove": "Fjern fra tilbud",
             "contextMenuShowProduct": "Vis produkt",
+            "createdAtColumn": "Oprettet den",
+            "currentDocument": "Nuværende",
+            "customDocument": "Vedhæft brugerdefineret dokument",
+            "downloadDocument": "Download dokument",
+            "generatedDocument": "Generer og vedhæft dokument",
             "gridHeaderAmount": "Antal",
             "gridHeaderDiscount": "Rabat",
             "gridHeaderItem": "Vare",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Virksomhed",
             "labelCustomer": "Kunder",
             "labelCustomerNumber": "Kundenummer",
+            "labelDocument": "Vedhæft dokument",
             "labelEmail": "Email adresse",
             "labelExpirationDate": "Udløbsdato",
             "labelExpirationDateError": "Denne dato er i fortiden",
@@ -1033,9 +1068,13 @@
             "labelVAT": "MOMS ({number}%)",
             "messageCreateSuccess": "Citatet \"{quoteNumber}\" er blevet oprettet.",
             "messageEmptyItem": "Ingen varer tilføjet endnu",
+            "messageNoFoundItem": "Ingen varer fundet",
             "messageSaveAsDraftSuccess": "Citatet \"{quoteNumber}\" er blevet gemt som udkast.",
             "messageSaveSuccess": "Citatet \"{name}\" er blevet gemt.",
+            "nameColumn": "Navn",
+            "noDocumentOption": "Intet dokument",
             "notificationCancelQuoteErrorMessage": "Vi stødte på en fejl under behandlingen af din annulleringsanmodning.",
+            "openDocument": "Åbn dokument",
             "placeHolderSetExpireDate": "Vælg en dato...",
             "placeholderComment": "Tilføj en besked...",
             "placeholderExpirationDate": "Vælg en dato...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Sletning af dette citatudkast vil være permanent.",
             "textInfo": "Generel",
             "textNewQuote": "Nyt tilbud",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Slet udkast",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Send besked",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Denne funktion har en daglig grænse på 300 anmodninger.",
-                "card": {
-                    "subtitle": "Giver kunden mulighed for at beskrive, hvad de leder efter, ved hjælp af naturligt sprog og lettere finde produkter.",
-                    "title": "Søg efter kontekst"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Dine kunder kan finde produkter i din webshop ved at uploade billeder.",
+                        "title": "Søg efter billede"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Denne funktion har en daglig grænse på 300 anmodninger.",
+                    "card": {
+                        "subtitle": "Giver kunden mulighed for at beskrive, hvad de leder efter, ved hjælp af naturligt sprog og lettere finde produkter.",
+                        "title": "Søg efter kontekst"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontekst",
+                    "descriptionPlaceholder": "Indtast nøgleord...",
+                    "salesChannelDescriptionSubTitle": "For at få de bedste resultater skal du beskrive din virksomhed med et par søgeord (maks. 100 tegn).",
+                    "salesChannelDescriptionTitle": "Salgskanalkontekst",
+                    "title": "Salgskanalkontekst"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Der opstod en fejl under gemning af din søgeindstillingskonfiguration.",
             "saveSuccess": "Indstillinger gemt med succes."
         }
     },

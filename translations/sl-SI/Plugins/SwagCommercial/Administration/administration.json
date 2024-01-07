@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Vračilo naročila vstopi stanje odprto",
             "state_enter_quote_state_accepted": "Ponudba vnese status sprejet",
             "state_enter_quote_state_declined": "Ponudba vstopi status zavrnjen",
+            "state_enter_quote_state_draft": "Ponudba vstopi v osnutek stanja",
+            "state_enter_quote_state_expired": "Ponudba vnese status potekel",
             "state_enter_quote_state_in_review": "Ponudba vnese status v pregledu",
             "state_enter_quote_state_open": "Ponudba vstopi stanje odprto",
+            "state_enter_quote_state_reopen": "Ponudba vstopi stanje znova odpre",
             "state_enter_quote_state_replied": "Ponudba vnese status poslan",
             "state_leave_order_return_state_cancelled": "Vračilo naročila ostaja preklicano",
             "state_leave_order_return_state_done": "Vračilo naročila pusti stanje končano",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Vračilo naročila pusti stanje odprto",
             "state_leave_quote_state_accepted": "Ponudba pusti status sprejet",
             "state_leave_quote_state_declined": "Ponudba pusti stanje zmanjšano",
+            "state_leave_quote_state_draft": "Ponudba pušča osnutek stanja",
+            "state_leave_quote_state_expired": "Ponudba pusti status je potekel",
             "state_leave_quote_state_in_review": "Ponudba pušča stanje v pregledu",
             "state_leave_quote_state_open": "Ponudba pušča stanje odprto",
+            "state_leave_quote_state_reopen": "Ponudba pušča stanje ponovno odprto",
             "state_leave_quote_state_replied": "Ponudba pusti stanje poslano"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Odpri AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D objekt"
+            },
+            "element": {
+                "label": "3D objekt"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktiviraj: {activate}",
+            "labelGenerateQuoteDoc": "Ustvari dokument s ponudbo"
+        },
+        "modal": {
+            "helpTextActivate": "Nastavite ga kot trenutni dokument.",
+            "labelActivate": "Aktiviraj",
+            "titleActivate": "Trenutni dokument",
+            "titleGenerateQuoteDocModal": "Ustvari dokument s ponudbo"
+        },
         "triggers": {
             "accepted": "Sprejeto",
             "changeRequest": "Zahteva za spremembo",
             "created": "Ustvarjeno",
             "declined": "Odpadla",
             "done": "Končano",
+            "draft": "Osnutek",
             "employee": "Zaposleni",
             "expired": "Potekel",
             "inReview": "V pregledu",
@@ -620,6 +648,7 @@
             "open": "Odpri",
             "orderReturn": "Vračilo naročila",
             "quote": "Citat",
+            "reopen": "Ponovno odprite",
             "replied": "Poslano",
             "requested": "Zahtevano",
             "return": "Vrnitev",
@@ -993,6 +1022,11 @@
             "commentType": "Stranka",
             "contextMenuRemove": "Odstrani iz ponudbe",
             "contextMenuShowProduct": "Prikaži izdelek",
+            "createdAtColumn": "Ustvarjeno na",
+            "currentDocument": "Trenutni",
+            "customDocument": "Priložite dokument po meri",
+            "downloadDocument": "Prenesite dokument",
+            "generatedDocument": "Ustvarite in priložite dokument",
             "gridHeaderAmount": "Količina",
             "gridHeaderDiscount": "Popust",
             "gridHeaderItem": "Točka",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Podjetje",
             "labelCustomer": "Stranka",
             "labelCustomerNumber": "Številka stranke",
+            "labelDocument": "Priložite dokument",
             "labelEmail": "E-poštni naslov",
             "labelExpirationDate": "Datum izteka roka uporabnosti",
             "labelExpirationDateError": "Ta datum je v preteklosti",
@@ -1033,9 +1068,13 @@
             "labelVAT": "DDV ({number}%)",
             "messageCreateSuccess": "Ustvarjen je citat \"{quoteNumber}\".",
             "messageEmptyItem": "Še ni dodanih artiklov",
+            "messageNoFoundItem": "Ni najdenih elementov",
             "messageSaveAsDraftSuccess": "Citat \"{quoteNumber}\" je bil shranjen kot osnutek.",
             "messageSaveSuccess": "Citat \"{name}\" je bil shranjen.",
+            "nameColumn": "Ime",
+            "noDocumentOption": "Brez dokumenta",
             "notificationCancelQuoteErrorMessage": "Med obdelavo vaše zahteve za odpoved smo naleteli na napako.",
+            "openDocument": "Odpri dokument",
             "placeHolderSetExpireDate": "Izberite datum...",
             "placeholderComment": "Dodaj sporočilo...",
             "placeholderExpirationDate": "Izberite datum...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Brisanje tega osnutka ponudbe bo trajno.",
             "textInfo": "Splošno",
             "textNewQuote": "Nova ponudba",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Izbriši osnutek",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Pošlji sporočilo",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Ta funkcija ima dnevno omejitev 300 zahtev.",
-                "card": {
-                    "subtitle": "Stranki omogoča, da opiše, kaj išče z naravnim jezikom, in lažje poišče izdelke.",
-                    "title": "Iskanje po kontekstu"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Vaše stranke lahko najdejo izdelke v vaši spletni trgovini z nalaganjem slik.",
+                        "title": "Iskanje po sliki"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Ta funkcija ima dnevno omejitev 300 zahtev.",
+                    "card": {
+                        "subtitle": "Stranki omogoča, da opiše, kaj išče z naravnim jezikom, in lažje poišče izdelke.",
+                        "title": "Iskanje po kontekstu"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontekst",
+                    "descriptionPlaceholder": "Vnesite ključne besede...",
+                    "salesChannelDescriptionSubTitle": "Če želite doseči najboljše rezultate, opišite svoje podjetje z nekaj ključnimi besedami (največ 100 znakov).",
+                    "salesChannelDescriptionTitle": "Kontekst prodajnega kanala",
+                    "title": "Kontekst prodajnega kanala"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Med shranjevanjem konfiguracije nastavitev iskanja je prišlo do napake.",
             "saveSuccess": "Nastavitve so uspešno shranjene."
         }
     },

@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Vrácení objednávky zadá stav otevřený",
             "state_enter_quote_state_accepted": "Nabídka zadá stav přijat",
             "state_enter_quote_state_declined": "Nabídka zadá stav zamítnut",
+            "state_enter_quote_state_draft": "Nabídka vstupuje do konceptu stavu",
+            "state_enter_quote_state_expired": "Nabídka zadá stav vypršel",
             "state_enter_quote_state_in_review": "Nabídka zadává stav při kontrole",
             "state_enter_quote_state_open": "Nabídka vstoupí do stavu otevřený",
+            "state_enter_quote_state_reopen": "Nabídka vstoupí do stavu znovuotevření",
             "state_enter_quote_state_replied": "Nabídka zadá stav odeslaný",
             "state_leave_order_return_state_cancelled": "Vrácení objednávky zanechává status zrušen",
             "state_leave_order_return_state_done": "Vrácení objednávky ponechává stav hotový",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Vrácení objednávky ponechává stav otevřený",
             "state_leave_quote_state_accepted": "Nabídka zanechává status přijat",
             "state_leave_quote_state_declined": "Nabídka zanechává status zamítnut",
+            "state_leave_quote_state_draft": "Nabídka zanechává návrh stavu",
+            "state_leave_quote_state_expired": "Nabídka zanechává stav vypršel",
             "state_leave_quote_state_in_review": "Nabídka zanechává stav v recenzi",
             "state_leave_quote_state_open": "Nabídka ponechává stav otevřený",
+            "state_leave_quote_state_reopen": "Nabídka ponechává stav znovu otevřený",
             "state_leave_quote_state_replied": "Nabídka zanechává status odeslán"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Otevřít Stránku AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D objekt"
+            },
+            "element": {
+                "label": "3D objekt"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktivovat: {activate}",
+            "labelGenerateQuoteDoc": "Vygenerovat dokument nabídky"
+        },
+        "modal": {
+            "helpTextActivate": "Nastavte jej jako aktuální dokument.",
+            "labelActivate": "Aktivovat",
+            "titleActivate": "Aktuální dokument",
+            "titleGenerateQuoteDocModal": "Vygenerovat dokument nabídky"
+        },
         "triggers": {
             "accepted": "Přijato",
             "changeRequest": "Žádost o změnu",
             "created": "Vytvořeno",
             "declined": "Odmítl",
             "done": "Hotovo",
+            "draft": "Draft",
             "employee": "Zaměstnanec",
             "expired": "Platnost vypršela",
             "inReview": "V přehledu",
@@ -620,6 +648,7 @@
             "open": "Otevřít",
             "orderReturn": "Vrácení objednávky",
             "quote": "Citace",
+            "reopen": "Znovu otevřít",
             "replied": "Odesláno",
             "requested": "Požadováno",
             "return": "Návrat",
@@ -993,6 +1022,11 @@
             "commentType": "Zákazník",
             "contextMenuRemove": "Odstranit z nabídky",
             "contextMenuShowProduct": "Zobrazit výrobek",
+            "createdAtColumn": "Přidáno dne",
+            "currentDocument": "Současný",
+            "customDocument": "Připojit vlastní dokument",
+            "downloadDocument": "Stáhnout dokument",
+            "generatedDocument": "Generování a připojení dokumentu",
             "gridHeaderAmount": "Množství",
             "gridHeaderDiscount": "Sleva",
             "gridHeaderItem": "Název",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Firma",
             "labelCustomer": "Zákazník",
             "labelCustomerNumber": "Zákaznické číslo",
+            "labelDocument": "Připojit dokument",
             "labelEmail": "E-mailová adresa",
             "labelExpirationDate": "Datum vypršení platnosti",
             "labelExpirationDateError": "Toto datum je v minulosti",
@@ -1033,9 +1068,13 @@
             "labelVAT": "DPH ({number}%)",
             "messageCreateSuccess": "Citace \"{quoteNumber}\" byla vytvořena.",
             "messageEmptyItem": "Dosud neexistují žádné položky",
+            "messageNoFoundItem": "Nebyly nalezeny žádné položky",
             "messageSaveAsDraftSuccess": "Citace \"{quoteNumber}\" byla uložena jako koncept.",
             "messageSaveSuccess": "Citace \"{name}\" byla uložena.",
+            "nameColumn": "Název",
+            "noDocumentOption": "Žádný dokument",
             "notificationCancelQuoteErrorMessage": "Při zpracování vaší žádosti o zrušení jsme narazili na chybu.",
+            "openDocument": "Otevřít dokument",
             "placeHolderSetExpireDate": "Vyberte datum...",
             "placeholderComment": "Přidat zprávu...",
             "placeholderExpirationDate": "Vyberte datum...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Odstranění tohoto návrhu nabídky bude trvalé.",
             "textInfo": "generál",
             "textNewQuote": "Nová nabídka",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Odstranit koncept",
             "titleQuote": "Citace {quoteNumber}",
             "titleSendMessageOnly": "Poslat zprávu",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Tato funkce má denní limit 300 požadavků.",
-                "card": {
-                    "subtitle": "Umožňuje zákazníkovi popsat, co hledá, pomocí přirozeného jazyka a snadněji najít produkty.",
-                    "title": "Vyhledávání podle kontextu"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Vaši zákazníci mohou najít produkty ve vašem internetovém obchodě nahráním obrázků.",
+                        "title": "Vyhledávání podle obrázku"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Tato funkce má denní limit 300 požadavků.",
+                    "card": {
+                        "subtitle": "Umožňuje zákazníkovi popsat, co hledá, pomocí přirozeného jazyka a snadněji najít produkty.",
+                        "title": "Vyhledávání podle kontextu"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontext",
+                    "descriptionPlaceholder": "Zadejte klíčová slova...",
+                    "salesChannelDescriptionSubTitle": "Chcete-li dosáhnout nejlepších výsledků, popište svou firmu několika klíčovými slovy (max. 100 znaků).",
+                    "salesChannelDescriptionTitle": "Kontext prodejního kanálu",
+                    "title": "Kontext prodejního kanálu"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Při ukládání konfigurace nastavení vyhledávání došlo k chybě.",
             "saveSuccess": "Nastavení bylo úspěšně uloženo."
         }
     },

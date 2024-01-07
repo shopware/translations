@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Il reso dell'ordine entra nello stato aperto",
             "state_enter_quote_state_accepted": "Il preventivo entra nello stato accettato",
             "state_enter_quote_state_declined": "Il preventivo entra nello stato rifiutato",
+            "state_enter_quote_state_draft": "Il preventivo entra nella bozza di stato",
+            "state_enter_quote_state_expired": "Il preventivo entra nello stato scaduto",
             "state_enter_quote_state_in_review": "Lo stato del preventivo viene inserito in fase di revisione",
             "state_enter_quote_state_open": "Il preventivo entra nello stato aperto",
+            "state_enter_quote_state_reopen": "Il preventivo entra in stato di riapertura",
             "state_enter_quote_state_replied": "Il preventivo entra nello stato inviato",
             "state_leave_order_return_state_cancelled": "La restituzione dell'ordine lascia lo stato annullato",
             "state_leave_order_return_state_done": "La restituzione dell'ordine lascia lo stato eseguito",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "La restituzione dell'ordine lascia lo stato aperto",
             "state_leave_quote_state_accepted": "Il preventivo lascia lo stato accettato",
             "state_leave_quote_state_declined": "La citazione lascia lo stato rifiutato",
+            "state_leave_quote_state_draft": "Il preventivo lascia una bozza di stato",
+            "state_leave_quote_state_expired": "Il preventivo lascia lo stato scaduto",
             "state_leave_quote_state_in_review": "La citazione lascia lo stato in fase di revisione",
             "state_leave_quote_state_open": "Lo stato della citazione lascia aperto",
+            "state_leave_quote_state_reopen": "Il preventivo lascia lo stato riaperto",
             "state_leave_quote_state_replied": "Il preventivo lascia lo stato inviato"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Apri AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "Oggetto 3D"
+            },
+            "element": {
+                "label": "Oggetto 3D"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Attiva: {activate}",
+            "labelGenerateQuoteDoc": "Genera documento di preventivo"
+        },
+        "modal": {
+            "helpTextActivate": "Impostalo come documento corrente.",
+            "labelActivate": "Attivare",
+            "titleActivate": "Documento attuale",
+            "titleGenerateQuoteDocModal": "Genera documento di preventivo"
+        },
         "triggers": {
             "accepted": "Accettata",
             "changeRequest": "Richiesta di modifica",
             "created": "Creato",
             "declined": "Rifiutato",
             "done": "Finito",
+            "draft": "Bozza",
             "employee": "Dipendente",
             "expired": "Scaduto",
             "inReview": "In rassegna",
@@ -620,6 +648,7 @@
             "open": "Apri",
             "orderReturn": "Restituzione dell'ordine",
             "quote": "Citazione",
+            "reopen": "Riaprire",
             "replied": "Inviato",
             "requested": "Richiesto",
             "return": "Restituire",
@@ -993,6 +1022,11 @@
             "commentType": "Cliente",
             "contextMenuRemove": "Rimuovi dal preventivo",
             "contextMenuShowProduct": "Visualizza prodotto",
+            "createdAtColumn": "Aggiunto il",
+            "currentDocument": "Attuale",
+            "customDocument": "Allega documento personalizzato",
+            "downloadDocument": "Scarica documento",
+            "generatedDocument": "Genera e allega documento",
             "gridHeaderAmount": "Quantità",
             "gridHeaderDiscount": "Sconto",
             "gridHeaderItem": "Nome",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Ditta",
             "labelCustomer": "Cliente",
             "labelCustomerNumber": "Codice cliente",
+            "labelDocument": "Allega documento",
             "labelEmail": "Indirizzo e-mail",
             "labelExpirationDate": "Data di scadenza",
             "labelExpirationDateError": "Questa data è passata",
@@ -1033,9 +1068,13 @@
             "labelVAT": "IVA ({number}%)",
             "messageCreateSuccess": "La citazione \"{quoteNumber}\" è stata creata.",
             "messageEmptyItem": "Ancora nessuna voce presente",
+            "messageNoFoundItem": "Nessun articolo trovato",
             "messageSaveAsDraftSuccess": "La citazione \"{quoteNumber}\" è stata salvata come bozza.",
             "messageSaveSuccess": "La citazione \"{name}\" è stata salvata.",
+            "nameColumn": "Nome",
+            "noDocumentOption": "Nessun documento",
             "notificationCancelQuoteErrorMessage": "Abbiamo riscontrato un errore durante l'elaborazione della tua richiesta di cancellazione.",
+            "openDocument": "Apri documento",
             "placeHolderSetExpireDate": "Seleziona una data...",
             "placeholderComment": "Aggiungi un messaggio...",
             "placeholderExpirationDate": "Seleziona una data...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "L'eliminazione di questa bozza di preventivo sarà definitiva.",
             "textInfo": "Generale",
             "textNewQuote": "Nuova citazione",
+            "titleDocument": "Documento",
             "titleDraftDeletion": "Elimina bozza",
             "titleQuote": "Citazione {quoteNumber}",
             "titleSendMessageOnly": "Invia messaggio",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Questa funzione ha un limite giornaliero di 300 richieste.",
-                "card": {
-                    "subtitle": "Consente al cliente di descrivere ciò che sta cercando utilizzando il linguaggio naturale e di trovare più facilmente i prodotti.",
-                    "title": "Ricerca per contesto"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "I tuoi clienti possono trovare i prodotti nel tuo negozio online caricando immagini.",
+                        "title": "Ricerca per immagine"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Questa funzione ha un limite giornaliero di 300 richieste.",
+                    "card": {
+                        "subtitle": "Consente al cliente di descrivere ciò che sta cercando utilizzando il linguaggio naturale e di trovare più facilmente i prodotti.",
+                        "title": "Ricerca per contesto"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Contesto",
+                    "descriptionPlaceholder": "Inserisci parole chiave...",
+                    "salesChannelDescriptionSubTitle": "Per ottenere i migliori risultati, descrivi la tua attività con poche parole chiave (massimo 100 caratteri).",
+                    "salesChannelDescriptionTitle": "Contesto del canale di vendita",
+                    "title": "Contesto del canale di vendita"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Si è verificato un errore durante il salvataggio della configurazione delle impostazioni di ricerca.",
             "saveSuccess": "Impostazioni salvate con successo."
         }
     },

@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "La devolució de la comanda entra en estat obert",
             "state_enter_quote_state_accepted": "La cotització entra en estat acceptat",
             "state_enter_quote_state_declined": "La cotització entra en estat declinat",
+            "state_enter_quote_state_draft": "La cotització entra en l'esborrany d'estat",
+            "state_enter_quote_state_expired": "La cotització entra en estat caducat",
             "state_enter_quote_state_in_review": "La cotització entra en estat en revisió",
             "state_enter_quote_state_open": "La cotització entra en estat obert",
+            "state_enter_quote_state_reopen": "La cotització entra en estat de reobertura",
             "state_enter_quote_state_replied": "La cotització introdueix l'estat enviat",
             "state_leave_order_return_state_cancelled": "La devolució de la comanda deixa l'estat cancel·lat",
             "state_leave_order_return_state_done": "La devolució de la comanda deixa l'estat fet",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "La devolució de la comanda deixa l'estat obert",
             "state_leave_quote_state_accepted": "La cotització deixa l'estat acceptat",
             "state_leave_quote_state_declined": "La cotització deixa l'estat declinat",
+            "state_leave_quote_state_draft": "La cotització deixa l'esborrany d'estat",
+            "state_leave_quote_state_expired": "La cotització deixa caducat l'estat",
             "state_leave_quote_state_in_review": "La citació deixa l'estat en revisió",
             "state_leave_quote_state_open": "La cotització deixa l'estat obert",
+            "state_leave_quote_state_reopen": "La cotització deixa l'estat reobert",
             "state_leave_quote_state_replied": "La citació deixa estat enviat"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Obrir AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "Objecte 3D"
+            },
+            "element": {
+                "label": "Objecte 3D"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Activa't: {activate}",
+            "labelGenerateQuoteDoc": "Generar document de cotització"
+        },
+        "modal": {
+            "helpTextActivate": "Estableu-lo com a document actual.",
+            "labelActivate": "Activar",
+            "titleActivate": "Document actual",
+            "titleGenerateQuoteDocModal": "Generar document de cotització"
+        },
         "triggers": {
             "accepted": "Acceptat",
             "changeRequest": "Sol·licitud de canvi",
             "created": "Creat",
             "declined": "Declinat",
             "done": "Fet",
+            "draft": "esborrany",
             "employee": "Empleat",
             "expired": "Caducat",
             "inReview": "En revisió",
@@ -620,6 +648,7 @@
             "open": "Obert",
             "orderReturn": "Devolució de la comanda",
             "quote": "Cita",
+            "reopen": "Tornar a obrir",
             "replied": "Enviat",
             "requested": "Sol·licitat",
             "return": "Retorn",
@@ -993,6 +1022,11 @@
             "commentType": "Client",
             "contextMenuRemove": "Eliminar de la cotització",
             "contextMenuShowProduct": "Mostra el producte",
+            "createdAtColumn": "Creat a",
+            "currentDocument": "Actual",
+            "customDocument": "Adjuntar document personalitzat",
+            "downloadDocument": "Descarregar document",
+            "generatedDocument": "Generar i adjuntar document",
             "gridHeaderAmount": "Quantitat",
             "gridHeaderDiscount": "Descompte",
             "gridHeaderItem": "Article",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Empresa",
             "labelCustomer": "Client",
             "labelCustomerNumber": "Número de client",
+            "labelDocument": "Adjuntar document",
             "labelEmail": "Correu electrònic",
             "labelExpirationDate": "Data de caducitat",
             "labelExpirationDateError": "Aquesta data es troba en el passat",
@@ -1033,9 +1068,13 @@
             "labelVAT": "IVA ({number}%)",
             "messageCreateSuccess": "S'ha creat la cita \"{quoteNumber}\".",
             "messageEmptyItem": "Encara no hi ha cap article afegit",
+            "messageNoFoundItem": "No s'ha trobat cap element",
             "messageSaveAsDraftSuccess": "La cita \"{quoteNumber}\" s'ha guardat com a esborrany.",
             "messageSaveSuccess": "La cita \"{name}\" ha estat guardada.",
+            "nameColumn": "Nom",
+            "noDocumentOption": "Sense document",
             "notificationCancelQuoteErrorMessage": "Hem trobat un error en processar la vostra sol·licitud de cancel·lació.",
+            "openDocument": "Obrir document",
             "placeHolderSetExpireDate": "Selecciona una data...",
             "placeholderComment": "Afegeix un missatge...",
             "placeholderExpirationDate": "Selecciona una data...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "L'eliminació d'aquest esborrany de cotització serà permanent.",
             "textInfo": "General",
             "textNewQuote": "Nova cotització",
+            "titleDocument": "Document",
             "titleDraftDeletion": "Suprimeix l'esborrany",
             "titleQuote": "Cita {quoteNumber}",
             "titleSendMessageOnly": "Enviar missatge",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Aquesta funció té un límit diari de 300 sol·licituds.",
-                "card": {
-                    "subtitle": "Permet al client descriure el que busca utilitzant el llenguatge natural i trobar productes amb més facilitat.",
-                    "title": "Cerca per context"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Els teus clients poden trobar productes a la teva botiga online pujant imatges.",
+                        "title": "Cerca per imatge"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Aquesta funció té un límit diari de 300 sol·licituds.",
+                    "card": {
+                        "subtitle": "Permet al client descriure el que busca utilitzant el llenguatge natural i trobar productes amb més facilitat.",
+                        "title": "Cerca per context"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Context",
+                    "descriptionPlaceholder": "Introdueix paraules clau...",
+                    "salesChannelDescriptionSubTitle": "Per obtenir els millors resultats, descriu el vostre negoci en poques paraules clau (màxim 100 caràcters).",
+                    "salesChannelDescriptionTitle": "Context del canal de vendes",
+                    "title": "Context del canal de vendes"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "S'ha produït un error en desar la configuració de la configuració de cerca.",
             "saveSuccess": "Configuració desada amb èxit."
         }
     },

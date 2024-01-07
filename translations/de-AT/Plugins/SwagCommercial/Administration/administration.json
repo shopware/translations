@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Retoure erreicht Status offen",
             "state_enter_quote_state_accepted": "Angebot erreicht Status akzeptiert",
             "state_enter_quote_state_declined": "Angebot erreicht Status abgelehnt",
+            "state_enter_quote_state_draft": "Angebot erreicht Status \"Entwurf\"",
+            "state_enter_quote_state_expired": "Angebot erreicht Status \"Abgelaufen\"",
             "state_enter_quote_state_in_review": "Angebot erreicht Status in Überprüfung",
             "state_enter_quote_state_open": "Angebot erreicht Status offen",
+            "state_enter_quote_state_reopen": "Angebot erreicht Status \"Wiedereröffnen\"",
             "state_enter_quote_state_replied": "Angebot erreicht Status abgeschickt",
             "state_leave_order_return_state_cancelled": "Retoure verlässt Status abgebrochen",
             "state_leave_order_return_state_done": "Retoure verlässt Status abgeschlossen",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Retoure verlässt Status offen",
             "state_leave_quote_state_accepted": "Angebot verlässt Status akzeptiert",
             "state_leave_quote_state_declined": "Angebot verlässt Status abgelehnt",
+            "state_leave_quote_state_draft": "Angebot verlässt Status \"Entwurf\"",
+            "state_leave_quote_state_expired": "Angebot verlässt Status \"Abgelaufen\"",
             "state_leave_quote_state_in_review": "Angebot verlässt Status in Überprüfung",
             "state_leave_quote_state_open": "Angebot verlässt Status offen",
+            "state_leave_quote_state_reopen": "Angebot verlässt Status Wiedereröffnen",
             "state_leave_quote_state_replied": "Angebot verlässt Status abgeschickt"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "AI Copilot öffnen"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D-Objekt"
+            },
+            "element": {
+                "label": "3D-Objekt"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktivieren: {activate}",
+            "labelGenerateQuoteDoc": "Angebotsdokument generieren"
+        },
+        "modal": {
+            "helpTextActivate": "Als aktuelles Dokument einstellen.",
+            "labelActivate": "Aktivieren",
+            "titleActivate": "Aktuelles Dokument",
+            "titleGenerateQuoteDocModal": "Angebotsdokument generieren"
+        },
         "triggers": {
             "accepted": "Akzeptiert",
             "changeRequest": "Änderungsanfrage",
             "created": "Erstellt",
             "declined": "Abgelehnt",
             "done": "Fertig",
+            "draft": "Entwurf",
             "employee": "Mitarbeiter",
             "expired": "Abgelaufen",
             "inReview": "In Überprüfung",
@@ -620,6 +648,7 @@
             "open": "Öffnen",
             "orderReturn": "Retoure",
             "quote": "Angebot",
+            "reopen": "Wiedereröffnen",
             "replied": "Gesendet",
             "requested": "Angefragt",
             "return": "Retoure",
@@ -993,6 +1022,11 @@
             "commentType": "Kunde",
             "contextMenuRemove": "Aus Angebot entfernen",
             "contextMenuShowProduct": "Produkt anzeigen",
+            "createdAtColumn": "Hinzugefügt am",
+            "currentDocument": "Aktuell",
+            "customDocument": "Benutzerdefiniertes Dokument anfügen",
+            "downloadDocument": "Dokument herunterladen",
+            "generatedDocument": "Dokument generieren und anfügen",
             "gridHeaderAmount": "Menge",
             "gridHeaderDiscount": "Rabatt",
             "gridHeaderItem": "Name",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Firma",
             "labelCustomer": "Kunde",
             "labelCustomerNumber": "Kundennummer",
+            "labelDocument": "Dokument angefügen",
             "labelEmail": "E-Mail-Adresse",
             "labelExpirationDate": "Ablaufdatum",
             "labelExpirationDateError": "Dieses Datum liegt in der Vergangenheit",
@@ -1033,9 +1068,13 @@
             "labelVAT": "MwSt. ({number}%)",
             "messageCreateSuccess": "Angebot \"{quoteNumber}\" wurde erstellt.",
             "messageEmptyItem": "Noch keine Positionen vorhanden",
+            "messageNoFoundItem": "Noch keine Positionen vorhanden",
             "messageSaveAsDraftSuccess": "Angebot \"{quoteNumber}\" wurde als Entwurf gespeichert.",
             "messageSaveSuccess": "Angebot \"{name}\" wurde gespeichert.",
+            "nameColumn": "Name",
+            "noDocumentOption": "Kein Dokument",
             "notificationCancelQuoteErrorMessage": "Beim Stornieren des Angebots ist ein Fehler aufgetreten.",
+            "openDocument": "Dokument öffnen",
             "placeHolderSetExpireDate": "Datum auswählen ...",
             "placeholderComment": "Fügen Sie eine Nachricht hinzu ...",
             "placeholderExpirationDate": "Datum auswählen ...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Gelöschte Angebotsentwürfe können nicht wiederhergestellt werden.",
             "textInfo": "Allgemein",
             "textNewQuote": "Neues Angebot",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Entwurf löschen",
             "titleQuote": "Angebot {quoteNumber}",
             "titleSendMessageOnly": "Nachricht senden",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Diese Funktion hat ein tägliches Limit von 300 Anfragen.",
-                "card": {
-                    "subtitle": "Deine Kunden können in natürlicher Sprache beschreiben, wonach sie suchen und so Produkte einfacher finden.",
-                    "title": "Kontextbasierte Suche"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Deine Kunden können Produkte in Deinem Shop finden, indem sie Bilder hochladen.",
+                        "title": "Mit Bildern suchen"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Diese Funktion hat ein tägliches Limit von 300 Anfragen.",
+                    "card": {
+                        "subtitle": "Deine Kunden können in natürlicher Sprache beschreiben, wonach sie suchen und so Produkte einfacher finden.",
+                        "title": "Kontextbasierte Suche"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontext",
+                    "descriptionPlaceholder": "Suchbegriffe eingeben ...",
+                    "salesChannelDescriptionSubTitle": "Um die besten Ergebnisse zu erzielen, beschreibe Dein Unternehmen in wenigen Stichworten (maximal 100 Zeichen).",
+                    "salesChannelDescriptionTitle": "Verkaufskanalkontext",
+                    "title": "Verkaufskanalkontext"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Beim Speichern der Such-Konfiguration ist ein Fehler aufgetreten.",
             "saveSuccess": "Einstellungen erfolgreich gespeichert."
         }
     },

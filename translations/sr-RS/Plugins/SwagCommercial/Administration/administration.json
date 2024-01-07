@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Povratak porudžbine ulazi u status otvoren",
             "state_enter_quote_state_accepted": "Ponuda ulazi status prihvaćen",
             "state_enter_quote_state_declined": "Citat unosi status odbijen",
+            "state_enter_quote_state_draft": "Citat ulazi u nacrt statusa",
+            "state_enter_quote_state_expired": "Ponuda unosi status istekao",
             "state_enter_quote_state_in_review": "Citat ulazi u status u pregledu",
             "state_enter_quote_state_open": "Citat ulazi u status otvoren",
+            "state_enter_quote_state_reopen": "Ponovno otvaranje citata ulazi u status",
             "state_enter_quote_state_replied": "Ponuda unosi status poslat",
             "state_leave_order_return_state_cancelled": "Povratak porudžbine ostavlja status otkazanim",
             "state_leave_order_return_state_done": "Povratak porudžbine ostavlja status gotov",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Povratak porudžbine ostavlja status otvoren",
             "state_leave_quote_state_accepted": "Citat ostavlja status prihvaćenim",
             "state_leave_quote_state_declined": "Citat ostavlja status odbijen",
+            "state_leave_quote_state_draft": "Citat ostavlja nacrt statusa",
+            "state_leave_quote_state_expired": "Citat ostavlja status istekao",
             "state_leave_quote_state_in_review": "Citat ostavlja status u pregledu",
             "state_leave_quote_state_open": "Citat ostavlja status otvoren",
+            "state_leave_quote_state_reopen": "Ponuda ostavlja status ponovo otvoren",
             "state_leave_quote_state_replied": "Citat ostavlja status poslat"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Otvorite AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D objekat"
+            },
+            "element": {
+                "label": "3D objekat"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktiviraj: {activate}",
+            "labelGenerateQuoteDoc": "Generišite dokument sa ponudom"
+        },
+        "modal": {
+            "helpTextActivate": "Postavite ga kao trenutni dokument.",
+            "labelActivate": "Aktivirajte",
+            "titleActivate": "Trenutni dokument",
+            "titleGenerateQuoteDocModal": "Generišite dokument sa ponudom"
+        },
         "triggers": {
             "accepted": "Prihvaćeno",
             "changeRequest": "Zahtev za promenu",
             "created": "Stvoren",
             "declined": "Odbijen",
             "done": "Gotovo",
+            "draft": "Nacrt",
             "employee": "Zaposleni",
             "expired": "Istekao",
             "inReview": "U pregledu",
@@ -620,6 +648,7 @@
             "open": "Otvoreno",
             "orderReturn": "Povratak narudžbe",
             "quote": "Citat",
+            "reopen": "Ponovo otvorite",
             "replied": "Poslat",
             "requested": "Traženo",
             "return": "Povratak",
@@ -993,6 +1022,11 @@
             "commentType": "Klijent",
             "contextMenuRemove": "Ukloni iz citata",
             "contextMenuShowProduct": "Prikaži proizvod",
+            "createdAtColumn": "Kreirano u",
+            "currentDocument": "Trenutni",
+            "customDocument": "Priložite prilagođeni dokument",
+            "downloadDocument": "Preuzmi dokument",
+            "generatedDocument": "Generišite i priložite dokument",
             "gridHeaderAmount": "Količina",
             "gridHeaderDiscount": "Popust",
             "gridHeaderItem": "Stavka",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Kompanija",
             "labelCustomer": "Klijent",
             "labelCustomerNumber": "Broj kupca",
+            "labelDocument": "Priložite dokument",
             "labelEmail": "E-mail adresa",
             "labelExpirationDate": "Datum isteka",
             "labelExpirationDateError": "Ovaj datum je u prošlosti",
@@ -1033,9 +1068,13 @@
             "labelVAT": "PDV ({number}%)",
             "messageCreateSuccess": "Citat \"{quoteNumber}\" je stvoren.",
             "messageEmptyItem": "Još nema dodatih stavki",
+            "messageNoFoundItem": "Nisu pronađeni predmeti",
             "messageSaveAsDraftSuccess": "Citat \"{quoteNumber}\" je sačuvan kao nacrt.",
             "messageSaveSuccess": "Citat \"{name}\" je sačuvan.",
+            "nameColumn": "Ime",
+            "noDocumentOption": "Nema dokumenta",
             "notificationCancelQuoteErrorMessage": "Naišli smo na grešku prilikom obrade vašeg zahteva za otkazivanje.",
+            "openDocument": "Otvori dokument",
             "placeHolderSetExpireDate": "Izaberite datum...",
             "placeholderComment": "Dodajte poruku...",
             "placeholderExpirationDate": "Izaberite datum...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Brisanje ovog nacrta citata biće trajno.",
             "textInfo": "General",
             "textNewQuote": "Novi citat",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Izbriši nacrt",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Pošalji poruku",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Ova funkcija ima dnevno ograničenje od 300 zahteva.",
-                "card": {
-                    "subtitle": "Omogućava kupcu da opiše ono što traži koristeći prirodni jezik i lakše pronađe proizvode.",
-                    "title": "Pretraživanje po kontekstu"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Vaši kupci mogu pronaći proizvode u vašoj online prodavnici otpremanjem slika.",
+                        "title": "Pretraga po slici"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Ova funkcija ima dnevno ograničenje od 300 zahteva.",
+                    "card": {
+                        "subtitle": "Omogućava kupcu da opiše ono što traži koristeći prirodni jezik i lakše pronađe proizvode.",
+                        "title": "Pretraživanje po kontekstu"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontekst",
+                    "descriptionPlaceholder": "Unesite ključne reči...",
+                    "salesChannelDescriptionSubTitle": "Da biste postigli najbolje rezultate, opišite svoje poslovanje u nekoliko ključnih reči (maksimalno 100 znakova).",
+                    "salesChannelDescriptionTitle": "Kontekst kanala prodaje",
+                    "title": "Kontekst kanala prodaje"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Došlo je do greške prilikom čuvanja konfiguracije postavki pretraživanja.",
             "saveSuccess": "Podešavanja su uspešno sačuvana."
         }
     },
