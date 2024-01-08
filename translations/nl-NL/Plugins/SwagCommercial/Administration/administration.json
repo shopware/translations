@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "De retourzending van de bestelling voert de status open in",
             "state_enter_quote_state_accepted": "Offerte geeft status geaccepteerd in",
             "state_enter_quote_state_declined": "Offerte wordt ingevoerd in status afgewezen",
+            "state_enter_quote_state_draft": "Offerte voert statusconcept in",
+            "state_enter_quote_state_expired": "Offerte voert status in als verlopen",
             "state_enter_quote_state_in_review": "Quote voert status in bij beoordeling",
             "state_enter_quote_state_open": "Quote voert status open in",
+            "state_enter_quote_state_reopen": "Offerte voert status in: heropenen",
             "state_enter_quote_state_replied": "Offerte voert status in, verzonden",
             "state_leave_order_return_state_cancelled": "De status van de retourzending van de bestelling is geannuleerd",
             "state_leave_order_return_state_done": "Bestelling retourneren laat status klaar",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "De retourzending van de bestelling laat de status open",
             "state_leave_quote_state_accepted": "Offerte laat status geaccepteerd achter",
             "state_leave_quote_state_declined": "Offerte verlaat status afgewezen",
+            "state_leave_quote_state_draft": "Offerte verlaat statusconcept",
+            "state_leave_quote_state_expired": "De status van de offerte is verlopen",
             "state_leave_quote_state_in_review": "Quote laat de status achter bij de beoordeling",
             "state_leave_quote_state_open": "Quote laat de status open",
+            "state_leave_quote_state_reopen": "Quote laat status heropen",
             "state_leave_quote_state_replied": "Offerte laat status verzonden achter"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "AI-copiloot openen"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D-object"
+            },
+            "element": {
+                "label": "3D-object"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Activeer: {activate}",
+            "labelGenerateQuoteDoc": "Offertedocument genereren"
+        },
+        "modal": {
+            "helpTextActivate": "Stel het in als het huidige document.",
+            "labelActivate": "Activeren",
+            "titleActivate": "Huidig document",
+            "titleGenerateQuoteDocModal": "Offertedocument genereren"
+        },
         "triggers": {
             "accepted": "Geaccepteerd",
             "changeRequest": "Aanvraag wijzigen",
             "created": "Aangemaakt",
             "declined": "Geweigerd",
             "done": "Gereed",
+            "draft": "Ontwerp",
             "employee": "Werknemer",
             "expired": "Verlopen",
             "inReview": "In recensie",
@@ -620,6 +648,7 @@
             "open": "Openen",
             "orderReturn": "Bestelling retourneren",
             "quote": "Citaat",
+            "reopen": "Heropenen",
             "replied": "Verzonden",
             "requested": "Gevraagd",
             "return": "Terugkeer",
@@ -993,6 +1022,11 @@
             "commentType": "Klant",
             "contextMenuRemove": "Uit offerte verwijderen",
             "contextMenuShowProduct": "Product tonen",
+            "createdAtColumn": "Toegevoegd op",
+            "currentDocument": "Actueel",
+            "customDocument": "Aangepast document bijvoegen",
+            "downloadDocument": "Document downloaden",
+            "generatedDocument": "Document genereren en bijvoegen",
             "gridHeaderAmount": "Hoeveelheid",
             "gridHeaderDiscount": "Korting",
             "gridHeaderItem": "Naam",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Bedrijfsnaam",
             "labelCustomer": "Klant",
             "labelCustomerNumber": "Klantnummer",
+            "labelDocument": "Document bijvoegen",
             "labelEmail": "E-mailadres",
             "labelExpirationDate": "Vervaldatum",
             "labelExpirationDateError": "Deze datum ligt in het verleden",
@@ -1033,9 +1068,13 @@
             "labelVAT": "BTW ({number}%)",
             "messageCreateSuccess": "Het citaat \"{quoteNumber}\" is aangemaakt.",
             "messageEmptyItem": "Nog geen posities beschikbaar",
+            "messageNoFoundItem": "Geen items gevonden",
             "messageSaveAsDraftSuccess": "Citaat \"{quoteNumber}\" is opgeslagen als concept.",
             "messageSaveSuccess": "Citaat \"{name}\" is opgeslagen.",
+            "nameColumn": "Naam",
+            "noDocumentOption": "Geen document",
             "notificationCancelQuoteErrorMessage": "Er is een fout opgetreden bij het verwerken van je annuleringsverzoek.",
+            "openDocument": "Document openen",
             "placeHolderSetExpireDate": "Selecteer een datum...",
             "placeholderComment": "Een bericht toevoegen...",
             "placeholderExpirationDate": "Selecteer een datum...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Het verwijderen van dit citaatontwerp is permanent.",
             "textInfo": "Generaal",
             "textNewQuote": "Nieuwe offerte",
+            "titleDocument": "Document",
             "titleDraftDeletion": "Concept verwijderen",
             "titleQuote": "Citaat {quoteNumber}",
             "titleSendMessageOnly": "Bericht verzenden",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Deze functie heeft een dagelijkse limiet van 300 verzoeken.",
-                "card": {
-                    "subtitle": "Hiermee kan de klant in natuurlijke taal beschrijven waar ze naar op zoek zijn en gemakkelijker producten vinden.",
-                    "title": "Zoek op context"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Je klanten kunnen producten in je webwinkel vinden door afbeeldingen te uploaden.",
+                        "title": "Zoek op afbeelding"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Deze functie heeft een dagelijkse limiet van 300 verzoeken.",
+                    "card": {
+                        "subtitle": "Hiermee kan de klant in natuurlijke taal beschrijven waar ze naar op zoek zijn en gemakkelijker producten vinden.",
+                        "title": "Zoek op context"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Context",
+                    "descriptionPlaceholder": "Voer trefwoorden in...",
+                    "salesChannelDescriptionSubTitle": "Om de beste resultaten te krijgen, moet je je bedrijf beschrijven in een paar trefwoorden (maximaal 100 tekens).",
+                    "salesChannelDescriptionTitle": "Context van het verkoopkanaal",
+                    "title": "Context van het verkoopkanaal"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Er is een fout opgetreden bij het opslaan van de configuratie van uw zoekinstellingen.",
             "saveSuccess": "De instellingen zijn succesvol opgeslagen."
         }
     },

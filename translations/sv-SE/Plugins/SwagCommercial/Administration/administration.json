@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Orderretur anger status öppen",
             "state_enter_quote_state_accepted": "Offert anger status accepterad",
             "state_enter_quote_state_declined": "Offert anger status avvisad",
+            "state_enter_quote_state_draft": "Offert går in i statusutkast",
+            "state_enter_quote_state_expired": "Offert anger status utgången",
             "state_enter_quote_state_in_review": "Offert anger status vid granskning",
             "state_enter_quote_state_open": "Offert går in i status öppen",
+            "state_enter_quote_state_reopen": "Offert anger status öppna igen",
             "state_enter_quote_state_replied": "Offert anger status skickad",
             "state_leave_order_return_state_cancelled": "Orderretur lämnar status annullerad",
             "state_leave_order_return_state_done": "Orderretur lämnar status klar",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Orderretur lämnar status öppen",
             "state_leave_quote_state_accepted": "Offert lämnar status accepterad",
             "state_leave_quote_state_declined": "Offert lämnar status avvisad",
+            "state_leave_quote_state_draft": "Offert lämnar statusutkast",
+            "state_leave_quote_state_expired": "Offert lämnar status utgången",
             "state_leave_quote_state_in_review": "Citat lämnar status i granskning",
             "state_leave_quote_state_open": "Offert lämnar status öppen",
+            "state_leave_quote_state_reopen": "Offert lämnar status öppen igen",
             "state_leave_quote_state_replied": "Offert lämnar status skickad"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Öppna Hemsida AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D-objekt"
+            },
+            "element": {
+                "label": "3D-objekt"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktivera: {activate}",
+            "labelGenerateQuoteDoc": "Skapa offertdokument"
+        },
+        "modal": {
+            "helpTextActivate": "Ställ in det som aktuellt dokument.",
+            "labelActivate": "Aktivera",
+            "titleActivate": "Aktuellt dokument",
+            "titleGenerateQuoteDocModal": "Skapa offertdokument"
+        },
         "triggers": {
             "accepted": "Accepterad",
             "changeRequest": "Ändringsförfrågan",
             "created": "Tillverkad",
             "declined": "Avböjt",
             "done": "Klart",
+            "draft": "Utkast",
             "employee": "Medarbetare",
             "expired": "Utgångna",
             "inReview": "I översyn",
@@ -620,6 +648,7 @@
             "open": "Öppna",
             "orderReturn": "Beställningsretur",
             "quote": "Citat",
+            "reopen": "Öppna igen",
             "replied": "Skickat",
             "requested": "Begärd",
             "return": "Returnera",
@@ -993,6 +1022,11 @@
             "commentType": "Kund",
             "contextMenuRemove": "Ta bort från offert",
             "contextMenuShowProduct": "Visa produkt",
+            "createdAtColumn": "Lades till den",
+            "currentDocument": "Nuvarande",
+            "customDocument": "Bifoga anpassat dokument",
+            "downloadDocument": "Ladda ner dokument",
+            "generatedDocument": "Skapa och bifoga dokument",
             "gridHeaderAmount": "Belopp",
             "gridHeaderDiscount": "Rabatt",
             "gridHeaderItem": "Namn",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Företag",
             "labelCustomer": "Kund",
             "labelCustomerNumber": "Kundnummer",
+            "labelDocument": "Bifoga dokument",
             "labelEmail": "E-postadress:",
             "labelExpirationDate": "Utgångsdatum",
             "labelExpirationDateError": "Detta datum är i det förflutna",
@@ -1033,9 +1068,13 @@
             "labelVAT": "MOMS ({number}%)",
             "messageCreateSuccess": "Citat \"{quoteNumber}\" har skapats.",
             "messageEmptyItem": "Inga positioner tillgängliga än",
+            "messageNoFoundItem": "Inga objekt hittades",
             "messageSaveAsDraftSuccess": "Citatet \"{quoteNumber}\" har sparats som utkast.",
             "messageSaveSuccess": "Citatet \"{name}\" har sparats.",
+            "nameColumn": "Namn",
+            "noDocumentOption": "Inget dokument",
             "notificationCancelQuoteErrorMessage": "Vi stötte på ett fel när vi behandlade din avbokningsförfrågan.",
+            "openDocument": "Öppna dokument",
             "placeHolderSetExpireDate": "Välj ett datum...",
             "placeholderComment": "Lägg till ett meddelande...",
             "placeholderExpirationDate": "Välj ett datum...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Att ta bort detta offertutkast kommer att vara permanent.",
             "textInfo": "General",
             "textNewQuote": "Ny offert",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Ta bort utkast",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Skicka meddelande",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Denna funktion har en daglig gräns på 300 förfrågningar.",
-                "card": {
-                    "subtitle": "Gör det möjligt för kunden att beskriva vad de letar efter med naturligt språk och lättare hitta produkter.",
-                    "title": "Sök efter sammanhang"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Dina kunder kan hitta produkter i din webbutik genom att ladda upp bilder.",
+                        "title": "Sök efter bild"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Denna funktion har en daglig gräns på 300 förfrågningar.",
+                    "card": {
+                        "subtitle": "Gör det möjligt för kunden att beskriva vad de letar efter med naturligt språk och lättare hitta produkter.",
+                        "title": "Sök efter sammanhang"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Sammanhang",
+                    "descriptionPlaceholder": "Ange nyckelord...",
+                    "salesChannelDescriptionSubTitle": "För att få bästa resultat, beskriv ditt företag med några sökord (max 100 tecken).",
+                    "salesChannelDescriptionTitle": "Försäljningskanalkontext",
+                    "title": "Försäljningskanalkontext"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Ett fel uppstod när du sparade konfigurationen för sökinställningar.",
             "saveSuccess": "Inställningarna sparades framgångsrikt."
         }
     },

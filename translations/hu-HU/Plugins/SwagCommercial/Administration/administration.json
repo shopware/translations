@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "A megrendelés visszatérítése nyitott állapotba kerül",
             "state_enter_quote_state_accepted": "Az árajánlat elfogadott állapotba kerül",
             "state_enter_quote_state_declined": "Az árajánlat elutasította az állapotot",
+            "state_enter_quote_state_draft": "Az árajánlat állapottervezetbe kerül",
+            "state_enter_quote_state_expired": "Árajánlat lejárt állapotba kerül",
             "state_enter_quote_state_in_review": "Az árajánlat a felülvizsgálat állapotát adja meg",
             "state_enter_quote_state_open": "Az árajánlat megnyitott állapotba kerül",
+            "state_enter_quote_state_reopen": "Az árajánlat állapotba kerül újra megnyitva",
             "state_enter_quote_state_replied": "Az árajánlat az elküldött állapot",
             "state_leave_order_return_state_cancelled": "A rendelés visszaküldése törli az állapotot",
             "state_leave_order_return_state_done": "A rendelés visszaküldésének állapota kész",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "A rendelés visszaadása nyitva hagyja az állapotot",
             "state_leave_quote_state_accepted": "Az árajánlat elfogadja az állapotot",
             "state_leave_quote_state_declined": "Az árajánlat elutasítja az állapotot",
+            "state_leave_quote_state_draft": "Az idézet állapottervezetet hagy",
+            "state_leave_quote_state_expired": "Az árajánlat lejárt állapota",
             "state_leave_quote_state_in_review": "Az idézet állapotot hagyja a felülvizsgálatban",
             "state_leave_quote_state_open": "Az idézet nyitva hagyja az állapotot",
+            "state_leave_quote_state_reopen": "Az árajánlat újból megnyitja az állapotot",
             "state_leave_quote_state_replied": "Az árajánlat elküldi az állapotot"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Nyissa meg az AI Copilot alkalmazást"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D objektum"
+            },
+            "element": {
+                "label": "3D objektum"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktiválás: {activate}",
+            "labelGenerateQuoteDoc": "Árajánlatdokumentum létrehozása"
+        },
+        "modal": {
+            "helpTextActivate": "Állítsa be aktuális dokumentumként.",
+            "labelActivate": "Aktiválása",
+            "titleActivate": "Aktuális dokumentum",
+            "titleGenerateQuoteDocModal": "Árajánlatdokumentum létrehozása"
+        },
         "triggers": {
             "accepted": "Elfogadva",
             "changeRequest": "Módosítási kérelem",
             "created": "Létrehozott",
             "declined": "Elutasította",
             "done": "Kész",
+            "draft": "Tervezet",
             "employee": "Munkavállaló",
             "expired": "Lejárt",
             "inReview": "Felülvizsgálat alatt",
@@ -620,6 +648,7 @@
             "open": "Nyissa meg",
             "orderReturn": "Rendelés visszatérítése",
             "quote": "Idézet",
+            "reopen": "Újranyitás",
             "replied": "Elküldött",
             "requested": "Igényelt",
             "return": "Visszatérés",
@@ -993,6 +1022,11 @@
             "commentType": "Ügyfél",
             "contextMenuRemove": "Távolítsa el az idézetből",
             "contextMenuShowProduct": "A termék megjelenítése",
+            "createdAtColumn": "Létrehozva:",
+            "currentDocument": "Jelenlegi",
+            "customDocument": "Egyéni dokumentum csatolása",
+            "downloadDocument": "Dokumentum letöltése",
+            "generatedDocument": "Dokumentum létrehozása és csatolása",
             "gridHeaderAmount": "Mennyiség",
             "gridHeaderDiscount": "Kedvezmény",
             "gridHeaderItem": "Elem",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Cég",
             "labelCustomer": "Ügyfél",
             "labelCustomerNumber": "Ügyfélszám",
+            "labelDocument": "Dokumentum csatolása",
             "labelEmail": "E-mail cím",
             "labelExpirationDate": "Lejárati idő",
             "labelExpirationDateError": "Ez a dátum a múltban van",
@@ -1033,9 +1068,13 @@
             "labelVAT": "ÁFA ({number}%)",
             "messageCreateSuccess": "Az \"{quoteNumber}\" idézet létrejött.",
             "messageEmptyItem": "Még nincs hozzáadott elem",
+            "messageNoFoundItem": "Nem található tétel",
             "messageSaveAsDraftSuccess": "Az \"{quoteNumber}\" idézet vázlatként van mentve.",
             "messageSaveSuccess": "Az \"{name}\" idézet mentve lett.",
+            "nameColumn": "Név",
+            "noDocumentOption": "Nincs dokumentum",
             "notificationCancelQuoteErrorMessage": "Hiba történt a lemondási kérelem feldolgozása során.",
+            "openDocument": "Nyissa meg a dokumentumot",
             "placeHolderSetExpireDate": "Válasszon egy dátumot...",
             "placeholderComment": "Üzenet hozzáadása...",
             "placeholderExpirationDate": "Válasszon egy dátumot...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Ennek az árajánlat-tervezetnek a törlése végleges lesz.",
             "textInfo": "Általános",
             "textNewQuote": "Új idézet",
+            "titleDocument": "Dokumentum",
             "titleDraftDeletion": "Tervezetek törlése",
             "titleQuote": "Idézet {quoteNumber}",
             "titleSendMessageOnly": "Üzenet küldése",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Ennek a funkciónak a napi korlátja 300 kérés.",
-                "card": {
-                    "subtitle": "Lehetővé teszi az ügyfél számára, hogy természetes nyelv segítségével leírja, mit keres, és könnyebben megtalálja a termékeket.",
-                    "title": "Keresés kontextus szerint"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Ügyfelei képek feltöltésével találhatnak termékeket az online áruházban.",
+                        "title": "Keresés kép alapján"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Ennek a funkciónak a napi korlátja 300 kérés.",
+                    "card": {
+                        "subtitle": "Lehetővé teszi az ügyfél számára, hogy természetes nyelv segítségével leírja, mit keres, és könnyebben megtalálja a termékeket.",
+                        "title": "Keresés kontextus szerint"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontextus",
+                    "descriptionPlaceholder": "Adjon meg kulcsszavakat...",
+                    "salesChannelDescriptionSubTitle": "A legjobb eredmény elérése érdekében írja le vállalkozását néhány kulcsszóval (legfeljebb 100 karakter).",
+                    "salesChannelDescriptionTitle": "Értékesítési csatorna kontextusa",
+                    "title": "Értékesítési csatorna kontextusa"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Hiba történt a keresési beállítások konfigurációjának mentésekor.",
             "saveSuccess": "A beállítások sikeresen mentve."
         }
     },

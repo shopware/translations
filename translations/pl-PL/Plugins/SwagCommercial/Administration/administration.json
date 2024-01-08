@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Zwrot zamówienia wprowadza status otwarty",
             "state_enter_quote_state_accepted": "Wycena wprowadza status akceptowany",
             "state_enter_quote_state_declined": "Wycena wprowadza status odrzucony",
+            "state_enter_quote_state_draft": "Oferta wprowadza wersję roboczą statusu",
+            "state_enter_quote_state_expired": "Wycena wpisuje status wygasł",
             "state_enter_quote_state_in_review": "Oferta wpisuje status w recenzji",
             "state_enter_quote_state_open": "Cytat wpisuje status otwarty",
+            "state_enter_quote_state_reopen": "Wycena wprowadza status ponownie otwarty",
             "state_enter_quote_state_replied": "Wycena wprowadza status wysłany",
             "state_leave_order_return_state_cancelled": "Zwrot zamówienia pozostawia status anulowany",
             "state_leave_order_return_state_done": "Zwrot zamówienia pozostawia status zakończony",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Zwrot zamówienia pozostawia status otwarty",
             "state_leave_quote_state_accepted": "Wycena pozostawia status akceptowany",
             "state_leave_quote_state_declined": "Wycena pozostawia status odrzucony",
+            "state_leave_quote_state_draft": "Cytat pozostawia szkic statusu",
+            "state_leave_quote_state_expired": "Wycena pozostawia status wygasł",
             "state_leave_quote_state_in_review": "Cytat pozostawia status w recenzji",
             "state_leave_quote_state_open": "Cytat pozostawia status otwarty",
+            "state_leave_quote_state_reopen": "Wycena pozostawia status ponownie otwarty",
             "state_leave_quote_state_replied": "Wycena pozostawia status wysłany"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Otwórz Stronę AI Copilot"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "Obiekty 3D"
+            },
+            "element": {
+                "label": "Obiekty 3D"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Aktywuj: {activate}",
+            "labelGenerateQuoteDoc": "Wygeneruj dokument wyceny"
+        },
+        "modal": {
+            "helpTextActivate": "Ustaw go jako bieżący dokument.",
+            "labelActivate": "Aktywuj",
+            "titleActivate": "Bieżący dokument",
+            "titleGenerateQuoteDocModal": "Wygeneruj dokument wyceny"
+        },
         "triggers": {
             "accepted": "Zaakceptowano",
             "changeRequest": "Żądanie zmiany",
             "created": "Utworzono",
             "declined": "Odrzucono",
             "done": "Gotowe",
+            "draft": "Draft",
             "employee": "Pracownik",
             "expired": "Wygasła",
             "inReview": "W przeglądzie",
@@ -620,6 +648,7 @@
             "open": "Otwórz",
             "orderReturn": "Zwrot zamówienia",
             "quote": "Cytat",
+            "reopen": "Ponowne otwarcie",
             "replied": "Wysłano",
             "requested": "Prośba",
             "return": "Powrót",
@@ -993,6 +1022,11 @@
             "commentType": "Klient",
             "contextMenuRemove": "Usuń z oferty",
             "contextMenuShowProduct": "Wyświetl produkt",
+            "createdAtColumn": "Dodano dnia",
+            "currentDocument": "Bieżący",
+            "customDocument": "Dołącz niestandardowy dokument",
+            "downloadDocument": "Pobierz dokument",
+            "generatedDocument": "Generowanie i dołączanie dokumentu",
             "gridHeaderAmount": "Ilość",
             "gridHeaderDiscount": "Rabat",
             "gridHeaderItem": "Nazwa",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Firma",
             "labelCustomer": "Klient",
             "labelCustomerNumber": "Numer klienta",
+            "labelDocument": "Dołącz dokument",
             "labelEmail": "Adres e-mail",
             "labelExpirationDate": "Data ważności",
             "labelExpirationDateError": "Ta data jest w przeszłości",
@@ -1033,9 +1068,13 @@
             "labelVAT": "VAT ({number}%)",
             "messageCreateSuccess": "Utworzono cytat „{quoteNumber}”.",
             "messageEmptyItem": "Na razie brak dostępnych pozycji",
+            "messageNoFoundItem": "Nie znaleziono przedmiotów",
             "messageSaveAsDraftSuccess": "Cytat \"{quoteNumber}\" został zapisany jako wersja robocza.",
             "messageSaveSuccess": "Cytat \"{name}\" został zapisany.",
+            "nameColumn": "Nazwa",
+            "noDocumentOption": "Brak dokumentu",
             "notificationCancelQuoteErrorMessage": "Podczas przetwarzania żądania anulowania napotkaliśmy błąd.",
+            "openDocument": "Otwórz dokument",
             "placeHolderSetExpireDate": "Wybierz datę...",
             "placeholderComment": "Dodaj wiadomość...",
             "placeholderExpirationDate": "Wybierz datę...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Usunięcie tego szkicu wyceny będzie trwałe.",
             "textInfo": "Ogólne",
             "textNewQuote": "Nowy cytat",
+            "titleDocument": "Dokument",
             "titleDraftDeletion": "Usuń wersję roboczą",
             "titleQuote": "Cytat {quoteNumber}",
             "titleSendMessageOnly": "Wyślij wiadomość",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Ta funkcja ma dzienny limit 300 żądań.",
-                "card": {
-                    "subtitle": "Pozwala klientowi opisać, czego szuka, używając języka naturalnego i łatwiej znaleźć produkty.",
-                    "title": "Szukaj według kontekstu"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Twoi klienci mogą znaleźć produkty w Twoim sklepie internetowym, przesyłając zdjęcia.",
+                        "title": "Szukaj po obrazie"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Ta funkcja ma dzienny limit 300 żądań.",
+                    "card": {
+                        "subtitle": "Pozwala klientowi opisać, czego szuka, używając języka naturalnego i łatwiej znaleźć produkty.",
+                        "title": "Szukaj według kontekstu"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Kontekst",
+                    "descriptionPlaceholder": "Wprowadź słowa kluczowe...",
+                    "salesChannelDescriptionSubTitle": "Aby uzyskać najlepsze wyniki, opisz swoją firmę kilkoma słowami kluczowymi (maksymalnie 100 znaków).",
+                    "salesChannelDescriptionTitle": "Kontekst kanału sprzedaży",
+                    "title": "Kontekst kanału sprzedaży"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Wystąpił błąd podczas zapisywania konfiguracji ustawień wyszukiwania.",
             "saveSuccess": "Ustawienia zostały pomyślnie zapisane."
         }
     },

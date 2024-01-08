@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "注文の返品がオープン状態になる",
             "state_enter_quote_state_accepted": "見積書は承認済みステータスになります",
             "state_enter_quote_state_declined": "見積もりのステータスが「拒否」になりました",
+            "state_enter_quote_state_draft": "見積書がステータスドラフトに入る",
+            "state_enter_quote_state_expired": "見積書が「期限切れ」状態になる",
             "state_enter_quote_state_in_review": "見積書にレビュー中のステータスが入ります",
             "state_enter_quote_state_open": "見積書はオープンステータスになります",
+            "state_enter_quote_state_reopen": "見積書が再開ステータスに入る",
             "state_enter_quote_state_replied": "見積もりには送信済みステータスが入力されます",
             "state_leave_order_return_state_cancelled": "注文の返品ステータスがキャンセルされたままになる",
             "state_leave_order_return_state_done": "注文の返品ステータスは完了のままです",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "注文の返品ステータスは未解決のままです",
             "state_leave_quote_state_accepted": "見積もりではステータスが承認されました",
             "state_leave_quote_state_declined": "見積もりではステータスが拒否されました",
+            "state_leave_quote_state_draft": "見積書はステータスドラフトを残す",
+            "state_leave_quote_state_expired": "見積書はステータスが期限切れのままになる",
             "state_leave_quote_state_in_review": "見積もりのステータスはレビュー中のままです",
             "state_leave_quote_state_open": "見積もりではステータスは未解決のままです",
+            "state_leave_quote_state_reopen": "見積もりによりステータスが再び開かれたままになる",
             "state_leave_quote_state_replied": "見積もり残しステータスが送信されました"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "AI コパイロットを開く"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D オブジェクト"
+            },
+            "element": {
+                "label": "3D オブジェクト"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "アクティベート: {activate}",
+            "labelGenerateQuoteDoc": "見積書を生成"
+        },
+        "modal": {
+            "helpTextActivate": "現在のドキュメントとして設定します。",
+            "labelActivate": "有効化",
+            "titleActivate": "現在の文書",
+            "titleGenerateQuoteDocModal": "見積書を生成"
+        },
         "triggers": {
             "accepted": "承認済み",
             "changeRequest": "変更要求",
             "created": "作成日",
             "declined": "拒否",
             "done": "完了",
+            "draft": "下書き",
             "employee": "従業員",
             "expired": "期限切れ",
             "inReview": "審査中",
@@ -620,6 +648,7 @@
             "open": "開く",
             "orderReturn": "注文返品",
             "quote": "見積もり",
+            "reopen": "[再開]",
             "replied": "送信済み",
             "requested": "リクエスト済み",
             "return": "リターン",
@@ -993,6 +1022,11 @@
             "commentType": "顧客",
             "contextMenuRemove": "見積もりから削除",
             "contextMenuShowProduct": "商品を表示",
+            "createdAtColumn": "作成日",
+            "currentDocument": "現在",
+            "customDocument": "カスタムドキュメントを添付",
+            "downloadDocument": "ドキュメントをダウンロード",
+            "generatedDocument": "ドキュメントを生成して添付",
             "gridHeaderAmount": "数量",
             "gridHeaderDiscount": "割引",
             "gridHeaderItem": "アイテム",
@@ -1013,6 +1047,7 @@
             "labelCompany": "会社名",
             "labelCustomer": "顧客",
             "labelCustomerNumber": "顧客番号",
+            "labelDocument": "文書を添付",
             "labelEmail": "メールアドレス",
             "labelExpirationDate": "有効期限",
             "labelExpirationDateError": "この日付は過去のものです",
@@ -1033,9 +1068,13 @@
             "labelVAT": "付加価値税 ({number}%)",
             "messageCreateSuccess": "引用 \"{quoteNumber}\" が作成されました。",
             "messageEmptyItem": "商品が追加されていません",
+            "messageNoFoundItem": "アイテムは見つかりませんでした",
             "messageSaveAsDraftSuccess": "引用 \"{quoteNumber}\" は下書きとして保存されました。",
             "messageSaveSuccess": "引用 \"{name}\" は保存されました。",
+            "nameColumn": "名前",
+            "noDocumentOption": "文書なし",
             "notificationCancelQuoteErrorMessage": "キャンセルリクエストの処理中にエラーが発生しました。",
+            "openDocument": "文書を開く",
             "placeHolderSetExpireDate": "日付を選択...",
             "placeholderComment": "メッセージを追加...",
             "placeholderExpirationDate": "日付を選択...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "この見積書の下書きは永久に削除されます。",
             "textInfo": "一般設定",
             "textNewQuote": "新しい見積もり",
+            "titleDocument": "ドキュメント",
             "titleDraftDeletion": "下書きを削除",
             "titleQuote": "引用 {quoteNumber}",
             "titleSendMessageOnly": "メッセージを送信",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "この関数には、1 日あたりのリクエスト数が 300 件に制限されています。",
-                "card": {
-                    "subtitle": "顧客が自然言語を使用して探しているものを説明し、製品をより簡単に見つけることができます。",
-                    "title": "コンテキストで検索"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "お客様は画像をアップロードすることで、オンラインストアで商品を見つけることができます。",
+                        "title": "画像で検索"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "この関数には、1 日あたりのリクエスト数が 300 件に制限されています。",
+                    "card": {
+                        "subtitle": "顧客が自然言語を使用して探しているものを説明し、製品をより簡単に見つけることができます。",
+                        "title": "コンテキストで検索"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "コンテキスト",
+                    "descriptionPlaceholder": "キーワードを入力...",
+                    "salesChannelDescriptionSubTitle": "最良の結果を得るには、いくつかのキーワード（最大100文字）でビジネスを説明してください。",
+                    "salesChannelDescriptionTitle": "販売チャネルコンテキスト",
+                    "title": "販売チャネルコンテキスト"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "検索設定の保存中にエラーが発生しました。",
             "saveSuccess": "設定は正常に保存されました。"
         }
     },

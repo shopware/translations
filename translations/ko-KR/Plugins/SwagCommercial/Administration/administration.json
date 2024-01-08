@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "주문 반품이 진행 중 상태로 전환됨",
             "state_enter_quote_state_accepted": "견적 입력 상태 수락",
             "state_enter_quote_state_declined": "견적 입력 상태 거절",
+            "state_enter_quote_state_draft": "상태 초안에 견적 입력",
+            "state_enter_quote_state_expired": "견적 입력 상태 만료",
             "state_enter_quote_state_in_review": "견적 검토 중 상태 입력",
             "state_enter_quote_state_open": "견적 시작 상태 입력",
+            "state_enter_quote_state_reopen": "견적 재개 상태로 전환",
             "state_enter_quote_state_replied": "견적 입력 상태 전송",
             "state_leave_order_return_state_cancelled": "주문 반품이 취소됨 상태 남음",
             "state_leave_order_return_state_done": "주문 반품 완료 상태로 남음",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "주문 반품 상태는 미결 상태로 남습니다.",
             "state_leave_quote_state_accepted": "견적은 상태를 수락함",
             "state_leave_quote_state_declined": "견적 종료 상태 거부됨",
+            "state_leave_quote_state_draft": "견적은 상태 초안을 남깁니다",
+            "state_leave_quote_state_expired": "견적 종료 상태 만료",
             "state_leave_quote_state_in_review": "견적 상태 남기기 검토 중",
             "state_leave_quote_state_open": "견적 상태 공개 상태로 유지",
+            "state_leave_quote_state_reopen": "견적 종료 상태 재개",
             "state_leave_quote_state_replied": "견적 남기기 상태 전송"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "오픈 AI 코파일럿"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "3D 오브젝트"
+            },
+            "element": {
+                "label": "3D 오브젝트"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "활성화: {activate}",
+            "labelGenerateQuoteDoc": "견적 문서 생성"
+        },
+        "modal": {
+            "helpTextActivate": "현재 문서로 설정합니다.",
+            "labelActivate": "활성화",
+            "titleActivate": "현재 문서",
+            "titleGenerateQuoteDocModal": "견적 문서 생성"
+        },
         "triggers": {
             "accepted": "수락됨",
             "changeRequest": "변경 요청",
             "created": "생성됨",
             "declined": "거절",
             "done": "완료",
+            "draft": "초안",
             "employee": "종업원",
             "expired": "만료됨",
             "inReview": "검토 중",
@@ -620,6 +648,7 @@
             "open": "열기",
             "orderReturn": "주문 반품",
             "quote": "견적",
+            "reopen": "다시 엽니다",
             "replied": "전송됨",
             "requested": "요청됨",
             "return": "귀국",
@@ -993,6 +1022,11 @@
             "commentType": "고객",
             "contextMenuRemove": "견적에서 삭제",
             "contextMenuShowProduct": "제품 표시",
+            "createdAtColumn": "에 생성됨",
+            "currentDocument": "현재",
+            "customDocument": "사용자 지정 문서 첨부",
+            "downloadDocument": "문서 다운로드",
+            "generatedDocument": "문서 생성 및 첨부",
             "gridHeaderAmount": "수량",
             "gridHeaderDiscount": "할인",
             "gridHeaderItem": "아이템",
@@ -1013,6 +1047,7 @@
             "labelCompany": "회사",
             "labelCustomer": "고객",
             "labelCustomerNumber": "고객 번호",
+            "labelDocument": "문서 첨부",
             "labelEmail": "이메일 주소",
             "labelExpirationDate": "만료 날짜",
             "labelExpirationDateError": "이 날짜는 지난 날짜입니다.",
@@ -1033,9 +1068,13 @@
             "labelVAT": "부가가치세 ({number}%)",
             "messageCreateSuccess": "쿼트 \"{quoteNumber}“이 (가) 생성되었습니다.",
             "messageEmptyItem": "아직 추가된 항목이 없습니다.",
+            "messageNoFoundItem": "항목을 찾을 수 없습니다",
             "messageSaveAsDraftSuccess": "인용문 \"{quoteNumber}“이 (가) 초안으로 저장되었습니다.",
             "messageSaveSuccess": "인용문 \"{name}“이 (가) 저장되었습니다.",
+            "nameColumn": "이름",
+            "noDocumentOption": "문서 없음",
             "notificationCancelQuoteErrorMessage": "취소 요청을 처리하는 동안 오류가 발생했습니다.",
+            "openDocument": "문서 열기",
             "placeHolderSetExpireDate": "날짜 선택...",
             "placeholderComment": "메시지 추가...",
             "placeholderExpirationDate": "날짜 선택...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "이 견적 초안을 삭제하면 영구적으로 삭제됩니다.",
             "textInfo": "일반",
             "textNewQuote": "새 견적",
+            "titleDocument": "문서",
             "titleDraftDeletion": "초안 삭제",
             "titleQuote": "인용문 {quoteNumber}",
             "titleSendMessageOnly": "메시지 보내기",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "이 함수의 일일 요청 제한은 300건입니다.",
-                "card": {
-                    "subtitle": "고객이 자연어를 사용하여 원하는 내용을 설명하고 제품을 더 쉽게 찾을 수 있습니다.",
-                    "title": "컨텍스트별 검색"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "고객은 이미지를 업로드하여 온라인 스토어에서 제품을 찾을 수 있습니다.",
+                        "title": "이미지로 검색"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "이 함수의 일일 요청 제한은 300건입니다.",
+                    "card": {
+                        "subtitle": "고객이 자연어를 사용하여 원하는 내용을 설명하고 제품을 더 쉽게 찾을 수 있습니다.",
+                        "title": "컨텍스트별 검색"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "컨텍스트",
+                    "descriptionPlaceholder": "키워드 입력...",
+                    "salesChannelDescriptionSubTitle": "최상의 결과를 얻으려면 몇 개의 키워드 (최대 100자) 로 비즈니스를 설명하세요.",
+                    "salesChannelDescriptionTitle": "판매 채널 컨텍스트",
+                    "title": "판매 채널 컨텍스트"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "검색 설정 구성을 저장하는 중 오류가 발생했습니다.",
             "saveSuccess": "설정이 성공적으로 저장되었습니다."
         }
     },

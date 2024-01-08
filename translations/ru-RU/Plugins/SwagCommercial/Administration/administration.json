@@ -14,8 +14,11 @@
             "state_enter_order_return_state_open": "Возврат заказа переходит в статус «открыт»",
             "state_enter_quote_state_accepted": "Предложение переходит в статус «принято»",
             "state_enter_quote_state_declined": "Предложение перешло в статус отклонено",
+            "state_enter_quote_state_draft": "Предложение входит в черновик статуса",
+            "state_enter_quote_state_expired": "Квота входит в статус истекший",
             "state_enter_quote_state_in_review": "Цитата переходит в статус рецензируемой",
             "state_enter_quote_state_open": "Цитата переходит в статус открытой",
+            "state_enter_quote_state_reopen": "Квота переходит в статус, снова открыта",
             "state_enter_quote_state_replied": "Цитата вводит статус отправлен",
             "state_leave_order_return_state_cancelled": "Возврат заказа оставляет статус отмененным",
             "state_leave_order_return_state_done": "Возврат заказа оставляет статус завершен",
@@ -23,8 +26,11 @@
             "state_leave_order_return_state_open": "Возврат заказа оставляет статус открытым",
             "state_leave_quote_state_accepted": "Ценовое предложение оставляет статус принятым",
             "state_leave_quote_state_declined": "Цитата оставляет статус отклоненным",
+            "state_leave_quote_state_draft": "Предложение покидает черновик статуса",
+            "state_leave_quote_state_expired": "Срок действия предложения истек",
             "state_leave_quote_state_in_review": "Цитата оставляет статус в отзыве",
             "state_leave_quote_state_open": "Цитата оставляет статус открытым",
+            "state_leave_quote_state_reopen": "Предложение оставляет статус вновь открытым",
             "state_leave_quote_state_replied": "Цитата оставляет статус отправлен"
         },
         "entities": {
@@ -86,6 +92,17 @@
         },
         "property-modal": {
             "assistant-label": "Второй пилот Open AI"
+        }
+    },
+    "spatial-commerce": {
+        "cms-category": "3D",
+        "spatial-viewer": {
+            "block": {
+                "label": "Трехмерный объект"
+            },
+            "element": {
+                "label": "Трехмерный объект"
+            }
         }
     },
     "sw-advanced-search": {
@@ -607,12 +624,23 @@
         }
     },
     "sw-flow": {
+        "action": {
+            "descriptionGenerateQuoteDoc": "Активировать: {activate}",
+            "labelGenerateQuoteDoc": "Сгенерировать документ с цитатой"
+        },
+        "modal": {
+            "helpTextActivate": "Установите его в качестве текущего документа.",
+            "labelActivate": "Активировать",
+            "titleActivate": "Текущий документ",
+            "titleGenerateQuoteDocModal": "Сгенерировать документ с цитатой"
+        },
         "triggers": {
             "accepted": "Принято",
             "changeRequest": "Запрос на изменение",
             "created": "Создано",
             "declined": "Отклонено",
             "done": "Готово",
+            "draft": "Черновик",
             "employee": "Сотрудник",
             "expired": "Истек",
             "inReview": "В обзоре",
@@ -620,6 +648,7 @@
             "open": "Открыть",
             "orderReturn": "Возврат заказа",
             "quote": "Цитата",
+            "reopen": "Открыть снова",
             "replied": "Отправлено",
             "requested": "Запрошено",
             "return": "Возврат",
@@ -993,6 +1022,11 @@
             "commentType": "Клиент",
             "contextMenuRemove": "Удалить из цитаты",
             "contextMenuShowProduct": "Показать товар",
+            "createdAtColumn": "Создано в",
+            "currentDocument": "Текущий",
+            "customDocument": "Прикрепите собственный документ",
+            "downloadDocument": "Загрузить документ",
+            "generatedDocument": "Сгенерируйте и прикрепите документ",
             "gridHeaderAmount": "Количество",
             "gridHeaderDiscount": "Скидка",
             "gridHeaderItem": "Продукт",
@@ -1013,6 +1047,7 @@
             "labelCompany": "Компания",
             "labelCustomer": "Клиент",
             "labelCustomerNumber": "Номер клиента",
+            "labelDocument": "Прикрепить документ",
             "labelEmail": "Email адрес",
             "labelExpirationDate": "Дата истечения",
             "labelExpirationDateError": "Эта дата в прошлом",
@@ -1033,9 +1068,13 @@
             "labelVAT": "НДС ({number}%)",
             "messageCreateSuccess": "Цитата \"{quoteNumber}\" создана.",
             "messageEmptyItem": "Пока ничего не добавлено",
+            "messageNoFoundItem": "Предметы не найдены",
             "messageSaveAsDraftSuccess": "Цитата \"{quoteNumber}\" сохранена как черновик.",
             "messageSaveSuccess": "Цитата \"{name}\" сохранена.",
+            "nameColumn": "Название",
+            "noDocumentOption": "Нет документа",
             "notificationCancelQuoteErrorMessage": "При обработке вашего запроса на отмену произошла ошибка.",
+            "openDocument": "Открыть документ",
             "placeHolderSetExpireDate": "Выберите дату...",
             "placeholderComment": "Добавить сообщение...",
             "placeholderExpirationDate": "Выберите дату...",
@@ -1045,6 +1084,7 @@
             "textDraftDeletion": "Этот черновик цитаты будет удален навсегда.",
             "textInfo": "Генеральной",
             "textNewQuote": "Новая цитата",
+            "titleDocument": "Документ",
             "titleDraftDeletion": "Удалить черновик",
             "titleQuote": "Цитата {quoteNumber}",
             "titleSendMessageOnly": "Отправить сообщение",
@@ -1133,11 +1173,26 @@
     },
     "sw-settings-aisearch": {
         "component": {
-            "naturalLanguage": {
-                "alertText": "Эта функция имеет ежедневный лимит в 300 запросов.",
-                "card": {
-                    "subtitle": "Позволяет клиенту описать то, что он ищет, используя естественный язык, и упростить поиск продуктов.",
-                    "title": "Поиск по контексту"
+            "AISearch": {
+                "imageUploadSearch": {
+                    "card": {
+                        "subtitle": "Ваши клиенты могут найти товары в вашем интернет-магазине, загрузив изображения.",
+                        "title": "Поиск по изображению"
+                    }
+                },
+                "naturalLanguageSearch": {
+                    "alertText": "Эта функция имеет ежедневный лимит в 300 запросов.",
+                    "card": {
+                        "subtitle": "Позволяет клиенту описать то, что он ищет, используя естественный язык, и упростить поиск продуктов.",
+                        "title": "Поиск по контексту"
+                    }
+                },
+                "salesChannelCard": {
+                    "descriptionLabel": "Контекст",
+                    "descriptionPlaceholder": "Введите ключевые слова...",
+                    "salesChannelDescriptionSubTitle": "Чтобы получить наилучшие результаты, опишите свой бизнес несколькими ключевыми словами (максимум 100 символов).",
+                    "salesChannelDescriptionTitle": "Контекст канала продаж",
+                    "title": "Контекст канала продаж"
                 }
             }
         },
@@ -1205,7 +1260,6 @@
     },
     "sw-settings-search": {
         "notification": {
-            "saveError": "Произошла ошибка при сохранении конфигурации настроек поиска.",
             "saveSuccess": "Настройки успешно сохранены."
         }
     },
