@@ -9,8 +9,56 @@
             "title": "Das hier habe ich für sie gefunden"
         }
     },
+    "approvalRules": {
+        "actionAddNew": "Regel erstellen",
+        "approvalRulesInfoEmpty": "Noch keine Genehmigungsregeln erstellt.",
+        "checkout": {
+            "confirmSubmit": "Bestellung zur Genehmigung einreichen"
+        },
+        "condition": {
+            "operator": {
+                "!=": "nicht gleich",
+                "<": "kleiner als",
+                "<=": "kleiner oder gleich",
+                "=": "gleich",
+                ">": "größer als",
+                ">=": "größer als oder gleic",
+                "empty": "leer"
+            },
+            "orderApprovalAllOrders": "Alle Bestellungen"
+        },
+        "detail": {
+            "approverLabel": "Erteilt Bestell-Genehmigungen",
+            "conditionLabel": "Gilt für",
+            "createAction": "Genehmigungsregel speichern",
+            "createWelcome": "Neue Genehmigungsregel",
+            "editAction": "Änderungen speichern",
+            "editWelcome": "Genehmigungsregeln bearbeiten",
+            "nameLabel": "Name",
+            "namePlaceholder": "Namen eingeben ...",
+            "priorityLabel": "Priorität",
+            "priorityPlaceholder": "Priorität festlegen ...",
+            "roleLabel": "Benötigt Bestell-Genehmigungen",
+            "warningAlert": "Um Genehmigungsregeln verwenden zu können, erstelle zunächst Rollen."
+        },
+        "list": {
+            "actionEdit": "Bearbeiten",
+            "tableHeaderApplyTo": "Benötigt Genehmigung",
+            "tableHeaderApprover": "Erteilt Genehmigung",
+            "tableHeaderCondition": "Gilt für",
+            "tableHeaderName": "Name"
+        },
+        "menuTitle": "Genehmigungsregeln",
+        "searchButton": "Suchen",
+        "searchPlaceholder": "Suche ..."
+    },
     "checkout": {
         "guest-customer-not-allowed": "Abonnements sind nicht für Gast-Kunden verfügbar. Bitte registrieren Sie sich oder melden Sie sich an.",
+        "order-approval-blocked": "Diese Bestellung muss aus folgendem Grund genehmigt werden: %reason%",
+        "orderApprovalAllOrders": "Diese Bestellung muss genehmigt werden.",
+        "paymentStatus": "Genehmigung ausstehend",
+        "seePendingApprovals": "<a href=\"%url%\">Ausstehende Genehmigungen ansehen.</a>",
+        "submittedApproveHeader": "Deine Bestellung wurde zur Genehmigung eingereicht.",
         "subscription-interval-blocked": "Dieses Abonnement-Intervall ist aktuell für Sie leider nicht verfügbar.",
         "subscription-plan-blocked": "Dieses Abonnement ist aktuell für Sie leider nicht verfügbar.",
         "subscription-product-mapping-missing": "Ein Produkt ist für dieses Abonnement nicht verfügbar und wurde aus dem Warenkorb entfernt."
@@ -185,13 +233,21 @@
         },
         "roleEdit": {
             "permissionGroups": {
+                "approval_rule": "Freigaberegelverwaltung",
                 "employee": "Mitarbeiterverwaltung",
                 "order": "Bestellungen",
+                "pending_order": "Ausstehende Bestellungsverwaltung",
                 "quote": "Angebotsmanagement",
                 "role": "Rollenverwaltung"
             },
             "permissionTooltip": "Diese Berechtigung ist abhängig von:",
             "permissions": {
+                "approval_rule": {
+                    "create": "Kann Freigaberegeln erstellen",
+                    "delete": "Kann Freigaberegeln löschen",
+                    "read": "Kann Freigaberegeln anzeigen",
+                    "update": "Kann Freigaberegeln aktualisieren"
+                },
                 "employee": {
                     "create": "Kann Mitarbeiter anlegen",
                     "delete": "Kann Mitarbeiter löschen",
@@ -202,6 +258,11 @@
                     "read": {
                         "all": "Kann alle Bestellungen einsehen"
                     }
+                },
+                "pending_order": {
+                    "approve_decline": "Kann ausstehende Bestellungen genehmigen/ablehnen",
+                    "approve_decline_all": "Kann alle ausstehenden Bestellungen genehmigen/ablehnen",
+                    "read_all": "Kann alle ausstehenden Bestellungen anzeigen"
                 },
                 "quote": {
                     "accept": "Kann Angebot akzeptieren",
@@ -260,6 +321,78 @@
         "searchPlaceholder": "Beschreibung eingeben ...",
         "suggestion": "Probieren Sie es aus:",
         "title": "Bitte beschreiben Sie, wonach Sie suchen"
+    },
+    "orderApproval": {
+        "flashMessage": {
+            "notAllowOrder": "Sie dürfen keine Bestellungen tätigen.",
+            "orderDeclined": "Ausstehende Bestellung abgelehnt.",
+            "orderNotApproved": "Ausstehende Bestellung. Warte auf Genehmigung.",
+            "orderNotAvailable": "Ausstehende Bestellung noch nicht verfügbar.",
+            "ruleCreated": "Genehmigungsregel erstellt.",
+            "ruleUpdated": "Genehmigungsregel aktualisiert."
+        }
+    },
+    "pendingOrders": {
+        "approveModal": {
+            "btnCancel": "Abbrechen",
+            "btnConfirm": "Zulassen",
+            "description": "Sind Sie sicher, dass Sie die eingereichten Bestellung genehmigen wollen?",
+            "title": "Eingereichte Bestellung genehmigen"
+        },
+        "billingAddressHeader": "Rechnungsadresse",
+        "cancelModal": {
+            "btnCancel": "Verwerfen",
+            "btnConfirm": "Bestätigen",
+            "description": "Sind Sie sicher, dass Sie diese Bestellung abbrechen möchten?",
+            "title": "Bestellung stornieren"
+        },
+        "declineComment": "Kommentar",
+        "declineCommentDescription": "Kommentar darf maximal 255 Zeichen lang sein.",
+        "declineModal": {
+            "btnCancel": "Abbrechen",
+            "btnConfirm": "Ablehnen",
+            "commentLabel": "Kommentar",
+            "commentOptional": "(optional)",
+            "commentPlaceholder": "Kommentar eingeben...",
+            "description": "Sind Sie sicher, dass Sie die eingereichten Bestellung ablehnen möchten? \\n Die Entscheidung ist endgültig.",
+            "title": "Eingereichte Bestellung ablehnen"
+        },
+        "detail": {
+            "approvalRuleTitle": "Genehmigungsregel:",
+            "approveButton": "Bestellung genehmigen",
+            "cancelButton": "Abbrechen",
+            "cartValueTitle": "Warenkorbwert:",
+            "declineButton": "Bestellung ablehnen",
+            "employeeTitle": "Mitarbeiter:",
+            "finishButton": "Bestellung abschließen",
+            "itemsTitle": "Positionen:",
+            "orderSubmittedOnTitle": "Bestellung eingereicht am:",
+            "overviewDetailsHeader": "Details",
+            "paymentMethodTitle": "Zahlungsart:",
+            "title": "Genehmigungsnummer"
+        },
+        "itemTable": {
+            "columnName": "Produkt",
+            "columnQuantity": "Menge",
+            "columnTotal": "Gesamt",
+            "columnUnitPrice": "Grundpreis"
+        },
+        "list": {
+            "actionApprove": "Bestellung genehmigen",
+            "actionDecline": "Bestellung ablehnen",
+            "actionView": "Details anzeigen",
+            "tableHeaderCartValue": "Warenkorbwert",
+            "tableHeaderCondition": "Genehmigungsregel",
+            "tableHeaderItems": "Positionen",
+            "tableHeaderNumber": "Genehmigungsnummer",
+            "tableHeaderPaymentMethod": "Zahlungsart"
+        },
+        "menuTitle": "Zu genehmigende Bestellungen",
+        "orderHeadline": "Eingereicht am",
+        "orderStatusActionCompletePayment": "Bezahlvorgang abschließen",
+        "pendingApprovalNumber": "Genehmigungsnummer:",
+        "pendingOrdersInfoEmpty": "Keine zu genehmigenden Bestellungen.",
+        "shippingAddressHeader": "Lieferadresse"
     },
     "quickOrder": {
         "addToCartModal": {

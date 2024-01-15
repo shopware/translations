@@ -9,8 +9,56 @@
             "title": "Ez az, amit találtam számodra"
         }
     },
+    "approvalRules": {
+        "actionAddNew": "Szabály létrehozása",
+        "approvalRulesInfoEmpty": "Még nem hoztak létre jóváhagyási szabályokat.",
+        "checkout": {
+            "confirmSubmit": "Rendelés benyújtása jóváhagyásra"
+        },
+        "condition": {
+            "operator": {
+                "!=": "nem egyenlő",
+                "<": "kevesebb, mint",
+                "<=": "kevesebb vagy egyenlő",
+                "=": "egyenlő",
+                ">": "Nagyobb, mint",
+                ">=": "nagyobb vagy egyenlő",
+                "empty": "üres"
+            },
+            "orderApprovalAllOrders": "Minden megrendelés"
+        },
+        "detail": {
+            "approverLabel": "Rendelési jóváhagyásokat ad",
+            "conditionLabel": "A következőkre vonatkozik:",
+            "createAction": "Jóváhagyási szabály mentése",
+            "createWelcome": "Új jóváhagyási szabály",
+            "editAction": "Módosítások mentése",
+            "editWelcome": "Jóváhagyási szabályok szerkesztése",
+            "nameLabel": "Név",
+            "namePlaceholder": "Adja meg a nevet...",
+            "priorityLabel": "prioritás",
+            "priorityPlaceholder": "Állítsa be a prioritást...",
+            "roleLabel": "Rendelési jóváhagyásra van szükség",
+            "warningAlert": "A jóváhagyási szabályok használatához először hozzon létre szerepeket."
+        },
+        "list": {
+            "actionEdit": "Szerkesztés",
+            "tableHeaderApplyTo": "Jóváhagyásra van szükség",
+            "tableHeaderApprover": "Jóváhagyást ad",
+            "tableHeaderCondition": "A következőkre vonatkozik:",
+            "tableHeaderName": "Név"
+        },
+        "menuTitle": "Jóváhagyási szabályok",
+        "searchButton": "Keresés",
+        "searchPlaceholder": "Keresés..."
+    },
     "checkout": {
         "guest-customer-not-allowed": "Az előfizetések nem érhetők el vendég ügyfelek számára. Kérjük, jelentkezzen be, vagy hozzon létre fiókot.",
+        "order-approval-blocked": "Ezt a megrendelést a következő okból kell jóváhagyni: %reason%",
+        "orderApprovalAllOrders": "Ezt a rendelést jóvá kell hagyni.",
+        "paymentStatus": "Jóváhagyás függőben",
+        "seePendingApprovals": "<a href=\"%url%\">Lásd a függőben lévő jóváhagyásokat.</a>",
+        "submittedApproveHeader": "Megrendelését jóváhagyásra benyújtottuk.",
         "subscription-interval-blocked": "Ez az előfizetési intervallum sajnos jelenleg nem érhető el az Ön számára.",
         "subscription-plan-blocked": "Ez az előfizetési csomag sajnos jelenleg nem érhető el az Ön számára.",
         "subscription-product-mapping-missing": "Egy termék nem érhető el ehhez az előfizetéshez, és eltávolították a kosárból."
@@ -185,13 +233,21 @@
         },
         "roleEdit": {
             "permissionGroups": {
+                "approval_rule": "Jóváhagyási szabálykezelés",
                 "employee": "Munkavállalói vezetés",
                 "order": "Rendelések",
+                "pending_order": "Függőben lévő megrendelések kezel",
                 "quote": "Árajánlatkezelés",
                 "role": "Szerepkör kezelése"
             },
             "permissionTooltip": "Ez az engedély a következőktől függ:",
             "permissions": {
+                "approval_rule": {
+                    "create": "Hozzon létre jóváhagyási szabályokat",
+                    "delete": "Törölheti a jóváhagyási szabályokat",
+                    "read": "Olvassa el a jóváhagyási szabályokat",
+                    "update": "Frissítheti a jóváhagyási szabályokat"
+                },
                 "employee": {
                     "create": "Létrehozhat alkalmazottakat",
                     "delete": "Törölheti az alkalmazottakat",
@@ -202,6 +258,11 @@
                     "read": {
                         "all": "Megtekintheti az összes megrendelést"
                     }
+                },
+                "pending_order": {
+                    "approve_decline": "Jóváhagyhat/visszautasíthatja a függőben lévő",
+                    "approve_decline_all": "Minden függőben lévő megrendelést jóváhagyhat/elutasíthatja",
+                    "read_all": "Megtekintheti az összes függőben lévő megrendelést"
                 },
                 "quote": {
                     "accept": "Elfogadhatja az árajánlatot",
@@ -260,6 +321,78 @@
         "searchPlaceholder": "Adja meg a leírást...",
         "suggestion": "Próbáld ki:",
         "title": "Kérjük, írja le, mit keres"
+    },
+    "orderApproval": {
+        "flashMessage": {
+            "notAllowOrder": "Nem szabad megrendelni.",
+            "orderDeclined": "A függőben lévő rendelést elutasították",
+            "orderNotApproved": "Függőben lévő megrendelés. Várom a jóváhagyást.",
+            "orderNotAvailable": "Függőben lévő megrendelés még nem érhető el.",
+            "ruleCreated": "Jóváhagyási szabály jött létre.",
+            "ruleUpdated": "A jóváhagyási szabály frissítve."
+        }
+    },
+    "pendingOrders": {
+        "approveModal": {
+            "btnCancel": "Mégse",
+            "btnConfirm": "Jóváhagyás",
+            "description": "Biztos, hogy jóváhagyni szeretné a benyújtott megrendelést?",
+            "title": "Jóváhagyja a benyújtott"
+        },
+        "billingAddressHeader": "Számlázási cím",
+        "cancelModal": {
+            "btnCancel": "Elvetés",
+            "btnConfirm": "Megerősítés",
+            "description": "Biztos, hogy törölni szeretné ezt a megrendelést? \n A döntés végleges lesz.",
+            "title": "Megrendelés törlése"
+        },
+        "declineComment": "Megjegyzés",
+        "declineCommentDescription": "A megjegyzés maximális hossza 255 karakter.",
+        "declineModal": {
+            "btnCancel": "Mégse",
+            "btnConfirm": "Elutasítás",
+            "commentLabel": "Megjegyzés",
+            "commentOptional": "(opcionális)",
+            "commentPlaceholder": "Írjon meg egy megjegyzést...",
+            "description": "Biztos, hogy el akarja utasítani a benyújtott megrendelést?",
+            "title": "Elutasítsa a benyújtott rendel"
+        },
+        "detail": {
+            "approvalRuleTitle": "Jóváhagyási szabály:",
+            "approveButton": "Rendelés jóváhagyása",
+            "cancelButton": "Mégse",
+            "cartValueTitle": "Kosár értéke:",
+            "declineButton": "Elutasítás",
+            "employeeTitle": "Alkalmazott:",
+            "finishButton": "Befejezze a sorrendet",
+            "itemsTitle": "tételek:",
+            "orderSubmittedOnTitle": "Beküldés dátuma:",
+            "overviewDetailsHeader": "Részletek",
+            "paymentMethodTitle": "Fizetési mód:",
+            "title": "Jóváhagyási szám"
+        },
+        "itemTable": {
+            "columnName": "Termék",
+            "columnQuantity": "Mennyiség",
+            "columnTotal": "Részösszeg",
+            "columnUnitPrice": "Egységár"
+        },
+        "list": {
+            "actionApprove": "Rendelés jóváhagyása",
+            "actionDecline": "Elutasítás",
+            "actionView": "Részletek megtekintése",
+            "tableHeaderCartValue": "Kosár értéke",
+            "tableHeaderCondition": "Jóváhagyási szabály",
+            "tableHeaderItems": "Tételek",
+            "tableHeaderNumber": "Jóváhagyási szám",
+            "tableHeaderPaymentMethod": "Fizetési mód"
+        },
+        "menuTitle": "Jóváhagyandó megrendelések",
+        "orderHeadline": "Beküldés dátuma",
+        "orderStatusActionCompletePayment": "Fizetési folyamat folytatása",
+        "pendingApprovalNumber": "Jóváhagyási szám:",
+        "pendingOrdersInfoEmpty": "Nincs függőben lévő megrendelés.",
+        "shippingAddressHeader": "Szállítási cím"
     },
     "quickOrder": {
         "addToCartModal": {

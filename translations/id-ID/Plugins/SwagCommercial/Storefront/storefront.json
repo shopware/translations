@@ -9,8 +9,56 @@
             "title": "Inilah yang telah saya temukan untuk Anda"
         }
     },
+    "approvalRules": {
+        "actionAddNew": "Buat aturan",
+        "approvalRulesInfoEmpty": "Belum ada aturan persetujuan yang dibuat.",
+        "checkout": {
+            "confirmSubmit": "Kirim pesanan untuk persetujuan"
+        },
+        "condition": {
+            "operator": {
+                "!=": "tidak sama dengan",
+                "<": "kurang dari",
+                "<=": "kurang dari atau sama dengan",
+                "=": "sama dengan",
+                ">": "lebih besar dari",
+                ">=": "lebih besar dari atau sama dengan",
+                "empty": "kosong"
+            },
+            "orderApprovalAllOrders": "Semua pesanan"
+        },
+        "detail": {
+            "approverLabel": "Memberikan persetujuan pesanan",
+            "conditionLabel": "Berlaku untuk",
+            "createAction": "Simpan aturan persetujuan",
+            "createWelcome": "Aturan persetujuan baru",
+            "editAction": "Simpan perubahan",
+            "editWelcome": "Edit aturan persetujuan",
+            "nameLabel": "Nama",
+            "namePlaceholder": "Masukkan nama...",
+            "priorityLabel": "Prioritas",
+            "priorityPlaceholder": "Tetapkan prioritas...",
+            "roleLabel": "Membutuhkan persetujuan pesanan",
+            "warningAlert": "Untuk menggunakan aturan persetujuan, buat peran terlebih dahulu."
+        },
+        "list": {
+            "actionEdit": "Edit/sunting",
+            "tableHeaderApplyTo": "Butuh persetujuan",
+            "tableHeaderApprover": "Memberikan persetujuan",
+            "tableHeaderCondition": "Berlaku untuk",
+            "tableHeaderName": "Nama"
+        },
+        "menuTitle": "Aturan persetujuan",
+        "searchButton": "Mencari",
+        "searchPlaceholder": "Mencari..."
+    },
     "checkout": {
         "guest-customer-not-allowed": "Langganan tidak tersedia untuk pelanggan tamu. Silakan masuk atau buat akun.",
+        "order-approval-blocked": "Pesanan ini perlu disetujui karena alasan berikut: %reason%",
+        "orderApprovalAllOrders": "Perintah ini perlu disetujui.",
+        "paymentStatus": "Persetujuan tertunda",
+        "seePendingApprovals": "<a href=\"%url%\">Lihat persetujuan yang tertunda.</a>",
+        "submittedApproveHeader": "Pesanan Anda telah dikirimkan untuk persetujuan.",
         "subscription-interval-blocked": "Interval langganan ini sayangnya saat ini tidak tersedia untuk Anda.",
         "subscription-plan-blocked": "Sayangnya, paket langganan ini saat ini tidak tersedia untuk Anda.",
         "subscription-product-mapping-missing": "Produk tidak tersedia untuk langganan ini dan telah dihapus dari keranjang Anda."
@@ -185,13 +233,21 @@
         },
         "roleEdit": {
             "permissionGroups": {
+                "approval_rule": "Manajemen Aturan Persetujuan",
                 "employee": "Manajemen karyawan",
                 "order": "Pesanan",
+                "pending_order": "Manajemen Pesanan Tertunda",
                 "quote": "Manajemen kutipan",
                 "role": "Manajemen peran"
             },
             "permissionTooltip": "Izin ini tergantung pada:",
             "permissions": {
+                "approval_rule": {
+                    "create": "Dapat membuat aturan persetujuan",
+                    "delete": "Dapat menghapus aturan persetujuan",
+                    "read": "Dapat membaca aturan persetujuan",
+                    "update": "Dapat memperbarui aturan persetujuan"
+                },
                 "employee": {
                     "create": "Dapat membuat karyawan",
                     "delete": "Dapat menghapus karyawan",
@@ -202,6 +258,11 @@
                     "read": {
                         "all": "Dapat melihat semua pesanan"
                     }
+                },
+                "pending_order": {
+                    "approve_decline": "Dapat menyetujui/menolak pesanan yang tertunda",
+                    "approve_decline_all": "Dapat menyetujui/menolak semua pesanan yang tertunda",
+                    "read_all": "Dapat melihat semua pesanan yang tertunda"
                 },
                 "quote": {
                     "accept": "Dapat menerima penawaran",
@@ -260,6 +321,78 @@
         "searchPlaceholder": "Masukkan apa saja...",
         "suggestion": "Cobalah:",
         "title": "Apa yang kau cari?"
+    },
+    "orderApproval": {
+        "flashMessage": {
+            "notAllowOrder": "Anda tidak diizinkan untuk memesan.",
+            "orderDeclined": "Pesanan yang tertunda ditolak.",
+            "orderNotApproved": "Pesanan tertunda. Menunggu persetujuan.",
+            "orderNotAvailable": "Order yang tertunda belum tersedia.",
+            "ruleCreated": "Aturan persetujuan dibuat.",
+            "ruleUpdated": "Aturan persetujuan diperbarui."
+        }
+    },
+    "pendingOrders": {
+        "approveModal": {
+            "btnCancel": "Batal",
+            "btnConfirm": "Menyetujui",
+            "description": "Apakah Anda yakin ingin menyetujui pesanan yang dikirimkan?",
+            "title": "Menyetujui pesanan yang dikirimkan"
+        },
+        "billingAddressHeader": "Alamat tagihan",
+        "cancelModal": {
+            "btnCancel": "Buang",
+            "btnConfirm": "Konfirmasi",
+            "description": "Apakah Anda yakin ingin membatalkan pesanan ini? \n Keputusan Anda akan final.",
+            "title": "Pesanan batal"
+        },
+        "declineComment": "Komentar",
+        "declineCommentDescription": "Komentar harus memiliki panjang maksimal 255 karakter.",
+        "declineModal": {
+            "btnCancel": "Batal",
+            "btnConfirm": "Tolak",
+            "commentLabel": "Komentar",
+            "commentOptional": "(opsional)",
+            "commentPlaceholder": "Masukkan komentar...",
+            "description": "Apakah Anda yakin ingin menolak pesanan yang dikirimkan?",
+            "title": "Tolak pesanan yang dikirimkan"
+        },
+        "detail": {
+            "approvalRuleTitle": "Aturan persetujuan:",
+            "approveButton": "Menyetujui pesanan",
+            "cancelButton": "Batal",
+            "cartValueTitle": "Nilai keranjang:",
+            "declineButton": "Tolak pesanan",
+            "employeeTitle": "Karyawan:",
+            "finishButton": "Selesaikan pesanan",
+            "itemsTitle": "Barang:",
+            "orderSubmittedOnTitle": "Disampaikan pada:",
+            "overviewDetailsHeader": "Detil",
+            "paymentMethodTitle": "Metode pembayaran:",
+            "title": "Nomor persetujuan"
+        },
+        "itemTable": {
+            "columnName": "Produk",
+            "columnQuantity": "Kuantitas",
+            "columnTotal": "Sub total",
+            "columnUnitPrice": "Harga barang"
+        },
+        "list": {
+            "actionApprove": "Menyetujui pesanan",
+            "actionDecline": "Tolak pesanan",
+            "actionView": "Lihat rincian",
+            "tableHeaderCartValue": "Nilai keranjang",
+            "tableHeaderCondition": "Aturan persetujuan",
+            "tableHeaderItems": "Item",
+            "tableHeaderNumber": "Nomor persetujuan",
+            "tableHeaderPaymentMethod": "Metode pembayaran"
+        },
+        "menuTitle": "Pesanan yang akan disetujui",
+        "orderHeadline": "Dikirim pada",
+        "orderStatusActionCompletePayment": "Lanjutkan proses pembayaran",
+        "pendingApprovalNumber": "Nomor persetujuan:",
+        "pendingOrdersInfoEmpty": "Tidak ada pesanan yang tertunda.",
+        "shippingAddressHeader": "Alamat pengiriman"
     },
     "quickOrder": {
         "addToCartModal": {

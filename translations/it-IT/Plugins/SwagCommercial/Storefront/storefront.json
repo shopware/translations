@@ -9,8 +9,56 @@
             "title": "Questo è quello che ho trovato per te"
         }
     },
+    "approvalRules": {
+        "actionAddNew": "Crea regole",
+        "approvalRulesInfoEmpty": "Non è stata ancora creata alcuna regola di approvazione.",
+        "checkout": {
+            "confirmSubmit": "Invia l'ordine per l'approvazione"
+        },
+        "condition": {
+            "operator": {
+                "!=": "non uguale a",
+                "<": "inferiore a",
+                "<=": "minore o uguale a",
+                "=": "pari a",
+                ">": "maggiore di",
+                ">=": "maggiore o uguale a",
+                "empty": "vuoto"
+            },
+            "orderApprovalAllOrders": "Tutti gli ordini"
+        },
+        "detail": {
+            "approverLabel": "Fornisce le approvazioni degli ordini",
+            "conditionLabel": "Si applica a",
+            "createAction": "Salva regola di approvazione",
+            "createWelcome": "Nuova regola di approvazione",
+            "editAction": "Salva modifiche",
+            "editWelcome": "Modifica le regole di approvazione",
+            "nameLabel": "Nome",
+            "namePlaceholder": "Inserisci nome...",
+            "priorityLabel": "Priorità",
+            "priorityPlaceholder": "Imposta priorità...",
+            "roleLabel": "Richiede l'approvazione degli ordini",
+            "warningAlert": "Per utilizzare le regole di approvazione, crea prima i ruoli."
+        },
+        "list": {
+            "actionEdit": "Modifica",
+            "tableHeaderApplyTo": "Richiede l'approvazione",
+            "tableHeaderApprover": "Dà l'approvazione",
+            "tableHeaderCondition": "Si applica a",
+            "tableHeaderName": "Nome"
+        },
+        "menuTitle": "Regole di approvazione",
+        "searchButton": "Ricerca",
+        "searchPlaceholder": "Ricerca..."
+    },
     "checkout": {
         "guest-customer-not-allowed": "Gli abbonamenti non sono disponibili per i clienti ospiti. Ti preghiamo di accedere o di creare un profilo.",
+        "order-approval-blocked": "Questo ordine deve essere approvato per il seguente motivo: %reason%",
+        "orderApprovalAllOrders": "Questo ordine deve essere approvato.",
+        "paymentStatus": "Approvazione in sospeso",
+        "seePendingApprovals": "<a href=\"%url%\">Vedi le approvazioni in sospeso.</a>",
+        "submittedApproveHeader": "L'ordine è stato inviato per l'approvazione.",
         "subscription-interval-blocked": "Questo intervallo di abbonamento non è sfortunatamente disponibile per te, al momento.",
         "subscription-plan-blocked": "Questo piano di abbonamento non è sfortunatamente disponibile per te, al momento.",
         "subscription-product-mapping-missing": "Un prodotto non è disponibile per questo abbonamento ed è stato rimosso dal tuo carrello."
@@ -185,13 +233,21 @@
         },
         "roleEdit": {
             "permissionGroups": {
+                "approval_rule": "Gestione delle regole di approvazione",
                 "employee": "Gestione dei dipendenti",
                 "order": "Ordini",
+                "pending_order": "Gestione degli ordini in sospeso",
                 "quote": "Gestione delle quotazioni",
                 "role": "Gestione dei ruoli"
             },
             "permissionTooltip": "Questa autorizzazione dipende da:",
             "permissions": {
+                "approval_rule": {
+                    "create": "Può creare regole di approvazione",
+                    "delete": "Può eliminare le regole di approvazione",
+                    "read": "Può leggere le regole di approvazione",
+                    "update": "Può aggiornare le regole di approvazione"
+                },
                 "employee": {
                     "create": "Può creare dipendenti",
                     "delete": "Può eliminare i dipendenti",
@@ -202,6 +258,11 @@
                     "read": {
                         "all": "Può visualizzare tutti gli ordini"
                     }
+                },
+                "pending_order": {
+                    "approve_decline": "Può approvare/rifiutare gli ordini in sospeso",
+                    "approve_decline_all": "Può approvare/rifiutare tutti gli ordini in sospeso",
+                    "read_all": "Può visualizzare tutti gli ordini in sospeso"
                 },
                 "quote": {
                     "accept": "Può accettare un preventivo",
@@ -260,6 +321,78 @@
         "searchPlaceholder": "Inserisci qualcosa...",
         "suggestion": "Provalo:",
         "title": "Cosa stai cercando?"
+    },
+    "orderApproval": {
+        "flashMessage": {
+            "notAllowOrder": "Non ti è permesso ordinare.",
+            "orderDeclined": "Ordine in sospeso rifiutato.",
+            "orderNotApproved": "Ordine in sospeso. In attesa di approvazione.",
+            "orderNotAvailable": "L'ordine in sospeso non è ancora disponibile.",
+            "ruleCreated": "Regola di approvazione creata.",
+            "ruleUpdated": "Regola di approvazione aggiornata."
+        }
+    },
+    "pendingOrders": {
+        "approveModal": {
+            "btnCancel": "Interrompi",
+            "btnConfirm": "Approvare",
+            "description": "Sei sicuro di voler approvare l'ordine inviato?",
+            "title": "Approva l'ordine inviato"
+        },
+        "billingAddressHeader": "Indirizzo di fatturazione",
+        "cancelModal": {
+            "btnCancel": "Scarta",
+            "btnConfirm": "Confermare",
+            "description": "Sei sicuro di voler annullare questo ordine? \n La tua decisione sarà definitiva.",
+            "title": "Annulla ordine"
+        },
+        "declineComment": "Commento",
+        "declineCommentDescription": "Il commento deve avere una lunghezza massima di 255 caratteri.",
+        "declineModal": {
+            "btnCancel": "Interrompi",
+            "btnConfirm": "Rifiuta",
+            "commentLabel": "Commento",
+            "commentOptional": "(facoltativo)",
+            "commentPlaceholder": "Inserisci un commento...",
+            "description": "Sei sicuro di voler rifiutare l'ordine inviato?",
+            "title": "Rifiuta l'ordine inviato"
+        },
+        "detail": {
+            "approvalRuleTitle": "Regola di approvazione:",
+            "approveButton": "Approva l'ordine",
+            "cancelButton": "Interrompi",
+            "cartValueTitle": "Valore del carrello:",
+            "declineButton": "Rifiuta ordine",
+            "employeeTitle": "Dipendente:",
+            "finishButton": "Termina l'ordine",
+            "itemsTitle": "Oggetti:",
+            "orderSubmittedOnTitle": "Inviato il:",
+            "overviewDetailsHeader": "Dettagli",
+            "paymentMethodTitle": "Modalità di pagamento:",
+            "title": "Numero di approvazione"
+        },
+        "itemTable": {
+            "columnName": "Prodotto",
+            "columnQuantity": "Quantità",
+            "columnTotal": "Totale",
+            "columnUnitPrice": "Prezzo unitario"
+        },
+        "list": {
+            "actionApprove": "Approva l'ordine",
+            "actionDecline": "Rifiuta ordine",
+            "actionView": "Visualizza i dettagli",
+            "tableHeaderCartValue": "Valore del carrello",
+            "tableHeaderCondition": "Regola di approvazione",
+            "tableHeaderItems": "Voci",
+            "tableHeaderNumber": "Numero di approvazione",
+            "tableHeaderPaymentMethod": "Modalità di pagamento"
+        },
+        "menuTitle": "Ordini da approvare",
+        "orderHeadline": "Inviato il",
+        "orderStatusActionCompletePayment": "Continua la procedura di pagamento",
+        "pendingApprovalNumber": "Numero di approvazione:",
+        "pendingOrdersInfoEmpty": "Nessun ordine in sospeso.",
+        "shippingAddressHeader": "Indirizzo di consegna"
     },
     "quickOrder": {
         "addToCartModal": {

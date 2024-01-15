@@ -6,8 +6,12 @@
     "global": {
         "businessEvents": {
             "checkout_order_return_created": "Vytvořeno vrácení objednávky",
+            "order_approval_pending_order_requested": "Požadována čekající objednávka",
             "quote_change_request": "Žádost o změnu nabídky",
             "quote_requested": "Požadovaná cenová nabídka",
+            "state_enter_b2b_components_pending_order_state_approved": "Čekající objednávka schválena",
+            "state_enter_b2b_components_pending_order_state_declined": "Čekající objednávka zamítnuta",
+            "state_enter_b2b_components_pending_order_state_ordered": "Objednávka čekající na vyřízení",
             "state_enter_order_return_state_cancelled": "Vrácení objednávky vstoupí do stavu zrušeno",
             "state_enter_order_return_state_done": "Vrácení objednávky zadá stav hotový",
             "state_enter_order_return_state_in_progress": "Vrácení objednávky zadává stav probíhající",
@@ -550,12 +554,20 @@
                     "tooltipDependenciesTitle": "Povolení závisí na:",
                     "tree": {
                         "groups": {
+                            "approval_rule": "Správa schvalovacích pravidel",
                             "employee": "Řízení zaměstnanců",
                             "order": "Objednávky",
+                            "pending_order": "Správa čekajících objednávek",
                             "quote": "Správa nabídek",
                             "role": "Správa rolí"
                         },
                         "permissions": {
+                            "approval_rule": {
+                                "create": "Může vytvářet pravidla schvalování",
+                                "delete": "Lze odstranit pravidla schvalování",
+                                "read": "Dokáže číst pravidla schvalování",
+                                "update": "Může aktualizovat pravidla schvalování"
+                            },
                             "employee": {
                                 "create": "Dokáže vytvářet zaměstnance",
                                 "delete": "Může smazat zaměstnance",
@@ -566,6 +578,11 @@
                                 "read": {
                                     "all": "Lze zobrazit všechny objednávky"
                                 }
+                            },
+                            "pending_order": {
+                                "approve_decline": "Může schvalovat/odmítnout čekající objednávky",
+                                "approve_decline_all": "Může schvalovat/odmítnout všechny čekající objednávky",
+                                "read_all": "Může zobrazit všechny čekající objednávky"
                             },
                             "quote": {
                                 "accept": "Může přijmout nabídku",
@@ -636,6 +653,7 @@
         },
         "triggers": {
             "accepted": "Přijato",
+            "approved": "Schváleno",
             "changeRequest": "Žádost o změnu",
             "created": "Vytvořeno",
             "declined": "Odmítl",
@@ -647,6 +665,8 @@
             "invite": "Pozvat",
             "open": "Otevřít",
             "orderReturn": "Vrácení objednávky",
+            "pending": "Čekající",
+            "pendingOrder": "Čekající objednávka",
             "quote": "Citace",
             "reopen": "Znovu otevřít",
             "replied": "Odesláno",
@@ -1223,12 +1243,14 @@
         "registration": {
             "activateCheckbox": {
                 "employeeManagement": "Povolit správu zaměstnanců",
+                "orderApproval": "Povolit schvalování objednávky komponent B2B",
                 "quickOrder": "Povolit rychlé objednávky",
                 "quoteManagement": "Povolit správu nabídek komponent B2B"
             },
             "activateHelptext": {
                 "features": {
                     "employeeManagement": "Řízení zaměstnanců",
+                    "orderApproval": "Schválení objednávky",
                     "quickOrder": "Rychlé objednávky",
                     "quoteManagement": "Správa nabídek"
                 },

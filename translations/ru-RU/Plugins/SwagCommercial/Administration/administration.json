@@ -6,8 +6,12 @@
     "global": {
         "businessEvents": {
             "checkout_order_return_created": "Возврат заказа создан",
+            "order_approval_pending_order_requested": "Запрошен отложенный заказ",
             "quote_change_request": "Запрос на изменение ценового предложения",
             "quote_requested": "Запрошенная цитата",
+            "state_enter_b2b_components_pending_order_state_approved": "Отложенный ордер утвержден",
+            "state_enter_b2b_components_pending_order_state_declined": "Отложенный ордер отклонен",
+            "state_enter_b2b_components_pending_order_state_ordered": "Отложенный ордер заказан",
             "state_enter_order_return_state_cancelled": "Возврат заказа переходит в статус отменен",
             "state_enter_order_return_state_done": "Возврат заказа переходит в статус «Выполнен»",
             "state_enter_order_return_state_in_progress": "Возврат заказа переходит в статус «Выполняется»",
@@ -550,12 +554,20 @@
                     "tooltipDependenciesTitle": "Разрешение зависит от:",
                     "tree": {
                         "groups": {
+                            "approval_rule": "Управление правилами утверждения",
                             "employee": "Управление сотрудниками",
                             "order": "Заказы",
+                            "pending_order": "Управление отложенными ордерами",
                             "quote": "Управление котировками",
                             "role": "Управление ролями"
                         },
                         "permissions": {
+                            "approval_rule": {
+                                "create": "Может создавать правила утверждения",
+                                "delete": "Можно удалить правила утверждения",
+                                "read": "Может прочитать правила одобрения",
+                                "update": "Может обновлять правила утверждения"
+                            },
                             "employee": {
                                 "create": "Может создавать сотрудников",
                                 "delete": "Может удалять сотрудников",
@@ -566,6 +578,11 @@
                                 "read": {
                                     "all": "Можно просмотреть все заказы"
                                 }
+                            },
+                            "pending_order": {
+                                "approve_decline": "Может одобрять/отклонять отложенные ордера",
+                                "approve_decline_all": "Может одобрять/отклонять все отложенные ордера",
+                                "read_all": "Может просматривать все отложенные ордера"
                             },
                             "quote": {
                                 "accept": "Могу принять цитату",
@@ -636,6 +653,7 @@
         },
         "triggers": {
             "accepted": "Принято",
+            "approved": "Утверждено",
             "changeRequest": "Запрос на изменение",
             "created": "Создано",
             "declined": "Отклонено",
@@ -647,6 +665,8 @@
             "invite": "Пригласить",
             "open": "Открыть",
             "orderReturn": "Возврат заказа",
+            "pending": "В ожидании",
+            "pendingOrder": "Отложенный ордер",
             "quote": "Цитата",
             "reopen": "Открыть снова",
             "replied": "Отправлено",
@@ -1223,12 +1243,14 @@
         "registration": {
             "activateCheckbox": {
                 "employeeManagement": "Включить управление сотрудниками",
+                "orderApproval": "Включить утверждение заказа компонентов B2B",
                 "quickOrder": "Включить быстрые заказы",
                 "quoteManagement": "Включите управление предложениями по компонентам B2B"
             },
             "activateHelptext": {
                 "features": {
                     "employeeManagement": "Управление сотрудниками",
+                    "orderApproval": "Утверждение заказа",
                     "quickOrder": "Быстрые заказы",
                     "quoteManagement": "Управление ценовыми предложениями"
                 },

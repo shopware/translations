@@ -6,8 +6,12 @@
     "global": {
         "businessEvents": {
             "checkout_order_return_created": "Ordreretur oprettet",
+            "order_approval_pending_order_requested": "Anmodning om ventende ordre",
             "quote_change_request": "Anmodning om ændring af tilbud",
             "quote_requested": "Tilbud anmodet om",
+            "state_enter_b2b_components_pending_order_state_approved": "Afventende ordre godkendt",
+            "state_enter_b2b_components_pending_order_state_declined": "Afventende ordre afvist",
+            "state_enter_b2b_components_pending_order_state_ordered": "Afventende ordre bestilt",
             "state_enter_order_return_state_cancelled": "Ordreretur indtaster status annulleret",
             "state_enter_order_return_state_done": "Ordreretur indtaster status udført",
             "state_enter_order_return_state_in_progress": "Ordreretur indtaster status igangværende",
@@ -550,12 +554,20 @@
                     "tooltipDependenciesTitle": "Tilladelsen afhænger af:",
                     "tree": {
                         "groups": {
+                            "approval_rule": "Administration af godkendelsesregler",
                             "employee": "Medarbejderledelse",
                             "order": "Ordrer",
+                            "pending_order": "Administration af afventende ordrer",
                             "quote": "Tilbudsstyring",
                             "role": "Styring af rolle"
                         },
                         "permissions": {
+                            "approval_rule": {
+                                "create": "Kan oprette godkendelsesregler",
+                                "delete": "Kan slette godkendelsesregler",
+                                "read": "Kan læse godkendelsesregler",
+                                "update": "Kan opdatere godkendelsesregler"
+                            },
                             "employee": {
                                 "create": "Kan skabe medarbejdere",
                                 "delete": "Kan slette medarbejdere",
@@ -566,6 +578,11 @@
                                 "read": {
                                     "all": "Kan se alle ordrer"
                                 }
+                            },
+                            "pending_order": {
+                                "approve_decline": "Kan godkende/afvise ventende ordrer",
+                                "approve_decline_all": "Kan godkende/afvise alle ventende ordrer",
+                                "read_all": "Kan se alle afventende ordrer"
                             },
                             "quote": {
                                 "accept": "Kan acceptere tilbud",
@@ -636,6 +653,7 @@
         },
         "triggers": {
             "accepted": "Accepteret",
+            "approved": "Godkendt",
             "changeRequest": "Ændringsanmodning",
             "created": "Oprettet",
             "declined": "Afvist",
@@ -647,6 +665,8 @@
             "invite": "Invitere",
             "open": "Åben",
             "orderReturn": "Bestil returnering",
+            "pending": "Afventer",
+            "pendingOrder": "Afventende ordre",
             "quote": "Citat",
             "reopen": "Genåbn",
             "replied": "Sendt",
@@ -1223,12 +1243,14 @@
         "registration": {
             "activateCheckbox": {
                 "employeeManagement": "Aktivér medarbejderstyring",
+                "orderApproval": "Aktivér godkendelse af B2B-komponentordre",
                 "quickOrder": "Aktivér hurtige ordrer",
                 "quoteManagement": "Aktivér B2B-komponenttilbudsstyring"
             },
             "activateHelptext": {
                 "features": {
                     "employeeManagement": "Medarbejderledelse",
+                    "orderApproval": "Ordregodkendelse",
                     "quickOrder": "Hurtige ordrer",
                     "quoteManagement": "Tilbudshåndtering"
                 },
