@@ -6,8 +6,12 @@
     "global": {
         "businessEvents": {
             "checkout_order_return_created": "주문 반품 생성됨",
+            "order_approval_pending_order_requested": "보류 중인 주문 요청됨",
             "quote_change_request": "견적 변경 요청",
             "quote_requested": "견적 요청됨",
+            "state_enter_b2b_components_pending_order_state_approved": "보류 중인 주문 승인됨",
+            "state_enter_b2b_components_pending_order_state_declined": "보류 중인 주문이 거부됨",
+            "state_enter_b2b_components_pending_order_state_ordered": "보류 중인 주문",
             "state_enter_order_return_state_cancelled": "주문 반품이 취소됨 상태로 전환됨",
             "state_enter_order_return_state_done": "주문 반품이 완료 상태로 전환됨",
             "state_enter_order_return_state_in_progress": "주문 반품이 진행 중으로 전환됨",
@@ -550,12 +554,20 @@
                     "tooltipDependenciesTitle": "허가는 다음 사항에 따라 달라집니다.",
                     "tree": {
                         "groups": {
+                            "approval_rule": "승인 규칙 관리",
                             "employee": "직원 관리",
                             "order": "주문",
+                            "pending_order": "보류 중인 주문 관리",
                             "quote": "견적 관리",
                             "role": "역할 관리"
                         },
                         "permissions": {
+                            "approval_rule": {
+                                "create": "승인 규칙 생성 가능",
+                                "delete": "승인 규칙 삭제 가능",
+                                "read": "승인 규칙 읽기 가능",
+                                "update": "승인 규칙 업데이트 가능"
+                            },
                             "employee": {
                                 "create": "직원 생성 가능",
                                 "delete": "직원 삭제 가능",
@@ -566,6 +578,11 @@
                                 "read": {
                                     "all": "모든 주문 보기 가능"
                                 }
+                            },
+                            "pending_order": {
+                                "approve_decline": "보류 중인 주문 승인/거절 가능",
+                                "approve_decline_all": "보류 중인 모든 주문을 승인/거부 가능",
+                                "read_all": "보류 중인 모든 주문을 볼 수 있습니다"
                             },
                             "quote": {
                                 "accept": "견적 수락 가능",
@@ -636,6 +653,7 @@
         },
         "triggers": {
             "accepted": "수락됨",
+            "approved": "승인됨",
             "changeRequest": "변경 요청",
             "created": "생성됨",
             "declined": "거절",
@@ -647,6 +665,8 @@
             "invite": "초대하기",
             "open": "열기",
             "orderReturn": "주문 반품",
+            "pending": "보류 중",
+            "pendingOrder": "보류 중인 주문",
             "quote": "견적",
             "reopen": "다시 엽니다",
             "replied": "전송됨",
@@ -1223,12 +1243,14 @@
         "registration": {
             "activateCheckbox": {
                 "employeeManagement": "직원 관리 활성화",
+                "orderApproval": "B2B 구성 요소 주문 승인 활성화",
                 "quickOrder": "빠른 주문 활성화",
                 "quoteManagement": "B2B 구성 요소 견적 관리 활성화"
             },
             "activateHelptext": {
                 "features": {
                     "employeeManagement": "직원 관리",
+                    "orderApproval": "주문 승인",
                     "quickOrder": "빠른 주문",
                     "quoteManagement": "견적 관리"
                 },

@@ -6,8 +6,12 @@
     "global": {
         "businessEvents": {
             "checkout_order_return_created": "Orderretur skapad",
+            "order_approval_pending_order_requested": "Väntande beställning begärd",
             "quote_change_request": "Begäran om offertändring",
             "quote_requested": "Offert begärt",
+            "state_enter_b2b_components_pending_order_state_approved": "Väntande order godkänd",
+            "state_enter_b2b_components_pending_order_state_declined": "Väntande order avvisad",
+            "state_enter_b2b_components_pending_order_state_ordered": "Väntande beställning beställd",
             "state_enter_order_return_state_cancelled": "Orderretur anger status annullerad",
             "state_enter_order_return_state_done": "Orderretur anger status klar",
             "state_enter_order_return_state_in_progress": "Orderretur anger status pågår",
@@ -550,12 +554,20 @@
                     "tooltipDependenciesTitle": "Tillståndet beror på:",
                     "tree": {
                         "groups": {
+                            "approval_rule": "Hantering av godkännanderegler",
                             "employee": "Medarbetarledning",
                             "order": "Beställningar",
+                            "pending_order": "Väntande orderhantering",
                             "quote": "Offerthantering",
                             "role": "Hantering av roll"
                         },
                         "permissions": {
+                            "approval_rule": {
+                                "create": "Kan skapa godkännanderegler",
+                                "delete": "Kan ta bort godkännanderegler",
+                                "read": "Kan läsa godkännanderegler",
+                                "update": "Kan uppdatera godkännanderegler"
+                            },
                             "employee": {
                                 "create": "Kan skapa anställda",
                                 "delete": "Kan ta bort anställda",
@@ -566,6 +578,11 @@
                                 "read": {
                                     "all": "Kan visa alla beställningar"
                                 }
+                            },
+                            "pending_order": {
+                                "approve_decline": "Kan godkänna/avslå väntande order",
+                                "approve_decline_all": "Kan godkänna/avslå alla väntande order",
+                                "read_all": "Kan visa alla väntande beställningar"
                             },
                             "quote": {
                                 "accept": "Kan acceptera offert",
@@ -636,6 +653,7 @@
         },
         "triggers": {
             "accepted": "Accepterad",
+            "approved": "Godkänd",
             "changeRequest": "Ändringsförfrågan",
             "created": "Tillverkad",
             "declined": "Avböjt",
@@ -647,6 +665,8 @@
             "invite": "Bjud in",
             "open": "Öppna",
             "orderReturn": "Beställningsretur",
+            "pending": "Väntande",
+            "pendingOrder": "Väntande order",
             "quote": "Citat",
             "reopen": "Öppna igen",
             "replied": "Skickat",
@@ -1223,12 +1243,14 @@
         "registration": {
             "activateCheckbox": {
                 "employeeManagement": "Aktivera medarbetarhantering",
+                "orderApproval": "Aktivera godkännande av B2B-komponentorder",
                 "quickOrder": "Aktivera snabba beställningar",
                 "quoteManagement": "Aktivera hantering av offert för B2B-komponenter"
             },
             "activateHelptext": {
                 "features": {
                     "employeeManagement": "Medarbetarledning",
+                    "orderApproval": "Beställningsgodkännande",
                     "quickOrder": "Snabba beställningar",
                     "quoteManagement": "Offerthantering"
                 },

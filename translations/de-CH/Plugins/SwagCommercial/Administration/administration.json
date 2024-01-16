@@ -6,8 +6,12 @@
     "global": {
         "businessEvents": {
             "checkout_order_return_created": "Retoure erstellt",
+            "order_approval_pending_order_requested": "Ausstehende Bestellung angefordert",
             "quote_change_request": "Angebotsänderungsanfrage",
             "quote_requested": "Angebot angefragt",
+            "state_enter_b2b_components_pending_order_state_approved": "Ausstehende Bestellung genehmigt",
+            "state_enter_b2b_components_pending_order_state_declined": "Ausstehende Bestellung abgelehnt",
+            "state_enter_b2b_components_pending_order_state_ordered": "Ausstehende Bestellung bestellt",
             "state_enter_order_return_state_cancelled": "Retoure erreicht Status abgebrochen",
             "state_enter_order_return_state_done": "Retoure erreicht Status abgeschlossen",
             "state_enter_order_return_state_in_progress": "Retoure erreicht Status in Bearbeitung",
@@ -550,12 +554,20 @@
                     "tooltipDependenciesTitle": "Diese Berechtigung ist abhängig von:",
                     "tree": {
                         "groups": {
+                            "approval_rule": "Freigaberegelverwaltung",
                             "employee": "Mitarbeiterverwaltung",
                             "order": "Bestellungen",
+                            "pending_order": "Ausstehende Bestellungsverwaltung",
                             "quote": "Angebotsmanagement",
                             "role": "Rollenverwaltung"
                         },
                         "permissions": {
+                            "approval_rule": {
+                                "create": "Kann Freigaberegeln erstellen",
+                                "delete": "Kann Freigaberegeln löschen",
+                                "read": "Kann Freigaberegeln anzeigen",
+                                "update": "Kann Freigaberegeln aktualisieren"
+                            },
                             "employee": {
                                 "create": "Kann Mitarbeiter anlegen",
                                 "delete": "Kann Mitarbeiter löschen",
@@ -566,6 +578,11 @@
                                 "read": {
                                     "all": "Kann alle Bestellungen einsehen"
                                 }
+                            },
+                            "pending_order": {
+                                "approve_decline": "Kann ausstehende Bestellungen genehmigen/ablehnen",
+                                "approve_decline_all": "Kann alle ausstehenden Bestellungen genehmigen/ablehnen",
+                                "read_all": "Kann alle ausstehenden Bestellungen anzeigen"
                             },
                             "quote": {
                                 "accept": "Kann Angebot akzeptieren",
@@ -636,6 +653,7 @@
         },
         "triggers": {
             "accepted": "Akzeptiert",
+            "approved": "Genehmigt",
             "changeRequest": "Änderungsanfrage",
             "created": "Erstellt",
             "declined": "Abgelehnt",
@@ -647,6 +665,8 @@
             "invite": "Einladung",
             "open": "Offen",
             "orderReturn": "Retoure",
+            "pending": "Ausstehend",
+            "pendingOrder": "Ausstehende Bestellung",
             "quote": "Angebot",
             "reopen": "Wiedereröffnen",
             "replied": "Abgeschickt",
@@ -1017,7 +1037,7 @@
             "commentCustomerDeclinedQuote": "Abgelehnt",
             "commentCustomerRequestQuote": "Angefragt",
             "commentDivider": "Ältere Nachrichten",
-            "commentMerchantSent": "Händler gesendet",
+            "commentMerchantSent": "Anfrage verschickt",
             "commentTitle": "Nachrichtenübersicht",
             "commentType": "Kunde",
             "contextMenuRemove": "Aus Angebot entfernen",
@@ -1223,12 +1243,14 @@
         "registration": {
             "activateCheckbox": {
                 "employeeManagement": "B2B Component Mitarbeiterverwaltung aktivieren",
+                "orderApproval": "B2B Component Genehmigung der Bestellung aktivieren",
                 "quickOrder": "B2B Component Schnellbestellungen aktivieren",
                 "quoteManagement": "B2B Component Angebotsmanagement aktivieren"
             },
             "activateHelptext": {
                 "features": {
                     "employeeManagement": "die Mitarbeiterverwaltung",
+                    "orderApproval": "die Genehmigung der Bestellung",
                     "quickOrder": "die Schnellbestellungen",
                     "quoteManagement": "die Angebotsmanagement"
                 },
