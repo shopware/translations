@@ -1,6 +1,9 @@
 {
     "entityCategories": {
         "additional_privileges": {
+            "entities": {
+                "api_feature_flag_toggle": "API feature flag toggle"
+            },
             "title": "Zusätzliche Berechtigungen"
         },
         "admin_user": {
@@ -497,6 +500,7 @@
             "INVALID_URL": "Bitte gib eine gültige URL ein.",
             "PARENT_MUST_NOT_BE_EMPTY": "Das vererbende Feld darf nicht leer sein.",
             "SHOPWARE_INVALID_IP": "Bitte gib eine gültige IP-Adresse ein.",
+            "SHOPWARE_INVALID_IP_CIDR": "Bitte gib eine gültige IP-Adresse oder eine IP-Adresse mit CIDR-Maske ein.",
             "c1051bb4-d103-4f74-8988-acbcafc7fdc3": "Dieses Feld darf nicht leer sein"
         },
         "notification": {
@@ -741,6 +745,7 @@
                 "orderCustomFieldRule": "Bestellung mit Zusatzfeld",
                 "orderDeliveryStatusRule": "Lieferstatus",
                 "orderDocumentTypeRule": "Bestellung mit Dokument",
+                "orderDocumentTypeSentRule": "Bestellung mit gesendetem Dokument",
                 "orderStatusRule": "Bestellstatus",
                 "orderTagRule": "Bestellung mit Tag",
                 "orderTotalAmountRule": "Gesamtwert aller abgeschlossenen Bestellungen",
@@ -839,6 +844,21 @@
                     "placeholder": "Operator auswählen ..."
                 }
             },
+            "customerDaysSinceFirstLogin": {
+                "daysPassed": {
+                    "placeholder": "@:sw-product.settingsForm.placeholderTime"
+                }
+            },
+            "customerDaysSinceLastLogin": {
+                "daysPassed": {
+                    "placeholder": "@:sw-product.settingsForm.placeholderTime"
+                }
+            },
+            "customerDaysSinceLastOrder": {
+                "daysPassed": {
+                    "placeholder": "@:sw-product.settingsForm.placeholderTime"
+                }
+            },
             "customerEmail": {
                 "email": {
                     "placeholder": "@:global.sw-condition.condition.emailRule.placeholder"
@@ -879,7 +899,7 @@
                 }
             },
             "promotionCodeOfType": {
-                "promotionCodeOfType": {
+                "promotionCodeType": {
                     "options": {
                         "fixed": "@:global.sw-condition.condition.promotionCodeOfTypeRule.fixed",
                         "global": "@:global.sw-condition.condition.promotionCodeOfTypeRule.global",
@@ -951,6 +971,9 @@
             "maximumSelectionExceed": "Maximale Anzahl Artikel ausgewählt",
             "tooltipListSettings": "Listeneinstellungen"
         },
+        "sw-desktop": {
+            "stagingBarText": "Der Shop befindet sich im Staging-Modus."
+        },
         "sw-duplicated-media": {
             "buttonRename": "Datei umbenennen",
             "buttonReplace": "Datei ersetzen",
@@ -985,7 +1008,7 @@
                 "product": "Produkte",
                 "rule": "Regeln"
             },
-            "filter": "Filtern",
+            "filter": "Filter",
             "link": "Erweiterte Auswahl verwenden",
             "resetFilters": "Filter zurücksetzen",
             "searchPlaceholder": "Suchen ...",
@@ -1165,26 +1188,26 @@
         },
         "sw-media-modal-folder-settings": {
             "labelDefaultFolder": "Medien-Standardspeicherort für",
-            "labelEditList": "Liste bearbeiten",
             "labelFolderName": "Name",
             "labelGenerateThumbnails": "Thumbnails für diesen Ordner generieren",
             "labelInheritSettings": "Einstellungen vom überliegenden Ordner übernehmen",
             "labelKeepProportions": "Seitenverhältnis beibehalten",
             "labelSettings": "Einstellungen",
-            "labelStopEdit": "Bearbeiten beenden",
             "labelSystem": "Systemordner",
             "labelThumbnailQuality": "Thumbnail-Qualität",
             "labelThumbnailSize": "Thumbnail-Größe",
             "labelThumbnails": "Thumbnails",
             "notification": {
                 "error": {
-                    "message": "Fehler beim Speichern der Einstellungen."
+                    "message": "Fehler beim Speichern der Einstellungen.",
+                    "messageThumbnailSizeExisted": "Thumbnail-Größe existiert bereits."
                 },
                 "success": {
                     "message": "Einstellungen erfolgreich gespeichert."
                 }
             },
-            "placeholderDefaultFolder": "Entität auswählen ..."
+            "placeholderDefaultFolder": "Entität auswählen ...",
+            "tooltipCanNotDeleteThumbnailSize": "Thumbnail-Größe kann nicht gelöscht werden, weil diese verwendet wird."
         },
         "sw-media-modal-move": {
             "buttonMove": "Verschieben",
@@ -1301,7 +1324,9 @@
             "addIpAddress": "IP-Adresse hinzufügen",
             "enterValidIp": "Bitte gib eine gültige IPv4- oder IPv6-Adresse ein",
             "knownIps": {
-                "you": "Du"
+                "you": "Du",
+                "youIPv6Block56": "Du und andere (Selber Standort)",
+                "youIPv6Block64": "Du und andere (Heimnetzwerk)"
             }
         },
         "sw-multi-tag-select": {
@@ -1341,24 +1366,24 @@
         "sw-search-bar-item": {
             "addNewEntity": "Neue {entity} hinzufügen",
             "shortcuts": {
-                "category": "G C | ",
+                "category": "G C | &nbsp;",
                 "cms": "G E | A E",
                 "customers": "G U | A U",
-                "dashboard": "G H | ",
+                "dashboard": "G H | &nbsp;",
                 "manufacturer": "G M | A M",
-                "media": "G M E | ",
-                "newsletter-recipient": "G N | ",
-                "order": "G O | ",
+                "media": "G M E | &nbsp;",
+                "newsletter-recipient": "G N | &nbsp;",
+                "order": "G O | &nbsp;",
                 "product": "G P | A P",
-                "product-stream": "G D | ",
-                "promotion-v2": "G P O | ",
+                "product-stream": "G D | &nbsp;",
+                "promotion-v2": "G P O | &nbsp;",
                 "property": "G P R | A P R",
                 "sales-channel": " | A S",
-                "settings": "G S | ",
-                "settings-payment": "G S P | ",
+                "settings": "G S | &nbsp;",
+                "settings-payment": "G S P | &nbsp;",
                 "settings-rule": "G S R | A R",
-                "settings-shipping": "G S S | ",
-                "settings-snippet": "G S | "
+                "settings-shipping": "G S S | &nbsp;",
+                "settings-snippet": "G S | &nbsp;"
             },
             "typeLabelAction": "Aktion",
             "typeLabelCategory": "Kategorie",
@@ -2166,6 +2191,11 @@
                     "label": "Formular"
                 }
             },
+            "html": {
+                "html": {
+                    "label": "HTML"
+                }
+            },
             "image": {
                 "image": {
                     "label": "Bild, zentriert"
@@ -2392,9 +2422,11 @@
                 "backgroundMediaModeContain": "Beinhalten",
                 "backgroundMediaModeCover": "Füllen",
                 "blockBottomMarginField": "Unterer Abstand",
+                "blockCategoryApp": "Apps",
                 "blockCategoryCommerce": "Commerce",
                 "blockCategoryFavorite": "Favoriten",
                 "blockCategoryForm": "Formular",
+                "blockCategoryHtml": "HTML",
                 "blockCategoryImage": "Bilder",
                 "blockCategorySelection": "Block-Kategorie",
                 "blockCategorySidebar": "Sidebar",
@@ -2551,22 +2583,29 @@
                         "requiredFields": "Felder, die mit * markiert sind, werden benötigt"
                     },
                     "label": {
-                        "action": "Aktion",
+                        "action": "Aktion*",
                         "email": "E-Mail-Adresse*",
                         "firstName": "Vorname*",
                         "lastName": "Nachname*",
                         "message": "Ihre Nachricht*",
                         "newsletterSubmit": "Weiter",
-                        "phone": "Telefonnummer",
-                        "privacy": "Datenschutz",
+                        "phone": "Telefonnummer*",
+                        "privacy": "Datenschutz*",
                         "salutation": "Anrede*",
                         "salutationUndisclosed": "Keine Angabe",
                         "send": "Senden",
                         "subject": "Betreff*",
                         "subscribeToNewsletter": "Newsletter abonnieren"
                     },
+                    "newsletter": {
+                        "label": {
+                            "firstName": "Vorname",
+                            "lastName": "Nachname",
+                            "salutation": "Anrede"
+                        }
+                    },
                     "placeholder": {
-                        "email": "max{'@'}mustermann.com",
+                        "email": "john{'@'}doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
                         "message": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
@@ -2626,6 +2665,12 @@
                         "favorites": "Favorisierte Elemente"
                     }
                 }
+            },
+            "html": {
+                "config": {
+                    "warning": "Ungefilterter HTML-Code kann zu Sicherheitsrisiken führen. Bitte füge nur HTML-Code von vertrauenswürdigen Quellen ein und teste deine Änderung vor der Veröffentlichung."
+                },
+                "label": "HTML"
             },
             "image": {
                 "config": {
@@ -2867,6 +2912,7 @@
             "placeholderSearchBar": "Layouts durchsuchen ..."
         },
         "list": {
+            "gridHeaderAssignedPages": "Zugewiesene Seiten",
             "gridHeaderAssignment": "Zugewiesene Kategorien",
             "gridHeaderAssignments": "Zuordnungen",
             "gridHeaderCreated": "Erstellt",
@@ -2978,7 +3024,7 @@
         },
         "symbol": {
             "comma": ",",
-            "dash": "bisher keine durchgeführt",
+            "dash": "-",
             "tilde": "~"
         }
     },
@@ -3394,7 +3440,7 @@
         "errors": {
             "appIsNotCompatible": "Die Erweiterung \"{name}\" ist nicht kompatibel mit dieser Shopware Version",
             "appLicenseCouldNotBeVerified": {
-                "actionLogin": "Anmeldung",
+                "actionLogin": "Login",
                 "actionSetLicenseDomain": "Lizenzdomain setzen",
                 "message": "Stelle sicher, dass Deine Lizenzdomain korrekt gesetzt ist und Du mit Deinem Shopware Account angemeldet bist, auf welchen diese Erweiterung lizenziert ist.",
                 "title": "Die Lizenz dieser Erweiterung konnte nicht überprüft werden"
@@ -3418,7 +3464,7 @@
             "messageUploadFailureUnzipFailed": "Die Zip-Datei konnte nicht entpackt werden.",
             "pluginDeactivatedHint": "Erweiterung deaktiviert.",
             "storeSessionExpired": {
-                "actionLabel": "Anmeldung",
+                "actionLabel": "Login",
                 "message": "Bitte melde Dich an, um auf Deine lizenzierten Erweiterungen zuzugreifen.",
                 "title": "Shopware Account Sitzung abgelaufen"
             }
@@ -3997,7 +4043,7 @@
             "messageRequiredEventName": "Wähle vor dem Speichern ein Auslöser-Ereignis aus.",
             "messageSaveError": "Flow konnte nicht gespeichert werden.",
             "messageUnknownTriggerWarning": "Dieser Flow wurde deaktiviert, weil er einen Auslöser verwendet, der nicht länger verfügbar ist. Dies ist wahrscheinlich darauf zurückzuführen, dass die Edition geändert wurde oder die Erweiterung, die diesen Auslöser bereitstellt, entweder inaktiv ist oder deinstalliert wurde.",
-            "messageUpdateTemplateSuccess": "Flow-Template aktualisiert.",
+            "messageUpdateTemplateSuccess": "Flow template updated.",
             "messageWarningSave": "Flow-Vorlagen können nicht bearbeitet werden.",
             "textGuide1": "Installiere die Erweiterung, die den Auslöser bereitstellt",
             "textGuide2": "Aktiviere die Erweiterung erneut, die den Auslöser bereitstellt",
@@ -4347,6 +4393,7 @@
             "exportActivityLabel": "Export-Aktivität",
             "exportLabel": "Export",
             "exportVariants": "Produktvarianten exportieren",
+            "messageExportError": "Die Export-Datei konnte nicht erstellt werden. | Die Export-Datei konnte nicht erstellt werden. Lade die \"fehlerhaften Einträge\" herunter, um mehr Informationen zu erhalten.",
             "messageExportStarted": "Der Export wurde gestartet.",
             "messageExportSuccess": "Der Export \"{profile}\" wurde erfolgreich abgeschlossen.",
             "showLogLabel": "Log anzeigen",
@@ -4365,7 +4412,7 @@
             "importLabel": "Import",
             "importVariants": "Produktvarianten importieren",
             "labelUploadCaption": "Wähle eine CSV-Datei zum Hochladen",
-            "messageImportError": "Während des Imports \"{profile}\" traten Fehler auf.",
+            "messageImportError": "Mit dem Profil \"{profile}\" konnten keine Daten importiert werden. | Mit dem Profil \"{profile}\" konnten keine Daten importiert werden. Lade die \"fehlerhaften Einträge\" herunter, um mehr Informationen zu erhalten.",
             "messageImportStarted": "Der Import wurde gestartet.",
             "messageImportSuccess": "Der Import \"{profile}\" wurde erfolgreich abgeschlossen.",
             "messageImportWarning": "Keine Einträge importiert. Stelle bitte sicher, dass das Separator-Zeichen den Einstellungen im verwendeten Profil entspricht.",
@@ -4572,6 +4619,9 @@
                 "labelSocialMediaDescription": "Beschreibung",
                 "labelSocialMediaTitle": "Titel",
                 "labelUrl": "SEO URL",
+                "notification": {
+                    "noLayoutAssigned": "Für diese Landingpage wurde kein Layout festgelegt. Ohne ein Layout ist die Landingpage über SEO nicht erreichbar."
+                },
                 "placeholderKeywords": "Gib ein oder mehrere Schlüsselwörter ein ...",
                 "placeholderMetaDescription": "Gib eine Meta-Beschreibung ein ...",
                 "placeholderMetaTitle": "Gib einen Meta-Titel ein ...",
@@ -4786,7 +4836,7 @@
                 "copyTooltip": "In die Zwischenablage kopieren.",
                 "labelContextMenuAddToMailTemplate": "Als Anhang hinzufügen",
                 "labelTestMail": "Empfänger-Adresse",
-                "placeholderTestMail": "shop{'@'}beispiel.com",
+                "placeholderTestMail": "E-Mail-Adresse eingeben ...",
                 "titleShowAvailableVariables": "Variablen",
                 "titleShowPreview": "Vorschau anzeigen",
                 "titleTestMail": "Test-Mail senden"
@@ -5611,6 +5661,7 @@
                 "api_action_cache_index": "Indexer triggern",
                 "api_action_cache_info": "Cache-Info lesen",
                 "api_action_container-cache_delete": "Container-Cache löschen",
+                "api_feature_flag_toggle": "Merkmalskennzeichen umschalten",
                 "api_info_me": "Eigene API-Userinfo lesen",
                 "api_info_ping": "API-Token erneuern",
                 "api_proxy_switch-customer": "Im Namen eines Kunden handeln",
@@ -6201,6 +6252,7 @@
             "placeholderReleaseDate": "Gib ein Einstelldatum ein ...",
             "placeholderRestockTime": "Wiederauffüllintervall ...",
             "placeholderStock": "Gib den Lagerbestand ein ...",
+            "placeholderTime": "z.B. 31...",
             "placeholderWeight": "z.B. 0,4 ...",
             "placeholderWidth": "z.B. 500 ..."
         },
@@ -6322,7 +6374,8 @@
             "bodyVisibility": "Füge Verkaufskanäle hinzu, die dieses Produkt anzeigen. Über den unten stehenden Link kannst Du die Sichtbarkeit des Produktes in Deinen Storefront-Verkausfkanälen weiter beeinflussen.",
             "closeModal": "Übernehmen",
             "columnAll": "Sichtbar",
-            "columnLinkOnly": "In Produktlisten und der Suche ausblenden",
+            "columnLinkOnly": "In Produktlisten und Suche ausblenden",
+            "columnSalesChannel": "Verkaufskanäl",
             "columnSearchOnly": "In Produktlisten ausblenden",
             "errorMessage": "Die Standardkonfiguration des Verkaufskanals konnte nicht geladen werden.",
             "labelVisibility": "Sichtbarkeit",
@@ -6589,7 +6642,7 @@
                     "name": "Name"
                 },
                 "product": {
-                    "customSearchKeywords": "Schlüsselwörter",
+                    "customSearchKeywords": "SEO keywords",
                     "ean": "GTIN/EAN",
                     "manufacturerNumber": "Herstellernummer",
                     "name": "Name",
@@ -7180,6 +7233,7 @@
             "maintenanceModeTitle": "Wartungsmodus",
             "messageAPIError": "Der API-Schlüssel konnte nicht generiert werden.",
             "messageActivateWithoutThemeError": "Der Verkaufskanal \"{name}\" kann noch nicht aktiviert werden. Aktive Verkaufskanäle müssen ein Theme zugeordnet haben.",
+            "messageDeleteDomainError": "Die Domain \"{url}\" konnte nicht gelöscht werden, da sie mit bestehenden Produktexporten verknüpft ist.",
             "messageSaveError": "Der Verkaufskanal \"{name}\" konnte nicht gespeichert werden. Bitte überprüfe Deine Eingaben.",
             "messageSaveSuccess": "Der Verkaufskanal \"{name}\" wurde erfolgreich gespeichert.",
             "navigation": "Navigation",
@@ -7542,7 +7596,7 @@
             "helpTextCompanyTaxFree": "Damit B2B-Geschäfte steuerfrei abgewickelt werden können, müssen die jeweiligen Kundenaccounts über eine valide USt-ID verfügen.",
             "helpTextLabelVatIdRequired": "Bitte den globalen Schalter unter \"Einstellungen > Login/Registrierung\" beachten.",
             "labelActive": "Aktiv",
-            "labelAddressFormatPlain": "Vorlage",
+            "labelAddressFormatPlain": "Format",
             "labelCheckAdvancedPostalCodePattern": "Erweiterte Validierungsregeln",
             "labelCheckDefaultAddressFormat": "Benutzerdefiniertes Adressformat",
             "labelCheckPostalCodePattern": "Postleitzahl validieren",
@@ -8280,6 +8334,16 @@
         "detail": {
             "buttonCancel": "Abbrechen",
             "buttonSave": "Speichern",
+            "delete": {
+                "modal": {
+                    "buttonCancel": "Abbrechen",
+                    "buttonDelete": "Löschen",
+                    "textConfirmation": "Möchtest Du diese Zahlungsart wirklich löschen?"
+                },
+                "textAlert": "Diese Zahlungsart wird in Regeln, Vertriebskanälen oder Bestellungen verwendet und kann daher nicht gelöscht werden.",
+                "textButton": "Zahlungsart löschen",
+                "textHeadline": "Zahlungsart löschen"
+            },
             "helpTextTechnicalName": "Der technische Name wird für die einzigartige Identifikation der Zahlungsart verwendet. Eine nachträgliche Änderung des technischen Namens kann dazu führen, dass Zahlungsintegrationen, die sich auf diesen Namen verlassen, nicht mehr funktionieren.",
             "hintTextTechnicalName": "Wird ab Version 6.7.0 erforderlich sein",
             "labelActive": "Aktiv",
@@ -9102,7 +9166,7 @@
             "contextMenuDelete": "Tag löschen",
             "contextMenuDuplicate": "Tag duplizieren",
             "contextMenuEdit": "Tag bearbeiten",
-            "filter": "Filtern",
+            "filter": "Filter",
             "filterAssignemnt": "Filter nach zugewiesenen Entitäten",
             "filterDuplicate": "Zeige nur Duplikate",
             "filterEmpty": "Zeige nur Tags ohne Zuweisungen",
@@ -9232,6 +9296,9 @@
             "mainMenuItemGeneral": "Daten teilen",
             "textHeadline": "Daten teilen"
         }
+    },
+    "sw-settings-usage-data-general": {
+        "tabHeadline": "Allgemein"
     },
     "sw-shortcut-overview": {
         "function": "Funktion",
@@ -9396,15 +9463,6 @@
             "textDeleteMultipleConfirm": "Möchtest Du die \"{count}\" gewählten Elemente wirklich löschen?"
         }
     },
-    "sw-usage-data": {
-        "sw-settings-usage-data-intro": {
-            "description": "Hilf uns, bessere Produkte und Dienstleistungen zu entwickeln, indem Du uns erlaubst, Nutzungsdaten aus Deiner Shopware Administration zu sammeln. Mit den neuesten Techniken zum Schutz der Privatsphäre stellen wir sicher, dass die gesammelten Daten nicht mit Dir oder Deinem Shop in Verbindung gebracht werden können. Wir sammeln keine Kundeninformationen.",
-            "headline": "Gemeinsam Shopware verbessern",
-            "learnMore": "Mehr erfahren",
-            "learnMoreUrl": "https://shopware.com/de/datenschutz/",
-            "title": "Nutzungsdaten"
-        }
-    },
     "sw-usage-data-consent-banner": {
         "acceptDataCollection": "Zustimmen",
         "checkListDataSharing": {
@@ -9427,17 +9485,15 @@
             },
             "orderData": "Bestelldaten",
             "storeData": "Shopdaten",
-            "title": "Daten, die wir sammeln:",
-            "titleNotAccepted": "Daten, die wir sammeln werden:",
             "usageData": "Nutzungsdaten"
         },
         "confirmAuthorization": "Indem Du auf “Zustimmen” klickst, bestätigst Du, dass Du berechtigt bist, dieser Vereinbarung im Namen Deines Unternehmens zuzustimmen.",
         "declineDataCollection": "Zurzeit nicht",
         "fullDetailsDescription": "Alle Einzelheiten dieser Vereinbarung findest Du unter {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": " Du kannst dem Teilen von Daten jederzeit widersprechen. Gestalte mit uns die Zukunft des E-Commerce, indem du uns Deine Daten zur Verfügung stellst!",
+        "fullDetailsDescriptionNotAccepted": " Du kannst dem Teilen von Daten jederzeit widersprechen.",
         "headline": "Die Zukunft des E-Commerce mitgestalten",
-        "improvingDescription": "Wir arbeiten ständig an der Verbesserung der Dienste, die wir Dir anbieten. Als nächsten Schritt analysieren wir Deine Daten mithilfe von Techniken wie maschinellem Lernen (z. B. Mustererkennung), um unser Produkt weiterzuentwickeln und zu verbessern. Deine Daten werden auch verwendet, um datengetriebene Dienste zu entwickeln, die Deinen Geschäftserfolg steigern.",
-        "improvingDescriptionNotAccepted": "Wir arbeiten ständig an der Verbesserung der Dienste, die wir Dir anbieten. Als nächsten Schritt möchten wir Deine Daten mithilfe von Techniken wie maschinellem Lernen (z. B. Mustererkennung) analysieren, um unser Produkt weiterzuentwickeln und zu verbessern. Deine Daten werden auch verwendet, um datengetriebene Dienste zu entwickeln, die Deinen Geschäftserfolg steigern.",
+        "improvingDescription": "Wir arbeiten ständig an der Verbesserung der Dienste, die wir Dir anbieten. Als nächsten Schritt analysieren wir Deine Daten mithilfe von Techniken wie maschinellem Lernen (z. B. Mustererkennung), um unser Produkt weiterzuentwickeln und zu verbessern. Deine Daten werden auch verwendet, um datengetriebene Dienste zu entwickeln, die Deinen Geschäftserfolg steigern. Dies sind die Daten, welche wir sammeln:",
+        "improvingDescriptionNotAccepted": "Wir arbeiten ständig an der Verbesserung der Dienste, die wir Dir anbieten. Als nächsten Schritt möchten wir Deine Daten mithilfe von Techniken wie maschinellem Lernen (z. B. Mustererkennung) analysieren, um unser Produkt weiterzuentwickeln und zu verbessern. Deine Daten werden auch verwendet, um datengetriebene Dienste zu entwickeln, die Deinen Geschäftserfolg steigern. Dies sind die Daten, welche wir sammeln werden:",
         "privacyPolicy": "shopware.com/de/data-use-details",
         "privacyPolicyLink": "https://www.shopware.com/de/data-use-details/",
         "rejectedMessage": "Du kannst der Vereinbarung jederzeit zustimmen und so zur ständigen Weiterentwicklung unserer Dienste beitragen und davon profitieren, indem Du das Teilen von Daten in Deinen {link} erlaubst.",
