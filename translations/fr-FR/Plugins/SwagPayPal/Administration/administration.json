@@ -1,4 +1,7 @@
 {
+    "locale": {
+        "en-AU": "Anglais (AU)"
+    },
     "sw-order-detail": {
         "payPalCarrierDescription": "Si vous souhaitez changer de transporteur pour cette commande PayPal, <a target=\"_blank\" href=\"{orderLink}\">cliquez ici</a>",
         "payPalCarrierHelpText": "Vous pouvez définir et modifier le transporteur par défaut pour PayPal dans les options <a class=\"sw-internal-link sw-internal-link--inline\" href=\"#/sw/settings/shipping/index\">modes d'expédition<sw-icon name=\"regular-long-arrow-right\" small /></a>. Toutefois, cela n'aura aucun effet sur les commandes déjà passées.",
@@ -25,6 +28,14 @@
         "needOnboardingTooltip": "Terminez l'intégration pour activer ce mode de paiement"
     },
     "swag-paypal": {
+        "cross-border": {
+            "cardTitle": "Messagerie transfrontalière Pay Later",
+            "crossBorderBuyerCountryAuto": "Détermination automatique",
+            "crossBorderBuyerCountryOverride": "Localisation",
+            "crossBorderMessagingEnable": "Activer la localisation transfrontalière du message Pay Later",
+            "infoText": "La messagerie Pay Later est une fonctionnalité qui vous permet d'afficher un message Pay Later dans la langue du client. Cette fonctionnalité n'est disponible que pour certains pays. {0}",
+            "warningText": "Contactez votre représentant PayPal pour activer cette fonctionnalité pour votre compte."
+        },
         "general": {
             "descriptionTextModule": "Paramètres PayPal",
             "mainMenuItemGeneral": "PayPal"
@@ -66,13 +77,13 @@
                 },
                 "landingPage": {
                     "helpText": {
-                        "billing": "Inscription : Le site PayPal affiche un formulaire d'inscription comme page de destination.",
+                        "guest_checkout": "Paiement invité : Le site PayPal affiche un formulaire pour les informations de paiement, le client n'a pas à s'authentifier.",
                         "login": "Connexion : Le site PayPal affiche un écran de connexion comme page de destination.",
                         "no_preference": "Pas de préférence : PayPal décide quelle page est affichée, en fonction de l'interaction précédente du client avec PayPal."
                     },
                     "label": "Page de destination PayPal",
                     "options": {
-                        "billing": "Inscription",
+                        "guest_checkout": "Paiement invité",
                         "login": "Connexion",
                         "no_preference": "Pas de préférence"
                     }
@@ -157,12 +168,14 @@
                     "ineligible": "Inéligible",
                     "limited": "Limité",
                     "mybank": "Limité",
-                    "pending": "Autorisation en attente"
+                    "pending": "Autorisation en attente",
+                    "sofort": "Limité"
                 },
                 "onboardingStatusTooltip": {
                     "ineligible": "PayPal nous a informés que ce mode de paiement n'est actuellement pas éligible pour votre compte.",
                     "limited": "PayPal nous a informés que ce mode de paiement comporte certaines limites pour votre compte.",
-                    "mybank": "Les commerçants qui activeront MyBank après février 2023 devront obtenir l'approbation manuelle de PayPal. Contactez l'assistance PayPal pour plus d'informations à ce sujet."
+                    "mybank": "Les commerçants qui activeront MyBank après février 2023 devront obtenir l'approbation manuelle de PayPal. Contactez l'assistance PayPal pour plus d'informations à ce sujet.",
+                    "sofort": "L'activation de SOFORT après octobre 2023 n'est plus autorisée pour les nouveaux commerçants. Ceci est en préparation de la commercialisation complète du produit d'ici septembre 2024, comme l'a annoncé Klarna."
                 },
                 "paymentMethodStatusChangedSuccess": {
                     "active": "Le mode de paiement « {name} » est désormais actif.",
@@ -349,11 +362,45 @@
                 }
             },
             "testLive": "Tester les identifiants API",
-            "testSandbox": "Tester les informations d'identification de l'API"
+            "testSandbox": "Tester les informations d'identification de l'API",
+            "vaulting": {
+                "activateButton": {
+                    "label": "Activez Vaulting"
+                },
+                "beta": "Bêta",
+                "betaHelpText": "Découvrez notre dernière fonctionnalité « Vaulting ». Bien qu'elle soit encore officiellement en version bêta, vous pouvez commencer à utiliser la fonctionnalité dès maintenant. Nous apporterons des améliorations continues dans les prochaines versions et attendons vos commentaires avec impatience.",
+                "cardTitle": "Voûtes",
+                "description": {
+                    "text": "Le dépôt d'un compte PayPal vous permettra de débiter le compte ultérieurement sans que votre client soit présent lors de la transaction ou qu'il s'authentifie à nouveau auprès de PayPal lorsqu'il est présent lors de la transaction.",
+                    "title": "Paiement Paypal en une seule fois"
+                },
+                "enableACDC": {
+                    "label": "Activer Vaulting pour les cartes de crédit et de débit"
+                },
+                "enableWallet": {
+                    "label": "Activer Vaulting pour les paiements PayPal"
+                }
+            }
         },
         "tabs": {
+            "advanced": "Avancé",
             "general": "Généralités",
             "storefront": "Représentation du storefront"
+        },
+        "webhook": {
+            "buttonRefresh": "Rafraichir le webhook",
+            "cardTitle": "Webhook",
+            "infoText": "Le webhook est utilisé pour mettre à jour de manière asynchrone l'état de la transaction. Des webhooks enregistré incorrectement, c.-à-d. sur un autre serveur ou un serveur non disponible publiquement, peut engendrer des transactions non confirmées, que le traitement ait été effectué par PayPal ou non.",
+            "refreshFailed": {
+                "errorUnknown": "Erreur inconnue",
+                "title": "Échec de rafraichissement"
+            },
+            "status": {
+                "invalid": "Inscrit, mais le domaine peut ne pas correspondre",
+                "missing": "Non inscrit",
+                "unknown": "Chargement...",
+                "valid": "Inscrit"
+            }
         }
     },
     "swag-paypal-disputes": {
@@ -386,6 +433,11 @@
             "emptyState": {
                 "subline": "Modifiez le filtre pour afficher tous les litiges.",
                 "title": "Aucun litige trouvé"
+            },
+            "emptyStateNotAuthorized": {
+                "link": "Moyens de paiement",
+                "subline": "Aller à {link} pour la mise en place de PayPal.",
+                "title": "Pas de compte PayPal configuré"
             },
             "errorTitle": "Erreur lors de la récupération des litiges de PayPal",
             "title": "Litiges",
@@ -440,7 +492,6 @@
         "errorPage": {
             "canceledPaymentContent": "Une erreur s'est produite lors de la récupération des détails de paiement à partir de PayPal. Si vous voyez ce message, il s'agit probablement d'un paiement qui a été annulé par le client. Les paiements annulés seront supprimés par PayPal après un certain temps et ne sont plus disponibles.",
             "other": "Une erreur s'est produite lors de la récupération des détails de paiement à partir de PayPal.",
-            "sandboxLiveContent": "Une erreur s'est produite lors de la récupération des détails de paiement à partir de PayPal. Si ce message s'affiche, il s'agit probablement d'un paiement qui a été créé avec sandbox activé et qui a maintenant été demandé avec des données en direct, ou vice versa. Corrigez vos paramètres PayPal ou supprimez les commandes de test du système.",
             "title": "Détails de paiement non disponibles"
         },
         "general": {
