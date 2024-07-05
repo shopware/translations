@@ -2,11 +2,20 @@
     "global": {
         "error-codes": {
             "SWAG_MIGRATION_CONNECTION_NAME_ALREADY_EXISTS": "Der Verbindungsname existiert bereits.",
-            "SWAG_MIGRATION_CONNECTION_NAME_TO_SHORT": "Der Verbindungsname muss mindestens 6 Zeichen lang sein.",
+            "SWAG_MIGRATION_CONNECTION_NAME_TO_SHORT": "Der Verbindungsname muss mindestens 1 Zeichen lang sein.",
             "SWAG_MIGRATION_INVALID_API_KEY": "Der API-Schlüssel hat nicht die richtige Länge ({length}/40 Zeichen)."
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Fehler beim Abbrechen der Migration",
+            "approveFinishedMigration": "Fehler beim Abschließen der Migration",
+            "checkConnection": "Fehler beim Prüfen der Verbindung zum Quellsystem",
+            "fetchConnectionId": "Fehler beim Abrufen der Verbindungs-ID",
+            "getDataSelection": "Fehler beim Abrufen der Daten-Auswahl für die aktive Verbindung",
+            "getState": "Fehler beim Abrufen des Migrations-Status",
+            "startMigration": "Fehler beim Starten der Migration"
+        },
         "dashboard": {
             "button": "Migrations-Assistenten öffnen",
             "headline": "Beginne mit Deinem Umzug zu Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Abschließen"
             },
             "title": "Migrations-Assistent"
-        },
-        "emptyScreen": {
-            "connectButton": "Verbindung anlegen",
-            "description": "Stelle sicher, dass eine Verbindung zwischen den Systemen hergestellt ist. Erst dann ist eine Migration möglich. Mehr Informationen dazu findest Du hier:{linebreak}{link}",
-            "link": "Dokumentation: Migration zu Shopware 6",
-            "title": "Keine Verbindung "
         },
         "general": {
             "descriptionTextModule": "Modul zum Migrieren der Daten",
@@ -48,19 +51,21 @@
                 "data": "Daten",
                 "dataCount": "Datensätze",
                 "dataName": "Name",
-                "errorCode": "Fehlermeldung",
+                "errorCode": "Protokolleintrag",
                 "errorCount": "Anzahl",
+                "errorLevel": "Protokolllevel",
                 "errors": "Details",
                 "logDescription": "Für mehr Details {link}",
                 "logDownload": "lade das Protokoll herunter.",
                 "noErrorsOccurred": "Es sind keine Fehler aufgetreten.",
+                "noProgressData": "Dieser Durchlauf wurde in einer früheren Version des Plugins durchgeführt und die Daten wurden gelöscht.",
                 "runStatus": "Migrations-Status:",
                 "status": {
                     "aborted": "Abgebrochen",
                     "finished": "Abgeschlossen",
                     "running": "Laufend"
                 },
-                "timestamp": "Zeitpunkt:",
+                "timestamp": "Startzeitpunkt:",
                 "title": "Details zur Migration"
             },
             "importDateTime": "Startzeitpunkt",
@@ -91,7 +96,7 @@
                 },
                 "title": "Information"
             },
-            "backButton": "Zur Übersicht",
+            "backToOverviewButton": "Zur Übersicht",
             "confirmAbortDialog": {
                 "cancelPause": "Pausieren",
                 "cancelRunning": "Fortsetzen",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Die {requiredForEntity} Entität mit der Quell-ID „{requiredForSourceId}“ konnte nicht die abhängige {entity} Entität mit der Quell-Id „{sourceId}“ finden.",
                     "title": "Konnte {entity} nicht finden"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Ein Fehler ist in der Message-Queue aufgetreten.",
+                    "title": "Message-Queue-Fehler"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Die Migration wurde automatisch abgebrochen, da zu viele aufeinander folgende Fehler aufgetreten sind.",
+                    "title": "Migration wurde automatisch abgebrochen"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Fertig",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Zur Übersicht",
-                    "message": "Die Migration hat den Prozess beendet um einen Datenverlust zu vermeiden. Prüfe die Internetverbindung und starte eine neue Migration.",
-                    "title": "Die Verbindung wurde unterbrochen"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Nachrichtenwarteschlange-Dokumentation",
                 "flowChart": {
+                    "cleanup": "Aufräumen",
                     "fetchData": "Lesen",
                     "finish": "Fertig",
+                    "indexing": "Indexierung",
                     "premapping": "Prüfen",
                     "processMedia": "Download",
                     "writeData": "Schreiben"
                 },
-                "mediaProcessScreen": {
-                    "message": "Der Prozess läuft im Hintergrund",
-                    "title": "Der Download der Medien wird gestartet"
-                },
-                "pauseScreen": {
-                    "message": "Du hast nicht pausiert? Bei fehlender Internetverbindung wechselt die Migration automatisch in den Pause-Modus um einen Datenverlust zu vermeiden.",
-                    "title": "Die Migration ist pausiert"
-                },
+                "notice": "Tipp: Dieser Vorgang läuft in der Nachrichtenwarteschlange ab. Du musst nicht auf dieser Seite bleiben, wenn dein Shop richtig konfiguriert ist.",
                 "result": {
                     "caption": "Die Medien werden weiter im Hintergrund heruntergeladen. Große Dateien können etwas Zeit in Anspruch nehmen.",
-                    "historyLink": "Details der Migration ansehen",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Die Indexierung wurde fertiggestellt.",
-                            "title": "Indexierung abgeschlossen"
-                        },
-                        "running": {
-                            "message": "Die Indexierung läuft momentan im Hintergrund.",
-                            "title": "Indexierung läuft"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Historie öffnen",
-                        "message": "Logfile einsehen oder herunterladen",
-                        "title": "Migration - Historie"
-                    },
-                    "survey": {
-                        "buttonText": "Jetzt Rückmeldung geben",
-                        "caption": "Gib uns gerne eine Rückmeldung über den Migrationsprozess, damit wir die Migration noch besser machen können.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Deine Erfahrungen sind uns wichtig"
-                    },
+                    "historyHint": "Du kannst diese Informationen jederzeit in der Migrations-Historie einsehen. Es kann sein, dass zu einem späteren Zeitpunkt noch mehr Log-Nachrichten hinzukommen, weil der Mediendownload noch im Hintergrund läuft.",
+                    "logSummary": "Logbuch",
                     "title": "Der Migrations-Assistent ist fertig"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Nicht geschriebene Daten werden aufgeräumt. Bereits migrierte Daten bleiben sind eventuell unbrauchbar",
+                        "long": "Die Migration wird abgebrochen",
+                        "short": "Abbrechen"
+                    },
+                    "cleanup": {
+                        "caption": "Temporäre Daten werden gelöscht. Die Migration ist fast abgeschlossen.",
+                        "long": "Die Migration wird aufgeräumt",
+                        "short": "Aufräumen"
+                    },
+                    "fetching": {
                         "caption": "Die neuen Zuordnungen werden verarbeitet.",
-                        "hint": "Tipp: Die Migration läuft Schritt für Schritt im Hintergrund weiter, erkunde solange Shopware 6.",
                         "long": "Die Daten werden von Deinem System gelesen",
                         "short": "Lesen"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Große Bilddaten können etwas Zeit in Anspurch nehmen.",
-                        "hint": "Tipp: Bei schlechter Verbindung den Download pausieren und später fortsetzen.",
-                        "long": "Die Medien werden heruntergeladen",
-                        "short": "Medien laden"
+                    "finish": "Fertig",
+                    "indexing": {
+                        "caption": "Die neuen Daten werden indexiert.",
+                        "long": "Die Indexierung wird durchgeführt",
+                        "short": "Indexierung"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Große Bilddaten können etwas Zeit in Anspruch nehmen.",
+                        "long": "Die Medien werden übertragen",
+                        "short": "Medien übertragen"
+                    },
+                    "writing": {
                         "caption": "Je nach Shopgröße kann es etwas länger dauern.",
-                        "hint": "Tipp: Dieser Schritt kann pausiert und fortgesetzt werden.",
                         "long": "Die Daten werden in Shopware 6 geschrieben",
                         "short": "Schreiben"
-                    },
-                    "finish": "Fertig"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Abbrechen",
-                        "confirm": "Migration beenden",
-                        "hint": "Möchtest Du die Migration beenden?",
-                        "message": "Eine Übernahme der aktiven Migration ist derzeit nicht möglich. Wenn Du möchtest, kannst Du die laufende Migration beenden und danach in diesem Browserfenster eine neue Migration starten.",
-                        "title": "Migration beenden"
-                    },
-                    "aborted": {
-                        "message": "Der Migrationsprozess wurde in einem anderen Browser oder Browser-Tab beendet. Bitte überprüfe die Zuständigkeiten und starte eine neue Migration.",
-                        "title": "Die Migration wurde beendet"
-                    },
-                    "buttonCheck": "Status prüfen",
-                    "buttonRedirect": "Zur Übersicht",
-                    "forbidden": {
-                        "message": "Es ist bereits eine Migration in einem anderen Browser-Tab gestartet. Bitte wechsle in diesen Tab, um den Migrationsprozess einsehen zu können.",
-                        "title": "Die Migration wurde bereits gestartet"
-                    },
-                    "interrupted": {
-                        "message": "Der Migrationsprozess wurde von einem anderen Browser oder Browser-Tab übernommen. Dieser Prozess kann nun, je nach aktuellem Status der Migration, entweder übernommen oder beendet werden.",
-                        "title": "Die Migration wurde übernommen"
-                    },
-                    "redirectModal": {
-                        "confirm": "Zur Übersicht",
-                        "message": "Die Migration wurde bereits in einem anderen Browser oder Browser-Tab durchgeführt.",
-                        "title": "Migration abgeschlossen"
-                    },
-                    "running": {
-                        "message": "Es ist bereits eine Migration in einem anderen Browser oder Browser-Tab gestartet. Dieser Prozess kann nun, je nach aktuellem Status der Migration, entweder übernommen oder beendet werden.",
-                        "title": "Die Migration wurde bereits gestartet"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Abbrechen",
-                        "confirm": "Migration übernehmen",
-                        "hint": "Möchtest Du die Migration übernehmen?",
-                        "message": "Eine Übernahme der aktiven Migration ist möglich. Wenn Du möchtest, kannst Du die Migration jetzt in diesem Browserfenster fortsetzen.",
-                        "title": "Migration übernehmen"
                     }
                 }
             },
@@ -427,58 +385,66 @@
                     "pluginData": "Plugindaten"
                 },
                 "entities": {
-                    "category": "Kategorien:",
-                    "category_association": "Kategorie-Verbindungen:",
-                    "category_cms_page_association": "Kategorie-Layout-Verbindungen:",
-                    "category_product_stream_association": "Kategorie-Dynamische-Produktgruppe-Verbindungen:",
-                    "cms_page": "Layouts:",
-                    "country": "Länder:",
-                    "country_state": "Bundesländer:",
-                    "currency": "Währungen:",
-                    "custom_field_set": "Zusatzfelder:",
-                    "customer": "Kunden:",
-                    "customer_group": "Kundengruppen:",
-                    "customer_wishlist": "Merkzettel:",
-                    "delivery_time": "Lieferzeiten:",
-                    "language": "Sprachen:",
-                    "mail_template": "E-Mail-Template:",
-                    "main_variant_relation": "Hauptvariantenrelationen:",
-                    "media": "Medien:",
-                    "media_folder": "Medienordner:",
-                    "media_folder_inheritance": "Medienordner-Vererbungen:",
-                    "number_range": "Nummernkreise:",
-                    "order": "Bestellungen:",
-                    "order_document": "Bestelldokumente:",
-                    "order_document_base_config": "Dokumentkonfigurationen:",
-                    "order_document_inheritance": "Bestelldokument-Relationen:",
-                    "page_system_config": "Layout-Stammdaten:",
-                    "product": "Produkte:",
-                    "product_cross_selling": "Cross Selling:",
-                    "product_feature_set": "Wesentliche Merkmale:",
-                    "product_manufacturer": "Hersteller:",
-                    "product_option_relation": "Produktoptionen:",
-                    "product_property_relation": "Produkteigenschaften:",
-                    "product_review": "Bewertungen:",
-                    "product_sorting": "Produkt-Sortierungen:",
-                    "product_stream": "Dynamische Produktgruppen:",
-                    "product_stream_filter_inheritance": "Dynamische Produktgruppen-Filter:",
-                    "promotion": "Rabatte & Aktionen:",
-                    "property_group": "Produkteigenschaften-Gruppen:",
-                    "property_group_option": "Eigenschaften:",
-                    "rule": "Regeln:",
-                    "sales_channel": "Verkaufskanäle:",
-                    "sales_channel_domain": "Domänen:",
-                    "salutation": "Anreden:",
-                    "seo_url": "SEO-URLs:",
-                    "seo_url_template": "SEO-URL-Vorlagen:",
-                    "shipping_method": "Versandmethoden:",
-                    "snippet": "Textbausteine:",
-                    "snippet_set": "Textbaustein-Sets:",
-                    "system_config": "Stammdaten:",
-                    "tax": "Steuersätze:",
-                    "tax_rule": "Steuerregeln:",
-                    "translation": "Übersetzungen:",
-                    "unit": "Einheiten:"
+                    "category": "Kategorien",
+                    "category_association": "Kategorie-Verbindungen",
+                    "category_cms_page_association": "Kategorie-Layout-Verbindungen",
+                    "category_custom_field": "Kategorie Zusatzfelder",
+                    "category_product_stream_association": "Kategorie-Dynamische-Produktgruppe-Verbindungen",
+                    "cms_page": "Layouts",
+                    "country": "Länder",
+                    "country_state": "Bundesländer",
+                    "currency": "Währungen",
+                    "custom_field_set": "Zusatzfelder",
+                    "customer": "Kunden",
+                    "customer_custom_field": "Kunden Zusatzfelder",
+                    "customer_group": "Kundengruppen",
+                    "customer_group_custom_field": "Kundengruppe Zusatzfelder",
+                    "customer_wishlist": "Merkzettel",
+                    "delivery_time": "Lieferzeiten",
+                    "language": "Sprachen",
+                    "mail_template": "E-Mail-Template",
+                    "main_variant_relation": "Hauptvariantenrelationen",
+                    "media": "Medien",
+                    "media_folder": "Medienordner",
+                    "media_folder_inheritance": "Medienordner-Vererbungen",
+                    "number_range": "Nummernkreise",
+                    "order": "Bestellungen",
+                    "order_custom_field": "Bestellungen Zusatzfelder",
+                    "order_document": "Bestelldokumente",
+                    "order_document_base_config": "Dokumentkonfigurationen",
+                    "order_document_custom_field": "Bestelldokument Zusatzfelder",
+                    "order_document_inheritance": "Bestelldokument-Relationen",
+                    "page_system_config": "Layout-Stammdaten",
+                    "product": "Produkte",
+                    "product_cross_selling": "Cross Selling",
+                    "product_custom_field": "Produkt Zusatzfelder",
+                    "product_feature_set": "Wesentliche Merkmale",
+                    "product_manufacturer": "Hersteller",
+                    "product_manufacturer_custom_field": "Hersteller Zusatzfelder",
+                    "product_option_relation": "Produktoptionen",
+                    "product_price_custom_field": "Produktpreis Zusatzfelder",
+                    "product_property_relation": "Produkteigenschaften",
+                    "product_review": "Bewertungen",
+                    "product_sorting": "Produkt-Sortierungen",
+                    "product_stream": "Dynamische Produktgruppen",
+                    "product_stream_filter_inheritance": "Dynamische Produktgruppen-Filter",
+                    "promotion": "Rabatte & Aktionen",
+                    "property_group": "Produkteigenschaften-Gruppen",
+                    "property_group_option": "Eigenschaften",
+                    "rule": "Regeln",
+                    "sales_channel": "Verkaufskanäle",
+                    "sales_channel_domain": "Domänen",
+                    "salutation": "Anreden",
+                    "seo_url": "SEO-URLs",
+                    "seo_url_template": "SEO-URL-Vorlagen",
+                    "shipping_method": "Versandmethoden",
+                    "snippet": "Textbausteine",
+                    "snippet_set": "Textbaustein-Sets",
+                    "system_config": "Stammdaten",
+                    "tax": "Steuersätze",
+                    "tax_rule": "Steuerregeln",
+                    "translation": "Übersetzungen",
+                    "unit": "Einheiten"
                 },
                 "headers": {
                     "dataType": "Typ",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Neue Verbindung anlegen",
+                "buttonCreateInitialConnection": "Initiale Verbindung anlegen",
                 "buttonEditSettings": "Verbindung bearbeiten",
                 "buttonProfileInstallation": "Weiteres Profil installieren",
                 "buttonRemoveCredentials": "Zugangsdaten löschen",
@@ -498,12 +465,13 @@
                 "cardTitle": "Shopsystem",
                 "connected": "Verbunden",
                 "connectionCheck": "Verbindungscheck:",
-                "displayDateTime": "{time} Uhr - {date}",
                 "gateway": "Schnittstelle:",
                 "lastMigration": "Letzte Migration:",
+                "noConnection": "Keine Verbindung",
                 "noMigrationDoneYet": "bisher keine durchgeführt",
                 "notConnected": "Nicht verbunden",
                 "profile": "System-Profil:",
+                "refreshTooltip": "Prüfe die Verbindung zum Quellsystem",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Abbrechen",
                     "confirmButtonText": "Ja, löschen",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Wir haben festgestellt, dass die Version deines Quellsystems {sourceSystem} nicht der Version des Zielsystems {targetSystem} entspricht. Bitte stelle sicher, dass beide Systeme in der gleichen Major-Version vorliegen, bevor Du mit der Migration startest.",
-            "startButton": "Fortfahren",
             "title": "Übersicht"
         },
         "wizard": {
