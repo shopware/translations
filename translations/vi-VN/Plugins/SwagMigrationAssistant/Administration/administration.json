@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Không thể hủy bỏ quá trình di chuyển.",
+            "approveFinishedMigration": "Không thành công trong khi hoàn tất quá trình di chuyển",
+            "checkConnection": "Không kiểm tra kết nối với hệ thống nguồn.",
+            "fetchConnectionId": "Không nhận được ID kết nối đang hoạt động.",
+            "getDataSelection": "Không thể lấy lựa chọn dữ liệu cho kết nối hiện tại.",
+            "getState": "Không thể nhận được trạng thái di chuyển.",
+            "startMigration": "Không thể bắt đầu di chuyển."
+        },
         "dashboard": {
             "button": "Mở Trợ lý Di chuyển",
             "headline": "Chuyển đến Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Kết thúc"
             },
             "title": "Trợ lý di chuyển"
-        },
-        "emptyScreen": {
-            "connectButton": "Tạo kết nối",
-            "description": "Đảm bảo rằng một kết nối đã được thiết lập giữa các hệ thống. Điều này là cần thiết cho việc di chuyển dữ liệu. Bạn có thể tìm thêm thông tin tại đây:{linebreak}{link}",
-            "link": "Tài liệu: Di chuyển dữ liệu đến Shopware 6",
-            "title": "Không có kết nối"
         },
         "general": {
             "descriptionTextModule": "Mô-đun để di chuyển dữ liệu",
@@ -50,10 +53,12 @@
                 "dataName": "Tên",
                 "errorCode": "Thông báo lỗi",
                 "errorCount": "Tổng số",
+                "errorLevel": "Cấp nhật ký",
                 "errors": "Thông tin chi tiết",
                 "logDescription": "Để biết thêm chi tiết {link}",
                 "logDownload": "tải xuống tệp nhật ký.",
                 "noErrorsOccurred": "Không có lỗi xảy ra.",
+                "noProgressData": "Việc chạy này đã được thực hiện trong một phiên bản trước của plugin và dữ liệu của nó đã bị xóa.",
                 "runStatus": "Trạng thái di chuyển dữ liệu:",
                 "status": {
                     "aborted": "Đã hủy bỏ",
@@ -91,7 +96,7 @@
                 },
                 "title": "Thông tin"
             },
-            "backButton": "Tổng quan",
+            "backToOverviewButton": "Quay lại tổng quan",
             "confirmAbortDialog": {
                 "cancelPause": "Tạm dừng",
                 "cancelRunning": "Tiếp tục",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Thực thể {requiredForEntity} có id nguồn \"{requiredForSourceId}\" không thể tìm thấy thực thể {entity} phụ thuộc với id nguồn \"{sourceId}”.",
                     "title": "Không thể tìm thấy thực thể {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Một ngoại lệ xảy ra trong khi xử lý hàng đợi thư.",
+                    "title": "Ngoại lệ hàng đợi tin nhắn"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Quá trình di chuyển đã bị hủy tự động, vì quá nhiều trường hợp ngoại lệ liên tiếp xảy ra.",
+                    "title": "Di chuyển tự động bị hủy"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Kết thúc",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Cài đặt chung",
-                    "message": "Tiến trình di chuyển dữ liệu đã tự kết thúc để tránh mất dữ liệu. Kiểm tra kết nối internet và bắt đầu một tiến trình di chuyển dữ liệu mới.",
-                    "title": "Kết nối đã bị mất"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Tài liệu về hàng đợi tin nhắn",
                 "flowChart": {
+                    "cleanup": "Dọn dẹp",
                     "fetchData": "Đang đọc",
                     "finish": "Hoàn tất",
+                    "indexing": "Lập chỉ mục",
                     "premapping": "Kiểm tra",
                     "processMedia": "Đang tải xuống",
                     "writeData": "Đang lưu"
                 },
-                "mediaProcessScreen": {
-                    "message": "Quá trình này đang chạy ở chế độ nền",
-                    "title": "Bắt đầu tải về các tệp phương tiện truyền thông"
-                },
-                "pauseScreen": {
-                    "message": "Không phải bạn dừng tiến trình lại ư? Nếu không có kết nối internet, quá trình di chuyển sẽ tự động chuyển sang chế độ tạm dừng để tránh mất dữ liệu.",
-                    "title": "Quá trình di chuyển dữ liệu bị tạm dừng"
-                },
+                "notice": "Mẹo: Quá trình này chạy trong hàng đợi thư. Bạn không cần phải ở lại trang này nếu cửa hàng của bạn được cấu hình chính xác.",
                 "result": {
                     "caption": "Việc tải về tệp đa phương tiện sẽ tiếp tục ở chế độ nền. Các tệp lớn có thể mất một thời gian.",
-                    "historyLink": "Xem chi tiết di chuyển dữ liệu",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Việc lập chỉ mục đã được hoàn thành.",
-                            "title": "Việc lập chỉ mục đã hoàn thành"
-                        },
-                        "running": {
-                            "message": "Hiện tại việc lập chỉ mục đang chạy trong tiến trình nền.",
-                            "title": "Việc lập các chỉ mục đang tiến hành"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Mở xem lịch sử",
-                        "message": "Xem hoặc tải xuống tệp nhật ký",
-                        "title": "Lịch sử di chuyển dữ liệu"
-                    },
-                    "survey": {
-                        "buttonText": "Đưa ra phản hồi ngay",
-                        "caption": "Vui lòng giúp chúng tôi cải thiện quá trình di chuyển dữ liệu bằng cách cung cấp phản hồi về trải nghiệm của bạn.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Suy nghĩ của bạn rất quan trọng"
-                    },
+                    "historyHint": "Bạn có thể xem thông tin này bất cứ lúc nào trong lịch sử di chuyển. Có thể nhiều tin nhắn nhật ký sẽ được thêm vào sau vì quá trình tải xuống phương tiện vẫn đang chạy trong nền.",
+                    "logSummary": "Sổ nhật ký",
                     "title": "Trợ lý di chuyển dữ liệu đã hoàn thành"
                 },
                 "status": {
-                    "FETCH_DATA": {
-                        "caption": "Các chỉ định mới được xử lý.",
-                        "hint": "Mẹo: Việc di chuyển dữ liệu tiếp tục từng bước tiến trình nền, trong lúc đó bạn có thể khám phá Shopware 6.",
+                    "aborting": {
+                        "caption": "Dữ liệu bất thành văn được dọn dẹp. Dữ liệu đã di chuyển có thể không sử dụng được.",
+                        "long": "Việc di chuyển đang bị hủy",
+                        "short": "Hủy bỏ"
+                    },
+                    "cleanup": {
+                        "caption": "Dữ liệu tạm thời đang bị xóa. Quá trình di cư gần như hoàn tất.",
+                        "long": "Việc di cư đang được dọn dẹp",
+                        "short": "Dọn dẹp"
+                    },
+                    "fetching": {
+                        "caption": "Các nhiệm vụ mới được xử lý.",
                         "long": "Dữ liệu sẽ được đọc từ hệ thống của bạn",
                         "short": "Đang đọc"
                     },
-                    "PROCESS_MEDIA_FILES": {
+                    "finish": "Xong",
+                    "indexing": {
+                        "caption": "Quá trình di cư gần như hoàn tất.",
+                        "long": "Dữ liệu mới đang được lập chỉ mục",
+                        "short": "Lập chỉ mục"
+                    },
+                    "media-processing": {
                         "caption": "Dữ liệu hình ảnh lớn có thể mất một thời gian để xử lý.",
-                        "hint": "Mẹo: Nếu tốc độ kết nối kém, hãy tạm dừng tải xuống và tiếp tục sau.",
-                        "long": "Tệp truyền thông đa phương tiện đang được tải xuống",
-                        "short": "Đang tải xuống"
+                        "long": "Các phương tiện truyền thông đang được chuyển",
+                        "short": "Truyền phương tiện truyền thông"
                     },
-                    "WRITE_DATA": {
-                        "caption": "Tùy thuộc vào kích thước dữ liệu cửa hàng, tiến trình có thể mất một vài phút.",
-                        "hint": "Mẹo: Bạn có thể tạm dừng và tiếp tục quá trình di chuyển dữ liệu bất cứ lúc nào.",
-                        "long": "Dữ liệu đang được lưu vào Shopware 6",
+                    "writing": {
+                        "caption": "Tùy thuộc vào quy mô cửa hàng, nó có thể mất một vài phút.",
+                        "long": "Dữ liệu đang được ghi trong Shopware 6",
                         "short": "Đang lưu"
-                    },
-                    "finish": "Xong"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Hủy bỏ",
-                        "confirm": "Hủy bỏ di chuyển dữ liệu",
-                        "hint": "Bạn có muốn hủy di chuyển dữ liệu không?",
-                        "message": "Hiện tại, không thể tiếp quản việc di chuyển dữ liệu đang hoạt động. Nếu bạn muốn, bây giờ bạn có thể hủy di chuyển đang hoạt động và bắt đầu một tiến trình di chuyển dữ liệu mới ngay sau đó.",
-                        "title": "Hủy bỏ di chuyển dữ liệu"
-                    },
-                    "aborted": {
-                        "message": "Một người dùng khác đã hủy quá trình di chuyển dữ liệu trong một trình duyệt hoặc tab trình duyệt riêng biệt. Vui lòng bắt đầu một tiến trình di chuyển dữ liệu mới.",
-                        "title": "Di chuyển dữ liệu đã bị hủy"
-                    },
-                    "buttonCheck": "Kiểm tra trạng thái",
-                    "buttonRedirect": "Cài đặt chung",
-                    "forbidden": {
-                        "message": "Tiến trình di chuyển dữ liệu đã được bắt đầu trong một trình duyệt hoặc tab trình duyệt khác. Vui lòng chuyển sang tab đó để xem quá trình di chuyển.",
-                        "title": "Việc di chuyển dữ liệu đã bắt đầu"
-                    },
-                    "interrupted": {
-                        "message": "Quá trình di chuyển dữ liệu đã được thực hiện từ một trình duyệt hoặc tab trình duyệt khác. Bạn có thể hủy bỏ hoặc tiếp quản quy trình, tùy thuộc vào trạng thái hiện tại của quá trình di chuyển dữ liệu.",
-                        "title": "Việc di chuyển dữ liệu đã được tiếp quản"
-                    },
-                    "redirectModal": {
-                        "confirm": "Cài đặt chung",
-                        "message": "Quá trình di chuyển đã được hoàn tất trong một trình duyệt hoặc tab trình duyệt khác.",
-                        "title": "Việc di chuyển dữ liệu đã hoàn tất"
-                    },
-                    "running": {
-                        "message": "Đã có một tiến trình di chuyển dữ liệu đang chạy trong một trình duyệt hoặc tab trình duyệt khác. Bây giờ bạn có thể tiếp quản việc di chuyển dữ liệu đang chạy hoặc hủy đi tiến trình đó.",
-                        "title": "Việc di chuyển dữ liệu đã bắt đầu"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Hủy",
-                        "confirm": "Tếp nhận việc di chuyển dữ liệu",
-                        "hint": "Bạn có muốn tiếp quản việc di chuyển dữ liệu không?",
-                        "message": "Có thể tiếp quản việc tiến trình di chuyển dữ liệu đang hoạt động. Nếu bạn muốn, bạn có thể tiếp tục di chuyển dữ liệu trong cửa sổ trình duyệt này.",
-                        "title": "Đã tiếp nhận việc di chuyển dữ liệu"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Danh mục:",
                     "category_association": "Các hiệp hội thể loại:",
                     "category_cms_page_association": "Các hiệp hội bố trí thể loại:",
+                    "category_custom_field": "Thể loại trường tùy chỉnh",
                     "category_product_stream_association": "Danh mục liên kết nhóm sản phẩm động:",
                     "cms_page": "Bố cục:",
                     "country": "Các quốc gia:",
@@ -437,7 +396,9 @@
                     "currency": "Các loại tiền tệ:",
                     "custom_field_set": "Bộ trường tùy chỉnh:",
                     "customer": "Khách hàng:",
+                    "customer_custom_field": "Các trường tùy chỉnh của khách hàng",
                     "customer_group": "Nhóm khách hàng:",
+                    "customer_group_custom_field": "Trường tùy chỉnh nhóm khách hàng",
                     "customer_wishlist": "Danh sách mong muốn:",
                     "delivery_time": "Thời gian giao hàng:",
                     "language": "Ngôn ngữ:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Phương tiện thư mục kế thừa:",
                     "number_range": "Phạm vi số:",
                     "order": "Đơn đặt hàng:",
+                    "order_custom_field": "Đặt hàng các trường tùy chỉnh",
                     "order_document": "Tài liệu đơn hàng:",
                     "order_document_base_config": "Cấu hình tài liệu:",
+                    "order_document_custom_field": "Đặt hàng các trường tùy chỉnh tài liệu",
                     "order_document_inheritance": "Quan hệ tài liệu đơn hàng:",
                     "page_system_config": "Trang thông tin cơ bản:",
                     "product": "Sản phẩm:",
                     "product_cross_selling": "Bán chéo:",
+                    "product_custom_field": "Các trường tùy chỉnh sản phẩm",
                     "product_feature_set": "Các đặc điểm thiết yếu:",
                     "product_manufacturer": "Các nhà sản xuất sản phẩm:",
+                    "product_manufacturer_custom_field": "Các lĩnh vực tùy chỉnh của nhà sản xuất sản phẩm",
                     "product_option_relation": "Tùy chọn sản phẩm:",
+                    "product_price_custom_field": "Các trường tùy chỉnh giá sản phẩm",
                     "product_property_relation": "Thuộc tính sản phẩm:",
                     "product_review": "Đánh giá:",
                     "product_sorting": "Phân loại sản phẩm:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Tạo kết nối mới",
+                "buttonCreateInitialConnection": "Tạo kết nối ban đầu",
                 "buttonEditSettings": "Chỉnh sửa kết nối",
                 "buttonProfileInstallation": "Cài đặt một hồ sơ khác",
                 "buttonRemoveCredentials": "Xóa dữ liệu truy cập",
@@ -498,12 +465,13 @@
                 "cardTitle": "Hệ thống cửa hàng",
                 "connected": "Đã kết nối",
                 "connectionCheck": "Kiểm tra kết nối:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Cổng:",
                 "lastMigration": "Lần cuối di chuyển dữ liệu:",
+                "noConnection": "Không có kết nối",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Không được kết nối",
                 "profile": "Hồ sơ hệ thống:",
+                "refreshTooltip": "Kiểm tra kết nối với hệ thống nguồn",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Hủy bỏ",
                     "confirmButtonText": "Có, xóa",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Chúng tôi nhận thấy rằng phiên bản hệ thống nguồn {sourceSystem} của bạn không khớp với phiên bản {targetSystem} của hệ thống mục tiêu của bạn. Vui lòng đảm bảo sử dụng cùng một phiên bản chính cho cả hai hệ thống trước khi bạn bắt đầu di chuyển.",
-            "startButton": "Tiếp tục",
             "title": "Chung"
         },
         "wizard": {

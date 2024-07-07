@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Nepavyko nutraukti migracijos.",
+            "approveFinishedMigration": "Nepavyko užbaigti perkėlimą",
+            "checkConnection": "Nepavyko patikrinti ryšio su šaltinio sistema.",
+            "fetchConnectionId": "Nepavyko gauti aktyvaus ryšio ID.",
+            "getDataSelection": "Nepavyko gauti duomenų pasirinkimo dabartiniam ryšiui.",
+            "getState": "Nepavyko gauti migracijos valstybės.",
+            "startMigration": "Nepavyko pradėti migracijos."
+        },
         "dashboard": {
             "button": "Atviras Migracijos",
             "headline": "Perėjimas prie Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Baigti"
             },
             "title": "migracijos asistentas"
-        },
-        "emptyScreen": {
-            "connectButton": "Sukurti ryšį",
-            "description": "Įsitikinkite, kad tarp sistemų buvo užmegztas ryšys. Tai reikalinga migracijai. Daugiau informacijos galite rasti čia:{linebreak}{link}",
-            "link": "Dokumentai: migracija į “Shopware 6”",
-            "title": "Nėra ryšio"
         },
         "general": {
             "descriptionTextModule": "Modulis duomenims perkelti",
@@ -50,10 +53,12 @@
                 "dataName": "Pavadinimas",
                 "errorCode": "Klaidos pranešimas",
                 "errorCount": "Kiekis",
+                "errorLevel": "Žurnalo lygis",
                 "errors": "Išsamiau",
                 "logDescription": "Daugiau informacijos {link}",
                 "logDownload": "atsisiųsti žurnalo failą.",
                 "noErrorsOccurred": "Klaidų neįvyko.",
+                "noProgressData": "Šis paleidimas buvo atliktas ankstesnėje papildinio versijoje ir jo duomenys buvo ištrinti.",
                 "runStatus": "Migracijos statusas:",
                 "status": {
                     "aborted": "Abortuotas",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informacija"
             },
-            "backButton": "Apžvalga",
+            "backToOverviewButton": "Grįžti atgal",
             "confirmAbortDialog": {
                 "cancelPause": "Pauzė",
                 "cancelRunning": "Tęsti",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "{requiredForEntity} subjektas su šaltinio id \"{requiredForSourceId}\" negali rasti priklausomas {entity} subjektas su šaltinio id \"{sourceId}”.",
                     "title": "Nepavyko rasti {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Apdorojant pranešimų eilę įvyko išimtis.",
+                    "title": "Pranešimų eilės išimtis"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migracija buvo nutraukta automatiškai, nes įvyko per daug išimčių iš eilės.",
+                    "title": "Migracija nutraukta automatiškai"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Baigti",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Generolas",
-                    "message": "Perkėlimas baigė procesą, kad būtų išvengta duomenų praradimo. Patikrinkite interneto ryšį ir pradėkite naują perkėlimą.",
-                    "title": "Ryšys buvo prarastas"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Pranešimų eilės dokumentacija",
                 "flowChart": {
+                    "cleanup": "Išvalyti",
                     "fetchData": "Skaitymas",
                     "finish": "Atlikta",
+                    "indexing": "Indeksavimas",
                     "premapping": "Tikrinti",
                     "processMedia": "Atsisiuntimas",
                     "writeData": "Rašymas"
                 },
-                "mediaProcessScreen": {
-                    "message": "Procesas vyksta fone",
-                    "title": "Medijos atsisiuntimo pradžia"
-                },
-                "pauseScreen": {
-                    "message": "Jūs nesustabdėte? Jei nėra interneto ryšio, perkėlimas automatiškai persijungia į pristabdymo režimą, kad būtų išvengta duomenų praradimo.",
-                    "title": "Migracija pristabdyta"
-                },
+                "notice": "Patarimas: Šis procesas vykdomas pranešimų eilėje. Jums nereikia likti šiame puslapyje, jei jūsų parduotuvė yra sukonfigūruota teisingai.",
                 "result": {
                     "caption": "Žiniasklaidos atsisiuntimas tęsiasi fone. Dideli failai gali užtrukti šiek tiek laiko.",
-                    "historyLink": "Peržiūrėti perkėlimo informaciją",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indeksavimas baigtas.",
-                            "title": "Indeksavimas baigtas"
-                        },
-                        "running": {
-                            "message": "Šiuo metu indeksavimo fone.",
-                            "title": "Vykdomas indeksavimas"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Atvira istorija",
-                        "message": "Peržiūrėkite arba atsisiųskite logfile",
-                        "title": "Migracijos istorija"
-                    },
-                    "survey": {
-                        "buttonText": "Pateikite atsiliepimus dabar",
-                        "caption": "Padėkite mums pagerinti migracijos procesą, pateikdami atsiliepimus apie jūsų patirtį.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Jūsų mintys yra svarbios"
-                    },
+                    "historyHint": "Šią informaciją galite peržiūrėti bet kuriuo metu migracijos istorijoje. Gali būti, kad vėliau bus pridėta daugiau žurnalų pranešimų, nes medijos atsisiuntimas vis dar veikia fone.",
+                    "logSummary": "Laivo žurnalas",
                     "title": "Migracijos padėjėjas yra padaryta"
                 },
                 "status": {
-                    "FETCH_DATA": {
-                        "caption": "Naujos užduotys yra apdorojamos.",
-                        "hint": "Patarimas: perkėlimas tęsiasi žingsnis po žingsnio fone, tyrinėkite “Shopware 6”.",
-                        "long": "Duomenys bus skaitomi iš jūsų sistemos",
+                    "aborting": {
+                        "caption": "Nerašyti duomenys išvalomi. Jau perkelti duomenys gali būti netinkami naudoti.",
+                        "long": "Migracija nutraukiama",
+                        "short": "Abortas"
+                    },
+                    "cleanup": {
+                        "caption": "Laikini duomenys yra pašalinami. Migracija jau beveik baigta.",
+                        "long": "Migracija valoma",
+                        "short": "Išvalyti"
+                    },
+                    "fetching": {
+                        "caption": "Naujos užduotys yra tvarkomos.",
+                        "long": "Duomenys bus nuskaitomi iš jūsų sistemos",
                         "short": "Skaitymas"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Dideli vaizdo duomenys gali užtrukti šiek tiek laiko apdoroti.",
-                        "hint": "Patarimas: Jei ryšys prastas, pristabdykite atsisiuntimą ir tęskite vėliau.",
-                        "long": "Žiniasklaida atsisiunčiama",
-                        "short": "Atsisiuntimas"
+                    "finish": "Atlikta",
+                    "indexing": {
+                        "caption": "Migracija beveik baigta.",
+                        "long": "Nauji duomenys indeksuojami",
+                        "short": "Indeksavimas"
                     },
-                    "WRITE_DATA": {
-                        "caption": "Priklausomai nuo parduotuvės dydžio tai gali užtrukti keletą akimirkų.",
-                        "hint": "Patarimas: bet kuriuo metu galite pristabdyti ir atnaujinti perkėlimo procesą.",
+                    "media-processing": {
+                        "caption": "Didelių vaizdo duomenų apdorojimas gali užtrukti.",
+                        "long": "Žiniasklaida perduodama",
+                        "short": "Žiniasklaidos perdavimas"
+                    },
+                    "writing": {
+                        "caption": "Priklausomai nuo parduotuvės dydžio, tai gali užtrukti keletą akimirkų.",
                         "long": "Duomenys rašomi “Shopware 6”",
                         "short": "Rašymas"
-                    },
-                    "finish": "Atlikta"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Atšaukti",
-                        "confirm": "Atšaukti migraciją",
-                        "hint": "Ar norėtumėte atšaukti perkėlimą?",
-                        "message": "Šiuo metu neįmanoma perimti aktyvios migracijos. Jei norite, dabar galite atšaukti aktyvų perkėlimą ir pradėti naują tiesiogiai po to.",
-                        "title": "Atšaukti migraciją"
-                    },
-                    "aborted": {
-                        "message": "Kitas vartotojas atšaukė perkėlimo procesą atskiroje naršyklės arba naršyklės skirtuke. Pradėkite naują migraciją.",
-                        "title": "Migracija buvo atšaukta"
-                    },
-                    "buttonCheck": "Patikrinkite būseną",
-                    "buttonRedirect": "Generolas",
-                    "forbidden": {
-                        "message": "Perkėlimas jau buvo pradėtas kitoje naršyklės arba naršyklės skirtuke. Norėdami peržiūrėti perkėlimo procesą, perjunkite šį skirtuką.",
-                        "title": "Migracija jau prasidėjo"
-                    },
-                    "interrupted": {
-                        "message": "Perkėlimo procesas buvo perimtas iš kitos naršyklės arba naršyklės skirtuko. Galite atšaukti arba perimti procesą, priklausomai nuo dabartinės perkėlimo būsenos.",
-                        "title": "Migracija buvo perimta"
-                    },
-                    "redirectModal": {
-                        "confirm": "Generolas",
-                        "message": "Perkėlimas jau baigtas kitoje naršyklės arba naršyklės skirtuke.",
-                        "title": "Migracijos baigtas"
-                    },
-                    "running": {
-                        "message": "Jau yra perkėlimas kitoje naršyklėje arba naršyklės skirtuke. Dabar galite perimti vykdomą perkėlimą arba jį atšaukti.",
-                        "title": "Migracija jau prasidėjo"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Atšaukti",
-                        "confirm": "Perimti migraciją",
-                        "hint": "Ar norėtumėte perimti migraciją?",
-                        "message": "Tai galima perimti aktyvią migraciją. Jei norite, galite tęsti perkėlimą šiame naršyklės lange.",
-                        "title": "Perimti migraciją"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategorijos:",
                     "category_association": "Kategorijų asociacijos:",
                     "category_cms_page_association": "Kategorijos išdėstymo asociacijos:",
+                    "category_custom_field": "Kategorija pasirinktiniai laukai",
                     "category_product_stream_association": "Kategorijų dinaminių produktų grupių asociacijos:",
                     "cms_page": "Maketai:",
                     "country": "Šalys:",
@@ -437,7 +396,9 @@
                     "currency": "Valiutos:",
                     "custom_field_set": "Pasirinktiniai laukų rinkiniai:",
                     "customer": "Klientai:",
+                    "customer_custom_field": "Kliento pasirinktiniai laukai",
                     "customer_group": "Klientų grupės:",
+                    "customer_group_custom_field": "Klientų grupės pasirinktiniai laukai",
                     "customer_wishlist": "norų sąrašai:",
                     "delivery_time": "Pristatymo laikas:",
                     "language": "Kalbos:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Medijos aplanko paveldėjimas:",
                     "number_range": "Skaičių diapazonai:",
                     "order": "Užsakymai:",
+                    "order_custom_field": "Užsisakykite pasirinktinius laukus",
                     "order_document": "Užsakymo dokumentai:",
                     "order_document_base_config": "Dokumento konfigūracija:",
+                    "order_document_custom_field": "Užsakykite dokumento pasirinktinius laukus",
                     "order_document_inheritance": "Užsakymo dokumentų santykiai:",
                     "page_system_config": "Puslapio pagrindinė informacija:",
                     "product": "Produktai:",
-                    "product_cross_selling": "Kryžiaus pardavimas:",
+                    "product_cross_selling": "Kryžminis pardavimas:",
+                    "product_custom_field": "Produkto pasirinktiniai laukai",
                     "product_feature_set": "Esminės charakteristikos:",
                     "product_manufacturer": "Produktų gamintojai:",
+                    "product_manufacturer_custom_field": "Produkto gamintojo pasirinktiniai laukai",
                     "product_option_relation": "Produkto parinktys:",
+                    "product_price_custom_field": "Produkto kainos pasirinktiniai laukai",
                     "product_property_relation": "Produkto savybės:",
                     "product_review": "Apžvalgos:",
                     "product_sorting": "Produktų rūšiavimas:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Sukurkite naują ryšį",
+                "buttonCreateInitialConnection": "Sukurkite pradinį ryšį",
                 "buttonEditSettings": "Redaguoti ryšį",
                 "buttonProfileInstallation": "įdiegti kitą profilį",
                 "buttonRemoveCredentials": "Ištrinti prieigos duomenis",
@@ -498,12 +465,13 @@
                 "cardTitle": "Parduotuvės sistema",
                 "connected": "prijungta",
                 "connectionCheck": "Ryšio patikrinimas:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Vartai:",
                 "lastMigration": "Paskutinė migracija:",
+                "noConnection": "Nėra ryšio",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Neprijungtas",
                 "profile": "Sistemos profilis:",
+                "refreshTooltip": "Patikrinkite ryšį su šaltinio sistema",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Atšaukti",
                     "confirmButtonText": "Taip, ištrinti",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Pastebėjome, kad jūsų šaltinio sistemos {sourceSystem} versija neatitinka jūsų tikslinės sistemos {targetSystem} versijos. Prieš pradėdami perkėlimą, būtinai naudokite tą pačią pagrindinę versiją abiem sistemoms.",
-            "startButton": "Tęsti",
             "title": "Generolas"
         },
         "wizard": {

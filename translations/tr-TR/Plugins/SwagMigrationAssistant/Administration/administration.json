@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Geçiş iptal edilemedi.",
+            "approveFinishedMigration": "Geçiş tamamlanırken başarısız oldu",
+            "checkConnection": "Kaynak sisteme bağlantı kontrol edilemedi.",
+            "fetchConnectionId": "Etkin bağlantı kimliği alınamadı.",
+            "getDataSelection": "Geçerli bağlantı için veri seçimi alınamadı.",
+            "getState": "Geçiş durumu alınamadı.",
+            "startMigration": "Geçiş başlatılamadı."
+        },
         "dashboard": {
             "button": "Geçiş Yardımcısı'nı Aç",
             "headline": "Shopware'e Taşınma",
@@ -17,12 +26,6 @@
                 "resetButton": "Bitirmek"
             },
             "title": "Geçiş Asistanı"
-        },
-        "emptyScreen": {
-            "connectButton": "Bağlantı oluştur",
-            "description": "Sistemler arasında bir bağlantı kurulduğundan emin olun. Bu geçiş için gereklidir. Daha fazla bilgiyi burada bulabilirsiniz:{linebreak}{link}",
-            "link": "Dokümantasyon: Shopware 6'ya geçiş",
-            "title": "Bağlantı yok"
         },
         "general": {
             "descriptionTextModule": "Verileri geçirmek için modül",
@@ -50,10 +53,12 @@
                 "dataName": "İsim",
                 "errorCode": "Hata mesajı",
                 "errorCount": "Kont",
+                "errorLevel": "Günlük seviyesi",
                 "errors": "Ayrıntılar",
                 "logDescription": "Daha fazla ayrıntı için {link}",
                 "logDownload": "günlük dosyasını indirin.",
                 "noErrorsOccurred": "Hata oluşmadı.",
+                "noProgressData": "Bu çalışma, eklentinin önceki bir sürümünde gerçekleştirildi ve verileri silindi.",
                 "runStatus": "Geçiş durumu:",
                 "status": {
                     "aborted": "Kürtaj",
@@ -91,7 +96,7 @@
                 },
                 "title": "Bilgi"
             },
-            "backButton": "Genel Bakış",
+            "backToOverviewButton": "Genel bakış için geri dön",
             "confirmAbortDialog": {
                 "cancelPause": "Duraklat",
                 "cancelRunning": "Devam",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Kaynak kimliği \"{requiredForSourceId}\" olan {requiredForEntity} varlık, \"{sourceId}” kaynak kimliğiyle bağımlı {entity} varlığı bulamıyor.",
                     "title": "{entity}bulunamıyor"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "İleti kuyruğu işlenirken bir istisna oluştu.",
+                    "title": "Mesaj kuyruğu istisnası"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Çok fazla ardışık istisna meydana geldiğinden geçiş otomatik olarak iptal edildi.",
+                    "title": "Geçiş otomatik olarak iptal edildi"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Bitirmek",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "General",
-                    "message": "Geçiş, veri kaybını önlemek için işlemi sonlandırdı. İnternet bağlantısını kontrol edin ve yeni bir geçiş başlatın.",
-                    "title": "Bağlantı kesildi"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Mesaj kuyruğu belgeleri",
                 "flowChart": {
+                    "cleanup": "Temizlik",
                     "fetchData": "Okuma",
                     "finish": "Bitti",
+                    "indexing": "İndeksleme",
                     "premapping": "Kontrol Ediliyor",
                     "processMedia": "İndiriliyor",
                     "writeData": "Yazma"
                 },
-                "mediaProcessScreen": {
-                    "message": "İşlem arka planda çalışıyor",
-                    "title": "Medya indirmeye başlama"
-                },
-                "pauseScreen": {
-                    "message": "Duraklamadın mı? İnternet bağlantısı yoksa, geçiş veri kaybını önlemek için otomatik olarak duraklatma moduna geçer.",
-                    "title": "Geçiş duraklatıldı"
-                },
+                "notice": "İpucu: Bu işlem ileti kuyruğunda çalışır. Mağazanız doğru yapılandırılmışsa bu sayfada kalmanıza gerek yoktur.",
                 "result": {
                     "caption": "Medya indirme işlemi arka planda devam ediyor. Büyük dosyalar biraz zaman alabilir.",
-                    "historyLink": "Geçiş ayrıntılarını görüntüle",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Dizinleme tamamlandı.",
-                            "title": "Dizin oluşturma tamamlandı"
-                        },
-                        "running": {
-                            "message": "Şu anda arka planda indeksleme.",
-                            "title": "İndeksleme devam ediyor"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Açık tarih",
-                        "message": "Günlük dosyasını görüntüleme veya indirme",
-                        "title": "Kategori: Göç tarihi"
-                    },
-                    "survey": {
-                        "buttonText": "Şimdi geri bildirim verin",
-                        "caption": "Lütfen deneyiminiz hakkında geri bildirim sağlayarak geçiş sürecini iyileştirmemize yardımcı olun.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Düşüncelerin önemli."
-                    },
+                    "historyHint": "Bu bilgileri geçiş geçmişinde istediğiniz zaman görüntüleyebilirsiniz. Medya indirme işlemi hala arka planda çalıştığı için daha sonra daha fazla günlük mesajının eklenmesi mümkündür.",
+                    "logSummary": "Seyir defteri",
                     "title": "Geçiş Asistanı tamamlandı"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Yazılmamış veriler temizlenir. Zaten taşınan veriler kullanılamaz olabilir.",
+                        "long": "Göç iptal ediliyor",
+                        "short": "İptal Etme"
+                    },
+                    "cleanup": {
+                        "caption": "Geçici veriler kaldırılıyor. Göç neredeyse tamamlandı.",
+                        "long": "Göç temizleniyor",
+                        "short": "Temizlik"
+                    },
+                    "fetching": {
                         "caption": "Yeni atamalar işlenir.",
-                        "hint": "İpucu: Geçiş arka planda adım adım devam ediyor, Shopware 6'yı keşfedin.",
                         "long": "Veriler sisteminizden okunacak",
                         "short": "Okuma"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Büyük görüntü verilerinin işlenmesi biraz zaman alabilir.",
-                        "hint": "İpucu: Bağlantı zayıfsa, indirmeyi duraklatın ve daha sonra devam edin.",
-                        "long": "Medya indiriliyor",
-                        "short": "İndiriliyor"
+                    "finish": "Bitti",
+                    "indexing": {
+                        "caption": "Göç neredeyse tamamlandı.",
+                        "long": "Yeni veriler indeksleniyor",
+                        "short": "İndeksleme"
                     },
-                    "WRITE_DATA": {
-                        "caption": "Dükkan boyutuna bağlı olarak birkaç dakika sürebilir.",
-                        "hint": "İpucu: Geçiş işlemini istediğiniz zaman duraklatabilir ve devam ettirebilirsiniz.",
+                    "media-processing": {
+                        "caption": "Büyük görüntü verilerinin işlenmesi biraz zaman alabilir.",
+                        "long": "Medya aktarılıyor",
+                        "short": "Medya aktarımı"
+                    },
+                    "writing": {
+                        "caption": "Mağaza büyüklüğüne bağlı olarak birkaç dakika sürebilir.",
                         "long": "Veriler Shopware 6'da yazılıyor",
                         "short": "Yazma"
-                    },
-                    "finish": "Bitti"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "İptal",
-                        "confirm": "Geçişi iptal et",
-                        "hint": "Göç işlemini iptal etmek ister misiniz?",
-                        "message": "Şu anda aktif göçü devralmak mümkün değildir. İsterseniz, artık etkin geçişi iptal edebilir ve daha sonra yeni bir geçiş başlatabilirsiniz.",
-                        "title": "Geçişi iptal et"
-                    },
-                    "aborted": {
-                        "message": "Başka bir kullanıcı geçiş işlemini ayrı bir tarayıcı veya tarayıcı sekmesinde iptal etti. Lütfen yeni bir geçiş başlatın.",
-                        "title": "Göç iptal edildi"
-                    },
-                    "buttonCheck": "Durumu kontrol et",
-                    "buttonRedirect": "General",
-                    "forbidden": {
-                        "message": "Başka bir tarayıcı veya tarayıcı sekmesinde geçiş zaten başlatıldı. Geçiş işlemini görüntülemek için lütfen bu sekmeye geçin.",
-                        "title": "Geçiş zaten başladı"
-                    },
-                    "interrupted": {
-                        "message": "Geçiş işlemi başka bir tarayıcı veya tarayıcı sekmesinden devraldı. Geçişin geçerli durumuna bağlı olarak işlemi iptal edebilir veya devralabilirsiniz.",
-                        "title": "Göç ele geçirildi"
-                    },
-                    "redirectModal": {
-                        "confirm": "General",
-                        "message": "Geçiş, başka bir tarayıcı veya tarayıcı sekmesinde zaten tamamlanmıştır.",
-                        "title": "Geçiş tamamlandı"
-                    },
-                    "running": {
-                        "message": "Başka bir tarayıcı veya tarayıcı sekmesinde zaten çalışan bir geçiş var. Artık çalışan geçişi devralabilir veya iptal edebilirsiniz.",
-                        "title": "Geçiş zaten başladı"
-                    },
-                    "takeoverModal": {
-                        "cancel": "İptal",
-                        "confirm": "Geçişi devralın",
-                        "hint": "Göç işini devralmak ister misin?",
-                        "message": "Aktif göçü devralmak mümkündür. İsterseniz, bu tarayıcı penceresinde geçişe devam edebilirsiniz.",
-                        "title": "Geçişi devralın"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategoriler:",
                     "category_association": "Kategori dernekleri:",
                     "category_cms_page_association": "Kategori düzeni ilişkilendirmeleri:",
+                    "category_custom_field": "Kategori özel alanlar",
                     "category_product_stream_association": "Kategori dinamik ürün grubu ilişkileri:",
                     "cms_page": "Düzenler:",
                     "country": "Ülkeler:",
@@ -437,7 +396,9 @@
                     "currency": "Para birimleri:",
                     "custom_field_set": "Özel alan setleri:",
                     "customer": "Müşteriler:",
+                    "customer_custom_field": "Müşteri özel alanları",
                     "customer_group": "Müşteri grupları:",
+                    "customer_group_custom_field": "Müşteri grubu özel alanları",
                     "customer_wishlist": "Dilek listeleri:",
                     "delivery_time": "Teslimat süreleri:",
                     "language": "Diller:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Medya klasörü mirasları:",
                     "number_range": "Sayı aralıkları:",
                     "order": "Emirler:",
+                    "order_custom_field": "Özel alanları sipariş edin",
                     "order_document": "Sipariş belgeleri:",
                     "order_document_base_config": "Belge yapılandırması:",
+                    "order_document_custom_field": "Belge özel alanları sipariş edin",
                     "order_document_inheritance": "Sipariş belge ilişkileri:",
                     "page_system_config": "Sayfa temel bilgileri:",
                     "product": "Ürünler:",
                     "product_cross_selling": "Çapraz Satış:",
+                    "product_custom_field": "Ürün özel alanları",
                     "product_feature_set": "Temel özellikler:",
                     "product_manufacturer": "Ürün üreticileri:",
+                    "product_manufacturer_custom_field": "Ürün üreticisi özel alanları",
                     "product_option_relation": "Ürün seçenekleri:",
+                    "product_price_custom_field": "Ürün fiyatı özel alanlar",
                     "product_property_relation": "Ürün özellikleri:",
                     "product_review": "İncelemeler:",
                     "product_sorting": "Ürün sıralama:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Yeni bağlantı oluştur",
+                "buttonCreateInitialConnection": "İlk bağlantı oluştur",
                 "buttonEditSettings": "Bağlantıyı düzenle",
                 "buttonProfileInstallation": "Başka bir profil yükleme",
                 "buttonRemoveCredentials": "Erişim verilerini silme",
@@ -498,12 +465,13 @@
                 "cardTitle": "Mağaza sistemi",
                 "connected": "Bağlı",
                 "connectionCheck": "Bağlantı kontrolü:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Ağ Geçidi:",
                 "lastMigration": "Son geçiş:",
+                "noConnection": "Bağlantı yok",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Bağlı değil",
                 "profile": "Sistem profili:",
+                "refreshTooltip": "Kaynak sisteme bağlantıyı kontrol edin",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "İptal",
                     "confirmButtonText": "Evet, sil",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Kaynak sistem {sourceSystem} sürümünüzün hedef sistem {targetSystem} sürümüyle eşleşmediğini fark ettik. Geçişi başlatmadan önce lütfen her iki sistem için de aynı ana sürümü kullandığınızdan emin olun.",
-            "startButton": "Devam",
             "title": "General"
         },
         "wizard": {

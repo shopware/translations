@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Nepodarilo sa prerušiť migráciu.",
+            "approveFinishedMigration": "Zlyhalo pri dokončení migrácie",
+            "checkConnection": "Nepodarilo sa skontrolovať pripojenie k zdrojovému systému.",
+            "fetchConnectionId": "Nepodarilo sa získať ID aktívneho pripojenia.",
+            "getDataSelection": "Nepodarilo sa získať výber údajov pre aktuálne pripojenie.",
+            "getState": "Nepodarilo sa získať migračný stav.",
+            "startMigration": "Nepodarilo sa spustiť migráciu."
+        },
         "dashboard": {
             "button": "Otvoriť asistent migrácie",
             "headline": "Presťahovanie do Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Povrchová úprava"
             },
             "title": "Asistent migrácie"
-        },
-        "emptyScreen": {
-            "connectButton": "Vytvoriť spojenie",
-            "description": "Uistite sa, že medzi systémami bolo vytvorené spojenie. To je potrebné pre migráciu. Viac informácií nájdete tu:{linebreak}{link}",
-            "link": "Dokumentácia: Prechod na Shopware 6",
-            "title": "Žiadne spojenie"
         },
         "general": {
             "descriptionTextModule": "Modul na migráciu údajov",
@@ -50,10 +53,12 @@
                 "dataName": "Meno",
                 "errorCode": "Chybové hlásenie",
                 "errorCount": "Počet",
+                "errorLevel": "Úroveň protokolov",
                 "errors": "Podrobnosti",
                 "logDescription": "Pre viac informácií {link}",
                 "logDownload": "stiahnuť súbor denníka.",
                 "noErrorsOccurred": "Nevyskytli sa žiadne chyby.",
+                "noProgressData": "Toto spustenie bolo vykonané v predchádzajúcej verzii pluginu a jeho údaje boli odstránené.",
                 "runStatus": "Stav migrácie:",
                 "status": {
                     "aborted": "Prerušený",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informácie"
             },
-            "backButton": "Prehľad",
+            "backToOverviewButton": "Späť na prehľad",
             "confirmAbortDialog": {
                 "cancelPause": "Pauza",
                 "cancelRunning": "Pokračovať",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entita {requiredForEntity} so zdrojom id \"{requiredForSourceId}\" nemôže nájsť závislé {entity} entity so zdrojom id \"{sourceId}“.",
                     "title": "Nie je možné nájsť {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Pri spracovaní frontu správ sa vyskytla výnimka.",
+                    "title": "Výnimka z frontu správ"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migrácia bola automaticky ukončená, pretože došlo k príliš veľkému počtu po sebe nasledujúcich výnimiek.",
+                    "title": "Migrácia bola automaticky prerušená"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Povrchová úprava",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "generál",
-                    "message": "Migrácia ukončila proces, aby sa zabránilo strate údajov. Skontrolujte internetové pripojenie a spustite novú migráciu.",
-                    "title": "Pripojenie bolo stratené"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Dokumentácia frontu správ",
                 "flowChart": {
+                    "cleanup": "Čistenie",
                     "fetchData": "Čítanie",
                     "finish": "Hotovo",
+                    "indexing": "Indexovanie",
                     "premapping": "Kontrola",
                     "processMedia": "Sťahovanie",
                     "writeData": "Písanie"
                 },
-                "mediaProcessScreen": {
-                    "message": "Proces beží na pozadí",
-                    "title": "Spustenie sťahovania médií"
-                },
-                "pauseScreen": {
-                    "message": "Nezastavil si sa? Ak nie je k dispozícii žiadne internetové pripojenie, migrácia sa automaticky prepne do režimu pozastavenia, aby sa zabránilo strate údajov.",
-                    "title": "Migrácia je pozastavená"
-                },
+                "notice": "Tip: Tento proces sa spustí vo fronte správ. Ak je váš obchod správne nakonfigurovaný, nemusíte zostať na tejto stránke.",
                 "result": {
                     "caption": "Preberanie médií pokračuje na pozadí. Veľké súbory môžu chvíľu trvať.",
-                    "historyLink": "Zobraziť podrobnosti o migrácii",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indexovanie bolo dokončené.",
-                            "title": "Indexovanie dokončené"
-                        },
-                        "running": {
-                            "message": "Momentálne indexovanie na pozadí.",
-                            "title": "Indexovanie prebieha"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Otvorená história",
-                        "message": "Zobrazenie alebo prevzatie súboru denníka",
-                        "title": "História migrácie"
-                    },
-                    "survey": {
-                        "buttonText": "Poskytnite spätnú väzbu",
-                        "caption": "Pomôžte nám zlepšiť proces migrácie poskytnutím spätnej väzby k vašim skúsenostiam.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Tvoje myšlienky sú dôležité"
-                    },
+                    "historyHint": "Tieto informácie môžete kedykoľvek zobraziť v histórii migrácie. Je možné, že neskôr sa pridá ďalšie protokolové správy, pretože sťahovanie médií stále beží na pozadí.",
+                    "logSummary": "Denník",
                     "title": "Asistent migrácie je hotový"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Nepísané údaje sa vyčistia. Už migrované údaje môžu byť nepoužiteľné.",
+                        "long": "Migrácia je ukončená",
+                        "short": "Prerušenie"
+                    },
+                    "cleanup": {
+                        "caption": "Dočasné údaje sa odstránia. Migrácia je takmer dokončená.",
+                        "long": "Migrácia sa upratuje",
+                        "short": "Čistenie"
+                    },
+                    "fetching": {
                         "caption": "Nové úlohy sú spracované.",
-                        "hint": "Tip: Migrácia pokračuje krok za krokom v pozadí, preskúmať Shopware 6.",
-                        "long": "Údaje sa budú čítať z vášho systému",
+                        "long": "Údaje budú čítané z vášho systému",
                         "short": "Čítanie"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Spracovanie veľkých obrazových údajov môže trvať určitý čas.",
-                        "hint": "Tip: Ak je pripojenie slabé, pozastavte sťahovanie a pokračujte neskôr.",
-                        "long": "Médiá sa sťahujú",
-                        "short": "Sťahovanie"
+                    "finish": "Hotovo",
+                    "indexing": {
+                        "caption": "Migrácia je takmer dokončená.",
+                        "long": "Nové údaje sa indexujú",
+                        "short": "Indexovanie"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Spracovanie veľkých obrázkových údajov môže nejaký čas trvať.",
+                        "long": "Médiá sa prenášajú",
+                        "short": "Prenos médií"
+                    },
+                    "writing": {
                         "caption": "V závislosti od veľkosti obchodu to môže trvať niekoľko okamihov.",
-                        "hint": "Tip: Proces migrácie môžete kedykoľvek pozastaviť a obnoviť.",
-                        "long": "Údaje sú napísané v Shopware 6",
+                        "long": "Údaje sa zapisujú v Shopware 6",
                         "short": "Písanie"
-                    },
-                    "finish": "Hotovo"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Zrušiť",
-                        "confirm": "Zrušenie migrácie",
-                        "hint": "Chcete zrušiť migráciu?",
-                        "message": "V súčasnosti nie je možné prevziať aktívnu migráciu. Ak chcete, môžete aktivnú migráciu zrušiť a hneď potom začať novú.",
-                        "title": "Zrušenie migrácie"
-                    },
-                    "aborted": {
-                        "message": "Iný používateľ zrušil proces migrácie v samostatnom prehliadači alebo karte prehliadača. Prosím začnite novú migráciu.",
-                        "title": "Migrácia bola zrušená"
-                    },
-                    "buttonCheck": "Kontrola stavu",
-                    "buttonRedirect": "generál",
-                    "forbidden": {
-                        "message": "Migrácia sa už spustila v inom prehliadači alebo karte prehliadača. Ak chcete zobraziť proces migrácie, prepnite na túto kartu.",
-                        "title": "Migrácia už začala"
-                    },
-                    "interrupted": {
-                        "message": "Proces migrácie bol prevzatý z iného prehliadača alebo karty prehliadača. Proces môžete zrušiť alebo prevziať v závislosti od aktuálneho stavu migrácie.",
-                        "title": "Migrácia bola prevzatá"
-                    },
-                    "redirectModal": {
-                        "confirm": "generál",
-                        "message": "Migrácia už bola dokončená v inom prehliadači alebo karte prehliadača.",
-                        "title": "Dokončená migrácia"
-                    },
-                    "running": {
-                        "message": "Migrácia už prebieha v inom prehliadači alebo karte prehliadača. Teraz môžete prevziať bežiacu migráciu alebo ju zrušiť.",
-                        "title": "Migrácia už začala"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Zrušiť",
-                        "confirm": "Prevziať migráciu",
-                        "hint": "Chceli by ste prevziať migráciu?",
-                        "message": "Je možné prevziať aktívnu migráciu. Ak chcete, môžete pokračovať v migrácii v tomto okne prehliadača.",
-                        "title": "Prevziať migráciu"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategórie:",
                     "category_association": "Združenia kategórií:",
                     "category_cms_page_association": "Združenia usporiadania kategórií:",
+                    "category_custom_field": "Vlastné polia kategórie",
                     "category_product_stream_association": "Kategórie dynamické združenia produktových skupín:",
                     "cms_page": "Rozloženie:",
                     "country": "Krajiny:",
@@ -437,7 +396,9 @@
                     "currency": "Meny:",
                     "custom_field_set": "Vlastné sady polí:",
                     "customer": "Zákazníci:",
+                    "customer_custom_field": "Vlastné polia zákazníka",
                     "customer_group": "Skupiny zákazníkov:",
+                    "customer_group_custom_field": "Vlastné polia skupiny zákazníkov",
                     "customer_wishlist": "Zoznamy želaní:",
                     "delivery_time": "Dodacie lehoty:",
                     "language": "Jazyky:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Dedičnosti priečinkov médií:",
                     "number_range": "Číselné rozsahy:",
                     "order": "Objednávky:",
+                    "order_custom_field": "Objednať vlastné polia",
                     "order_document": "Objednávkové dokumenty:",
                     "order_document_base_config": "Konfiguracia dokumentu:",
+                    "order_document_custom_field": "Objednať vlastné polia dokumentu",
                     "order_document_inheritance": "Vzťahy dokumentov objednávky:",
                     "page_system_config": "Základné informácie o stránke:",
                     "product": "Produkty:",
                     "product_cross_selling": "Krížový predaj:",
+                    "product_custom_field": "Vlastné polia produktu",
                     "product_feature_set": "Základné charakteristiky:",
                     "product_manufacturer": "Výrobcovia výrobkov:",
+                    "product_manufacturer_custom_field": "Vlastné polia výrobcu produktu",
                     "product_option_relation": "Možnosti produktu:",
+                    "product_price_custom_field": "Vlastné polia ceny produktu",
                     "product_property_relation": "Vlastnosti produktu:",
                     "product_review": "Recenzie:",
                     "product_sorting": "Triedenie produktov:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Vytvoriť nové pripojenie",
+                "buttonCreateInitialConnection": "Vytvorte počiatočné pripojenie",
                 "buttonEditSettings": "Upraviť pripojenie",
                 "buttonProfileInstallation": "Inštalácia iného profilu",
                 "buttonRemoveCredentials": "Odstrániť prístupové údaje",
@@ -498,12 +465,13 @@
                 "cardTitle": "Obchodný systém",
                 "connected": "Pripojené",
                 "connectionCheck": "Kontrola pripojenia:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Brána:",
                 "lastMigration": "Posledná migrácia:",
+                "noConnection": "Žiadne spojenie",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Nie je pripojený",
                 "profile": "Profil systému:",
+                "refreshTooltip": "Skontrolujte pripojenie k zdrojovému systému",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Zrušiť",
                     "confirmButtonText": "Áno, vymazať",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Všimli sme si, že verzia zdrojového systému {sourceSystem} sa nezhoduje s vašou verziou cieľového systému {targetSystem} . Pred spustením migrácie sa uistite, že používate rovnakú hlavnú verziu pre oba systémy.",
-            "startButton": "Pokračovať",
             "title": "generál"
         },
         "wizard": {

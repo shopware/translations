@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Gagal membatalkan migrasi.",
+            "approveFinishedMigration": "Gagal saat menyelesaikan migrasi",
+            "checkConnection": "Gagal memeriksa koneksi ke sistem sumber.",
+            "fetchConnectionId": "Gagal mendapatkan ID koneksi aktif.",
+            "getDataSelection": "Gagal mendapatkan pilihan data untuk koneksi saat ini.",
+            "getState": "Gagal mendapatkan status migrasi.",
+            "startMigration": "Gagal memulai migrasi."
+        },
         "dashboard": {
             "button": "Asisten Migrasi",
             "headline": "Pindah ke Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Selesai"
             },
             "title": "Asisten migrasi"
-        },
-        "emptyScreen": {
-            "connectButton": "Buat koneksi",
-            "description": "Pastikan bahwa koneksi telah dibuat antara sistem. Hal ini diperlukan untuk migrasi. Anda dapat menemukan informasi lebih lanjut di sini:{linebreak}{link}",
-            "link": "Dokumentasi: Migrasi ke Shopware 6",
-            "title": "Tidak ada koneksi"
         },
         "general": {
             "descriptionTextModule": "Modul untuk memigrasi data",
@@ -50,10 +53,12 @@
                 "dataName": "Nama",
                 "errorCode": "Pesan galat",
                 "errorCount": "Hitung",
+                "errorLevel": "Tingkat log",
                 "errors": "Rincian",
                 "logDescription": "Untuk lebih jelasnya {link}",
                 "logDownload": "unduh berkas log.",
                 "noErrorsOccurred": "Tidak ada kesalahan yang terjadi.",
+                "noProgressData": "Proses ini dilakukan di versi plugin sebelumnya dan datanya telah dihapus.",
                 "runStatus": "Status migrasi:",
                 "status": {
                     "aborted": "Dibatalkan",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informasi"
             },
-            "backButton": "Sekilas",
+            "backToOverviewButton": "Kembali ke ikhtisar",
             "confirmAbortDialog": {
                 "cancelPause": "Jeda",
                 "cancelRunning": "Lanjutkan",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entitas {requiredForEntity} dengan id sumber \"{requiredForSourceId}\" tidak dapat menemukan entitas {entity} tergantung dengan id sumber \"{sourceId}”.",
                     "title": "Tidak dapat menemukan {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Pengecualian terjadi saat memproses antrian pesan.",
+                    "title": "Pengecualian antrian pesan"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migrasi dibatalkan secara otomatis, karena terlalu banyak pengecualian berturut-turut terjadi.",
+                    "title": "Migrasi dibatalkan secara otomatis"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Selesai",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Umum",
-                    "message": "Migrasi mengakhiri proses untuk menghindari kehilangan data. Periksa koneksi internet dan mulai migrasi baru.",
-                    "title": "Sambungan telah hilang"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Dokumentasi antrian pesan",
                 "flowChart": {
+                    "cleanup": "Pembersihan",
                     "fetchData": "Membaca",
                     "finish": "Selesai",
+                    "indexing": "Pengindeksan",
                     "premapping": "Memeriksa",
                     "processMedia": "Mengunduh",
                     "writeData": "Menulis"
                 },
-                "mediaProcessScreen": {
-                    "message": "Proses ini berjalan di latar belakang",
-                    "title": "Memulai pengunduhan media"
-                },
-                "pauseScreen": {
-                    "message": "Kau tidak berhenti sebentar? Jika tidak ada koneksi internet, migrasi secara otomatis beralih ke mode jeda untuk mencegah kehilangan data.",
-                    "title": "Migrasi dihentikan sementara"
-                },
+                "notice": "Tip: Proses ini berjalan di antrian pesan. Anda tidak perlu tetap berada di halaman ini jika toko Anda dikonfigurasi dengan benar.",
                 "result": {
                     "caption": "Muat turun media terus di latar belakang. File besar bisa memakan waktu lama.",
-                    "historyLink": "Lihat rincian migrasi",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Pengindeksan telah selesai.",
-                            "title": "Pengindeksan selesai"
-                        },
-                        "running": {
-                            "message": "Saat ini mengindeks di latar belakang.",
-                            "title": "Pengindeksan sedang berlangsung"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Riwayat terbuka",
-                        "message": "Melihat atau mengunduh berkas log",
-                        "title": "Riwayat migrasi"
-                    },
-                    "survey": {
-                        "buttonText": "Berikan masukan sekarang",
-                        "caption": "Tolong bantu kami meningkatkan proses migrasi dengan memberikan umpan balik dari pengalaman Anda.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Pikiran Anda penting"
-                    },
+                    "historyHint": "Anda dapat melihat informasi ini kapan saja di riwayat migrasi. Ada kemungkinan bahwa lebih banyak pesan log akan ditambahkan di lain waktu karena unduhan media masih berjalan di latar belakang.",
+                    "logSummary": "Buku catatan",
                     "title": "Asisten Migrasi selesai"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Data yang tidak tertulis dibersihkan. Data yang sudah dimigrasi mungkin tidak dapat digunakan.",
+                        "long": "Migrasi sedang dibatalkan",
+                        "short": "Membatalkan"
+                    },
+                    "cleanup": {
+                        "caption": "Data sementara sedang dihapus. Migrasi hampir selesai.",
+                        "long": "Migrasi sedang dibersihkan",
+                        "short": "Pembersihan"
+                    },
+                    "fetching": {
                         "caption": "Tugas baru diproses.",
-                        "hint": "Kiat: Migrasi berlanjut selangkah demi selangkah di latar belakang, jelajahi Shopware 6.",
-                        "long": "Data akan dibaca dari sistem anda",
+                        "long": "Data akan dibaca dari sistem Anda",
                         "short": "Membaca"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Data gambar yang besar bisa memakan waktu untuk diproses.",
-                        "hint": "Tip: Jika koneksi buruk, jeda download dan lanjutkan nanti.",
-                        "long": "Media sedang diunduh",
-                        "short": "Mengunduh"
+                    "finish": "Selesai",
+                    "indexing": {
+                        "caption": "Migrasi hampir selesai.",
+                        "long": "Data baru sedang diindeks",
+                        "short": "Pengindeksan"
                     },
-                    "WRITE_DATA": {
-                        "caption": "Tergantung pada ukuran toko mungkin diperlukan beberapa saat.",
-                        "hint": "Kiat: Anda dapat menjeda dan melanjutkan proses migrasi kapan saja.",
-                        "long": "Data sedang ditulis dalam Shopware 6",
+                    "media-processing": {
+                        "caption": "Data gambar besar dapat memakan waktu untuk diproses.",
+                        "long": "Media sedang ditransfer",
+                        "short": "Transfer media"
+                    },
+                    "writing": {
+                        "caption": "Tergantung pada ukuran toko, mungkin perlu beberapa saat.",
+                        "long": "Data sedang ditulis di Shopware 6",
                         "short": "Menulis"
-                    },
-                    "finish": "Selesai"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Batalkan",
-                        "confirm": "Batalkan migrasi",
-                        "hint": "Apakah Anda ingin membatalkan migrasi?",
-                        "message": "Tidak mungkin untuk mengambil alih migrasi aktif saat ini. Jika mau, sekarang Anda dapat membatalkan migrasi aktif dan memulai migrasi baru secara langsung setelahnya.",
-                        "title": "Batalkan migrasi"
-                    },
-                    "aborted": {
-                        "message": "Pengguna lain telah membatalkan proses migrasi di browser atau tab browser terpisah. Silakan mulai migrasi baru.",
-                        "title": "Migrasi dibatalkan"
-                    },
-                    "buttonCheck": "Periksa status",
-                    "buttonRedirect": "Umum",
-                    "forbidden": {
-                        "message": "Migrasi telah dimulai di browser atau tab browser lain. Silakan beralih ke tab ini untuk melihat proses migrasi.",
-                        "title": "Migrasi sudah dimulai"
-                    },
-                    "interrupted": {
-                        "message": "Proses migrasi diambil alih dari browser atau tab browser lain. Anda dapat membatalkan atau mengambil alih proses, tergantung pada status migrasi saat ini.",
-                        "title": "Migrasi telah diambil alih"
-                    },
-                    "redirectModal": {
-                        "confirm": "Umum",
-                        "message": "Migrasi telah selesai di browser atau tab browser lain.",
-                        "title": "Migrasi selesai"
-                    },
-                    "running": {
-                        "message": "Sudah ada migrasi yang berjalan di browser atau tab browser lain. Anda sekarang dapat mengambil alih migrasi yang sedang berjalan atau membatalkannya.",
-                        "title": "Migrasi sudah dimulai"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Batalkan",
-                        "confirm": "Ambil alih migrasi",
-                        "hint": "Apakah Anda ingin mengambil alih migrasi?",
-                        "message": "Hal ini dimungkinkan untuk mengambil alih migrasi aktif. Jika mau, Anda dapat melanjutkan migrasi di jendela browser ini.",
-                        "title": "Ambil alih migrasi"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategori:",
                     "category_association": "Kategori asosiasi:",
                     "category_cms_page_association": "Asosiasi tata letak kategori:",
+                    "category_custom_field": "Kolom kustom kategori",
                     "category_product_stream_association": "Kategori asosiasi kelompok produk dinamis:",
                     "cms_page": "Layout:",
                     "country": "Negara:",
@@ -437,7 +396,9 @@
                     "currency": "Mata Uang:",
                     "custom_field_set": "Set bidang kustom:",
                     "customer": "Pelanggan:",
+                    "customer_custom_field": "Bidang kustom pelanggan",
                     "customer_group": "Kelompok pelanggan:",
+                    "customer_group_custom_field": "Bidang kustom grup pelanggan",
                     "customer_wishlist": "Daftar-daftar keinginan:",
                     "delivery_time": "Waktu pengiriman:",
                     "language": "Bahasa:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Warisan folder media:",
                     "number_range": "Rentang nomor:",
                     "order": "Pesanan:",
+                    "order_custom_field": "Pesan bidang khusus",
                     "order_document": "Dokumen pesanan:",
                     "order_document_base_config": "Konfigurasi dokumen:",
+                    "order_document_custom_field": "Memesan kolom kustom dokumen",
                     "order_document_inheritance": "Hubungan dokumen pesanan:",
                     "page_system_config": "Informasi dasar halaman:",
                     "product": "Produk:",
                     "product_cross_selling": "Cross Selling:",
+                    "product_custom_field": "Bidang kustom produk",
                     "product_feature_set": "Karakteristik penting:",
                     "product_manufacturer": "Produsen produk:",
+                    "product_manufacturer_custom_field": "Bidang kustom produsen produk",
                     "product_option_relation": "Pilihan produk:",
+                    "product_price_custom_field": "Bidang kustom harga produk",
                     "product_property_relation": "Properti produk:",
                     "product_review": "Ulasan:",
                     "product_sorting": "Penyortiran produk:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Buat koneksi baru",
+                "buttonCreateInitialConnection": "Buat koneksi awal",
                 "buttonEditSettings": "Edit koneksi",
                 "buttonProfileInstallation": "Pasang profil lain",
                 "buttonRemoveCredentials": "Menghapus data akses",
@@ -498,12 +465,13 @@
                 "cardTitle": "Sistem toko",
                 "connected": "Terhubung",
                 "connectionCheck": "Pemeriksaan koneksi:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Gerbang:",
                 "lastMigration": "Migrasi terakhir:",
+                "noConnection": "Tidak ada koneksi",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Tidak terhubung",
                 "profile": "Profil sistem:",
+                "refreshTooltip": "Periksa koneksi ke sistem sumber",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Batalkan",
                     "confirmButtonText": "Ya, hapus",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Kami telah memperhatikan bahwa versi sistem sumber Anda {sourceSystem} tidak sesuai dengan sistem target versi {targetSystem} Anda. Pastikan untuk menggunakan versi utama yang sama untuk kedua sistem sebelum Anda memulai migrasi.",
-            "startButton": "Lanjutkan",
             "title": "Umum"
         },
         "wizard": {

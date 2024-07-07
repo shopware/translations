@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Siirron keskeyttäminen epäonnistui.",
+            "approveFinishedMigration": "Epäonnistui siirron suorittamisen aikana",
+            "checkConnection": "Yhteyden tarkistaminen lähdejärjestelmään epäonnistui.",
+            "fetchConnectionId": "Aktiivisen yhteyden tunnuksen saaminen epäonnistui.",
+            "getDataSelection": "Nykyisen yhteyden tietojen valinnan hakeminen epäonnistui.",
+            "getState": "Siirtotilan saaminen epäonnistui.",
+            "startMigration": "Siirtymisen aloittaminen epäonnistui."
+        },
         "dashboard": {
             "button": "Siirtymisapuri",
             "headline": "Siirtyminen Shopwareen",
@@ -17,12 +26,6 @@
                 "resetButton": "Viimeistele"
             },
             "title": "Muuttoliikkeen"
-        },
-        "emptyScreen": {
-            "connectButton": "Luo yhteys",
-            "description": "Varmista, että järjestelmien välille on muodostettu yhteys. Tämä on tarpeen muuttoliike. Löydät lisätietoja täältä:{linebreak}{link}",
-            "link": "Dokumentaatio: Siirtyminen Shopware 6",
-            "title": "Ei yhteyttä"
         },
         "general": {
             "descriptionTextModule": "Moduuli tietojen siirtämiseen",
@@ -50,10 +53,12 @@
                 "dataName": "Nimi",
                 "errorCode": "Virhesanoma",
                 "errorCount": "Kreivi",
+                "errorLevel": "Lokitaso",
                 "errors": "Yksityiskohdat",
                 "logDescription": "Lisätietoja {link}",
                 "logDownload": "lataa lokitiedosto.",
                 "noErrorsOccurred": "Virheitä ei ole tapahtunut.",
+                "noProgressData": "Tämä suoritus suoritettiin laajennuksen edellisessä versiossa ja sen tiedot on poistettu.",
                 "runStatus": "Siirron tila:",
                 "status": {
                     "aborted": "Keskeytetty",
@@ -91,7 +96,7 @@
                 },
                 "title": "Tiedot"
             },
-            "backButton": "Katsaus",
+            "backToOverviewButton": "Takaisin yleiskuvaan",
             "confirmAbortDialog": {
                 "cancelPause": "Tauko",
                 "cancelRunning": "Jatka",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "{requiredForEntity} entiteetti, jonka lähdetunnus on \"{requiredForSourceId}\", ei löydä riippuvaista {entity} entiteettiä lähteen tunnuksella \"{sourceId}”.",
                     "title": "{entity}ei löydy"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Poikkeus tapahtui viestijonon käsittelyn aikana.",
+                    "title": "Viestijonon poikkeus"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Siirto keskeytettiin automaattisesti, koska peräkkäisiä poikkeuksia tapahtui liian monta.",
+                    "title": "Siirto keskeytettiin automaattisesti"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Viimeistele",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Kenraali",
-                    "message": "Siirto lopetti prosessin tietojen menettämisen välttämiseksi. Tarkista internet-yhteys ja aloita uusi siirto.",
-                    "title": "Yhteys on katkennut"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Viestijonon dokumentaatio",
                 "flowChart": {
+                    "cleanup": "Siivous",
                     "fetchData": "Lukeminen",
                     "finish": "Tehty",
+                    "indexing": "Indeksointi",
                     "premapping": "Tarkastus",
                     "processMedia": "Lataaminen",
                     "writeData": "Kirjoitus"
                 },
-                "mediaProcessScreen": {
-                    "message": "Prosessi on käynnissä taustalla",
-                    "title": "Tietovälineen latauksen"
-                },
-                "pauseScreen": {
-                    "message": "Etkö keskeyttänyt? Jos internet-yhteyttä ei ole, siirto siirtyy automaattisesti taukotilaan tietojen menettämisen estämiseksi.",
-                    "title": "Siirto keskeytetään"
-                },
+                "notice": "Vihje: Tämä prosessi suoritetaan viestijonossa. Sinun ei tarvitse pysyä tällä sivulla, jos kauppasi on määritetty oikein.",
                 "result": {
                     "caption": "Median lataus jatkuu taustalla. Suuret tiedostot voivat kestää jonkin aikaa.",
-                    "historyLink": "Siirron tietojen katsele",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indeksointi on suoritettu loppuun.",
-                            "title": "Indeksointi suoritettu"
-                        },
-                        "running": {
-                            "message": "Tällä hetkellä indeksointi taustalla.",
-                            "title": "Indeksointi käynnissä"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Avoin historia",
-                        "message": "Näytä tai lataa lokitiedosto",
-                        "title": "Siirtolaisuushistoria"
-                    },
-                    "survey": {
-                        "buttonText": "Anna palautetta nyt",
-                        "caption": "Auta meitä parantamaan muuttoprosessia antamalla palautetta kokemuksestasi.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Ajatuksesi ovat tärkeitä"
-                    },
+                    "historyHint": "Voit tarkastella näitä tietoja milloin tahansa siirtohistoriassa. On mahdollista, että lisää lokiviestejä lisätään myöhemmin, koska median lataus on edelleen käynnissä taustalla.",
+                    "logSummary": "Lokikirja",
                     "title": "Muuttoliikkeen avustaja on tehty"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Kirjoittamattomat tiedot puhdistetaan. Jo siirretyt tiedot saattavat olla käyttökelvottomia.",
+                        "long": "Maahanmuutto keskeytetään",
+                        "short": "Keskeyttäminen"
+                    },
+                    "cleanup": {
+                        "caption": "Väliaikaiset tiedot poistetaan. Muutto on lähes valmis.",
+                        "long": "Maahanmuuttoa siivotaan",
+                        "short": "Siivous"
+                    },
+                    "fetching": {
                         "caption": "Uudet tehtävät käsitellään.",
-                        "hint": "Vinkki: Siirto jatkuu askel askeleelta taustalla, tutustu Shopware 6:een.",
                         "long": "Tiedot luetaan järjestelmästäsi",
                         "short": "Lukeminen"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Suurten kuvatietojen käsittely voi kestää jonkin aikaa.",
-                        "hint": "Vinkki: Jos yhteys on huono, keskeytä lataus ja jatka myöhemmin.",
-                        "long": "Tietovälinettä ladataan",
-                        "short": "Lataaminen"
+                    "finish": "Tehty",
+                    "indexing": {
+                        "caption": "Muutto on lähes valmis.",
+                        "long": "Uusia tietoja indeksoidaan",
+                        "short": "Indeksointi"
                     },
-                    "WRITE_DATA": {
-                        "caption": "Kaupan koosta riippuen se voi kestää hetken.",
-                        "hint": "Vihje: Voit keskeyttää siirtoprosessin ja jatkaa sitä milloin tahansa.",
-                        "long": "Tiedot kirjoitetaan Shopware 6:ssa",
+                    "media-processing": {
+                        "caption": "Suurten kuvatietojen käsittely voi viedä jonkin aikaa.",
+                        "long": "Tiedotusvälineitä siirretään",
+                        "short": "Median siirto"
+                    },
+                    "writing": {
+                        "caption": "Kaupan koosta riippuen se voi viedä hetken.",
+                        "long": "Tiedot kirjoitetaan Shopware 6:een",
                         "short": "Kirjoitus"
-                    },
-                    "finish": "Tehty"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Peruuta",
-                        "confirm": "Peruuta siirto",
-                        "hint": "Haluaisitko peruuttaa muuton?",
-                        "message": "Aktiivista muuttoliikettä ei tällä hetkellä voi ottaa haltuun. Jos haluat, voit nyt peruuttaa aktiivisen muuton ja aloittaa uuden suoraan sen jälkeen.",
-                        "title": "Peruuta siirto"
-                    },
-                    "aborted": {
-                        "message": "Toinen käyttäjä on peruuttanut siirtoprosessin erillisessä selaimessa tai selainvälilehdessä. Aloita uusi muuttoliike.",
-                        "title": "Maahanmuutto peruttiin"
-                    },
-                    "buttonCheck": "Tarkista tila",
-                    "buttonRedirect": "Kenraali",
-                    "forbidden": {
-                        "message": "Siirto on jo aloitettu toisessa selaimessa tai selainvälilehdessä. Siirry tähän välilehteen nähdäksesi siirtoprosessin.",
-                        "title": "Maahanmuutto jo alkanut"
-                    },
-                    "interrupted": {
-                        "message": "Siirtoprosessi otettiin haltuun toisesta selaimesta tai selainvälilehdestä. Voit peruuttaa prosessin tai ottaa sen haltuunsa siirron nykyisestä tilasta riippuen.",
-                        "title": "Muuttoliike on otettu haltuun"
-                    },
-                    "redirectModal": {
-                        "confirm": "Kenraali",
-                        "message": "Siirto on jo suoritettu toisessa selaimessa tai selainvälilehdessä.",
-                        "title": "Siirto valmis"
-                    },
-                    "running": {
-                        "message": "Siirto on jo käynnissä toisessa selaimessa tai selainvälilehdessä. Voit nyt joko ottaa käynnissä olevan siirron haltuunsa tai peruuttaa sen.",
-                        "title": "Maahanmuutto jo alkanut"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Peruuta",
-                        "confirm": "Siirtolaisuuden valtaus",
-                        "hint": "Haluaisitko ottaa muuttoliikkeen haltuun?",
-                        "message": "Aktiivinen muuttoliike on mahdollista ottaa haltuun. Jos haluat, voit jatkaa siirtoa tässä selainikkunassa.",
-                        "title": "Siirtolaisuuden valtaus"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Luokat:",
                     "category_association": "Luokka yhdistykset:",
                     "category_cms_page_association": "Luokan asetteluyhdistykset",
+                    "category_custom_field": "Mukautetut kentät",
                     "category_product_stream_association": "Luokka dynaamiset tuoteryhmäyhdistykset:",
                     "cms_page": "Asettelut:",
                     "country": "Maat:",
@@ -437,7 +396,9 @@
                     "currency": "Valuutat:",
                     "custom_field_set": "Mukautetut kenttäjoukot:",
                     "customer": "Asiakkaat:",
+                    "customer_custom_field": "Asiakkaan mukautetut kentät",
                     "customer_group": "Asiakasryhmät:",
+                    "customer_group_custom_field": "Asiakasryhmän mukautetut kentät",
                     "customer_wishlist": "Toivelistat:",
                     "delivery_time": "Toimitusajat:",
                     "language": "Kielet:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Mediakansion perimät:",
                     "number_range": "Lukualueet:",
                     "order": "Tilaukset:",
+                    "order_custom_field": "Tilaa mukautetut kentät",
                     "order_document": "Tilausasiakirjat:",
                     "order_document_base_config": "Asiakirjan config:",
+                    "order_document_custom_field": "Asiakirjan mukautettujen kenttien tilaaminen",
                     "order_document_inheritance": "Tilausasiakirjan suhteet:",
                     "page_system_config": "Sivun perustiedot:",
                     "product": "Tuotteet:",
                     "product_cross_selling": "Ristiinmyynti:",
+                    "product_custom_field": "Tuotteen mukautetut kentät",
                     "product_feature_set": "Olennaiset ominaisuudet:",
                     "product_manufacturer": "Tuotteiden valmistajat:",
+                    "product_manufacturer_custom_field": "Tuotteen valmistajan mukautetut kentät",
                     "product_option_relation": "Tuotevaihtoehdot:",
+                    "product_price_custom_field": "Tuotteen hinta mukautetut kentät",
                     "product_property_relation": "Tuotteen ominaisuudet:",
                     "product_review": "Arviot:",
                     "product_sorting": "Tuotteen lajittelu:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Luo uusi yhteys",
+                "buttonCreateInitialConnection": "Luo alkuperäinen yhteys",
                 "buttonEditSettings": "Muokkaa yhteyttä",
                 "buttonProfileInstallation": "Asenna toinen profiili",
                 "buttonRemoveCredentials": "Poista käyttöoikeustiedot",
@@ -498,12 +465,13 @@
                 "cardTitle": "Kauppa järjestelmä",
                 "connected": "Yhdistetty",
                 "connectionCheck": "Yhteyden tarkistus:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Yhdyskäytävä:",
                 "lastMigration": "Viimeinen muutto:",
+                "noConnection": "Ei yhteyttä",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Ei kytkettynä",
                 "profile": "Järjestelmän profiili:",
+                "refreshTooltip": "Tarkista yhteys lähdejärjestelmään",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Peruuta",
                     "confirmButtonText": "Kyllä, poista",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Olemme huomanneet, että lähdejärjestelmäsi {sourceSystem} versio ei vastaa kohdejärjestelmääsi {targetSystem} -versiota. Varmista, että käytät samaa pääversiota molemmissa järjestelmissä ennen siirron aloittamista.",
-            "startButton": "Jatka",
             "title": "Kenraali"
         },
         "wizard": {

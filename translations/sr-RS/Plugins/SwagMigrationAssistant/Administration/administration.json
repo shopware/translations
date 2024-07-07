@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Nije uspelo prekinuti migraciju.",
+            "approveFinishedMigration": "Nije uspelo prilikom završetka migracije",
+            "checkConnection": "Provera veze sa izvornim sistemom nije uspela.",
+            "fetchConnectionId": "Nije uspelo da se dobije aktivan ID veze.",
+            "getDataSelection": "Nije uspelo da se dobije izbor podataka za trenutnu vezu.",
+            "getState": "Nije uspelo da dobijem stanje migracije.",
+            "startMigration": "Nije uspelo da započnem migraciju."
+        },
         "dashboard": {
             "button": "Otvorite pomoćnik za migraciju",
             "headline": "Prelazak na Shopvare",
@@ -17,12 +26,6 @@
                 "resetButton": "Završi"
             },
             "title": "Pomoćnik migracije"
-        },
-        "emptyScreen": {
-            "connectButton": "Kreirajte vezu",
-            "description": "Uverite se da je uspostavljena veza između sistema. Ovo je potrebno za migraciju. Više informacija možete naći ovde:{linebreak}{link}",
-            "link": "Dokumentacija: Migracija na Shopvare 6",
-            "title": "Nema veze"
         },
         "general": {
             "descriptionTextModule": "Modul za migraciju podataka",
@@ -50,10 +53,12 @@
                 "dataName": "Ime",
                 "errorCode": "Poruka o pogrešci",
                 "errorCount": "Grof",
+                "errorLevel": "Nivo dnevnika",
                 "errors": "Detalji",
                 "logDescription": "Za više detalja {link}",
                 "logDownload": "preuzmite datoteku dnevnika.",
                 "noErrorsOccurred": "Nije došlo do grešaka.",
+                "noProgressData": "Ovo pokretanje je izvedeno u prethodnoj verziji dodatka i njegovi podaci su izbrisani.",
                 "runStatus": "Status migracije:",
                 "status": {
                     "aborted": "Prekidano",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informaciя"
             },
-            "backButton": "Pregled",
+            "backToOverviewButton": "Nazad na pregled",
             "confirmAbortDialog": {
                 "cancelPause": "Pauza",
                 "cancelRunning": "Nastavi",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entitet {requiredForEntity} sa izvornim idom \"{requiredForSourceId}\" ne može da pronađe zavisni entitet {entity} sa izvornim idom \"{sourceId}“.",
                     "title": "Ne mogu naći {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Izuzetak se dogodio tokom obrade reda poruka.",
+                    "title": "Izuzetak u redu poruka"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migracija je automatski prekinuta, jer se dogodilo previše uzastopnih izuzetaka.",
+                    "title": "Migracija je automatski prekinuta"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Završi",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "General",
-                    "message": "Migracija je okončala proces kako bi se izbegao gubitak podataka. Proverite internet vezu i započnite novu migraciju.",
-                    "title": "Veza je izgubljena"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Dokumentacija reda za poruke",
                 "flowChart": {
+                    "cleanup": "Čišćenje",
                     "fetchData": "Čitanje",
                     "finish": "Gotovo",
+                    "indexing": "Indeksiranje",
                     "premapping": "Provera",
                     "processMedia": "Preuzimanje",
                     "writeData": "Pisanje"
                 },
-                "mediaProcessScreen": {
-                    "message": "Proces se pokreće u pozadini",
-                    "title": "Pokretanje medija za preuzimanje"
-                },
-                "pauseScreen": {
-                    "message": "Nisi pauzirao? Ako nema internet veze, migracija se automatski prebacuje na pauzu režim kako bi se sprečio gubitak podataka.",
-                    "title": "Migracija je pauzisana"
-                },
+                "notice": "Savet: Ovaj proces se izvodi u redu za poruke. Ne morate da ostanete na ovoj stranici ako je vaša prodavnica ispravno konfigurisana.",
                 "result": {
                     "caption": "Preuzimanje medija se nastavlja u pozadini. Veliki fajlovi mogu potrajati neko vreme.",
-                    "historyLink": "Prikaz detalja o migraciji",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indeksiranje je završeno.",
-                            "title": "Indeksiranje završeno"
-                        },
-                        "running": {
-                            "message": "Trenutno indeksiranje u pozadini.",
-                            "title": "Indeksiranje u toku"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Otvorena istorija",
-                        "message": "Pregledajte ili preuzmite logfajl",
-                        "title": "Istorija migracija"
-                    },
-                    "survey": {
-                        "buttonText": "Dajte povratnu informaciju sada",
-                        "caption": "Pomozite nam da poboljšamo proces migracije pružanjem povratnih informacija o vašem iskustvu.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Vaše misli su važne"
-                    },
+                    "historyHint": "Ove informacije možete pogledati bilo kada u istoriji migracija. Moguće je da će se kasnije dodati još dnevničkih poruka jer preuzimanje medija i dalje radi u pozadini.",
+                    "logSummary": "Dnevnik",
                     "title": "Pomoćnik za migraciju je urađen"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Nepisani podaci se čiste. Već migrirani podaci mogu biti neupotrebljivi.",
+                        "long": "Migracije su prekinute",
+                        "short": "Abortiranje"
+                    },
+                    "cleanup": {
+                        "caption": "Privremeni podaci se uklanjaju. Migracija je skoro završena.",
+                        "long": "Migracija se čisti",
+                        "short": "Čišćenje"
+                    },
+                    "fetching": {
                         "caption": "Novi zadaci se obrađuju.",
-                        "hint": "Savet: Migracija se nastavlja korak po korak u pozadini, istražite Shopvare 6.",
                         "long": "Podaci će se čitati iz vašeg sistema",
                         "short": "Čitanje"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Veliki podaci slike mogu potrajati neko vreme za obradu.",
-                        "hint": "Savet: Ako je veza loša, pauzirajte preuzimanje i nastavite kasnije.",
-                        "long": "Mediji se preuzimaju",
-                        "short": "Preuzimanje"
+                    "finish": "Gotovo",
+                    "indexing": {
+                        "caption": "Migracija je skoro završena.",
+                        "long": "Novi podaci se indeksiraju",
+                        "short": "Indeksiranje"
                     },
-                    "WRITE_DATA": {
-                        "caption": "U zavisnosti od veličine prodavnice može potrajati nekoliko trenutaka.",
-                        "hint": "Savet: Možete da pauzirate i nastavite proces migracije u bilo kom trenutku.",
-                        "long": "Podaci se pišu u Shopvare 6",
+                    "media-processing": {
+                        "caption": "Obrada podataka velikih slika može potrajati neko vreme.",
+                        "long": "Mediji se prenose",
+                        "short": "Prenos medija"
+                    },
+                    "writing": {
+                        "caption": "U zavisnosti od veličine prodavnice, može potrajati nekoliko trenutaka.",
+                        "long": "Podaci se pišu u Shopvare-u 6",
                         "short": "Pisanje"
-                    },
-                    "finish": "Gotovo"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Otkaži",
-                        "confirm": "Otkaži migraciju",
-                        "hint": "Želite li da otkažete migraciju?",
-                        "message": "Trenutno nije moguće preuzeti aktivnu migraciju. Ako želite, sada možete otkazati aktivnu migraciju i započeti novu neposredno nakon toga.",
-                        "title": "Otkaži migraciju"
-                    },
-                    "aborted": {
-                        "message": "Drugi korisnik je otkazao proces migracije u posebnom pregledaču ili kartici pregledača. Započnite novu migraciju.",
-                        "title": "Migracija je otkazana"
-                    },
-                    "buttonCheck": "Proverite status",
-                    "buttonRedirect": "General",
-                    "forbidden": {
-                        "message": "Migracija je već započeta u drugom pregledaču ili kartici pregledača. Pređite na ovu karticu da biste videli proces migracije.",
-                        "title": "Migracija je već počela"
-                    },
-                    "interrupted": {
-                        "message": "Proces migracije preuzet je sa drugog pretraživača ili kartice pregledača. Možete otkazati ili preuzeti proces, u zavisnosti od trenutnog statusa migracije.",
-                        "title": "Migracija je preuzeta"
-                    },
-                    "redirectModal": {
-                        "confirm": "General",
-                        "message": "Migracija je već završena u drugom pretraživaču ili kartici pregledača.",
-                        "title": "Migracija završena"
-                    },
-                    "running": {
-                        "message": "Već postoji migracija koja se pokreće u drugom pretraživaču ili kartici pregledača. Sada možete preuzeti pokretnu migraciju ili je otkazati.",
-                        "title": "Migracija je već počela"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Otkaži",
-                        "confirm": "Preuzmi migraciju",
-                        "hint": "Želite li da preuzmete migraciju?",
-                        "message": "Moguće je preuzeti aktivnu migraciju. Ako želite, možete nastaviti migraciju u ovom prozoru pregledača.",
-                        "title": "Preuzmi migraciju"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategorije:",
                     "category_association": "Kategorija udruženja:",
                     "category_cms_page_association": "Asocijacije rasporeda kategorija:",
+                    "category_custom_field": "Kategorija prilagođena polja",
                     "category_product_stream_association": "Kategorija dinamičke asocijacije grupa proizvoda:",
                     "cms_page": "Rasporedi:",
                     "country": "Zemlje:",
@@ -437,7 +396,9 @@
                     "currency": "Valute:",
                     "custom_field_set": "Prilagođeni setovi polja:",
                     "customer": "Kupci:",
+                    "customer_custom_field": "Prilagođena polja kupca",
                     "customer_group": "Grupe kupaca:",
+                    "customer_group_custom_field": "Prilagođena polja grupe kupaca",
                     "customer_wishlist": "Liste želja:",
                     "delivery_time": "Vremena isporuke:",
                     "language": "Jezici:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Nasljeđivanje medijskih fascikla:",
                     "number_range": "Raspon brojeva:",
                     "order": "Narudžbine:",
+                    "order_custom_field": "Naručite prilagođena polja",
                     "order_document": "Naručite dokumente:",
                     "order_document_base_config": "Konfigura dokumenta:",
+                    "order_document_custom_field": "Naručite prilagođena polja dokumenta",
                     "order_document_inheritance": "Odnosi naloga dokumenta:",
                     "page_system_config": "Stranica osnovno informaciя:",
                     "product": "Proizvodi:",
                     "product_cross_selling": "Cross Prodaja:",
+                    "product_custom_field": "Prilagođena polja proizvoda",
                     "product_feature_set": "Osnovne karakteristike:",
                     "product_manufacturer": "Proizvođači proizvoda:",
+                    "product_manufacturer_custom_field": "Prilagođena polja proizvođača proizvoda",
                     "product_option_relation": "Opcije proizvoda:",
+                    "product_price_custom_field": "Prilagođena polja cene proizvoda",
                     "product_property_relation": "Svojstva proizvoda:",
                     "product_review": "Recenzije:",
                     "product_sorting": "Sortiranje proizvoda:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Kreirajte novu vezu",
+                "buttonCreateInitialConnection": "Kreirajte početnu vezu",
                 "buttonEditSettings": "Uredi vezu",
                 "buttonProfileInstallation": "Instalirajte drugi profil",
                 "buttonRemoveCredentials": "Brisanje pristupnih podataka",
@@ -498,12 +465,13 @@
                 "cardTitle": "Shop sistem",
                 "connected": "Povezan",
                 "connectionCheck": "Provera veze:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Gatevai:",
                 "lastMigration": "Poslednja migracija:",
+                "noConnection": "Nema veze",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Nije povezan",
                 "profile": "Profil sistema:",
+                "refreshTooltip": "Proverite vezu sa izvornim sistemom",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Otkaži",
                     "confirmButtonText": "Da, izbrišite",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Primetili smo da verzija vašeg izvornog sistema {sourceSystem} ne odgovara vašoj verziji ciljnog sistema {targetSystem} . Uverite se da koristite istu glavnu verziju za oba sistema pre nego što započnete migraciju.",
-            "startButton": "Nastavi",
             "title": "General"
         },
         "wizard": {

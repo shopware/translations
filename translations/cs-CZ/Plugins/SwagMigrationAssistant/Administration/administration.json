@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Nepodařilo se přerušit migraci.",
+            "approveFinishedMigration": "Při dokončení migrace se nezdařilo",
+            "checkConnection": "Nepodařilo se zkontrolovat připojení ke zdrojovému systému.",
+            "fetchConnectionId": "Nepodařilo se získat ID aktivního připojení.",
+            "getDataSelection": "Nepodařilo se získat výběr dat pro aktuální připojení.",
+            "getState": "Nepodařilo se získat stav migrace.",
+            "startMigration": "Nepodařilo se spustit migraci."
+        },
         "dashboard": {
             "button": "Otevřít Průvodce migrací",
             "headline": "Přesun do Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Povrchová úprava"
             },
             "title": "Pomocník pro migraci"
-        },
-        "emptyScreen": {
-            "connectButton": "Vytvořit připojení",
-            "description": "Ujistěte se, že mezi systémy bylo navázáno spojení. To je nutné pro migraci. Více informací naleznete zde:{linebreak}{link}",
-            "link": "Dokumentace: Migrace na Shopware 6",
-            "title": "Žádné spojení"
         },
         "general": {
             "descriptionTextModule": "Modul pro migraci dat",
@@ -50,10 +53,12 @@
                 "dataName": "Jméno",
                 "errorCode": "Chybová zpráva",
                 "errorCount": "Počet",
+                "errorLevel": "Úroveň protokolu",
                 "errors": "Podrobnosti",
                 "logDescription": "Pro více informací {link}",
                 "logDownload": "stáhněte soubor protokolu.",
                 "noErrorsOccurred": "Došlo k žádným chybám.",
+                "noProgressData": "Tento běh byl proveden v předchozí verzi pluginu a jeho data byla smazána.",
                 "runStatus": "Stav migrace:",
                 "status": {
                     "aborted": "Přerušení",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informace"
             },
-            "backButton": "Přehled",
+            "backToOverviewButton": "Zpět k účtu",
             "confirmAbortDialog": {
                 "cancelPause": "Pauza",
                 "cancelRunning": "Pokračovat",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entita {requiredForEntity} s ID zdroje \"{requiredForSourceId}“ nemůže najít závislou {entity} entitu s ID zdroje \"{sourceId}“.",
                     "title": "Nelze najít {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Při zpracování fronty zpráv došlo k výjimce.",
+                    "title": "Výjimka fronty zpráv"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migrace byla automaticky přerušena, protože došlo k příliš mnoha po sobě jdoucím výjimkám.",
+                    "title": "Migrace byla automaticky přerušena"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Povrchová úprava",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "generál",
-                    "message": "Migrace ukončila proces, aby nedošlo ke ztrátě dat. Zkontrolujte připojení k internetu a spusťte novou migraci.",
-                    "title": "Připojení bylo ztraceno"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Dokumentace k frontě zpráv",
                 "flowChart": {
+                    "cleanup": "Vyčištění",
                     "fetchData": "Čtení",
                     "finish": "Hotovo",
+                    "indexing": "Indexování",
                     "premapping": "Kontrola",
                     "processMedia": "Stahování",
                     "writeData": "Psaní"
                 },
-                "mediaProcessScreen": {
-                    "message": "Proces běží na pozadí",
-                    "title": "Spuštění stahování médií"
-                },
-                "pauseScreen": {
-                    "message": "Ty jsi se nezastavil? Pokud není připojení k internetu, migrace se automaticky přepne do režimu pozastavení, aby se zabránilo ztrátě dat.",
-                    "title": "Migrace je pozastavena"
-                },
+                "notice": "Tip: Tento proces běží ve frontě zpráv. Pokud je váš obchod správně nakonfigurován, nemusíte na této stránce zůstat.",
                 "result": {
                     "caption": "Stahování médií pokračuje na pozadí. Velké soubory mohou nějakou dobu trvat.",
-                    "historyLink": "Zobrazení podrobností o migraci",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indexování bylo dokončeno.",
-                            "title": "Indexování dokončeno"
-                        },
-                        "running": {
-                            "message": "Momentálně indexování na pozadí.",
-                            "title": "Probíhá indexování"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Otevřená historie",
-                        "message": "Zobrazení nebo stažení souboru protokolu",
-                        "title": "Historie migrace"
-                    },
-                    "survey": {
-                        "buttonText": "Poskytněte zpětnou vazbu",
-                        "caption": "Pomozte nám vylepšit proces migrace poskytnutím zpětné vazby k vašim zkušenostem.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Vaše myšlenky jsou důležité"
-                    },
+                    "historyHint": "Tyto informace můžete kdykoli zobrazit v historii migrace. Je možné, že později budou přidány další zprávy protokolu, protože stahování médií stále běží na pozadí.",
+                    "logSummary": "Deník",
                     "title": "Pomocník pro migraci je hotový"
                 },
                 "status": {
-                    "FETCH_DATA": {
-                        "caption": "Nové úkoly jsou zpracovávány.",
-                        "hint": "Tip: Migrace pokračuje krok za krokem v pozadí, prozkoumejte Shopware 6.",
-                        "long": "Data budou načtena z vašeho systému",
+                    "aborting": {
+                        "caption": "Nepsaná data jsou vyčištěna. Již migrovaná data mohou být nepoužitelná.",
+                        "long": "Migrace je přerušena",
+                        "short": "Přerušení"
+                    },
+                    "cleanup": {
+                        "caption": "Dočasná data jsou odstraněna. Migrace je téměř dokončena.",
+                        "long": "Migrace se čistí",
+                        "short": "Vyčištění"
+                    },
+                    "fetching": {
+                        "caption": "Nové úkoly jsou zpracovány.",
+                        "long": "Data budou načítána z vašeho systému",
                         "short": "Čtení"
                     },
-                    "PROCESS_MEDIA_FILES": {
+                    "finish": "Hotovo",
+                    "indexing": {
+                        "caption": "Migrace je téměř dokončena.",
+                        "long": "Nová data jsou indexována",
+                        "short": "Indexování"
+                    },
+                    "media-processing": {
                         "caption": "Zpracování velkých obrazových dat může nějakou dobu trvat.",
-                        "hint": "Tip: Pokud je připojení špatné, pozastavte stahování a pokračujte později.",
-                        "long": "Média se stahují",
-                        "short": "Stahování"
+                        "long": "Média jsou přenášena",
+                        "short": "Přenos médií"
                     },
-                    "WRITE_DATA": {
+                    "writing": {
                         "caption": "V závislosti na velikosti obchodu to může trvat několik okamžiků.",
-                        "hint": "Tip: Proces migrace můžete kdykoli pozastavit a obnovit.",
-                        "long": "Data jsou zapsána v Shopware 6",
+                        "long": "Data jsou zapisována v Shopware 6",
                         "short": "Psaní"
-                    },
-                    "finish": "Hotovo"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Zrušit",
-                        "confirm": "Zrušit migraci",
-                        "hint": "Chcete zrušit migraci?",
-                        "message": "V současné době není možné převzít aktivní migraci. Pokud chcete, můžete nyní aktivní migraci zrušit a hned poté začít novou.",
-                        "title": "Zrušit migraci"
-                    },
-                    "aborted": {
-                        "message": "Jiný uživatel zrušil proces migrace v samostatném prohlížeči nebo kartě prohlížeče. Prosím, začněte novou migraci.",
-                        "title": "Migrace byla zrušena"
-                    },
-                    "buttonCheck": "Kontrola stavu",
-                    "buttonRedirect": "generál",
-                    "forbidden": {
-                        "message": "Migrace již byla spuštěna v jiném prohlížeči nebo kartě prohlížeče. Chcete-li zobrazit proces migrace, přepněte na tuto kartu.",
-                        "title": "Migrace již byla zahájena"
-                    },
-                    "interrupted": {
-                        "message": "Proces migrace byl převzat z jiného prohlížeče nebo karty prohlížeče. Proces můžete zrušit nebo převzít v závislosti na aktuálním stavu migrace.",
-                        "title": "Migrace byla převzata"
-                    },
-                    "redirectModal": {
-                        "confirm": "generál",
-                        "message": "Migrace již byla dokončena v jiném prohlížeči nebo kartě prohlížeče.",
-                        "title": "Migrace dokončena"
-                    },
-                    "running": {
-                        "message": "V jiném prohlížeči nebo kartě prohlížeče již probíhá migrace. Nyní můžete buď převzít probíhající migraci, nebo ji zrušit.",
-                        "title": "Migrace již byla zahájena"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Zrušit",
-                        "confirm": "Převzetí migrace",
-                        "hint": "Chtěli byste převzít migraci?",
-                        "message": "Je možné převzít aktivní migraci. Pokud chcete, můžete pokračovat v migraci v tomto okně prohlížeče.",
-                        "title": "Převzetí migrace"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategorie:",
                     "category_association": "Kategorie sdružení:",
                     "category_cms_page_association": "Sdružení rozvržení kategorií:",
+                    "category_custom_field": "Vlastní pole kategorie",
                     "category_product_stream_association": "Kategorie dynamické asociace skupin produktů:",
                     "cms_page": "Rozvržení:",
                     "country": "Země:",
@@ -437,7 +396,9 @@
                     "currency": "Měny:",
                     "custom_field_set": "Vlastní sady polí:",
                     "customer": "Zákazníci:",
+                    "customer_custom_field": "Vlastní pole zákazníka",
                     "customer_group": "Skupiny zákazníků:",
+                    "customer_group_custom_field": "Vlastní pole skupiny zákazníků",
                     "customer_wishlist": "Seznamy přání:",
                     "delivery_time": "Dodací lhůty:",
                     "language": "Jazyky:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Dědičnost složek médií:",
                     "number_range": "Číselné rozsahy:",
                     "order": "Objednávky:",
+                    "order_custom_field": "Objednat vlastní pole",
                     "order_document": "Objednávací dokumenty:",
                     "order_document_base_config": "Konfigurace dokumentu:",
+                    "order_document_custom_field": "Objednat vlastní pole dokumentu",
                     "order_document_inheritance": "Vztahy dokumentů objednávky:",
                     "page_system_config": "Základní informace o stránce:",
                     "product": "Produkty:",
                     "product_cross_selling": "Křížový prodej:",
+                    "product_custom_field": "Vlastní pole produktu",
                     "product_feature_set": "Základní vlastnosti:",
                     "product_manufacturer": "Výrobci výrobků:",
+                    "product_manufacturer_custom_field": "Vlastní pole výrobce produktu",
                     "product_option_relation": "Možnosti produktu:",
+                    "product_price_custom_field": "Vlastní pole ceny produktu",
                     "product_property_relation": "Vlastnosti produktu:",
                     "product_review": "Recenze:",
                     "product_sorting": "Třídění produktů:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Vytvořit nové připojení",
+                "buttonCreateInitialConnection": "Vytvoření počátečního připojení",
                 "buttonEditSettings": "Upravit připojení",
                 "buttonProfileInstallation": "Instalace jiného profilu",
                 "buttonRemoveCredentials": "Smazat přístupová data",
@@ -498,12 +465,13 @@
                 "cardTitle": "Systém obchodu",
                 "connected": "Připojeno",
                 "connectionCheck": "Kontrola připojení:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Brána:",
                 "lastMigration": "Poslední migrace:",
+                "noConnection": "Žádné spojení",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Není připojen",
                 "profile": "Profil systému:",
+                "refreshTooltip": "Zkontrolujte připojení ke zdrojovému systému",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Zrušit",
                     "confirmButtonText": "Ano, smazat",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Všimli jsme si, že verze zdrojového systému {sourceSystem} neodpovídá vaší cílové verzi systému {targetSystem} . Před zahájením migrace se ujistěte, že používáte stejnou hlavní verzi pro oba systémy.",
-            "startButton": "Pokračovat",
             "title": "generál"
         },
         "wizard": {
