@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "移行を中止できませんでした。",
+            "approveFinishedMigration": "移行を完了中に失敗しました",
+            "checkConnection": "ソースシステムへの接続を確認できませんでした。",
+            "fetchConnectionId": "アクティブな接続 ID を取得できませんでした。",
+            "getDataSelection": "現在の接続のデータ選択を取得できませんでした。",
+            "getState": "移行状態を取得できませんでした。",
+            "startMigration": "移行を開始できませんでした。"
+        },
         "dashboard": {
             "button": "移行アシスタントを開く",
             "headline": "ショップウェアへの移行",
@@ -17,12 +26,6 @@
                 "resetButton": "完了"
             },
             "title": "移行アシスタント"
-        },
-        "emptyScreen": {
-            "connectButton": "接続を作成",
-            "description": "システム間の接続が確立されていることを確認してください。これは移行に必要です。詳細についてはこちらをご覧ください:{linebreak}{link}",
-            "link": "ドキュメント: Shopware 6への移行",
-            "title": "接続なし"
         },
         "general": {
             "descriptionTextModule": "データを移行するモジュール",
@@ -50,10 +53,12 @@
                 "dataName": "名前",
                 "errorCode": "エラーメッセージ",
                 "errorCount": "件数",
+                "errorLevel": "ログレベル",
                 "errors": "詳細",
                 "logDescription": "詳細については {link}",
                 "logDownload": "ログファイルをダウンロード。",
                 "noErrorsOccurred": "エラーは発生していません。",
+                "noProgressData": "この実行は以前のバージョンのプラグインで実行され、そのデータは削除されました。",
                 "runStatus": "移行ステータス:",
                 "status": {
                     "aborted": "中断",
@@ -91,7 +96,7 @@
                 },
                 "title": "情報"
             },
-            "backButton": "概要",
+            "backToOverviewButton": "概要に戻る",
             "confirmAbortDialog": {
                 "cancelPause": "一時停止",
                 "cancelRunning": "続ける",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "ソース Id が \"{requiredForSourceId}\" の {requiredForEntity} エンティティは、ソース Id が \"{sourceId}\" の従属 {entity} エンティティを見つけることができません。",
                     "title": "{entity} が見つかりません"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "メッセージキューの処理中に例外が発生しました。",
+                    "title": "メッセージキュー例外"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "連続して発生した例外が多すぎるため、移行は自動的に中止されました。",
+                    "title": "マイグレーションは自動的に中止されました"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "完了",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "全般",
-                    "message": "データ損失を防ぐため、移行処理は終了しました。インターネット接続を確認して、新しい移行を開始してください。",
-                    "title": "接続が失われました"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "メッセージキューのドキュメント",
                 "flowChart": {
+                    "cleanup": "クリーンアップ",
                     "fetchData": "読み込み中",
                     "finish": "完了",
+                    "indexing": "索引付け",
                     "premapping": "チェック中",
                     "processMedia": "ダウンロード中",
                     "writeData": "書き込み中"
                 },
-                "mediaProcessScreen": {
-                    "message": "プロセスはバックグラウンドで実行されています",
-                    "title": "メディアダウンロードの開始"
-                },
-                "pauseScreen": {
-                    "message": "一時停止しませんでしたか？インターネット接続がない場合、移行は自動的に一時停止モードに切り替わり、データの損失を防ぎます。",
-                    "title": "移行は一時停止されています"
-                },
+                "notice": "ヒント:このプロセスはメッセージキューで実行されます。ショップが正しく設定されていれば、このページを開いておく必要はありません。",
                 "result": {
                     "caption": "メディアのダウンロードはバックグラウンドで継続されます。サイズの大きいファイルには時間がかかる場合があります。",
-                    "historyLink": "移行の詳細を表示",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "インデックス作成が完了しました。",
-                            "title": "インデックス作成が完了しました"
-                        },
-                        "running": {
-                            "message": "現在、バックグラウンドでインデックス作成中です。",
-                            "title": "インデックス作成中"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "履歴を開く",
-                        "message": "ログファイルを表示またはダウンロードする",
-                        "title": "移行履歴"
-                    },
-                    "survey": {
-                        "buttonText": "今すぐフィードバックを送信",
-                        "caption": "ご感想をお寄せいただき、移行プロセスの改善にご協力ください。",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "あなたのご意見は重要です"
-                    },
+                    "historyHint": "この情報は、移行履歴でいつでも確認できます。メディアのダウンロードはまだバックグラウンドで実行されているため、後でさらにログメッセージが追加される可能性があります。",
+                    "logSummary": "ログブック",
                     "title": "移行アシスタントは完了しました"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "書き込まれていないデータはクリーンアップされます。すでに移行されたデータは使用できない可能性があります。",
+                        "long": "移行は中止されます",
+                        "short": "中止中"
+                    },
+                    "cleanup": {
+                        "caption": "一時データは削除されています。移行はほぼ完了しました。",
+                        "long": "マイグレーションはクリーンアップ中です",
+                        "short": "クリーンアップ"
+                    },
+                    "fetching": {
                         "caption": "新しい割り当てが処理されます。",
-                        "hint": "ヒント：移行はバックグラウンドでステップバイステップで継続され、Shopware 6を探索します。",
                         "long": "データはシステムから読み込まれます",
                         "short": "読み込み中"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "大きな画像データは処理に時間がかかる場合があります。",
-                        "hint": "ヒント: 接続状態が悪い場合は、ダウンロードを一時停止して後で続行してください。",
-                        "long": "メディアはダウンロード中です",
-                        "short": "ダウンロード中"
+                    "finish": "完了",
+                    "indexing": {
+                        "caption": "移行はほぼ完了しました。",
+                        "long": "新しいデータはインデックス作成中です",
+                        "short": "索引付け"
                     },
-                    "WRITE_DATA": {
-                        "caption": "お店の規模によっては、少し時間がかかる場合があります。",
-                        "hint": "ヒント: 移行プロセスはいつでも一時停止および再開できます。",
-                        "long": "Shopware 6にデータが書き込まれています",
+                    "media-processing": {
+                        "caption": "大きな画像データの処理には時間がかかる場合があります。",
+                        "long": "メディアを転送中です",
+                        "short": "メディア転送"
+                    },
+                    "writing": {
+                        "caption": "店舗の規模によっては、しばらく時間がかかる場合があります。",
+                        "long": "データはShopware 6に書き込まれています",
                         "short": "書き込み中"
-                    },
-                    "finish": "完了"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "キャンセル",
-                        "confirm": "マイグレーションのキャンセル",
-                        "hint": "移行をキャンセルしますか?",
-                        "message": "現在、アクティブなマイグレーションを引き継ぐことはできません。ご希望であれば、現在進行中のマイグレーションをキャンセルして、その直後に新しいマイグレーションを開始することもできます。",
-                        "title": "マイグレーションのキャンセル"
-                    },
-                    "aborted": {
-                        "message": "別のユーザーが別のブラウザまたはブラウザタブで移行プロセスをキャンセルしました。新しい移行を開始してください。",
-                        "title": "移行はキャンセルされました"
-                    },
-                    "buttonCheck": "ステータス確認",
-                    "buttonRedirect": "全般",
-                    "forbidden": {
-                        "message": "移行は別のブラウザまたはブラウザタブですでに開始されています。移行プロセスを表示するには、このタブに切り替えてください。",
-                        "title": "移行はすでに開始されています"
-                    },
-                    "interrupted": {
-                        "message": "移行プロセスは別のブラウザまたはブラウザタブから引き継がれました。移行の現在の状況に応じて、プロセスをキャンセルまたは引き継ぐことができます。",
-                        "title": "移行が引き継がれました"
-                    },
-                    "redirectModal": {
-                        "confirm": "全般",
-                        "message": "移行はすでに別のブラウザまたはブラウザタブで完了しています。",
-                        "title": "移行完了"
-                    },
-                    "running": {
-                        "message": "すでに別のブラウザまたはタブで実行されている移行があります。移行を引き継ぐか、キャンセルすることができます。",
-                        "title": "移行はすでに開始されています"
-                    },
-                    "takeoverModal": {
-                        "cancel": "キャンセル",
-                        "confirm": "移行を引き継ぐ",
-                        "hint": "移行を引き継ぎますか？",
-                        "message": "アクティブな移行を引き継ぐことができます。ご希望の場合は、このブラウザウィンドウで移行を続行できます。",
-                        "title": "移行を引き継ぐ"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "カテゴリー:",
                     "category_association": "カテゴリの関連付け:",
                     "category_cms_page_association": "カテゴリレイアウトの関連付け:",
+                    "category_custom_field": "カテゴリのカスタムフィールド",
                     "category_product_stream_association": "カテゴリー動的な商品グループの関連付け:",
                     "cms_page": "レイアウト:",
                     "country": "国:",
@@ -437,7 +396,9 @@
                     "currency": "通貨:",
                     "custom_field_set": "カスタムフィールドセット:",
                     "customer": "顧客:",
+                    "customer_custom_field": "顧客カスタムフィールド",
                     "customer_group": "顧客グループ:",
+                    "customer_group_custom_field": "顧客グループのカスタムフィールド",
                     "customer_wishlist": "欲しいものリスト:",
                     "delivery_time": "配送時間帯:",
                     "language": "言語:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "メディアフォルダの継承:",
                     "number_range": "数値の範囲:",
                     "order": "注文:",
+                    "order_custom_field": "カスタムフィールドを注文する",
                     "order_document": "注文ドキュメント:",
                     "order_document_base_config": "ドキュメント設定:",
+                    "order_document_custom_field": "注文書類のカスタムフィールド",
                     "order_document_inheritance": "注文伝票関係:",
                     "page_system_config": "ページの基本情報:",
                     "product": "商品:",
                     "product_cross_selling": "クロスセル:",
+                    "product_custom_field": "製品カスタムフィールド",
                     "product_feature_set": "本質的な特徴:",
                     "product_manufacturer": "メーカー",
+                    "product_manufacturer_custom_field": "製品メーカーのカスタムフィールド",
                     "product_option_relation": "商品オプション:",
+                    "product_price_custom_field": "商品価格カスタムフィールド",
                     "product_property_relation": "製品プロパティ:",
                     "product_review": "レビュー:",
                     "product_sorting": "商品並べ替え:",
@@ -468,7 +434,7 @@
                     "rule": "ルール:",
                     "sales_channel": "セールスチャネル:",
                     "sales_channel_domain": "ドメイン:",
-                    "salutation": "あいさつ文:",
+                    "salutation": "敬称:",
                     "seo_url": "SEO URL:",
                     "seo_url_template": "SEO URL テンプレート:",
                     "shipping_method": "配送方法:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "新しい接続を作成",
+                "buttonCreateInitialConnection": "初期接続を作成",
                 "buttonEditSettings": "接続を編集",
                 "buttonProfileInstallation": "別のプロファイルをインストール",
                 "buttonRemoveCredentials": "アクセスデータを削除",
@@ -498,12 +465,13 @@
                 "cardTitle": "ショップ システム",
                 "connected": "接続済",
                 "connectionCheck": "接続のチェック:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "ゲートウェイ:",
                 "lastMigration": "最終マイグレーション:",
+                "noConnection": "接続なし",
                 "noMigrationDoneYet": "-",
                 "notConnected": "接続されていません",
                 "profile": "システムプロファイル:",
+                "refreshTooltip": "ソースシステムへの接続を確認",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "キャンセル",
                     "confirmButtonText": "はい、削除します",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "ソースシステム {sourceSystem} のバージョンがターゲットシステム {targetSystem} のバージョンと一致しないことに気付きました。移行を開始する前に、両方のシステムで同じメジャーバージョンを使用してください。",
-            "startButton": "続ける",
             "title": "全般"
         },
         "wizard": {

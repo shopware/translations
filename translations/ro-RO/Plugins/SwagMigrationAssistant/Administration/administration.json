@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Nu s-a putut întrerupe migrarea.",
+            "approveFinishedMigration": "Eșuat la finalizarea migrării",
+            "checkConnection": "Nu s-a reușit verificarea conexiunii la sistemul sursă.",
+            "fetchConnectionId": "Nu s-a reușit obținerea ID-ului conexiunii active.",
+            "getDataSelection": "Nu s-a reușit obținerea selecției de date pentru conexiunea curentă.",
+            "getState": "Nu a reușit să obțineți starea de migrare.",
+            "startMigration": "Nu a reușit să pornească migrarea."
+        },
         "dashboard": {
             "button": "Asistent migrare deschis",
             "headline": "Mutarea la Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Finish"
             },
             "title": "Asistent migrare"
-        },
-        "emptyScreen": {
-            "connectButton": "Creare conexiune",
-            "description": "Asigurați-vă că a fost stabilită o conexiune între sisteme. Acest lucru este necesar pentru migrare. Puteți găsi mai multe informații aici:{linebreak}{link}",
-            "link": "Documentaţie: Migrarea la magazin 6",
-            "title": "Nici o conexiune"
         },
         "general": {
             "descriptionTextModule": "Modul de migrare a datelor",
@@ -50,10 +53,12 @@
                 "dataName": "Nume",
                 "errorCode": "Mesaj de eroare",
                 "errorCount": "Contele",
+                "errorLevel": "Nivelul jurnalului",
                 "errors": "Detalii",
                 "logDescription": "Pentru mai multe detalii {link}",
                 "logDownload": "descarcă fișierul jurnal.",
                 "noErrorsOccurred": "Nu s-au produs erori.",
+                "noProgressData": "Această rulare a fost efectuată într-o versiune anterioară a pluginului și datele sale au fost șterse.",
                 "runStatus": "Starea migrării:",
                 "status": {
                     "aborted": "Abandonat",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informații"
             },
-            "backButton": "Prezentare generală",
+            "backToOverviewButton": "Înapoi la prezentare generală",
             "confirmAbortDialog": {
                 "cancelPause": "Pauză",
                 "cancelRunning": "Continuă",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entitatea {requiredForEntity} cu ID-ul sursă „{requiredForSourceId}” nu poate găsi entitatea {entity} dependentă cu ID-ul sursă „{sourceId}”.",
                     "title": "Nu am găsit {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "A apărut o excepție în timpul procesării cozii de mesaje.",
+                    "title": "Excepție de coadă de mesaje"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migrarea a fost întreruptă automat, deoarece au avut loc prea multe excepții consecutive.",
+                    "title": "Migrarea este întreruptă automat"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Finish",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "General",
-                    "message": "Migrarea a încheiat procesul pentru a evita pierderea datelor. Verificați conexiunea la internet și începeți o nouă migrare.",
-                    "title": "Conexiunea a fost pierdută"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Documentația cozii de mesaje",
                 "flowChart": {
+                    "cleanup": "Curățare",
                     "fetchData": "Citire",
                     "finish": "Terminat",
+                    "indexing": "Indexare",
                     "premapping": "Verificare",
                     "processMedia": "Descărcare",
                     "writeData": "Scrierea"
                 },
-                "mediaProcessScreen": {
-                    "message": "Procesul se execută în fundal",
-                    "title": "Pornirea descărcării media"
-                },
-                "pauseScreen": {
-                    "message": "Nu te-ai oprit? Dacă nu există nicio conexiune la internet, migrarea comută automat în modul de pauză pentru a preveni pierderea datelor.",
-                    "title": "Migrarea este întreruptă"
-                },
+                "notice": "Sfat: Acest proces rulează în coada de mesaje. Nu trebuie să rămâneți pe această pagină dacă magazinul dvs. este configurat corect.",
                 "result": {
                     "caption": "Descărcarea media continuă în fundal. Fișierele mari pot dura ceva timp.",
-                    "historyLink": "Vizualizare detalii de migrare",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indexarea a fost finalizată.",
-                            "title": "Indexare finalizată"
-                        },
-                        "running": {
-                            "message": "În prezent, indexarea în fundal.",
-                            "title": "Indexarea în curs"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Istoric deschis",
-                        "message": "Vizualizarea sau descărcarea fișierului de jurnal",
-                        "title": "Istoric migrare"
-                    },
-                    "survey": {
-                        "buttonText": "Oferiți feedback acum",
-                        "caption": "Vă rugăm să ne ajutați să îmbunătățim procesul de migrare furnizând feedback cu privire la experiența dvs.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Gândurile tale sunt importante"
-                    },
+                    "historyHint": "Puteți vizualiza aceste informații oricând în istoricul migrației. Este posibil ca mai multe mesaje jurnal să fie adăugate ulterior, deoarece descărcarea media continuă să ruleze în fundal.",
+                    "logSummary": "Jurnal de bord",
                     "title": "Asistentul pentru Migrație a terminat"
                 },
                 "status": {
-                    "FETCH_DATA": {
-                        "caption": "Noile misiuni sunt procesate.",
-                        "hint": "Sfat: Migrarea continuă pas cu pas în fundal, explorați Shopware 6.",
-                        "long": "Datele vor fi citite din sistemul dvs",
+                    "aborting": {
+                        "caption": "Datele nescrise sunt curățate. Datele deja migrate ar putea fi inutilizabile.",
+                        "long": "Migrația este întreruptă",
+                        "short": "Avortul"
+                    },
+                    "cleanup": {
+                        "caption": "Datele temporare sunt eliminate. Migrația este aproape completă.",
+                        "long": "Migrația este curățată",
+                        "short": "Curățare"
+                    },
+                    "fetching": {
+                        "caption": "Noile sarcini sunt procesate.",
+                        "long": "Datele vor fi citite din sistemul dvs.",
                         "short": "Citire"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Datele de imagine mari pot dura ceva timp pentru a procesa.",
-                        "hint": "Sfat: Dacă conexiunea este slabă, întrerupeți descărcarea și continuați mai târziu.",
-                        "long": "Mass-media este descărcată",
-                        "short": "Descărcare"
+                    "finish": "Terminat",
+                    "indexing": {
+                        "caption": "Migrația este aproape completă.",
+                        "long": "Noile date sunt indexate",
+                        "short": "Indexare"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Procesarea datelor mari de imagine poate dura ceva timp.",
+                        "long": "Mass-media este transferată",
+                        "short": "Transferul media"
+                    },
+                    "writing": {
                         "caption": "În funcție de dimensiunea magazinului, poate dura câteva momente.",
-                        "hint": "Sfat: Puteți să întrerupeți și să reluați procesul de migrare în orice moment.",
                         "long": "Datele sunt scrise în Shopware 6",
                         "short": "Scrierea"
-                    },
-                    "finish": "Terminat"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Anulare",
-                        "confirm": "Anulare migrare",
-                        "hint": "Doriți să anulați migrația?",
-                        "message": "Nu este posibilă preluarea migrării active în acest moment. Dacă doriți, puteți să anulați acum migrarea activă și să începeți una nouă direct după aceea.",
-                        "title": "Anulare migrare"
-                    },
-                    "aborted": {
-                        "message": "Un alt utilizator a anulat procesul de migrare într-o filă separată de browser sau browser. Vă rugăm să începeți o nouă migrare.",
-                        "title": "Migrația a fost anulată"
-                    },
-                    "buttonCheck": "Verifică starea",
-                    "buttonRedirect": "General",
-                    "forbidden": {
-                        "message": "O migrare a fost deja pornită în altă filă de browser sau browser. Vă rugăm să comutați la această filă pentru a vizualiza procesul de migrare.",
-                        "title": "Migrarea a început deja"
-                    },
-                    "interrupted": {
-                        "message": "Procesul de migrare a fost preluat din altă filă de browser sau browser. Puteți anula sau prelua procesul, în funcție de starea curentă a migrării.",
-                        "title": "Migrația a fost preluată"
-                    },
-                    "redirectModal": {
-                        "confirm": "General",
-                        "message": "Migrarea a fost deja finalizată într-o altă filă de browser sau browser.",
-                        "title": "Migrarea finalizată"
-                    },
-                    "running": {
-                        "message": "Există deja o migrare care rulează într-o altă filă de browser sau browser. Acum puteți prelua migrarea în execuție sau să o anulați.",
-                        "title": "Migrarea a început deja"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Anulare",
-                        "confirm": "Preluarea migrării",
-                        "hint": "Vrei să preiei migrarea?",
-                        "message": "Este posibilă preluarea migrării active. Dacă doriți, puteți continua migrarea în această fereastră a browserului.",
-                        "title": "Preluarea migrării"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Categorii:",
                     "category_association": "Asociații de categorii:",
                     "category_cms_page_association": "Asociații de aspect categorie:",
+                    "category_custom_field": "Categorie câmpuri personalizate",
                     "category_product_stream_association": "Categorii asociații dinamice ale grupurilor de produse:",
                     "cms_page": "Aspecte:",
                     "country": "Ţări:",
@@ -437,7 +396,9 @@
                     "currency": "Valute:",
                     "custom_field_set": "Seturi de câmpuri personalizate:",
                     "customer": "Clienți:",
+                    "customer_custom_field": "Câmpuri personalizate pentru clienți",
                     "customer_group": "Grupuri de clienți:",
+                    "customer_group_custom_field": "Câmpuri personalizate pentru grupuri de clienți",
                     "customer_wishlist": "Listele de dorințe:",
                     "delivery_time": "Termeni de livrare:",
                     "language": "Limbi:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Moștenirile folderului media:",
                     "number_range": "Intervale de numere:",
                     "order": "Comenzi:",
+                    "order_custom_field": "Comandați câmpuri personalizate",
                     "order_document": "Documente de comandă:",
                     "order_document_base_config": "Configurare document:",
+                    "order_document_custom_field": "Comandați câmpuri personalizate ale documentului",
                     "order_document_inheritance": "Relații cu documentele de ordine:",
                     "page_system_config": "Informații de bază ale paginii:",
                     "product": "Produse:",
                     "product_cross_selling": "Vânzare încrucișată:",
+                    "product_custom_field": "Câmpuri personalizate ale produsului",
                     "product_feature_set": "Caracteristici esențiale:",
                     "product_manufacturer": "Producători de produse:",
+                    "product_manufacturer_custom_field": "Câmpuri personalizate ale producătorului de produse",
                     "product_option_relation": "Opțiuni de produs:",
+                    "product_price_custom_field": "Câmpuri personalizate pentru prețul produsului",
                     "product_property_relation": "Proprietățile produsului:",
                     "product_review": "Opinii:",
                     "product_sorting": "Sortarea produselor:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Creează o conexiune nouă",
+                "buttonCreateInitialConnection": "Creați conexiunea inițială",
                 "buttonEditSettings": "Editare conexiune",
                 "buttonProfileInstallation": "Instalați un alt profil",
                 "buttonRemoveCredentials": "Ștergerea datelor de acces",
@@ -498,12 +465,13 @@
                 "cardTitle": "Sistem de magazin",
                 "connected": "Conectaţi",
                 "connectionCheck": "Verificarea conexiunii:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Gateway:",
                 "lastMigration": "Ultima migrare:",
+                "noConnection": "Nici o conexiune",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Nu este conectat",
                 "profile": "Profilul sistemului:",
+                "refreshTooltip": "Verificați conexiunea la sistemul sursă",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Anulare",
                     "confirmButtonText": "Da, şterge",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Am observat că versiunea {sourceSystem} a sistemului sursă nu se potrivește cu versiunea {targetSystem} a sistemului țintă. Asigurați-vă că utilizați aceeași versiune majoră pentru ambele sisteme înainte de a începe migrarea.",
-            "startButton": "Continuă",
             "title": "General"
         },
         "wizard": {

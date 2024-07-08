@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Nem sikerült megszakítani a migrációt.",
+            "approveFinishedMigration": "Nem sikerült az áttelepítés befejezésekor",
+            "checkConnection": "Nem sikerült ellenőrizni a forrásrendszerhez való kapcsolatot.",
+            "fetchConnectionId": "Nem sikerült megszerezni az aktív kapcsolatazonosítót.",
+            "getDataSelection": "Nem sikerült kiválasztani az aktuális kapcsolat adatait.",
+            "getState": "Nem sikerült megszerezni a migrációs állapotot.",
+            "startMigration": "Nem sikerült elindítani a migrációt."
+        },
         "dashboard": {
             "button": "Áttelepítési segéd megnyitása",
             "headline": "Mozgatás a Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Finish"
             },
             "title": "Áttelepítési asszisztens"
-        },
-        "emptyScreen": {
-            "connectButton": "Kapcsolat létrehozása",
-            "description": "Győződjön meg róla, hogy kapcsolat jött létre a rendszerek között. Ez szükséges az áttelepítéshez. Bővebb információt itt talál:{linebreak}{link}",
-            "link": "Dokumentáció: Áttelepítés a Shopware 6",
-            "title": "Nincs kapcsolat"
         },
         "general": {
             "descriptionTextModule": "Modul az adatok áttelepítéséhez",
@@ -50,10 +53,12 @@
                 "dataName": "Név",
                 "errorCode": "Hibaüzenet",
                 "errorCount": "Count",
+                "errorLevel": "Napló szint",
                 "errors": "Részletek",
                 "logDescription": "További részletek {link}",
                 "logDownload": "töltse le a naplófájlt.",
                 "noErrorsOccurred": "Nem történt hiba.",
+                "noProgressData": "Ezt a futtatást a plugin egy korábbi verziójában hajtották végre, és adatait törölték.",
                 "runStatus": "A migráció állapota:",
                 "status": {
                     "aborted": "Megszakadt",
@@ -91,7 +96,7 @@
                 },
                 "title": "Információ"
             },
-            "backButton": "áttekintés",
+            "backToOverviewButton": "Vissza az áttekintéshez",
             "confirmAbortDialog": {
                 "cancelPause": "Szünet",
                 "cancelRunning": "Folytatás",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Az „{requiredForSourceId}” forrásazonosítóval rendelkező {requiredForEntity} entitás nem találja a „{sourceId}” forrásazonosítóval rendelkező függött {entity} entitást.",
                     "title": "Nem található {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Kivétel történt az üzenetsor feldolgozása során.",
+                    "title": "Üzenetsor kivétele"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "A migráció automatikusan megszakadt, mert túl sok egymást követő kivétel történt.",
+                    "title": "A migráció automatikusan megszakadt"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Finish",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Általános",
-                    "message": "Az áttelepítés befejezte a folyamatot, hogy elkerülje az adatvesztést. Ellenőrizze az internetkapcsolatot, és indítsa el az új áttelepítést.",
-                    "title": "A kapcsolat megszakadt"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Üzenetsor dokumentációja",
                 "flowChart": {
+                    "cleanup": "Tisztítás",
                     "fetchData": "Olvasás",
                     "finish": "Kész",
+                    "indexing": "Indexelés",
                     "premapping": "Ellenőrizés",
                     "processMedia": "Letöltés",
                     "writeData": "Írás"
                 },
-                "mediaProcessScreen": {
-                    "message": "A folyamat a háttérben fut",
-                    "title": "Média letöltés indítása"
-                },
-                "pauseScreen": {
-                    "message": "Nem álltál meg? Ha nincs internetkapcsolat, az áttelepítés automatikusan szünetelteti az adatvesztést.",
-                    "title": "A migráció szünetel"
-                },
+                "notice": "Tipp: Ez a folyamat az üzenetsorban fut. Nem kell ezen az oldalon maradnia, ha az üzlet megfelelően van konfigurálva.",
                 "result": {
                     "caption": "A média letöltése folytatódik a háttérben. A nagy fájlok időbe telhetnek.",
-                    "historyLink": "Áttelepítés részleteinek megtekintése",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Az indexelés befejeződött.",
-                            "title": "Indexelés befejeződött"
-                        },
-                        "running": {
-                            "message": "Jelenleg indexelés a háttérben.",
-                            "title": "Indexelés folyamatban"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Előzmények megnyitása",
-                        "message": "A naplófájl megtekintése vagy letöltése",
-                        "title": "Áttelepítési előzmények"
-                    },
-                    "survey": {
-                        "buttonText": "Adjon visszajelzést most",
-                        "caption": "Kérjük, segítsen nekünk javítani az áttelepítési folyamatot azáltal, hogy visszajelzést ad tapasztalatairól.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "A gondolataid fontosak"
-                    },
+                    "historyHint": "Ezt az információt bármikor megtekintheti a migrációs előzményekben. Lehetséges, hogy később további naplóüzenetek kerülnek hozzáadásra, mert a média letöltése továbbra is a háttérben fut.",
+                    "logSummary": "Naplónapló",
                     "title": "A migrációs asszisztens elkészült"
                 },
                 "status": {
-                    "FETCH_DATA": {
-                        "caption": "Az új hozzárendelések feldolgozásra kerülnek.",
-                        "hint": "Tipp: Az áttelepítés lépésről lépésre folytatódik a háttérben, fedezze fel a Shopware 6 programot.",
-                        "long": "Az adatok a rendszerből lesznek olvasva",
+                    "aborting": {
+                        "caption": "Az íratlan adatok törlődnek. A már áttelepített adatok használhatatlanok lehetnek.",
+                        "long": "Megszakítják a migrációt",
+                        "short": "Abortusz"
+                    },
+                    "cleanup": {
+                        "caption": "Az ideiglenes adatok eltávolításra kerülnek. A migráció majdnem befejeződött.",
+                        "long": "Megtisztítják a migrációt",
+                        "short": "Tisztítás"
+                    },
+                    "fetching": {
+                        "caption": "Az új feladatok feldolgozásra kerülnek.",
+                        "long": "Az adatokat az Ön rendszeréből olvashatjuk",
                         "short": "Olvasás"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "A nagyméretű képadatok feldolgozása időbe telhet.",
-                        "hint": "Tipp: Ha a kapcsolat gyenge, szüneteltesse a letöltést, és folytassa később.",
-                        "long": "Letöltik a médiát",
-                        "short": "Letöltés"
+                    "finish": "Kész",
+                    "indexing": {
+                        "caption": "A migráció majdnem befejeződött.",
+                        "long": "Az új adatok indexelése folyamatban van",
+                        "short": "Indexelés"
                     },
-                    "WRITE_DATA": {
-                        "caption": "A bolt méretétől függően néhány pillanatig is eltarthat.",
-                        "hint": "Tipp: Bármikor szüneteltetheti és folytathatja az áttelepítési folyamatot.",
-                        "long": "Az adatokat a Shopware 6",
+                    "media-processing": {
+                        "caption": "A nagy képadatok feldolgozása időbe telhet.",
+                        "long": "Átvitelezték a médiát",
+                        "short": "Médiaátvitel"
+                    },
+                    "writing": {
+                        "caption": "Az üzlet méretétől függően néhány percet is igénybe vehet.",
+                        "long": "Az adatokat a Shopware 6-ban írják",
                         "short": "Írás"
-                    },
-                    "finish": "Kész"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Mégse",
-                        "confirm": "Áttelepítés megszakítása",
-                        "hint": "Szeretné megszakítani az áttelepítést?",
-                        "message": "Jelenleg nem lehet átvenni az aktív migrációt. Ha szeretné, most megszakíthatja az aktív áttelepítést, és közvetlenül utána indíthat egy újat.",
-                        "title": "Áttelepítés megszakítása"
-                    },
-                    "aborted": {
-                        "message": "Egy másik felhasználó megszakította az áttelepítési folyamatot egy külön böngészőben vagy böngészőlapon. Kérem, kezdjen új áttelepítést.",
-                        "title": "Az áttelepítést törölték"
-                    },
-                    "buttonCheck": "Állapot ellenőrzése",
-                    "buttonRedirect": "Általános",
-                    "forbidden": {
-                        "message": "Az áttelepítés már elindult egy másik böngészőlapon vagy böngészőlapon. Az áttelepítési folyamat megtekintéséhez váltson erre a lapra.",
-                        "title": "Áttelepítés már megkezdődött"
-                    },
-                    "interrupted": {
-                        "message": "Az áttelepítési folyamatot egy másik böngészőlapról vagy böngészőlapról vették át. Az áttelepítés aktuális állapotától függően megszakíthatja vagy átveheti a folyamatot.",
-                        "title": "Átvették a migrációt"
-                    },
-                    "redirectModal": {
-                        "confirm": "Általános",
-                        "message": "Az áttelepítés már befejeződött egy másik böngészőlapon vagy böngészőlapon.",
-                        "title": "Áttelepítés befejeződött"
-                    },
-                    "running": {
-                        "message": "Már fut az áttelepítés egy másik böngészőben vagy böngészőlapon. Most már átveheti a futó áttelepítést, vagy megszakíthatja azt.",
-                        "title": "Áttelepítés már megkezdődött"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Mégse",
-                        "confirm": "A migráció átvétele",
-                        "hint": "Szeretné átvenni a migrációt?",
-                        "message": "Lehetőség van az aktív migráció átvételére. Ha szeretné, folytathatja az áttelepítést ebben a böngészőablakban.",
-                        "title": "A migráció átvétele"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategóriák:",
                     "category_association": "Kategória egyesületek",
                     "category_cms_page_association": "Kategóriaelrendezés társítások:",
+                    "category_custom_field": "Egyedi kategória mezők",
                     "category_product_stream_association": "Kategória dinamikus termékcsoportok társulásai:",
                     "cms_page": "Elrendezések:",
                     "country": "Országok:",
@@ -437,7 +396,9 @@
                     "currency": "Pénznem:",
                     "custom_field_set": "Egyéni mezőkészletek:",
                     "customer": "Ügyfelek:",
+                    "customer_custom_field": "Ügyfél egyedi mezők",
                     "customer_group": "Ügyfélcsoportok:",
+                    "customer_group_custom_field": "Ügyfélcsoport egyéni mezői",
                     "customer_wishlist": "Kívánságlisták:",
                     "delivery_time": "Szállítási idők:",
                     "language": "Nyelvek:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Médiafappa öröklése:",
                     "number_range": "Számtartományok:",
                     "order": "Megrendelések:",
+                    "order_custom_field": "Egyéni mezők megrendelése",
                     "order_document": "Megrendelési dokumentumok:",
                     "order_document_base_config": "Dokumentum konfigurálása:",
+                    "order_document_custom_field": "Rendeljen meg a dokumentum egyéni mezőit",
                     "order_document_inheritance": "Dokumentumkapcsolatok megrendelése:",
                     "page_system_config": "Az oldal alapvető információi:",
                     "product": "Termékek:",
                     "product_cross_selling": "Keresztértékesítés:",
+                    "product_custom_field": "Termék egyedi mezők",
                     "product_feature_set": "Alapvető jellemzők:",
                     "product_manufacturer": "Termékgyártók:",
+                    "product_manufacturer_custom_field": "Termékgyártó egyedi mezői",
                     "product_option_relation": "Termék opciók:",
+                    "product_price_custom_field": "Termék ár egyedi mezők",
                     "product_property_relation": "Terméktulajdonságok:",
                     "product_review": "Vélemények:",
                     "product_sorting": "Termék válogatás:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Új kapcsolat létrehozása",
+                "buttonCreateInitialConnection": "Kezdeti kapcsolat létrehozása",
                 "buttonEditSettings": "Kapcsolat szerkesztése",
                 "buttonProfileInstallation": "Másik profil telepítése",
                 "buttonRemoveCredentials": "Hozzáférési adatok törlése",
@@ -498,12 +465,13 @@
                 "cardTitle": "Üzlet rendszer",
                 "connected": "Csatlakoztatott",
                 "connectionCheck": "Csatlakozás ellenőrzése:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Átjáró:",
                 "lastMigration": "Utolsó áttelepítés:",
+                "noConnection": "Nincs kapcsolat",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Nincs csatlakoztatva",
                 "profile": "Rendszerprofil:",
+                "refreshTooltip": "Ellenőrizze a forrásrendszerhez való csatlakozást",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Mégse",
                     "confirmButtonText": "Igen, törlés",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Észrevettük, hogy a forrásrendszer {sourceSystem} verziója nem felel meg a célrendszer {targetSystem} verziójának. Kérjük, az áttelepítés megkezdése előtt győződjön meg arról, hogy mindkét rendszer esetében ugyanazt a fő verziót használja.",
-            "startButton": "Folytatás",
             "title": "Általános"
         },
         "wizard": {

@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Het is niet gelukt de migratie af te breken.",
+            "approveFinishedMigration": "Mislukt tijdens het voltooien van de migratie",
+            "checkConnection": "Kon de verbinding met het bronsysteem niet controleren.",
+            "fetchConnectionId": "Het ophalen van de actieve verbindings-ID is mislukt.",
+            "getDataSelection": "Het ophalen van de gegevensselectie voor de huidige verbinding is mislukt.",
+            "getState": "Kan de migratiestatus niet verkrijgen.",
+            "startMigration": "Het starten van de migratie is mislukt."
+        },
         "dashboard": {
             "button": "Migratie-assistent openen",
             "headline": "Verhuizen naar Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Finish"
             },
             "title": "Migratie-assistent"
-        },
-        "emptyScreen": {
-            "connectButton": "Verbinding tot stand brengen",
-            "description": "Zorg ervoor dat er een verbinding tot stand is gebracht tussen de systemen. Dit is vereist voor de migratie. U kunt hier meer informatie vinden:{linebreak}{link}",
-            "link": "Documentatie: migratie naar Shopware 6",
-            "title": "Geen verbinding"
         },
         "general": {
             "descriptionTextModule": "Module om data te migreren",
@@ -50,10 +53,12 @@
                 "dataName": "Naam",
                 "errorCode": "Foutmelding",
                 "errorCount": "Aantal",
+                "errorLevel": "Logniveau",
                 "errors": "Details",
                 "logDescription": "Voor meer details {link}",
                 "logDownload": "download het logbestand.",
                 "noErrorsOccurred": "Er zijn geen fouten opgetreden.",
+                "noProgressData": "Deze run is uitgevoerd in een vorige versie van de plug-in en de gegevens zijn verwijderd.",
                 "runStatus": "Migratie status:",
                 "status": {
                     "aborted": "Afgebroken",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informatie"
             },
-            "backButton": "Overzicht",
+            "backToOverviewButton": "Terug naar overzicht",
             "confirmAbortDialog": {
                 "cancelPause": "Pauze",
                 "cancelRunning": "Doorgaan",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "De {requiredForEntity} -entiteit met de bron-id \"{requiredForSource}\" kan de afhankelijke {entity} -entiteit met de bron-id \"{source}\" niet vinden.",
                     "title": "Kan {entity} niet vinden"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Er is een uitzondering opgetreden tijdens het verwerken van de berichtenwachtrij.",
+                    "title": "Uitzondering in de berichtenwachtrij"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "De migratie werd automatisch afgebroken, omdat er te veel opeenvolgende uitzonderingen plaatsvonden.",
+                    "title": "Migratie wordt automatisch afgebroken"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Voltooien",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Algemeen",
-                    "message": "De migratie beëindigde het proces om gegevensverlies te voorkomen. Controleer de internetverbinding en start een nieuwe migratie.",
-                    "title": "De verbinding is verbroken"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Documentatie voor de berichtenwachtrij",
                 "flowChart": {
+                    "cleanup": "Opruimen",
                     "fetchData": "Lezing",
                     "finish": "Uitgevoerd",
+                    "indexing": "Indexering",
                     "premapping": "Controleren",
                     "processMedia": "Bezig met downloaden",
                     "writeData": "Schrijven"
                 },
-                "mediaProcessScreen": {
-                    "message": "Het proces wordt op de achtergrond uitgevoerd",
-                    "title": "Media download starten"
-                },
-                "pauseScreen": {
-                    "message": "Heb je niet gepauzeerd? Als er geen internetverbinding is, schakelt de migratie automatisch over naar de pauzemodus om gegevensverlies te voorkomen.",
-                    "title": "De migratie is onderbroken"
-                },
+                "notice": "Tip: Dit proces wordt uitgevoerd in de berichtenwachtrij. Je hoeft niet op deze pagina te blijven als je winkel correct is geconfigureerd.",
                 "result": {
                     "caption": "Het downloaden van de media gaat op de achtergrond verder. Grote bestanden kunnen enige tijd duren.",
-                    "historyLink": "Bekijk migratie details",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "De indexering is voltooid.",
-                            "title": "Indexering voltooid"
-                        },
-                        "running": {
-                            "message": "Momenteel indexeren op de achtergrond.",
-                            "title": "Bezig met indexeren"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Open geschiedenis",
-                        "message": "Bekijk of download de logfile",
-                        "title": "Migratie geschiedenis"
-                    },
-                    "survey": {
-                        "buttonText": "Geef nu feedback",
-                        "caption": "Help ons het migratieproces te verbeteren door feedback te geven over uw ervaring.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Uw ideeën zijn belangrijk"
-                    },
+                    "historyHint": "Je kunt deze informatie op elk gewenst moment bekijken in de migratiegeschiedenis. Het is mogelijk dat er op een later moment meer logberichten worden toegevoegd omdat de mediadownload nog steeds op de achtergrond wordt uitgevoerd.",
+                    "logSummary": "Logboek",
                     "title": "De Migratie-assistent is klaar"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Ongeschreven gegevens worden opgeschoond. Reeds gemigreerde gegevens zijn mogelijk onbruikbaar.",
+                        "long": "De migratie wordt afgebroken",
+                        "short": "Aborteren"
+                    },
+                    "cleanup": {
+                        "caption": "Tijdelijke gegevens worden verwijderd. De migratie is bijna voltooid.",
+                        "long": "De migratie wordt opgeruimd",
+                        "short": "Opruimen"
+                    },
+                    "fetching": {
                         "caption": "De nieuwe opdrachten worden verwerkt.",
-                        "hint": "Tip: De migratie gaat stap voor stap verder op de achtergrond, ontdek Shopware 6.",
-                        "long": "De gegevens worden van uw systeem uitgelezen",
+                        "long": "De gegevens worden uit uw systeem gelezen",
                         "short": "Lezing"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Het verwerken van grote afbeeldingsgegevens kan even duren.",
-                        "hint": "Tip: Als de verbinding slecht is, pauzeer dan het downloaden en ga later verder.",
-                        "long": "Het bestand wordt gedownload",
-                        "short": "Bezig met downloaden"
+                    "finish": "Uitgevoerd",
+                    "indexing": {
+                        "caption": "De migratie is bijna voltooid.",
+                        "long": "De nieuwe gegevens worden geïndexeerd",
+                        "short": "Indexering"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "De verwerking van grote beeldgegevens kan enige tijd duren.",
+                        "long": "De media worden overgedragen",
+                        "short": "Media-overdracht"
+                    },
+                    "writing": {
                         "caption": "Afhankelijk van de winkelgrootte kan dit even duren.",
-                        "hint": "Tip: u kunt het migratieproces op elk moment onderbreken en hervatten.",
                         "long": "De gegevens worden geschreven in Shopware 6",
                         "short": "Schrijven"
-                    },
-                    "finish": "Uitgevoerd"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Annuleren",
-                        "confirm": "Annuleer migratie",
-                        "hint": "Wilt u de migratie annuleren?",
-                        "message": "Het is momenteel niet mogelijk om de actieve migratie over te nemen. Als u wilt, kunt u nu de actieve migratie annuleren en direct daarna een nieuwe starten.",
-                        "title": "Annuleer migratie"
-                    },
-                    "aborted": {
-                        "message": "Een andere gebruiker heeft het migratieproces geannuleerd in een aparte browser of browsertabblad. Start een nieuwe migratie.",
-                        "title": "Migratie is geannuleerd"
-                    },
-                    "buttonCheck": "Controleer status",
-                    "buttonRedirect": "Algemeen",
-                    "forbidden": {
-                        "message": "Er is al een migratie gestart in een andere browser of browsertabblad. Ga naar dit tabblad om het migratieproces te bekijken.",
-                        "title": "Migratie is al begonnen"
-                    },
-                    "interrupted": {
-                        "message": "Het migratieproces is overgenomen van een andere browser of browsertabblad. U kunt het proces annuleren of overnemen, afhankelijk van de huidige status van de migratie.",
-                        "title": "Migratie is overgenomen"
-                    },
-                    "redirectModal": {
-                        "confirm": "Algemeen",
-                        "message": "De migratie is al voltooid in een andere browser of browsertabblad.",
-                        "title": "Migratie voltooid"
-                    },
-                    "running": {
-                        "message": "Er wordt al een migratie uitgevoerd in een andere browser of een ander browsertabblad. U kunt nu de lopende migratie overnemen of deze annuleren.",
-                        "title": "Migratie is al begonnen"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Annuleren",
-                        "confirm": "Migratie overnemen",
-                        "hint": "Wilt u de migratie overnemen?",
-                        "message": "Het is mogelijk om de actieve migratie over te nemen. Als u wilt, kunt u de migratie voortzetten in dit browservenster.",
-                        "title": "Migratie overnemen"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Categorieën:",
                     "category_association": "Categorie verenigingen:",
                     "category_cms_page_association": "Categorie lay-outkoppelingen:",
+                    "category_custom_field": "Categorie aangepaste velden",
                     "category_product_stream_association": "Associaties van dynamische productgroepen in de categorie:",
                     "cms_page": "Lay-outs:",
                     "country": "Landen:",
@@ -437,7 +396,9 @@
                     "currency": "Valuta's:",
                     "custom_field_set": "Aangepaste veldsets:",
                     "customer": "Klanten:",
+                    "customer_custom_field": "Aangepaste velden voor klanten",
                     "customer_group": "Klantgroepen:",
+                    "customer_group_custom_field": "Aangepaste velden voor klantengroepen",
                     "customer_wishlist": "Verlanglijsten:",
                     "delivery_time": "Levertijden:",
                     "language": "Talen:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Mediamap overerven:",
                     "number_range": "Numeriek bereik:",
                     "order": "Bestellingen:",
+                    "order_custom_field": "Aangepaste velden bestellen",
                     "order_document": "Besteldocumenten:",
                     "order_document_base_config": "Documentconfiguratie:",
+                    "order_document_custom_field": "Aangepaste velden voor documenten bestellen",
                     "order_document_inheritance": "Bestellen document relaties:",
                     "page_system_config": "Pagina basisinformatie:",
                     "product": "Producten:",
                     "product_cross_selling": "Kruisverkoop:",
+                    "product_custom_field": "Aangepaste velden voor producten",
                     "product_feature_set": "Essentiële kenmerken:",
                     "product_manufacturer": "Productfabrikanten:",
+                    "product_manufacturer_custom_field": "Aangepaste velden van de fabrikant van het product",
                     "product_option_relation": "Productopties:",
+                    "product_price_custom_field": "Aangepaste velden voor productprijzen",
                     "product_property_relation": "Producteigenschappen:",
                     "product_review": "Beoordelingen:",
                     "product_sorting": "Product sortering:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Maak nieuwe verbinding",
+                "buttonCreateInitialConnection": "Een eerste verbinding maken",
                 "buttonEditSettings": "Verbinding aanpassen",
                 "buttonProfileInstallation": "Installeer ander profiel",
                 "buttonRemoveCredentials": "Toegangsgegevens verwijderen",
@@ -498,12 +465,13 @@
                 "cardTitle": "Winkel systeem",
                 "connected": "Verbonden",
                 "connectionCheck": "Verbindingscontrole:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Gateways:",
                 "lastMigration": "Laatste migratie:",
+                "noConnection": "Geen verbinding",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Geen verbinding",
                 "profile": "Systeemprofiel:",
+                "refreshTooltip": "Controleer de verbinding met het bronsysteem",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Annuleren",
                     "confirmButtonText": "Ja, verwijderen",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "We hebben gemerkt dat de {sourceSystem} -versie van uw bronsysteem niet overeenkomt met de {targetSystem} -versie van uw doelsysteem. Zorg ervoor dat u voor beide systemen dezelfde hoofdversie gebruikt voordat u met de migratie begint.",
-            "startButton": "Doorgaan",
             "title": "Algemeen"
         },
         "wizard": {

@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Neizdevās pārtraukt migrāciju.",
+            "approveFinishedMigration": "Migrācijas pabeigšanas laikā neizdevās",
+            "checkConnection": "Neizdevās pārbaudīt savienojumu ar avota sistēmu.",
+            "fetchConnectionId": "Neizdevās iegūt aktīvā savienojuma ID.",
+            "getDataSelection": "Neizdevās iegūt datu izvēli pašreizējam savienojumam.",
+            "getState": "Neizdevās iegūt migrācijas stāvokli.",
+            "startMigration": "Neizdevās sākt migrāciju."
+        },
         "dashboard": {
             "button": "Atveriet migrācijas palīgu",
             "headline": "Pārcelšanās uz Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Pabeigt"
             },
             "title": "Migrācijas asistents"
-        },
-        "emptyScreen": {
-            "connectButton": "Izveidot savienojumu",
-            "description": "Pārliecinieties, vai starp sistēmām ir izveidots savienojums. Tas ir nepieciešams migrācijai. Vairāk informācijas var atrast šeit:{linebreak}{link}",
-            "link": "Dokumentācija: Migrācija uz Shopware 6",
-            "title": "Nav savienojuma"
         },
         "general": {
             "descriptionTextModule": "Datu migrēšanas modulis",
@@ -50,10 +53,12 @@
                 "dataName": "Nosaukums",
                 "errorCode": "Kļūdas ziņojums",
                 "errorCount": "Skaits",
+                "errorLevel": "Žurnāla līmenis",
                 "errors": "Sīkāka informācija",
                 "logDescription": "Sīkākai informācijai {link}",
                 "logDownload": "lejupielādējiet žurnālfailu.",
                 "noErrorsOccurred": "Kļūdas nav radušās.",
+                "noProgressData": "Šī palaišana tika veikta iepriekšējā spraudņa versijā, un tā dati ir izdzēsti.",
                 "runStatus": "Migrācijas statuss:",
                 "status": {
                     "aborted": "Pārtraukts",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informācija"
             },
-            "backButton": "Pārskats",
+            "backToOverviewButton": "Atpakaļ uz pārskatu",
             "confirmAbortDialog": {
                 "cancelPause": "Pauze",
                 "cancelRunning": "Turpināt",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entītija {requiredForEntity} ar avota ID \"{requiredForSourceId}\" nevar atrast atkarīgo {entity} entītiju ar avota ID \"{sourceId}”.",
                     "title": "Nevar atrast {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Ziņojumu rindas apstrādes laikā notika izņēmums.",
+                    "title": "Ziņojumu rindas izņēmums"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Migrācija tika pārtraukta automātiski, jo notika pārāk daudz secīgu izņēmumu.",
+                    "title": "Migrācija tiek pārtraukta automātiski"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Pabeigt",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Vispārīgi",
-                    "message": "Migrācija beidzās procesu, lai izvairītos no datu zudumiem. Pārbaudiet interneta savienojumu un sāciet jaunu migrāciju.",
-                    "title": "Savienojums ir zaudēts"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Ziņojumu rindas dokumentācija",
                 "flowChart": {
+                    "cleanup": "Tīrīšana",
                     "fetchData": "Lasīšana",
                     "finish": "Gatavs",
+                    "indexing": "Indeksēšana",
                     "premapping": "Pārbaude",
                     "processMedia": "Lejupielādes",
                     "writeData": "Rakstīšana"
                 },
-                "mediaProcessScreen": {
-                    "message": "Process darbojas fonā",
-                    "title": "Sākot multivides lejupiel"
-                },
-                "pauseScreen": {
-                    "message": "Jūs nepauzējāt? Ja nav interneta savienojuma, migrācija automātiski pārslēdzas uz pauzes režīmu, lai novērstu datu zudumu.",
-                    "title": "Migrācija tiek apturēta"
-                },
+                "notice": "Padoms. Šis process darbojas ziņojumu rindā. Jums nav jāpaliek šajā lapā, ja jūsu veikals ir pareizi konfigurēts.",
                 "result": {
                     "caption": "Plašsaziņas līdzekļu lejupielāde turpinās fonā. Lieli faili var aizņemt kādu laiku.",
-                    "historyLink": "Skatīt migrācijas datus",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indeksācija ir pabeigta.",
-                            "title": "Indeksācija pabeigta"
-                        },
-                        "running": {
-                            "message": "Pašlaik indeksēšana fonā.",
-                            "title": "Notiek indeksēšana"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Atvērtā vēsture",
-                        "message": "Skatīt vai lejupielādēt žurnālfailu",
-                        "title": "Migrācijas vēsture"
-                    },
-                    "survey": {
-                        "buttonText": "Sniegt atsauksmes tagad",
-                        "caption": "Lūdzu, palīdziet mums uzlabot migrācijas procesu, sniedzot atsauksmes par jūsu pieredzi.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Jūsu domas ir svarīgas"
-                    },
+                    "historyHint": "Šo informāciju jebkurā laikā varat skatīt migrācijas vēsturē. Iespējams, ka vēlāk tiks pievienoti vairāk žurnāla ziņojumu, jo multivides lejupielāde joprojām darbojas fonā.",
+                    "logSummary": "Žurnāls",
                     "title": "Migrācijas palīgs ir pabeigts"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Nerakstītie dati tiek iztīrīti. Jau migrētie dati varētu būt nelietojami.",
+                        "long": "Migrācija tiek pārtraukta",
+                        "short": "Aborts"
+                    },
+                    "cleanup": {
+                        "caption": "Pagaidu dati tiek noņemti. Migrācija ir gandrīz pabeigta.",
+                        "long": "Migrācija tiek attīrīta",
+                        "short": "Tīrīšana"
+                    },
+                    "fetching": {
                         "caption": "Jaunie uzdevumi tiek apstrādāti.",
-                        "hint": "Padoms.: Migrācija turpinās soli pa solim fonā, izpētiet Shopware 6.",
                         "long": "Dati tiks nolasīti no jūsu sistēmas",
                         "short": "Lasīšana"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Lielie attēlu dati var aizņemt kādu laiku, lai apstrādātu.",
-                        "hint": "Padoms.: Ja savienojums ir slikts, pārtrauciet lejupielādi un turpiniet vēlāk.",
-                        "long": "Plašsaziņas līdzekļi tiek lejupielādēti",
-                        "short": "Lejupielādes"
+                    "finish": "Gatavs",
+                    "indexing": {
+                        "caption": "Migrācija ir gandrīz pabeigta.",
+                        "long": "Jaunie dati tiek indeksēti",
+                        "short": "Indeksēšana"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Lielu attēlu datu apstrāde var aizņemt kādu laiku.",
+                        "long": "Plašsaziņas līdzekļi tiek pārsūtīti",
+                        "short": "Mediju pārsūtīšana"
+                    },
+                    "writing": {
                         "caption": "Atkarībā no veikala lieluma tas var aizņemt dažus mirkļus.",
-                        "hint": "Padoms.: Migrācijas procesu jebkurā laikā varat pauzēt un atsākt.",
                         "long": "Dati tiek rakstīti Shopware 6",
                         "short": "Rakstīšana"
-                    },
-                    "finish": "Gatavs"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Atcelt",
-                        "confirm": "Migrācijas atcelšana",
-                        "hint": "Vai vēlaties atcelt migrāciju?",
-                        "message": "Pašlaik nav iespējams pārņemt aktīvo migrāciju. Ja vēlaties, tagad varat atcelt aktīvo migrāciju un sākt jaunu migrāciju tieši pēc tam.",
-                        "title": "Migrācijas atcelšana"
-                    },
-                    "aborted": {
-                        "message": "Cits lietotājs ir atcēlis migrācijas procesu atsevišķā pārlūkprogrammā vai pārlūkprogrammas cilnē. Lūdzu, sāciet jaunu migrāciju.",
-                        "title": "Migrācija tika atcelta"
-                    },
-                    "buttonCheck": "Pārbaudīt statusu",
-                    "buttonRedirect": "Vispārīgi",
-                    "forbidden": {
-                        "message": "Migrācija jau ir sākta citā pārlūkprogrammas vai pārlūkprogrammas cilnē. Lūdzu, pārslēdzieties uz šo cilni, lai skatītu migrācijas procesu.",
-                        "title": "Jau sākta migrācija"
-                    },
-                    "interrupted": {
-                        "message": "Migrācijas process tika pārņemts no citas pārlūkprogrammas vai pārlūkprogrammas cilnes. Varat atcelt vai pārņemt procesu atkarībā no pašreizējā migrācijas statusa.",
-                        "title": "Migrācija ir pārņemta"
-                    },
-                    "redirectModal": {
-                        "confirm": "Vispārīgi",
-                        "message": "Migrācija jau ir pabeigta citā pārlūkprogrammas vai pārlūkprogrammas cilnē.",
-                        "title": "Migrācija pabeigta"
-                    },
-                    "running": {
-                        "message": "Jau ir migrācija, kas darbojas citā pārlūkprogrammā vai pārlūkprogrammas cilnē. Tagad varat vai nu pārņemt palaišanas migrāciju, vai atcelt to.",
-                        "title": "Jau sākta migrācija"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Atcelt",
-                        "confirm": "Migrācijas pārņemšana",
-                        "hint": "Vai vēlaties pārņemt migrāciju?",
-                        "message": "Ir iespējams pārņemt aktīvo migrāciju. Ja vēlaties, varat turpināt migrāciju šajā pārlūkprogrammas logā.",
-                        "title": "Migrācijas pārņemšana"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategorijas:",
                     "category_association": "Kategoriju asociācijas:",
                     "category_cms_page_association": "Kategoriju izkārtojuma asociācijas",
+                    "category_custom_field": "Kategorijas pielāgoti lauki",
                     "category_product_stream_association": "Kategoriju dinamiskās produktu grupu asociācijas:",
                     "cms_page": "Izkārtojumi:",
                     "country": "Valstis:",
@@ -437,7 +396,9 @@
                     "currency": "Valūtas:",
                     "custom_field_set": "Pielāgotu lauku kopas",
                     "customer": "Klienti:",
+                    "customer_custom_field": "Klientu pielāgotie lauki",
                     "customer_group": "Klientu grupas:",
+                    "customer_group_custom_field": "Klientu grupas pielāgotie lauki",
                     "customer_wishlist": "Vēlmju saraksti:",
                     "delivery_time": "Piegādes laiki:",
                     "language": "Valodas:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Multivides mapju mantošana:",
                     "number_range": "Skaitļu diapazoni:",
                     "order": "Pasūtījumi:",
+                    "order_custom_field": "Pasūtiet pielāgotus laukus",
                     "order_document": "Pasūtījuma dokumenti:",
                     "order_document_base_config": "Dokumenta konfigurācija:",
+                    "order_document_custom_field": "Pasūtīt dokumenta pielāgotos laukus",
                     "order_document_inheritance": "Pasūtījuma dokumentu attiecības:",
                     "page_system_config": "Lapas pamatinformācija:",
                     "product": "Produkti:",
                     "product_cross_selling": "Krusta pārdošana:",
+                    "product_custom_field": "Produkta pielāgotie lauki",
                     "product_feature_set": "Būtiskie raksturlielumi:",
                     "product_manufacturer": "Produktu ražotāji:",
+                    "product_manufacturer_custom_field": "Produkta ražotāja pielāgotie lauki",
                     "product_option_relation": "Produkta iespējas:",
+                    "product_price_custom_field": "Produkta cenas pielāgotie lauki",
                     "product_property_relation": "Produkta īpašības:",
                     "product_review": "Atsauksmes:",
                     "product_sorting": "Produktu šķirošana:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Izveidot jaunu savienojumu",
+                "buttonCreateInitialConnection": "Izveidojiet sākotnējo savienojumu",
                 "buttonEditSettings": "Rediģēt savienojumu",
                 "buttonProfileInstallation": "Instalējiet citu profilu",
                 "buttonRemoveCredentials": "Dzēst piekļuves datus",
@@ -498,12 +465,13 @@
                 "cardTitle": "Veikala sistēma",
                 "connected": "Savienots",
                 "connectionCheck": "Savienojuma kļūda:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Vārteja:",
                 "lastMigration": "Pēdējā migrācija:",
+                "noConnection": "Nav savienojuma",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Nav savienots",
                 "profile": "Sistēmas profils:",
+                "refreshTooltip": "Pārbaudiet savienojumu ar avota sistēmu",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Atcelt",
                     "confirmButtonText": "Jā, dzēst",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Mēs esam pamanījuši, ka jūsu avota sistēmas {sourceSystem} versija neatbilst jūsu mērķa sistēmas {targetSystem} versijai. Pirms migrācijas sākšanas, lūdzu, abām sistēmām izmantojiet vienu un to pašu galveno versiju.",
-            "startButton": "Turpināt",
             "title": "Vispārīgi"
         },
         "wizard": {

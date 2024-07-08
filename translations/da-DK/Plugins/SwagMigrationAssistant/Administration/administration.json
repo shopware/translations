@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Det lykkedes ikke at afbryde overførslen.",
+            "approveFinishedMigration": "Mislykkedes under færdiggørelsen af overførslen",
+            "checkConnection": "Det lykkedes ikke at kontrollere forbindelsen til kildesystemet.",
+            "fetchConnectionId": "Det lykkedes ikke at hente aktivt forbindelses-id.",
+            "getDataSelection": "Det lykkedes ikke at hente datavalg for den aktuelle forbindelse.",
+            "getState": "Det lykkedes ikke at hente migrationsstatus.",
+            "startMigration": "Det lykkedes ikke at starte overførslen."
+        },
         "dashboard": {
             "button": "Åbn Overførselsassistent",
             "headline": "Flytning til butiksudstyr",
@@ -17,12 +26,6 @@
                 "resetButton": "Afslut"
             },
             "title": "Overførselsassistent"
-        },
-        "emptyScreen": {
-            "connectButton": "Opret forbindelse",
-            "description": "Sørg for, at der er etableret en forbindelse mellem systemerne. Dette er nødvendigt for migreringen. Du kan finde flere oplysninger her:{linebreak}{link}",
-            "link": "Dokumentation: Migration til Shopware 6",
-            "title": "Ingen forbindelse"
         },
         "general": {
             "descriptionTextModule": "Modul til migrering af data",
@@ -50,10 +53,12 @@
                 "dataName": "Navn",
                 "errorCode": "Fejlmeddelelse",
                 "errorCount": "Tæl",
+                "errorLevel": "Logniveau",
                 "errors": "Detaljer",
                 "logDescription": "For flere detaljer {link}",
                 "logDownload": "downloade logfilen.",
                 "noErrorsOccurred": "Der er ikke sket fejl.",
+                "noProgressData": "Denne kørsel blev udført i en tidligere version af pluginet, og dets data er blevet slettet.",
                 "runStatus": "Migreringsstatus:",
                 "status": {
                     "aborted": "Afbrudt",
@@ -91,7 +96,7 @@
                 },
                 "title": "Information"
             },
-            "backButton": "Oversigt",
+            "backToOverviewButton": "Tilbage til oversigt",
             "confirmAbortDialog": {
                 "cancelPause": "Pause",
                 "cancelRunning": "Fortsæt",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Enheden {requiredForEntity} med kilde id \"{requiredForSourceId}\" can ikke finde den afhængige enhed {entity} med kilde id \"{sourceId}\".",
                     "title": "Kan ikke finde {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Der opstod en undtagelse under behandlingen af meddelelseskøen.",
+                    "title": "Undtagelse af meddelelseskø"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Overførslen blev afbrudt automatisk, fordi der opstod for mange på hinanden følgende undtagelser.",
+                    "title": "Migrering afbrudt automatisk"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Afslut",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Generelt",
-                    "message": "Overførslen afsluttede processen for at undgå tab af data. Kontrollér internetforbindelsen, og start en ny overførsel.",
-                    "title": "Forbindelsen er gået tabt"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Dokumentation til meddelelseskø",
                 "flowChart": {
+                    "cleanup": "Oprydning",
                     "fetchData": "Læsning",
                     "finish": "Udført",
+                    "indexing": "Indeksering",
                     "premapping": "Kontrol",
                     "processMedia": "Downloader",
                     "writeData": "Skrivning"
                 },
-                "mediaProcessScreen": {
-                    "message": "Processen kører i baggrunden",
-                    "title": "Start af download af medier"
-                },
-                "pauseScreen": {
-                    "message": "Har du ikke pause? Hvis der ikke er nogen internetforbindelse, skifter overførslen automatisk til pausetilstand for at forhindre tab af data.",
-                    "title": "Migreringen er sat på pause"
-                },
+                "notice": "Tip!: Denne proces kører i meddelelseskøen. Du behøver ikke at blive på denne side, hvis din butik er konfigureret korrekt.",
                 "result": {
                     "caption": "Medieoverførslen fortsætter i baggrunden. Store filer kan tage lidt tid.",
-                    "historyLink": "Se oplysninger om overførsel",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indekseringen er fuldført.",
-                            "title": "Indeksering fuldført"
-                        },
-                        "running": {
-                            "message": "I øjeblikket indeksering i baggrunden.",
-                            "title": "Indeksering i gang"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Åben historik",
-                        "message": "Se eller download logfilen",
-                        "title": "Overførselsoversigt"
-                    },
-                    "survey": {
-                        "buttonText": "Giv feedback nu",
-                        "caption": "Hjælp os med at forbedre migreringsprocessen ved at give feedback på din oplevelse.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Dine tanker er vigtige"
-                    },
+                    "historyHint": "Du kan se disse oplysninger når som helst i overførselshistorikken. Det er muligt, at flere logmeddelelser tilføjes på et senere tidspunkt, fordi medieoverførslen stadig kører i baggrunden.",
+                    "logSummary": "Logbog",
                     "title": "Overførselsassistenten er færdig"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Uskrevne data ryddes op. Allerede migrerede data kan være ubrugelige.",
+                        "long": "Migrationen afbrydes",
+                        "short": "Afbrydelse"
+                    },
+                    "cleanup": {
+                        "caption": "Midlertidige data fjernes. Migrationen er næsten fuldført.",
+                        "long": "Migrationen ryddes op",
+                        "short": "Oprydning"
+                    },
+                    "fetching": {
                         "caption": "De nye opgaver behandles.",
-                        "hint": "Tip: Migreringen fortsætter trin for trin i baggrunden, udforske Shopware 6.",
-                        "long": "Dataene vil blive læst fra dit system",
+                        "long": "Dataene læses fra dit system",
                         "short": "Læsning"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Store billeddata kan tage lidt tid at behandle.",
-                        "hint": "Tip: Hvis forbindelsen er dårlig, skal du sætte overførslen på pause og fortsætte senere.",
-                        "long": "Mediet bliver downloadet",
-                        "short": "Downloader"
+                    "finish": "Udført",
+                    "indexing": {
+                        "caption": "Migrationen er næsten fuldført.",
+                        "long": "De nye data indekseres",
+                        "short": "Indeksering"
                     },
-                    "WRITE_DATA": {
-                        "caption": "Afhængigt af butiksstørrelsen kan det tage et øjeblik.",
-                        "hint": "Tip: Du kan til enhver tid sætte overførselsprocessen på pause og genoptage.",
-                        "long": "Dataene er skrevet i Shopware 6",
+                    "media-processing": {
+                        "caption": "Store billeddata kan tage noget tid at behandle.",
+                        "long": "Medierne bliver overført",
+                        "short": "Medieoverførsel"
+                    },
+                    "writing": {
+                        "caption": "Afhængigt af butikens størrelse kan det tage et øjeblik.",
+                        "long": "Dataene skrives i Shopware 6",
                         "short": "Skrivning"
-                    },
-                    "finish": "Udført"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Annuller",
-                        "confirm": "Annuller overførsel",
-                        "hint": "Vil du annullere overførslen?",
-                        "message": "Det er ikke muligt at overtage den aktive migration i øjeblikket. Hvis du ønsker det, kan du nu annullere den aktive migrering og starte en ny direkte bagefter.",
-                        "title": "Annuller overførsel"
-                    },
-                    "aborted": {
-                        "message": "En anden bruger har annulleret overførselsprocessen i en separat browser eller browserfane. Start en ny migrering.",
-                        "title": "Migration blev annulleret"
-                    },
-                    "buttonCheck": "Kontrollér status",
-                    "buttonRedirect": "Generel",
-                    "forbidden": {
-                        "message": "En overførsel er allerede startet i en anden browser- eller browserfane. Skift til denne fane for at se overførselsprocessen.",
-                        "title": "Migration er allerede begyndt"
-                    },
-                    "interrupted": {
-                        "message": "Migreringsprocessen blev overtaget fra en anden browser- eller browserfane. Du kan annullere eller overtage processen, afhængigt af den aktuelle status for overførslen.",
-                        "title": "Migration er blevet overtaget"
-                    },
-                    "redirectModal": {
-                        "confirm": "Generelt",
-                        "message": "Overførslen er allerede gennemført i en anden browser- eller browserfane.",
-                        "title": "Migration fuldført"
-                    },
-                    "running": {
-                        "message": "Der kører allerede en overførsel i en anden browser- eller browserfane. Du kan nu enten overtage den kørende overførsel eller annullere den.",
-                        "title": "Migration er allerede begyndt"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Annuller",
-                        "confirm": "Overtage migrering",
-                        "hint": "Vil du overtage migreringen?",
-                        "message": "Det er muligt at overtage den aktive migration. Hvis du ønsker det, kan du fortsætte overførslen i dette browservindue.",
-                        "title": "Overtage migrering"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategorier:",
                     "category_association": "Kategori foreninger:",
                     "category_cms_page_association": "Kategorilayout foreninger:",
+                    "category_custom_field": "Kategori brugerdefinerede felter",
                     "category_product_stream_association": "Kategori dynamiske produktgruppeforeninger:",
                     "cms_page": "Layouts:",
                     "country": "Lande:",
@@ -437,7 +396,9 @@
                     "currency": "Valutaer:",
                     "custom_field_set": "Brugerdefinerede feltsæt:",
                     "customer": "Kunder:",
+                    "customer_custom_field": "Kundetilpassede felter",
                     "customer_group": "Kundegrupper:",
+                    "customer_group_custom_field": "Brugerdefinerede felter til kundegruppe",
                     "customer_wishlist": "Ønskelister:",
                     "delivery_time": "Leveringstider:",
                     "language": "Sprog:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Mediemappenedarver:",
                     "number_range": "Nummerområder:",
                     "order": "Ordrer:",
+                    "order_custom_field": "Bestil brugerdefinerede felter",
                     "order_document": "Bestil dokumenter:",
                     "order_document_base_config": "Dokumentets konfiguration:",
+                    "order_document_custom_field": "Bestil brugerdefinerede felter til dokument",
                     "order_document_inheritance": "Ordre dokument relationer:",
                     "page_system_config": "Grundlæggende oplysninger om side:",
                     "product": "Produkter:",
                     "product_cross_selling": "Cross Selling:",
+                    "product_custom_field": "Brugerdefinerede produktfelter",
                     "product_feature_set": "Væsentlige egenskaber:",
                     "product_manufacturer": "Producenter:",
+                    "product_manufacturer_custom_field": "Produktproducentens brugerdefinerede felter",
                     "product_option_relation": "Produkt muligheder:",
+                    "product_price_custom_field": "Produktpris brugerdefinerede felter",
                     "product_property_relation": "Produktets egenskaber:",
                     "product_review": "Anmeldelser:",
                     "product_sorting": "Sortering af produkter:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Opret ny forbindelse",
+                "buttonCreateInitialConnection": "Opret indledende forbindelse",
                 "buttonEditSettings": "Redigér forbindelse",
                 "buttonProfileInstallation": "Installer en anden profil",
                 "buttonRemoveCredentials": "Slet adgangsdata",
@@ -498,12 +465,13 @@
                 "cardTitle": "Shop system",
                 "connected": "Forbundet",
                 "connectionCheck": "Kontrol af forbindelse:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Gateway:",
                 "lastMigration": "Sidste migrering:",
+                "noConnection": "Ingen forbindelse",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Ikke tilsluttet",
                 "profile": "Systemprofil:",
+                "refreshTooltip": "Kontroller forbindelsen til kildesystemet",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Annuller",
                     "confirmButtonText": "Ja, slet",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Vi har bemærket, at din kildesystem {sourceSystem} version ikke matcher din målsystemversion {targetSystem} . Sørg for at bruge den samme hovedversion til begge systemer, før du starter migreringen.",
-            "startButton": "Fortsæt",
             "title": "Generel"
         },
         "wizard": {

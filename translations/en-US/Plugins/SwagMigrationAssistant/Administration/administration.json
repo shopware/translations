@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Failed to abort migration.",
+            "approveFinishedMigration": "Failed while completing the migration",
+            "checkConnection": "Failed to check the connection to source system.",
+            "fetchConnectionId": "Failed to get active connection ID.",
+            "getDataSelection": "Failed to get data selection for current connection.",
+            "getState": "Failed to get migration state.",
+            "startMigration": "Failed to start migration."
+        },
         "dashboard": {
             "button": "Open Migration Assistant",
             "headline": "Moving to Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Finish"
             },
             "title": "Migration Assistant"
-        },
-        "emptyScreen": {
-            "connectButton": "Create connection",
-            "description": "Make sure that a connection has been established between the systems. This is required for the migration. You can find more information here:{linebreak}{link}",
-            "link": "Documentation: Migration to Shopware 6",
-            "title": "No connection"
         },
         "general": {
             "descriptionTextModule": "Module to migrate data",
@@ -50,10 +53,12 @@
                 "dataName": "Name",
                 "errorCode": "Error message",
                 "errorCount": "Count",
+                "errorLevel": "Log level",
                 "errors": "Details",
                 "logDescription": "For more details {link}",
                 "logDownload": "download the log file.",
                 "noErrorsOccurred": "No errors have occurred.",
+                "noProgressData": "This run was performed in a previous version of the plugin and its data has been deleted.",
                 "runStatus": "Migration status:",
                 "status": {
                     "aborted": "Aborted",
@@ -91,7 +96,7 @@
                 },
                 "title": "Information"
             },
-            "backButton": "Overview",
+            "backToOverviewButton": "Back to overview",
             "confirmAbortDialog": {
                 "cancelPause": "Pause",
                 "cancelRunning": "Continue",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "The {requiredForEntity} entity with the source id \"{requiredForSourceId}\" cannot find the depended {entity} entity with the source id \"{sourceId}\".",
                     "title": "Cannot find {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "An exception occurred while processing the message queue.",
+                    "title": "Message queue exception"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "The migration was aborted automatically, because too many consecutive exceptions occurred.",
+                    "title": "Migration aborted automatically"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Finish",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "General",
-                    "message": "The migration ended the process to avoid data loss. Check the internet connection and start a new migration.",
-                    "title": "The connection has been lost"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Message queue documentation",
                 "flowChart": {
+                    "cleanup": "Cleanup",
                     "fetchData": "Reading",
                     "finish": "Done",
+                    "indexing": "Indexing",
                     "premapping": "Checking",
                     "processMedia": "Downloading",
                     "writeData": "Writing"
                 },
-                "mediaProcessScreen": {
-                    "message": "The process is running in the background",
-                    "title": "Starting media download"
-                },
-                "pauseScreen": {
-                    "message": "You didn't pause? If there is no internet connection, the migration automatically switches to pause mode to prevent data loss.",
-                    "title": "The migration is paused"
-                },
+                "notice": "Tip: This process runs in the message queue. You don't need to stay on this page if your shop is configured correctly.",
                 "result": {
                     "caption": "The media download continues in the background. Large files can take some time.",
-                    "historyLink": "View migration details",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "The indexing has been completed.",
-                            "title": "Indexing completed"
-                        },
-                        "running": {
-                            "message": "Currently indexing in the background.",
-                            "title": "Indexing in progress"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Open history",
-                        "message": "View or download the logfile",
-                        "title": "Migration history"
-                    },
-                    "survey": {
-                        "buttonText": "Give feedback now",
-                        "caption": "Please help us improve the migration process by providing feedback of your experience.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Your thoughts are important"
-                    },
+                    "historyHint": "You can view this information any time in the migration history. It is possible that more log messages will be added at a later time because the media download is still running in the background.",
+                    "logSummary": "Logbook",
                     "title": "The Migration Assistant is done"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Unwritten data is cleaned up. Already migrated data might be unusable.",
+                        "long": "The migration is being aborted",
+                        "short": "Aborting"
+                    },
+                    "cleanup": {
+                        "caption": "Temporary data is being removed. The migration is almost complete.",
+                        "long": "The migration is being cleaned up",
+                        "short": "Cleanup"
+                    },
+                    "fetching": {
                         "caption": "The new assignments are processed.",
-                        "hint": "Tip: The migration continues step by step in the background, explore Shopware 6.",
                         "long": "The data will be read from your system",
                         "short": "Reading"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Large image data can take some time to process.",
-                        "hint": "Tip: If the connection is poor, pause the download and continue later.",
-                        "long": "The media is being downloaded",
-                        "short": "Downloading"
+                    "finish": "Done",
+                    "indexing": {
+                        "caption": "The migration is almost complete.",
+                        "long": "The new data is being indexed",
+                        "short": "Indexing"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Large image data can take some time to process.",
+                        "long": "The media is being transferred",
+                        "short": "Media transfer"
+                    },
+                    "writing": {
                         "caption": "Depending on the shop size it may take a few moments.",
-                        "hint": "Tip: You can pause and resume the migration process at any time.",
                         "long": "The data is being written in Shopware 6",
                         "short": "Writing"
-                    },
-                    "finish": "Done"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Cancel",
-                        "confirm": "Cancel migration",
-                        "hint": "Would you like to cancel the migration?",
-                        "message": "It is not possible to take over the active migration at the moment. If you would like, you may now cancel the active migration and start a new one directly afterwards.",
-                        "title": "Cancel migration"
-                    },
-                    "aborted": {
-                        "message": "Another user has cancelled the migration process in a separate browser or browser tab. Please start a new migration.",
-                        "title": "Migration was cancelled"
-                    },
-                    "buttonCheck": "Check status",
-                    "buttonRedirect": "General",
-                    "forbidden": {
-                        "message": "A migration has already been started in another browser or browser tab. Please switch to this tab to view the migration process.",
-                        "title": "Migration already started"
-                    },
-                    "interrupted": {
-                        "message": "The migration process was taken over from another browser or browser tab. You can cancel or take over the process, depending on the current status of the migration.",
-                        "title": "Migration has been taken over"
-                    },
-                    "redirectModal": {
-                        "confirm": "General",
-                        "message": "The migration has already been completed in another browser or browser tab.",
-                        "title": "Migration complete"
-                    },
-                    "running": {
-                        "message": "There is already a migration running in another browser or browser tab. You may now either take over the running migration or cancel it.",
-                        "title": "Migration already started"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Cancel",
-                        "confirm": "Take over migration",
-                        "hint": "Would you like to take over the migration?",
-                        "message": "It is possible to take over the active migration. If you would like, you may continue the migration in this browser window.",
-                        "title": "Take over migration"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Categories:",
                     "category_association": "Category associations:",
                     "category_cms_page_association": "Category layout associations:",
+                    "category_custom_field": "Category custom fields",
                     "category_product_stream_association": "Category dynamic product group associations:",
                     "cms_page": "Layouts:",
                     "country": "Countries:",
@@ -437,7 +396,9 @@
                     "currency": "Currencies:",
                     "custom_field_set": "Custom field sets:",
                     "customer": "Customers:",
+                    "customer_custom_field": "Customer custom fields",
                     "customer_group": "Customer groups:",
+                    "customer_group_custom_field": "Customer group custom fields",
                     "customer_wishlist": "Wishlists:",
                     "delivery_time": "Delivery times:",
                     "language": "Languages:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Media folder inheritances:",
                     "number_range": "Number ranges:",
                     "order": "Orders:",
+                    "order_custom_field": "Order custom fields",
                     "order_document": "Order documents:",
                     "order_document_base_config": "Document config:",
+                    "order_document_custom_field": "Order document custom fields",
                     "order_document_inheritance": "Order document relations:",
                     "page_system_config": "Page basic information:",
                     "product": "Products:",
                     "product_cross_selling": "Cross Selling:",
+                    "product_custom_field": "Product custom fields",
                     "product_feature_set": "Essential characteristics:",
                     "product_manufacturer": "Product manufacturers:",
+                    "product_manufacturer_custom_field": "Product manufacturer custom fields",
                     "product_option_relation": "Product options:",
+                    "product_price_custom_field": "Product price custom fields",
                     "product_property_relation": "Product properties:",
                     "product_review": "Reviews:",
                     "product_sorting": "Product sorting:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Create new connection",
+                "buttonCreateInitialConnection": "Create initial connection",
                 "buttonEditSettings": "Edit connection",
                 "buttonProfileInstallation": "Install another profile",
                 "buttonRemoveCredentials": "Delete access data",
@@ -498,12 +465,13 @@
                 "cardTitle": "Shop system",
                 "connected": "Connected",
                 "connectionCheck": "Connection check:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Gateway:",
                 "lastMigration": "Last migration:",
+                "noConnection": "No connection",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Not connected",
                 "profile": "System profile:",
+                "refreshTooltip": "Check connection to source system",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Cancel",
                     "confirmButtonText": "Yes, delete",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "We have noticed that your source system {sourceSystem} version does not match your target system {targetSystem} version. Please ensure to use the same major version for both systems before you start the migration.",
-            "startButton": "Continue",
             "title": "General"
         },
         "wizard": {

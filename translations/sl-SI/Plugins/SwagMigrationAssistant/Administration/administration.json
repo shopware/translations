@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "Ni uspelo prekiniti migracije.",
+            "approveFinishedMigration": "Pri dokončanju selitve ni uspelo",
+            "checkConnection": "Ni bilo mogoče preveriti povezave z izvornim sistemom.",
+            "fetchConnectionId": "Ni uspelo dobiti ID-ja aktivne povezave.",
+            "getDataSelection": "Izbira podatkov za trenutno povezavo ni uspela.",
+            "getState": "Ni uspelo dobiti migracijskega stanja.",
+            "startMigration": "Ni uspelo zagnati migracije."
+        },
         "dashboard": {
             "button": "Odpri pomočnik za migra",
             "headline": "Premikanje v nakupovalni program",
@@ -17,12 +26,6 @@
                 "resetButton": "Dokončaj"
             },
             "title": "Pomočnik za selitev"
-        },
-        "emptyScreen": {
-            "connectButton": "Ustvarite povezavo",
-            "description": "Prepričajte se, da je med sistemi vzpostavljena povezava. To je potrebno za selitev. Več informacij lahko najdete tukaj:{linebreak}{link}",
-            "link": "Dokumentacija: Migracija na Shopware 6",
-            "title": "Ni povezave"
         },
         "general": {
             "descriptionTextModule": "Modul za selitev podatkov",
@@ -50,10 +53,12 @@
                 "dataName": "Ime",
                 "errorCode": "Sporočilo o napaki",
                 "errorCount": "Štetje",
+                "errorLevel": "Raven dnevnika",
                 "errors": "Podrobnosti",
                 "logDescription": "Za več podrobnosti {link}",
                 "logDownload": "prenesite dnevniško datoteko.",
                 "noErrorsOccurred": "Ni prišlo do napak.",
+                "noProgressData": "Ta zagon je bil izveden v prejšnji različici vtičnika in njegovi podatki so bili izbrisani.",
                 "runStatus": "Stanje selitve:",
                 "status": {
                     "aborted": "Prekinil",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informacije"
             },
-            "backButton": "Pregled",
+            "backToOverviewButton": "Nazaj na pregled",
             "confirmAbortDialog": {
                 "cancelPause": "Pause",
                 "cancelRunning": "Nadaljuj",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "Entiteta {requiredForEntity} z izvornim ID-jem \"{requiredForSourceId}\" ne more najti odvisne entitete {entity} z izvornim ID-jem \"{sourceId}«.",
                     "title": "Ni mogoče najti {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Med obdelavo čakalne vrste sporočil je prišlo do izjema.",
+                    "title": "Izjema čakalne vrste sporočil"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "Selitev je bila samodejno prekinjena, ker je prišlo do preveč zaporednih izjem.",
+                    "title": "Migracija je samodejno prekinjena"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Dokončaj",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "Splošno",
-                    "message": "Selitev je končala postopek, da bi se izognili izgubi podatkov. Preverite internetno povezavo in začnite novo selitev.",
-                    "title": "Povezava je bila izgubljena"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Dokumentacija čakalne vrste sporočil",
                 "flowChart": {
+                    "cleanup": "Čiščenje",
                     "fetchData": "Branje",
                     "finish": "Končano",
+                    "indexing": "Indeksiranje",
                     "premapping": "Preverjanje",
                     "processMedia": "Prenos",
                     "writeData": "Pisanje"
                 },
-                "mediaProcessScreen": {
-                    "message": "Postopek se izvaja v ozadju",
-                    "title": "Začetek prenosa predstavnosti"
-                },
-                "pauseScreen": {
-                    "message": "Niste začasno ustavili? Če internetne povezave ni, selitev samodejno preklopi v način zaustavitve in tako prepreči izgubo podatkov.",
-                    "title": "Selitev je začasno prekinjena"
-                },
+                "notice": "Nasvet: Ta postopek poteka v čakalni vrsti sporočil. Če je vaša trgovina pravilno konfigurirana, vam ni treba ostati na tej strani.",
                 "result": {
                     "caption": "Prenos medijev se nadaljuje v ozadju. Velike datoteke lahko trajajo nekaj časa.",
-                    "historyLink": "Ogled podrobnosti selitve",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "Indeksiranje je zaključeno.",
-                            "title": "Indeksiranje končano"
-                        },
-                        "running": {
-                            "message": "Trenutno indeksiranje v ozadju.",
-                            "title": "Indeksiranje v teku"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Odprta zgodovina",
-                        "message": "Ogled ali prenos dnevnika",
-                        "title": "Zgodovina migracij"
-                    },
-                    "survey": {
-                        "buttonText": "Podajte povratne informacije zdaj",
-                        "caption": "Pomagajte nam izboljšati postopek selitve tako, da posredujete povratne informacije o vaši izkušnji.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Vaše misli so pomembne"
-                    },
+                    "historyHint": "Te podatke si lahko ogledate kadarkoli v zgodovini selitev. Možno je, da bo kasneje dodanih več dnevniških sporočil, ker prenos medijev še vedno poteka v ozadju.",
+                    "logSummary": "Dnevnik",
                     "title": "Pomočnik za selitev je končan"
                 },
                 "status": {
-                    "FETCH_DATA": {
-                        "caption": "Nove naloge se obdelujejo.",
-                        "hint": "Namig: Selitev se nadaljuje korak za korakom v ozadju, raziščite Shopware 6.",
+                    "aborting": {
+                        "caption": "Nenapisani podatki se očistijo. Že seljeni podatki so morda neuporabni.",
+                        "long": "Migracije so prekinjene",
+                        "short": "Abortacija"
+                    },
+                    "cleanup": {
+                        "caption": "Začasni podatki se odstranijo. Migracija je skoraj končana.",
+                        "long": "Migracije se čistijo",
+                        "short": "Čiščenje"
+                    },
+                    "fetching": {
+                        "caption": "Nove naloge so obdelane.",
                         "long": "Podatki bodo prebrani iz vašega sistema",
                         "short": "Branje"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Podatki o velikih slikah lahko trajajo nekaj časa za obdelavo.",
-                        "hint": "Namig: Če je povezava slaba, zaustavite prenos in nadaljujte pozneje.",
-                        "long": "Medij se prenaša",
-                        "short": "Prenos"
+                    "finish": "Končano",
+                    "indexing": {
+                        "caption": "Migracija je skoraj končana.",
+                        "long": "Novi podatki se indeksirajo",
+                        "short": "Indeksiranje"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Obdelava velikih slikovnih podatkov lahko traja nekaj časa.",
+                        "long": "Mediji se prenašajo",
+                        "short": "Prenos medijev"
+                    },
+                    "writing": {
                         "caption": "Glede na velikost trgovine lahko traja nekaj trenutkov.",
-                        "hint": "Namig: Postopek selitve lahko kadar koli začasno ustavite in nadaljujete.",
-                        "long": "Podatki so napisani v Shopware 6",
+                        "long": "Podatki so zapisani v Shopware 6",
                         "short": "Pisanje"
-                    },
-                    "finish": "Končano"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Prekliči",
-                        "confirm": "Preklic selitve",
-                        "hint": "Želite preklicati selitev?",
-                        "message": "Trenutno ni mogoče prevzeti aktivne migracije. Če želite, lahko zdaj prekličete aktivno selitev in začnete novo neposredno zatem.",
-                        "title": "Preklic selitve"
-                    },
-                    "aborted": {
-                        "message": "Drug uporabnik je preklical postopek selitve v ločenem brskalniku ali zavihku brskalnika. Prosimo, začnite novo selitev.",
-                        "title": "Selitev je bila preklicana"
-                    },
-                    "buttonCheck": "Preveri stanje",
-                    "buttonRedirect": "Splošno",
-                    "forbidden": {
-                        "message": "Selitev se je že začela v drugem brskalniku ali zavihku brskalnika. Če si želite ogledati postopek selitve, preklopite na ta zavihek.",
-                        "title": "Selitev se je že začela"
-                    },
-                    "interrupted": {
-                        "message": "Postopek selitve je bil prevzet iz drugega brskalnika ali zavihka brskalnika. Postopek lahko prekličete ali prevzamete, odvisno od trenutnega stanja selitve.",
-                        "title": "Prevzeta je bila migracija"
-                    },
-                    "redirectModal": {
-                        "confirm": "Splošno",
-                        "message": "Selitev je že končana v drugem brskalniku ali zavihku brskalnika.",
-                        "title": "Selitev je končana"
-                    },
-                    "running": {
-                        "message": "V drugem brskalniku ali zavihku brskalnika se že izvaja selitev. Sedaj lahko prevzamete selitev, ki se izvaja, ali pa jo prekličete.",
-                        "title": "Selitev se je že začela"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Prekliči",
-                        "confirm": "Prevzem selitve",
-                        "hint": "Želite prevzeti migracijo?",
-                        "message": "Možno je, da prevzame aktivno selitev. Če želite, lahko nadaljujete selitev v tem oknu brskalnika.",
-                        "title": "Prevzem selitve"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Kategorije:",
                     "category_association": "Kategorija združenja:",
                     "category_cms_page_association": "Združenja postavitve kategorije:",
+                    "category_custom_field": "Polja po meri kategorije",
                     "category_product_stream_association": "Kategorija dinamičnih združenj skupin izdelkov:",
                     "cms_page": "Postavitve:",
                     "country": "Države:",
@@ -437,7 +396,9 @@
                     "currency": "Valute:",
                     "custom_field_set": "Nabori polj po meri:",
                     "customer": "Stranke:",
+                    "customer_custom_field": "Polja po meri strank",
                     "customer_group": "Skupine strank:",
+                    "customer_group_custom_field": "Polja po meri skupine strank",
                     "customer_wishlist": "Seznami želja:",
                     "delivery_time": "Dostavni roki:",
                     "language": "Jeziki:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Dediščine medijskih map:",
                     "number_range": "Obsegi števil:",
                     "order": "Naročila:",
+                    "order_custom_field": "Naročite polja po meri",
                     "order_document": "Naročilni dokumenti:",
                     "order_document_base_config": "Config dokumenta:",
+                    "order_document_custom_field": "Naročite polja po meri dokumenta",
                     "order_document_inheritance": "Odnosi z dokumentom naročila:",
                     "page_system_config": "Osnovne informacije na strani:",
                     "product": "Izdelki:",
                     "product_cross_selling": "Navzkrižna prodaja:",
+                    "product_custom_field": "Polja po meri izdelka",
                     "product_feature_set": "Bistvene značilnosti:",
                     "product_manufacturer": "Proizvajalci izdelkov:",
+                    "product_manufacturer_custom_field": "Polja po meri proizvajalca izdelka",
                     "product_option_relation": "Možnosti izdelka:",
+                    "product_price_custom_field": "Polja po meri cene izdelka",
                     "product_property_relation": "Lastnosti izdelka:",
                     "product_review": "Mnenja:",
                     "product_sorting": "Sortiranje proizvodov:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Ustvarite novo povezavo",
+                "buttonCreateInitialConnection": "Ustvarite začetno povezavo",
                 "buttonEditSettings": "Uredi povezavo",
                 "buttonProfileInstallation": "Namesti drug profil",
                 "buttonRemoveCredentials": "Brisanje podatkov za dostop",
@@ -498,12 +465,13 @@
                 "cardTitle": "Trgovinski sistem",
                 "connected": "Povezan",
                 "connectionCheck": "Preverjanje povezave:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Prehod:",
                 "lastMigration": "Zadnja selitev:",
+                "noConnection": "Ni povezave",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Ni povezan",
                 "profile": "Profil sistema:",
+                "refreshTooltip": "Preverite povezavo z izvornim sistemom",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Prekliči",
                     "confirmButtonText": "Da, izbriši",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Opazili smo, da različica vašega izvornega sistema {sourceSystem} ne ustreza z različico ciljnega sistema {targetSystem} . Pred začetkom selitve uporabite isto večjo različico za oba sistema.",
-            "startButton": "Nadaljuj",
             "title": "Splošno"
         },
         "wizard": {

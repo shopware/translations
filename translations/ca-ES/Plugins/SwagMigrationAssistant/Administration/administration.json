@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "No s'ha aconseguit avortar la migració.",
+            "approveFinishedMigration": "Ha fallat en completar la migració",
+            "checkConnection": "No s'ha pogut comprovar la connexió amb el sistema d'origen.",
+            "fetchConnectionId": "No s'ha aconseguit l'identificador de connexió actiu.",
+            "getDataSelection": "No s'ha aconseguit obtenir la selecció de dades per a la connexió actual.",
+            "getState": "No es va aconseguir l'estat migratori.",
+            "startMigration": "No s'ha aconseguit iniciar la migració."
+        },
         "dashboard": {
             "button": "Auxiliar de migració oberta",
             "headline": "Passar a Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "Acabat"
             },
             "title": "Assistent de migració"
-        },
-        "emptyScreen": {
-            "connectButton": "Crear connexió",
-            "description": "Assegureu-vos que s'ha establert una connexió entre els sistemes. Això és necessari per a la migració. Podeu trobar més informació aquí:{linebreak}{link}",
-            "link": "Documentació: Migració a Shopware 6",
-            "title": "Sense connexió"
         },
         "general": {
             "descriptionTextModule": "Mòdul per migrar dades",
@@ -50,10 +53,12 @@
                 "dataName": "Nom",
                 "errorCode": "Missatge d'error",
                 "errorCount": "Recompte",
+                "errorLevel": "Nivell de registre",
                 "errors": "Detalls",
                 "logDescription": "Per a més detalls {link}",
                 "logDownload": "descarregar el fitxer de registre.",
                 "noErrorsOccurred": "No s'han produït errors.",
+                "noProgressData": "Aquesta execució es va realitzar en una versió anterior del connector i les seves dades s'han eliminat.",
                 "runStatus": "Estat de migració:",
                 "status": {
                     "aborted": "Avortat",
@@ -91,7 +96,7 @@
                 },
                 "title": "Informació"
             },
-            "backButton": "Resum",
+            "backToOverviewButton": "Tornar a la visió general",
             "confirmAbortDialog": {
                 "cancelPause": "Pausa",
                 "cancelRunning": "Continuar",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "L'entitat {requiredForEntity} amb l'id d'origen \"{requiredForSourceId}\" no pot trobar l'entitat {entity} depenent amb l'id d'origen \"{sourceId}”.",
                     "title": "No es pot trobar {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "Es va produir una excepció durant el processament de la cua de missatges.",
+                    "title": "Excepció de la cua de missatges"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "La migració es va avortar automàticament, perquè es van produir massa excepcions consecutives.",
+                    "title": "La migració s'avorta automàticament"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "Acabat",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "General",
-                    "message": "La migració va acabar el procés per evitar la pèrdua de dades. Comproveu la connexió a Internet i inicieu una nova migració.",
-                    "title": "La connexió s'ha perdut"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "Documentació de la cua de missatges",
                 "flowChart": {
+                    "cleanup": "Neteja",
                     "fetchData": "Lectura",
                     "finish": "Fet",
+                    "indexing": "Indexació",
                     "premapping": "Comprovació",
                     "processMedia": "Descàrrega",
                     "writeData": "Escriure"
                 },
-                "mediaProcessScreen": {
-                    "message": "El procés s'està executant en segon pla",
-                    "title": "Començant la descàrrega de mitjans"
-                },
-                "pauseScreen": {
-                    "message": "No has fet una pausa? Si no hi ha connexió a Internet, la migració canvia automàticament al mode de pausa per evitar la pèrdua de dades.",
-                    "title": "La migració està pausada"
-                },
+                "notice": "Consell: aquest procés s'executa a la cua de missatges. No cal que us quedeu en aquesta pàgina si la vostra botiga està configurada correctament.",
                 "result": {
                     "caption": "La descàrrega de mitjans continua en segon pla. Els fitxers grans poden trigar un temps.",
-                    "historyLink": "Veure detalls de la migració",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "S'ha completat la indexació.",
-                            "title": "Indexació finalitzada"
-                        },
-                        "running": {
-                            "message": "Actualment la indexació en segon pla.",
-                            "title": "Indexació en curs"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "Historial obert",
-                        "message": "Visualitza o descarrega el fitxer de registre",
-                        "title": "Història de les migracions"
-                    },
-                    "survey": {
-                        "buttonText": "Doneu comentaris ara",
-                        "caption": "Si us plau, ajudeu-nos a millorar el procés de migració proporcionant comentaris de la vostra experiència.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "Els teus pensaments són importants"
-                    },
+                    "historyHint": "Podeu veure aquesta informació en qualsevol moment de l'historial de migracions. És possible que s'afegeixin més missatges de registre en un moment posterior perquè la descàrrega de mitjans encara s'està executant en segon pla.",
+                    "logSummary": "Llibre de registre",
                     "title": "L'assistent de migració està fet"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "Les dades no escrites es netegen. Les dades ja migrades podrien ser inutilitzables.",
+                        "long": "La migració està sent avortada",
+                        "short": "Avortar"
+                    },
+                    "cleanup": {
+                        "caption": "Les dades temporals s'estan eliminant. La migració està gairebé completa.",
+                        "long": "La migració s'està netejant",
+                        "short": "Neteja"
+                    },
+                    "fetching": {
                         "caption": "Es tramiten les noves assignacions.",
-                        "hint": "Consell: La migració continua pas a pas en segon pla, exploreu Shopware 6.",
                         "long": "Les dades es llegiran des del seu sistema",
                         "short": "Lectura"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "Les dades d'imatges grans poden trigar un temps a processar.",
-                        "hint": "Consell: Si la connexió és deficient, pausa la descàrrega i continua més tard.",
-                        "long": "Els mitjans de comunicació s'estan descarregant",
-                        "short": "Descàrrega"
+                    "finish": "Fet",
+                    "indexing": {
+                        "caption": "La migració està gairebé completa.",
+                        "long": "Les noves dades estan sent indexades",
+                        "short": "Indexació"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "Les dades d'imatges grans poden trigar un temps a processar.",
+                        "long": "Els mitjans de comunicació estan sent traslladats",
+                        "short": "Transferència de mitjans"
+                    },
+                    "writing": {
                         "caption": "Depenent de la mida de la botiga pot trigar uns moments.",
-                        "hint": "Consell: podeu fer una pausa i reprendre el procés de migració en qualsevol moment.",
                         "long": "Les dades s'estan escrivint a Shopware 6",
                         "short": "Escriure"
-                    },
-                    "finish": "Fet"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "Cancel·lar",
-                        "confirm": "Cancel·la la migració",
-                        "hint": "Voleu cancel·lar la migració?",
-                        "message": "De moment no és possible assumir la migració activa. Si voleu, ara podeu cancel·lar la migració activa i iniciar-ne una de nova directament després.",
-                        "title": "Cancel·la la migració"
-                    },
-                    "aborted": {
-                        "message": "Un altre usuari ha cancel·lat el procés de migració en un navegador o una pestanya del navegador separat. Si us plau, inicieu una nova migració.",
-                        "title": "La migració ha estat cancel·lada"
-                    },
-                    "buttonCheck": "Comprovar l'estat",
-                    "buttonRedirect": "General",
-                    "forbidden": {
-                        "message": "Ja s'ha iniciat una migració en un altre navegador o pestanya del navegador. Si us plau, canvieu a aquesta pestanya per veure el procés de migració.",
-                        "title": "La migració ja començada"
-                    },
-                    "interrupted": {
-                        "message": "El procés de migració va ser assumit des d'un altre navegador o pestanya del navegador. Podeu cancel·lar o assumir el procés, depenent de l'estat actual de la migració.",
-                        "title": "La migració ha estat assumida"
-                    },
-                    "redirectModal": {
-                        "confirm": "General",
-                        "message": "La migració ja s'ha completat en un altre navegador o pestanya del navegador.",
-                        "title": "La migració completa"
-                    },
-                    "running": {
-                        "message": "Ja hi ha una migració que s'executa en un altre navegador o pestanya del navegador. Ara podeu assumir la migració en execució o cancel·lar-la.",
-                        "title": "La migració ja començada"
-                    },
-                    "takeoverModal": {
-                        "cancel": "Cancel·lar",
-                        "confirm": "Assumir la migració",
-                        "hint": "T'agradaria assumir la migració?",
-                        "message": "És possible assumir la migració activa. Si voleu, podeu continuar la migració en aquesta finestra del navegador.",
-                        "title": "Assumir la migració"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "Categories:",
                     "category_association": "Categoria associacions:",
                     "category_cms_page_association": "Associacions de disseny de categories:",
+                    "category_custom_field": "Categoria camps personalitzats",
                     "category_product_stream_association": "Associacions dinàmiques de grups de productes de categoria:",
                     "cms_page": "Dissenys:",
                     "country": "Països:",
@@ -437,7 +396,9 @@
                     "currency": "Monedes:",
                     "custom_field_set": "Conjunts de camps personalitzats:",
                     "customer": "Clients:",
+                    "customer_custom_field": "Camps personalitzats del client",
                     "customer_group": "Grups de clients:",
+                    "customer_group_custom_field": "Camps personalitzats del grup de clients",
                     "customer_wishlist": "Llistes de desitjos:",
                     "delivery_time": "Termini de lliurament:",
                     "language": "Idiomes:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "Herències de carpetes multimèdia:",
                     "number_range": "Ranges de nombre:",
                     "order": "Comandes:",
+                    "order_custom_field": "Ordenar camps personalitzats",
                     "order_document": "Documents de comanda:",
                     "order_document_base_config": "Configuració del document:",
+                    "order_document_custom_field": "Comanda camps personalitzats del document",
                     "order_document_inheritance": "Relacions de documents d'ordre:",
                     "page_system_config": "Informació bàsica de la pàgina:",
                     "product": "Productes:",
                     "product_cross_selling": "Venda creuada:",
+                    "product_custom_field": "Camps personalitzats del producte",
                     "product_feature_set": "Característiques essencials:",
                     "product_manufacturer": "Fabricants de productes:",
+                    "product_manufacturer_custom_field": "Camps personalitzats del fabricant del producte",
                     "product_option_relation": "Opcions de producte:",
+                    "product_price_custom_field": "Camps personalitzats de preu del producte",
                     "product_property_relation": "Propietats del producte:",
                     "product_review": "Ressenyes:",
                     "product_sorting": "Classificació de productes:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Crear una nova connexió",
+                "buttonCreateInitialConnection": "Crear connexió inicial",
                 "buttonEditSettings": "Editar la connexió",
                 "buttonProfileInstallation": "Instal·lar un altre perfil",
                 "buttonRemoveCredentials": "Eliminar dades d'accés",
@@ -498,12 +465,13 @@
                 "cardTitle": "Sistema de botiga",
                 "connected": "Connectat",
                 "connectionCheck": "Comprovació de connexió:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "Passarel·la:",
                 "lastMigration": "Última migració:",
+                "noConnection": "Sense connexió",
                 "noMigrationDoneYet": "-",
                 "notConnected": "No connectat",
                 "profile": "Perfil del sistema:",
+                "refreshTooltip": "Comproveu la connexió al sistema d'origen",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Cancel·lar",
                     "confirmButtonText": "Sí, esborrar",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "Hem notat que la versió del vostre sistema d'origen {sourceSystem} no coincideix amb la versió {targetSystem} del vostre sistema de destinació. Si us plau, assegureu-vos d'utilitzar la mateixa versió principal per als dos sistemes abans d'iniciar la migració.",
-            "startButton": "Continuar",
             "title": "General"
         },
         "wizard": {

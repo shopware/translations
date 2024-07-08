@@ -7,6 +7,15 @@
         }
     },
     "swag-migration": {
+        "api-error": {
+            "abortMigration": "فشلت عملية إحباط الترحيل.",
+            "approveFinishedMigration": "فشلت أثناء إكمال الترحيل",
+            "checkConnection": "فشلت عملية التحقق من الاتصال بالنظام المصدر.",
+            "fetchConnectionId": "فشل الحصول على معرف اتصال نشط.",
+            "getDataSelection": "فشلت عملية تحديد البيانات للاتصال الحالي.",
+            "getState": "فشلت عملية الحصول على حالة الترحيل.",
+            "startMigration": "فشلت عملية بدء الترحيل."
+        },
         "dashboard": {
             "button": "مساعد الترحيل المفتوح",
             "headline": "الانتقال إلى Shopware",
@@ -17,12 +26,6 @@
                 "resetButton": "إنهاء"
             },
             "title": "مساعد الترحيل"
-        },
-        "emptyScreen": {
-            "connectButton": "إنشاء اتصال",
-            "description": "تأكد من إنشاء اتصال بين الأنظمة. هذا مطلوب للترحيل. يمكنك العثور على مزيد من المعلومات هنا:{linebreak}{link}",
-            "link": "التوثيق: الانتقال إلى Shopware 6",
-            "title": "لا يوجد اتصال"
         },
         "general": {
             "descriptionTextModule": "وحدة لترحيل البيانات",
@@ -50,10 +53,12 @@
                 "dataName": "اسم",
                 "errorCode": "رسالة خطأ",
                 "errorCount": "عد",
+                "errorLevel": "مستوى السجل",
                 "errors": "التفاصيل",
                 "logDescription": "لمزيد من التفاصيل {link}",
                 "logDownload": "قم بتنزيل ملف السجل.",
                 "noErrorsOccurred": "لم تحدث أية أخطاء.",
+                "noProgressData": "تم تنفيذ هذا التشغيل في إصدار سابق من المكون الإضافي وتم حذف بياناته.",
                 "runStatus": "حالة الترحيل:",
                 "status": {
                     "aborted": "أجهض",
@@ -91,7 +96,7 @@
                 },
                 "title": "معلومات"
             },
-            "backButton": "نظرة عامة",
+            "backToOverviewButton": "الرجوع إلى النظرة العامة",
             "confirmAbortDialog": {
                 "cancelPause": "وقفة",
                 "cancelRunning": "واصل",
@@ -139,6 +144,14 @@
                 "SWAG_MIGRATION_ENTITY_UNKNOWN": {
                     "description": "لا يمكن للكيان {requiredForEntity} بمعرف المصدر \"{requiredForSourceId}\" العثور على كيان {entity} المعتمد بمعرف المصدر \"{sourceId}».",
                     "title": "لا يمكن العثور على {entity}"
+                },
+                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
+                    "description": "حدث استثناء أثناء معالجة قائمة انتظار الرسائل.",
+                    "title": "استثناء قائمة انتظار الرسائل"
+                },
+                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
+                    "description": "تم إحباط الترحيل تلقائيًا، بسبب حدوث عدد كبير جدًا من الاستثناءات المتتالية.",
+                    "title": "تم إحباط الترحيل تلقائيًا"
                 },
                 "SWAG_MIGRATION_RUN_EXCEPTION": {
                     "description": "{description}",
@@ -263,110 +276,55 @@
             },
             "finishButton": "إنهاء",
             "loadingScreenCard": {
-                "connectionLostScreen": {
-                    "buttonNavigateToMain": "جنرال لواء",
-                    "message": "أدت عملية الترحيل إلى إنهاء العملية لتجنب فقدان البيانات. تحقق من اتصال الإنترنت وابدأ عملية ترحيل جديدة.",
-                    "title": "تم فقد الاتصال"
-                },
+                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
+                "documentationLinkText": "وثائق قائمة انتظار الرسائل",
                 "flowChart": {
+                    "cleanup": "تنظيف",
                     "fetchData": "القراءة",
                     "finish": "تم",
+                    "indexing": "الفهرسة",
                     "premapping": "التحقق",
                     "processMedia": "التنزيل",
                     "writeData": "الكتابة"
                 },
-                "mediaProcessScreen": {
-                    "message": "يتم تشغيل العملية في الخلفية",
-                    "title": "بدء تنزيل الوسائط"
-                },
-                "pauseScreen": {
-                    "message": "لم تتوقف؟ في حالة عدم وجود اتصال بالإنترنت، يتحول الترحيل تلقائيًا إلى وضع الإيقاف المؤقت لمنع فقدان البيانات.",
-                    "title": "تم إيقاف الترحيل مؤقتًا"
-                },
+                "notice": "نصيحة: يتم تشغيل هذه العملية في قائمة انتظار الرسائل. لا تحتاج إلى البقاء في هذه الصفحة إذا تم تكوين متجرك بشكل صحيح.",
                 "result": {
                     "caption": "يستمر تنزيل الوسائط في الخلفية. يمكن أن تستغرق الملفات الكبيرة بعض الوقت.",
-                    "historyLink": "عرض تفاصيل الترحيل",
-                    "indexingNotification": {
-                        "finished": {
-                            "message": "تم الانتهاء من الفهرسة.",
-                            "title": "تم الانتهاء من الفهرسة"
-                        },
-                        "running": {
-                            "message": "تتم الفهرسة حاليًا في الخلفية.",
-                            "title": "الفهرسة قيد التقدم"
-                        }
-                    },
-                    "notification": {
-                        "actionLabel": "افتح التاريخ",
-                        "message": "عرض ملف السجل أو تنزيله",
-                        "title": "سجل الترحيل"
-                    },
-                    "survey": {
-                        "buttonText": "قدم ملاحظاتك الآن",
-                        "caption": "الرجاء مساعدتنا في تحسين عملية الترحيل من خلال تقديم ملاحظات حول تجربتك.",
-                        "link": "https://www.surveymonkey.de/r/RF7J3LV",
-                        "title": "أفكارك مهمة"
-                    },
+                    "historyHint": "يمكنك عرض هذه المعلومات في أي وقت في سجل الترحيل. من الممكن إضافة المزيد من رسائل السجل في وقت لاحق لأن تنزيل الوسائط لا يزال قيد التشغيل في الخلفية.",
+                    "logSummary": "دفتر السجل",
                     "title": "تم الانتهاء من مساعد الترحيل"
                 },
                 "status": {
-                    "FETCH_DATA": {
+                    "aborting": {
+                        "caption": "يتم تنظيف البيانات غير المكتوبة. قد تكون البيانات التي تم ترحيلها بالفعل غير قابلة للاستخدام.",
+                        "long": "يتم إحباط الترحيل",
+                        "short": "إجهاض"
+                    },
+                    "cleanup": {
+                        "caption": "تتم إزالة البيانات المؤقتة. اكتمل الترحيل تقريبًا.",
+                        "long": "يتم تنظيف الترحيل",
+                        "short": "تنظيف"
+                    },
+                    "fetching": {
                         "caption": "تتم معالجة الواجبات الجديدة.",
-                        "hint": "نصيحة: يستمر الترحيل خطوة بخطوة في الخلفية، واستكشف Shopware 6.",
                         "long": "ستتم قراءة البيانات من نظامك",
                         "short": "القراءة"
                     },
-                    "PROCESS_MEDIA_FILES": {
-                        "caption": "يمكن أن تستغرق معالجة بيانات الصور الكبيرة بعض الوقت.",
-                        "hint": "نصيحة: إذا كان الاتصال ضعيفًا، فقم بإيقاف التنزيل مؤقتًا والمتابعة لاحقًا.",
-                        "long": "يتم تنزيل الوسائط",
-                        "short": "التنزيل"
+                    "finish": "تم",
+                    "indexing": {
+                        "caption": "اكتمل الترحيل تقريبًا.",
+                        "long": "تتم فهرسة البيانات الجديدة",
+                        "short": "الفهرسة"
                     },
-                    "WRITE_DATA": {
+                    "media-processing": {
+                        "caption": "يمكن أن تستغرق بيانات الصور الكبيرة بعض الوقت للمعالجة.",
+                        "long": "يتم نقل وسائل الإعلام",
+                        "short": "نقل وسائل الإعلام"
+                    },
+                    "writing": {
                         "caption": "اعتمادًا على حجم المتجر، قد يستغرق الأمر بضع لحظات.",
-                        "hint": "نصيحة: يمكنك إيقاف عملية الترحيل واستئنافها في أي وقت.",
                         "long": "تتم كتابة البيانات في Shopware 6",
                         "short": "الكتابة"
-                    },
-                    "finish": "تم"
-                },
-                "takeoverScreen": {
-                    "abortModal": {
-                        "cancel": "إلغاء",
-                        "confirm": "إلغاء الترحيل",
-                        "hint": "هل ترغب في إلغاء الترحيل؟",
-                        "message": "لا يمكن تولي الترحيل النشط في الوقت الحالي. إذا كنت ترغب في ذلك، يمكنك الآن إلغاء الترحيل النشط وبدء ترحيل جديد مباشرة بعد ذلك.",
-                        "title": "إلغاء الترحيل"
-                    },
-                    "aborted": {
-                        "message": "قام مستخدم آخر بإلغاء عملية الترحيل في متصفح منفصل أو علامة تبويب متصفح. يرجى بدء عملية ترحيل جديدة.",
-                        "title": "تم إلغاء الترحيل"
-                    },
-                    "buttonCheck": "تحقق من الحالة",
-                    "buttonRedirect": "جنرال لواء",
-                    "forbidden": {
-                        "message": "تم بالفعل بدء الترحيل في متصفح آخر أو علامة تبويب متصفح أخرى. يرجى التبديل إلى علامة التبويب هذه لعرض عملية الترحيل.",
-                        "title": "بدأت عملية الترحيل بالفعل"
-                    },
-                    "interrupted": {
-                        "message": "تم الاستيلاء على عملية الترحيل من متصفح آخر أو علامة تبويب متصفح أخرى. يمكنك إلغاء العملية أو توليها، استنادًا إلى الحالة الحالية للترحيل.",
-                        "title": "تم الاستيلاء على الهجرة"
-                    },
-                    "redirectModal": {
-                        "confirm": "جنرال لواء",
-                        "message": "تم إكمال الترحيل بالفعل في متصفح آخر أو علامة تبويب متصفح أخرى.",
-                        "title": "اكتمل الترحيل"
-                    },
-                    "running": {
-                        "message": "يوجد بالفعل ترحيل قيد التشغيل في متصفح آخر أو علامة تبويب متصفح أخرى. يمكنك الآن إما تولي الترحيل الجاري تشغيله أو إلغائه.",
-                        "title": "بدأت عملية الترحيل بالفعل"
-                    },
-                    "takeoverModal": {
-                        "cancel": "إلغاء",
-                        "confirm": "تولي الترحيل",
-                        "hint": "هل ترغب في تولي الهجرة؟",
-                        "message": "من الممكن تولي الترحيل النشط. إذا كنت ترغب في ذلك، يمكنك متابعة الترحيل في نافذة المتصفح هذه.",
-                        "title": "تولي الترحيل"
                     }
                 }
             },
@@ -430,6 +388,7 @@
                     "category": "الفئات:",
                     "category_association": "جمعيات الفئة:",
                     "category_cms_page_association": "ارتباطات تخطيط الفئة:",
+                    "category_custom_field": "حقول الفئة المخصصة",
                     "category_product_stream_association": "ارتباطات مجموعة المنتجات الديناميكية للفئة:",
                     "cms_page": "التخطيطات:",
                     "country": "البلدان:",
@@ -437,7 +396,9 @@
                     "currency": "العملات:",
                     "custom_field_set": "مجموعات الحقول المخصصة:",
                     "customer": "العملاء:",
+                    "customer_custom_field": "حقول العملاء المخصصة",
                     "customer_group": "مجموعات العملاء:",
+                    "customer_group_custom_field": "الحقول المخصصة لمجموعة العملاء",
                     "customer_wishlist": "قوائم الأمنيات:",
                     "delivery_time": "أوقات التوصيل:",
                     "language": "اللغات:",
@@ -448,15 +409,20 @@
                     "media_folder_inheritance": "وراثة مجلد الوسائط:",
                     "number_range": "نطاقات الأرقام:",
                     "order": "الطلبات:",
+                    "order_custom_field": "اطلب الحقول المخصصة",
                     "order_document": "مستندات الطلب:",
                     "order_document_base_config": "تكوين المستند:",
+                    "order_document_custom_field": "اطلب الحقول المخصصة للمستند",
                     "order_document_inheritance": "علاقات مستندات الطلب:",
                     "page_system_config": "معلومات الصفحة الأساسية:",
                     "product": "المنتجات:",
                     "product_cross_selling": "البيع المتقاطع:",
+                    "product_custom_field": "حقول المنتج المخصصة",
                     "product_feature_set": "الخصائص الأساسية:",
                     "product_manufacturer": "الشركات المصنعة للمنتجات:",
+                    "product_manufacturer_custom_field": "الحقول المخصصة لمصنع المنتج",
                     "product_option_relation": "خيارات المنتج:",
+                    "product_price_custom_field": "الحقول المخصصة لسعر المنتج",
                     "product_property_relation": "خصائص المنتج:",
                     "product_review": "المراجعات:",
                     "product_sorting": "فرز المنتج:",
@@ -489,6 +455,7 @@
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "إنشاء اتصال جديد",
+                "buttonCreateInitialConnection": "إنشاء اتصال أولي",
                 "buttonEditSettings": "تحرير الاتصال",
                 "buttonProfileInstallation": "تثبيت ملف تعريف آخر",
                 "buttonRemoveCredentials": "حذف بيانات الوصول",
@@ -498,12 +465,13 @@
                 "cardTitle": "نظام المتجر",
                 "connected": "متصل",
                 "connectionCheck": "التحقق من الاتصال:",
-                "displayDateTime": "{time} - {date}",
                 "gateway": "البوابة:",
                 "lastMigration": "الترحيل الأخير:",
+                "noConnection": "لا يوجد اتصال",
                 "noMigrationDoneYet": "-",
                 "notConnected": "غير متصل",
                 "profile": "ملف تعريف النظام:",
+                "refreshTooltip": "تحقق من الاتصال بالنظام المصدر",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "إلغاء",
                     "confirmButtonText": "نعم، احذف",
@@ -532,7 +500,6 @@
                 }
             },
             "shopwareMajorVersionText": "لقد لاحظنا أن إصدار النظام المصدر {sourceSystem} الخاص بك لا يتطابق مع إصدار النظام المستهدف {targetSystem} . يرجى التأكد من استخدام نفس الإصدار الرئيسي لكلا النظامين قبل بدء الترحيل.",
-            "startButton": "واصل",
             "title": "جنرال لواء"
         },
         "wizard": {
