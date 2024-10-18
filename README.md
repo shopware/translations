@@ -11,7 +11,7 @@ The translations are updated automatically via a defined schedule containing mul
 | Upload files to Crowdin                                      | Every day at 20:00 CET    |
 | Download translations from Crowdin                           | Every day at 22:00 CET    |
 | Pull supported languages to SwagLanguagePack                 | Every day at 00:00 CET    |
-| Release new SwagLanguagePack version, if it contains changes | Every friday at 08:30 CET |
+| Release new SwagLanguagePack version, if it contains changes | Every Friday at 08:30 CET |
 
 ## Crowdin-generated pull requests
 
