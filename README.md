@@ -5,12 +5,13 @@ Contains all translation files, automatically extracted from [crowdin](https://t
 ## Schedule
 
 The translations are updated automatically via a defined schedule containing multiple workflows. The schedule is defined as follows:
-| Workflow                                     | Frequency              |
-|:---------------------------------------------|:-----------------------|
-| Collect translations and push new snippets   | Every day at 18:00 CET |
-| Upload files to Crowdin                      | Every day at 20:00 CET |
-| Download translations from Crowdin           | Every day at 22:00 CET |
-| Pull supported languages to SwagLanguagePack | Every day at 00:00 CET |
+| Workflow                                                     | Frequency                 |
+|:-------------------------------------------------------------|:--------------------------|
+| Collect translations and push new snippets                   | Every day at 18:00 CET    |
+| Upload files to Crowdin                                      | Every day at 20:00 CET    |
+| Download translations from Crowdin                           | Every day at 22:00 CET    |
+| Pull supported languages to SwagLanguagePack                 | Every day at 00:00 CET    |
+| Release new SwagLanguagePack version, if it contains changes | Every friday at 08:30 CET |
 
 ## Crowdin-generated pull requests
 
