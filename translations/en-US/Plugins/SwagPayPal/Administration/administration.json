@@ -49,6 +49,23 @@
         },
         "header": "PayPal",
         "messageNotBlank": "This value should not be blank.",
+        "notifications": {
+            "save": {
+                "errorMessage": "Saving failed:<br>{message}",
+                "title": "PayPal Settings",
+                "webhookMessage": "The webhook could not be saved:<br>{message}"
+            },
+            "test": {
+                "errorMessage": "The validation failed:<br>{message}",
+                "successMessage": "The credentials are valid.",
+                "title": "PayPal API credentials"
+            },
+            "webhook": {
+                "errorMessage": "Failed to refresh webhook:<br>{message}",
+                "successMessage": "The webhook has been refreshed.",
+                "title": "PayPal Webhook"
+            }
+        },
         "saleschannelCard": {
             "button": {
                 "description": "Click this button to enable PayPal and select it as default in the selected Sales Channel",
@@ -458,6 +475,7 @@
     },
     "swag-paypal-frw-credentials": {
         "buttonGetCredentials": "Get API credentials",
+        "buttonGetSandboxCredentials": "Get sandbox API credentials",
         "labelClientId": "Client ID",
         "labelClientIdSandbox": "Sandbox client ID",
         "labelClientSecret": "Client secret",
@@ -467,12 +485,90 @@
         "labelSandbox": "Use sandbox",
         "labelSetDefault": "Set as default payment method",
         "messageFetchedError": "Try again or use the advanced settings to provide your credentials.",
+        "messageInvalidCredentials": "Credentials are invalid.",
         "messageNoCredentials": "No credentials provided.",
         "messageTestSuccess": "Credentials are valid.",
         "textFetchedSuccessful": "Credentials have been fetched.",
         "textIntroPayPal": "To get PayPal up and running you only need to provide your PayPal API credentials.",
         "tooltipSandbox": "Depending on activation of the sandbox, separate credentials are saved.",
         "tooltipSetDefault": "PayPal will be set as default payment method of all Sales Channels. You can set individual default payment methods per Sales Channel in the settings module."
+    },
+    "swag-paypal-method": {
+        "appImageAlt": "PayPal",
+        "availabilityToolTip": {
+            "bancontactapmhandler": "Bancontact is available for the following countries: Belgium",
+            "blikapmhandler": "BLIK is available for the following countries: Poland",
+            "boletobancarioapmhandler": "Boleto Bancário is available for the following countries: Brazil",
+            "epsapmhandler": "eps is available for the following countries: Austria",
+            "idealapmhandler": "iDEAL is available for the following countries: Netherlands",
+            "multibancoapmhandler": "Multibanco is available for the following countries: Portugal",
+            "mybankapmhandler": "MyBank is available for the following countries: Italy",
+            "oxxoapmhandler": "OXXO is available for the following countries: Mexico",
+            "p24apmhandler": "Przelewy24 is available for the following countries: Poland",
+            "paylaterhandler": "Pay Later is available for the following countries: Australia, France, Germany, Italy, Spain, United Kingdom, United States",
+            "puihandler": "Pay upon invoice is available for the following countries: Germany",
+            "sepahandler": "SEPA Lastschrift is available for the following countries: Germany",
+            "trustlyapmhandler": "Trustly is available for the following countries: Estonia, Finland, Netherlands, Sweden",
+            "venmohandler": "Venmo is available for the following countries: United States"
+        },
+        "banner": "With PayPal Checkout, you can offer your customers payment by invoice, credit card and other local payment methods. PayPal Checkout supports you with the latest technology and brings you the highest flexibility. You keep your existing payment methods, and the fees remain the same! Activate PayPal Checkout and deactivate PayPal PLUS to avoid duplicate payment methods in your shop.",
+        "bannerLink": "More information",
+        "cardTitle": "PayPal Checkout",
+        "description": "PayPal Checkout is the new all-in-one solution that lets you offer powerful flexibile payment processing features on the marketplaces and other commerce platforms.",
+        "domainAssociation": {
+            "link": "Open domains settings",
+            "title": "Please make sure your domain is set correctly for Apple Pay to work properly. The domain association file is already present."
+        },
+        "editDetail": "Edit details",
+        "header": "More payment methods with one solution from PayPal",
+        "merchantStatusText": {
+            "connected": "Connected",
+            "emailUnconfirmed": "Email unconfirmed",
+            "notConnected": "Not connected",
+            "onboardingNeeded": "Re-onboarding needed",
+            "paymentsUnreceivable": "Payments unreceivable"
+        },
+        "onboardingStatusText": {
+            "active": "Authorized",
+            "inactive": "Onboarding needed",
+            "ineligible": "Ineligible",
+            "limited": "Limited",
+            "mybank": "Limited",
+            "pending": "Authorization pending",
+            "test": "Test mode"
+        },
+        "onboardingStatusTooltip": {
+            "ineligible": "PayPal informed us, that this payment method is currently ineligible for your account.",
+            "limited": "PayPal informed us, that this payment method has some limitations for your account.",
+            "mybank": "Merchants enabling MyBank after February 2023 will need manual approval by PayPal. Reach out to PayPal support for further information on this."
+        },
+        "paymentMethodText": "Payment methods",
+        "ratePayLabel": "by Ratepay",
+        "sandbox": {
+            "helpText": "Enable, if you want to test the PayPal integration.",
+            "label": "Sandbox",
+            "onlyLiveTooltip": "You are only connected a live PayPal account so far.",
+            "onlySandboxTooltip": "You are only connected a sandbox PayPal account so far."
+        },
+        "settingsLink": "Settings",
+        "switch": {
+            "active": "Payment method \"{name}\" is now active.",
+            "inactive": "Payment method \"{name}\" is now inactive.",
+            "label": "Active"
+        }
+    },
+    "swag-paypal-onboarding-button": {
+        "live": {
+            "changeTitle": "Connect different account",
+            "onboardingTitle": "Start PayPal onboarding",
+            "restartOnboardingTitle": "Restart PayPal onboarding",
+            "title": "Connect PayPal account"
+        },
+        "sandbox": {
+            "changeTitle": "Connect different sandbox account",
+            "onboardingTitle": "Start PayPal sandbox onboarding",
+            "title": "Connect sandbox account"
+        }
     },
     "swag-paypal-payment": {
         "buttons": {
@@ -863,6 +959,192 @@
                 "optionTrueLabel": "Synchronize prices with VAT"
             }
         }
+    },
+    "swag-paypal-setting": {
+        "helpText": {
+            "acdcForce3DS": "PayPal checks whether 3DS (Strong Customer Authentication) is required based on the credit or debit card presented. Setting this option will reject payment attempts without a 3DS check.",
+            "brandName": "This text will be displayed as the brand name on the PayPal payment page.",
+            "clientId": "The REST API client ID is used to authenticate this plugin with the PayPal API.",
+            "clientIdSandbox": "The REST API client ID is used while testing to authenticate this plugin with the PayPal API.",
+            "clientSecret": "The REST API client secret is used to authenticate this plugin with the PayPal API.",
+            "clientSecretSandbox": "The REST API client secret is used while testing to authenticate this plugin with the PayPal API.",
+            "ecsButtonLanguageIso": "If not set, the sales channel language will be used.",
+            "ecsCartEnabled": "If this option is active, the Express Checkout button will be shown on the cart.",
+            "ecsDetailEnabled": "If this option is active, the Express Checkout button will be shown on each product detail page.",
+            "ecsListingEnabled": "If this option is active, the Express Checkout button will be shown on listing pages.",
+            "ecsLoginEnabled": "If this option is active, the Express Checkout button will be shown on the login and register page.",
+            "ecsOffCanvasEnabled": "If this option is active, the Express Checkout button will be shown on the off-canvas cart.",
+            "ecsShowPayLater": "The 'Pay Later' button will be displayed on the same pages and in the same design as the 'PayPal Checkout' button.",
+            "ecsSubmitCart": "If this option is active, the cart will be submitted to PayPal for Express orders.",
+            "excludedProductIds": "Products selected here cannot be purchased with PayPal.",
+            "excludedProductStreamIds": "Products included in the dynamic product groups selected here cannot be purchased with PayPal.",
+            "installmentBannerCartEnabled": "If this option is active, the 'Pay Later' banner will be shown on the cart.",
+            "installmentBannerDetailPageEnabled": "If this option is active, the 'Pay Later' banner will be shown on each product detail page.",
+            "installmentBannerFooterEnabled": "If this option is active, the 'Pay Later' banner will be shown on the footer.",
+            "installmentBannerLoginPageEnabled": "If this option is active, the 'Pay Later' banner will be shown on the login and register page.",
+            "installmentBannerOffCanvasCartEnabled": "If this option is active, the 'Pay Later' banner will be shown on the off-canvas cart.",
+            "merchantPayerId": "The PayPal Merchant ID assigned to your PayPal account (see Business Information in PayPal account settings).",
+            "merchantPayerIdSandbox": "The PayPal Merchant ID assigned to your PayPal sandbox account (see Business Information in PayPal account settings).",
+            "orderNumberPrefix": "This text is placed before the original order number (e.g MyShop_SW20001). This helps to identify the shop where the payment was made. You can find it as invoice ID in your PayPal dashboard.",
+            "orderNumberSuffix": "This text is placed after the original order number (e.g SW20001_MyShop). This helps to identify the shop where the payment was made. You can find it as invoice ID in your PayPal dashboard.",
+            "puiCustomerServiceInstructions": "These instructions will be submitted to PayPal & RatePay and shown in emails for the customer.",
+            "sandbox": "Enable, if you want to test the PayPal integration.",
+            "sendOrderNumber": "If this option is active, the order number will be submitted to PayPal as invoice ID at checkout.",
+            "spbAlternativePaymentMethodsEnabled": "Alternative payment methods are credit- and debit cards and more.",
+            "spbButtonLanguageIso": "If not set, the sales channel language will be used.",
+            "submitCart": "If this option is active, cart data will be submitted to PayPal at checkout."
+        },
+        "hintText": {
+            "landingPage": {
+                "GUEST_CHECKOUT": "Guest Checkout: The PayPal site displays a form for payment information, the customer does not need to log in.",
+                "LOGIN": "Login: The PayPal site displays a login screen as landing page.",
+                "NO_PREFERENCE": "No preference: PayPal decides which page is shown, depending on the previous interaction of the customer with PayPal."
+            }
+        },
+        "label": {
+            "acdcForce3DS": "Block payments from non-3DS countries",
+            "brandName": "Your own brand name on PayPal page",
+            "clientId": "Client ID",
+            "clientIdSandbox": "Sandbox client ID",
+            "clientSecret": "Client secret",
+            "clientSecretSandbox": "Sandbox client secret",
+            "crossBorderBuyerCountry": "Localization",
+            "crossBorderMessagingEnabled": "Enable cross-border localization of Pay Later message",
+            "ecsButtonColor": "Button color",
+            "ecsButtonLanguageIso": "Button locale",
+            "ecsButtonShape": "Button shape",
+            "ecsCartEnabled": "'PayPal Checkout' on cart",
+            "ecsDetailEnabled": "'PayPal Checkout' on detail page",
+            "ecsListingEnabled": "'PayPal Checkout' on listing pages",
+            "ecsLoginEnabled": "'PayPal Checkout' on login page",
+            "ecsOffCanvasEnabled": "'PayPal Checkout' on off-canvas cart",
+            "ecsShowPayLater": "Display 'Pay Later' button next to the 'PayPal Checkout' button",
+            "ecsSubmitCart": "Submit cart",
+            "excludedProductIds": "Excluded products",
+            "excludedProductStreamIds": "Excluded dynamic product groups",
+            "installmentBannerCartEnabled": "'Pay Later' banner on cart",
+            "installmentBannerDetailPageEnabled": "'Pay Later' banner on detail page",
+            "installmentBannerFooterEnabled": "'Pay Later' banner on footer",
+            "installmentBannerLoginPageEnabled": "'Pay Later' banner on login page",
+            "installmentBannerOffCanvasCartEnabled": "'Pay Later' banner on off-canvas cart",
+            "intent": "Payment acquisition",
+            "landingPage": "PayPal landing page",
+            "merchantPayerId": "PayPal Merchant ID",
+            "merchantPayerIdSandbox": "Sandbox PayPal Merchant ID",
+            "orderNumberPrefix": "Order number prefix",
+            "orderNumberSuffix": "Order number suffix",
+            "puiCustomerServiceInstructions": "Customer service instructions for Pay upon invoice",
+            "sandbox": "Enable sandbox",
+            "sendOrderNumber": "Submit order number",
+            "spbAlternativePaymentMethodsEnabled": "Enable the alternative payment methods for the Smart Payment Buttons.",
+            "spbButtonColor": "Button color",
+            "spbButtonLanguageIso": "Button locale",
+            "spbButtonShape": "Button shape",
+            "spbCheckoutEnabled": "Enable Smart Payment Buttons",
+            "spbShowPayLater": "Display 'Pay Later' button next to PayPal button",
+            "submitCart": "Submit cart",
+            "vaultingEnabledACDC": "Enable Vaulting for credit and debit cards",
+            "vaultingEnabledVenmo": "Enable Vaulting for Venmo payments",
+            "vaultingEnabledWallet": "Enable Vaulting for PayPal payments"
+        }
+    },
+    "swag-paypal-settings": {
+        "acdc": {
+            "title": "Credit- or debit card"
+        },
+        "behavior": {
+            "title": "Behaviour"
+        },
+        "credentialsLive": {
+            "test": "Test",
+            "title": "Live API credentials"
+        },
+        "credentialsSandbox": {
+            "test": "Test",
+            "title": "Sandbox API credentials"
+        },
+        "crossBorder": {
+            "buyerCountryAuto": "Automatic determination",
+            "buyerCountryOverride": "Localization",
+            "info": "Pay Later messaging is a feature that allows you to display a Pay Later message in the language of the customer. This feature is only available for certain countries. {0}",
+            "title": "Pay Later cross-border messaging",
+            "warning": "Please contact your PayPal representative to enable this feature for your account."
+        },
+        "express": {
+            "alertMessage": "Double opt-in for guests is activated in one of your Sales Channels. This feature is not compatible with PayPal Express Shortcut buttons. Customers who sign up via the Express Checkout Shortcut buttons won't receive double opt-in verification emails.",
+            "subtitle": "Express Checkouts increase the conversion rate in your shop and pose no financial risk to you as a merchant. It is recommended to keep them activated. ",
+            "title": "Express Checkout Shortcut"
+        },
+        "header": "PayPal",
+        "installment": {
+            "subtitle": "Banners increase the conversion rate in your shop and pose no financial risk to you as a merchant. It is recommended to keep them activated.",
+            "title": "'Pay Later' banner"
+        },
+        "module": {
+            "description": "PayPal settings",
+            "title": "PayPal"
+        },
+        "options": {
+            "buttonColor": {
+                "black": "Black",
+                "blue": "Blue",
+                "gold": "Gold (recommended)",
+                "silver": "Silver",
+                "white": "White"
+            },
+            "buttonShape": {
+                "pill": "Round",
+                "rect": "Rectangular with rounded corners",
+                "sharp": "Rectangular with sharp corners"
+            },
+            "intent": {
+                "AUTHORIZE": "Manual payment collection (intent AUTHORIZE)",
+                "CAPTURE": "Automatic payment collection (intent CAPTURE)"
+            },
+            "landingPage": {
+                "GUEST_CHECKOUT": "Guest Checkout",
+                "LOGIN": "Login",
+                "NO_PREFERENCE": "No preference"
+            }
+        },
+        "pui": {
+            "title": "Pay upon invoice"
+        },
+        "spb": {
+            "title": "Smart Payment Buttons"
+        },
+        "tabs": {
+            "advanced": "Advanced",
+            "general": "General",
+            "storefront": "Storefront presentation"
+        },
+        "vaulting": {
+            "activeButtonLabel": "Activate Vaulting",
+            "descriptionText": "Vaulting a PayPal account will allow you to charge the account in the future without requiring your customer to be present during the transaction or re-authenticate with PayPal when they are present during the transaction.",
+            "descriptionTitle": "One-time Paypal checkout",
+            "title": "Vaulting"
+        },
+        "webhook": {
+            "buttonRefresh": "Refresh webhook",
+            "fetchFailed": "Failed to fetch webhook status",
+            "info": "The webhook is used for updating the status of a transaction asynchronously. Incorrectly registered webhooks, e.g. on a different or not publicly available server, may result in unconfirmed transactions, regardless whether the transaction has been processed by PayPal.",
+            "refreshFailed": "Failed to refresh webhook",
+            "status": {
+                "invalid": "Registered, but possible domain mismatch",
+                "missing": "Not registered",
+                "unknown": "Loading...",
+                "valid": "Registered"
+            },
+            "title": "Webhook"
+        }
+    },
+    "swag-paypal-settings-locale-select": {
+        "automatic": "Automatic (recommended)",
+        "invalid": "The provided locale is invalid. Please choose one from the list."
+    },
+    "swag-paypal-settings-sales-channel-switch": {
+        "description": "Click this button to enable PayPal and select it as default in the selected Sales Channel",
+        "label": "Set PayPal as default"
     },
     "swag-paypal-settings-shipping-carrier": {
         "cardHelpText": "Tracking information will be sent to PayPal",
