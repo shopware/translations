@@ -1,0 +1,117 @@
+name: Update translation snippets
+
+on:
+  schedule:
+    - cron: "0 18 * * *"
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  update_translations:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout platform
+        uses: actions/checkout@v4
+        with:
+          repository: shopware/shopware
+          persist-credentials: false
+      - name: Checkout translations
+        uses: actions/checkout@v4
+        with:
+          path: custom/translations
+          persist-credentials: false
+      - uses: octo-sts/action@v1.0.0
+        id: octo-sts
+        with:
+          scope: shopware
+          identity: TranslationsUpdate
+      - name: Update platform
+        run: |
+          for lang in en-GB de-DE; do
+            echo "Colleting platform ${lang} translations..."
+            lang_underscore=$(echo "${lang}" | tr '-' '_')
+            mkdir -p "custom/translations/translations/${lang}/Platform/Administration"
+            jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "src/Administration/Resources/app/administration/src/" -type f -name "${lang}.json") > "custom/translations/translations/${lang}/Platform/Administration/administration.json"
+            mkdir -p "custom/translations/translations/${lang}/Platform/Core/"
+            cp -v "src/Core/Framework/Resources/snippet/${lang_underscore}/messages.${lang}.base.json" "custom/translations/translations/${lang}/Platform/Core/messages.json"
+
+            mkdir -p "custom/translations/translations/${lang}/Platform/Storefront/"
+            cp -v "src/Storefront/Resources/snippet/${lang_underscore}/storefront.${lang}.json" "custom/translations/translations/${lang}/Platform/Storefront/storefront.json"
+          done
+      - name: Setup github auth
+        run: |
+          git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts.outputs.token }}" | base64)"
+      - name: Update plugins
+        env:
+          PLUGINS: |
+            [
+              {
+                "name": "PluginPublisher",
+                "url": "https://github.com/shopware/SwagPublisher.git"
+              },
+              {
+                "name": "SwagCmsExtensions",
+                "url": "https://github.com/shopware/SwagCmsExtensions.git"
+              },
+              {
+                "name": "SwagCommercial",
+                "url": "https://github.com/shopware/SwagCommercial.git"
+              },
+              {
+                "name": "SwagCustomizedProducts",
+                "url": "https://github.com/shopware/SwagCustomizedProducts.git"
+              },
+              {
+                "name": "SwagMigrationAssistant",
+                "url": "https://github.com/shopware/SwagMigrationAssistant.git"
+              },
+              {
+                "name": "SwagMigrationMagento",
+                "url": "https://github.com/shopware/SwagMigrationMagento.git"
+              },
+              {
+                "name": "SwagPayPal",
+                "url": "https://github.com/shopware/SwagPayPal.git"
+              },
+              {
+                "name": "SwagSocialShopping",
+                "url": "https://github.com/shopware/SwagSocialShopping.git"
+              }
+            ]
+        run: |
+          for plugin in $(jq -c '.[]' <<<${PLUGINS} ); do
+            NAME=$(jq -r '.name' <<<${plugin})
+            URL=$(jq -r '.url' <<<${plugin})
+            echo "${NAME} - ${URL}"
+            git clone "${URL}" "custom/plugins/${NAME}"
+
+            for lang in en-GB de-DE; do
+              echo "Colleting ${NAME} ${lang} translations..."
+              mkdir -p "custom/translations/translations/${lang}/Plugins/${NAME}/Administration/"
+              if [ "$(find "custom/plugins/${NAME}/" -type f -name "${lang}\.json" -not -path "*/Resources/snippet/*")" ]; then
+                jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "custom/plugins/${NAME}/" -type f -name "${lang}\.json" -not -path "*/Resources/snippet/*") > "custom/translations/translations/${lang}/Plugins/${NAME}/Administration/administration.json"
+              fi
+
+              mkdir -p "custom/translations/translations/${lang}/Plugins/${NAME}/Storefront/"
+              if [ "$(find "custom/plugins/${NAME}/" -type f -name "*\.${lang}\.json" -not -path "*/Resources/app/*")" ]; then
+                jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "custom/plugins/${NAME}/" -type f -name "*\.${lang}\.json" -not -path "*/Resources/app/*") > "custom/translations/translations/${lang}/Plugins/${NAME}/Storefront/storefront.json"
+              fi
+            done
+          done
+      - name: Check for changes and push
+        working-directory: custom/translations
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f .
+          if git diff --cached --quiet; then
+              echo "No changes detected. Nothing to commit."
+          else
+              echo "Changes detected. Committing and pushing to GitHub..."
+              git commit -m "$(date -I) - Update translations"
+              # Reset auth back to GITHUB_TOKEN
+              git config --unset http."https://github.com/".extraheader
+              git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
+              git push origin main
+          fi
