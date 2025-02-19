@@ -3,6 +3,8 @@ name: Update translation snippets
 on:
   schedule:
     - cron: "0 18 * * *"
+  workflow_dispatch:
+
 permissions:
   contents: write
   id-token: write
@@ -111,7 +113,7 @@ jobs:
               echo "Changes detected. Committing and pushing to GitHub..."
               git commit -m "$(date -I) - Update translations"
               # Reset auth back to GITHUB_TOKEN
-              git config --unset http."https://github.com/".extraheader
+              git config --unset http."https://github.com/".extraheader || true
               git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
               git push origin main
           fi
