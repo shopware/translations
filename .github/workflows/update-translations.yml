@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   id-token: write
 
 jobs:
@@ -28,6 +28,11 @@ jobs:
         with:
           scope: shopware
           identity: TranslationsUpdate
+      - uses: octo-sts/action@v1.0.0
+        id: octo-sts-push
+        with:
+          scope: shopware/translations
+          identity: TranslationsUpdatePush
       - name: Update platform
         run: |
           for lang in en-GB de-DE; do
@@ -114,6 +119,6 @@ jobs:
               git commit -m "$(date -I) - Update translations"
               # Reset auth back to GITHUB_TOKEN
               git config --unset http."https://github.com/".extraheader || true
-              git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ secrets.GITHUB_TOKEN }}" | base64)"
+              git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts-push.outputs.token }}" | base64)"
               git push origin main
           fi
