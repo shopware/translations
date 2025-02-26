@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "견적 남기기 상태 전송"
         },
         "entities": {
+            "b2b_components_role": "역할 | 역할",
+            "b2b_components_shopping_list": "쇼핑 리스트",
+            "b2b_employee": "직원 | 직원",
             "export_assistant": "수출 도우미",
             "quote": "견적 | 인용문",
             "quote_line_item": "견적 라인 항목 | 견적 라인 항목",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "이미지 키워드 어시스턴트"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "이미지를 처리하는 동안 이미지 키워드 도우미에서 오류가 발생했습니다.",
+                "rateLimit": "이미지 키워드 어시스턴트의 속도 제한에 도달했습니다.나중에 다시 시도하세요."
+            },
             "infoText": "이미지 키워드 어시스턴트가 이 이미지를 처리 중입니다. 완료하는 데 시간이 좀 걸릴 수 있습니다."
         },
         "settings": {
+            "alert": "이미지 키워드 어시스턴트는 PNG 또는 JPG 파일 형식의 사진에서만 작동합니다.5MB를 초과하는 이미지는 처리되지 않습니다.",
             "footnote": "이미지 키워드 어시스턴트는 업로드된 이미지를 백그라운드에서 처리하며 완료하는 데 다소 시간이 걸릴 수 있습니다.",
             "handlingStrategies": {
                 "append": "기존 데이터에 추가",
@@ -719,6 +727,7 @@
             "declined": "거절",
             "done": "완료",
             "draft": "초안",
+            "draftCreated": "초안 작성됨",
             "employee": "종업원",
             "expired": "만료됨",
             "inReview": "검토 중",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "취소",
                 "actionExecuteDelayedAction": "지금 실행",
+                "actionShowError": "오류 보기",
                 "btnExecuteAll": "모두 실행",
                 "buttonExecute": "실행",
                 "cancelWarningMessage": "이 지연된 작업을 정말로 삭제하시겠습니까?",
                 "columnCustomer": "고객",
+                "columnError": "상태",
                 "columnName": "지연된 동작 또는 조건",
                 "columnOrderNumber": "주문 번호",
                 "columnRemainingTime": "남은 시간",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "지연 추가 (대기)",
                 "warningText": "이 플로우에 대한 작업이 예정되어 있습니다.이 흐름을 변경해도 이미 예약된 작업에는 영향을 주지 않습니다."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "지연된 흐름을 실행하는 동안 알 수 없는 오류가 발생했습니다.",
+            "logFileHint": "자세한 내용은 로그 파일을 확인하십시오.",
+            "title": "지연된 흐름을 실행하는 중 오류가 발생했습니다."
         },
         "labelDelayedAction": "지연된 조치",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "견적 보내기",
             "commentCustomerDeclinedQuote": "거부된 견적",
             "commentCustomerRequestQuote": "요청된 견적",
+            "commentDeclinedQuote": "거절",
+            "commentExpiredQuote": "만료됨",
             "commentMerchantSent": "판매자 전송",
+            "commentOpenedQuote": "대화를 시작해 봅시다",
+            "commentReopenedQuote": "재개했습니다",
+            "commentRepiedQuote": "전송됨",
             "commentTitle": "메시지 기록",
             "commentType": "고객",
             "contextMenuRemove": "견적에서 삭제",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "할인",
             "labelVAT": "부가가치세 ({number}%)",
             "messageCreateSuccess": "쿼트 \"{quoteNumber}“이 (가) 생성되었습니다.",
+            "messageEmptyDocument": "문서가 아직 추가되지 않았습니다.",
             "messageEmptyItem": "아직 추가된 항목이 없습니다.",
             "messageNoFoundItem": "항목을 찾을 수 없습니다",
             "messageSaveAsDraftSuccess": "인용문 \"{quoteNumber}“이 (가) 초안으로 저장되었습니다.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "씬 이름"
         },
         "general": {
+            "changeListModeError": "리스팅 모드를 변경하는 중에 문제가 발생했습니다.",
             "createNewSceneText": "새 씬 만들기",
+            "createSceneError": "장면을 만드는 동안 문제가 발생했습니다.",
+            "deleteSceneError": "씬을 삭제하는 중에 문제가 발생했습니다.",
+            "duplicateSceneError": "장면을 복제하는 동안 문제가 발생했습니다.",
             "moduleTitle": "씬 에디터",
+            "saveImageError": "이미지를 저장하는 동안 문제가 발생했습니다.",
             "scenesTitle": "장면들"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "이 함수의 일일 요청 제한은 300건입니다.",
                     "card": {
                         "subtitle": "고객이 자연어를 사용하여 원하는 내용을 설명하고 제품을 더 쉽게 찾을 수 있습니다.",
                         "title": "컨텍스트별 검색"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "직원 관리 활성화",
-                "orderApproval": "B2B 구성 요소 주문 승인 활성화",
-                "quickOrder": "빠른 주문 활성화",
-                "quoteManagement": "B2B 구성 요소 견적 관리 활성화"
+                "employee_management_activate_feature": "B2B 구성 요소 직원 관리 활성화",
+                "order_approval_activate_feature": "B2B 구성 요소 주문 승인 활성화",
+                "quote_management_activate_feature": "B2B 구성 요소 견적 관리 활성화",
+                "shopping_list_activate_feature": "B2B 구성 요소 쇼핑 목록 활성화",
+                "swag_quick_order_activate_feature": "B2B 구성 요소 빠른 주문 활성화"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "직원 관리",
-                    "orderApproval": "주문 승인",
-                    "quickOrder": "빠른 주문",
-                    "quoteManagement": "견적 관리"
+                    "employee_management_activate_feature": "직원 관리",
+                    "order_approval_activate_feature": "주문 승인",
+                    "quote_management_activate_feature": "견적 관리",
+                    "shopping_list_activate_feature": "쇼핑 리스트",
+                    "swag_quick_order_activate_feature": "퀵 오더"
                 },
                 "template": "이 고객 그룹의 모든 고객을 위해 {name} 를 활성화합니다.회사 가입 양식이 필요합니다."
             }

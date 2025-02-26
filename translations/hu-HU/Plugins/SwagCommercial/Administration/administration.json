@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "Az árajánlat elküldi az állapotot"
         },
         "entities": {
+            "b2b_components_role": "Szerep | Szerepek",
+            "b2b_components_shopping_list": "Bevásárlólisták",
+            "b2b_employee": "Alkalmazott | Munkavállalók",
             "export_assistant": "Exportasszisztens",
             "quote": "Idézet | Idézetek",
             "quote_line_item": "Idézetsor tétel | Idézetsor tételei",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "Kép kulcsszóasszisztens"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "A Image kulcsszóasszisztens hibát észlelett a kép feldolgozása során.",
+                "rateLimit": "Elérte a képkulcsszó-asszisztens aránykorlátja. Kérjük, próbálkozzon újra később."
+            },
             "infoText": "A Image kulcsszóasszisztens feldolgozza ezt a képet, ennek befejezése eltarthat egy ideig."
         },
         "settings": {
+            "alert": "A Kép kulcsszó-asszisztens csak PNG vagy JPG fájltípusú képekkel fog működni. Az 5 MB-ot meghaladó képek nem kerülnek feldolgozásra.",
             "footnote": "A képkulcsszó-asszisztens feldolgozza a feltöltött képeket a háttérben, és eltarthat egy ideig, amíg befejeződik.",
             "handlingStrategies": {
                 "append": "Hozzáadás a meglévő adatokhoz",
@@ -719,6 +727,7 @@
             "declined": "Elutasította",
             "done": "Kész",
             "draft": "Tervezet",
+            "draftCreated": "Létrehozott vázlat",
             "employee": "Munkavállaló",
             "expired": "Lejárt",
             "inReview": "Felülvizsgálat alatt",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "Mégse",
                 "actionExecuteDelayedAction": "Végezze el most",
+                "actionShowError": "Hiba megjelenítése",
                 "btnExecuteAll": "Végezze el az összes",
                 "buttonExecute": "Végrehajtás",
                 "cancelWarningMessage": "Biztosan törölni szeretné ezt a késleltetett műveletet?",
                 "columnCustomer": "Ügyfél",
+                "columnError": "státusz",
                 "columnName": "Késleltetett cselekvés vagy állapot",
                 "columnOrderNumber": "Rendelési szám",
                 "columnRemainingTime": "Hátralévő idő",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "Késleltetés hozzáadása (WAIT)",
                 "warningText": "Erre az áramlásra vannak tervezett intézkedések. Ennek az áramlásnak a módosítása nem befolyásolja a már ütemezett műveleteket."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "Ismeretlen hiba történt a késleltetett áramlás végrehajtása során.",
+            "logFileHint": "További információkért ellenőrizze a naplófájlt.",
+            "title": "Hiba késleltetett áramlás végrehajtásá"
         },
         "labelDelayedAction": "Késleltetett intézkedések",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "Árajánlat küldése",
             "commentCustomerDeclinedQuote": "Elutasított árajánlat",
             "commentCustomerRequestQuote": "Kérett árajánlat",
+            "commentDeclinedQuote": "Elutasította",
+            "commentExpiredQuote": "Lejárt",
             "commentMerchantSent": "Kereskedő küldött",
+            "commentOpenedQuote": "Kezdjük a beszélgetést",
+            "commentReopenedQuote": "Újranyitott",
+            "commentRepiedQuote": "Elküldött",
             "commentTitle": "Üzenetek előzményei",
             "commentType": "Ügyfél",
             "contextMenuRemove": "Távolítsa el az idézetből",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "Kedvezmény",
             "labelVAT": "ÁFA ({number}%)",
             "messageCreateSuccess": "Az \"{quoteNumber}\" idézet létrejött.",
+            "messageEmptyDocument": "Még nincs hozzáadott dokumentum",
             "messageEmptyItem": "Még nincs hozzáadott elem",
             "messageNoFoundItem": "Nem található tétel",
             "messageSaveAsDraftSuccess": "Az \"{quoteNumber}\" idézet vázlatként van mentve.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "Jelenet neve"
         },
         "general": {
+            "changeListModeError": "Valami rosszul ment a listázati mód megváltoztatása közben.",
             "createNewSceneText": "Új jelenet létrehozása",
+            "createSceneError": "Valami rosszul ment a jelenet létrehozása közben.",
+            "deleteSceneError": "Valami rosszul ment a jelenet törlése közben.",
+            "duplicateSceneError": "Valami rosszul ment a jelenet másolása közben.",
             "moduleTitle": "Jelenetszerkesztő",
+            "saveImageError": "Valami rosszul ment a kép mentése közben.",
             "scenesTitle": "jelenetek"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "Ennek a funkciónak a napi korlátja 300 kérés.",
                     "card": {
                         "subtitle": "Lehetővé teszi az ügyfél számára, hogy természetes nyelv segítségével leírja, mit keres, és könnyebben megtalálja a termékeket.",
                         "title": "Keresés kontextus szerint"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "Az alkalmazottak kezelésének engedélyezése",
-                "orderApproval": "B2B alkatrészrendelés jóváhagyásának engedélyezése",
-                "quickOrder": "Gyors megrendelések engedélyezése",
-                "quoteManagement": "A B2B alkatrészek árajánlatkezelésének engedélyezése"
+                "employee_management_activate_feature": "A B2B komponens alkalmazottakezelésének engedélyezése",
+                "order_approval_activate_feature": "B2B alkatrészrendelés jóváhagyásának engedélyezése",
+                "quote_management_activate_feature": "A B2B alkatrészek árajánlatkezelésének engedélyezése",
+                "shopping_list_activate_feature": "B2B komponens bevásárlólisták engedélyezése",
+                "swag_quick_order_activate_feature": "B2B komponens gyorsmegrendelések engedélyezése"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "Alkalmazottak vezetése",
-                    "orderApproval": "Megrendelés jóváhagyása",
-                    "quickOrder": "Gyors megrendelések",
-                    "quoteManagement": "Árajánlatkezelés"
+                    "employee_management_activate_feature": "Alkalmazottak vezetése",
+                    "order_approval_activate_feature": "Megrendelés jóváhagyása",
+                    "quote_management_activate_feature": "Árajánlatkezelés",
+                    "shopping_list_activate_feature": "Bevásárlólisták",
+                    "swag_quick_order_activate_feature": "Gyors megrendelések"
                 },
                 "template": "Lehetővé teszi a {name} programot ezen ügyfélcsoport minden ügyfelének. Céges regisztrációs űrlapot igényel."
             }
