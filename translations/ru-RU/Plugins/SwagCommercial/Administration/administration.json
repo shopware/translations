@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "Цитата оставляет статус отправлен"
         },
         "entities": {
+            "b2b_components_role": "Роль | Роли",
+            "b2b_components_shopping_list": "Списки покупок",
+            "b2b_employee": "Сотрудник | Сотрудники",
             "export_assistant": "Ассистент экспорта",
             "quote": "Цитата | Цитаты",
             "quote_line_item": "Элемент строки предложения | Элементы строки предложения",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "Помощник по ключевым словам изображений"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "Помощник по ключевым словам изображений обнаружил ошибку при обработке изображения.",
+                "rateLimit": "Достигнут предел скорости помощника по ключевым словам изображений. Пожалуйста, повторите попытку позже."
+            },
             "infoText": "Помощник по ключевым словам изображений обрабатывает это изображение, на это может потребоваться некоторое время."
         },
         "settings": {
+            "alert": "Помощник по ключевым словам изображений будет работать только с изображениями типа файла PNG или JPG. Изображения, размер которых превышает 5 МБ, не будут обработаны.",
             "footnote": "Помощник по ключевым словам изображений будет обрабатывать загруженные изображения в фоновом режиме, и на ее завершение может потребоваться некоторое время.",
             "handlingStrategies": {
                 "append": "Добавить к существующим данным",
@@ -719,6 +727,7 @@
             "declined": "Отклонено",
             "done": "Готово",
             "draft": "Черновик",
+            "draftCreated": "Черновик создан",
             "employee": "Сотрудник",
             "expired": "Истек",
             "inReview": "В обзоре",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "Отмена",
                 "actionExecuteDelayedAction": "Выполнить сейчас",
+                "actionShowError": "Показать ошибку",
                 "btnExecuteAll": "Выполнить все",
                 "buttonExecute": "Выполнить",
                 "cancelWarningMessage": "Вы действительно хотите удалить это отложенное действие?",
                 "columnCustomer": "Клиент",
+                "columnError": "Статус",
                 "columnName": "Отсроченное действие или состояние",
                 "columnOrderNumber": "Номер заказа",
                 "columnRemainingTime": "Оставшееся время",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "Добавить задержку (WAIT)",
                 "warningText": "Для этого потока запланированы действия. Любые изменения в этом потоке не повлияют на уже запланированные действия."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "При выполнении отложенного потока произошла неизвестная ошибка.",
+            "logFileHint": "Пожалуйста, проверьте файл журнала для получения дополнительной информации.",
+            "title": "Ошибка при выполнении отложенного потока"
         },
         "labelDelayedAction": "Отложенные действия",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "Отправить цитату",
             "commentCustomerDeclinedQuote": "Отклоненное предложение",
             "commentCustomerRequestQuote": "Запрошенная цитата",
+            "commentDeclinedQuote": "Отклонено",
+            "commentExpiredQuote": "Истек",
             "commentMerchantSent": "Продавец отправлен",
+            "commentOpenedQuote": "Давайте начнем разговор",
+            "commentReopenedQuote": "Возобновлено",
+            "commentRepiedQuote": "Отправлено",
             "commentTitle": "История сообщений",
             "commentType": "Клиент",
             "contextMenuRemove": "Удалить из цитаты",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "Скидка",
             "labelVAT": "НДС ({number}%)",
             "messageCreateSuccess": "Цитата \"{quoteNumber}\" создана.",
+            "messageEmptyDocument": "Пока не добавлено ни одного документа",
             "messageEmptyItem": "Пока ничего не добавлено",
             "messageNoFoundItem": "Предметы не найдены",
             "messageSaveAsDraftSuccess": "Цитата \"{quoteNumber}\" сохранена как черновик.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "Название сцены"
         },
         "general": {
+            "changeListModeError": "Что-то пошло не так при смене режима листинга.",
             "createNewSceneText": "Создать новую сцену",
+            "createSceneError": "При создании сцены что-то пошло не так.",
+            "deleteSceneError": "При удалении сцены что-то пошло не так.",
+            "duplicateSceneError": "Что-то пошло не так при копировании сцены.",
             "moduleTitle": "Редактор сцен",
+            "saveImageError": "Что-то пошло не так при сохранении изображения.",
             "scenesTitle": "Сцены"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "Эта функция имеет ежедневный лимит в 300 запросов.",
                     "card": {
                         "subtitle": "Позволяет клиенту описать то, что он ищет, используя естественный язык, и упростить поиск продуктов.",
                         "title": "Поиск по контексту"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "Включить управление сотрудниками",
-                "orderApproval": "Включить утверждение заказа компонентов B2B",
-                "quickOrder": "Включить быстрые заказы",
-                "quoteManagement": "Включите управление предложениями по компонентам B2B"
+                "employee_management_activate_feature": "Включите компонент B2B: управление сотрудниками",
+                "order_approval_activate_feature": "Включить утверждение заказа компонентов B2B",
+                "quote_management_activate_feature": "Включите управление ценовыми предложениями компонентов B2B",
+                "shopping_list_activate_feature": "Включить списки покупок компонентов B2B",
+                "swag_quick_order_activate_feature": "Включите компонент B2B «Быстрые заказы»"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "Управление сотрудниками",
-                    "orderApproval": "Утверждение заказа",
-                    "quickOrder": "Быстрые заказы",
-                    "quoteManagement": "Управление ценовыми предложениями"
+                    "employee_management_activate_feature": "Управление сотрудниками",
+                    "order_approval_activate_feature": "Утверждение заказа",
+                    "quote_management_activate_feature": "Управление ценовыми предложениями",
+                    "shopping_list_activate_feature": "Списки покупок",
+                    "swag_quick_order_activate_feature": "Быстрые заказы"
                 },
                 "template": "Включает {name} для всех клиентов этой группы клиентов. Требуется форма регистрации компании."
             }

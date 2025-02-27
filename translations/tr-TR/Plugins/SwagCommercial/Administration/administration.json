@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "Teklif durumu gönderildi bırakıyor"
         },
         "entities": {
+            "b2b_components_role": "Rol | Roller",
+            "b2b_components_shopping_list": "Alışveriş Listeleri",
+            "b2b_employee": "Çalışan | Çalışanlar",
             "export_assistant": "İhracat asistanı",
             "quote": "Alıntı | Alıntılar",
             "quote_line_item": "Teklif satırı öğesi | Teklif satırı öğeleri",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "Resim anahtar kelime asistanı"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "Görüntü anahtar kelime asistanı, görüntüyü işlerken bir hatayla karşılaştı.",
+                "rateLimit": "Görüntü anahtar kelime asistanının oran sınırına ulaşıldı. Lütfen daha sonra tekrar deneyin."
+            },
             "infoText": "Görüntü anahtar kelime asistanı bu resmi işliyor, bunun bitmesi biraz zaman alabilir."
         },
         "settings": {
+            "alert": "Görüntü anahtar kelime asistanı yalnızca PNG veya JPG dosya türündeki resimlerle çalışır. 5MB'ı aşan görüntüler işlenmeyecektir.",
             "footnote": "Görüntü anahtar kelime asistanı, yüklenen resimleri arka planda işleyecektir ve bitmesi biraz zaman alabilir.",
             "handlingStrategies": {
                 "append": "Mevcut verilere ekle",
@@ -719,6 +727,7 @@
             "declined": "Reddedilen",
             "done": "Bitti",
             "draft": "Taslak",
+            "draftCreated": "Taslak oluşturuldu",
             "employee": "Çalışan",
             "expired": "Süresi Doldu",
             "inReview": "İncelemede",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "İptal",
                 "actionExecuteDelayedAction": "Şimdi yürüt",
+                "actionShowError": "Hatayı göster",
                 "btnExecuteAll": "Tümünü yürüt",
                 "buttonExecute": "Yürüt",
                 "cancelWarningMessage": "Bu gecikmeli eylemi silmek istediğinizden emin misiniz?",
                 "columnCustomer": "Müşteri",
+                "columnError": "Durum",
                 "columnName": "Gecikmiş eylem veya koşul",
                 "columnOrderNumber": "Sipariş numarası",
                 "columnRemainingTime": "Kalan süre",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "Gecikme ekle (BEKLE)",
                 "warningText": "Bu akış için planlanmış eylemler var. Bu akıştaki herhangi bir değişiklik önceden planlanmış eylemleri etkilemez."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "Gecikmeli akış yürütülürken bilinmeyen bir hata oluştu.",
+            "logFileHint": "Daha fazla bilgi için lütfen günlük dosyasını kontrol edin.",
+            "title": "Gecikmeli akış yürütülmesinde hata oluştu"
         },
         "labelDelayedAction": "Gecikmiş eylemler",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "Teklif gönder",
             "commentCustomerDeclinedQuote": "Reddedildi",
             "commentCustomerRequestQuote": "İstenildi",
+            "commentDeclinedQuote": "Reddedilen",
+            "commentExpiredQuote": "Süresi Doldu",
             "commentMerchantSent": "Satıcı gönderildi",
+            "commentOpenedQuote": "Bir konuşma başlatalım",
+            "commentReopenedQuote": "Yeniden açıldı",
+            "commentRepiedQuote": "Gönderildi",
             "commentTitle": "Mesaj geçmişi",
             "commentType": "Müşteri",
             "contextMenuRemove": "Alıntıdan kaldır",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "İndirim",
             "labelVAT": "KDV ({number}%)",
             "messageCreateSuccess": "Alıntı \"{quoteNumber}\" oluşturuldu.",
+            "messageEmptyDocument": "Henüz belge eklenmedi",
             "messageEmptyItem": "Henüz ürün eklenmedi",
             "messageNoFoundItem": "Öğe bulunamadı",
             "messageSaveAsDraftSuccess": "“{quoteNumber}\" alıntı taslak olarak kaydedildi.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "Sahne adı"
         },
         "general": {
+            "changeListModeError": "Listeleme modunu değiştirirken bir şeyler ters gitti.",
             "createNewSceneText": "Yeni sahne oluştur",
+            "createSceneError": "Sahneyi oluştururken bir şeyler ters gitti.",
+            "deleteSceneError": "Sahneyi silerken bir şeyler ters gitti.",
+            "duplicateSceneError": "Sahneyi kopyalarken bir şeyler ters gitti.",
             "moduleTitle": "Sahne Düzenleyici",
+            "saveImageError": "Görüntüyü kaydederken bir şeyler ters gitti.",
             "scenesTitle": "Sahneler"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "Bu işlevin günlük 300 istek sınırı vardır.",
                     "card": {
                         "subtitle": "Müşterinin aradıklarını doğal dil kullanarak tanımlamasını ve ürünleri daha kolay bulmasını sağlar.",
                         "title": "Bağlama göre ara"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "Çalışan Yönetimini Etkinleştir",
-                "orderApproval": "B2B Bileşen Sipariş Onayını Etkinleştir",
-                "quickOrder": "Hızlı Siparişleri Etkinleştir",
-                "quoteManagement": "B2B Bileşen Teklif Yönetimini Etkinleştir"
+                "employee_management_activate_feature": "B2B Bileşeni Çalışan Yönetimini Etkinleştir",
+                "order_approval_activate_feature": "B2B Bileşen Sipariş Onayını Etkinleştir",
+                "quote_management_activate_feature": "B2B Bileşen Teklif Yönetimini Etkinleştir",
+                "shopping_list_activate_feature": "B2B Bileşen Alışveriş Listelerini Etkinleştir",
+                "swag_quick_order_activate_feature": "B2B Bileşeni Hızlı Siparişlerini Etkinleştir"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "Çalışan Yönetimi",
-                    "orderApproval": "Sipariş Onayı",
-                    "quickOrder": "Hızlı Siparişler",
-                    "quoteManagement": "Teklif Yönetimi"
+                    "employee_management_activate_feature": "Çalışan Yönetimi",
+                    "order_approval_activate_feature": "Sipariş Onayı",
+                    "quote_management_activate_feature": "Teklif Yönetimi",
+                    "shopping_list_activate_feature": "Alışveriş Listeleri",
+                    "swag_quick_order_activate_feature": "Hızlı Siparişler"
                 },
                 "template": "Bu müşteri grubunun tüm müşterileri için {name} özelliğini etkinleştirir. Şirket kayıt formu gerektirir."
             }

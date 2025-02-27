@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "見積もり残しステータスが送信されました"
         },
         "entities": {
+            "b2b_components_role": "役割 | 役割",
+            "b2b_components_shopping_list": "ショッピングリスト",
+            "b2b_employee": "従業員 | 従業員",
             "export_assistant": "輸出アシスタント",
             "quote": "引用 | 引用",
             "quote_line_item": "見積品目 | 見積品目",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "画像キーワードアシスタント"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "画像キーワードアシスタントで画像の処理中にエラーが発生しました。",
+                "rateLimit": "画像キーワードアシスタントのレート制限に達しました。後でもう一度試してください。"
+            },
             "infoText": "画像キーワードアシスタントがこの画像を処理しています。処理が完了するまでに時間がかかる場合があります。"
         },
         "settings": {
+            "alert": "画像キーワードアシスタントは、ファイル形式が PNG または JPG の画像のみを対象としています。5 MB を超える画像は処理されません。",
             "footnote": "画像キーワードアシスタントは、アップロードされた画像をバックグラウンドで処理するため、完了するまでに時間がかかる場合があります。",
             "handlingStrategies": {
                 "append": "既存のデータに追加",
@@ -719,6 +727,7 @@
             "declined": "拒否",
             "done": "完了",
             "draft": "下書き",
+            "draftCreated": "ドラフト作成日",
             "employee": "従業員",
             "expired": "期限切れ",
             "inReview": "審査中",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "キャンセル",
                 "actionExecuteDelayedAction": "今すぐ実行",
+                "actionShowError": "エラーを表示",
                 "btnExecuteAll": "[すべて実行]",
                 "buttonExecute": "実行",
                 "cancelWarningMessage": "この遅延したアクションを削除してもよろしいですか?",
                 "columnCustomer": "顧客",
+                "columnError": "ステータス",
                 "columnName": "遅延アクションまたは条件",
                 "columnOrderNumber": "注文番号",
                 "columnRemainingTime": "残り時間",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "遅延を追加 (待機)",
                 "warningText": "このフローにはアクションがスケジュールされています。このフローを変更しても、すでにスケジュールされているアクションには影響しません。"
             }
+        },
+        "errorModal": {
+            "defaultMessage": "遅延フローの実行中に不明なエラーが発生しました。",
+            "logFileHint": "詳細については、ログファイルを確認してください。",
+            "title": "遅延フローの実行中にエラーが発生しました"
         },
         "labelDelayedAction": "遅延アクション",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "見積もりを送信",
             "commentCustomerDeclinedQuote": "見積もり拒否",
             "commentCustomerRequestQuote": "見積もり依頼",
+            "commentDeclinedQuote": "拒否",
+            "commentExpiredQuote": "期限切れ",
             "commentMerchantSent": "マーチャントが送信しました",
+            "commentOpenedQuote": "会話を始めよう",
+            "commentReopenedQuote": "リニューアルオープン",
+            "commentRepiedQuote": "送信済み",
             "commentTitle": "メッセージ履歴",
             "commentType": "顧客",
             "contextMenuRemove": "見積もりから削除",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "割引",
             "labelVAT": "付加価値税 ({number}%)",
             "messageCreateSuccess": "引用 \"{quoteNumber}\" が作成されました。",
+            "messageEmptyDocument": "ドキュメントはまだ追加されていません",
             "messageEmptyItem": "商品が追加されていません",
             "messageNoFoundItem": "アイテムは見つかりませんでした",
             "messageSaveAsDraftSuccess": "引用 \"{quoteNumber}\" は下書きとして保存されました。",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "シーン名"
         },
         "general": {
+            "changeListModeError": "出品モードを変更中に問題が発生しました。",
             "createNewSceneText": "新しいシーンを作成",
+            "createSceneError": "シーンの作成中に問題が発生しました。",
+            "deleteSceneError": "シーンの削除中に問題が発生しました。",
+            "duplicateSceneError": "シーンの複製中に問題が発生しました。",
             "moduleTitle": "シーンエディター",
+            "saveImageError": "画像の保存中に問題が発生しました。",
             "scenesTitle": "シーン"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "この関数には、1 日あたりのリクエスト数が 300 件に制限されています。",
                     "card": {
                         "subtitle": "顧客が自然言語を使用して探しているものを説明し、製品をより簡単に見つけることができます。",
                         "title": "コンテキストで検索"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "従業員管理を有効にする",
-                "orderApproval": "B2B コンポーネント注文承認を有効にする",
-                "quickOrder": "クイックオーダーを有効にする",
-                "quoteManagement": "B2B コンポーネント見積もり管理を有効にする"
+                "employee_management_activate_feature": "B2B コンポーネント従業員管理を有効にする",
+                "order_approval_activate_feature": "B2B コンポーネント注文承認を有効にする",
+                "quote_management_activate_feature": "B2B コンポーネント見積もり管理を有効にする",
+                "shopping_list_activate_feature": "B2B コンポーネントショッピングリストを有効にする",
+                "swag_quick_order_activate_feature": "B2B コンポーネントのクイックオーダーを有効にする"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "従業員管理",
-                    "orderApproval": "注文承認",
-                    "quickOrder": "クイックオーダー",
-                    "quoteManagement": "見積もり管理"
+                    "employee_management_activate_feature": "従業員管理",
+                    "order_approval_activate_feature": "注文承認",
+                    "quote_management_activate_feature": "見積もり管理",
+                    "shopping_list_activate_feature": "ショッピングリスト",
+                    "swag_quick_order_activate_feature": "クイックオーダー"
                 },
                 "template": "この顧客グループのすべての顧客で {name} を有効にします。会社の登録フォームが必要です。"
             }

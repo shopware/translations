@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "Pakkumine jätab staatuse saadetud"
         },
         "entities": {
+            "b2b_components_role": "Roll | Rollid",
+            "b2b_components_shopping_list": "Ostunimekirjad",
+            "b2b_employee": "Töötaja | Töötajad",
             "export_assistant": "Ekspordiassistent",
             "quote": "Tsitaat | Tsitaadid",
             "quote_line_item": "Tsitaadi rea üksus | Pakkumisrea üksused",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "Pildi märksõna assistent"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "Pildi märksõna assistendil tekkis pildi töötlemisel viga.",
+                "rateLimit": "Pildi märksõna assistendi kiiruse piirmäär on saavutatud. Palun proovige hiljem uuesti."
+            },
             "infoText": "Pildi märksõna assistent töötleb seda pilti, selle lõpuleviimine võib võtta natuke aega."
         },
         "settings": {
+            "alert": "Pildi märksõnaassistent töötab ainult PNG või JPG failitüübi piltidega. Pilte, mis ületavad 5 MB, ei töödelda.",
             "footnote": "Pildi märksõna assistent töötleb üleslaaditud pilte taustal ja nende lõpetamine võib võtta natuke aega.",
             "handlingStrategies": {
                 "append": "Lisage olemasolevatele andmetele",
@@ -719,6 +727,7 @@
             "declined": "Keeldunud",
             "done": "Valmis",
             "draft": "Eelnõu",
+            "draftCreated": "Mustand on loodud",
             "employee": "Töötaja",
             "expired": "Aegunud",
             "inReview": "Ülevaates",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "Tühista",
                 "actionExecuteDelayedAction": "Tehke kohe",
+                "actionShowError": "Näita viga",
                 "btnExecuteAll": "Käivitage kõik",
                 "buttonExecute": "Täida",
                 "cancelWarningMessage": "Kas olete kindel, et soovite selle hilinenud toimingu kustutada?",
                 "columnCustomer": "Klient",
+                "columnError": "Staatus",
                 "columnName": "Viivitatud tegevus või seisund",
                 "columnOrderNumber": "Tellimuse number",
                 "columnRemainingTime": "Ülejäänud aeg",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "Lisage viivitus (WAIT)",
                 "warningText": "Selle voo jaoks on kavandatud meetmed. Selle voo muudatused ei mõjuta juba kavandatud toiminguid."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "Hilinenud voolu käivitamisel ilmnes tundmatu viga.",
+            "logFileHint": "Lisateabe saamiseks kontrollige logifaili.",
+            "title": "Viga hilinenud voolu täitmisel"
         },
         "labelDelayedAction": "Viivitatud tegevused",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "Saada hinnapakkumine",
             "commentCustomerDeclinedQuote": "Keeldunud",
             "commentCustomerRequestQuote": "Taotletud",
+            "commentDeclinedQuote": "Keeldunud",
+            "commentExpiredQuote": "Aegunud",
             "commentMerchantSent": "Kaupmees saadeti",
+            "commentOpenedQuote": "Alustame vestlust",
+            "commentReopenedQuote": "Taasavatud",
+            "commentRepiedQuote": "Saadetud",
             "commentTitle": "Sõnumite ajalugu",
             "commentType": "Klient",
             "contextMenuRemove": "Eemalda hinnapakkumisest",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "Soodustus",
             "labelVAT": "Käibemaks ({number}%)",
             "messageCreateSuccess": "Tsitaat \"{quoteNumber}\" on loodud.",
+            "messageEmptyDocument": "Dokumente pole veel lisatud",
             "messageEmptyItem": "Dokumente pole veel lisatud",
             "messageNoFoundItem": "Ühtegi eset ei leitud",
             "messageSaveAsDraftSuccess": "Tsitaat \"{quoteNumber}\" on salvestatud mustandina.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "Sisestage stseeni nimi..."
         },
         "general": {
+            "changeListModeError": "Loendusrežiimi muutmisel läks midagi valesti.",
             "createNewSceneText": "Loo uus stseen",
+            "createSceneError": "Stseeni loomisel läks midagi valesti.",
+            "deleteSceneError": "Stseeni kustutamisel läks midagi valesti.",
+            "duplicateSceneError": "Stseeni dubleerimisel läks midagi valesti.",
             "moduleTitle": "Stseeniredaktor",
+            "saveImageError": "Pildi salvestamisel läks midagi valesti.",
             "scenesTitle": "Stseenid"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "Selle funktsiooni päevane piirmäär on 300 taotlust.",
                     "card": {
                         "subtitle": "Võimaldab kliendil kirjeldada, mida ta otsib loomuliku keele abil ja leida tooteid hõlpsamini.",
                         "title": "Otsi konteksti järgi"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "Luba B2B komponendi töötajate juhtimine",
-                "orderApproval": "Luba B2B komponentide tellimuse kinnitamine",
-                "quickOrder": "Luba B2B komponentide kiirtellimused",
-                "quoteManagement": "Luba B2B komponentide hinnapakkumiste haldamine"
+                "employee_management_activate_feature": "Luba B2B komponendi töötajate juhtimine",
+                "order_approval_activate_feature": "Luba B2B komponentide tellimuse kinnitamine",
+                "quote_management_activate_feature": "Luba B2B komponentide hinnapakkumiste haldamine",
+                "shopping_list_activate_feature": "Luba B2B komponentide ostunimekirjad",
+                "swag_quick_order_activate_feature": "Luba B2B komponentide kiirtellimused"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "Töötajate juhtimine",
-                    "orderApproval": "Tellimuse kinnitamine",
-                    "quickOrder": "Kiired tellimused",
-                    "quoteManagement": "Hinnapakkumiste haldamine"
+                    "employee_management_activate_feature": "Töötajate juhtimine",
+                    "order_approval_activate_feature": "Tellimuse kinnitamine",
+                    "quote_management_activate_feature": "Hinnapakkumiste haldamine",
+                    "shopping_list_activate_feature": "Ostunimekirjad",
+                    "swag_quick_order_activate_feature": "Kiired tellimused"
                 },
                 "template": "Võimaldab {name} kõigile selle kliendigrupi klientidele. Nõuab ettevõtte registreerimisvormi."
             }

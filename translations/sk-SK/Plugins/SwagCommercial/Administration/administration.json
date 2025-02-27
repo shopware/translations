@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "Ponúka ponecháva stav odoslaný"
         },
         "entities": {
+            "b2b_components_role": "Úloha | Role",
+            "b2b_components_shopping_list": "Nákupné zoznamy",
+            "b2b_employee": "Zamestnanec | Zamestnanci",
             "export_assistant": "Exportný asistent",
             "quote": "Citácia | Citácie",
             "quote_line_item": "Položka riadku ponuky | Položky riadku ponuky",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "Obrázok asistent kľúčových slov"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "Asistent kľúčových slov obrázka narazil na chybu pri spracovaní obrázka.",
+                "rateLimit": "Limit sadzby asistenta kľúčových slov obrázkov bol dosiahnutý. Skúste to znova neskôr."
+            },
             "infoText": "Asistent kľúčových slov obrázkov spracováva tento obrázok, jeho dokončenie môže nejaký čas trvať."
         },
         "settings": {
+            "alert": "Asistent kľúčových slov Image bude pracovať iba s obrázkami typu súboru PNG alebo JPG. Obrázky presahujúce 5 MB sa nespracujú.",
             "footnote": "Asistent kľúčových slov obrázkov spracuje nahrané obrázky na pozadí a dokončenie môže nejaký čas trvať.",
             "handlingStrategies": {
                 "append": "Pripojiť k existujúcim údajom",
@@ -719,6 +727,7 @@
             "declined": "Odmietol",
             "done": "Hotovo",
             "draft": "Návrh",
+            "draftCreated": "Vytvorený koncept",
             "employee": "Zamestnanec",
             "expired": "Platnosť vypršala",
             "inReview": "V recenzii",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "Zrušiť",
                 "actionExecuteDelayedAction": "Vykonajte teraz",
+                "actionShowError": "Zobraziť chybu",
                 "btnExecuteAll": "Vykonať všetko",
                 "buttonExecute": "Vykonať",
                 "cancelWarningMessage": "Ste si istí, že chcete odstrániť túto oneskorenú akciu?",
                 "columnCustomer": "Zákazník",
+                "columnError": "Stav",
                 "columnName": "Oneskorená akcia alebo stav",
                 "columnOrderNumber": "Číslo objednávky",
                 "columnRemainingTime": "Zostávajúci čas",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "Pridať oneskorenie (WAIT)",
                 "warningText": "Pre tento tok sú naplánované akcie. Akékoľvek zmeny tohto toku neovplyvnia už naplánované akcie."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "Pri vykonávaní oneskoreného toku sa vyskytla neznáma chyba.",
+            "logFileHint": "Ďalšie informácie nájdete v protokolovom súbore.",
+            "title": "Chyba pri vykonávaní oneskoreného toku"
         },
         "labelDelayedAction": "Oneskorené akcie",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "Poslať cenovú ponuku",
             "commentCustomerDeclinedQuote": "Odmietnutá ponuka",
             "commentCustomerRequestQuote": "Požadovaná cenová ponuka",
+            "commentDeclinedQuote": "Odmietol",
+            "commentExpiredQuote": "Platnosť vypršala",
             "commentMerchantSent": "Obchodník odoslaný",
+            "commentOpenedQuote": "Začnime konverzáciu",
+            "commentReopenedQuote": "Opätovne otvorené",
+            "commentRepiedQuote": "Odoslané",
             "commentTitle": "História správ",
             "commentType": "Zákazník",
             "contextMenuRemove": "Odstrániť z cenovej ponuky",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "Zľava",
             "labelVAT": "DPH ({number}%)",
             "messageCreateSuccess": "Citácia \"{quoteNumber}\" bola vytvorená.",
+            "messageEmptyDocument": "Zatiaľ neboli pridané žiadne dokumenty",
             "messageEmptyItem": "Zatiaľ nie sú pridané žiadne položky",
             "messageNoFoundItem": "Žiadne položky nenájdené",
             "messageSaveAsDraftSuccess": "Citácia \"{quoteNumber}\" bola uložená ako návrh.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "Názov scény"
         },
         "general": {
+            "changeListModeError": "Pri zmene režimu zoznamu sa niečo pokazilo.",
             "createNewSceneText": "Vytvoriť novú scénu",
+            "createSceneError": "Pri vytváraní scény sa niečo pokazilo.",
+            "deleteSceneError": "Niečo sa pokazilo pri vymazaní scény.",
+            "duplicateSceneError": "Niečo sa pokazilo pri duplikovaní scény.",
             "moduleTitle": "Editor scén",
+            "saveImageError": "Pri ukladaní obrázka sa niečo pokazilo.",
             "scenesTitle": "scény"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "Táto funkcia má denný limit 300 žiadostí.",
                     "card": {
                         "subtitle": "Umožňuje zákazníkovi opísať, čo hľadá pomocou prirodzeného jazyka a ľahšie nájsť produkty.",
                         "title": "Vyhľadávanie podľa kontextu"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "Povoliť riadenie zamestnancov",
-                "orderApproval": "Povoliť schvaľovanie objednávky komponentov B2B",
-                "quickOrder": "Povoliť rýchle objednávky",
-                "quoteManagement": "Povoliť správu ponúk komponentov B2B"
+                "employee_management_activate_feature": "Povoliť správu zamestnancov B2B komponentov",
+                "order_approval_activate_feature": "Povoliť schvaľovanie objednávky komponentov B2B",
+                "quote_management_activate_feature": "Povoliť správu ponúk komponentov B2B",
+                "shopping_list_activate_feature": "Povoliť nákupné zoznamy komponentov B2B",
+                "swag_quick_order_activate_feature": "Povoliť rýchle objednávky komponentov B2B"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "Riadenie zamestnancov",
-                    "orderApproval": "Schválenie objednávky",
-                    "quickOrder": "Rýchle objednávky",
-                    "quoteManagement": "Správa cenových ponúk"
+                    "employee_management_activate_feature": "Riadenie zamestnancov",
+                    "order_approval_activate_feature": "Schválenie objednávky",
+                    "quote_management_activate_feature": "Správa cenových ponúk",
+                    "shopping_list_activate_feature": "Nákupné zoznamy",
+                    "swag_quick_order_activate_feature": "Rýchle objednávky"
                 },
                 "template": "Umožňuje {name} pre všetkých zákazníkov tejto skupiny zákazníkov. Vyžaduje registračný formulár spoločnosti."
             }

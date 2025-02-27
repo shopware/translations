@@ -39,6 +39,9 @@
             "state_leave_quote_state_replied": "Tarjous jättää tilan lähetetyksi"
         },
         "entities": {
+            "b2b_components_role": "Rooli | Roolit",
+            "b2b_components_shopping_list": "Ostoslistat",
+            "b2b_employee": "Työntekijä | Työntekijät",
             "export_assistant": "Vientiavustaja",
             "quote": "Lainaus | Lainaukset",
             "quote_line_item": "Tarjousrivikohde | Lainausrivikohteet",
@@ -458,9 +461,14 @@
             "mainMenuItemGeneral": "Kuvan avainsana-avustaja"
         },
         "media-quickinfo": {
+            "error": {
+                "default": "Kuvan avainsana-avustaja havaitsi virheen kuvan käsittelyn aikana.",
+                "rateLimit": "Kuva-avainsana-avustajan hintaraja on saavutettu. Yritä myöhemmin uudelleen."
+            },
             "infoText": "Kuvan avainsana-avustaja käsittelee tätä kuvaa, tämän valmistuminen voi viedä jonkin aikaa."
         },
         "settings": {
+            "alert": "Kuva-avainsana-avustaja toimii vain PNG- tai JPG-tiedostotyyppisten kuvien kanssa. Yli 5 Mt: n kuvia ei käsitellä.",
             "footnote": "Kuvan avainsana-avustaja käsittelee ladatut kuvat taustalla, ja valmistuminen voi viedä jonkin aikaa.",
             "handlingStrategies": {
                 "append": "Liitä olemassa oleviin tietoihin",
@@ -719,6 +727,7 @@
             "declined": "hylätty",
             "done": "Tehty",
             "draft": "Luonnos",
+            "draftCreated": "Luonnos luotu",
             "employee": "Työntekijä",
             "expired": "Vanhentunut",
             "inReview": "Katsauksessa",
@@ -834,10 +843,12 @@
             "list": {
                 "actionCancelDelayedAction": "Peruuta",
                 "actionExecuteDelayedAction": "Suorita nyt",
+                "actionShowError": "Näytä virhe",
                 "btnExecuteAll": "Suorita kaikki",
                 "buttonExecute": "Suorita",
                 "cancelWarningMessage": "Haluatko varmasti poistaa tämän viivästyneen toiminnon?",
                 "columnCustomer": "Asiakkaan",
+                "columnError": "Tila",
                 "columnName": "Viivästynyt toiminta tai tila",
                 "columnOrderNumber": "Järjestysnumero",
                 "columnRemainingTime": "Jäljellä oleva aika",
@@ -876,6 +887,11 @@
                 "selectorDelayAction": "Lisää viive (ODOTA)",
                 "warningText": "Tälle virralle on suunniteltu toimenpiteitä. Tämän virran muutokset eivät vaikuta jo ajoitettuihin toimintoihin."
             }
+        },
+        "errorModal": {
+            "defaultMessage": "Viivästyneen virtauksen suorittamisen aikana tapahtui tuntematon virhe.",
+            "logFileHint": "Tarkista lokitiedostosta lisätietoja.",
+            "title": "Virhe viivästyneen virtauksen suorittamisessa"
         },
         "labelDelayedAction": "Viivästyneet toimet",
         "list": {
@@ -1146,7 +1162,12 @@
             "buttonSendQuote": "Lähetä tarjous",
             "commentCustomerDeclinedQuote": "Hylätty tarjous",
             "commentCustomerRequestQuote": "Pyydetty tarjous",
+            "commentDeclinedQuote": "hylätty",
+            "commentExpiredQuote": "Vanhentunut",
             "commentMerchantSent": "Kauppias lähetetty",
+            "commentOpenedQuote": "Aloitetaan keskustelu",
+            "commentReopenedQuote": "Uudelleen avattu",
+            "commentRepiedQuote": "Lähetetty",
             "commentTitle": "Viestihistoria",
             "commentType": "Asiakkaan",
             "contextMenuRemove": "Poista tarjouksesta",
@@ -1197,6 +1218,7 @@
             "labelTotalDiscount": "Alennus",
             "labelVAT": "ALV ({number}%)",
             "messageCreateSuccess": "Lainaus \"{quoteNumber}\" on luotu.",
+            "messageEmptyDocument": "Asiakirjoja ei ole vielä lisätty",
             "messageEmptyItem": "Ei vielä lisättyjä tuotteita",
             "messageNoFoundItem": "Tuotteita ei löytynyt",
             "messageSaveAsDraftSuccess": "Lainaus \"{quoteNumber}\" on tallennettu luonnoksena.",
@@ -1568,8 +1590,13 @@
             "sceneNamePlaceholder": "Kohtauksen nimi"
         },
         "general": {
+            "changeListModeError": "Jotain meni pieleen muutettaessa listaustilaa.",
             "createNewSceneText": "Luo uusi kohtaus",
+            "createSceneError": "Jotain meni pieleen kohtauksen luomisessa.",
+            "deleteSceneError": "Jotain meni pieleen poistettaessa kohtausta.",
+            "duplicateSceneError": "Jotain meni pieleen kohtauksen kopioinnissa.",
             "moduleTitle": "Kohtauseditori",
+            "saveImageError": "Jotain meni pieleen tallennettaessa kuvaa.",
             "scenesTitle": "Kohtaukset"
         },
         "item": {
@@ -1586,7 +1613,6 @@
                     }
                 },
                 "naturalLanguageSearch": {
-                    "alertText": "Tämän toiminnon päivittäinen raja on 300 pyyntöä.",
                     "card": {
                         "subtitle": "Antaa asiakkaan kuvata etsimäänsä luonnollisella kielellä ja löytää tuotteita helpommin.",
                         "title": "Etsi kontekstin mukaan"
@@ -1627,17 +1653,19 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
-                "employeeManagement": "Ota työntekijöiden hallinta käyttöön",
-                "orderApproval": "Ota B2B-komponenttitilauksen hyväksyntä käyttöön",
-                "quickOrder": "Ota pikatilaukset käyttöön",
-                "quoteManagement": "Ota käyttöön B2B-komponenttien tarjousten hallinta"
+                "employee_management_activate_feature": "Ota B2B-komponenttien työntekijöiden hallinta käyttöön",
+                "order_approval_activate_feature": "Ota B2B-komponenttitilauksen hyväksyntä käyttöön",
+                "quote_management_activate_feature": "Ota käyttöön B2B-komponenttien tarjousten hallinta",
+                "shopping_list_activate_feature": "Ota B2B-komponenttien ostoslistat käyttöön",
+                "swag_quick_order_activate_feature": "Ota B2B-komponenttien pikatilaukset käyttöön"
             },
             "activateHelptext": {
                 "features": {
-                    "employeeManagement": "Työntekijöiden johtaminen",
-                    "orderApproval": "Tilauksen hyväksyminen",
-                    "quickOrder": "Nopeat tilaukset",
-                    "quoteManagement": "Tarjousten hallinta"
+                    "employee_management_activate_feature": "Työntekijöiden johtaminen",
+                    "order_approval_activate_feature": "Tilauksen hyväksyminen",
+                    "quote_management_activate_feature": "Tarjousten hallinta",
+                    "shopping_list_activate_feature": "Ostoslistat",
+                    "swag_quick_order_activate_feature": "Nopeat tilaukset"
                 },
                 "template": "Ottaa {name} käyttöön kaikille tämän asiakasryhmän asiakkaille. Vaatii yrityksen ilmoittautumislomakkeen."
             }
