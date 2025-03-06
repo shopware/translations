@@ -525,6 +525,10 @@
         "detailBase": {
             "labelCompanyCard": "Unternehmen"
         },
+        "detailOrder": {
+            "columnOrganizationUnit": "Organisationseinheiten",
+            "columnOrganizationUnitEmpty": "Keine Einheit"
+        },
         "employee": {
             "buttonCreate": "Einladung versenden",
             "descriptionDelete": "Bist Du Dir sicher, dass Du wirklich das Mitarbeiter-Konto von {name} löschen möchtest?",
@@ -564,6 +568,15 @@
             "employees": "Mitarbeiter",
             "warningEdit": "Bitte beachte, dass alle Änderungen sich auf die Unternehmensstruktur Deines Geschäftspartners auswirken."
         },
+        "organizationUnit": {
+            "cardLabel": "Organisationseinheiten",
+            "createNewListLabel": "Einheit erstellen",
+            "createdAtColumn": "Erstellt am",
+            "createdByColumn": "Erstellt von",
+            "employeeColumn": "Mitarbeiter",
+            "nameColumn": "Name",
+            "titleEmptyState": "Keine Organisationseinheit vorhanden"
+        },
         "quote": {
             "buttonAddQuote": "Angebot anlegen",
             "changeQuoteStateError": "Der Status konnte nicht zu \"{stateName}\" geändert werden.",
@@ -600,6 +613,8 @@
                             "approval_rule": "Freigaberegelverwaltung",
                             "employee": "Mitarbeiterverwaltung",
                             "order": "Bestellungen",
+                            "organization_unit": "Organisationseinheiten",
+                            "organization_unit_address": "Adressen",
                             "pending_order": "Ausstehende Bestellungsverwaltung",
                             "quote": "Angebotsverwaltung",
                             "role": "Rollenverwaltung"
@@ -621,6 +636,28 @@
                                 "read": {
                                     "all": "Kann alle Bestellungen einsehen"
                                 }
+                            },
+                            "organization_unit": {
+                                "billing_address": {
+                                    "create": "Neue Rechnungsadresse erstellen",
+                                    "delete": "Rechnungsadresse löschen",
+                                    "update": "Rechnungsadresse bearbeiten"
+                                },
+                                "create": "Neue Organisationseinheit erstellen",
+                                "delete": "Organisationseinheit löschen",
+                                "order": {
+                                    "read": "Kann alle Bestellungen der zugewiesenen Organisationseinheit anzeigen"
+                                },
+                                "quote": {
+                                    "read": "Kann alle Angebote der zugewiesenen Organisationseinheit anzeigen"
+                                },
+                                "read": "Can view organization units",
+                                "shipping_address": {
+                                    "create": "Neue Lieferadresse erstellen",
+                                    "delete": "Lieferadresse löschen",
+                                    "update": "Lieferadresse bearbeiten"
+                                },
+                                "update": "Organisationseinheit bearbeiten"
                             },
                             "pending_order": {
                                 "approve_decline": "Kann ausstehende Bestellungen genehmigen/ablehnen",
@@ -686,11 +723,17 @@
             "cardLabel": "Einkaufslisten",
             "createNewListLabel": "Liste hinzufügen",
             "creatorColumn": "Ersteller",
+            "detail": {
+                "labelCreator": "Ersteller",
+                "labelOrganizationUnit": "Organisationseinheiten"
+            },
             "emptyListTitle": "Noch keine Listen",
             "modal": {
                 "deleteListDesc": "Möchtest Du diese \"{listName}\" Einkaufsliste wirklich löschen?"
             },
             "nameColumn": "Name",
+            "noOrganizationUnitSelected": "Keine Einheit",
+            "organizationUnitColumn": "Organisationseinheiten",
             "productCountColumn": "Produkte",
             "tabLabel": "Unternehmen",
             "totalPriceColumn": "Gesamt"
@@ -1022,6 +1065,71 @@
             "usage": {
                 "tooltipFoundSpatialObject": "Gefunden in Scene Editor"
             }
+        }
+    },
+    "sw-organization-unit": {
+        "detail": {
+            "addressErrorNotification": "Bitte stell sicher, dass diese Organisationseinheit mindestens eine Liefer- und eine Rechnungsadresse hat",
+            "addresses": {
+                "columns": {
+                    "city": "Stadt",
+                    "company": "Firma",
+                    "firstName": "Vorname",
+                    "lastName": "Nachname",
+                    "street": "Straße",
+                    "zipcode": "PLZ"
+                },
+                "default": "Standard",
+                "messageEmptyAddress": "Keine Adressen",
+                "newAddress": "Adresse hinzufügen",
+                "searchPlaceholder": "Suchen",
+                "setDefault": "Als Standard festlegen",
+                "tab": "Adressen",
+                "title": "{addressType} Adressen"
+            },
+            "errorNotification": "Fehler beim Speichern der Organisationseinheit",
+            "general": {
+                "field": {
+                    "createdAt": {
+                        "label": "Erstellt am"
+                    },
+                    "employees": {
+                        "label": "Mitarbeiter",
+                        "placeholder": "Mitarbeiter auswählen"
+                    },
+                    "id": {
+                        "label": "Organisationsnummer"
+                    },
+                    "name": {
+                        "label": "Name der Organisationseinheit",
+                        "placeholder": "Namen der Organisationseinheit eingeben"
+                    },
+                    "paymentMethod": {
+                        "label": "Zahlungsmethoden",
+                        "placeholder": "Zahlungsmethode auswählen"
+                    },
+                    "shippingMethod": {
+                        "label": "Versandmethoden",
+                        "placeholder": "Versandmethode auswählen"
+                    }
+                },
+                "tab": "Allgemein",
+                "title": "Allgemeine Informationen"
+            },
+            "newTitle": "Neue Organisationseinheit",
+            "orders": {
+                "tab": "Bestellungen",
+                "title": "Bestellungen"
+            },
+            "quotes": {
+                "tab": "Angebote",
+                "title": "Angebote"
+            },
+            "shoppingList": {
+                "tab": "Einkaufslisten",
+                "title": "Einkaufslisten"
+            },
+            "successNotification": "Organisationseinheit erfolgreich gespeichert"
         }
     },
     "sw-privileges": {
@@ -1633,9 +1741,15 @@
                     }
                 },
                 "salesChannelCard": {
-                    "descriptionLabel": "Kontext",
+                    "descriptionLabel": "Schlüsselwörter",
                     "descriptionPlaceholder": "Schlüsselwörter eingeben ...",
-                    "salesChannelDescriptionSubTitle": "Um die besten Ergebnisse zu erzielen, beschreibe Dein Unternehmen in wenigen Stichworten (maximal 100 Zeichen).",
+                    "salesChannelDescriptionExample": {
+                        "1": "“Snacks, Backwaren, Kaffee, Küchengeräte, Zutaten, Utensilien, Haushalt“",
+                        "2": "“Outdoor, Ausrüstung, Klettern, Skifahren, Kleidung, Jacken, Hosen, Wasserdicht, Sonnenschutz“",
+                        "3": "“Handwerkerbedarf, Schrauben, Dübel, Bohrmaschinen, Sägen, Hämmer, Holz, Ausrüstung“",
+                        "title": "Beispiele:"
+                    },
+                    "salesChannelDescriptionSubTitle": "Die Bildsuche und die kontextbasierte Suche des AI Copilots transferieren hochgeladenen Bilder und Suchanfragen in natürlicher Sprache in einfache Suchbegriffe mithilfe eines simplen Promting-Mechanismus! Damit dieser bestmögliche Ergebnisse generiert, ist es wichtig, dem AI Copilot den Kontext deines Shops mitzugeben.\n\nGebe Schlüsselwörter ein, die dein Sortiment beschreiben (maximal 100 Zeichen).",
                     "salesChannelDescriptionTitle": "Verkaufskanalkontext",
                     "title": "Verkaufskanalkontext"
                 }
@@ -1669,6 +1783,7 @@
             "activateCheckbox": {
                 "employee_management_activate_feature": "B2B Component Mitarbeiter-Verwaltung aktivieren",
                 "order_approval_activate_feature": "B2B Component Bestellfreigaben aktivieren",
+                "organizationUnit": "B2B Component Organisationseinheiten aktivieren",
                 "quote_management_activate_feature": "B2B Component Angebotsverwaltung aktivieren",
                 "shopping_list_activate_feature": "B2B Component Einkaufslisten aktivieren",
                 "swag_quick_order_activate_feature": "B2B Component Schnellbestellungen aktivieren"
@@ -1677,6 +1792,7 @@
                 "features": {
                     "employee_management_activate_feature": "Mitarbeiter-Verwaltung",
                     "order_approval_activate_feature": "Bestellfreigaben",
+                    "organizationUnit": "Organisationseinheiten",
                     "quote_management_activate_feature": "Angebotsverwaltung",
                     "shopping_list_activate_feature": "Einkaufslisten",
                     "swag_quick_order_activate_feature": "Schnellbestellungen"
@@ -1922,6 +2038,8 @@
         "employeeManagementName": "Mitarbeiter-Verwaltung",
         "orderApprovalDescription": "Deine Kunden können Freigaberegeln erstellen um Bestellberechtigungen ihrer Mitarbeiter zu verwalten.",
         "orderApprovalName": "Bestellfreigaben",
+        "organizationUnitDescription": "Deine Kunden können ihre Mitarbeiter mit Rollen und Berechtigungen organisieren.",
+        "organizationUnitName": "Organisationseinheiten",
         "quickOrderDescription": "Deine Kunden können den Bestellvorgang beschleunigen, indem sie Produktnummern eingeben oder Dateien hochladen.",
         "quickOrderName": "Schnellbestellungen",
         "quoteManagementDescription": "Deine Kunden können Angebote anfragen und individuelle Preise mit Dir aushandeln.",

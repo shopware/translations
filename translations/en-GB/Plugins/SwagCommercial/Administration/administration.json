@@ -55,6 +55,7 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "The boost number must be a positive value",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Boosting name already exists",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "The activation date should be set in the future",
+            "ORGANIZATION_UNIT_FIELD_REQUIRED": "This field must not be empty.",
             "SHOPPING_LIST_FIELD_REQUIRED": "This field must not be empty."
         },
         "swag-search-assistant": {
@@ -525,6 +526,10 @@
         "detailBase": {
             "labelCompanyCard": "Company"
         },
+        "detailOrder": {
+            "columnOrganizationUnit": "Organization Units",
+            "columnOrganizationUnitEmpty": "No Unit"
+        },
         "employee": {
             "buttonCreate": "Send invitation",
             "descriptionDelete": "Are you sure you really want to delete the employee account of {name}?",
@@ -564,6 +569,15 @@
             "employees": "Employees",
             "warningEdit": "Be aware that any changes made will impact the company structure of your business partner."
         },
+        "organizationUnit": {
+            "cardLabel": "Organization unit",
+            "createNewListLabel": "Add unit",
+            "createdAtColumn": "Created at",
+            "createdByColumn": "Created by",
+            "employeeColumn": "Employee",
+            "nameColumn": "Name",
+            "titleEmptyState": "No organization unit yet"
+        },
         "quote": {
             "buttonAddQuote": "Add quote",
             "changeQuoteStateError": "There was an error while attempting to change the status of the quote to \"{stateName}\".",
@@ -600,6 +614,8 @@
                             "approval_rule": "Approval Rule Management",
                             "employee": "Employee management",
                             "order": "Orders",
+                            "organization_unit": "Organization Units",
+                            "organization_unit_address": "Organization Unit Addresses",
                             "pending_order": "Pending Order Management",
                             "quote": "Quote management",
                             "role": "Role management"
@@ -621,6 +637,28 @@
                                 "read": {
                                     "all": "Can view all orders"
                                 }
+                            },
+                            "organization_unit": {
+                                "billing_address": {
+                                    "create": "Create new billing address",
+                                    "delete": "Delete billing address",
+                                    "update": "Edit billing address"
+                                },
+                                "create": "Create new organization unit",
+                                "delete": "Delete organization unit",
+                                "order": {
+                                    "read": "Can view all orders from assigned organization unit"
+                                },
+                                "quote": {
+                                    "read": "Can view all quotes from assigned organization unit"
+                                },
+                                "read": "Can view organization units",
+                                "shipping_address": {
+                                    "create": "Create new shipping address",
+                                    "delete": "Delete shipping address",
+                                    "update": "Edit shipping address"
+                                },
+                                "update": "Edit organization unit"
                             },
                             "pending_order": {
                                 "approve_decline": "Can approve/decline pending orders",
@@ -686,11 +724,17 @@
             "cardLabel": "Shopping Lists",
             "createNewListLabel": "Add list",
             "creatorColumn": "Creator",
+            "detail": {
+                "labelCreator": "Creator",
+                "labelOrganizationUnit": "Organization Unit"
+            },
             "emptyListTitle": "No lists yet",
             "modal": {
                 "deleteListDesc": "Are you sure you really want to delete \"{listName}\"?"
             },
             "nameColumn": "Name",
+            "noOrganizationUnitSelected": "No Unit",
+            "organizationUnitColumn": "Organization Unit",
             "productCountColumn": "Products",
             "tabLabel": "Company",
             "totalPriceColumn": "Total"
@@ -1022,6 +1066,71 @@
             "usage": {
                 "tooltipFoundSpatialObject": "Found in Scene Editor"
             }
+        }
+    },
+    "sw-organization-unit": {
+        "detail": {
+            "addressErrorNotification": "Please ensure this organizational unit has at least one shipping and one billing address",
+            "addresses": {
+                "columns": {
+                    "city": "City",
+                    "company": "Company",
+                    "firstName": "First Name",
+                    "lastName": "Last Name",
+                    "street": "Street",
+                    "zipcode": "Postal Code"
+                },
+                "default": "Default",
+                "messageEmptyAddress": "No addresses",
+                "newAddress": "Add address",
+                "searchPlaceholder": "Search",
+                "setDefault": "Set as default",
+                "tab": "Addresses",
+                "title": "{addressType} Addresses"
+            },
+            "errorNotification": "Error while saving organization unit",
+            "general": {
+                "field": {
+                    "createdAt": {
+                        "label": "Created at"
+                    },
+                    "employees": {
+                        "label": "Employees",
+                        "placeholder": "Select an employee"
+                    },
+                    "id": {
+                        "label": "Organization unit number"
+                    },
+                    "name": {
+                        "label": "Organization unit name",
+                        "placeholder": "Enter organization unit name"
+                    },
+                    "paymentMethod": {
+                        "label": "Payment methods",
+                        "placeholder": "Select a payment method"
+                    },
+                    "shippingMethod": {
+                        "label": "Shipping methods",
+                        "placeholder": "Select a shipping method"
+                    }
+                },
+                "tab": "General",
+                "title": "General Information"
+            },
+            "newTitle": "New organization unit",
+            "orders": {
+                "tab": "Orders",
+                "title": "Orders"
+            },
+            "quotes": {
+                "tab": "Quotes",
+                "title": "Quotes"
+            },
+            "shoppingList": {
+                "tab": "Shopping list",
+                "title": "Shopping list"
+            },
+            "successNotification": "Organization unit successfully saved"
         }
     },
     "sw-privileges": {
@@ -1633,9 +1742,15 @@
                     }
                 },
                 "salesChannelCard": {
-                    "descriptionLabel": "Context",
+                    "descriptionLabel": "Keywords",
                     "descriptionPlaceholder": "Enter keywords...",
-                    "salesChannelDescriptionSubTitle": "To get the best results, describe your business in a few keywords (max 100 characters).",
+                    "salesChannelDescriptionExample": {
+                        "1": "“snacks, baked goods, coffee, kitchen, ingredients, utensils, household“",
+                        "2": "“outdoor, equipment, climbing, skiing, clothing, jackets, pants, waterproof, sun protection“",
+                        "3": "“craftsman supplies, screws, dowels, drills, saws, hammers, wood, equipment“",
+                        "title": "Examples:"
+                    },
+                    "salesChannelDescriptionSubTitle": "The AI Copilot's image and context-based search transfers uploaded images and natural language search queries into simple search terms using an AI prompting mechanism! It is important to add the context of your sales channel's product range to ensure that this generates the best possible results and that the search terms match your product range.\n\nEnter keywords that describe your product range (maximum 100 characters).",
                     "salesChannelDescriptionTitle": "Sales Channel context",
                     "title": "Sales Channel context"
                 }
@@ -1669,6 +1784,7 @@
             "activateCheckbox": {
                 "employee_management_activate_feature": "Enable B2B Component Employee Management",
                 "order_approval_activate_feature": "Enable B2B Component Order Approval",
+                "organizationUnit": "Enable B2B Component Organization Units",
                 "quote_management_activate_feature": "Enable B2B Component Quote Management",
                 "shopping_list_activate_feature": "Enable B2B Component Shopping Lists",
                 "swag_quick_order_activate_feature": "Enable B2B Component Quick Orders"
@@ -1677,6 +1793,7 @@
                 "features": {
                     "employee_management_activate_feature": "Employee Management",
                     "order_approval_activate_feature": "Order Approval",
+                    "organizationUnit": "Organization Units",
                     "quote_management_activate_feature": "Quote Management",
                     "shopping_list_activate_feature": "Shopping Lists",
                     "swag_quick_order_activate_feature": "Quick Orders"
@@ -1922,6 +2039,8 @@
         "employeeManagementName": "Employee Management",
         "orderApprovalDescription": "Your customers can create order approval rules to manage their employees’ order permissions.",
         "orderApprovalName": "Order Approvals",
+        "organizationUnitDescription": "Your customers can organize their employees with roles and permissions.",
+        "organizationUnitName": "Organization Units",
         "quickOrderDescription": "Your customers can speed up their ordering process by entering product numbers or uploading files.",
         "quickOrderName": "Quick Orders",
         "quoteManagementDescription": "Your customers can request quotes and negotiate individual prices with you.",
