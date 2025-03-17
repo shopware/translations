@@ -55,6 +55,7 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Palielinājuma skaitlim jābūt pozitīvai vērtībai",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Uzlabošanas nosaukums jau pastāv",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktivizācijas datums jānosaka nākotnē",
+            "ORGANIZATION_UNIT_FIELD_REQUIRED": "Šis lauks nedrīkst būt tukšs.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Šis lauks nedrīkst būt tukšs."
         },
         "swag-search-assistant": {
@@ -525,6 +526,10 @@
         "detailBase": {
             "labelCompanyCard": "Uzņēmums"
         },
+        "detailOrder": {
+            "columnOrganizationUnit": "Organizācijas vienības",
+            "columnOrganizationUnitEmpty": "Nav vienības"
+        },
         "employee": {
             "buttonCreate": "Nosūtīt ielūgumu",
             "descriptionDelete": "Vai tiešām vēlaties dzēst darbinieka kontu {name}?",
@@ -564,6 +569,21 @@
             "employees": "Darbinieki",
             "warningEdit": "Ņemiet vērā, ka visas veiktās izmaiņas ietekmēs jūsu biznesa partnera uzņēmuma struktūru."
         },
+        "list": {
+            "b2bLabel": "B2B",
+            "b2cLabel": "B2C",
+            "customerTypeLabel": "Klienta tips",
+            "customerTypePlaceholder": "Izvēlēties klienta tipu..."
+        },
+        "organizationUnit": {
+            "cardLabel": "Organizācijas vienība",
+            "createNewListLabel": "Pievienot vienību",
+            "createdAtColumn": "Izveidots",
+            "createdByColumn": "Izveidoja",
+            "employeeColumn": "Darbinieks",
+            "nameColumn": "Nosaukums",
+            "titleEmptyState": "Pagaidām nav organizācijas vienības"
+        },
         "quote": {
             "buttonAddQuote": "Pievienot citātu",
             "changeQuoteStateError": "Mēģinot mainīt citāta statusu uz \"{stateName}”, radās kļūda.",
@@ -600,6 +620,8 @@
                             "approval_rule": "Apstiprināšanas noteikumu pārvaldība",
                             "employee": "Darbinieku vadība",
                             "order": "Pasūtījumi",
+                            "organization_unit": "Organizācijas vienības",
+                            "organization_unit_address": "Organizācijas vienības adreses",
                             "pending_order": "Gaidāmā pasūtījumu pārvaldība",
                             "quote": "Citātu pārvaldība",
                             "role": "Lomu pārvaldība"
@@ -621,6 +643,28 @@
                                 "read": {
                                     "all": "Var apskatīt visus pasūtījumus"
                                 }
+                            },
+                            "organization_unit": {
+                                "billing_address": {
+                                    "create": "Izveidot jaunu norēķinu adresi",
+                                    "delete": "Dzēst norēķinu adresi",
+                                    "update": "Rediģēt norēķinu adresi"
+                                },
+                                "create": "Izveidot jaunu organizācijas vienību",
+                                "delete": "Dzēst organizācijas vienību",
+                                "order": {
+                                    "read": "Var apskatīt visus pasūtījumus no piešķirtās organizācijas vienības"
+                                },
+                                "quote": {
+                                    "read": "Var apskatīt visus citātus no piešķirtās organizācijas vienības"
+                                },
+                                "read": "Var apskatīt organizācijas vienības",
+                                "shipping_address": {
+                                    "create": "Izveidot jaunu piegādes adresi",
+                                    "delete": "Dzēst piegādes adresi",
+                                    "update": "Labot piegādes adresi"
+                                },
+                                "update": "Rediģēt organizācijas vienību"
                             },
                             "pending_order": {
                                 "approve_decline": "Var apstiprināt/noraidīt neapstiprinātus pasūtījumus",
@@ -686,11 +730,17 @@
             "cardLabel": "Iepirkumu saraksti",
             "createNewListLabel": "Pievienot sarakstu",
             "creatorColumn": "Radītājs",
+            "detail": {
+                "labelCreator": "Radītājs",
+                "labelOrganizationUnit": "Organizācijas vienība"
+            },
             "emptyListTitle": "Pagaidām nav sarakstu",
             "modal": {
                 "deleteListDesc": "Vai tiešām vēlaties dzēst \"{listName}“?"
             },
             "nameColumn": "Nosaukums",
+            "noOrganizationUnitSelected": "Nav vienības",
+            "organizationUnitColumn": "Organizācijas vienība",
             "productCountColumn": "Produkti",
             "tabLabel": "Uzņēmums",
             "totalPriceColumn": "Kopā"
@@ -1024,6 +1074,71 @@
             }
         }
     },
+    "sw-organization-unit": {
+        "detail": {
+            "addressErrorNotification": "Lūdzu, pārliecinieties, ka šai organizatoriskajai vienībai ir vismaz viena piegādes un viena norēķinu adrese",
+            "addresses": {
+                "columns": {
+                    "city": "Pilsēta",
+                    "company": "Uzņēmums",
+                    "firstName": "Vārds",
+                    "lastName": "Uzvārds",
+                    "street": "Iela",
+                    "zipcode": "Pasta indekss"
+                },
+                "default": "Pēc noklusējuma",
+                "messageEmptyAddress": "Nav adreses",
+                "newAddress": "Pievienot adresi",
+                "searchPlaceholder": "Meklēt",
+                "setDefault": "Iestatīt kā noklusējumu",
+                "tab": "Adreses",
+                "title": "{addressType} Adreses"
+            },
+            "errorNotification": "Kļūda, saglabājot organizācijas vienību",
+            "general": {
+                "field": {
+                    "createdAt": {
+                        "label": "Izveidots"
+                    },
+                    "employees": {
+                        "label": "Darbinieki",
+                        "placeholder": "Izvēlieties darbinieku"
+                    },
+                    "id": {
+                        "label": "Organizācijas vienības numurs"
+                    },
+                    "name": {
+                        "label": "Organizācijas vienības nosaukums",
+                        "placeholder": "Ievadiet organizācijas vienības nosaukumu"
+                    },
+                    "paymentMethod": {
+                        "label": "Maksājuma veidi",
+                        "placeholder": "Izvēlieties maksājuma veidu"
+                    },
+                    "shippingMethod": {
+                        "label": "Piegādes veidi",
+                        "placeholder": "Izvēlieties piegādes veidu"
+                    }
+                },
+                "tab": "Vispārīgi",
+                "title": "Vispārīga informācija"
+            },
+            "newTitle": "Jauna organizācijas vienība",
+            "orders": {
+                "tab": "Pasūtījumi",
+                "title": "Pasūtījumi"
+            },
+            "quotes": {
+                "tab": "Citāti",
+                "title": "Citāti"
+            },
+            "shoppingList": {
+                "tab": "Iepirkumu saraksts",
+                "title": "Iepirkumu saraksts"
+            },
+            "successNotification": "Organizācijas vienība veiksmīgi saglabāta"
+        }
+    },
     "sw-privileges": {
         "permissions": {
             "ai-image": {
@@ -1072,7 +1187,6 @@
             "columnPriority": "Prioritāte",
             "columnStock": "Krājums",
             "labelTotalStock": "Kopējais krājums: ",
-            "navigationLabelStock": "Krājums {totalStock}",
             "textHeadline": "Krājumi pa noliktavu un noliktavu grupām",
             "textInlineEdit": "Rediģēt krājumu"
         },
@@ -1635,6 +1749,12 @@
                 "salesChannelCard": {
                     "descriptionLabel": "Konteksts",
                     "descriptionPlaceholder": "Ievadiet atslēgvārdus...",
+                    "salesChannelDescriptionExample": {
+                        "1": "“uzkodas, ceptas preces, kafija, virtuve, sastāvdaļas, piederumi, mājsaimniecība”",
+                        "2": "“āra, aprīkojums, kāpšana, slēpošana, apģērbs, jakas, bikses, ūdensnecaurlaidīgas, saules aizsardzība”",
+                        "3": "“amatnieku piederumi, skrūves, dībeļi, urbji, zāģi, āmuri, koks, aprīkojums”",
+                        "title": "Piemēri:"
+                    },
                     "salesChannelDescriptionSubTitle": "Lai iegūtu vislabākos rezultātus, aprakstiet savu uzņēmumu ar dažiem atslēgvārdiem (ne vairāk kā 100 rakstzīmes).",
                     "salesChannelDescriptionTitle": "Pārdošanas kanāla konteksts",
                     "title": "Pārdošanas kanāla konteksts"
@@ -1669,6 +1789,7 @@
             "activateCheckbox": {
                 "employee_management_activate_feature": "Iespējot B2B komponentu darbinieku vadību",
                 "order_approval_activate_feature": "Iespējot B2B komponentu pasūtījuma apstiprināšanu",
+                "organizationUnit": "Iespējot B2B komponentu organizācijas vienības",
                 "quote_management_activate_feature": "Iespējot B2B komponentu cenu pārvaldību",
                 "shopping_list_activate_feature": "Iespējot B2B komponentu iepirkumu sarakstus",
                 "swag_quick_order_activate_feature": "Iespējot B2B komponentu ātros pasūtījumus"
@@ -1677,6 +1798,7 @@
                 "features": {
                     "employee_management_activate_feature": "Darbinieku vadība",
                     "order_approval_activate_feature": "Pasūtījuma apstiprināšana",
+                    "organizationUnit": "Organizācijas vienības",
                     "quote_management_activate_feature": "Citātu pārvaldība",
                     "shopping_list_activate_feature": "Iepirkumu saraksti",
                     "swag_quick_order_activate_feature": "Ātrie pasūtījumi"
@@ -1922,6 +2044,8 @@
         "employeeManagementName": "Darbinieku vadība",
         "orderApprovalDescription": "Nodrošina uzņēmuma mēroga kontroli pār pasūtījumu procesu, palīdz saglabāt budžeta atbilstību un samazina pasūtīšanas kļūdas.",
         "orderApprovalName": "Pasūtījuma apstiprināšana",
+        "organizationUnitDescription": "Jūsu klienti var organizēt savus darbiniekus ar lomām un atļaujām.",
+        "organizationUnitName": "Organizācijas vienības",
         "quickOrderDescription": "Jūsu klienti var paātrināt pasūtīšanas procesu, ievadot produktu numurus vai augšupielādējot failus.",
         "quickOrderName": "Ātrā pasūtīšana",
         "quoteManagementDescription": "Jūsu klienti var pieprasīt individuālas piedāvājuma cenas.",
