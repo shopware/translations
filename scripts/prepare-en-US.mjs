@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const source_language_locale = "en-GB"
-const target_language_locale = "en-US"
+const languageMapping = {
+    'en-GB': ['en-US']
+};
 
 function deepMerge(source, target) {
     for (const [key, value] of Object.entries(source)) {
@@ -33,22 +34,24 @@ function findJsonFiles(directory) {
 }
 
 export const main = async () => {
-    const source_files = findJsonFiles(`translations/${source_language_locale}`);
+    for (const [sourceLanguage, targets] of Object.entries(languageMapping)) {
+        const sourceFiles = findJsonFiles(`translations/${sourceLanguage}`);
 
-    for (const file of source_files) {
-        const source = JSON.parse(fs.readFileSync(file, "utf-8"));
-        const target_file_name = file.replace(source_language_locale, target_language_locale);
-        const target_file_path = path.dirname(target_file_name)
-        if (!fs.existsSync(target_file_name)) {
-            fs.mkdirSync(target_file_path, { recursive: true })
-            fs.copyFileSync(file, target_file_name);
-            continue;
+        for (const sourceFile of sourceFiles) {
+            const source = JSON.parse(fs.readFileSync(sourceFile, "utf-8"));
+            for (const targetLanguage of targets) {
+                const targetFileName = sourceFile.replace(sourceLanguage, targetLanguage);
+                const targetFilePath = path.dirname(targetFileName);
+                if (!fs.existsSync(targetFileName)) {
+                    fs.mkdirSync(targetFilePath, { recursive: true });
+                    fs.copyFileSync(sourceFile, targetFileName);
+                    continue;
+                }
+
+                const target = JSON.parse(fs.readFileSync(targetFileName, "utf-8"));
+                const merged = deepMerge(source, target);
+                fs.writeFileSync(targetFileName, JSON.stringify(merged, null, 4));
+            }
         }
-
-        const target = JSON.parse(fs.readFileSync(target_file_name, "utf-8"));
-
-        const merged = deepMerge(source, target);
-
-        fs.writeFileSync(target_file_name, JSON.stringify(merged, null, 4));
     }
 }
