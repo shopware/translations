@@ -1960,6 +1960,7 @@
                 "useAsLink": "Bruk som lenke"
             },
             "link": {
+                "categoryHelpText": "Interne lenker til kategorier støtter følgende kategorityper: {types}.",
                 "categoryPlaceholder": "Velg en kategori...",
                 "example": "Eksempel:",
                 "externalDesc": "For å angi eksterne koblinger, sett inn hele nettadressen:",
@@ -2529,12 +2530,13 @@
                         "mediaUpload": "Last opp et bilde"
                     },
                     "helpText": {
-                        "autoSlide": "Lysbildet vil bli glidd automatisk.",
                         "autoplayTimeout": "Varigheten av millisekundet for hvor lenge lysbildet skal holde seg stille.",
                         "displayMode": "<strong>Original:</strong> Bildet vises i sin opprinnelige oppløsning eller krympet ned til gjeldende CMS-sides bredde.<br><br><strong>Skalert:</strong> Bildet skaleres til CMS-sidens bredde uten høydebegrensninger.<br><br><strong>Beskjæret:</strong> Bildet skaleres til den gjeldende CMS-sidens bredde. Eventuelt vertikalt overløp beskjæres til den konfigurerte maksimale høyden.",
                         "speed": "Den millisekund varighet av glidende animasjon."
                     },
                     "infoText": {
+                        "autoSlide": "Aktivering av denne funksjonen kan gjøre deler av butikkfronten utilgjengelig for brukere med nedsatt funksjonsevne. Dette kan føre til manglende overholdelse av tilgjengelighetslovene som gjelder i din jurisdiksjon (f.eks. Den europeiske tilgjengelighetsloven). Ved å fortsette, erkjenner du denne risikoen og aksepterer fullt ansvar.",
+                        "autoSlideTitle": "Tilgjengelighetsproblemer",
                         "listingElement": "Produktdataene til dette elementet lastes automatisk inn av kategorien som er knyttet til denne layouten. Innholdet viser bare en prøveforhåndsvisning."
                     },
                     "label": {
@@ -2579,6 +2581,7 @@
                 "config": {
                     "label": {
                         "isDecorative": "Merk bildet som dekorativt",
+                        "isDecorativeHelpText": "Når dette alternativet er aktivert, blir ikke bildeinformasjonen lest opp av skjermlesere.",
                         "linkNewTab": "Åpne lenke i ny fane",
                         "linkTo": "Koblingsmål",
                         "minHeight": "Minimum høyde",
@@ -2635,6 +2638,11 @@
                 },
                 "config": {
                     "label": {
+                        "headlineLevel": "Overskriftsnivå for produktbokser",
+                        "headlineLevelDefaultOption": "Overskrift 2 (anbefalt standard)",
+                        "headlineLevelEmptyOption": "Ingen overskrift (anbefales ikke)",
+                        "headlineLevelHelp": "Velg et overskriftsnivå for produktboksens titler i denne produktoppføringen. Hvis «Ingen overskrift» er valgt, brukes ikke noe overskriftnivå.",
+                        "headlineLevelOption": "Overskrift {level}",
                         "layoutType": "Layout type",
                         "layoutTypeImage": "Stort bilde",
                         "layoutTypeMinimal": "Minimalt innhold",
@@ -3058,7 +3066,11 @@
             "placeholderNewPasswordConfirm": "Skriv inn nytt passord på nytt...",
             "placeholderTitle": "Tittel",
             "placeholderVatId": "Skriv inn MVA Reg.No...",
-            "tooltipImitateCustomerGuest": "Gjestekontoer kan ikke etterlignes."
+            "tooltipImitateCustomerGuest": "Gjestekontoer kan ikke etterlignes.",
+            "tooltipImitateCustomerInactive": "Inaktive kunder kan ikke etterlignes.",
+            "tooltipImitateCustomerInactiveSalesChannel": "Kundens salgskanal er ikke aktiv.",
+            "tooltipImitateCustomerNoDomain": "Kundens salgskanal har ikke noe domene konfigurert.",
+            "tooltipImitateCustomerNoStorefront": "Salgskanalen til kunden er ikke av typen Storefront."
         },
         "customerGroupRegistration": {
             "accept": "Godta",
@@ -3335,6 +3347,11 @@
             "orderTime": "Tid",
             "orders": "Ordre",
             "turnover": "Total verdi"
+        }
+    },
+    "sw-date-filter": {
+        "selectTimeframe": {
+            "placeholder": "Velg tidsramme"
         }
     },
     "sw-datepicker": {
@@ -5214,6 +5231,7 @@
             "cardTitleDetails": "Detaljer",
             "cardTitleGeneralInfo": "Info",
             "cardTitleLineItems": "Elementer",
+            "cardTitlePromotions": "kampanjer",
             "columnPrice": "Pris",
             "columnPriceGross": "Pris (brutto)",
             "columnPriceNet": "Pris (netto)",
@@ -5231,11 +5249,14 @@
             "enterValidTrackingCode": "Skriv inn sporingskode",
             "headlineBillingAddress": "Faktureringsadresse",
             "headlineDeliveryAddress": "Leveringsadresse",
+            "helpTextCustomerComment": "Kunder kan sende inn denne kommentaren, og eventuelle endringer vil være synlige for dem.",
+            "helpTextInternalComment": "Denne kommentaren er kun til intern bruk og vil ikke bli presentert for kunder.",
             "labelAffiliateCode": "Affiliate kode",
             "labelCampaignCode": "Kampanjekode",
             "labelCustomerComment": "Tilleggsinformasjon",
             "labelCustomerEmail": "E-postadresse",
             "labelCustomerPhoneNumber": "Telefonnummer",
+            "labelInternalComment": "Intern kommentar",
             "labelLanguage": "Ordre språk",
             "labelLastChange": "Sist endret",
             "labelNoChangesYet": "Ingen endringer ennå",
@@ -5291,9 +5312,20 @@
             "labelTransactionCard": "Betaling",
             "promotionsField": {
                 "automaticPromotion": "automatisk brukt",
+                "automaticPromotions": {
+                    "labelButton": "Oppdater kampanjer",
+                    "text": "Dette vil oppdatere bestillingen ved å fjerne kampanjer som ikke lenger gjelder, og legge til nye som gjør det. Endringer kan skyldes oppdaterte forhold eller deaktiverte kampanjer. Kampanjer som er lagt til med en kode, endres ikke.",
+                    "title": "Oppdater kampanjer"
+                },
                 "labelPromotions": "kampanjer",
                 "labelToggleAutomaticPromotions": "Deaktiver automatisk påførte kampanjer",
-                "placeholderPromotions": "Skriv inn kampanjekode..."
+                "placeholderPromotions": "Skriv inn kampanjekode...",
+                "updatesModal": {
+                    "description": "Følgende kampanjer er oppdatert:",
+                    "promotionAddedTitle": "Lagt til:",
+                    "promotionRemovedTitle": "Fjernet:",
+                    "title": "Oppdaterte kampanjer"
+                }
             }
         },
         "documentCard": {
@@ -6937,6 +6969,7 @@
             "columnName": "Navn",
             "columnValidFrom": "Gyldig fra",
             "columnValidUntil": "Gyldig til",
+            "deleteDisabledToolTip": "Kampanjen er for øyeblikket i bruk og kan ikke slettes.",
             "descriptionEmpty": "Øk salget ved å diskontere dine produkter og tjenester.",
             "duplicatePromotionInfo": "Kampanjekoder dupliseres ikke og må genereres igjen.",
             "placeholderSearchBar": "Søk kampanjer...",
@@ -7952,6 +7985,7 @@
             "disabledSalesChannel": "Det finnes allerede et annet dokument av samme type i denne salgskanalen.",
             "disabledSalesChannelSelect": "Velg en dokumenttype først.",
             "disabledTypeSelect": "Typen globale dokumenter kan ikke endres.",
+            "helpTextDisplayAdditionalNoteDelivery": "Kun kvalifisert for EU-medlemsland, se også «Innstillinger > Land».",
             "helpTextDisplayDeliveryCountries": "Viser angivelse av «intra community delivery» på fakturadokumenter for utvalgte land.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokumentet vises under «Ordre» på den respektive kundekontoen. Vær oppmerksom på at bare dokumenter som faktisk er sendt til kunden, vises i kundekontoen.",
             "helpTextPaymentDueDate": "F.eks.: +30 dager, +4 uker, +1 uke 2 dager",
