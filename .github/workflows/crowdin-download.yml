@@ -5,12 +5,21 @@ on:
   schedule:
     - cron: '0 22 * * *' # Every day at 22:00 UTC
 
+permissions:
+  contents: write
+  id-token: write
+  pull-requests: write
+
 jobs:
   crowdin-download:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+      CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Synchronize with Crowdin
         uses: crowdin/github-action@v1
@@ -24,7 +33,42 @@ jobs:
           pull_request_title: 'Crowdin translations'
           pull_request_body: 'Crowdin translations update'
           pull_request_base_branch_name: 'main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - uses: octo-sts/action@v1.0.0
+        id: octo-sts-push-metadata
+        with:
+          scope: shopware/translations
+          identity: MetadataPush
+
+      - name: Setup github auth
+        run: |
+          git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts-push-metadata.outputs.token }}" | base64)"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update meta data
+        run: |
+          set -e # Fail on error
+          git fetch origin main
+          git fetch origin i18n_crowdin_translations || echo "Branch i18n_crowdin_translations does not exist yet"
+
+          if git show-ref --verify --quiet refs/remotes/origin/i18n_crowdin_translations; then
+            git checkout i18n_crowdin_translations
+          else
+            echo "Branch i18n_crowdin_translations not found, skipping metadata update"
+            exit 0
+          fi
+
+          CHANGED_FILES=$(git diff --name-only origin/main HEAD | tr '\n' ' ')
+
+          if [[ -n "$CHANGED_FILES" ]]; then
+            node scripts/update-metadata.mjs "$CHANGED_FILES"
+
+            if [[ -n $(git status --porcelain) ]]; then
+              git add crowdin-metadata.json
+              git commit -m "Update Crowdin metadata"
+              git push
+            fi
+          else
+            echo "No translation files changed"
+          fi
