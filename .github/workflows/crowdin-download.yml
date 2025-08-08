@@ -7,35 +7,21 @@ on:
 
 permissions:
   contents: write
-  id-token: write
   pull-requests: write
 
 jobs:
   crowdin-download:
     runs-on: ubuntu-latest
     env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
       CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: octo-sts/action@v1.0.0
-        id: octo-sts-push-metadata
-        with:
-          scope: shopware/translations
-          identity: MetadataPush
-
-      - name: Setup github auth
-        run: |
-          git config --global url."https://x-access-token:${{ steps.octo-sts-push-metadata.outputs.token }}@github.com/".insteadOf "https://github.com/"
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
       - name: Synchronize with Crowdin
         uses: crowdin/github-action@v1
-        env:
-          GITHUB_TOKEN: ${{ steps.octo-sts-push-metadata.outputs.token }}
         with:
           upload_sources: false
           upload_translations: false
@@ -47,9 +33,18 @@ jobs:
           pull_request_body: 'Crowdin translations update'
           pull_request_base_branch_name: 'main'
 
+      - name: Reset git permissions after Crowdin action
+        run: |
+          sudo chmod -R 755 .git/ || true
+          sudo chown -R $(whoami):$(whoami) .git/ || true
+
       - name: Update meta data
         run: |
           set -e # Fail on error
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git fetch origin main
           git fetch origin i18n_crowdin_translations || echo "Branch i18n_crowdin_translations does not exist yet"
 
@@ -68,7 +63,7 @@ jobs:
             if [[ -n $(git status --porcelain) ]]; then
               git add crowdin-metadata.json
               git commit -m "Update Crowdin metadata"
-              git push
+              git push --set-upstream origin i18n_crowdin_translationsh
             fi
           else
             echo "No translation files changed"
