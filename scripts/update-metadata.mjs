@@ -29,15 +29,14 @@ async function run() {
 
     const jsonData = JSON.stringify(mergedData, null, 2);
 
-    fs.writeFileSync(metadataFile, jsonData, 'utf8');
+    fs.writeFileSync(metadataFile, jsonData + '\n', 'utf8');
 }
 
 async function getDiffPayload(changedFiles) {
     const payload = [];
-    const processedLocales = new Set();
-
     if (changedFiles.length === 0) return payload;
 
+    const processedLocales = new Set();
     const crowdinData = await fetchCrowdinData();
 
     for (const file of changedFiles) {
