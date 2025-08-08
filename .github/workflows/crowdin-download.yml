@@ -14,15 +14,28 @@ jobs:
   crowdin-download:
     runs-on: ubuntu-latest
     env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
       CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: octo-sts/action@v1.0.0
+        id: octo-sts-push-metadata
+        with:
+          scope: shopware/translations
+          identity: MetadataPush
+
+      - name: Setup github auth
+        run: |
+          git config --global url."https://x-access-token:${{ steps.octo-sts-push-metadata.outputs.token }}@github.com/".insteadOf "https://github.com/"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Synchronize with Crowdin
         uses: crowdin/github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ steps.octo-sts-push-metadata.outputs.token }}
         with:
           upload_sources: false
           upload_translations: false
@@ -33,18 +46,6 @@ jobs:
           pull_request_title: 'Crowdin translations'
           pull_request_body: 'Crowdin translations update'
           pull_request_base_branch_name: 'main'
-
-      - uses: octo-sts/action@v1.0.0
-        id: octo-sts-push-metadata
-        with:
-          scope: shopware/translations
-          identity: MetadataPush
-
-      - name: Setup github auth
-        run: |
-          git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts-push-metadata.outputs.token }}" | base64)"
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Update meta data
         run: |
