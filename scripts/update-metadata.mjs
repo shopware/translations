@@ -7,9 +7,9 @@ import { fileURLToPath } from 'node:url';
 const CROWDIN_PROJECT_ID = process.env.CROWDIN_PROJECT_ID;
 const CROWDIN_PERSONAL_TOKEN = process.env.CROWDIN_PERSONAL_TOKEN;
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const rootDir = path.resolve(__dirname, '..');
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
+const rootDir = path.resolve(dirname, '..');
 const metadataFile = path.join(rootDir, 'crowdin-metadata.json');
 
 const headers = {
@@ -88,6 +88,7 @@ async function fetchCrowdinData() {
     const response = await fetch(url, { headers });
 
     if (!response.ok) {
+        console.error(response);
         throw new Error(`Crowdin API error: ${response.status}`);
     }
 
