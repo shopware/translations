@@ -5,12 +5,21 @@ on:
   schedule:
     - cron: '0 22 * * *' # Every day at 22:00 UTC
 
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+  CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
 jobs:
   crowdin-download:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
       - name: Synchronize with Crowdin
         uses: crowdin/github-action@v1
@@ -19,12 +28,59 @@ jobs:
           upload_translations: false
           download_translations: true
           localization_branch_name: i18n_crowdin_translations
-
           create_pull_request: true
           pull_request_title: 'Crowdin translations'
           pull_request_body: 'Crowdin translations update'
           pull_request_base_branch_name: 'main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+  update-metadata:
+    needs: crowdin-download
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout localization branch fresh
+        uses: actions/checkout@v4
+        with:
+          ref: i18n_crowdin_translations
+          fetch-depth: 0
+
+      - name: Update meta data
+        run: |
+          # Exit immediately on error (-e), treat unset variables as an error (-u),
+          # and ensure pipeline errors are not masked (-o pipefail)
+          set -euo pipefail
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Fetch the latest changes for the main branch (no tags, remove deleted refs)
+          git fetch --no-tags --prune origin main
+
+          # Check out the i18n_crowdin_translations branch and ensure it's tracking the remote
+          git checkout -B i18n_crowdin_translations origin/i18n_crowdin_translations
+
+          # Get a list of files changed between main and the current branch
+          #   - name-only: only show file paths
+          #   - diff-filter=ACMRT: include Added, Copied, Modified, Renamed, and Type changed files
+          # Store results in an array variable (FILES)
+          mapfile -t FILES < <(git diff --name-only --diff-filter=ACMRT origin/main...HEAD)
+          echo "Changed files: ${#FILES[@]}"
+
+          # Proceed only if at least one file was changed
+          if (( ${#FILES[@]} > 0 )); then
+            # Run the metadata update script, passing the changed files as arguments
+            node scripts/update-metadata.mjs "${FILES[@]}"
+
+            # If crowdin-metadata.json has changes after running the script...
+            if ! git diff --quiet -- crowdin-metadata.json; then
+              # Stage and commit the updated metadata file
+              git add crowdin-metadata.json
+              git commit -m "Update Crowdin metadata"
+
+              # Push changes back to the same branch on GitHub
+              git push origin HEAD:i18n_crowdin_translations
+            else
+              echo "Metadata unchanged, nothing to commit."
+            fi
+          else
+            echo "No translation files changed vs main."
+          fi
