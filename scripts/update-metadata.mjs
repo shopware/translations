@@ -19,7 +19,7 @@ const headers = {
 
 const url = `https://api.crowdin.com/api/v2/projects/${CROWDIN_PROJECT_ID}/languages/progress?limit=500`;
 
-const changedFiles = process.argv[2] ? process.argv[2].split(' ').filter(f => f.length > 0) : [];
+const changedFiles = process.argv.slice(2);
 
 async function run() {
     let diffData = await getDiffPayload(changedFiles);

@@ -9,16 +9,17 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+  CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
 jobs:
   crowdin-download:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
-      CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
 
       - name: Synchronize with Crowdin
         uses: crowdin/github-action@v1
@@ -27,44 +28,44 @@ jobs:
           upload_translations: false
           download_translations: true
           localization_branch_name: i18n_crowdin_translations
-
           create_pull_request: true
           pull_request_title: 'Crowdin translations'
           pull_request_body: 'Crowdin translations update'
           pull_request_base_branch_name: 'main'
 
-      - name: Reset git permissions after Crowdin action
-        run: |
-          sudo chmod -R 755 .git/ || true
-          sudo chown -R $(whoami):$(whoami) .git/ || true
+  update-metadata:
+    needs: crowdin-download
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout localization branch fresh
+        uses: actions/checkout@v4
+        with:
+          ref: i18n_crowdin_translations
+          fetch-depth: 0
 
       - name: Update meta data
         run: |
-          set -e # Fail on error
+          set -euo pipefail
 
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin main
-          git fetch origin i18n_crowdin_translations || echo "Branch i18n_crowdin_translations does not exist yet"
+          git fetch --no-tags --prune origin main
+          git checkout -B i18n_crowdin_translations origin/i18n_crowdin_translations
 
-          if git show-ref --verify --quiet refs/remotes/origin/i18n_crowdin_translations; then
-            git checkout i18n_crowdin_translations
-          else
-            echo "Branch i18n_crowdin_translations not found, skipping metadata update"
-            exit 0
-          fi
+          mapfile -t FILES < <(git diff --name-only --diff-filter=ACMRT origin/main...HEAD)
+          echo "Changed files: ${#FILES[@]}"
 
-          CHANGED_FILES=$(git diff --name-only origin/main HEAD | tr '\n' ' ')
+          if (( ${#FILES[@]} > 0 )); then
+            node scripts/update-metadata.mjs "${FILES[@]}"
 
-          if [[ -n "$CHANGED_FILES" ]]; then
-            node scripts/update-metadata.mjs "$CHANGED_FILES"
-
-            if [[ -n $(git status --porcelain) ]]; then
+            if ! git diff --quiet -- crowdin-metadata.json; then
               git add crowdin-metadata.json
               git commit -m "Update Crowdin metadata"
-              git push --set-upstream origin i18n_crowdin_translationsh
+              git push origin HEAD:i18n_crowdin_translations
+            else
+              echo "Metadata unchanged, nothing to commit."
             fi
           else
-            echo "No translation files changed"
+            echo "No translation files changed vs main."
           fi
