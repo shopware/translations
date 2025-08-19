@@ -55,6 +55,11 @@ jobs:
           # Fetch the latest changes for the main branch (no tags, remove deleted refs)
           git fetch --no-tags --prune origin main
 
+          if ! git show-ref --verify --quiet refs/remotes/origin/i18n_crowdin_translations; then
+            echo "Branch i18n_crowdin_translations does not exist, exiting successfully"
+            exit 0
+          fi
+
           # Check out the i18n_crowdin_translations branch and ensure it's tracking the remote
           git checkout -B i18n_crowdin_translations origin/i18n_crowdin_translations
 
