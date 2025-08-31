@@ -1507,27 +1507,50 @@
                 "iframeModalConfirmMessageDescription": "Pastikan bahwa semua proses selesai.",
                 "messageErrorFetchButtons": "Terjadi kesalahan saat mengambil tindakan aplikasi Anda."
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "Konfirmasi",
-                "error": "Galat saat mengubah domain untuk aplikasi",
-                "explanation": "Aplikasi yang diinstal masih terhubung dengan domain lama dan tidak akan berfungsi dengan domain baru. Ada tiga pilihan dari sini untuk melanjutkan.",
-                "explanationHeader": "Kami telah melihat perubahan dalam domain toko Anda.",
-                "move-shop-permanently": {
-                    "description": "Jadikan aplikasi Anda menggunakan domain baru, bukan domain lama. Tindakan ini akan menetapkan semua aplikasi dan data aplikasi ke domain baru Anda dan menghapus tugas dari domain lama.",
-                    "name": "Memigrasi aplikasi ke domain baru"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "Berikut adalah aplikasi yang terkena dampaknya:",
+                "description": {
+                    "explanation": "Perubahan pada sistem dan perangkat lunak Anda telah terdeteksi yang menunjukkan kemungkinan perubahan pengenal toko Anda. Hingga Anda memilih opsi yang diinginkan, tidak akan ada komunikasi dengan aplikasi untuk mencegah masalah identifikasi toko atau kerusakan data.",
+                    "shopId": {
+                        "explanation": "Pengenal toko adalah fitur dari sistem aplikasi Shopware. Aplikasi yang terdaftar di toko Anda menggunakan pengenal ini untuk mengidentifikasi toko Anda secara unik. Oleh karena itu, penting agar pengenal toko tetap unik dan tidak dibagikan di antara toko-toko yang berbeda, bahkan di lingkungan yang berbeda (misalnya salinan staging atau testing) dari toko yang sama.",
+                        "title": "Apa itu pengenal toko?"
+                    }
                 },
-                "newLabel": "Domain baru: ",
-                "oldLabel": "Domain lama: ",
-                "reinstall-apps": {
-                    "description": "Jika ingin agar aplikasi tetap bekerja di kedua domain, aplikasi ini akan menginstal ulang semua aplikasi di domain baru Anda. Catatan: Data aplikasi di domain lama Anda akan tetap tersedia, aplikasi non-gratis mungkin memerlukan biaya tambahan untuk setiap domain.",
-                    "name": "Menyalin aplikasi ke domain saat ini"
+                "detectedChanges": "Berikut perubahan yang terdeteksi:",
+                "error": "Pembaruan pengenal toko gagal.",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "APP_URL digunakan oleh aplikasi untuk terhubung ke Admin API toko Anda.",
+                        "label": "Variabel perangkat lunak APP_URL"
+                    },
+                    "installation_path": {
+                        "label": "Direktori pemasangan"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "Checksum dari domain saluran penjualan akan berubah jika domain yang sudah ada diubah atau dihapus, atau domain baru ditambahkan.",
+                        "label": "Domain saluran penjualan"
+                    }
                 },
-                "success": "Domain berubah.",
-                "title": "Perubahan domain terdeteksi",
-                "uninstall-apps": {
-                    "description": "Menyimpan data aplikasi pada domain lama dan menghapus semua aplikasi dari domain baru.",
-                    "name": "Menghapus instalan aplikasi"
-                }
+                "newValue": "Nilai baru",
+                "oldValue": "Nilai lama",
+                "remindMeLater": "Ingatkan saya nanti",
+                "selectAnOption": "Baca dengan cermat opsi-opsi yang tersedia dan pilih yang paling sesuai dengan situasi Anda:",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "Ini biasanya merupakan pilihan yang tepat jika Anda telah memindahkan toko Anda secara permanen ke infrastruktur atau lingkungan baru. Shopware akan memberitahu aplikasi (misalnya, mendaftar ulang di server aplikasi) menggunakan pengenal toko yang sama, dan aplikasi tetap terpasang. Toko Anda akan teridentifikasi sebagai toko yang sama seperti sebelumnya.",
+                        "name": "Simpan pengenal toko"
+                    },
+                    "reinstall-apps": {
+                        "description": "Ini biasanya merupakan pilihan yang tepat jika Anda telah membuat salinan toko Anda (misalnya lingkungan staging atau pengujian dari toko produksi) dan ingin menggunakan aplikasi di salinan tersebut. Shopware akan menginstal ulang aplikasi dan mendaftarkan ulang di server aplikasi menggunakan pengenal toko baru. Toko Anda akan teridentifikasi sebagai toko baru.",
+                        "name": "Buat pengenal toko baru"
+                    },
+                    "uninstall-apps": {
+                        "description": "Ini biasanya merupakan pilihan yang tepat jika Anda telah membuat salinan toko Anda (misalnya lingkungan staging atau pengujian dari toko produksi) dan Anda tidak ingin menggunakan aplikasi di salinan tersebut. Shopware akan menghapus aplikasi tanpa memberitahu server aplikasi. Pengenal toko baru akan dihasilkan dan toko Anda akan teridentifikasi sebagai toko baru.",
+                        "name": "Hapus instal aplikasi"
+                    }
+                },
+                "success": "Pengenal toko berhasil diperbarui.",
+                "title": "Perubahan pengenal toko yang diusulkan"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "Ekstensi tidak dapat membuat koneksi ke toko Anda, karena konfigurasi yang salah dalam sistem Anda.",
@@ -2645,12 +2668,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "Deskripsi tautan",
+                        "ariaLabelHelpText": "Teks ini akan dibacakan oleh pembaca layar sebagai teks tautan.",
                         "isDecorative": "Tandai gambar sebagai dekoratif",
                         "isDecorativeHelpText": "Ketika opsi ini diaktifkan, informasi gambar tidak akan dibaca oleh pembaca layar.",
                         "linkNewTab": "Buka tautan di tab baru",
                         "linkTo": "Target tautan",
                         "minHeight": "Tinggi minimum",
-                        "minHeightHelpText": "Masukkan ketinggian minimum dengan unit yang Anda inginkan. Sebagai contoh: 200px"
+                        "minHeightHelpText": "Masukkan ketinggian minimum dengan unit yang Anda inginkan. Sebagai contoh: 200px",
+                        "useFetchPriorityOnFirstItem": "Muat gambar pertama dengan prioritas lebih tinggi",
+                        "useFetchPriorityOnFirstItemHelpText": "Ketika opsi ini diaktifkan, gambar pertama akan dimuat dengan prioritas yang lebih tinggi. Hal ini dapat meningkatkan kecepatan rendering halaman di browser."
                     },
                     "placeholder": {
                         "enterMinHeight": "Masukkan tinggi minimum...",
@@ -2896,6 +2923,7 @@
         },
         "general": {
             "createNewLayout": "Buat layout baru",
+            "deleteDisabledLandingPageToolTip": "Tata letak yang ingin Anda hapus masih terhubung dengan setidaknya satu halaman arahan.",
             "deleteDisabledProductToolTip": "Tata letak yang ingin Anda hapus masih ditetapkan untuk setidaknya satu produk.",
             "deleteDisabledToolTip": "Layout yang ingin anda hapus tetap ditugaskan untuk minimal satu kategori.",
             "disabledAddingBlocksToolTip": "Tambah blok yang hanya bekerja pada bahasa sistem default.",
@@ -4726,6 +4754,7 @@
         },
         "index": {
             "buttonLogin": "Masuk",
+            "buttonSsoLogin": "Masuk dengan Shopware SSO",
             "forgottenPasswordLink": "Lupa kata sandi?",
             "headlineForm": "Masuk ke toko Shopware",
             "headlineMain": "Halo!",
@@ -6693,12 +6722,17 @@
                 "text": "Anda telah mengaktifkan elasticsearch untuk pencarian admin, bidang ini dapat dicari dan Anda tidak dapat mematikannya, namun Anda dapat mematikan entitas mana yang dapat dicari",
                 "title": "Elasticsearch sekarang diaktifkan"
             },
-            "cardSearchableElements": {
-                "buttonDeselect": "Hapus semua",
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "Panjang istilah pencarian minimal",
+                "subtitle": "Tentukan perilaku pencarian Administrasi Anda",
+                "title": "Perilaku pencarian"
+            },
+            "cardSearchContent": {
+                "buttonDeselect": "Batal pilih semua",
                 "buttonReset": "Atur ulang ke default",
                 "buttonSelect": "Pilih semua",
-                "description": "Atur konten yang dapat dicari untuk setiap modul dan entri.",
-                "title": "elemen dicari"
+                "subtitle": "Atur konten yang dapat dicari untuk setiap modul dan entri",
+                "title": "Konten yang dapat dicari"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9058,7 @@
                 "consequences": "Hal ini akan mengakibatkan hilangnya akses langsung ke Layanan dan semua proses terkait.",
                 "warning": "Apakah Anda yakin ingin menonaktifkan “{serviceName}”?"
             },
+            "permissions": "Tampilkan izin",
             "status-active": "Aktif",
             "status-awaiting-permissions": "Menunggu izin",
             "status-inactive": "Tidak Aktif",
@@ -9683,6 +9718,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "Atur ulang semua"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "Masuk dengan akun lain",
+            "loggedInAsPrefix": "Masuk sebagai:",
+            "logoAltText": "Logo Shopware",
+            "text": "Anda berhasil masuk, tetapi Anda tidak memiliki akses ke toko Shopware ini.",
+            "title": "Tidak ada akses ke toko ini"
+        },
+        "general": {
+            "description": "Kesalahan akses masuk Shopware",
+            "title": "Kesalahan SSO"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "Varian tombol",
@@ -9899,6 +9947,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "Pengguna tidak dapat diundang."
+            },
+            "invitationNotYetAccepted": "Pengguna ini belum menerima undangan Anda. Segera setelah mereka menerimanya, informasi yang hilang akan diisi secara otomatis.",
+            "inviteButtonLabel": "Undang pengguna",
+            "modal": {
+                "accountPermissionHint": "Pastikan bahwa pengguna juga terdaftar sebagai bagian dari perusahaan Anda di akun Shopware agar mereka dapat mengakses administrasi toko ini tanpa batasan.",
+                "labelButtonInvite": "Undang pengguna",
+                "labelEmail": "Email",
+                "labelLanguage": "Bahasa antarmuka pengguna",
+                "placeholderEmail": "Masukkan email...",
+                "placeholderLanguage": "Pilih bahasa...",
+                "title": "Kirim undangan kepada pengguna"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "Informasi",
+                    "rolesAndPermission": "Peran & izin",
+                    "userinterface": "Antarmuka pengguna"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "aktif",
+                    "inactive": "nonaktif",
+                    "invited": "terundang"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "Pengguna",
@@ -9999,6 +10077,7 @@
                         "message": "Pengguna tidak dapat menghapus dirinya sendiri."
                     }
                 },
+                "status": "Status",
                 "textModalDelete": "Apakah anda yakin ingin menghapus pengguna \"{name}\"?",
                 "titleModalDelete": "Hapus pengguna"
             }
