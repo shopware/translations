@@ -35,16 +35,16 @@ jobs:
           identity: TranslationsUpdatePush
       - name: Update platform
         run: |
-          for lang in en-GB de-DE; do
-            echo "Colleting platform ${lang} translations..."
-            lang_underscore=$(echo "${lang}" | tr '-' '_')
-            mkdir -p "custom/translations/translations/${lang}/Platform/Administration"
-            jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "src/Administration/Resources/app/administration/src/" -type f -name "${lang}.json") > "custom/translations/translations/${lang}/Platform/Administration/administration.json"
-            mkdir -p "custom/translations/translations/${lang}/Platform/Core/"
-            cp -v "src/Core/Framework/Resources/snippet/${lang_underscore}/messages.${lang}.base.json" "custom/translations/translations/${lang}/Platform/Core/messages.json"
+          for locale in en-GB de-DE; do
+            echo "Colleting platform ${locale} translations..."
+            lang_prefix=$(echo "${locale}" | cut -d'-' -f1)
+            mkdir -p "custom/translations/translations/${locale}/Platform/Administration"
+            jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "src/Administration/Resources/app/administration/src/" -type f -name "${lang_prefix}.json") > "custom/translations/translations/${locale}/Platform/Administration/administration.json"
+            mkdir -p "custom/translations/translations/${locale}/Platform/Core/"
+            cp -v "src/Core/Framework/Resources/snippet/messages.${lang_prefix}.base.json" "custom/translations/translations/${locale}/Platform/Core/messages.json"
 
-            mkdir -p "custom/translations/translations/${lang}/Platform/Storefront/"
-            cp -v "src/Storefront/Resources/snippet/${lang_underscore}/storefront.${lang}.json" "custom/translations/translations/${lang}/Platform/Storefront/storefront.json"
+            mkdir -p "custom/translations/translations/${locale}/Platform/Storefront/"
+            cp -v "src/Storefront/Resources/snippet/storefront.${lang_prefix}.json" "custom/translations/translations/${locale}/Platform/Storefront/storefront.json"
           done
       - name: Setup github auth
         run: |
@@ -93,16 +93,18 @@ jobs:
             echo "${NAME} - ${URL}"
             git clone "${URL}" "custom/plugins/${NAME}"
 
-            for lang in en-GB de-DE; do
-              echo "Colleting ${NAME} ${lang} translations..."
-              mkdir -p "custom/translations/translations/${lang}/Plugins/${NAME}/Administration/"
-              if [ "$(find "custom/plugins/${NAME}/" -type f -name "${lang}\.json" -not -path "*/Resources/snippet/*")" ]; then
-                jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "custom/plugins/${NAME}/" -type f -name "${lang}\.json" -not -path "*/Resources/snippet/*") > "custom/translations/translations/${lang}/Plugins/${NAME}/Administration/administration.json"
+            for locale in en-GB de-DE; do
+              lang_prefix=$(echo "${locale}" | cut -d'-' -f1)
+
+              echo "Collecting ${NAME} ${lang_prefix} translations..."
+              mkdir -p "custom/translations/translations/${locale}/Plugins/${NAME}/Administration/"
+              if [ "$(find "custom/plugins/${NAME}/" -type f -name "${lang_prefix}\.json" -not -path "*/Resources/snippet/*")" ]; then
+                jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "custom/plugins/${NAME}/" -type f -name "${lang_prefix}\.json" -not -path "*/Resources/snippet/*") > "custom/translations/translations/${locale}/Plugins/${NAME}/Administration/administration.json"
               fi
 
-              mkdir -p "custom/translations/translations/${lang}/Plugins/${NAME}/Storefront/"
-              if [ "$(find "custom/plugins/${NAME}/" -type f -name "*\.${lang}\.json" -not -path "*/Resources/app/*")" ]; then
-                jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "custom/plugins/${NAME}/" -type f -name "*\.${lang}\.json" -not -path "*/Resources/app/*") > "custom/translations/translations/${lang}/Plugins/${NAME}/Storefront/storefront.json"
+              mkdir -p "custom/translations/translations/${locale}/Plugins/${NAME}/Storefront/"
+              if [ "$(find "custom/plugins/${NAME}/" -type f -name "*\.${lang_prefix}\.json" -not -path "*/Resources/app/*")" ]; then
+                jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "custom/plugins/${NAME}/" -type f -name "*\.${lang_prefix}\.json" -not -path "*/Resources/app/*") > "custom/translations/translations/${locale}/Plugins/${NAME}/Storefront/storefront.json"
               fi
             done
           done
