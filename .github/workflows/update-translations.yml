@@ -39,7 +39,7 @@ jobs:
             echo "Colleting platform ${locale} translations..."
             lang_prefix=$(echo "${locale}" | cut -d'-' -f1)
             mkdir -p "custom/translations/translations/${locale}/Platform/Administration"
-            jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "src/Administration/Resources/app/administration/src/" -type f -name "${lang_prefix}.json") > "custom/translations/translations/${locale}/Platform/Administration/administration.json"
+            jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' $(find "src/" -type f -path "*/Resources/app/administration/src/*" -name "${lang_prefix}.json") > "custom/translations/translations/${locale}/Platform/Administration/administration.json"
             mkdir -p "custom/translations/translations/${locale}/Platform/Core/"
             cp -v "src/Core/Framework/Resources/snippet/messages.${lang_prefix}.base.json" "custom/translations/translations/${locale}/Platform/Core/messages.json"
 
