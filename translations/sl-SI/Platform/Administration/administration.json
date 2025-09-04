@@ -1489,6 +1489,21 @@
     "mt-text-editor-toolbar-button-link": {
         "label": "Povezava"
     },
+    "sales-channel-theme": {
+        "changeTheme": "Spremeni temo",
+        "changeThemeEmpty": "Dodeli temo",
+        "createTheme": "Ustvari novo temo",
+        "defaultAuthor": "Avtor",
+        "defaultTitle": "Nobena tema ni dodeljena",
+        "editContent": "Uredi temo",
+        "modal": {
+            "buttonCancel": "Prekliči",
+            "buttonChange": "Spremeni temo",
+            "modalTitleChange": "Spremeni temo",
+            "textChangeTheme": "Ali res želite spremeniti temo? To lahko spremeni vizualizacijo vaše trgovine."
+        },
+        "title": "Naloga teme"
+    },
     "sidebar": {
         "ariaLabelButtonClose": "Zapri stransko vrstico",
         "ariaLabelButtonCollapse": "Strini stransko vrstico",
@@ -1507,27 +1522,50 @@
                 "iframeModalConfirmMessageDescription": "Prepričajte se, da so vsi procesi končani.",
                 "messageErrorFetchButtons": "Med pridobivanjem dejanj programa je prišlo do napake."
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "Potrdite",
-                "error": "Napaka pri spreminjanju domene za aplikacije",
-                "explanation": "Nameščeni programi so še vedno povezani s staro domeno in ne bodo delovali z novo domeno. Obstajajo tri možnosti, da nadaljujete.",
-                "explanationHeader": "Opazili smo spremembo domene vaše trgovine.",
-                "move-shop-permanently": {
-                    "description": "Navedite, da aplikacije namesto stare domene uporabljajo novo domeno. S tem boste dodelili vse aplikacije in podatke aplikacij vaši novi domeni in odstranili dodelitev iz stare domene.",
-                    "name": "Selitev programov v novo domeno"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "Prizadete so naslednje aplikacije:",
+                "description": {
+                    "explanation": "Zaznane so bile spremembe v vašem sistemu in okolju, ki kažejo na spremembo identifikatorja vaše trgovine. Dokler ne izberete možnosti, ne bo komunikacije z aplikacijami, ki preprečujejo težave z identifikacijo trgovine ali poškodbo podatkov.",
+                    "shopId": {
+                        "explanation": "Identifikator trgovine je značilnost sistema aplikacij Shopware. Aplikacije, v katerih je vaša trgovina registrirana, jih uporabljajo za edinstveno identifikacijo vaše trgovine. Zaradi tega je pomembno, da identifikatorji trgovin ostanejo edinstveni in se ne delijo med različnimi trgovinami, niti v različnih okoljih (npr. uprizoritev ali preizkusna kopija) iste trgovine.",
+                        "title": "Kaj je identifikator trgovine?"
+                    }
                 },
-                "newLabel": "Nova domena: ",
-                "oldLabel": "Stara domena: ",
-                "reinstall-apps": {
-                    "description": "Če želite, da aplikacije delujejo na obeh domenah, s tem znova namestite vse aplikacije v novo domeno. Opomba: Podatki o aplikacijah v stari domeni bodo še vedno na voljo, nebrezplačne aplikacije pa lahko zahtevajo dodatne stroške za vsako domeno.",
-                    "name": "Kopiranje aplikacij v trenutno domeno"
+                "detectedChanges": "Zaznane so bile naslednje spremembe:",
+                "error": "Posodobitev identifikatorja trgovine ni uspela.",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "Aplikacije APP_URL uporabljajo za povezavo z skrbniškim API-jem vaše trgovine.",
+                        "label": "Spremenljivka okolja APP_URL"
+                    },
+                    "installation_path": {
+                        "label": "Namestitvena pot"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "Kontrolna vsota domen prodajnih kanalov se spremeni, ko se obstoječe domene spremenijo ali izbrišejo ali dodajo nove domene.",
+                        "label": "Domene prodajnih kanalov"
+                    }
                 },
-                "success": "Domena se je spremenila.",
-                "title": "Zaznata sprememba domene",
-                "uninstall-apps": {
-                    "description": "Ohrani podatke aplikacij na stari domeni in odstrani vse aplikacije iz nove domene.",
-                    "name": "Odstranite programe"
-                }
+                "newValue": "Nova vrednost",
+                "oldValue": "Stara vrednost",
+                "remindMeLater": "Spomni me kasneje",
+                "selectAnOption": "Natančno preberite razpoložljive možnosti in izberite tisto, ki najbolj ustreza vašemu scenariju:",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "To je običajno prava možnost, če ste svojo trgovino trajno preselili v drugo infrastrukturo ali novo okolje. Shopware bo obveščala aplikacije (tj. ponovno se registrirala na strežnikih aplikacij) z istim identifikatorjem trgovine, aplikacije pa ostanejo nameščene. Vaša trgovina se bo identificirala kot ista trgovina kot prej.",
+                        "name": "Ohranite identifikator trgovine"
+                    },
+                    "reinstall-apps": {
+                        "description": "Običajno je to prava možnost, če ste izdelali kopijo svoje trgovine (npr. okolje za uprizoritev ali testiranje proizvodne trgovine) in želite uporabiti aplikacije v tej kopiji. Shopware bo znova namestil aplikacije in se na novo registriral na strežnikih aplikacij z novim identifikatorjem trgovine. Vaša trgovina se bo identificirala kot nova trgovina.",
+                        "name": "Ustvari nov identifikator trgovine"
+                    },
+                    "uninstall-apps": {
+                        "description": "Običajno je to prava možnost, če ste izdelali kopijo svoje trgovine (npr. okolje za uprizoritev ali testiranje proizvodne trgovine) in ne želite uporabljati aplikacij v tej kopiji. Shopware bo izbrisal aplikacije, ne da bi o tem obvestila strežnike aplikacij. Ustvarjen bo nov identifikator trgovine in vaša trgovina se bo identificirala kot nova trgovina.",
+                        "name": "Odstranite aplikacije"
+                    }
+                },
+                "success": "Identifikator trgovine je uspešno posodobljen.",
+                "title": "Predlagana sprememba identifikatorja trgovine"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "Razširitve ne morejo vzpostaviti povezave z vašo trgovino zaradi napačne konfiguracije v vašem sistemu.",
@@ -2645,12 +2683,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "Opis povezave",
+                        "ariaLabelHelpText": "To besedilo bodo bralniki zaslona prebrali kot besedilo povezave.",
                         "isDecorative": "Označite sliko kot dekorativno",
                         "isDecorativeHelpText": "Ko je ta možnost omogočena, bralniki zaslona ne bodo prebrali informacij o sliki.",
                         "linkNewTab": "Odpri povezavo v novem zavihku",
                         "linkTo": "Cilj povezave",
                         "minHeight": "Najmanjša višina",
-                        "minHeightHelpText": "Vnesite najmanjšo višino z želeno enoto. Na primer: 200px"
+                        "minHeightHelpText": "Vnesite najmanjšo višino z želeno enoto. Na primer: 200px",
+                        "useFetchPriorityOnFirstItem": "Naložite prvo sliko z višjo prednostno nalogo",
+                        "useFetchPriorityOnFirstItemHelpText": "Ko je ta možnost omogočena, se prva slika naloži z višjo prednostno nalogo. To lahko izboljša hitrost, s katero je stran prikazana v brskalniku."
                     },
                     "placeholder": {
                         "enterMinHeight": "Vnesite najmanjšo višino...",
@@ -2896,6 +2938,7 @@
         },
         "general": {
             "createNewLayout": "Ustvarjanje nove postavitve",
+            "deleteDisabledLandingPageToolTip": "Postavitev, ki jo želite izbrisati, je še vedno dodeljena vsaj eni ciljni strani.",
             "deleteDisabledProductToolTip": "Postavitev, ki jo želite izbrisati, je še vedno dodeljena vsaj enemu izdelku.",
             "deleteDisabledToolTip": "Postavitev, ki jo želite izbrisati, je še vedno dodeljena vsaj eni kategoriji.",
             "disabledAddingBlocksToolTip": "Dodajanje blokov deluje le v privzetem sistemskem jeziku.",
@@ -4726,6 +4769,7 @@
         },
         "index": {
             "buttonLogin": "Prijavite se",
+            "buttonSsoLogin": "Prijavite se s Shopware SSO",
             "forgottenPasswordLink": "Ste pozabili geslo?",
             "headlineForm": "Prijavite se v trgovino Shopware",
             "headlineMain": "Pozdravljeni!",
@@ -5922,6 +5966,9 @@
             "tax": {
                 "label": "Davčna"
             },
+            "theme": {
+                "label": "Teme"
+            },
             "users_and_permissions": {
                 "label": "Uporabniki in dovoljenja"
             }
@@ -6693,12 +6740,17 @@
                 "text": "Omogočili ste elastično iskanje skrbniškega iskanja, ta polja je mogoče iskati in ga ne morete izklopiti, vendar lahko izklopite, katere entitete je mogoče iskati",
                 "title": "Elasticsearch je zdaj omogočeno"
             },
-            "cardSearchableElements": {
-                "buttonDeselect": "Prekliči izbor vseh",
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "Minimalna dolžina iskalnega izraza",
+                "subtitle": "Vnaprej določite iskalno vedenje administracije",
+                "title": "Vedenje iskanja"
+            },
+            "cardSearchContent": {
+                "buttonDeselect": "Prekliči vse",
                 "buttonReset": "Ponastavi na privzeto",
-                "buttonSelect": "Izberi vse",
-                "description": "Nastavite vsebino, ki jo je mogoče iskati za vsak modul in vnos.",
-                "title": "Elementi za iskanje"
+                "buttonSelect": "Izberite vse",
+                "subtitle": "Nastavite vsebino, ki jo je mogoče iskati za vsak modul in vnos",
+                "title": "Vsebina, ki jo je mogoče iskati"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9076,7 @@
                 "consequences": "To bo povzročilo takojšnjo izgubo dostopa do Storitve in vseh povezanih procesov.",
                 "warning": "Ali ste prepričani, da želite deaktivirati »{serviceName}«?"
             },
+            "permissions": "Pokaži dovoljenja",
             "status-active": "Aktivni",
             "status-awaiting-permissions": "Čaka dovoljenja",
             "status-inactive": "Neaktivni",
@@ -9386,6 +9439,28 @@
             "textHeadline": "Račun za nakupovanje"
         }
     },
+    "sw-settings-storefront": {
+        "configuration": {
+            "cardTitle": "Konfiguracija trgovine",
+            "iconCache": "Aktivirajte predpomnilnik ikon",
+            "iconCacheToolTip": "Nadzira, ali so ikone dostavljene le enkrat na stran trgovine, dodatne uporabe pa se sklicuje le z id ikon.",
+            "speculationRules": {
+                "description": "Aktivirajte predhodno upodabljanje z načinom vznemirjenosti »zmerno« za Storefront. To lahko vpliva na vaše analitične podatke.",
+                "title": "API pravil za špekulacije (eksperimentalno)"
+            },
+            "theme": {
+                "async": "Sestavite temo v ozadju",
+                "asyncTooltip": "Nadzira, ali se kompilacija teme obravnava prek čakalne vrste sporočil namesto neposredno pri spremembah."
+            }
+        },
+        "general": {
+            "description": "Nastavitve za prodajalno",
+            "helpText": "Za več informacij si oglejte <a target=\"_blank\" href='https://docs.shopware.com/en/shopware-6-de'>dokumentacijo</a>",
+            "mainMenuItemGeneral": "Prodajalna",
+            "textHeadline": "Prodajalna"
+        },
+        "helpText": "Za več informacij si oglejte dokumentacijo <a target=\"_blank\", href=\"https://docs.shopware.com/en/shopware-6-en\">.</a>"
+    },
     "sw-settings-tag": {
         "detail": {
             "assignments": {
@@ -9683,6 +9758,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "Ponastavi vse"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "Prijavite se z drugim računom",
+            "loggedInAsPrefix": "Prijavljen kot:",
+            "logoAltText": "Logotip trgovine",
+            "text": "Vaša prijava je bila uspešna, vendar nimate dostopa do te trgovine Shopware.",
+            "title": "Ni dostopa do te trgovine"
+        },
+        "general": {
+            "description": "Napaka pri prijavi v Shopware",
+            "title": "Napaka SSO"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "Različica gumba",
@@ -9776,6 +9864,221 @@
         "modalTitle": "Vstavitev/uredi povezavo",
         "openInNewTab": "Odpri v novem zavihku",
         "removeLink": "Odstrani povezavo"
+    },
+    "sw-theme": {
+        "Storefront": {
+            "default": {
+                "eCommerce": {
+                    "default": {
+                        "sw-color-buy-button": {
+                            "label": "Gumb za nakup"
+                        },
+                        "sw-color-buy-button-text": {
+                            "label": "Besedilo gumba za nakup"
+                        },
+                        "sw-color-price": {
+                            "label": "Cena"
+                        }
+                    },
+                    "label": "E-poslovanje"
+                },
+                "media": {
+                    "default": {
+                        "sw-logo-desktop": {
+                            "helpText": "Prikazuje se na razglednicah nad 991px in kot rezervna povratna stran na manjših pogledih, če ni nastavljen noben drug logotip.",
+                            "label": "Namizje"
+                        },
+                        "sw-logo-favicon": {
+                            "label": "Favicon"
+                        },
+                        "sw-logo-mobile": {
+                            "helpText": "Prikazano na preglednicah do 767 slikovnih pik.",
+                            "label": "Mobilni"
+                        },
+                        "sw-logo-share": {
+                            "label": "Ikona aplikacije in skupne rabe"
+                        },
+                        "sw-logo-tablet": {
+                            "helpText": "Prikazano na razglednicah med 767px in 991px.",
+                            "label": "Tableta"
+                        }
+                    },
+                    "label": "Mediji"
+                },
+                "statusColors": {
+                    "default": {
+                        "sw-color-danger": {
+                            "label": "Napaka"
+                        },
+                        "sw-color-info": {
+                            "label": "Informacije"
+                        },
+                        "sw-color-success": {
+                            "label": "Uspeh"
+                        },
+                        "sw-color-warning": {
+                            "label": "Obvestilo"
+                        }
+                    },
+                    "label": "Sporočila o stanju"
+                },
+                "themeColors": {
+                    "default": {
+                        "sw-background-color": {
+                            "label": "Ozadje"
+                        },
+                        "sw-border-color": {
+                            "label": "Meja"
+                        },
+                        "sw-color-brand-primary": {
+                            "label": "Primarna barva"
+                        },
+                        "sw-color-brand-secondary": {
+                            "label": "Sekundarna barva"
+                        }
+                    },
+                    "label": "Barve teme"
+                },
+                "typography": {
+                    "default": {
+                        "sw-font-family-base": {
+                            "label": "Pisava besedila telesa"
+                        },
+                        "sw-font-family-headline": {
+                            "label": "Pisava naslova"
+                        },
+                        "sw-headline-color": {
+                            "label": "Barva naslova"
+                        },
+                        "sw-text-color": {
+                            "label": "Barva besedila"
+                        }
+                    },
+                    "label": "Tipografija"
+                }
+            }
+        }
+    },
+    "sw-theme-manager": {
+        "actions": {
+            "buttonReset": "Ponastavi na privzeto",
+            "buttonUseTheme": "Uporabite temo",
+            "deleteDisabledToolTip": "Tema je še vedno dodeljena prodajnemu kanalu.",
+            "rename": "Preimenuj",
+            "saveClean": "Čisti Shrani",
+            "saveCleanToolTip": "Trenutne vrednosti bodo popolnoma prepisane. S tem naredite čist vnos, potem ko so bila polja izbrisana ali spremenjena njihova vrsta.",
+            "useImageAs": "Uporabite sliko kot",
+            "validate": "Potrdite",
+            "validateToolTip": "Preverite celotno konfiguracijo. Spremembe bodo ostale neshranjene!"
+        },
+        "detail": {
+            "description": "Opis",
+            "error": {
+                "invalidConfiguration": {
+                    "message": "Konfiguracija je napačna. Teme ni mogoče shraniti.",
+                    "title": "Neveljavna konfiguracija"
+                },
+                "themeCompile": {
+                    "message": "Teme ni bilo mogoče sestaviti. Prosimo, preverite celotno sporočilo o napaki, da odpravite to težavo.",
+                    "title": "Napaka pri sestavljanju teme"
+                }
+            },
+            "inheritanceInfo": "Ta tema izhaja iz teme \"{parentThemeName}\".",
+            "label": {
+                "colors": "Barve",
+                "favicon": "Favicon",
+                "fonts": "Pisave",
+                "frame": "Okvir",
+                "generalColors": "Splošne barve",
+                "headlines": "Naslovi",
+                "links": "Povezave",
+                "media": "Mediji",
+                "moreColors": "Več barv",
+                "shopLogo": "Logotip trgovine",
+                "socialMediaLinks": "Povezave do družbenih medijev",
+                "surface": "Površina",
+                "text": "Besedilo",
+                "textcolor": "Barva besedila"
+            },
+            "placeholder": {
+                "selectSalesChannel": "Izberite prodajni kanal..."
+            },
+            "salesChannel": "Dodeljeno naslednjim prodajnim kanalom",
+            "salesChannelHelpText": "Teh nalog tukaj ni mogoče odstraniti. Če želite spremeniti temo prodajnega kanala, obiščite nastavitve ustreznega prodajnega kanala.",
+            "showFullError": "Prikaži celotno napako",
+            "validate": {
+                "failed": "Preverjanje ni uspelo",
+                "failedMessage": "Konfiguracija je napačna. Sprememb ni mogoče shraniti.",
+                "success": "Validacija uspešna",
+                "successMessage": "Konfiguracija je bila uspešno potrjena. Spremembe lahko shranite zdaj."
+            }
+        },
+        "general": {
+            "captionMediaUpload": "Naložite sliko",
+            "defaultTab": "Splošno",
+            "descriptionTextModule": "Upravljajte teme tukaj.",
+            "lockedToolTip": "Teme, nameščene prek vtičnika, so zaklenjene in jih ni mogoče izbrisati",
+            "mainMenuHeader": "Vaše teme",
+            "mainMenuItemGeneral": "Teme",
+            "messageSaveError": "Teme ni bilo mogoče dodeliti prodajnemu kanalu.",
+            "placeholderSearchBar": "Poiščite razpoložljive teme...",
+            "titleError": "Napaka"
+        },
+        "list": {
+            "gridHeaderAssignment": "Dodeljeni prodajni kanali",
+            "gridHeaderCreated": "Ustvarjeno",
+            "gridHeaderName": "Ime",
+            "textThemeOverview": "Teme",
+            "titleSidebarItemRefresh": "Osveži"
+        },
+        "modal": {
+            "addToMediaLabel": "Dodaj v {name}",
+            "errorModalTitle": "Teme ni mogoče sestaviti",
+            "labelDuplicateThemeName": "Ime dvojnika",
+            "labelRenameThemeName": "Novo ime teme",
+            "modalTextResetAssigned": "To bo spremenilo videz vaše trgovine.",
+            "modalTextResetInfo": "Ali ste prepričani, da želite ponastaviti temo na privzete nastavitve?",
+            "modalTitleDuplicate": "Ustvari dvojnik",
+            "modalTitleRename": "Preimenuj",
+            "modalTitleReset": "Ponastavi temo",
+            "modalTitleSave": "Shrani temo",
+            "placeholderDuplicateThemeName": "Vnesite ime",
+            "placeholderRenameThemeName": "Vnesite ime",
+            "salesChannelAlreadyAssignedModal": {
+                "descriptionMultiple": "Nekateri izbrani prodajni kanali so že dodeljeni temi. Če nadaljujete in shranite, bodo naslednje tematske naloge zamenjane z <b>{newThemeName}</b>:",
+                "descriptionSingle": "Ta prodajni kanal je že dodeljen temi. Če nadaljujete in shranite, bo dodelitev teme zamenjana z <b>{newThemeName}</b>:"
+            },
+            "salesChannelRemovedModal": {
+                "descriptionMultiple": "Odstranili ste nekatere tematske naloge. Če nadaljujete in shranite, bodo naslednje tematske naloge zamenjane z <b>{defaultThemeName}</b>:",
+                "descriptionSingle": "Odstranili ste nalogo teme. Če nadaljujete in shranite, bo dodelitev teme zamenjana z <b>{defaultThemeName}</b>:"
+            },
+            "textDeleteInfo": "Ste prepričani, da res želite izbrisati temo \"{themeName}»?",
+            "textDuplicateInfo": "Če ustvarite dvojnik, lahko temo z drugačno barvno konfiguracijo uporabite za dodatne prodajne kanale.",
+            "textRenameInfo": "Vnesite novo ime teme.",
+            "textSaveInfo": "Ali res želite shraniti spremembe? To bo spremenilo videz vaših trgovin."
+        },
+        "sorting": {
+            "labelSort": "Razvrsti po:",
+            "labelSortByCreatedAsc": "Datum nastanka, naraščajoče",
+            "labelSortByCreatedDsc": "Datum nastanka, padajoče",
+            "labelSortByUpdatedAsc": "Datum spremembe, naraščajoče",
+            "labelSortByUpdatedDsc": "Datum spremembe, padajoče"
+        },
+        "themeListItem": {
+            "addPreviewImage": "Dodaj predogled",
+            "duplicate": "Podvojeni",
+            "emptyText": "Nobena tema ni dodeljena",
+            "notificationDeleteErrorMessage": "Tema, ki jo želite izbrisati, je še vedno dodeljena vsaj enemu prodajnemu kanalu.",
+            "notificationDeleteErrorTitle": "Napaka",
+            "removePreviewImage": "Odstranite predogled",
+            "rename": "Preimenuj"
+        },
+        "themeModal": {
+            "actionConfirm": "Spremeni temo",
+            "headline": "Razpoložljive teme",
+            "modalSubtitle": "Spreminjanje teme lahko spremeni vizualizacijo vaše trgovine.",
+            "modalTitle": "Izberite temo"
+        }
     },
     "sw-tree": {
         "general": {
@@ -9899,6 +10202,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "Uporabnika ni bilo mogoče povabiti."
+            },
+            "invitationNotYetAccepted": "Ta uporabnik še ni sprejel vašega povabila. Takoj, ko to storijo, bodo vsi manjkajoči podatki samodejno izpolnjeni.",
+            "inviteButtonLabel": "Povabi uporabnika",
+            "modal": {
+                "accountPermissionHint": "Prepričajte se, da uporabnik pripada tudi vašemu podjetju v računu Shopware, da bo lahko brez omejitev uporabljal administracijo te trgovine.",
+                "labelButtonInvite": "Povabi uporabnika",
+                "labelEmail": "E-pošta",
+                "labelLanguage": "Jezik uporabniškega vmesnika",
+                "placeholderEmail": "Vnesite e-pošto...",
+                "placeholderLanguage": "Izberite jezik...",
+                "title": "Pošljite povabilo uporabniku"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "Informacije",
+                    "rolesAndPermission": "Vloge in dovoljenja",
+                    "userinterface": "Uporabniški vmesnik"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "aktivno",
+                    "inactive": "deaktivirano",
+                    "invited": "vabljeni"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "Uporabniki",
@@ -9999,6 +10332,7 @@
                         "message": "Uporabniki sami ne morejo izbrisati."
                     }
                 },
+                "status": "Status",
                 "textModalDelete": "Ali res želite izbrisati uporabnika \"{name}»?",
                 "titleModalDelete": "Izbriši uporabnika"
             }

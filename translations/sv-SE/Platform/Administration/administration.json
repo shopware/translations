@@ -1489,6 +1489,21 @@
     "mt-text-editor-toolbar-button-link": {
         "label": "Länk"
     },
+    "sales-channel-theme": {
+        "changeTheme": "Ändra tema",
+        "changeThemeEmpty": "Tilldela tema",
+        "createTheme": "Skapa nytt tema",
+        "defaultAuthor": "Författare",
+        "defaultTitle": "Inget tema tilldelat",
+        "editContent": "Redigera tema",
+        "modal": {
+            "buttonCancel": "Avbryt",
+            "buttonChange": "Ändra tema",
+            "modalTitleChange": "Ändra tema",
+            "textChangeTheme": "Vill du verkligen ändra temat? Detta kan förändra visualiseringen av din butik."
+        },
+        "title": "Tematilldelning"
+    },
     "sidebar": {
         "ariaLabelButtonClose": "Stäng sidofältet",
         "ariaLabelButtonCollapse": "Dölj sidofältet",
@@ -1507,27 +1522,50 @@
                 "iframeModalConfirmMessageDescription": "Se till att alla processer är klara.",
                 "messageErrorFetchButtons": "Ett fel uppstod när du hämtade dina appåtgärder."
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "bekräfta",
-                "error": "Fel vid byte av domän för appar",
-                "explanation": "Installerade appar är fortfarande anslutna till den gamla domänen och fungerar inte med den nya domänen. Det finns tre alternativ härifrån att fortsätta.",
-                "explanationHeader": "Vi har märkt en förändring i din butik domän.",
-                "move-shop-permanently": {
-                    "description": "Få dina appar att använda den nya domänen i stället för den gamla domänen. Då tilldelas alla appar och appdata till din nya domän och tilldelningen tas bort från den gamla domänen.",
-                    "name": "Migrera appar till ny domän"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "Följande appar påverkas:",
+                "description": {
+                    "explanation": "Ändringar i ditt system och miljö upptäcktes som tyder på en ändring av din butiks identifierare. Tills du har valt ett alternativ kommer det inte att finnas någon kommunikation med appar för att förhindra problem med butiksidentifiering eller datakorruption.",
+                    "shopId": {
+                        "explanation": "Butidentifieraren är en funktion i Shopwares appsystem. Appar som din butik är registrerad med använder den för att unikt identifiera din butik. På grund av detta är det viktigt att butiksidentifierarna förblir unika och inte delas mellan olika butiker, inte ens i olika miljöer (t.ex. en iscensättning eller testkopia) i samma butik.",
+                        "title": "Vad är butiksidentifieraren?"
+                    }
                 },
-                "newLabel": "Ny domän: ",
-                "oldLabel": "Gammal domän: ",
-                "reinstall-apps": {
-                    "description": "Om du vill att dina appar ska fungera på båda domänerna installeras om alla appar på den nya domänen. Obs! Appdata på din gamla domän är fortfarande tillgängliga, icke-fria appar kan kräva ytterligare avgifter för varje domän.",
-                    "name": "Kopiera appar till aktuell domän"
+                "detectedChanges": "Följande förändringar upptäcktes:",
+                "error": "Uppdateringen av butiksidentifieraren misslyckades.",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "APP_URL används av appar för att ansluta till din butiks Admin API.",
+                        "label": "APP_URL miljövariabel"
+                    },
+                    "installation_path": {
+                        "label": "Installationsväg"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "Kontrollsumman för försäljningskanaldomänerna ändras när befintliga domäner ändras eller tas bort eller nya domäner läggs till.",
+                        "label": "Försäljningskanaldomäner"
+                    }
                 },
-                "success": "Domän har ändrats.",
-                "title": "Domänändring upptäcktes",
-                "uninstall-apps": {
-                    "description": "Håller appdata på den gamla domänen och avinstallerar alla appar från den nya domänen.",
-                    "name": "Avinstallera appar"
-                }
+                "newValue": "Ny specifikation",
+                "oldValue": "Gammalt värde",
+                "remindMeLater": "Påminn mig senare",
+                "selectAnOption": "Läs de tillgängliga alternativen noggrant och välj det som bäst passar ditt scenario:",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "Detta är vanligtvis rätt alternativ om du permanent har flyttat din butik till en annan infrastruktur eller ny miljö. Shopware kommer att meddela appar (dvs. omregistrera sig på appservrarna) med samma butiksidentifierare och appar förblir installerade. Din butik kommer att identifieras som samma butik som tidigare.",
+                        "name": "Behåll butiksidentifieraren"
+                    },
+                    "reinstall-apps": {
+                        "description": "Detta är vanligtvis rätt alternativ om du har gjort en kopia av din butik (t.ex. en iscensättnings- eller testmiljö i en produktionsbutik) och du vill använda apparna i den här kopian. Shopware installerar om apparna och registrerar sig nyligen på appservrarna med den nya butiksidentifieraren. Din butik identifieras som en ny butik.",
+                        "name": "Skapa en ny butiksidentifierare"
+                    },
+                    "uninstall-apps": {
+                        "description": "Detta är vanligtvis rätt alternativ om du har gjort en kopia av din butik (t.ex. en iscensättnings- eller testmiljö i en produktionsbutik) och du inte vill använda apparna i den här kopian. Shopware tar bort apparna utan att meddela appservrarna. En ny butiksidentifierare genereras och din butik identifieras som en ny butik.",
+                        "name": "Avinstallera appar"
+                    }
+                },
+                "success": "Butiksidentifieraren uppdaterades framgångsrikt.",
+                "title": "Ändring av butiksidentifierare föreslås"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "Extensions kan inte upprätta en anslutning till din butik på grund av en felaktig konfiguration i ditt system.",
@@ -2645,12 +2683,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "Länkbeskrivning",
+                        "ariaLabelHelpText": "Denna text kommer att läsas upp av skärmläsare som länktext.",
                         "isDecorative": "Markera bilden som dekorativ",
                         "isDecorativeHelpText": "När det här alternativet är aktiverat läses inte bildinformationen av skärmläsare.",
                         "linkNewTab": "Öppna länken i ny flik",
                         "linkTo": "Länkmål",
                         "minHeight": "Minimal höjd",
-                        "minHeightHelpText": "Ange minsta höjd med önskad enhet. Till exempel: 200px"
+                        "minHeightHelpText": "Ange minsta höjd med önskad enhet. Till exempel: 200px",
+                        "useFetchPriorityOnFirstItem": "Ladda första bilden med högre prioritet",
+                        "useFetchPriorityOnFirstItemHelpText": "När det här alternativet är aktiverat laddas den första bilden med högre prioritet. Detta kan förbättra hastigheten med vilken sidan återges i webbläsaren."
                     },
                     "placeholder": {
                         "enterMinHeight": "Ange minimal höjd...",
@@ -2896,6 +2938,7 @@
         },
         "general": {
             "createNewLayout": "Skapa ny layout",
+            "deleteDisabledLandingPageToolTip": "Layouten du vill ta bort är fortfarande tilldelad minst en målsida.",
             "deleteDisabledProductToolTip": "Layouten som du vill ta bort är fortfarande tilldelad till minst en produkt.",
             "deleteDisabledToolTip": "Layouten är fortfarande tilldelad till minst en kategori.",
             "disabledAddingBlocksToolTip": "Block kan endast läggas till på systemets standardspråk.",
@@ -4726,6 +4769,7 @@
         },
         "index": {
             "buttonLogin": "Logga in",
+            "buttonSsoLogin": "Logga in med Shopware SSO",
             "forgottenPasswordLink": "Har du glömt ditt lösenord?",
             "headlineForm": "Logga in på din Shopware-butik.",
             "headlineMain": "Hej!",
@@ -5922,6 +5966,9 @@
             "tax": {
                 "label": "Skatt"
             },
+            "theme": {
+                "label": "Teman"
+            },
             "users_and_permissions": {
                 "label": "Användare och behörigheter"
             }
@@ -6693,12 +6740,17 @@
                 "text": "Du har aktiverat elasticsearch för admin-sökningen, dessa fält är sökbara och du kan inte stänga av den, men du kan stänga av vilka enheter som är sökbara",
                 "title": "Elasticsearch är nu aktiverat"
             },
-            "cardSearchableElements": {
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "Minimal längd på sökord",
+                "subtitle": "Fördefiniera administrationens sökbeteende",
+                "title": "Sökbeteende"
+            },
+            "cardSearchContent": {
                 "buttonDeselect": "Avmarkera alla",
                 "buttonReset": "Återställ till standard",
-                "buttonSelect": "Markera alla",
-                "description": "Ställ in sökbart innehåll för varje modul och post.",
-                "title": "Sökbara element"
+                "buttonSelect": "Välj alla",
+                "subtitle": "Ställ in sökbart innehåll för varje modul och post",
+                "title": "Sökbart innehåll"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9076,7 @@
                 "consequences": "Detta kommer att resultera i en omedelbar förlust av åtkomst till Tjänsten och alla tillhörande processer.",
                 "warning": "Är du säker på att du vill inaktivera{serviceName}?"
             },
+            "permissions": "Visa behörigheter",
             "status-active": "Aktiv",
             "status-awaiting-permissions": "Väntar på behörigheter",
             "status-inactive": "Inaktiv",
@@ -9386,6 +9439,28 @@
             "textHeadline": "Shopware-konto"
         }
     },
+    "sw-settings-storefront": {
+        "configuration": {
+            "cardTitle": "Konfiguration av skyltfönster",
+            "iconCache": "Aktivera ikoncache",
+            "iconCacheToolTip": "Styr om ikoner endast levereras en gång per butikssida och ytterligare användningsområden kommer endast att refereras av ikonens id.",
+            "speculationRules": {
+                "description": "Aktivera pre-rendering med iverness-läget ”måttligt” för butiksfronten. Detta kan påverka dina analysdata.",
+                "title": "Spekulationsregler API (Experimentellt)"
+            },
+            "theme": {
+                "async": "Kompilera tema i bakgrunden",
+                "asyncTooltip": "Styr om temakompilering hanteras via meddelandekön istället för direkt vid ändringar."
+            }
+        },
+        "general": {
+            "description": "Inställningar för butiksfronten",
+            "helpText": "För mer information se <a target=\"_blank\" href='https://docs.shopware.com/en/shopware-6-de'>dokumentation</a>",
+            "mainMenuItemGeneral": "Storefront",
+            "textHeadline": "Storefront"
+        },
+        "helpText": "För mer information, se <a target=\"_blank\" href=\"https://docs.shopware.com/en/shopware-6-en\">Dokumentation</a>"
+    },
     "sw-settings-tag": {
         "detail": {
             "assignments": {
@@ -9683,6 +9758,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "Återställ alla"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "Logga in med ett annat konto",
+            "loggedInAsPrefix": "Inloggad som:",
+            "logoAltText": "Shopware-logotyp",
+            "text": "Din inloggning lyckades, men du har inte tillgång till denna Shopware-butik.",
+            "title": "Ingen tillgång till denna butik"
+        },
+        "general": {
+            "description": "Shopware-inloggningsfel",
+            "title": "SSO-fel"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "Knapptyp",
@@ -9776,6 +9864,221 @@
         "modalTitle": "Infoga och redigera länk",
         "openInNewTab": "Öppna i ny flik",
         "removeLink": "Ta bort länk"
+    },
+    "sw-theme": {
+        "Storefront": {
+            "default": {
+                "eCommerce": {
+                    "default": {
+                        "sw-color-buy-button": {
+                            "label": "Köp-knapp"
+                        },
+                        "sw-color-buy-button-text": {
+                            "label": "Köp-knapptext"
+                        },
+                        "sw-color-price": {
+                            "label": "Pris"
+                        }
+                    },
+                    "label": "E-handel"
+                },
+                "media": {
+                    "default": {
+                        "sw-logo-desktop": {
+                            "helpText": "Visas i fönster över 991px och som en reservdel på mindre fönster, om ingen annan logotyp är inställd.",
+                            "label": "Desktop"
+                        },
+                        "sw-logo-favicon": {
+                            "label": "Favicon"
+                        },
+                        "sw-logo-mobile": {
+                            "helpText": "Visas i fönster upp till 767px.",
+                            "label": "Mobil"
+                        },
+                        "sw-logo-share": {
+                            "label": "App- och delningsikonen"
+                        },
+                        "sw-logo-tablet": {
+                            "helpText": "Visas i fönster mellan 767px och 991px.",
+                            "label": "Tablet"
+                        }
+                    },
+                    "label": "Media"
+                },
+                "statusColors": {
+                    "default": {
+                        "sw-color-danger": {
+                            "label": "Fel"
+                        },
+                        "sw-color-info": {
+                            "label": "Information"
+                        },
+                        "sw-color-success": {
+                            "label": "Framgångsrikt"
+                        },
+                        "sw-color-warning": {
+                            "label": "Råd"
+                        }
+                    },
+                    "label": "Statusmeddelanden"
+                },
+                "themeColors": {
+                    "default": {
+                        "sw-background-color": {
+                            "label": "Bakgrund"
+                        },
+                        "sw-border-color": {
+                            "label": "Ramar"
+                        },
+                        "sw-color-brand-primary": {
+                            "label": "Primärfärg"
+                        },
+                        "sw-color-brand-secondary": {
+                            "label": "Sekundär färg"
+                        }
+                    },
+                    "label": "Temafärger"
+                },
+                "typography": {
+                    "default": {
+                        "sw-font-family-base": {
+                            "label": "Typsnitt för brödtext"
+                        },
+                        "sw-font-family-headline": {
+                            "label": "Rubrik teckensnitt"
+                        },
+                        "sw-headline-color": {
+                            "label": "Rubrikfärg"
+                        },
+                        "sw-text-color": {
+                            "label": "Textfärg"
+                        }
+                    },
+                    "label": "Typografi"
+                }
+            }
+        }
+    },
+    "sw-theme-manager": {
+        "actions": {
+            "buttonReset": "Återställ till standard",
+            "buttonUseTheme": "Använd tema",
+            "deleteDisabledToolTip": "Temat är fortfarande tilldelat en försäljningskanal.",
+            "rename": "Byt namn",
+            "saveClean": "Rengör Spara",
+            "saveCleanToolTip": "De aktuella värdena kommer att skrivas om helt. Använd detta för att göra en ren post efter att fält har tagits bort eller ändrats dess typer.",
+            "useImageAs": "Använd bild som",
+            "validate": "Validera",
+            "validateToolTip": "Validera hela konfigurationen. Ändringar förblir osparade!"
+        },
+        "detail": {
+            "description": "Beskrivning",
+            "error": {
+                "invalidConfiguration": {
+                    "message": "Konfigurationen är felaktig. Temat kan inte sparas.",
+                    "title": "Ogiltig konfiguration"
+                },
+                "themeCompile": {
+                    "message": "Temat kunde inte sammanställas. Kontrollera hela felmeddelandet för att lösa problemet.",
+                    "title": "Fel vid kompilering av tema"
+                }
+            },
+            "inheritanceInfo": "Detta tema härrör från temat \"{parentThemeName}\".",
+            "label": {
+                "colors": "Färger",
+                "favicon": "Favicon",
+                "fonts": "Teckensnitt",
+                "frame": "Ram",
+                "generalColors": "Allmänna färger",
+                "headlines": "Rubriker",
+                "links": "Länkar",
+                "media": "Media",
+                "moreColors": "Fler färger",
+                "shopLogo": "Butikslogotyp",
+                "socialMediaLinks": "Länkar till sociala medier",
+                "surface": "Yta",
+                "text": "Text",
+                "textcolor": "Textfärg"
+            },
+            "placeholder": {
+                "selectSalesChannel": "Välj försäljningskanal..."
+            },
+            "salesChannel": "Tilldelad till följande försäljningskanaler",
+            "salesChannelHelpText": "Det går inte att ta bort dessa uppdrag här. Om du vill ändra temat för en försäljningskanal besöker du respektive försäljningskanals inställningar.",
+            "showFullError": "Visa fullständigt fel",
+            "validate": {
+                "failed": "Valideringen misslyckades",
+                "failedMessage": "Konfigurationen är felaktig. Ändringarna kan inte sparas.",
+                "success": "Valideringen har lyckats",
+                "successMessage": "Konfigurationen validerades framgångsrikt. Du kan spara ändringarna nu."
+            }
+        },
+        "general": {
+            "captionMediaUpload": "Ladda upp en bild",
+            "defaultTab": "General",
+            "descriptionTextModule": "Hantera teman här.",
+            "lockedToolTip": "Teman installerade via plugin är låsta och kan inte raderas",
+            "mainMenuHeader": "Dina teman",
+            "mainMenuItemGeneral": "Teman",
+            "messageSaveError": "Temat kunde inte tilldelas försäljningskanalen.",
+            "placeholderSearchBar": "Sök efter tillgängliga teman...",
+            "titleError": "Fel"
+        },
+        "list": {
+            "gridHeaderAssignment": "Tilldelade försäljningskanaler",
+            "gridHeaderCreated": "Tillverkad",
+            "gridHeaderName": "Namn",
+            "textThemeOverview": "Teman",
+            "titleSidebarItemRefresh": "Uppdatera"
+        },
+        "modal": {
+            "addToMediaLabel": "Lägg till {name}",
+            "errorModalTitle": "Det gick inte att kompilera tema",
+            "labelDuplicateThemeName": "Namn på duplikatet",
+            "labelRenameThemeName": "Nytt tema namn",
+            "modalTextResetAssigned": "Detta kommer att förändra utseendet på din butik.",
+            "modalTextResetInfo": "Är du säker på att du vill återställa temat till standardinställningarna?",
+            "modalTitleDuplicate": "Skapa dubblett",
+            "modalTitleRename": "Byt namn",
+            "modalTitleReset": "Återställ tema",
+            "modalTitleSave": "Spara tema",
+            "placeholderDuplicateThemeName": "Ange namn",
+            "placeholderRenameThemeName": "Ange namn",
+            "salesChannelAlreadyAssignedModal": {
+                "descriptionMultiple": "Några av dina valda försäljningskanaler har redan tilldelats ett tema. Om du fortsätter och sparar kommer följande tematilldrag att ersättas med <b>{newThemeName}</b>:",
+                "descriptionSingle": "Denna försäljningskanal är redan tilldelad ett tema. Om du fortsätter och sparar kommer temauppgiften att ersättas med <b>{newThemeName}</b>:"
+            },
+            "salesChannelRemovedModal": {
+                "descriptionMultiple": "Du har tagit bort några av dina tematilldrag. Om du fortsätter och sparar kommer följande tematilldrag att ersättas med <b>{defaultThemeName}</b>:",
+                "descriptionSingle": "Du har tagit bort en tematilldelning. Om du fortsätter och sparar kommer temauppgiften att ersättas med <b>{defaultThemeName}</b>:"
+            },
+            "textDeleteInfo": "Är du säker på att du verkligen vill ta bort temat \"{themeName}”?",
+            "textDuplicateInfo": "Om du skapar en dubblett kan du använda temat med en annan färgkonfiguration för ytterligare försäljningskanaler.",
+            "textRenameInfo": "Ange ett nytt namn för temat.",
+            "textSaveInfo": "Vill du verkligen spara ändringarna? Detta kommer att förändra utseendet på dina butiker."
+        },
+        "sorting": {
+            "labelSort": "Sortera efter:",
+            "labelSortByCreatedAsc": "Skapandedatum, stigande",
+            "labelSortByCreatedDsc": "Skapandedatum, fallande",
+            "labelSortByUpdatedAsc": "Redigeringsdatum, stigande",
+            "labelSortByUpdatedDsc": "Redigeringsdatum, fallande"
+        },
+        "themeListItem": {
+            "addPreviewImage": "Lägg till förhandsgranskning",
+            "duplicate": "Duplicera",
+            "emptyText": "Inget tema tilldelat",
+            "notificationDeleteErrorMessage": "Temat du vill ta bort är fortfarande allokerat till minst en försäljningskanal.",
+            "notificationDeleteErrorTitle": "Fel",
+            "removePreviewImage": "Ta bort förhandsvisning",
+            "rename": "Byt namn"
+        },
+        "themeModal": {
+            "actionConfirm": "Ändra tema",
+            "headline": "Tillgängliga teman",
+            "modalSubtitle": "Att ändra ditt tema kan förändra visualiseringen av din butik.",
+            "modalTitle": "Välj tema"
+        }
     },
     "sw-tree": {
         "general": {
@@ -9899,6 +10202,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "Användaren kunde inte bjudas in."
+            },
+            "invitationNotYetAccepted": "Den här användaren har inte accepterat din inbjudan än. Så snart de gör det kommer all information som saknas att fyllas i automatiskt.",
+            "inviteButtonLabel": "Bjud in användare",
+            "modal": {
+                "accountPermissionHint": "Se till att användaren också tillhör ditt företag på Shopware-kontot så att de kan använda administrationen av denna butik utan begränsningar.",
+                "labelButtonInvite": "Bjud in användare",
+                "labelEmail": "E-postadress:",
+                "labelLanguage": "Användargränssnittets språk",
+                "placeholderEmail": "Ange e-post...",
+                "placeholderLanguage": "Välj ett språk...",
+                "title": "Skicka en inbjudan till en användare"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "Information",
+                    "rolesAndPermission": "Roller och behörigheter",
+                    "userinterface": "Användargränssnitt"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "aktiv",
+                    "inactive": "deaktiveras",
+                    "invited": "inbjudna"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "Användare",
@@ -9999,6 +10332,7 @@
                         "message": "Användare kan inte radera sig själva."
                     }
                 },
+                "status": "Status",
                 "textModalDelete": "Vill du verkligen ta bort användaren \"{name}\"?",
                 "titleModalDelete": "Ta bort användare"
             }

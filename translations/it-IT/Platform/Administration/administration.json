@@ -1489,6 +1489,21 @@
     "mt-text-editor-toolbar-button-link": {
         "label": "Link"
     },
+    "sales-channel-theme": {
+        "changeTheme": "Cambia tema",
+        "changeThemeEmpty": "Assegna tema",
+        "createTheme": "Crea un nuovo tema",
+        "defaultAuthor": "Autore",
+        "defaultTitle": "Nessun tema assegnato",
+        "editContent": "Modifica tema",
+        "modal": {
+            "buttonCancel": "Interrompi",
+            "buttonChange": "Cambia tema",
+            "modalTitleChange": "Cambia tema",
+            "textChangeTheme": "Vuoi davvero cambiare tema? Ciò potrebbe alterare la visualizzazione del tuo negozio."
+        },
+        "title": "Assegnazione del tema"
+    },
     "sidebar": {
         "ariaLabelButtonClose": "Chiudi la barra laterale",
         "ariaLabelButtonCollapse": "Comprimi la barra laterale",
@@ -1507,27 +1522,50 @@
                 "iframeModalConfirmMessageDescription": "Sei pregato di assicurarti che tutti i processi siano completati.",
                 "messageErrorFetchButtons": "Si è verificato un errore durante il recupero delle azioni dell'app."
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "Conferma",
-                "error": "Errore durante la modifica del dominio per le app",
-                "explanation": "Le app installate sono ancora connesse al vecchio dominio e non funzionano con il nuovo dominio. Ci sono tre opzioni da qui per procedere.",
-                "explanationHeader": "Abbiamo notato un cambiamento nel dominio del tuo negozio.",
-                "move-shop-permanently": {
-                    "description": "Fai in modo che le tue app utilizzino il nuovo dominio anziché il vecchio dominio. Questo assegnerà tutte le app e i dati delle app al nuovo dominio e rimuoverà l'assegnazione dal vecchio dominio.",
-                    "name": "Migrazione delle app in un nuovo dominio"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "Sono interessate le seguenti app:",
+                "description": {
+                    "explanation": "Sono state rilevate modifiche nel sistema e nell'ambiente che suggeriscono una modifica dell'identificativo del negozio. Finché non avrai selezionato un'opzione, non ci sarà alcuna comunicazione con le app per evitare problemi di identificazione del negozio o danneggiamento dei dati.",
+                    "shopId": {
+                        "explanation": "L'identificatore del negozio è una funzionalità del sistema di app di Shopware. Le app con cui il tuo negozio è registrato lo utilizzano per identificare in modo univoco il tuo negozio. Per questo motivo, è importante che gli identificativi del negozio rimangano univoci e non siano condivisi tra negozi diversi, nemmeno in ambienti diversi (ad esempio una copia temporanea o di prova) dello stesso negozio.",
+                        "title": "Cos'è l'identificativo del negozio?"
+                    }
                 },
-                "newLabel": "Nuovo dominio: ",
-                "oldLabel": "Vecchio dominio: ",
-                "reinstall-apps": {
-                    "description": "Se vuoi che le tue app funzionino su entrambi i domini, questa reinstalla tutte le app nel nuovo dominio. Nota: i dati delle app sul tuo vecchio dominio saranno ancora disponibili, le app non gratuite potrebbero richiedere costi aggiuntivi per ciascun dominio.",
-                    "name": "Copiare le app nel dominio corrente"
+                "detectedChanges": "Sono state rilevate le seguenti modifiche:",
+                "error": "Aggiornamento dell'identificativo del negozio non riuscito.",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "L'APP_URL viene utilizzato dalle app per connettersi all'API di amministrazione del tuo negozio.",
+                        "label": "Variabile di ambiente APP_URL"
+                    },
+                    "installation_path": {
+                        "label": "Percorso di installazione"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "Il checksum dei domini del canale di vendita cambia quando i domini esistenti vengono modificati o eliminati o vengono aggiunti nuovi domini.",
+                        "label": "Domini dei canali di vendita"
+                    }
                 },
-                "success": "Dominio modificato.",
-                "title": "Rilevata modifica del dominio",
-                "uninstall-apps": {
-                    "description": "Mantiene i dati delle app sul vecchio dominio e disinstalla tutte le app dal nuovo dominio.",
-                    "name": "Disinstallare app"
-                }
+                "newValue": "Nuova peculiarità",
+                "oldValue": "Valore vecchio",
+                "remindMeLater": "Ricordamelo più tardi",
+                "selectAnOption": "Leggi attentamente le opzioni disponibili e seleziona quella più adatta al tuo scenario:",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "Questa è in genere l'opzione giusta se hai trasferito definitivamente il tuo negozio in un'infrastruttura diversa o in un nuovo ambiente. Shopware invierà una notifica alle app (ovvero una nuova registrazione sui server delle app) utilizzando lo stesso identificativo del negozio e le app rimarranno installate. Il tuo negozio si identificherà come lo stesso di prima.",
+                        "name": "Conserva l'identificativo del negozio"
+                    },
+                    "reinstall-apps": {
+                        "description": "Questa è in genere l'opzione giusta se hai creato una copia del tuo negozio (ad esempio un ambiente di staging o test di un negozio di produzione) e desideri utilizzare le app in questa copia. Shopware reinstallerà le app e si registrerà nuovamente sui server delle app utilizzando il nuovo identificativo del negozio. Il tuo negozio si identificherà come nuovo negozio.",
+                        "name": "Genera un nuovo identificativo del negozio"
+                    },
+                    "uninstall-apps": {
+                        "description": "Questa è in genere l'opzione giusta se hai creato una copia del tuo negozio (ad esempio un ambiente di staging o test di un negozio di produzione) e non desideri utilizzare le app in questa copia. Shopware eliminerà le app senza avvisare i server delle app. Verrà generato un nuovo identificativo del negozio e il tuo negozio verrà identificato come nuovo negozio.",
+                        "name": "Disinstallare le app"
+                    }
+                },
+                "success": "L'identificativo del negozio è stato aggiornato correttamente.",
+                "title": "Suggerita la modifica dell'identificativo del negozio"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "Le estensioni non sono in grado di stabilire una connessione con il tuo negozio, a causa di una configurazione errata nel tuo sistema.",
@@ -2645,12 +2683,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "Descrizione del link",
+                        "ariaLabelHelpText": "Questo testo verrà letto dagli screen reader come testo del link.",
                         "isDecorative": "Contrassegna l'immagine come decorativa",
                         "isDecorativeHelpText": "Quando questa opzione è abilitata, le informazioni sull'immagine non verranno lette dagli screen reader.",
                         "linkNewTab": "Apri link nella nuova scheda",
                         "linkTo": "Destinazione del link",
                         "minHeight": "Altezza minima",
-                        "minHeightHelpText": "Inserisci l'altezza minima con l'unità desiderata. Ad esempio: 200 px"
+                        "minHeightHelpText": "Inserisci l'altezza minima con l'unità desiderata. Ad esempio: 200 px",
+                        "useFetchPriorityOnFirstItem": "Carica la prima immagine con priorità più alta",
+                        "useFetchPriorityOnFirstItemHelpText": "Quando questa opzione è abilitata, la prima immagine viene caricata con una priorità più alta. Questo può migliorare la velocità con cui la pagina viene renderizzata nel browser."
                     },
                     "placeholder": {
                         "enterMinHeight": "Inserisci altezza minima...",
@@ -2896,6 +2938,7 @@
         },
         "general": {
             "createNewLayout": "Crea nuovo layout",
+            "deleteDisabledLandingPageToolTip": "Il layout che desideri eliminare è ancora assegnato ad almeno una pagina di destinazione.",
             "deleteDisabledProductToolTip": "Il layout che si desidera eliminare è ancora assegnato ad almeno un prodotto.",
             "deleteDisabledToolTip": "Il layout è ancora assegnato ad almeno una categoria.",
             "disabledAddingBlocksToolTip": "I blocchi possono essere aggiunti solo nella lingua standard del sistema.",
@@ -4726,6 +4769,7 @@
         },
         "index": {
             "buttonLogin": "Login",
+            "buttonSsoLogin": "Accedi con Shopware SSO",
             "forgottenPasswordLink": "Hai dimenticato la tua password?",
             "headlineForm": "Effettua il login al tuo shop di Shopware",
             "headlineMain": "Salve!",
@@ -5922,6 +5966,9 @@
             "tax": {
                 "label": "Tasse"
             },
+            "theme": {
+                "label": "Temi"
+            },
             "users_and_permissions": {
                 "label": "Utenti e autorizzazioni"
             }
@@ -6693,12 +6740,17 @@
                 "text": "Hai abilitato elasticsearch per la ricerca da amministratore, questi campi sono ricercabili e non puoi disattivarli, tuttavia puoi disattivare quali entità sono ricercabili",
                 "title": "Elasticsearch è ora abilitato"
             },
-            "cardSearchableElements": {
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "Lunghezza minima del termine di ricerca",
+                "subtitle": "Predefinisci il comportamento di ricerca della tua amministrazione",
+                "title": "Comportamento di ricerca"
+            },
+            "cardSearchContent": {
                 "buttonDeselect": "Deseleziona tutto",
                 "buttonReset": "Ripristina il valore predefinito",
                 "buttonSelect": "Seleziona tutto",
-                "description": "Imposta il contenuto ricercabile per ogni modulo e voce.",
-                "title": "Elementi ricercabili"
+                "subtitle": "Imposta il contenuto ricercabile per ogni modulo e voce",
+                "title": "Contenuto ricercabile"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9076,7 @@
                 "consequences": "Ciò comporterà una perdita immediata dell'accesso al Servizio e a tutti i processi associati.",
                 "warning": "Sei sicuro di voler disattivare «{serviceName}»?"
             },
+            "permissions": "Mostra autorizzazioni",
             "status-active": "Attivo",
             "status-awaiting-permissions": "Attende le autorizzazioni",
             "status-inactive": "Inattivo",
@@ -9386,6 +9439,28 @@
             "textHeadline": "Account Shopware"
         }
     },
+    "sw-settings-storefront": {
+        "configuration": {
+            "cardTitle": "Configurazione della vetrina",
+            "iconCache": "Attiva la cache delle icone",
+            "iconCacheToolTip": "Controlla se le icone vengono consegnate una sola volta per pagina di vetrina e gli usi aggiuntivi saranno referenziati solo dall'ID delle icone.",
+            "speculationRules": {
+                "description": "Attiva il pre-rendering con la modalità «moderata» per lo Storefront. Questo può influenzare i tuoi dati di analisi.",
+                "title": "API delle regole di speculazione (sperimentale)"
+            },
+            "theme": {
+                "async": "Compila il tema sullo sfondo",
+                "asyncTooltip": "Controlla se la compilazione del tema viene gestita tramite la coda dei messaggi anziché direttamente sulle modifiche."
+            }
+        },
+        "general": {
+            "description": "Impostazioni per la vetrina",
+            "helpText": "Per ulteriori informazioni, consulta la documentazione <a target=\"_blank\" href='https://docs.shopware.com/en/shopware-6-de'></a>",
+            "mainMenuItemGeneral": "Vetrina",
+            "textHeadline": "Vetrina"
+        },
+        "helpText": "Per ulteriori informazioni consulta la <a target=\"_blank\" href=\"https://docs.shopware.com/en/shopware-6-en\">documentazione</a>"
+    },
     "sw-settings-tag": {
         "detail": {
             "assignments": {
@@ -9683,6 +9758,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "Ripristina tutto"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "Accedi con un altro account",
+            "loggedInAsPrefix": "Effettuato l'accesso come:",
+            "logoAltText": "Logo Shopware",
+            "text": "Il tuo accesso è andato a buon fine, ma non hai accesso a questo negozio Shopware.",
+            "title": "Nessun accesso a questo negozio"
+        },
+        "general": {
+            "description": "Errore di accesso a Shopware",
+            "title": "Errore SSO"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "Tipo di pulsante",
@@ -9776,6 +9864,221 @@
         "modalTitle": "Inserisci/Modifica link",
         "openInNewTab": "Apri in una nuova scheda",
         "removeLink": "Rimuovi link"
+    },
+    "sw-theme": {
+        "Storefront": {
+            "default": {
+                "eCommerce": {
+                    "default": {
+                        "sw-color-buy-button": {
+                            "label": "pulsante Acquista"
+                        },
+                        "sw-color-buy-button-text": {
+                            "label": "Testo del pulsante Acquista"
+                        },
+                        "sw-color-price": {
+                            "label": "Prezzo"
+                        }
+                    },
+                    "label": "E-Commerce"
+                },
+                "media": {
+                    "default": {
+                        "sw-logo-desktop": {
+                            "helpText": "Visualizzato su finestre superiori a 991 px e come riserva su finestre più piccole, se non è impostato nessun altro logo.",
+                            "label": "Desktop"
+                        },
+                        "sw-logo-favicon": {
+                            "label": "Favicon"
+                        },
+                        "sw-logo-mobile": {
+                            "helpText": "Visualizzato su riquadri fino a 767 px.",
+                            "label": "Cellulare"
+                        },
+                        "sw-logo-share": {
+                            "label": "Icona App e condividi"
+                        },
+                        "sw-logo-tablet": {
+                            "helpText": "Visualizzato su finestre comprese tra 767 px e 991 px.",
+                            "label": "Tablet"
+                        }
+                    },
+                    "label": "Supporti"
+                },
+                "statusColors": {
+                    "default": {
+                        "sw-color-danger": {
+                            "label": "Errore"
+                        },
+                        "sw-color-info": {
+                            "label": "Informazioni"
+                        },
+                        "sw-color-success": {
+                            "label": "Successo"
+                        },
+                        "sw-color-warning": {
+                            "label": "Avvertenza"
+                        }
+                    },
+                    "label": "Messaggi di stato"
+                },
+                "themeColors": {
+                    "default": {
+                        "sw-background-color": {
+                            "label": "Sfondo"
+                        },
+                        "sw-border-color": {
+                            "label": "Ambito"
+                        },
+                        "sw-color-brand-primary": {
+                            "label": "Colore primario"
+                        },
+                        "sw-color-brand-secondary": {
+                            "label": "Colore secondario"
+                        }
+                    },
+                    "label": "Colori del tema"
+                },
+                "typography": {
+                    "default": {
+                        "sw-font-family-base": {
+                            "label": "Carattere del corpo del testo"
+                        },
+                        "sw-font-family-headline": {
+                            "label": "Tipo di carattere del titolo"
+                        },
+                        "sw-headline-color": {
+                            "label": "Colore del titolo"
+                        },
+                        "sw-text-color": {
+                            "label": "Colore testo"
+                        }
+                    },
+                    "label": "Tipografia"
+                }
+            }
+        }
+    },
+    "sw-theme-manager": {
+        "actions": {
+            "buttonReset": "Ripristina il valore predefinito",
+            "buttonUseTheme": "Usa tema",
+            "deleteDisabledToolTip": "Il tema è ancora assegnato a un canale di vendita.",
+            "rename": "Rinomina",
+            "saveClean": "Salva in modo pulito",
+            "saveCleanToolTip": "I valori correnti verranno riscritti completamente. Usalo per creare una voce pulita dopo che i campi sono stati eliminati o ne sono stati modificati i tipi.",
+            "useImageAs": "Usa l'immagine come",
+            "validate": "Convalida",
+            "validateToolTip": "Convalida l'intera configurazione. Le modifiche rimarranno non salvate!"
+        },
+        "detail": {
+            "description": "Descrizione",
+            "error": {
+                "invalidConfiguration": {
+                    "message": "La configurazione è difettosa. Il tema non può essere salvato.",
+                    "title": "Configurazione non valida"
+                },
+                "themeCompile": {
+                    "message": "Il tema non può essere compilato. Controlla il messaggio di errore completo per risolvere il problema.",
+                    "title": "Errore durante la compilazione del tema"
+                }
+            },
+            "inheritanceInfo": "Questo tema è derivato dal tema \"{parentThemeName}».",
+            "label": {
+                "colors": "Colori",
+                "favicon": "Favicon",
+                "fonts": "Font",
+                "frame": "Cornice",
+                "generalColors": "Colori generali",
+                "headlines": "Titoli",
+                "links": "Collegamenti",
+                "media": "Supporti",
+                "moreColors": "Altri colori",
+                "shopLogo": "Logo del negozio",
+                "socialMediaLinks": "Collegamenti ai social media",
+                "surface": "Superficie",
+                "text": "Testo",
+                "textcolor": "Colore testo"
+            },
+            "placeholder": {
+                "selectSalesChannel": "Seleziona canale di vendita..."
+            },
+            "salesChannel": "Assegnato ai seguenti canali di vendita",
+            "salesChannelHelpText": "Non è possibile rimuovere queste assegnazioni qui. Se desideri modificare il tema di un canale di vendita, visita le impostazioni del rispettivo canale di vendita.",
+            "showFullError": "Mostra errore completo",
+            "validate": {
+                "failed": "Convalida fallita",
+                "failedMessage": "La configurazione è difettosa. Le modifiche non possono essere salvate.",
+                "success": "Convalida riuscita",
+                "successMessage": "La configurazione è stata convalidata con successo. Ora puoi salvare le modifiche."
+            }
+        },
+        "general": {
+            "captionMediaUpload": "Carica un'immagine",
+            "defaultTab": "Generale",
+            "descriptionTextModule": "Gestisci i temi qui.",
+            "lockedToolTip": "I temi installati tramite plugin sono bloccati e non possono essere eliminati",
+            "mainMenuHeader": "I tuoi temi",
+            "mainMenuItemGeneral": "Temi",
+            "messageSaveError": "Il tema non può essere assegnato al canale di vendita.",
+            "placeholderSearchBar": "Cerca temi disponibili...",
+            "titleError": "Errore"
+        },
+        "list": {
+            "gridHeaderAssignment": "Canali di vendita assegnati",
+            "gridHeaderCreated": "Creato",
+            "gridHeaderName": "Nome",
+            "textThemeOverview": "Temi",
+            "titleSidebarItemRefresh": "Aggiorna"
+        },
+        "modal": {
+            "addToMediaLabel": "Aggiungi a {name}",
+            "errorModalTitle": "Impossibile compilare il tema",
+            "labelDuplicateThemeName": "Nome del duplicato",
+            "labelRenameThemeName": "Nuovo nome del tema",
+            "modalTextResetAssigned": "Questo cambierà l'aspetto del tuo negozio.",
+            "modalTextResetInfo": "Sei sicuro di voler ripristinare le impostazioni predefinite del tema?",
+            "modalTitleDuplicate": "Crea duplicato",
+            "modalTitleRename": "Rinomina",
+            "modalTitleReset": "Reimposta tema",
+            "modalTitleSave": "Salva tema",
+            "placeholderDuplicateThemeName": "Inserisci il nome",
+            "placeholderRenameThemeName": "Inserisci il nome",
+            "salesChannelAlreadyAssignedModal": {
+                "descriptionMultiple": "Alcuni dei canali di vendita scelti sono già assegnati a un tema. Se continui a salvare, le seguenti assegnazioni tematiche verranno sostituite con <b>{newThemeName}</b>:",
+                "descriptionSingle": "Questo canale di vendita è già assegnato a un tema. Se continui a salvare, l'assegnazione del tema verrà sostituita con <b>{newThemeName}</b>:"
+            },
+            "salesChannelRemovedModal": {
+                "descriptionMultiple": "Hai rimosso alcuni dei tuoi compiti a tema. Se continui a salvare, le seguenti assegnazioni a tema verranno sostituite con <b>{defaultThemeName}</b>:",
+                "descriptionSingle": "Hai rimosso un'assegnazione a tema. Se continui a salvare, l'assegnazione del tema verrà sostituita con <b>{defaultThemeName}</b>:"
+            },
+            "textDeleteInfo": "Sei sicuro di voler veramente eliminare il tema \"{themeName}«?",
+            "textDuplicateInfo": "Se crei un duplicato, puoi utilizzare il tema con una configurazione di colore diversa per canali di vendita aggiuntivi.",
+            "textRenameInfo": "Inserisci un nuovo nome per il tema.",
+            "textSaveInfo": "Vuoi davvero salvare le modifiche? Questo cambierà l'aspetto dei tuoi negozi."
+        },
+        "sorting": {
+            "labelSort": "Ordina per:",
+            "labelSortByCreatedAsc": "Data di creazione, in ordine crescente",
+            "labelSortByCreatedDsc": "Data di creazione, in ordine decrescente",
+            "labelSortByUpdatedAsc": "Data di modifica, in ordine crescente",
+            "labelSortByUpdatedDsc": "Data di modifica, in ordine decrescente"
+        },
+        "themeListItem": {
+            "addPreviewImage": "Aggiungi anteprima",
+            "duplicate": "Duplica",
+            "emptyText": "Nessun tema assegnato",
+            "notificationDeleteErrorMessage": "Il tema che desideri eliminare è ancora assegnato ad almeno un canale di vendita.",
+            "notificationDeleteErrorTitle": "Errore",
+            "removePreviewImage": "Elimina anteprima",
+            "rename": "Rinomina"
+        },
+        "themeModal": {
+            "actionConfirm": "Cambia tema",
+            "headline": "Temi disponibili",
+            "modalSubtitle": "La modifica del tema può alterare la visualizzazione del negozio.",
+            "modalTitle": "Seleziona tema"
+        }
     },
     "sw-tree": {
         "general": {
@@ -9899,6 +10202,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "L'utente non può essere invitato."
+            },
+            "invitationNotYetAccepted": "Questo utente non ha ancora accettato il tuo invito. Non appena lo farà, tutte le informazioni mancanti verranno inserite automaticamente.",
+            "inviteButtonLabel": "Invita utente",
+            "modal": {
+                "accountPermissionHint": "Assicurati che l'utente appartenga anche alla tua azienda nell'account Shopware in modo che possa utilizzare l'amministrazione di questo negozio senza restrizioni.",
+                "labelButtonInvite": "Invita utente",
+                "labelEmail": "Indirizzo e-mail",
+                "labelLanguage": "Lingua dell'interfaccia utente",
+                "placeholderEmail": "Inserisci l'email...",
+                "placeholderLanguage": "Scegli una lingua...",
+                "title": "Inviare un invito a un utente"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "Informazioni",
+                    "rolesAndPermission": "Ruoli e autorizzazioni",
+                    "userinterface": "Interfaccia utente"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "attivo",
+                    "inactive": "disattivato",
+                    "invited": "invitato"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "Utenti",
@@ -9999,6 +10332,7 @@
                         "message": "Gli utenti non si possono cancellare autonomamente."
                     }
                 },
+                "status": "Stato",
                 "textModalDelete": "Sei sicuro di volere cancellare l'utente \"{name}\"?",
                 "titleModalDelete": "Cancella utente"
             }
