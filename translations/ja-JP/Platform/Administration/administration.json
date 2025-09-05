@@ -1489,6 +1489,21 @@
     "mt-text-editor-toolbar-button-link": {
         "label": "リンク"
     },
+    "sales-channel-theme": {
+        "changeTheme": "テーマを変更",
+        "changeThemeEmpty": "テーマを割り当て",
+        "createTheme": "新しいテーマを作成",
+        "defaultAuthor": "作成者",
+        "defaultTitle": "テーマが割り当てられていません",
+        "editContent": "テーマを編集",
+        "modal": {
+            "buttonCancel": "キャンセル",
+            "buttonChange": "テーマを変更",
+            "modalTitleChange": "テーマを変更",
+            "textChangeTheme": "本当にテーマを変えたいですか？これにより、ショップのビジュアライゼーションが変わる可能性があります。"
+        },
+        "title": "テーマの割り当て"
+    },
     "sidebar": {
         "ariaLabelButtonClose": "サイドバーを閉じる",
         "ariaLabelButtonCollapse": "サイドバーを折りたたむ",
@@ -1507,27 +1522,50 @@
                 "iframeModalConfirmMessageDescription": "すべてのプロセスが完了していることを確認してください。",
                 "messageErrorFetchButtons": "アプリのアクションを取得中にエラーが発生しました。"
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "確認",
-                "error": "アプリのドメイン変更中にエラーが発生しました",
-                "explanation": "インストールしたアプリは古いドメインに接続されたままであり、新しいドメインでは動作しません。ここから先に進むには 3 つのオプションがあります。",
-                "explanationHeader": "ショップドメインの変更に気づきました。",
-                "move-shop-permanently": {
-                    "description": "アプリが古いドメインの代わりに新しいドメインを使用するようにします。これにより、すべてのアプリとアプリデータが新しいドメインに割り当てられ、古いドメインから割り当てが削除されます。",
-                    "name": "アプリを新しいドメインに移行"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "次のアプリが影響を受けます。",
+                "description": {
+                    "explanation": "ショップの識別子の変更を示唆するシステムおよび環境の変更が検出されました。オプションを選択するまで、ショップの識別やデータ破損の問題を防ぐため、アプリとの通信は行われません。",
+                    "shopId": {
+                        "explanation": "ショップ識別子はShopwareのアプリシステムの機能です。ショップが登録されているアプリは、これを使ってショップを一意に識別します。そのため、ショップIDが一意であること、また同じショップの環境 (ステージングやテストコピーなど) が異なっていても、異なるショップ間で共有されないことが重要です。",
+                        "title": "ショップIDとは何ですか?"
+                    }
                 },
-                "newLabel": "新しいドメイン: ",
-                "oldLabel": "古いドメイン: ",
-                "reinstall-apps": {
-                    "description": "もしあなたがアプリケーションを両方のドメインで動作させたいのであれば、この再インストールはすべてのアプリケーションをあなたの新しいドメインにインストールします。注意: 古いドメイン上のアプリケーションデータはご利用可能です。有償アプリケーションについては各ドメインで追加費用が必要になるかもしれません。",
-                    "name": "アプリを現在のドメインにコピー"
+                "detectedChanges": "次の変更が検出されました。",
+                "error": "ショップ識別子の更新に失敗しました。",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "APP_URLは、アプリがショップの管理APIに接続するために使用されます。",
+                        "label": "APP_URL 環境変数"
+                    },
+                    "installation_path": {
+                        "label": "インストールパス"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "既存のドメインが変更または削除されたり、新しいドメインが追加されたりすると、販売チャネルドメインのチェックサムが変更されます。",
+                        "label": "販売チャネルドメイン"
+                    }
                 },
-                "success": "ドメインが変更されました。",
-                "title": "ドメインの変更が検出されました",
-                "uninstall-apps": {
-                    "description": "アプリデータを古いドメインに保存し、新しいドメインからすべてのアプリをアンインストールします。",
-                    "name": "アプリをアンインストール"
-                }
+                "newValue": "新しい値",
+                "oldValue": "古い値",
+                "remindMeLater": "後で通知する",
+                "selectAnOption": "使用可能なオプションを注意深く読み、シナリオに最適なオプションを選択してください。",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "これは通常、ショップを別のインフラストラクチャや新しい環境に恒久的に移動した場合に適したオプションです。Shopware は、同じショップ ID を使用してアプリを通知し (つまり、アプリサーバーで再登録する)、アプリはインストールされたままになります。ショップは以前と同じショップとして認識されます。",
+                        "name": "ショップIDを保管してください"
+                    },
+                    "reinstall-apps": {
+                        "description": "これは通常、ショップのコピー（プロダクションショップのステージング環境やテスト環境など）を作成していて、そのコピーにあるアプリを使用したい場合に適しています。Shopware はアプリを再インストールし、新しいショップ ID を使用してアプリサーバーに新規登録します。ショップは新しいショップとして識別されます。",
+                        "name": "新しいショップIDを生成"
+                    },
+                    "uninstall-apps": {
+                        "description": "これは通常、ショップのコピー（プロダクションショップのステージング環境やテスト環境など）を作成していて、そのコピーにあるアプリを使用したくない場合に適しています。Shopware はアプリサーバーに通知せずにアプリを削除します。新しいショップ識別子が生成され、ショップが新しいショップとして識別されます。",
+                        "name": "アプリをアンインストール"
+                    }
+                },
+                "success": "ショップIDが正常に更新されました。",
+                "title": "ショップ識別子の変更が推奨されました"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "システムの設定が間違っているため、エクステンションはショップへの接続を確立できません。",
@@ -2645,12 +2683,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "リンク説明",
+                        "ariaLabelHelpText": "このテキストは、スクリーンリーダーによってリンクテキストとして読み上げられます。",
                         "isDecorative": "画像を装飾用としてマークする",
                         "isDecorativeHelpText": "このオプションを有効にすると、画像情報はスクリーンリーダーで読み上げられません。",
                         "linkNewTab": "リンクを新しいタブで開く",
                         "linkTo": "リンクターゲット",
                         "minHeight": "最低高",
-                        "minHeightHelpText": "希望する単位で最小の高さを入力します。例: 200px"
+                        "minHeightHelpText": "希望する単位で最小の高さを入力します。例: 200px",
+                        "useFetchPriorityOnFirstItem": "優先度の高い最初の画像を読み込む",
+                        "useFetchPriorityOnFirstItemHelpText": "このオプションを有効にすると、最初の画像がより高い優先度でロードされます。これにより、ブラウザーでのページのレンダリング速度が向上します。"
                     },
                     "placeholder": {
                         "enterMinHeight": "最低の高さを入力してください...",
@@ -2896,6 +2938,7 @@
         },
         "general": {
             "createNewLayout": "新しいレイアウトの作成",
+            "deleteDisabledLandingPageToolTip": "削除するレイアウトは、まだ 1 つ以上のランディングページに割り当てられています。",
             "deleteDisabledProductToolTip": "削除するレイアウトは、少なくとも 1 つの製品にまだ割り当てられています。",
             "deleteDisabledToolTip": "削除するレイアウトは、少なくとも 1 つのカテゴリにまだ割り当てられています。",
             "disabledAddingBlocksToolTip": "ブロックの追加は、デフォルトのシステム言語でのみ機能します。",
@@ -4726,6 +4769,7 @@
         },
         "index": {
             "buttonLogin": "ログイン",
+            "buttonSsoLogin": "ショップウェア SSO でログイン",
             "forgottenPasswordLink": "パスワードをお忘れですか？",
             "headlineForm": "ショップウェアストアにログインする",
             "headlineMain": "こんにちは!",
@@ -5922,6 +5966,9 @@
             "tax": {
                 "label": "税"
             },
+            "theme": {
+                "label": "テーマ"
+            },
             "users_and_permissions": {
                 "label": "ユーザーと権限"
             }
@@ -6693,12 +6740,17 @@
                 "text": "管理検索で elasticsearch を有効にしました。これらのフィールドは検索可能で、オフにすることはできませんが、検索可能なエンティティを無効にすることはできます。",
                 "title": "Elasticsearchが有効になりました"
             },
-            "cardSearchableElements": {
-                "buttonDeselect": "全て選択解除",
-                "buttonReset": "初期設定に戻す",
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "検索用語の長さは最小限",
+                "subtitle": "管理者の検索行動を事前に定義する",
+                "title": "検索動作"
+            },
+            "cardSearchContent": {
+                "buttonDeselect": "すべて選択解除",
+                "buttonReset": "デフォルトにリセット",
                 "buttonSelect": "すべて選択",
-                "description": "各モジュール、エントリーの検索可能なコンテンツを設定します。",
-                "title": "検索可能な要素"
+                "subtitle": "各モジュールとエントリの検索可能なコンテンツを設定します",
+                "title": "検索可能なコンテンツ"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9076,7 @@
                 "consequences": "これにより、本サービスおよび関連するすべてのプロセスへのアクセスが直ちに失われます。",
                 "warning": "「{serviceName}」を無効にしてよろしいですか？"
             },
+            "permissions": "権限を表示",
             "status-active": "有効",
             "status-awaiting-permissions": "許可待ち",
             "status-inactive": "非アクティブ",
@@ -9386,6 +9439,28 @@
             "textHeadline": "Shopwareアカウント"
         }
     },
+    "sw-settings-storefront": {
+        "configuration": {
+            "cardTitle": "ストアフロント構成",
+            "iconCache": "アイコンキャッシュを有効にする",
+            "iconCacheToolTip": "アイコンをストアフロントページごとに1回だけ配信し、それ以降の使用箇所をアイコンIDでのみ参照するかどうかを制御します。",
+            "speculationRules": {
+                "description": "ストアフロントの熱意モード「モデレート」でプリレンダリングを有効にします。これは分析データに影響する可能性があります。",
+                "title": "投機ルール API (試験段階)"
+            },
+            "theme": {
+                "async": "テーマをバックグラウンドでコンパイル",
+                "asyncTooltip": "テーマのコンパイルが変更時に直接処理されるのではなく、メッセージキューを介して処理されるかどうかを制御します。"
+            }
+        },
+        "general": {
+            "description": "ストアフロントの設定",
+            "helpText": "詳細については、 <a target=\"_blank\" href='https://docs.shopware.com/en/shopware-6-de'>ドキュメント</a>を参照してください。",
+            "mainMenuItemGeneral": "ストアフロント",
+            "textHeadline": "ストアフロント"
+        },
+        "helpText": "詳細については、 <a target=\"_blank\", href=\"https://docs.shopware.com/en/shopware-6-en\">のドキュメントをご覧ください。</a>"
+    },
     "sw-settings-tag": {
         "detail": {
             "assignments": {
@@ -9683,6 +9758,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "全てリセット"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "別のアカウントでログインする",
+            "loggedInAsPrefix": "ログイン名:",
+            "logoAltText": "ショップウェアロゴ",
+            "text": "ログインは成功しましたが、このShopwareストアにアクセスできません。",
+            "title": "このストアにアクセスできません"
+        },
+        "general": {
+            "description": "ショップウェアログインエラー",
+            "title": "SSO エラー"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "ボタンバリエーション",
@@ -9776,6 +9864,221 @@
         "modalTitle": "リンクを挿入/編集",
         "openInNewTab": "新しいタブで開く",
         "removeLink": "リンクを削除"
+    },
+    "sw-theme": {
+        "Storefront": {
+            "default": {
+                "eCommerce": {
+                    "default": {
+                        "sw-color-buy-button": {
+                            "label": "「購入」ボタン"
+                        },
+                        "sw-color-buy-button-text": {
+                            "label": "購入ボタンのテキスト"
+                        },
+                        "sw-color-price": {
+                            "label": "価格"
+                        }
+                    },
+                    "label": "Eコマース"
+                },
+                "media": {
+                    "default": {
+                        "sw-logo-desktop": {
+                            "helpText": "991px を超えるビューポートに表示され、他のロゴが設定されていない場合は小さいビューポートではフォールバックとして表示されます。",
+                            "label": "デスクトップ"
+                        },
+                        "sw-logo-favicon": {
+                            "label": "ファビコン"
+                        },
+                        "sw-logo-mobile": {
+                            "helpText": "最大767pxのビューポートに表示されます。",
+                            "label": "モバイル"
+                        },
+                        "sw-logo-share": {
+                            "label": "アプリと共有アイコン"
+                        },
+                        "sw-logo-tablet": {
+                            "helpText": "767ピクセルから991ピクセルの間のビューポートに表示されます。",
+                            "label": "タブレット"
+                        }
+                    },
+                    "label": "メディア"
+                },
+                "statusColors": {
+                    "default": {
+                        "sw-color-danger": {
+                            "label": "エラー"
+                        },
+                        "sw-color-info": {
+                            "label": "情報"
+                        },
+                        "sw-color-success": {
+                            "label": "成功"
+                        },
+                        "sw-color-warning": {
+                            "label": "注意"
+                        }
+                    },
+                    "label": "ステータスメッセージ"
+                },
+                "themeColors": {
+                    "default": {
+                        "sw-background-color": {
+                            "label": "バックグラウンド"
+                        },
+                        "sw-border-color": {
+                            "label": "枠線"
+                        },
+                        "sw-color-brand-primary": {
+                            "label": "プライマリカラー"
+                        },
+                        "sw-color-brand-secondary": {
+                            "label": "セカンダリカラー"
+                        }
+                    },
+                    "label": "テーマカラー"
+                },
+                "typography": {
+                    "default": {
+                        "sw-font-family-base": {
+                            "label": "本文のフォント"
+                        },
+                        "sw-font-family-headline": {
+                            "label": "ヘッドラインフォント"
+                        },
+                        "sw-headline-color": {
+                            "label": "見出しの色"
+                        },
+                        "sw-text-color": {
+                            "label": "テキストの色"
+                        }
+                    },
+                    "label": "タイポグラフィ"
+                }
+            }
+        }
+    },
+    "sw-theme-manager": {
+        "actions": {
+            "buttonReset": "デフォルトにリセット",
+            "buttonUseTheme": "テーマを使う",
+            "deleteDisabledToolTip": "テーマはまだ販売チャネルに割り当てられています。",
+            "rename": "リネーム",
+            "saveClean": "クリーンセーブ",
+            "saveCleanToolTip": "現在の値は完全に書き換えられます。これを使うと、フィールドが削除されたり型が変更されたりした後に、クリーンな入力ができます。",
+            "useImageAs": "画像として使用",
+            "validate": "検証",
+            "validateToolTip": "構成全体を検証します。変更は保存されずに残ります。"
+        },
+        "detail": {
+            "description": "説明",
+            "error": {
+                "invalidConfiguration": {
+                    "message": "構成に誤りがあります。テーマを保存できません。",
+                    "title": "設定が無効です"
+                },
+                "themeCompile": {
+                    "message": "テーマをコンパイルできませんでした。この問題を解決するには、エラーメッセージの全文を確認してください。",
+                    "title": "テーマのコンパイル中にエラーが発生しました"
+                }
+            },
+            "inheritanceInfo": "このテーマは \"{parentThemeName}\" テーマから派生しています。",
+            "label": {
+                "colors": "カラー",
+                "favicon": "ファビコン",
+                "fonts": "フォント",
+                "frame": "フレーム",
+                "generalColors": "一般的な色",
+                "headlines": "ヘッドライン",
+                "links": "リンク",
+                "media": "メディア",
+                "moreColors": "その他の色",
+                "shopLogo": "ショップロゴ",
+                "socialMediaLinks": "ソーシャル・メディア・リンク",
+                "surface": "サーフェス",
+                "text": "テキスト",
+                "textcolor": "テキストの色"
+            },
+            "placeholder": {
+                "selectSalesChannel": "販売チャネルを選択..."
+            },
+            "salesChannel": "以下の販売チャネルに割り当てられています",
+            "salesChannelHelpText": "ここでこれらの割り当てを削除することはできません。販売チャネルのテーマを変更したい場合は、それぞれの販売チャネルの設定にアクセスしてください。",
+            "showFullError": "エラー全体を表示",
+            "validate": {
+                "failed": "検証に失敗",
+                "failedMessage": "構成に誤りがあります。変更は保存できません。",
+                "success": "検証が成功しました",
+                "successMessage": "構成は正常に検証されました。これで、変更を保存できます。"
+            }
+        },
+        "general": {
+            "captionMediaUpload": "画像をアップロード",
+            "defaultTab": "一般設定",
+            "descriptionTextModule": "ここでテーマを管理します。",
+            "lockedToolTip": "プラグイン経由でインストールされたテーマはロックされており、削除できません",
+            "mainMenuHeader": "あなたのテーマ",
+            "mainMenuItemGeneral": "テーマ",
+            "messageSaveError": "テーマを販売チャネルに割り当てることができませんでした。",
+            "placeholderSearchBar": "使用可能なテーマを検索中...",
+            "titleError": "エラー"
+        },
+        "list": {
+            "gridHeaderAssignment": "割り当てられた販売チャネル",
+            "gridHeaderCreated": "作成日",
+            "gridHeaderName": "名前",
+            "textThemeOverview": "テーマ",
+            "titleSidebarItemRefresh": "更新"
+        },
+        "modal": {
+            "addToMediaLabel": "{name}に追加",
+            "errorModalTitle": "テーマをコンパイルできません",
+            "labelDuplicateThemeName": "複製の名前",
+            "labelRenameThemeName": "新しいテーマ名",
+            "modalTextResetAssigned": "これにより、お店の外観が変わります。",
+            "modalTextResetInfo": "テーマをデフォルト設定にリセットしてよろしいですか?",
+            "modalTitleDuplicate": "複製を作成",
+            "modalTitleRename": "リネーム",
+            "modalTitleReset": "テーマをリセット",
+            "modalTitleSave": "テーマを保存",
+            "placeholderDuplicateThemeName": "名前を入力",
+            "placeholderRenameThemeName": "名前を入力",
+            "salesChannelAlreadyAssignedModal": {
+                "descriptionMultiple": "選択した販売チャネルの一部は、すでにテーマに割り当てられています。続けて保存すると、以下のテーマの割り当てが <b>{newThemeName}</b>に置き換えられます。",
+                "descriptionSingle": "この販売チャネルは既にテーマに割り当てられています。続けて保存すると、テーマの割り当ては <b>{newThemeName}</b>に置き換えられます。"
+            },
+            "salesChannelRemovedModal": {
+                "descriptionMultiple": "テーマの割り当ての一部が削除されました。続けて保存すると、以下のテーマの課題が <b>{defaultThemeName}</b>に置き換えられます。",
+                "descriptionSingle": "テーマの割り当てが削除されました。続けて保存すると、テーマの課題は <b>{defaultThemeName}</b>に置き換えられます。"
+            },
+            "textDeleteInfo": "本当にテーマ \"{themeName}「を削除してもよろしいですか？",
+            "textDuplicateInfo": "複製を作成した場合は、別の色構成のテーマを別の販売チャネルに使用できます。",
+            "textRenameInfo": "テーマの新しい名前を入力します。",
+            "textSaveInfo": "変更を保存してもよろしいですか?これにより、お店の見た目が変わります。"
+        },
+        "sorting": {
+            "labelSort": "並び順:",
+            "labelSortByCreatedAsc": "作成日、昇順",
+            "labelSortByCreatedDsc": "作成日、降順",
+            "labelSortByUpdatedAsc": "変更日、昇順",
+            "labelSortByUpdatedDsc": "変更日 (降順)"
+        },
+        "themeListItem": {
+            "addPreviewImage": "プレビューを追加",
+            "duplicate": "複製",
+            "emptyText": "テーマが割り当てられていません",
+            "notificationDeleteErrorMessage": "削除したいテーマは、まだ少なくとも1つの販売チャネルに割り当てられています。",
+            "notificationDeleteErrorTitle": "エラー",
+            "removePreviewImage": "プレビューの削除",
+            "rename": "リネーム"
+        },
+        "themeModal": {
+            "actionConfirm": "テーマを変更",
+            "headline": "利用可能なテーマ",
+            "modalSubtitle": "テーマを変更すると、ショップの視覚化が変わる場合があります。",
+            "modalTitle": "テーマを選択する"
+        }
     },
     "sw-tree": {
         "general": {
@@ -9899,6 +10202,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "ユーザーを招待できませんでした。"
+            },
+            "invitationNotYetAccepted": "このユーザーはまだ招待を承認していません。承認するとすぐに、不足している情報はすべて自動的に入力されます。",
+            "inviteButtonLabel": "ユーザーを招待",
+            "modal": {
+                "accountPermissionHint": "ユーザーが制限なくこのショップの管理を利用できるように、Shopwareアカウントでもユーザーがあなたの会社に属していることを確認してください。",
+                "labelButtonInvite": "ユーザーを招待",
+                "labelEmail": "メールアドレス",
+                "labelLanguage": "ユーザーインターフェイス言語",
+                "placeholderEmail": "Eメールを入力...",
+                "placeholderLanguage": "言語を選択してください...",
+                "title": "ユーザーに招待状を送る"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "情報",
+                    "rolesAndPermission": "役割と権限",
+                    "userinterface": "ユーザーインターフェース"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "アクティブ",
+                    "inactive": "無効化",
+                    "invited": "招待"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "ユーザー",
@@ -9999,6 +10332,7 @@
                         "message": "自身のユーザーは削除できません。"
                     }
                 },
+                "status": "ステータス",
                 "textModalDelete": "本当にユーザー\"{name}\"を削除してよろしいですか？",
                 "titleModalDelete": "ユーザを削除"
             }

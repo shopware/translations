@@ -1489,6 +1489,21 @@
     "mt-text-editor-toolbar-button-link": {
         "label": "Link"
     },
+    "sales-channel-theme": {
+        "changeTheme": "Skift tema",
+        "changeThemeEmpty": "Tildel tema",
+        "createTheme": "Opret nyt tema",
+        "defaultAuthor": "Forfatter",
+        "defaultTitle": "Intet tema tildelt",
+        "editContent": "Rediger tema",
+        "modal": {
+            "buttonCancel": "Annuller",
+            "buttonChange": "Skift tema",
+            "modalTitleChange": "Skift tema",
+            "textChangeTheme": "Vil du virkelig ændre temaet? Dette kan ændre visualiseringen af din butik."
+        },
+        "title": "Temaopgave"
+    },
     "sidebar": {
         "ariaLabelButtonClose": "Luk sidebjælken",
         "ariaLabelButtonCollapse": "Skjul sidebar",
@@ -1507,27 +1522,50 @@
                 "iframeModalConfirmMessageDescription": "Sørg for, at alle processer er afsluttet.",
                 "messageErrorFetchButtons": "Der opstod en fejl under hentning af dine apphandlinger."
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "bekræft",
-                "error": "Fejl under ændring af domæne for apps",
-                "explanation": "Installerede apps er stadig forbundet med det gamle domæne og fungerer ikke med det nye domæne. Der er tre muligheder herfra for at fortsætte.",
-                "explanationHeader": "Vi har bemærket en ændring i din butik domæne.",
-                "move-shop-permanently": {
-                    "description": "Få dine apps til at bruge det nye domæne i stedet for det gamle domæne. Dette vil tildele alle apps og appdata til dit nye domæne og fjerne opgaven fra det gamle domæne.",
-                    "name": "Overfør apps til nyt domæne"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "Følgende apps påvirkes:",
+                "description": {
+                    "explanation": "Der blev registreret ændringer i dit system og miljø, der tyder på en ændring af din butiks id. Indtil du har valgt en mulighed, vil der ikke være nogen kommunikation med apps for at forhindre problemer med butiksidentifikation eller datakorruption.",
+                    "shopId": {
+                        "explanation": "Butiksidentifikatoren er en funktion i Shopwares app-system. Apps, som din butik er registreret med, bruger den til entydigt at identificere din butik. På grund af dette er det vigtigt, at butiksidentifikatorer forbliver unikke og ikke deles på tværs af forskellige butikker, ikke engang i forskellige miljøer (f.eks. en iscenesættelse eller testkopi) i den samme butik.",
+                        "title": "Hvad er butiksidentifikatoren?"
+                    }
                 },
-                "newLabel": "Nyt domæne: ",
-                "oldLabel": "Gammelt domæne: ",
-                "reinstall-apps": {
-                    "description": "Hvis du vil holde dine apps kørende på begge domæner, geninstallerer dette alle apps på dit nye domæne. Bemærk! Appdata på dit gamle domæne vil stadig være tilgængelige, ikke-frie apps kan kræve yderligere gebyrer for hvert domæne.",
-                    "name": "Kopiér apps til det aktuelle domæne"
+                "detectedChanges": "Følgende ændringer blev opdaget:",
+                "error": "Opdatering af butiksidentifikatorer mislykkedes.",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "APP_URL bruges af apps til at oprette forbindelse til din butiks Admin API.",
+                        "label": "APP_URL miljøvariabel"
+                    },
+                    "installation_path": {
+                        "label": "Installationssti"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "Kontrolsummen for salgskanaldomænerne ændres, når eksisterende domæner ændres eller slettes, eller der tilføjes nye domæner.",
+                        "label": "Salgskanaldomæner"
+                    }
                 },
-                "success": "Domæne er ændret.",
-                "title": "Domæneændring fundet",
-                "uninstall-apps": {
-                    "description": "Beholder appdata på gammelt domæne og fjerner alle apps fra det nye domæne.",
-                    "name": "Fjern apps"
-                }
+                "newValue": "Ny værdi",
+                "oldValue": "Gammel værdi",
+                "remindMeLater": "Påmind mig senere",
+                "selectAnOption": "Læs de tilgængelige indstillinger omhyggeligt, og vælg den, der bedst passer til dit scenarie:",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "Dette er typisk den rigtige mulighed, hvis du permanent har flyttet din butik til en anden infrastruktur eller et nyt miljø. Shopware underretter apps (dvs. genregistreres på appserverne) ved hjælp af den samme shop-id, og apps forbliver installeret. Din butik identificeres som den samme butik som før.",
+                        "name": "Opbevar butiksidentifikatoren"
+                    },
+                    "reinstall-apps": {
+                        "description": "Dette er typisk den rigtige mulighed, hvis du har lavet en kopi af din butik (f.eks. et iscenesættelses- eller testmiljø i en produktionsbutik), og du vil bruge apps i denne kopi. Shopware geninstallerer apps og registrerer sig nyligt på appserverne ved hjælp af den nye butiksidentifikator. Din butik vil blive identificeret som en ny butik.",
+                        "name": "Generer en ny shop-id"
+                    },
+                    "uninstall-apps": {
+                        "description": "Dette er typisk den rigtige mulighed, hvis du har lavet en kopi af din butik (f.eks. et iscenesættelses- eller testmiljø i en produktionsbutik), og du ikke ønsker at bruge apps i denne kopi. Shopware sletter apps uden at underrette appserverne. Der genereres en ny butiksidentifikator, og din butik identificeres som en ny butik.",
+                        "name": "Afinstaller apps"
+                    }
+                },
+                "success": "Butiksidentifikatoren blev opdateret med succes.",
+                "title": "Foreslået ændring af butiksidentifikator"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "Udvidelser kan ikke oprette forbindelse til din butik på grund af en forkert konfiguration i dit system.",
@@ -2645,12 +2683,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "Link beskrivelse",
+                        "ariaLabelHelpText": "Denne tekst læses af skærmlæsere som linktekst.",
                         "isDecorative": "Marker billedet som dekorativt",
                         "isDecorativeHelpText": "Når denne indstilling er aktiveret, læses billedoplysningerne ikke af skærmlæsere.",
                         "linkNewTab": "Åbn link i ny fane",
                         "linkTo": "Linkmål",
                         "minHeight": "Minimum højde",
-                        "minHeightHelpText": "Indtast minimumshøjden med din ønskede enhed. For eksempel: 200px"
+                        "minHeightHelpText": "Indtast minimumshøjden med din ønskede enhed. For eksempel: 200px",
+                        "useFetchPriorityOnFirstItem": "Indlæs første billede med højere prioritet",
+                        "useFetchPriorityOnFirstItemHelpText": "Når denne indstilling er aktiveret, indlæses det første billede med en højere prioritet. Dette kan forbedre den hastighed, hvormed siden gengives i browseren."
                     },
                     "placeholder": {
                         "enterMinHeight": "Angiv en minimums højde...",
@@ -2896,6 +2938,7 @@
         },
         "general": {
             "createNewLayout": "Opret nyt layout",
+            "deleteDisabledLandingPageToolTip": "Det layout, du vil slette, er stadig tildelt mindst én destinationsside.",
             "deleteDisabledProductToolTip": "Det layout, du vil slette, er stadig tildelt mindst ét produkt.",
             "deleteDisabledToolTip": "Layoutet du ønsker at slette er stadig tilknyttet mindst én kategori.",
             "disabledAddingBlocksToolTip": "At tilføje blokke er kun muligt i dit systems standard sprog.",
@@ -4726,6 +4769,7 @@
         },
         "index": {
             "buttonLogin": "Log ind",
+            "buttonSsoLogin": "Log ind med Shopware SSO",
             "forgottenPasswordLink": "Glemt din adgangskode?",
             "headlineForm": "Log ind på din Shopware konto",
             "headlineMain": "Hej!",
@@ -5922,6 +5966,9 @@
             "tax": {
                 "label": "Skat"
             },
+            "theme": {
+                "label": "Temaer"
+            },
             "users_and_permissions": {
                 "label": "Brugere og tilladelser"
             }
@@ -6693,12 +6740,17 @@
                 "text": "Du har aktiveret elasticsearch for admin-søgningen, disse felter er søgbare, og du kan ikke slå den fra, men du kan deaktivere, hvilke objekter der kan søges",
                 "title": "Elasticsearch er nu aktiveret"
             },
-            "cardSearchableElements": {
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "Minimal søgeterm længde",
+                "subtitle": "Foruddefinere din administrations søgeadfærd",
+                "title": "Søgeadfærd"
+            },
+            "cardSearchContent": {
                 "buttonDeselect": "Fravælg alle",
                 "buttonReset": "Nulstil til standard",
                 "buttonSelect": "Vælg alle",
-                "description": "Angiv søgbar indhold for hvert modul og felt.",
-                "title": "Søgbare elementer"
+                "subtitle": "Indstil det søgbare indhold for hvert modul og post",
+                "title": "Søgbart indhold"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9076,7 @@
                 "consequences": "Dette vil resultere i et øjeblikkeligt tab af adgang til tjenesten og alle tilknyttede processer.",
                 "warning": "Er du sikker på, at du vil deaktivere „{serviceName}“?"
             },
+            "permissions": "Vis tilladelser",
             "status-active": "Aktive",
             "status-awaiting-permissions": "Venter på tilladelser",
             "status-inactive": "Inaktive",
@@ -9386,6 +9439,28 @@
             "textHeadline": "Shopware konto"
         }
     },
+    "sw-settings-storefront": {
+        "configuration": {
+            "cardTitle": "Konfiguration af butiksfacade",
+            "iconCache": "Aktivér ikon cache",
+            "iconCacheToolTip": "Styrer, om ikoner kun leveres én gang pr. butiksforside, og yderligere anvendelser kun vil blive henvist til af ikonid'et.",
+            "speculationRules": {
+                "description": "Aktivér pre-rendering med iverness-tilstand „moderat“ til Storefront. Dette kan påvirke dine analysedata.",
+                "title": "Spekulationsregler API (Eksperimentel)"
+            },
+            "theme": {
+                "async": "Kompilere tema i baggrunden",
+                "asyncTooltip": "Styrer, om temakompilering håndteres via meddelelseskøen i stedet for direkte ved ændringer."
+            }
+        },
+        "general": {
+            "description": "Indstillinger for butiksfronten",
+            "helpText": "For mere information se <a target=\"_blank\" href='https://docs.shopware.com/en/shopware-6-de'>dokumentation</a>",
+            "mainMenuItemGeneral": "Butik",
+            "textHeadline": "Butik"
+        },
+        "helpText": "For mere information, besøg <a target=\"_blank\", href=\"https://docs.shopware.com/en/shopware-6-en\">Shopwares dokumentation.</a>"
+    },
     "sw-settings-tag": {
         "detail": {
             "assignments": {
@@ -9683,6 +9758,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "Nulstil alle"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "Log ind med en anden konto",
+            "loggedInAsPrefix": "Logget ind som:",
+            "logoAltText": "Shopware-logo",
+            "text": "Dit login var vellykket, men du har ikke adgang til denne Shopware-butik.",
+            "title": "Ingen adgang til denne butik"
+        },
+        "general": {
+            "description": "Shopware-loginfejl",
+            "title": "SSO-fejl"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "Knaptype",
@@ -9776,6 +9864,221 @@
         "modalTitle": "Indsæt/rediger link",
         "openInNewTab": "Åbn i nyt faneblad",
         "removeLink": "Fjern link"
+    },
+    "sw-theme": {
+        "Storefront": {
+            "default": {
+                "eCommerce": {
+                    "default": {
+                        "sw-color-buy-button": {
+                            "label": "Køb-knap"
+                        },
+                        "sw-color-buy-button-text": {
+                            "label": "Købsknappetekst"
+                        },
+                        "sw-color-price": {
+                            "label": "Pris"
+                        }
+                    },
+                    "label": "E-handel"
+                },
+                "media": {
+                    "default": {
+                        "sw-logo-desktop": {
+                            "helpText": "Vises i vinduer over 991 px og som et alternativ på mindre vinduer, hvis der ikke er angivet noget andet logo.",
+                            "label": "Desktop"
+                        },
+                        "sw-logo-favicon": {
+                            "label": "Favicon"
+                        },
+                        "sw-logo-mobile": {
+                            "helpText": "Vises i vinduer op til 767 px.",
+                            "label": "Mobil"
+                        },
+                        "sw-logo-share": {
+                            "label": "App & del-ikon"
+                        },
+                        "sw-logo-tablet": {
+                            "helpText": "Vises i vinduer mellem 767px og 991px.",
+                            "label": "Tablet"
+                        }
+                    },
+                    "label": "Medie"
+                },
+                "statusColors": {
+                    "default": {
+                        "sw-color-danger": {
+                            "label": "Fejl"
+                        },
+                        "sw-color-info": {
+                            "label": "Information"
+                        },
+                        "sw-color-success": {
+                            "label": "Succes"
+                        },
+                        "sw-color-warning": {
+                            "label": "Notits"
+                        }
+                    },
+                    "label": "Statusbeskeder"
+                },
+                "themeColors": {
+                    "default": {
+                        "sw-background-color": {
+                            "label": "Baggrund"
+                        },
+                        "sw-border-color": {
+                            "label": "Kant"
+                        },
+                        "sw-color-brand-primary": {
+                            "label": "Primær farve"
+                        },
+                        "sw-color-brand-secondary": {
+                            "label": "Sekundær farve"
+                        }
+                    },
+                    "label": "Tema farver"
+                },
+                "typography": {
+                    "default": {
+                        "sw-font-family-base": {
+                            "label": "Skrifttype i brødtekst"
+                        },
+                        "sw-font-family-headline": {
+                            "label": "Overskrift skrifttype"
+                        },
+                        "sw-headline-color": {
+                            "label": "Overskrift farve"
+                        },
+                        "sw-text-color": {
+                            "label": "Tekstfarve"
+                        }
+                    },
+                    "label": "Typografi"
+                }
+            }
+        }
+    },
+    "sw-theme-manager": {
+        "actions": {
+            "buttonReset": "Nulstil til standard",
+            "buttonUseTheme": "Brug tema",
+            "deleteDisabledToolTip": "Temaet er stadig tildelt en salgskanal.",
+            "rename": "Omdøb",
+            "saveClean": "Rengør Gem",
+            "saveCleanToolTip": "De aktuelle værdier vil blive omskrevet fuldstændigt. Brug dette til at oprette en ren post, efter at felter er blevet slettet eller ændret dens typer.",
+            "useImageAs": "Brug billede som",
+            "validate": "Validere",
+            "validateToolTip": "Valider hele konfigurationen. Ændringer forbliver ugemte!"
+        },
+        "detail": {
+            "description": "Beskrivelse",
+            "error": {
+                "invalidConfiguration": {
+                    "message": "Konfigurationen er defekt. Temaet kan ikke gemmes.",
+                    "title": "Ugyldig konfiguration"
+                },
+                "themeCompile": {
+                    "message": "Temaet kunne ikke udarbejdes. Kontroller den fulde fejlmeddelelse for at løse dette problem.",
+                    "title": "Fejl ved kompilering af tema"
+                }
+            },
+            "inheritanceInfo": "Dette tema er afledt af \"{parentThemeName}\" temaet.",
+            "label": {
+                "colors": "Farver",
+                "favicon": "Favicon",
+                "fonts": "Skrifttyper",
+                "frame": "Ramme",
+                "generalColors": "Generelle farver",
+                "headlines": "Overskrifter",
+                "links": "Links",
+                "media": "Medie",
+                "moreColors": "Flere farver",
+                "shopLogo": "Butikslogo",
+                "socialMediaLinks": "Links til sociale medier",
+                "surface": "Overflade",
+                "text": "Tekst",
+                "textcolor": "Tekstfarve"
+            },
+            "placeholder": {
+                "selectSalesChannel": "Vælg salgskanal..."
+            },
+            "salesChannel": "Tildelt til følgende salgskanaler",
+            "salesChannelHelpText": "Det er ikke muligt at fjerne disse opgaver her. Hvis du vil ændre temaet for en salgskanal, skal du gå til indstillingerne for den respektive salgskanal.",
+            "showFullError": "Vis fuld fejl",
+            "validate": {
+                "failed": "Validering mislykkedes",
+                "failedMessage": "Konfigurationen er defekt. Ændringerne kan ikke gemmes.",
+                "success": "Validering vellykket",
+                "successMessage": "Konfigurationen blev valideret med succes. Du kan gemme ændringerne nu."
+            }
+        },
+        "general": {
+            "captionMediaUpload": "Upload et billede",
+            "defaultTab": "Generel",
+            "descriptionTextModule": "Administrer temaer her.",
+            "lockedToolTip": "Temaer installeret via plugin er låst og kan ikke slettes",
+            "mainMenuHeader": "Dine temaer",
+            "mainMenuItemGeneral": "Temaer",
+            "messageSaveError": "Temaet kunne ikke tildeles salgskanal.",
+            "placeholderSearchBar": "Søg efter tilgængelige temaer...",
+            "titleError": "Fejl"
+        },
+        "list": {
+            "gridHeaderAssignment": "Tildelte salgskanaler",
+            "gridHeaderCreated": "Oprettet",
+            "gridHeaderName": "Navn",
+            "textThemeOverview": "Temaer",
+            "titleSidebarItemRefresh": "Opdater"
+        },
+        "modal": {
+            "addToMediaLabel": "Tilføj til {name}",
+            "errorModalTitle": "Kan ikke kompilere tema",
+            "labelDuplicateThemeName": "Navn på duplikatet",
+            "labelRenameThemeName": "Nyt tema navn",
+            "modalTextResetAssigned": "Dette vil ændre udseendet på din butik.",
+            "modalTextResetInfo": "Er du sikker på, at du vil nulstille temaet til standardindstillingerne?",
+            "modalTitleDuplicate": "Opret duplikat",
+            "modalTitleRename": "Omdøb",
+            "modalTitleReset": "Nulstil tema",
+            "modalTitleSave": "Gem tema",
+            "placeholderDuplicateThemeName": "Indtast navn",
+            "placeholderRenameThemeName": "Indtast navn",
+            "salesChannelAlreadyAssignedModal": {
+                "descriptionMultiple": "Nogle af dine valgte salgskanaler er allerede tildelt et tema. Hvis du fortsætter og gemmer, erstattes følgende temaopgaver med <b>{newThemeName}</b>:",
+                "descriptionSingle": "Denne salgskanal er allerede tildelt et tema. Hvis du fortsætter og gemmer, erstattes temaopgaven med <b>{newThemeName}</b>:"
+            },
+            "salesChannelRemovedModal": {
+                "descriptionMultiple": "Du har fjernet nogle af dine temaopgaver. Hvis du fortsætter og gemmer, erstattes følgende temaopgaver med <b>{defaultThemeName}</b>:",
+                "descriptionSingle": "Du har fjernet en temaopgave. Hvis du fortsætter og gemmer, erstattes temaopgaven med <b>{defaultThemeName}</b>:"
+            },
+            "textDeleteInfo": "Er du sikker på, at du virkelig vil slette temaet \"{themeName}„?",
+            "textDuplicateInfo": "Hvis du opretter en kopi, kan du bruge temaet med en anden farvekonfiguration til yderligere salgskanaler.",
+            "textRenameInfo": "Indtast et nyt navn til temaet.",
+            "textSaveInfo": "Vil du virkelig gemme ændringerne? Dette vil ændre udseendet på dine butikker."
+        },
+        "sorting": {
+            "labelSort": "Sorter efter:",
+            "labelSortByCreatedAsc": "Oprettelsesdato, stigende",
+            "labelSortByCreatedDsc": "Oprettelsesdato, faldende",
+            "labelSortByUpdatedAsc": "Ændring dato, stigende",
+            "labelSortByUpdatedDsc": "Ændring dato, faldende"
+        },
+        "themeListItem": {
+            "addPreviewImage": "Tilføj forhåndsvisning",
+            "duplicate": "Kopier",
+            "emptyText": "Intet tema tildelt",
+            "notificationDeleteErrorMessage": "Det tema, du vil slette, er stadig allokeret til mindst én salgskanal.",
+            "notificationDeleteErrorTitle": "Fejl",
+            "removePreviewImage": "Fjern Preview billede",
+            "rename": "Omdøb"
+        },
+        "themeModal": {
+            "actionConfirm": "Skift tema",
+            "headline": "Tilgængelige temaer",
+            "modalSubtitle": "Ændring af dit tema kan ændre visualiseringen af din butik.",
+            "modalTitle": "Vælg tema"
+        }
     },
     "sw-tree": {
         "general": {
@@ -9899,6 +10202,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "Brugeren kunne ikke inviteres."
+            },
+            "invitationNotYetAccepted": "Denne bruger har ikke accepteret din invitation endnu. Så snart de gør det, udfyldes eventuelle manglende oplysninger automatisk.",
+            "inviteButtonLabel": "Inviter bruger",
+            "modal": {
+                "accountPermissionHint": "Sørg for, at brugeren også tilhører din virksomhed på Shopware-kontoen, så de kan bruge administrationen af denne butik uden begrænsninger.",
+                "labelButtonInvite": "Inviter bruger",
+                "labelEmail": "Email",
+                "labelLanguage": "Kontrolpanelets sprog",
+                "placeholderEmail": "Indtast e-mail...",
+                "placeholderLanguage": "Vælg et sprog...",
+                "title": "Send en invitation til en bruger"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "Information",
+                    "rolesAndPermission": "Roller og tilladelser",
+                    "userinterface": "Brugergrænseflade"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "aktiv",
+                    "inactive": "deaktiveret",
+                    "invited": "inviteret"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "Brugere",
@@ -9999,6 +10332,7 @@
                         "message": "Brugere kan ikke slette sig selv."
                     }
                 },
+                "status": "Status",
                 "textModalDelete": "Er du sikker på at du vil slette denne bruger \"{name}\"?",
                 "titleModalDelete": "Slet bruger"
             }

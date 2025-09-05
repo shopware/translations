@@ -1489,6 +1489,21 @@
     "mt-text-editor-toolbar-button-link": {
         "label": "Link"
     },
+    "sales-channel-theme": {
+        "changeTheme": "Thema wijzigen",
+        "changeThemeEmpty": "Thema toewijzen",
+        "createTheme": "Maak een nieuw thema",
+        "defaultAuthor": "Auteur",
+        "defaultTitle": "Geen thema toegewezen",
+        "editContent": "Thema bewerken",
+        "modal": {
+            "buttonCancel": "Annuleren",
+            "buttonChange": "Thema wijzigen",
+            "modalTitleChange": "Thema wijzigen",
+            "textChangeTheme": "Wil je echt het thema veranderen? Dit kan de visualisatie van je winkel veranderen."
+        },
+        "title": "Thema-opdracht"
+    },
     "sidebar": {
         "ariaLabelButtonClose": "Zijbalk sluiten",
         "ariaLabelButtonCollapse": "Zijbalk samenvouwen",
@@ -1507,27 +1522,50 @@
                 "iframeModalConfirmMessageDescription": "Zorg ervoor dat alle processen zijn voltooid.",
                 "messageErrorFetchButtons": "Er is een fout opgetreden bij het ophalen van uw app-acties."
             },
-            "sw-app-app-url-changed-modal": {
-                "confirmation": "Bevestig",
-                "error": "Fout bij het wijzigen van domein voor apps",
-                "explanation": "Geïnstalleerde apps zijn nog steeds verbonden met het oude domein en werken niet met het nieuwe domein. Er zijn drie opties vanaf hier om verder te gaan.",
-                "explanationHeader": "We hebben een verandering in uw winkeldomein opgemerkt.",
-                "move-shop-permanently": {
-                    "description": "Zorg ervoor dat uw apps het nieuwe domein gebruiken in plaats van het oude domein. Hiermee worden alle apps en app-gegevens aan uw nieuwe domein toegewezen en wordt de toewijzing uit het oude domein verwijderd.",
-                    "name": "Apps migreren naar een nieuw domein"
+            "sw-app-shop-id-change-modal": {
+                "affectedApps": "De volgende apps zijn getroffen:",
+                "description": {
+                    "explanation": "Er zijn wijzigingen in uw systeem en omgeving gedetecteerd die wijzen op een wijziging van de identificatiecode van uw winkel. Totdat je een optie hebt geselecteerd, wordt er niet met apps gecommuniceerd om problemen met winkelidentificatie of gegevensbeschadiging te voorkomen.",
+                    "shopId": {
+                        "explanation": "De winkel-ID is een functie van Shopware's app-systeem. Apps waarmee je winkel is geregistreerd, gebruiken deze om je winkel op unieke wijze te identificeren. Daarom is het belangrijk dat winkel-ID's uniek blijven en niet worden gedeeld tussen verschillende winkels, zelfs niet in verschillende omgevingen (bijvoorbeeld een testkopie) van dezelfde winkel.",
+                        "title": "Wat is de winkel-ID?"
+                    }
                 },
-                "newLabel": "Nieuw domein: ",
-                "oldLabel": "Oud domein: ",
-                "reinstall-apps": {
-                    "description": "Als u uw apps in beide domeinen wilt laten werken, worden alle apps op uw nieuwe domein opnieuw geïnstalleerd. Opmerking: App-gegevens op uw oude domein zijn nog steeds beschikbaar, niet-vrije apps kunnen extra kosten voor elk domein vereisen.",
-                    "name": "Apps kopiëren naar het huidige domein"
+                "detectedChanges": "De volgende wijzigingen zijn gedetecteerd:",
+                "error": "Het bijwerken van de winkel-ID is mislukt.",
+                "fingerprints": {
+                    "app_url": {
+                        "description": "De APP_URL wordt door apps gebruikt om verbinding te maken met de Admin API van je winkel.",
+                        "label": "APP_URL omgevingsvariabele"
+                    },
+                    "installation_path": {
+                        "label": "Installatiepad"
+                    },
+                    "sales_channel_domain_urls": {
+                        "description": "De checksum van de domeinen van het verkoopkanaal verandert wanneer bestaande domeinen worden gewijzigd of verwijderd of nieuwe domeinen worden toegevoegd.",
+                        "label": "Domeinen van verkoopkanalen"
+                    }
                 },
-                "success": "Domein gewijzigd.",
-                "title": "Domeinwijziging gedetecteerd",
-                "uninstall-apps": {
-                    "description": "Houdt app-gegevens op het oude domein en verwijdert alle apps uit het nieuwe domein.",
-                    "name": "Apps verwijderen"
-                }
+                "newValue": "Nieuwe waarde",
+                "oldValue": "Oude waarde",
+                "remindMeLater": "Herinner me er later aan",
+                "selectAnOption": "Lees de beschikbare opties zorgvuldig door en kies de optie die het beste bij uw scenario past:",
+                "strategies": {
+                    "move-shop-permanently": {
+                        "description": "Dit is meestal de juiste optie als je je winkel permanent hebt verplaatst naar een andere infrastructuur of nieuwe omgeving. Shopware zal apps op de hoogte stellen (d.w.z. opnieuw registreren op de servers van de app) met dezelfde winkel-ID en apps blijven geïnstalleerd. Je winkel zal zich identificeren als dezelfde winkel als voorheen.",
+                        "name": "Bewaar de winkel-ID"
+                    },
+                    "reinstall-apps": {
+                        "description": "Dit is meestal de juiste optie als je een kopie van je winkel hebt gemaakt (bijvoorbeeld een staging- of testomgeving van een productiewinkel) en je de apps in deze kopie wilt gebruiken. Shopware zal de apps opnieuw installeren en zich opnieuw registreren op de servers van de app met behulp van de nieuwe winkel-ID. Je winkel wordt geïdentificeerd als een nieuwe winkel.",
+                        "name": "Genereer een nieuwe winkel-ID"
+                    },
+                    "uninstall-apps": {
+                        "description": "Dit is meestal de juiste optie als je een kopie van je winkel hebt gemaakt (bijvoorbeeld een staging- of testomgeving van een productiewinkel) en je de apps in deze kopie niet wilt gebruiken. Shopware verwijdert de apps zonder de app-servers hiervan op de hoogte te stellen. Er wordt een nieuwe winkel-ID gegenereerd en uw winkel wordt geïdentificeerd als een nieuwe winkel.",
+                        "name": "Apps verwijderen"
+                    }
+                },
+                "success": "Winkel-ID is succesvol bijgewerkt.",
+                "title": "Wijziging van winkel-ID voorgesteld"
             },
             "sw-app-wrong-app-url-modal": {
                 "explanation": "Extensies kunnen geen verbinding maken met uw winkel vanwege een verkeerde configuratie in uw systeem.",
@@ -2645,12 +2683,16 @@
             "image": {
                 "config": {
                     "label": {
+                        "ariaLabel": "Beschrijving van de link",
+                        "ariaLabelHelpText": "Deze tekst wordt door schermlezers voorgelezen als linktekst.",
                         "isDecorative": "Markeer de afbeelding als decoratief",
                         "isDecorativeHelpText": "Als deze optie is ingeschakeld, wordt de beeldinformatie niet voorgelezen door schermlezers.",
                         "linkNewTab": "Open link in nieuw tabblad",
                         "linkTo": "Doel van de link",
                         "minHeight": "Minimale hoogte",
-                        "minHeightHelpText": "Voer de minimale hoogte in bij de gewenste eenheid. Bijvoorbeeld: 200px"
+                        "minHeightHelpText": "Voer de minimale hoogte in bij de gewenste eenheid. Bijvoorbeeld: 200px",
+                        "useFetchPriorityOnFirstItem": "Laad de eerste afbeelding met een hogere prioriteit",
+                        "useFetchPriorityOnFirstItemHelpText": "Als deze optie is ingeschakeld, wordt de eerste afbeelding met een hogere prioriteit geladen. Dit kan de snelheid verbeteren waarmee de pagina in de browser wordt weergegeven."
                     },
                     "placeholder": {
                         "enterMinHeight": "Minimale hoogte invoeren...",
@@ -2896,6 +2938,7 @@
         },
         "general": {
             "createNewLayout": "Nieuwe lay-out aanmaken",
+            "deleteDisabledLandingPageToolTip": "De lay-out die je wilt verwijderen is nog steeds toegewezen aan minstens één landingspagina.",
             "deleteDisabledProductToolTip": "De lay-out die u wilt verwijderen, wordt nog steeds toegewezen aan ten minste één product.",
             "deleteDisabledToolTip": "De lay-out is nog aan minstens één categorie toegewezen.",
             "disabledAddingBlocksToolTip": "Blokken kunnen alleen in de standaard systeemtaal worden toegevoegd",
@@ -4726,6 +4769,7 @@
         },
         "index": {
             "buttonLogin": "Aanmelden",
+            "buttonSsoLogin": "Inloggen met Shopware SSO",
             "forgottenPasswordLink": "Wachtwoord vergeten?",
             "headlineForm": "Meld je aan bij je Shopware-shop.",
             "headlineMain": "Hallo!",
@@ -5922,6 +5966,9 @@
             "tax": {
                 "label": "Belasting"
             },
+            "theme": {
+                "label": "Thema's"
+            },
             "users_and_permissions": {
                 "label": "Gebruikers & machtigingen"
             }
@@ -6693,12 +6740,17 @@
                 "text": "U hebt de elasticsearch ingeschakeld voor de zoekfunctie voor beheerders, deze velden zijn doorzoekbaar en u kunt deze niet uitschakelen, maar u kunt wel uitschakelen welke entiteiten doorzoekbaar zijn",
                 "title": "Elasticsearch is nu ingeschakeld"
             },
-            "cardSearchableElements": {
+            "cardSearchBehavior": {
+                "labelMinSearchTermLength": "Minimale lengte zoekterm",
+                "subtitle": "Definieer vooraf het zoekgedrag van uw administratie",
+                "title": "Zoekgedrag"
+            },
+            "cardSearchContent": {
                 "buttonDeselect": "Alles deselecteren",
                 "buttonReset": "Reset naar standaard",
                 "buttonSelect": "Alles selecteren",
-                "description": "Stel de doorzoekbare inhoud in voor elke module en elk item.",
-                "title": "Doorzoekbare elementen"
+                "subtitle": "Stel de doorzoekbare inhoud in voor elke module en elk item",
+                "title": "Doorzoekbare inhoud"
             },
             "modules": {
                 "category": {
@@ -9024,6 +9076,7 @@
                 "consequences": "Dit zal resulteren in een onmiddellijk verlies van toegang tot de Service en alle bijbehorende processen.",
                 "warning": "Weet je zeker dat je „{serviceName}” wilt deactiveren?"
             },
+            "permissions": "Toestemming tonen",
             "status-active": "Actief",
             "status-awaiting-permissions": "Wacht op toestemmingen",
             "status-inactive": "Inactief",
@@ -9386,6 +9439,28 @@
             "textHeadline": "Shopware-account"
         }
     },
+    "sw-settings-storefront": {
+        "configuration": {
+            "cardTitle": "Storefront-configuratie",
+            "iconCache": "Pictogramcache activeren",
+            "iconCacheToolTip": "Bepaalt of pictogrammen slechts één keer per winkelpagina worden geleverd en of naar aanvullende toepassingen alleen wordt verwezen door de pictogram-id.",
+            "speculationRules": {
+                "description": "Activeer de voorweergave met de gretigheidsmodus „matig” voor de Storefront. Dit kan invloed hebben op uw analysegegevens.",
+                "title": "API voor speculatieregels (experimenteel)"
+            },
+            "theme": {
+                "async": "Compileer het thema op de achtergrond",
+                "asyncTooltip": "Bepaalt of het compileren van thema's via de berichtenwachtrij wordt afgehandeld in plaats van rechtstreeks bij wijzigingen."
+            }
+        },
+        "general": {
+            "description": "Instellingen voor de etalage",
+            "helpText": "Kijk voor meer informatie naar <a target=\"_blank\" href='https://docs.shopware.com/en/shopware-6-de'>-documentatie</a>",
+            "mainMenuItemGeneral": "Etalage",
+            "textHeadline": "Etalage"
+        },
+        "helpText": "Kijk voor meer informatie in de <a target=\"_blank\" href=\"https://docs.shopware.com/en/shopware-6-en\">documentatie</a>"
+    },
     "sw-settings-tag": {
         "detail": {
             "assignments": {
@@ -9683,6 +9758,19 @@
     "sw-sidebar-filter-panel": {
         "resetButton": "Alles opnieuw instellen"
     },
+    "sw-sso-error": {
+        "error-card": {
+            "button": "Inloggen met een ander account",
+            "loggedInAsPrefix": "Ingelogd als:",
+            "logoAltText": "Shopware-logo",
+            "text": "Je aanmelding is gelukt, maar je hebt geen toegang tot deze Shopware-winkel.",
+            "title": "Geen toegang tot deze winkel"
+        },
+        "general": {
+            "description": "Inlogfout bij Shopware",
+            "title": "SSO-fout"
+        }
+    },
     "sw-text-editor-toolbar": {
         "link": {
             "buttonVariant": "Type button",
@@ -9776,6 +9864,221 @@
         "modalTitle": "Link invoegen/bewerken",
         "openInNewTab": "Openen in nieuw tabblad",
         "removeLink": "Link verwijderen"
+    },
+    "sw-theme": {
+        "Storefront": {
+            "default": {
+                "eCommerce": {
+                    "default": {
+                        "sw-color-buy-button": {
+                            "label": "Knop kopen"
+                        },
+                        "sw-color-buy-button-text": {
+                            "label": "Tekst op de knop kopen"
+                        },
+                        "sw-color-price": {
+                            "label": "Prijs"
+                        }
+                    },
+                    "label": "E-commerce"
+                },
+                "media": {
+                    "default": {
+                        "sw-logo-desktop": {
+                            "helpText": "Wordt weergegeven in vensters van meer dan 991 px en als back-up op kleinere vensters, als er geen ander logo is ingesteld.",
+                            "label": "Bureaublad"
+                        },
+                        "sw-logo-favicon": {
+                            "label": "Favicon"
+                        },
+                        "sw-logo-mobile": {
+                            "helpText": "Weergegeven op viewports tot 767 px.",
+                            "label": "Mobiel"
+                        },
+                        "sw-logo-share": {
+                            "label": "Pictogram voor apps en delen"
+                        },
+                        "sw-logo-tablet": {
+                            "helpText": "Weergegeven op viewports tussen 767 px en 991 px.",
+                            "label": "Tablet"
+                        }
+                    },
+                    "label": "Media"
+                },
+                "statusColors": {
+                    "default": {
+                        "sw-color-danger": {
+                            "label": "Fout"
+                        },
+                        "sw-color-info": {
+                            "label": "Informatie"
+                        },
+                        "sw-color-success": {
+                            "label": "Succes"
+                        },
+                        "sw-color-warning": {
+                            "label": "Opmerking"
+                        }
+                    },
+                    "label": "Statusberichten"
+                },
+                "themeColors": {
+                    "default": {
+                        "sw-background-color": {
+                            "label": "Achtergrond"
+                        },
+                        "sw-border-color": {
+                            "label": "Rand"
+                        },
+                        "sw-color-brand-primary": {
+                            "label": "Primaire kleur"
+                        },
+                        "sw-color-brand-secondary": {
+                            "label": "Secundaire kleur"
+                        }
+                    },
+                    "label": "Themakleuren"
+                },
+                "typography": {
+                    "default": {
+                        "sw-font-family-base": {
+                            "label": "Lettertype in hoofdtekst"
+                        },
+                        "sw-font-family-headline": {
+                            "label": "Lettertype voor de kop"
+                        },
+                        "sw-headline-color": {
+                            "label": "Kleur van de titel"
+                        },
+                        "sw-text-color": {
+                            "label": "Tekstkleur"
+                        }
+                    },
+                    "label": "Typografie"
+                }
+            }
+        }
+    },
+    "sw-theme-manager": {
+        "actions": {
+            "buttonReset": "Reset naar standaard",
+            "buttonUseTheme": "Thema gebruiken",
+            "deleteDisabledToolTip": "Het thema is nog steeds toegewezen aan een verkoopkanaal.",
+            "rename": "Hernoemen",
+            "saveClean": "Schoon Opslaan",
+            "saveCleanToolTip": "De huidige waarden worden volledig herschreven. Gebruik dit om een schone invoer te maken nadat velden zijn verwijderd of de typen zijn gewijzigd.",
+            "useImageAs": "Gebruik de afbeelding als",
+            "validate": "Valideren",
+            "validateToolTip": "Valideer de volledige configuratie. Wijzigingen blijven niet opgeslagen!"
+        },
+        "detail": {
+            "description": "Beschrijving",
+            "error": {
+                "invalidConfiguration": {
+                    "message": "De configuratie is fout. Het thema kan niet worden opgeslagen.",
+                    "title": "Ongeldige configuratie"
+                },
+                "themeCompile": {
+                    "message": "Het thema kon niet worden gecompileerd. Controleer de volledige foutmelding om dit probleem op te lossen.",
+                    "title": "Fout bij het compileren van het thema"
+                }
+            },
+            "inheritanceInfo": "Dit thema is afgeleid van het \"{parentThemeName}\" thema.",
+            "label": {
+                "colors": "Kleuren",
+                "favicon": "Favicon",
+                "fonts": "Lettertypen",
+                "frame": "Kader",
+                "generalColors": "Algemene kleuren",
+                "headlines": "Krantenkoppen",
+                "links": "Links",
+                "media": "Media",
+                "moreColors": "Meer kleuren",
+                "shopLogo": "Logo van de winkel",
+                "socialMediaLinks": "Links naar sociale media",
+                "surface": "Oppervlak",
+                "text": "Tekst",
+                "textcolor": "Tekstkleur"
+            },
+            "placeholder": {
+                "selectSalesChannel": "Selecteer verkoopkanaal..."
+            },
+            "salesChannel": "Toegewezen aan de volgende verkoopkanalen",
+            "salesChannelHelpText": "Het is niet mogelijk om deze opdrachten hier te verwijderen. Als je het thema van een verkoopkanaal wilt wijzigen, ga dan naar de instellingen van het betreffende verkoopkanaal.",
+            "showFullError": "Volledige fout weergeven",
+            "validate": {
+                "failed": "Validatie is mislukt",
+                "failedMessage": "De configuratie is fout. De wijzigingen kunnen niet worden opgeslagen.",
+                "success": "Validatie geslaagd",
+                "successMessage": "De configuratie is succesvol gevalideerd. Je kunt de wijzigingen nu opslaan."
+            }
+        },
+        "general": {
+            "captionMediaUpload": "Upload een afbeelding",
+            "defaultTab": "Generaal",
+            "descriptionTextModule": "Beheer thema's hier.",
+            "lockedToolTip": "Thema's die via de plug-in zijn geïnstalleerd, zijn vergrendeld en kunnen niet worden verwijderd",
+            "mainMenuHeader": "Jouw thema's",
+            "mainMenuItemGeneral": "Thema's",
+            "messageSaveError": "Het thema kon niet worden toegewezen aan het verkoopkanaal.",
+            "placeholderSearchBar": "Zoek naar beschikbare thema's...",
+            "titleError": "Fout"
+        },
+        "list": {
+            "gridHeaderAssignment": "Toegewezen verkoopkanalen",
+            "gridHeaderCreated": "Aangemaakt",
+            "gridHeaderName": "Naam",
+            "textThemeOverview": "Thema's",
+            "titleSidebarItemRefresh": "Bijwerken"
+        },
+        "modal": {
+            "addToMediaLabel": "Toevoegen aan {name}",
+            "errorModalTitle": "Kan thema niet compileren",
+            "labelDuplicateThemeName": "Naam van het duplicaat",
+            "labelRenameThemeName": "Nieuwe themanaam",
+            "modalTextResetAssigned": "Dit zal het uiterlijk van je winkel veranderen.",
+            "modalTextResetInfo": "Weet je zeker dat je het thema terug wilt zetten naar de standaardinstellingen?",
+            "modalTitleDuplicate": "Duplicaat aanmaken",
+            "modalTitleRename": "Hernoemen",
+            "modalTitleReset": "Thema opnieuw instellen",
+            "modalTitleSave": "Thema opslaan",
+            "placeholderDuplicateThemeName": "Naam invullen",
+            "placeholderRenameThemeName": "Naam invullen",
+            "salesChannelAlreadyAssignedModal": {
+                "descriptionMultiple": "Sommige van de door jou gekozen verkoopkanalen zijn al aan een thema toegewezen. Als je doorgaat met opslaan, worden de volgende thema-opdrachten vervangen door <b>{newThemeName}</b>:",
+                "descriptionSingle": "Dit verkoopkanaal is al toegewezen aan een thema. Als je doorgaat met opslaan, wordt de thema-opdracht vervangen door <b>{newThemeName}</b>:"
+            },
+            "salesChannelRemovedModal": {
+                "descriptionMultiple": "Je hebt enkele van je thema-opdrachten verwijderd. Als je doorgaat met opslaan, worden de volgende thema-opdrachten vervangen door <b>{defaultThemeName}</b>:",
+                "descriptionSingle": "Je hebt een thema-opdracht verwijderd. Als je doorgaat met opslaan, wordt de thema-opdracht vervangen door <b>{defaultThemeName}</b>:"
+            },
+            "textDeleteInfo": "Weet je zeker dat je het thema \"{themeName}„echt wilt verwijderen?",
+            "textDuplicateInfo": "Als u een duplicaat maakt, kunt u het thema met een andere kleurconfiguratie gebruiken voor extra verkoopkanalen.",
+            "textRenameInfo": "Voer een nieuwe naam in voor het thema.",
+            "textSaveInfo": "Wil je de wijzigingen echt opslaan? Dit zal het uiterlijk van je winkels veranderen."
+        },
+        "sorting": {
+            "labelSort": "Sorteren op:",
+            "labelSortByCreatedAsc": "Aanmaakdatum oplopend",
+            "labelSortByCreatedDsc": "Aanmaakdatum aflopend",
+            "labelSortByUpdatedAsc": "Bewerkingsdatum, oplopend",
+            "labelSortByUpdatedDsc": "Bewerkingsdatum, aflopend"
+        },
+        "themeListItem": {
+            "addPreviewImage": "Voorvertoning toevoegen",
+            "duplicate": "Dupliceren",
+            "emptyText": "Geen thema toegewezen",
+            "notificationDeleteErrorMessage": "Het thema dat je wilt verwijderen is nog steeds toegewezen aan ten minste één verkoopkanaal.",
+            "notificationDeleteErrorTitle": "Fout",
+            "removePreviewImage": "Voorbeeld verwijderen",
+            "rename": "Hernoemen"
+        },
+        "themeModal": {
+            "actionConfirm": "Thema wijzigen",
+            "headline": "Beschikbare thema's",
+            "modalSubtitle": "Als u uw thema wijzigt, kan dit de visualisatie van uw winkel wijzigen.",
+            "modalTitle": "Kies een thema"
+        }
     },
     "sw-tree": {
         "general": {
@@ -9899,6 +10202,36 @@
                 }
             }
         },
+        "sso": {
+            "error": {
+                "cannotInviteUser": "De gebruiker kon niet worden uitgenodigd."
+            },
+            "invitationNotYetAccepted": "Deze gebruiker heeft je uitnodiging nog niet geaccepteerd. Zodra ze dat doen, worden alle ontbrekende informatie automatisch ingevuld.",
+            "inviteButtonLabel": "Gebruiker uitnodigen",
+            "modal": {
+                "accountPermissionHint": "Zorg ervoor dat de gebruiker ook bij uw bedrijf hoort in het Shopware-account, zodat ze de administratie van deze winkel zonder beperkingen kunnen gebruiken.",
+                "labelButtonInvite": "Gebruiker uitnodigen",
+                "labelEmail": "E-mail",
+                "labelLanguage": "Gebruikers interfacetaal",
+                "placeholderEmail": "Voer je e-mailadres in...",
+                "placeholderLanguage": "Kies een taal...",
+                "title": "Een uitnodiging naar een gebruiker sturen"
+            },
+            "user-detail": {
+                "cards-title": {
+                    "information": "Informatie",
+                    "rolesAndPermission": "Rollen en machtigingen",
+                    "userinterface": "Gebruikersinterface"
+                }
+            },
+            "user-listing": {
+                "status-label": {
+                    "active": "actief",
+                    "inactive": "gedeactiveerd",
+                    "invited": "uitgenodigd"
+                }
+            }
+        },
         "users": {
             "general": {
                 "cardLabel": "Gebruikers",
@@ -9999,6 +10332,7 @@
                         "message": "Gebruikers kunnen zichzelf niet verwijderen."
                     }
                 },
+                "status": "Status",
                 "textModalDelete": "De gebruiker \"{name}\" echt verwijderen?",
                 "titleModalDelete": "Gebruiker verwijderen"
             }
