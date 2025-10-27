@@ -1,664 +1,688 @@
 {
-    "global": {
-        "error-codes": {
-            "SWAG_MIGRATION_CONNECTION_NAME_ALREADY_EXISTS": "Connection name already exists.",
-            "SWAG_MIGRATION_CONNECTION_NAME_TO_SHORT": "The connection name must be at least 6 characters long.",
-            "SWAG_MIGRATION_INVALID_API_KEY": "The API key does not have the correct length ({length}/40 characters)."
-        }
-    },
     "swag-migration": {
-        "api-error": {
-            "abortMigration": "Failed to abort migration.",
-            "approveFinishedMigration": "Failed while completing the migration",
-            "checkConnection": "Failed to check the connection to source system.",
-            "fetchConnectionId": "Failed to get active connection ID.",
-            "getDataSelection": "Failed to get data selection for current connection.",
-            "getState": "Failed to get migration state.",
-            "startMigration": "Failed to start migration."
-        },
         "dashboard": {
-            "button": "Open Migration Assistant",
-            "headline": "Moving to Shopware",
-            "information": "First thing is to link up your existing shop system - the Migration Assistant will help you along the way.",
+            "title": "",
+            "headline": "",
+            "information": "",
+            "button": "",
             "shopInfoCard": {
-                "button": "Open",
-                "header": "Migration Assistant",
-                "resetButton": "Finish"
-            },
-            "title": "Migration Assistant"
+                "header": "",
+                "button": "",
+                "resetButton": ""
+            }
         },
         "general": {
-            "descriptionTextModule": "Module to migrate data",
-            "mainMenuItemGeneral": "Migration Assistant",
-            "tabDataSelector": "Data selection",
-            "tabHistory": "History",
-            "tabMain": "General"
-        },
-        "history": {
-            "clearRunDialog": {
-                "content": "Deleting migration data will remove log entries, media file entries, temporary migration data records and the migration run, which then will no longer be available in the migration history.",
-                "contentHint": "Do you really want to delete the data?",
-                "title": "Delete migration data"
-            },
-            "connectionName": "Connection name",
-            "contextMenu": {
-                "clearLogs": "Delete migration data",
-                "details": "Show details",
-                "downloadLogs": "Download log"
-            },
-            "detailPage": {
-                "close": "Close",
-                "data": "Data",
-                "dataCount": "Datasets",
-                "dataName": "Name",
-                "errorCode": "Error message",
-                "errorCount": "Count",
-                "errorLevel": "Log level",
-                "errors": "Details",
-                "logDescription": "For more details {link}",
-                "logDownload": "download the log file.",
-                "noErrorsOccurred": "No errors have occurred.",
-                "noProgressData": "This run was performed in a previous version of the plugin and its data has been deleted.",
-                "runStatus": "Migration status:",
-                "status": {
-                    "aborted": "Aborted",
-                    "finished": "Finished",
-                    "running": "Running"
-                },
-                "timestamp": "Time:",
-                "title": "Migration details"
-            },
-            "importDateTime": "Start time",
-            "noData": "No migrations found.",
-            "profileAndGateway": "Profile & gateway",
-            "selectedData": "Data",
-            "shopDomain": "Shop domain",
-            "shopSystem": "Shop system",
-            "status": "Status"
-        },
-        "index": {
-            "abortButton": "Cancel",
-            "assistantCard": {
-                "connection": {
-                    "content": "The Migration Assistant will help establish a connection between your shop system and Shopware 6 to transfer and migrate your data.",
-                    "link": "Help & documentation",
-                    "title": "Set up a connection"
-                },
-                "dataSelection": {
-                    "content": "Select the data you want to migrate. It is possible to include plugin data as well, should the plugin already be available for Shopware 6. Check for plugin availability in your Shopware account.",
-                    "title": "Specify data for migration"
-                },
-                "finish": "Done!",
-                "headline": "How the migration works",
-                "migrationOverview": {
-                    "content": "1. An automatic process checks the selected data for missing assignments. Prepare to complete the automatic process by adding manual assignments.\n2. Your shop‘s data is read and assigned.\n3. All selected and properly assigned data gets transferred to Shopware 6.\n4. Media items are downloaded.",
-                    "title": "Migration steps"
-                },
-                "title": "Information"
-            },
-            "backToOverviewButton": "Back to overview",
-            "confirmAbortDialog": {
-                "cancelPause": "Pause",
-                "cancelRunning": "Continue",
-                "confirm": "Stop migration",
-                "content": "The migration is not fully complete. Already migrated data might be unusable. If you quit now, you will have to completely rerun the migration process.",
-                "hint": "Do you want to stop the migration?",
-                "title": "Stop migration"
-            },
-            "confirmWarningCard": {
-                "currencyMismatch": {
-                    "checkboxLabel": "Yes, I would like to continue",
-                    "info": "A migration with different default currencies can lead to corrupted data records and cause unpredictable side effects.",
-                    "question": "Are you sure that the data should be migrated in the standard currency [{targetSystemCurrency}]?",
-                    "text": "The currency of the data to be migrated does not match the standard currency [{targetSystemCurrency}]. Data with [{sourceSystemCurrency}] can still be migrated, but it will not be automatically converted. You can adjust the prices manually afterwards.",
-                    "title": "Migration has recognized another currency"
-                },
-                "languageMismatch": {
-                    "checkboxLabel": "Yes, I would like to continue",
-                    "info": "A migration with different default languages can lead to corrupted data records and cause unpredictable side effects.",
-                    "question": "Are you sure that the data should be migrated in the standard language [{targetSystemLanguage}]?",
-                    "text": "The language of the data to be migrated does not match the standard language [{targetSystemLanguage}]. Data with [{sourceSystemLanguage}] can still be migrated, but it will not be automatically converted. You can adjust the translations manually afterwards.",
-                    "title": "Migration has recognized another language"
-                }
-            },
-            "continueButton": "Continue",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "The {entity} child entity from the {parentEntity} parent entity with the id \"{parentSourceId}\" could not be converted.",
-                    "title": "The {entity} child entity could not be converted"
-                },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "The {entity} entity with the source id \"{sourceId}\" could not be converted.",
-                    "title": "The {entity} entity could not be converted"
-                },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "The {entity} file with the uri \"{uri}\" and media id \"{sourceId}\" cannot be downloaded / copied.",
-                    "title": "The {entity} file cannot be downloaded / copied"
-                },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "The {entity} entity with source id \"{sourceId}\" already exists and cannot be written.",
-                    "title": "The {entity} entity already exists"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "The {entity} entity with the source id \"{sourceId}\" got the field \"{emptyField}\" replaced with \"{replacementField}\".",
-                    "title": "The {entity} entity has a field that was reassigned"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "The {requiredForEntity} entity with the source id \"{requiredForSourceId}\" cannot find the depended {entity} entity with the source id \"{sourceId}\".",
-                    "title": "Cannot find {entity}"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "An exception occurred while processing the message queue.",
-                    "title": "Message queue exception"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "The migration was aborted automatically, because too many consecutive exceptions occurred.",
-                    "title": "Migration aborted automatically"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "An exception occurred"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "Total count for entity {entity} could not be read. Make sure the table \"{table}\" exists in your source system and the optional condition \"{condition}\" is valid. Exception message: {exceptionMessage}",
-                    "title": "Could not read entity count"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "DataSet for profile \"{profileName}\" and entity \"{entity}\" not found. Entity with id \"{sourceId}\" could not be processed.",
-                    "title": "DataSet not found"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "Debug-Output"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "The document with the source id \"{sourceId}\" could not be converted because the document type \"{type}\" is not supported.",
-                    "title": "Document type is not supported"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "The email address of the entity {entity}  with source id \"{sourceId}\" is invalid: {email}",
-                    "title": "Invalid Email address"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "Processor for profile \"{profileName}\", gateway \"{gatewayName}\" and entity \"{entity}\" not found.",
-                    "title": "Processor not found"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "The {missingEntity} with the source id \"{sourceId}\" can not be found but is required for {requiredFor}.",
-                    "title": "Associated {entity} not found"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "The source file could not be copied. File: {path}",
-                    "title": "Source file not found"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "Cannot download media. Affected file: {uri}",
-                    "title": "Cannot download media"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "The {entity} entity with the source id \"{sourceId}\" has not the necessary data for the field \"{emptyField}\"",
-                    "title": "The {entity} entity has an empty necessary field"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "The {entity} entity with source id \"{sourceId}\" could not be converted because of invalid unserialized object data for the \"{unserializedEntity}\" entity and the raw data is: {serializedData}",
-                    "title": "Invalid unserialized data"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "Parent entity for \"{entity}\" child not found.",
-                    "title": "Parent entity not found"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "NumberRange-Entity with source id \"{sourceId}\" could not be converted because of unsupported type: {type}.",
-                    "title": "Unsupported number range type"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "{entity} of object type “{objectType}“ with source id “{sourceId}“ could not be converted.",
-                    "title": "Unsupported object type"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "The shipping method entity with source id \"{sourceId}\" could not be converted because of unsupported calculation type: {type}.",
-                    "title": "Unsupported shipping calculation type"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "The shipping price entity with source id \"{sourceId}\" of shipping method \"{shippingMethodId}\" could not be converted because of unsupported factor price calculation.",
-                    "title": "Unsupported shipping factor price calculation"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "The theme with id \"{sourceId}\" could not be compiled.",
-                    "title": "Theme compiling error"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "File writer for \"{entity}\" entity not found.",
-                    "title": "File writer not found"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "A write exception has occurred"
-                },
-                "authorizationError": {
-                    "information": "Authorization error. Your access data is not correct. Please check it and try again."
-                },
-                "canNotConnectToServer": "No connection to server. Please check the connection for issues.",
-                "customerExists": {
-                    "information": "Customer with email \"{mail}\" already exists. You cannot add this user with that email to your database."
-                },
-                "gatewayNotFound": {
-                    "information": "Gateway \"{notFoundGateway}\" not found."
-                },
-                "gatewayRead": {
-                    "information": "Could not read gateway \"{unreadableGateway}\"."
-                },
-                "localeNotFound": {
-                    "information": "Locale entry code \"{notFoundCode}\" not found."
-                },
-                "mediaProcessConnectionError": "A connection error occurred while copying the media data. Please check the connection.",
-                "migrationContextPropertyMissing": {
-                    "information": "Required property \"{notFoundProperty}\" for migration context not found."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "Required property \"{notFoundProperty}\" for migration workload not found."
-                },
-                "noFileSystemPermissions": {
-                    "information": "No file system permissions to create or write files or directories. Please check your permissions."
-                },
-                "profileNotFound": {
-                    "information": "Migration profile \"{notFoundProfile}\" not found."
-                },
-                "undefinedIndex": {
-                    "detail": "Unidentified index could not be found.",
-                    "information": "Index \"{unidentifiedIndex}\" could not be found. Please check your data.",
-                    "title": "Unidentified index"
-                },
-                "unknownError": "Unknown error. You can check the logging table of your database for more information."
-            },
-            "errorTypes": {
-                "error": "Error",
-                "info": "Information",
-                "warning": "Warning"
-            },
-            "finishButton": "Finish",
-            "loadingScreenCard": {
-                "documentationLink": "https://developer.shopware.com/docs/guides/hosting/infrastructure/message-queue.html#message-queue",
-                "documentationLinkText": "Message queue documentation",
-                "flowChart": {
-                    "cleanup": "Cleanup",
-                    "fetchData": "Reading",
-                    "finish": "Done",
-                    "indexing": "Indexing",
-                    "premapping": "Checking",
-                    "processMedia": "Downloading",
-                    "writeData": "Writing"
-                },
-                "notice": "Tip: This process runs in the message queue. You don't need to stay on this page if your shop is configured correctly.",
-                "result": {
-                    "caption": "The media download continues in the background. Large files can take some time.",
-                    "historyHint": "You can view this information any time in the migration history. It is possible that more log messages will be added at a later time because the media download is still running in the background.",
-                    "logSummary": "Logbook",
-                    "title": "The Migration Assistant is done"
-                },
-                "status": {
-                    "aborting": {
-                        "caption": "Unwritten data is cleaned up. Already migrated data might be unusable.",
-                        "long": "The migration is being aborted",
-                        "short": "Aborting"
-                    },
-                    "cleanup": {
-                        "caption": "Temporary data is being removed. The migration is almost complete.",
-                        "long": "The migration is being cleaned up",
-                        "short": "Cleanup"
-                    },
-                    "fetching": {
-                        "caption": "The new assignments are processed.",
-                        "long": "The data will be read from your system",
-                        "short": "Reading"
-                    },
-                    "finish": "Done",
-                    "indexing": {
-                        "caption": "The migration is almost complete.",
-                        "long": "The new data is being indexed",
-                        "short": "Indexing"
-                    },
-                    "media-processing": {
-                        "caption": "Large image data can take some time to process.",
-                        "long": "The media is being transferred",
-                        "short": "Media transfer"
-                    },
-                    "writing": {
-                        "caption": "Depending on the shop size it may take a few moments.",
-                        "long": "The data is being written in Shopware 6",
-                        "short": "Writing"
-                    }
-                }
-            },
-            "migrateButton": "Start migration",
-            "migrationAlreadyRunning": "Migration already started.",
-            "pauseButton": "Pause",
-            "pluginVersionText": "We have noticed that a plugin update is available in your source system {sourceSystem}. Please update the plugin \"{pluginName}\" before you start the migration.",
-            "premappingCard": {
-                "cardTitle": "Assignments",
-                "group": {
-                    "delivery_time": "Delivery time",
-                    "manufacturer": "Manufacturers",
-                    "newsletter_status": "Newsletter status",
-                    "order_delivery_state": "Order delivery states",
-                    "order_state": "Order states",
-                    "payment_method": "Payment methods",
-                    "salesChannel": "Newsletter saleschannel",
-                    "salutation": "Salutation",
-                    "shipping_availability_rule": "Shipping method availability",
-                    "transaction_state": "Transaction states",
-                    "user": "Administration user"
-                },
-                "loadingCaption": "The existing data has been checked.",
-                "loadingTitle": "The data check is running",
-                "newAssignmentTitle": "New assignments",
-                "placeholder": "Please select",
-                "previousTitle": "Previous",
-                "unfilledAlert": "We have detected that there is data that requires manual assignment.",
-                "unfilledCaption": "You can only continue after the manual assignment has been completed.",
-                "unfilledTitle": "The data check has been completed",
-                "validCaption": "The data is ready to proceed",
-                "validTitle": "The data check is complete"
-            },
-            "savePremapping": {
-                "message": "Premapping has been saved.",
-                "saveButton": "Save premapping"
-            },
-            "selectDataCard": {
-                "cardTitle": "Data selection",
-                "dataHeader": "Data",
-                "dataSelection": {
-                    "basicSettings": "Basic data",
-                    "cms": "Layouts",
-                    "customerWishlists": "Wishlists",
-                    "customersOrders": "Customers & orders",
-                    "media": "Media",
-                    "newsletterRecipient": "Newsletter recipient",
-                    "processMediaFiles": "Media",
-                    "productReviews": "Product reviews",
-                    "products": "Products",
-                    "promotions": "Promotions",
-                    "seoUrls": "SEO URLs"
-                },
-                "dataTypes": {
-                    "basicData": "Shop data",
-                    "pluginData": "Plugin data"
-                },
-                "entities": {
-                    "category": "Categories:",
-                    "category_association": "Category associations:",
-                    "category_cms_page_association": "Category layout associations:",
-                    "category_custom_field": "Category custom fields",
-                    "category_product_stream_association": "Category dynamic product group associations:",
-                    "cms_page": "Layouts:",
-                    "country": "Countries:",
-                    "country_state": "Country states:",
-                    "currency": "Currencies:",
-                    "custom_field_set": "Custom field sets:",
-                    "customer": "Customers:",
-                    "customer_custom_field": "Customer custom fields",
-                    "customer_group": "Customer groups:",
-                    "customer_group_custom_field": "Customer group custom fields",
-                    "customer_wishlist": "Wishlists:",
-                    "delivery_time": "Delivery times:",
-                    "language": "Languages:",
-                    "mail_template": "Email templates:",
-                    "main_variant_relation": "Main variant relations:",
-                    "media": "Media:",
-                    "media_folder": "Media folders:",
-                    "media_folder_inheritance": "Media folder inheritances:",
-                    "number_range": "Number ranges:",
-                    "order": "Orders:",
-                    "order_custom_field": "Order custom fields",
-                    "order_document": "Order documents:",
-                    "order_document_base_config": "Document config:",
-                    "order_document_custom_field": "Order document custom fields",
-                    "order_document_inheritance": "Order document relations:",
-                    "page_system_config": "Page basic information:",
-                    "product": "Products:",
-                    "product_cross_selling": "Cross Selling:",
-                    "product_custom_field": "Product custom fields",
-                    "product_feature_set": "Essential characteristics:",
-                    "product_manufacturer": "Product manufacturers:",
-                    "product_manufacturer_custom_field": "Product manufacturer custom fields",
-                    "product_option_relation": "Product options:",
-                    "product_price_custom_field": "Product price custom fields",
-                    "product_property_relation": "Product properties:",
-                    "product_review": "Reviews:",
-                    "product_sorting": "Product sorting:",
-                    "product_stream": "Dynamic product groups:",
-                    "product_stream_filter_inheritance": "Dynamic product group filters:",
-                    "promotion": "Promotions:",
-                    "property_group": "Property groups:",
-                    "property_group_option": "Properties:",
-                    "rule": "Rules:",
-                    "sales_channel": "Sales channels:",
-                    "sales_channel_domain": "Domains:",
-                    "salutation": "Salutations:",
-                    "seo_url": "SEO URLs:",
-                    "seo_url_template": "SEO URL templates:",
-                    "shipping_method": "Shipping methods:",
-                    "snippet": "Snippets:",
-                    "snippet_set": "Snippet sets:",
-                    "system_config": "Basic information:",
-                    "tax": "Tax rates:",
-                    "tax_rule": "Tax rules:",
-                    "translation": "Translations:",
-                    "unit": "Scale units:"
-                },
-                "headers": {
-                    "dataType": "Type",
-                    "name": "Name",
-                    "total": "Data sets"
-                },
-                "noData": "Nothing found to migrate."
-            },
-            "shopInfoCard": {
-                "buttonCreateConnection": "Create new connection",
-                "buttonCreateInitialConnection": "Create initial connection",
-                "buttonEditSettings": "Edit connection",
-                "buttonProfileInstallation": "Install another profile",
-                "buttonRemoveCredentials": "Delete access data",
-                "buttonResetChecksums": "Reset checksums",
-                "buttonResetMigration": "Complete migration",
-                "buttonSelectConnection": "Change the connection",
-                "cardTitle": "Shop system",
-                "connected": "Connected",
-                "connectionCheck": "Connection check:",
-                "gateway": "Gateway:",
-                "lastMigration": "Last migration:",
-                "noConnection": "No connection",
-                "noMigrationDoneYet": "-",
-                "notConnected": "Not connected",
-                "profile": "System profile:",
-                "refreshTooltip": "Check connection to source system",
-                "removeCredentialsConfirmDialog": {
-                    "abortButtonText": "Cancel",
-                    "confirmButtonText": "Yes, delete",
-                    "content": "There will be no active connection after this. Enter your access data again to restore the connection.",
-                    "contentHint": "Would you like to delete the current access data?",
-                    "title": "Delete access data"
-                },
-                "resetChecksumsConfirmDialog": {
-                    "abortButtonText": "Cancel",
-                    "confirmButtonText": "Yes, reset",
-                    "content": "If you reset the checksums, all data from the source system will be recognized in the next migration. This includes already migrated or unchanged data sets. <br><br><strong>Important:</strong> Changes to the data records you have made in Shopware 6 since the last migration, will be overwritten. The source system data has priority.",
-                    "contentHint": "Do you want to reset the checksums?",
-                    "title": "Reset checksums"
-                },
-                "resetMigrationConfirmDialog": {
-                    "abortButtonText": "Cancel",
-                    "confirmButtonText": "Finalize now",
-                    "content": "Great! Let's now finalize your migration and clean up temporary files and unused data. <strong>Please note:</strong> Finalizing the migration is terminal. You won't be able to migrate any more data via the current connection.",
-                    "contentHint": "Do you want to finalize the migration now?",
-                    "errorNotification": {
-                        "message": "A migration is currently in progress.",
-                        "title": "Error occurred while finalising the migration"
-                    },
-                    "header": "Have you finished migrating your shop data?",
-                    "title": "Finalize the migration"
-                }
-            },
-            "shopwareMajorVersionText": "We have noticed that your source system {sourceSystem} version does not match your target system {targetSystem} version. Please ensure to use the same major version for both systems before you start the migration.",
-            "title": "General"
+            "mainMenuItemGeneral": "",
+            "descriptionTextModule": "",
+            "tabMain": "",
+            "tabHistory": "",
+            "tabDataSelector": ""
         },
         "wizard": {
-            "buttonAbort": "Cancel",
-            "buttonConnect": "Connect",
-            "buttonConnectionCreate": "Establish connection",
-            "buttonConnectionSelect": "Change connection",
-            "buttonEdit": "Edit connection",
-            "buttonFinish": "Done",
-            "buttonLater": "Close",
-            "buttonLetsGo": "Start",
-            "buttonNext": "Continue",
-            "buttonToProfileInformation": "Information",
-            "buttonUseSsl": "Use HTTPS",
+            "buttonAbort": "",
+            "buttonLetsGo": "",
+            "buttonConnectionCreate": "",
+            "buttonConnectionSelect": "",
+            "buttonConnect": "",
+            "buttonToProfileInformation": "",
+            "buttonNext": "",
+            "buttonFinish": "",
+            "buttonEdit": "",
+            "buttonLater": "",
+            "buttonUseSsl": "",
             "pages": {
-                "connectionCreate": {
-                    "connectionLabel": "Connection name",
-                    "connectionPlaceholder": "Enter name",
-                    "connectionTooltip": "Enter a unique name for the connection.",
-                    "contentInformation": "The following information is required to perform the migration.",
-                    "gatewayLabel": "Gateway",
-                    "gatewayPlaceholder": "Select gateway",
-                    "gatewayTooltip": "The type of connection between the systems.",
-                    "gateways": {
-                        "shopwareApi": "API",
-                        "shopwareLocal": "Local database"
-                    },
-                    "hint": {
-                        "local": "Note: The shop systems have to be on the same server. You need access data to the database."
-                    },
-                    "profileInstall": "Install another profile",
-                    "profileLabel": "Shop system profile",
-                    "profilePlaceholder": "Select profile",
-                    "title": "Migration – Create new connection"
+                "introduction": {
+                    "title": "",
+                    "contentHeadline": "",
+                    "contentInformation": ""
+                },
+                "profileInstallation": {
+                    "title": "",
+                    "content": "",
+                    "availabilityHeadline": "",
+                    "availableVersionHeadline": "",
+                    "installedHint": "",
+                    "installationButton": "",
+                    "shopwareProfileHeadline": "",
+                    "magentoProfileHeadline": "",
+                    "profileManufacturer": ""
                 },
                 "connectionSelect": {
-                    "connectionLabel": "Connection name",
-                    "connectionPlaceholder": "Please select a connection",
-                    "contentInformation": "Select an existing connection from the list to update the data.",
-                    "title": "Migration – Changing the connection"
+                    "title": "",
+                    "contentInformation": "",
+                    "connectionLabel": "",
+                    "connectionPlaceholder": ""
+                },
+                "connectionCreate": {
+                    "title": "",
+                    "contentInformation": "",
+                    "profileLabel": "",
+                    "profilePlaceholder": "",
+                    "profileInstall": "",
+                    "gatewayLabel": "",
+                    "gatewayTooltip": "",
+                    "gatewayPlaceholder": "",
+                    "connectionLabel": "",
+                    "connectionPlaceholder": "",
+                    "connectionTooltip": "",
+                    "gateways": {
+                        "shopwareApi": "",
+                        "shopwareLocal": ""
+                    },
+                    "hint": {
+                        "local": ""
+                    }
+                },
+                "profileInformation": {
+                    "title": "",
+                    "shopware55Api": {
+                        "contentTitle": "",
+                        "contentInformation": "",
+                        "pluginLink": ""
+                    },
+                    "shopware6Api": {
+                        "contentTitle": "",
+                        "plugin": {
+                            "title": "",
+                            "description": "",
+                            "linkText": "",
+                            "link": ""
+                        },
+                        "integration": {
+                            "title": "",
+                            "description": "",
+                            "linkText": "",
+                            "link": ""
+                        }
+                    }
                 },
                 "credentials": {
-                    "emptyState": "Sorry no form for selected profile found.",
-                    "error": {
-                        "SWAG_MIGRATION__API_CONNECTION_ERROR": "Could not connect to the server. Please check the given shop domain.",
-                        "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "If you're having trouble connecting, it might be worth checking the currently installed curl version on your server and updating it.",
-                        "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "Database connection does not have the right attributes and they can not be set.",
-                        "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "Database connection could not be established.",
-                        "SWAG_MIGRATION__GATEWAY_READ": "Could not connect to the server. Please check the given shop domain.",
-                        "SWAG_MIGRATION__GATEWAY_READ__HINT": "If you're having trouble connecting, it might be worth checking the currently installed curl version on your server and updating it.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "Your credentials are incorrect. Please check them and try again.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "The access data for the connection to the source system do not exist or are incorrect. Please check them and try again.",
-                        "SWAG_MIGRATION__IS_RUNNING": "A migration is currently in progress. Therefore, you cannot edit the credentials until the migration is complete.",
-                        "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "The required plugin “Migration Connector” is not installed in Shopware 5. Please install the free plugin and try again.",
-                        "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED__HINT": "If you already installed the “Migration Connector” and cleared the cache in the Shopware 5 backend (Configuration > Cache/performance), try deleting your Shopware 5 cache folder (var/cache) manually.",
-                        "SWAG_MIGRATION__SSL_REQUIRED": "We have determined that the given shop domain is required a SSL connection.",
-                        "alertErrorTitle": "Attention",
-                        "contentTitle": "No connection",
-                        "undefinedErrorMsg": "Internal server error. Please try again."
-                    },
+                    "title": "",
+                    "emptyState": "",
                     "shopware55": {
                         "api": {
-                            "apiKeyLabel": "API key",
-                            "apiKeyPlaceholder": "Enter key",
-                            "apiKeyTooltip": "The API key is used for security and identification.",
-                            "apiUserLabel": "Username (API user)",
-                            "apiUserPlaceholder": "Enter username",
-                            "apiUserTooltip": "Username of your Shopware 5 backend.",
-                            "contentInformation": "You need valid API credentials to establish a connection between Shopware 5 and Shopware 6. Your API credentials can be found in your Shopware 5 backend under “User administration”. API access needs to be activated there and confirmed by saving.",
-                            "endpointLabel": "Shop domain",
-                            "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "My shop uses a secure connection (SSL)"
+                            "contentInformation": "",
+                            "apiKeyLabel": "",
+                            "apiKeyTooltip": "",
+                            "apiKeyPlaceholder": "",
+                            "apiUserLabel": "",
+                            "apiUserTooltip": "",
+                            "apiUserPlaceholder": "",
+                            "endpointLabel": "",
+                            "endpointPlaceholder": "",
+                            "endpointSSLLabel": ""
                         },
                         "local": {
-                            "contentInformation": "We still need access data to connect to your Shopware 5 database.",
-                            "dbHostLabel": "Host",
-                            "dbHostPlaceholder": "Enter host",
-                            "dbNameLabel": "Database name",
-                            "dbNamePlaceholder": "Enter name",
-                            "dbPasswordLabel": "Password",
-                            "dbPasswordPlaceholder": "Enter password",
-                            "dbPortLabel": "Port",
-                            "dbUserLabel": "User",
-                            "dbUserPlaceholder": "Enter username",
-                            "installationRoot": "Shop installation folder",
-                            "installationRootPlaceholder": "Enter installation root"
+                            "contentInformation": "",
+                            "dbHostLabel": "",
+                            "dbHostPlaceholder": "",
+                            "dbPortLabel": "",
+                            "dbNameLabel": "",
+                            "dbNamePlaceholder": "",
+                            "dbUserLabel": "",
+                            "dbUserPlaceholder": "",
+                            "dbPasswordLabel": "",
+                            "dbPasswordPlaceholder": "",
+                            "installationRoot": "",
+                            "installationRootPlaceholder": ""
                         }
                     },
                     "shopware6": {
                         "api": {
-                            "apiPasswordLabel": "Secret access key",
-                            "apiPasswordPlaceholder": "Enter secret access key",
-                            "apiPasswordTooltip": "The secret access key is used for security and identification.",
-                            "apiUserLabel": "Access key ID",
-                            "apiUserPlaceholder": "Enter access key ID",
-                            "apiUserTooltip": "Access key ID of your integration.",
-                            "contentInformation": "You need valid API credentials to establish a connection between your source and target Shopware 6 instance. You get these when you create an integration in your source system.",
-                            "endpointLabel": "Shop domain",
-                            "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "My shop uses a secure connection (SSL)"
+                            "contentInformation": "",
+                            "apiPasswordLabel": "",
+                            "apiPasswordTooltip": "",
+                            "apiPasswordPlaceholder": "",
+                            "apiUserLabel": "",
+                            "apiUserTooltip": "",
+                            "apiUserPlaceholder": "",
+                            "endpointLabel": "",
+                            "endpointPlaceholder": "",
+                            "endpointSSLLabel": ""
                         }
                     },
-                    "statusTitle": "Connection check",
+                    "statusTitle": "",
                     "success": {
-                        "SWAG_MIGRATION__REQUEST_CERTIFICATE_INVALID": "We have determined that the SSL certificate of the specified shop domain is not secure. Check the certificate for your own security.",
-                        "contentInformation": "You can start your migration.",
-                        "contentTitle": "Connection successful",
-                        "undefinedErrorMsg": "An unknown error occurred while checking the SSL certificate from the specified shop domain."
+                        "contentTitle": "",
+                        "contentInformation": "",
+                        "undefinedErrorMsg": "",
+                        "SWAG_MIGRATION__REQUEST_CERTIFICATE_INVALID": ""
                     },
-                    "title": "Migration – Establish a connection"
-                },
-                "introduction": {
-                    "contentHeadline": "Let's move some things",
-                    "contentInformation": "Together we will connect your shop system to Shopware 6. Afterwards the Migration Assistant will help you to migrate your data step by step.",
-                    "title": "Migration Assistant"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "The required plugin “Migration Connector” is free and can be found in your Shopware 5 backend under Plugin Manager > Extensions > Migration tools. Please install and activate the plugin to proceed.",
-                        "contentTitle": "Plugin required",
-                        "pluginLink": "More information about the plugin"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "Requirements",
-                        "integration": {
-                            "description": "Create an integration in the source system via Settings > System > Integrations. You will need the generated access key ID and secret access key in the next step.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "More about integrations",
-                            "title": "Integration"
-                        },
-                        "plugin": {
-                            "description": "Install the Migration Assistant extension in the source system.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "More about the Migration Assistant extension",
-                            "title": "Extension"
-                        }
-                    },
-                    "title": "Migration - Connection preparation"
-                },
-                "profileInstallation": {
-                    "availabilityHeadline": "Previously available:",
-                    "availableVersionHeadline": "Supported:",
-                    "content": "Pick the shop system to migrate data from and be sure to install the corresponding profile plugin as well.",
-                    "installationButton": "Install",
-                    "installedHint": "Installed",
-                    "magentoProfileHeadline": "Magento - Profil",
-                    "profileManufacturer": "shopware AG",
-                    "shopwareProfileHeadline": "Shopware - Profil",
-                    "title": "Migration - Shopsystem-Profile"
+                    "error": {
+                        "contentTitle": "",
+                        "alertErrorTitle": "",
+                        "undefinedErrorMsg": "",
+                        "SWAG_MIGRATION__GATEWAY_READ": "",
+                        "SWAG_MIGRATION__CONNECTION_AUTHENTICATION_INVALID": "",
+                        "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "",
+                        "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "",
+                        "SWAG_MIGRATION__IS_RUNNING": "",
+                        "SWAG_MIGRATION__SSL_REQUIRED": ""
+                    }
                 }
+            }
+        },
+        "emptyScreen": {
+            "title": "",
+            "description": "",
+            "link": "",
+            "connectButton": ""
+        },
+        "index": {
+            "title": "",
+            "migrateButton": "",
+            "startButton": "",
+            "savePremapping": {
+                "saveButton": "",
+                "message": ""
+            },
+            "pauseButton": "",
+            "continueButton": "",
+            "abortButton": "",
+            "finishButton": "",
+            "backButton": "",
+            "migrationAlreadyRunning": "",
+            "pluginVersionText": "",
+            "shopInfoCard": {
+                "cardTitle": "",
+                "buttonEditSettings": "",
+                "buttonCreateConnection": "",
+                "buttonSelectConnection": "",
+                "buttonRemoveCredentials": "",
+                "buttonProfileInstallation": "",
+                "buttonResetChecksums": "",
+                "buttonResetMigration": "",
+                "connected": "",
+                "notConnected": "",
+                "profile": "",
+                "gateway": "",
+                "connectionCheck": "",
+                "lastMigration": "",
+                "displayDateTime": "",
+                "noMigrationDoneYet": "",
+                "removeCredentialsConfirmDialog": {
+                    "title": "",
+                    "content": "",
+                    "contentHint": "",
+                    "abortButtonText": "",
+                    "confirmButtonText": ""
+                },
+                "resetChecksumsConfirmDialog": {
+                    "title": "",
+                    "content": "",
+                    "contentHint": "",
+                    "abortButtonText": "",
+                    "confirmButtonText": ""
+                },
+                "resetMigrationConfirmDialog": {
+                    "title": "",
+                    "header": "",
+                    "content": "",
+                    "contentHint": "",
+                    "abortButtonText": "",
+                    "confirmButtonText": "",
+                    "errorNotification": {
+                        "title": "",
+                        "message": ""
+                    }
+                }
+            },
+            "assistantCard": {
+                "title": "",
+                "headline": "",
+                "finish": "",
+                "connection": {
+                    "title": "",
+                    "content": "",
+                    "link": ""
+                },
+                "dataSelection": {
+                    "title": "",
+                    "content": ""
+                },
+                "migrationOverview": {
+                    "title": "",
+                    "content": ""
+                }
+            },
+            "selectDataCard": {
+                "cardTitle": "",
+                "dataHeader": "",
+                "dataTypes": {
+                    "basicData": "",
+                    "pluginData": ""
+                },
+                "headers": {
+                    "name": "",
+                    "dataType": "",
+                    "total": ""
+                },
+                "dataSelection": {
+                    "customersOrders": "",
+                    "products": "",
+                    "media": "",
+                    "processMediaFiles": "",
+                    "basicSettings": "",
+                    "newsletterRecipient": "",
+                    "productReviews": "",
+                    "seoUrls": "",
+                    "promotions": "",
+                    "cms": "",
+                    "customerWishlists": ""
+                },
+                "entities": {
+                    "category": "",
+                    "product": "",
+                    "customer": "",
+                    "delivery_time": "",
+                    "order": "",
+                    "media": "",
+                    "translation": "",
+                    "customer_group": "",
+                    "product_option_relation": "",
+                    "product_property_relation": "",
+                    "property_group_option": "",
+                    "number_range": "",
+                    "order_document": "",
+                    "order_document_base_config": "",
+                    "order_document_inheritance": "",
+                    "shipping_method": "",
+                    "currency": "",
+                    "sales_channel": "",
+                    "sales_channel_domain": "",
+                    "product_review": "",
+                    "seo_url": "",
+                    "seo_url_template": "",
+                    "product_cross_selling": "",
+                    "promotion": "",
+                    "language": "",
+                    "category_association": "",
+                    "category_cms_page_association": "",
+                    "tax": "",
+                    "tax_rule": "",
+                    "property_group": "",
+                    "product_manufacturer": "",
+                    "main_variant_relation": "",
+                    "customer_wishlist": "",
+                    "unit": "",
+                    "media_folder": "",
+                    "media_folder_inheritance": "",
+                    "salutation": "",
+                    "rule": "",
+                    "country": "",
+                    "custom_field_set": "",
+                    "snippet": "",
+                    "snippet_set": "",
+                    "mail_template": "",
+                    "product_feature_set": "",
+                    "product_sorting": "",
+                    "system_config": "",
+                    "page_system_config": "",
+                    "cms_page": "",
+                    "product_stream": "",
+                    "product_stream_filter_inheritance": "",
+                    "country_state": ""
+                },
+                "noData": ""
+            },
+            "confirmWarningCard": {
+                "currencyMismatch": {
+                    "title": "",
+                    "text": "",
+                    "question": "",
+                    "checkboxLabel": ""
+                },
+                "languageMismatch": {
+                    "title": "",
+                    "text": "",
+                    "question": "",
+                    "checkboxLabel": ""
+                }
+            },
+            "premappingCard": {
+                "validTitle": "",
+                "validCaption": "",
+                "loadingTitle": "",
+                "loadingCaption": "",
+                "unfilledTitle": "",
+                "unfilledCaption": "",
+                "unfilledAlert": "",
+                "previousTitle": "",
+                "newAssignmentTitle": "",
+                "placeholder": "",
+                "filledCardTitle": "",
+                "expandTitle": "",
+                "collapseTitle": "",
+                "unfilledCardTitle": "",
+                "group": {
+                    "order_state": "",
+                    "order_delivery_state": "",
+                    "transaction_state": "",
+                    "payment_method": "",
+                    "manufacturer": "",
+                    "salutation": "",
+                    "delivery_time": "",
+                    "salesChannel": "",
+                    "newsletter_status": ""
+                }
+            },
+            "loadingScreenCard": {
+                "flowChart": {
+                    "premapping": "",
+                    "fetchData": "",
+                    "writeData": "",
+                    "processMedia": "",
+                    "finish": ""
+                },
+                "status": {
+                    "FETCH_DATA": {
+                        "long": "",
+                        "caption": "",
+                        "short": "",
+                        "hint": ""
+                    },
+                    "WRITE_DATA": {
+                        "long": "",
+                        "caption": "",
+                        "short": "",
+                        "hint": ""
+                    },
+                    "PROCESS_MEDIA_FILES": {
+                        "long": "",
+                        "caption": "",
+                        "short": "",
+                        "hint": ""
+                    },
+                    "finish": ""
+                },
+                "result": {
+                    "title": "",
+                    "caption": "",
+                    "historyLink": "",
+                    "survey": {
+                        "title": "",
+                        "caption": "",
+                        "buttonText": "",
+                        "link": ""
+                    },
+                    "notification": {
+                        "title": "",
+                        "message": "",
+                        "actionLabel": ""
+                    },
+                    "indexingNotification": {
+                        "running": {
+                            "title": "",
+                            "message": ""
+                        },
+                        "finished": {
+                            "title": "",
+                            "message": ""
+                        }
+                    }
+                },
+                "pauseScreen": {
+                    "title": "",
+                    "message": ""
+                },
+                "takeoverScreen": {
+                    "buttonCheck": "",
+                    "buttonRedirect": "",
+                    "running": {
+                        "title": "",
+                        "message": ""
+                    },
+                    "interrupted": {
+                        "title": "",
+                        "message": ""
+                    },
+                    "aborted": {
+                        "title": "",
+                        "message": ""
+                    },
+                    "forbidden": {
+                        "title": "",
+                        "message": ""
+                    },
+                    "takeoverModal": {
+                        "title": "",
+                        "message": "",
+                        "hint": "",
+                        "cancel": "",
+                        "confirm": ""
+                    },
+                    "abortModal": {
+                        "title": "",
+                        "message": "",
+                        "hint": "",
+                        "cancel": "",
+                        "confirm": ""
+                    },
+                    "redirectModal": {
+                        "title": "",
+                        "message": "",
+                        "confirm": ""
+                    }
+                },
+                "connectionLostScreen": {
+                    "title": "",
+                    "message": "",
+                    "buttonNavigateToMain": ""
+                },
+                "mediaProcessScreen": {
+                    "title": "",
+                    "message": ""
+                }
+            },
+            "confirmAbortDialog": {
+                "title": "",
+                "content": "",
+                "hint": "",
+                "cancelRunning": "",
+                "cancelPause": "",
+                "confirm": ""
+            },
+            "errorTypes": {
+                "error": "",
+                "warning": "",
+                "info": ""
+            },
+            "error": {
+                "authorizationError": {
+                    "information": ""
+                },
+                "canNotConnectToServer": "",
+                "customerExists": {
+                    "information": ""
+                },
+                "gatewayNotFound": {
+                    "information": ""
+                },
+                "gatewayRead": {
+                    "information": ""
+                },
+                "localeNotFound": {
+                    "information": ""
+                },
+                "migrationContextPropertyMissing": {
+                    "information": ""
+                },
+                "migrationsWorkloadPropertyMissing": {
+                    "information": ""
+                },
+                "noFileSystemPermissions": {
+                    "information": ""
+                },
+                "profileNotFound": {
+                    "information": ""
+                },
+                "undefinedIndex": {
+                    "title": "",
+                    "detail": "",
+                    "information": ""
+                },
+                "unknownError": "",
+                "mediaProcessConnectionError": "",
+                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_CANNOT_GET_FILE": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION_RUN_EXCEPTION": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__DEBUG": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
+                    "title": "",
+                    "description": ""
+                },
+                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
+                    "title": "",
+                    "description": ""
+                }
+            }
+        },
+        "history": {
+            "connectionName": "",
+            "profileAndGateway": "",
+            "status": "",
+            "importDateTime": "",
+            "shopDomain": "",
+            "shopSystem": "",
+            "selectedData": "",
+            "contextMenu": {
+                "details": "",
+                "downloadLogs": "",
+                "clearLogs": ""
+            },
+            "clearRunDialog": {
+                "title": "",
+                "content": "",
+                "contentHint": ""
+            },
+            "noData": "",
+            "detailPage": {
+                "title": "",
+                "timestamp": "",
+                "runStatus": "",
+                "status": {
+                    "finished": "",
+                    "aborted": "",
+                    "running": ""
+                },
+                "data": "",
+                "errors": "",
+                "logDescription": "",
+                "logDownload": "",
+                "errorCode": "",
+                "errorCount": "",
+                "noErrorsOccurred": "",
+                "dataName": "",
+                "dataCount": "",
+                "close": ""
             }
         },
         "worker-listener": {
             "mediaProcessing": {
-                "message": "No files remaining. | One file remaining. | {n} files remaining.",
-                "messageSuccess": "The media download has been completed.",
-                "title": "The media is being downloaded",
-                "titleSuccess": "Media download completed"
+                "title": "",
+                "message": "",
+                "titleSuccess": "",
+                "messageSuccess": ""
             }
+        }
+    },
+    "global": {
+        "error-codes": {
+            "SWAG_MIGRATION_CONNECTION_NAME_ALREADY_EXISTS": "",
+            "SWAG_MIGRATION_CONNECTION_NAME_TO_SHORT": "",
+            "SWAG_MIGRATION_INVALID_API_KEY": ""
         }
     }
 }
