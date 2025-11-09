@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Abonementi",
                 "labelSubscription": "Abonements"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "septembris"
                         }
                     },
+                    "delayedInfoMessage": "Šis intervāls nosaka vēlāku piegādes sākumu ({advancedSettings}). Šādiem intervāliem jaukti ratiņi netiek atbalstīti. @:Commercial.Subscriptions.Settings.MixedCartDelayedInfo",
                     "deleteModalInfoText": "Šis intervāls tiks dzēsts no visiem plāniem, kuros tas tika izvēlēts. Saistītie abonementi paliks nemainīgi.",
                     "emptySubline": "Pagaidām nav intervālu.",
                     "emptyTitle": "Intervāli nav atrasti",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Sākotnējais pasūtījums tiek uzskatīts par izpildi.",
                 "minimumExecutionCountLabel": "Minimālais termiņš (rīkojuma izpildes skaits)",
                 "minimumExecutionCountPlaceholder": "Ievadiet minimālo termiņu...",
+                "mixedCartDelayedInfo": "Klienti, kuri izvēlas šādu abonementu, tiks novirzīti uz atsevišķu izrakstīšanos ar īpašu grozu. Tas ir saistīts ar plānošanas konfliktiem ar ģenerētiem pasūtījumiem.",
                 "nameLabel": "Nosaukums",
                 "namePlaceholder": "Ievadiet vārdu...",
                 "plan": {
                     "addProducts": "Pievienot produktus",
                     "addProductsButton": "Pievienot {selectedProductsLength} preces | Pievienot {selectedProductsLength} produktu | Pievienot {selectedProductsLength} produktus",
+                    "delayedInfoMessage": "Šajā plānā ir ietverti intervāli, kas nosaka vēlāku piegādes sākumu (papildu iestatījumi). Šādiem plāniem jaukti ratiņi netiek atbalstīti. @:Commercial.subscriptions.settings.mixedCartDelayedInfo \n\nIzraisīja:",
                     "deleteModalInfoText": "Saistītie abonementi un intervāli paliks nemainīgi.",
                     "emptyProductsSubline": "Nav vēl neviena prece",
                     "emptyProductsTitle": "Nav atrasti produkti",
@@ -152,6 +156,15 @@
                     "title": "Plāni"
                 },
                 "plans": "Plāni",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Ļaujiet klientiem apvienot vienreizējus pirkumus un abonēšanas produktus vienā grozā un izrakstīšanās reizē, nevis atsevišķām precēm jāizmanto atsevišķas norēķinus. Tas uzlabo pirkšanas pieredzes elastību un ērtības.",
+                        "note": "Jaukti ratiņi tiek atbalstīti abonementiem, kuru piegāde sākas tieši pasūtījuma dienā. @:Commercial.Subscriptions.Settings.MixedCartDelayedInfo",
+                        "title": "Jaukti ratiņi",
+                        "toggleLabel": "Aktivizējiet jauktos ratiņus"
+                    },
+                    "title": "Iestatījumi"
+                },
                 "subscriptions": "Abonementi"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Budžeta paziņojums",
             "checkout_order_return_created": "Izveidota pasūtījuma atgriešana",
             "checkout_subscription_placed": "Izveidots abonements",
             "order_approval_pending_order_requested": "Pieprasīts negaidāms pasūtījums",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Palielinājuma skaitlim jābūt pozitīvai vērtībai",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Uzlabošanas nosaukums jau pastāv",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktivizācijas datums jānosaka nākotnē",
+            "BUDGET_END_DATE_INVALID": "Beigšanas datumam jābūt pēc sākuma datuma.",
+            "BUDGET_FIELD_REQUIRED": "Šis lauks nedrīkst būt tukšs.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Lūdzu, izvēlieties vismaz vienu adresātu.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Šis lauks ir nepieciešams, ja ir iespējota pasūtījuma apstiprināšana.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Lūdzu, ievadiet derīgu vērtību šim sprūda tipam.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Šis lauks ir obligāts, ja paziņojumi ir iespējoti.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Šis lauks nedrīkst būt tukšs.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Šis lauks nedrīkst būt tukšs."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktīvs",
+                "budgetAmountLabel": "Summa {currency}",
+                "budgetAmountPlaceholder": "Ievadiet budžeta summu...",
+                "costCentreLabel": "Izmaksu centrs",
+                "costCentrePlaceholder": "Ievadiet izmaksu centru...",
+                "nameLabel": "Budžeta nosaukums",
+                "namePlaceholder": "Ievadiet budžeta nosaukumu...",
+                "noOrganizationsFound": "Neviena organizācija nav atrasta",
+                "organizationUnitsLabel": "Organizācijas vienības",
+                "organizationUnitsPlaceholder": "Organizācijas vienību meklēšana...",
+                "techNameLabel": "Tehniskais nosaukums",
+                "techNamePlaceholder": "Ievadiet tehnisko nosaukumu...",
+                "title": "Pamatinformācija"
+            },
+            "newTitle": "Jauns budžets",
+            "notification": {
+                "enableNotifications": "Iespējot paziņojumus",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dienas pirms beigu datuma",
+                    "percentage": "X procenti no izmantotā budžeta",
+                    "specificDate": "Konkrēts paziņojuma datums"
+                },
+                "triggerValue": "Trigera vērtība",
+                "triggerValuePlaceholder": "Izvēlieties sprūda vērtību...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Ievadiet dienu skaitu",
+                    "percentage": "Ievadiet procentus no budžeta vērtības",
+                    "specificDate": "Izvēlieties paziņojuma datumu"
+                },
+                "triggerWhen": "Ieslēdziet paziņojumu, kad",
+                "triggerWhenPlaceholder": "Atlasiet paziņojumu sprūdu..."
+            },
+            "notifications": {
+                "title": "Paziņojumu iestatījumi"
+            },
+            "policies": {
+                "allowApproval": "Atļaut pasūtījuma apstiprināšanas pieprasījumus, kad budžets ir pilnībā izmantots",
+                "approvalRoleLabel": "Sniedz pasūtījumu apstiprinājumus",
+                "approvalRolePlaceholder": "Izvēlieties apstiprinājuma lomu...",
+                "showRemaining": "Ļauj lietotājiem skatīt atlikušo budžetu",
+                "title": "Budžeta politika"
+            },
+            "recipients": {
+                "noEmployees": "Darbinieki nav pieejami",
+                "noEmployeesSubtitle": "Izveidojiet darbiniekus budžeta saņēmēju pārvaldīšanai",
+                "noSearchResults": "Kontaktpersonas nav atrastas",
+                "noSearchResultsSubtitle": "Mēģiniet pielāgot meklēšanas terminus",
+                "searchRecipientsPlaceholder": "Meklēt darbiniekus...",
+                "title": "Saņēmēji",
+                "unknownEmployee": "Nezināms darbinieks",
+                "unknownOrganization": "Nezināma organizācija"
+            },
+            "statistic": {
+                "exceeded": "Pārsniegts budžets:",
+                "remaining": "Atlikušais budžets:",
+                "used": "Izmantotais budžets:"
+            },
+            "statistics": {
+                "title": "Statistika"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Beigšanas datums",
+                "endDatePlaceholder": "Izvēlēties beigu datumu...",
+                "renewsTypeLabel": "Atjaunošana",
+                "renewsTypeOptions": {
+                    "biannual": "Divu gadu",
+                    "monthly": "Mēneša",
+                    "none": "Neviens",
+                    "quarterly": "Ceturkšņa",
+                    "weekly": "Nedēļas",
+                    "yearly": "Gada"
+                },
+                "renewsTypePlaceholder": "Izvēlieties atjaunošanas periodu...",
+                "startDateLabel": "Sākuma datums",
+                "startDatePlaceholder": "Izvēlēties sākuma datumu...",
+                "title": "Atjaunošanas periods"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Ģenerēt attēlu",
         "elConfigImageGenerateLinkText": "Ģenerēt attēlu",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktīvs",
+            "availableColumn": "Pieejams",
+            "cardLabel": "Budžeti",
+            "costCentreColumn": "Izmaksu centrs",
+            "createNewBudgetLabel": "Pievienot budžetu",
+            "nameColumn": "Nosaukums",
+            "sublineEmptyState": "Pārvaldiet savu klientu budžetu šeit",
+            "titleEmptyState": "Pagaidām nav budžeta",
+            "totalColumn": "Kopā",
+            "usedColumn": "Izmantota"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Pievienot darbinieka kontu",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Apstiprināšanas noteikumu pārvaldība",
+                            "budget": "Budžeta vadība",
                             "employee": "Darbinieku vadība",
                             "order": "Pasūtījumi",
                             "organization_unit": "Organizācijas vienības",
@@ -1071,6 +1186,15 @@
                                 "delete": "Var dzēst apstiprināšanas noteikumus",
                                 "read": "Var lasīt apstiprināšanas noteikumus",
                                 "update": "Var atjaunināt apstiprināšanas noteikumus"
+                            },
+                            "budget": {
+                                "create": "Izveidojiet budžetus",
+                                "delete": "Dzēst budžetus",
+                                "edit": "Rediģēt budžetus",
+                                "place_order_without_specifying_budget": "Darbinieki šajā lomā var veikt pasūtījumus, nenorādot budžetu",
+                                "read": {
+                                    "all": "Skatīt visus budžetus"
+                                }
                             },
                             "employee": {
                                 "create": "Var radīt darbiniekus",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Kopā"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Darbinieki nav pieejami",
+        "unknownEmployee": "Nezināms darbinieks"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Pieņemts",
             "adminRequested": "Admin pieprasīja",
             "approved": "Apstiprināts",
+            "budgetManagement": "Budžeta vadība",
+            "budgetNotification": "Budžeta paziņojums",
             "changeRequest": "Mainīt pieprasījumu",
             "created": "Izveidots",
             "declined": "Samazinājās",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Izmantotais budžets"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Šajā organizācijā nav pieejami darbinieki"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Nepiešķirts"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Lūdzu, pārliecinieties, ka šai organizatoriskajai vienībai ir vismaz viena piegādes un viena norēķinu adrese",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Attēla atslēgvārdu palīgs"
+            },
+            "b2b_components_budget": {
+                "label": "Budžeta vadība"
             },
             "b2b_components_organization": {
                 "label": "Organizācijas vienības"
@@ -2263,6 +2407,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Iespējot B2B komponentu budžeta pārvaldību",
                 "employee_management_activate_feature": "Iespējot B2B komponentu darbinieku vadību",
                 "order_approval_activate_feature": "Iespējot B2B komponentu pasūtījuma apstiprināšanu",
                 "organization_units_activate_feature": "Iespējot B2B komponentu organizācijas vienības",
@@ -2272,6 +2417,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Budžeta pārvaldība",
                     "employee_management_activate_feature": "Darbinieku vadība",
                     "order_approval_activate_feature": "Pasūtījuma apstiprināšana",
                     "organization_units_activate_feature": "Organizācijas vienības",
@@ -2542,6 +2688,8 @@
         "unlock-uniform-scale": "Atbloķējiet vienotu skalu"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Jūsu klienti var definēt un pārvaldīt budžeta ierobežojumus, lai labāk kontrolētu savu organizācijas vienību izdevumus.",
+        "budgetManagementName": "Budžeti",
         "employeeManagementDescription": "Jūsu klienti var izveidot darbinieku kontus ar lomām un atļaujām individuālu pasūtījumu procesu realizēšanai.",
         "employeeManagementName": "Darbinieku vadība",
         "orderApprovalDescription": "Nodrošina uzņēmuma mēroga kontroli pār pasūtījumu procesu, palīdz saglabāt budžeta atbilstību un samazina pasūtīšanas kļūdas.",
@@ -2557,6 +2705,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Budžeta vadība",
                     "EMPLOYEE_MANAGEMENT": "Darbinieku vadība",
                     "ORDER_APPROVAL": "Pasūtījuma apstiprināšana",
                     "ORGANIZATION_UNITS": "Organizācijas vienības",
