@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Brisanje ni uspelo.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Manjkajoča dovoljenja.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Preveč zahtev. Prosimo, počakajte {seconds} sekund, preden poskusite znova.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} je v nasprotju z obstoječo pot {blockedSegment} in ga ni mogoče uporabiti.",
             "INVALID_MAIL": "Prosimo, vnesite veljaven e-poštni naslov.",
             "INVALID_MEDIA_URL": "Vnesite veljaven URL za prenos datoteke.",
             "INVALID_URL": "Prosimo, vnesite veljaven URL.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Za \"{term}« ni najdenih rezultatov."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Povezovanje dedovanja",
+            "ariaUnlinkInheritance": "Prekinite povezavo dedovanja",
             "notification": {
                 "notificationCopyFailureMessage": "Besedila ni bilo mogoče kopirati v odložišče.",
                 "notificationCopySuccessMessage": "Besedilo je bilo kopirano v odložišče."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Vaš brskalnik ne podpira zvočne oznake",
             "fallbackVideoTagSupport": "Vaš brskalnik ne podpira video oznake",
-            "textNoMedia": "Mediji niso na voljo"
+            "textNoMedia": "Mediji niso na voljo",
+            "warningUnsupportedFormat": "Format \"{format}\" morda ni podprt v vseh brskalnikih."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Naloži datoteko",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Nefiltrirana koda HTML lahko povzroči varnostna tveganja. Prosimo, vstavite samo kodo HTML iz zaupanja vrednih virov in preizkusite spremembe, preden jih objavite."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Vsebina"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktivirajte to možnost, če je slika prva na strani. Sliku bo nato dodeljen atribut 'fetchpriority=\"high\"', ki brskalniku pove, naj jo naloži z višjo prednostno nalogo. To lahko pomaga izboljšati največjo vsebnostno barvo (LCP).",
+                        "isDecorative": "Ko je ta možnost omogočena, bralniki zaslona ne bodo prebrali informacij o sliki. To pomeni, da bosta oznaka »alt« in »naslov« ostala prazna."
+                    },
                     "label": {
                         "ariaLabel": "Opis povezave",
                         "ariaLabelHelpText": "To besedilo bodo bralniki zaslona prebrali kot besedilo povezave.",
+                        "fetchPriorityHigh": "Pridobite visoko prioriteto",
                         "isDecorative": "Označite sliko kot dekorativno",
                         "isDecorativeHelpText": "Ko je ta možnost omogočena, bralniki zaslona ne bodo prebrali informacij o sliki.",
                         "linkNewTab": "Odpri povezavo v novem zavihku",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Navigacija s pikami",
                         "navigationPositionInside": "Inside",
                         "navigationPositionNone": "Noben",
-                        "navigationPositionOutside": "Zunaj"
+                        "navigationPositionOutside": "Zunaj",
+                        "sliderItems": "Slike"
                     }
                 },
                 "label": "Slikovni drsnik"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Nakupovalne izkušnje",
             "placeholderSearchBar": "Išči postavitve...",
             "privacyNotice": "Z izbiro nadaljuj potrjujete, da ste prebrali naše <a href=\"%privacyUrl%\">informacije o varstvu podatkov</a> in sprejeli naše <a href=\"%tosUrl%\">splošne pogoje</a>."
+        },
+        "inherit": {
+            "formBanner": "Ta postavitev ima podedovana polja. To pomeni, da dokler je podedovano stanje aktivno, bo vsebina podedovana. Podedovana polja lahko prekinete povezavo s klikom na simbol povezave. S ponovnim klikom na simbol se podedovano stanje vrne nazaj.",
+            "tooltip": "To polje ne obstaja v osnovni postavitvi in ga ni mogoče podedovati.",
+            "unlinkAllButton": "Ponastavi vsa polja.",
+            "unlinkAllConfirmText": "Ali ste prepričani, da želite ponastaviti vsa polja? To bo trajno izbrisalo vso nepovezano vsebino.",
+            "unlinkAllTitle": "Ponastavi vsa polja",
+            "unlinkFieldConfirmText": "Ste prepričani, da želite obnoviti dediščino? To bo odstranilo vse podatke po meri tega polja in obnovilo vrednosti iz nadrejenega elementa.",
+            "unlinkFieldTitle": "Obnovitev dedovanja",
+            "unlinkNotice": "Nekatera podedovana polja niso bila povezana."
         },
         "list": {
             "gridHeaderAssignedPages": "Dodeljene strani",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Prizadeti so naslednji prodajni kanali:",
+            "confirmButton": "Nadaljuj vseeno",
             "mainContent": "Predloga glave in noge je že dodeljena naslednjim prodajnim kanalom. Če nadaljujete in shranite, bo ta naloga prepisana z vašimi spremembami.",
             "title": "Več nalog"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Medijska knjižnica",
             "labelTabItemUpload": "Naloži datoteke",
             "titleModal": "Izberite predstavnost"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Shrani v medijih"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "in",
                     "by": "s",
                     "lastChanged": "Zadnja sprememba",
-                    "on": "on",
                     "with": "z"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Sprememba te nastavitve bi lahko povzročila računovodske težave pri zunanjih ponudnikih plačil. Pred kakršnimi koli spremembami preverite, kako DDV obračunajo ponudniki plačil, ki jih zaposlujete.",
             "favouriteLabel": "Označi prodajni kanal kot priljubljeno",
             "footerCategory": "Navigacija noge vstopne točke",
+            "foreignKeyDelete": "Tega prodajnega kanala ni mogoče izbrisati, ker ga še vedno uporablja {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Če je davčni ponudnik aktiviran, se lahko te nastavitve prepišejo. To lahko preverite v {link}.",
                 "linkText": "nastavitve"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Polje po meri",
                         "product": {
+                            "available": "Na voljo",
                             "cheapestPrice": "Najcenejša cena izdelka",
                             "createdAt": "Datum nastanka",
                             "listingPrices": "Cena za kotacijo izdelkov",
@@ -8718,6 +8744,7 @@
                 "height": "Višina",
                 "length": "Dolžina",
                 "manufacturerNumber": "Številka izdelka proizvajalca",
+                "packUnit": "Enota pakiranja",
                 "property": "Nepremičnine",
                 "referencePrice": "Cena na enoto",
                 "releaseDate": "Datum izdaje",

@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Tilaukset",
                 "labelSubscription": "Tilaus"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Syyskuu"
                         }
                     },
+                    "delayedInfoMessage": "Tämä aikaväli määrittää toimituksen myöhemmän alkamisen ({advancedSettings}). Sekakärryjä ei tueta tällaisilla aikaväleillä. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Tämä aikaväli poistetaan kaikista suunnitelmista, joissa se on valittu. Liittyvät tilaukset pysyvät ennallaan.",
                     "emptySubline": "Väliaikoja ei vielä ole.",
                     "emptyTitle": "Välejä ei löytynyt",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Alkuperäinen tilaus lasketaan toteutukseksi.",
                 "minimumExecutionCountLabel": "Vähimmäisaika (toimeksiantojen suoritusten lukumäärä)",
                 "minimumExecutionCountPlaceholder": "Anna vähimmäisaika...",
+                "mixedCartDelayedInfo": "Asiakkaat, jotka valitsevat tällaisen tilauksen, ohjataan erilliseen kassalle, jossa on oma ostoskori. Tämä johtuu ajoitusristiriidoista luotujen tilausten kanssa.",
                 "nameLabel": "Nimi",
                 "namePlaceholder": "Kirjoita nimi...",
                 "plan": {
                     "addProducts": "Lisää tuotteita",
                     "addProductsButton": "Lisää {selectedProductsLength} -tuotteet | Lisää {selectedProductsLength} tuote | Lisää {selectedProductsLength} tuotteet",
+                    "delayedInfoMessage": "Tämä suunnitelma sisältää aikavälit, jotka määrittävät toimituksen myöhemmän alkamisen (lisäasetukset). Sekakärryjä ei tueta tällaisissa suunnitelmissa. {mixedCartDelayedInfo}\n\nAiheuttaa:",
                     "deleteModalInfoText": "Liittyvät tilaukset ja aikavälit pysyvät muuttumattomina.",
                     "emptyProductsSubline": "Tuotteita ei ole vielä",
                     "emptyProductsTitle": "Tuotteita ei löytynyt",
@@ -152,6 +156,15 @@
                     "title": "Suunnitelmat"
                 },
                 "plans": "Suunnitelmat",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Anna asiakkaiden yhdistää kertaluonteiset ostot ja tilaustuotteet yhteen ostoskoriin ja kassalle sen sijaan, että joutuisi käyttämään erillisiä kassaksuja yksittäisille tuotteille. Tämä parantaa ostokokemuksen joustavuutta ja mukavuutta.",
+                        "note": "Sekoitettuja ostoskoreja tuetaan tilauksille, joiden toimitus alkaa suoraan tilauspäivänä. {mixedCartDelayedInfo}",
+                        "title": "Sekakärryt",
+                        "toggleLabel": "Aktivoi sekoitetut kärryt"
+                    },
+                    "title": "Asetukset"
+                },
                 "subscriptions": "Tilaukset"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Budjetti-ilmoitus",
             "checkout_order_return_created": "Tilauksen palautus luotu",
             "checkout_subscription_placed": "Tilaus luotu",
             "order_approval_pending_order_requested": "Pyydetty odottava tilaus",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Tehostusluvun on oltava positiivinen arvo",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Tehostamisnimi on jo olemassa",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktivointipäivä on asetettava tulevaisuudessa",
+            "BUDGET_END_DATE_INVALID": "Päättymispäivän on oltava aloituspäivän jälkeen.",
+            "BUDGET_FIELD_REQUIRED": "Tämä kenttä ei saa olla tyhjä.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Valitse vähintään yksi vastaanottaja.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Tämä kenttä on pakollinen, kun tilauksen hyväksyminen on käytössä.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Anna kelvollinen arvo tälle laukaisutyypille.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Tämä kenttä on pakollinen, kun ilmoitukset on otettu käyttöön.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Tämä kenttä ei saa olla tyhjä.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Tämä kenttä ei saa olla tyhjä."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktiivinen",
+                "budgetAmountLabel": "Määrä {currency}",
+                "budgetAmountPlaceholder": "Anna budjetin määrä...",
+                "costCentreLabel": "Kustannuskeskus",
+                "costCentrePlaceholder": "Siirry kustannuskeskukseen...",
+                "nameLabel": "Budjetin nimi",
+                "namePlaceholder": "Anna budjetin nimi...",
+                "noOrganizationsFound": "Organisaatioita ei löytynyt",
+                "organizationUnitsLabel": "Organisaatioyksiköt",
+                "organizationUnitsPlaceholder": "Etsi organisaatioyksiköitä...",
+                "techNameLabel": "Tekninen nimi",
+                "techNamePlaceholder": "Kirjoita tekninen nimi...",
+                "title": "Yleistä tietoa"
+            },
+            "newTitle": "Uusi budjetti",
+            "notification": {
+                "enableNotifications": "Ota ilmoitukset käyttöön",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X päivää ennen päättymispäivää",
+                    "percentage": "X prosenttia käytetystä budjetista",
+                    "specificDate": "Erityinen ilmoituspäivä"
+                },
+                "triggerValue": "Käynnistysarvo",
+                "triggerValuePlaceholder": "Valitse laukaisimen arvo...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Anna päivien lukumäärä",
+                    "percentage": "Anna prosenttiosuus budjetin arvosta",
+                    "specificDate": "Valitse ilmoituspäivä"
+                },
+                "triggerWhen": "Käynnistä ilmoitus, kun",
+                "triggerWhenPlaceholder": "Valitse ilmoituksen laukaisu..."
+            },
+            "notifications": {
+                "title": "Ilmoitusasetukset"
+            },
+            "policies": {
+                "allowApproval": "Salli tilauksen hyväksymispyynnöt, kun budjetti on käytetty täysimääräisesti",
+                "approvalRoleLabel": "Antaa tilaushyväksynnät",
+                "approvalRolePlaceholder": "Valitse hyväksymisrooli...",
+                "showRemaining": "Salli käyttäjien tarkastella jäljellä olevaa budjettia",
+                "title": "Budjettipolitiikka"
+            },
+            "recipients": {
+                "noEmployees": "Työntekijöitä ei ole käytettävissä",
+                "noEmployeesSubtitle": "Luo työntekijöitä budjetin vastaanottajien hallintaan",
+                "noSearchResults": "Yhteystietoja ei löytynyt",
+                "noSearchResultsSubtitle": "Yritä säätää hakutermejäsi",
+                "searchRecipientsPlaceholder": "Etsi työntekijöitä...",
+                "title": "Vastaanottajat",
+                "unknownEmployee": "Tuntematon työntekijä",
+                "unknownOrganization": "Tuntematon organisaatio"
+            },
+            "statistic": {
+                "exceeded": "Budjetti ylitetty:",
+                "remaining": "Jäljellä oleva budjetti:",
+                "used": "Käytetty budjetti:"
+            },
+            "statistics": {
+                "title": "Tilastot"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Päättymispäivä",
+                "endDatePlaceholder": "Valitse päättymispäivä...",
+                "renewsTypeLabel": "Uudistaminen",
+                "renewsTypeOptions": {
+                    "biannual": "Kaksivuotinen",
+                    "monthly": "Kuukausi",
+                    "none": "Ei mitään",
+                    "quarterly": "Neljännesvuosittain",
+                    "weekly": "Viikoittain",
+                    "yearly": "Vuosittain"
+                },
+                "renewsTypePlaceholder": "Valitse uusimisaika...",
+                "startDateLabel": "Aloituspäivämäärä",
+                "startDatePlaceholder": "Valitse aloituspäivä...",
+                "title": "Uusimisaika"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Luo kuva",
         "elConfigImageGenerateLinkText": "Luo kuva",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktiivinen",
+            "availableColumn": "Saatavana",
+            "cardLabel": "Budjetit",
+            "costCentreColumn": "Kustannuskeskus",
+            "createNewBudgetLabel": "Lisää budjetti",
+            "nameColumn": "Nimi",
+            "sublineEmptyState": "Hallitse asiakkaidesi budjetteja täällä",
+            "titleEmptyState": "Ei vielä budjetteja",
+            "totalColumn": "Yhteensä",
+            "usedColumn": "Käytetty"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Lisää työntekijätili",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Hyväksyntäsääntöjen hallinta",
+                            "budget": "Budjetin hallinta",
                             "employee": "Työntekijöiden johtaminen",
                             "order": "Tilaukset",
                             "organization_unit": "Organisaatioyksiköt",
@@ -1071,6 +1186,15 @@
                                 "delete": "Hyväksyntäsääntöjen poistaminen",
                                 "read": "Osaa lukea hyväksyntäsääntöjä",
                                 "update": "Voi päivittää hyväksymissääntöjä"
+                            },
+                            "budget": {
+                                "create": "Luo budjetteja",
+                                "delete": "Poista budjetit",
+                                "edit": "Muokkaa budjetteja",
+                                "place_order_without_specifying_budget": "Tämän roolin työntekijät voivat tehdä tilauksia määrittämättä budjettia",
+                                "read": {
+                                    "all": "Näytä kaikki budjetit"
+                                }
                             },
                             "employee": {
                                 "create": "Voi luoda työntekijöitä",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Yhteensä"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Työntekijöitä ei ole käytettävissä",
+        "unknownEmployee": "Tuntematon työntekijä"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Hyväksytty",
             "adminRequested": "Järjestelmänvalvoja pyysi",
             "approved": "Hyväksytty",
+            "budgetManagement": "Budjetin hallinta",
+            "budgetNotification": "Budjetti-ilmoitus",
             "changeRequest": "Muutospyyntö",
             "created": "Luonut",
             "declined": "hylätty",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Käytetty budjetti"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Tässä organisaatiossa ei ole työntekijöitä"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Määrittämätön"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Varmista, että organisaatioyksiköllä on vähintään yksi toimitus- ja laskutusosoite",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Kuvan avainsana-avustaja"
+            },
+            "b2b_components_budget": {
+                "label": "Budjetin hallinta"
             },
             "b2b_components_organization": {
                 "label": "Organisaatioyksiköt"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Poista luonnos",
             "titleQuote": "Lainaus {quoteNumber}",
             "titleSendMessageOnly": "Lähetä viesti",
-            "titleSendQuoteModal": "Lähetä tarjous"
+            "titleSendQuoteModal": "Lähetä tarjous",
+            "tooltipShippingCosts": "Toimituskulut ovat vain viitteellisiä, ja ne lasketaan uudelleen, kun hyväksyt tarjouksen ja teet tilauksen."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Ota B2B-komponenttien budjettihallinta käyttöön",
                 "employee_management_activate_feature": "Ota B2B-komponenttien työntekijöiden hallinta käyttöön",
                 "order_approval_activate_feature": "Ota B2B-komponenttitilauksen hyväksyntä käyttöön",
                 "organization_units_activate_feature": "Ota käyttöön B2B-komponenttiorganisaatioyksiköt",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Budjetin hallinta",
                     "employee_management_activate_feature": "Työntekijöiden johtaminen",
                     "order_approval_activate_feature": "Tilauksen hyväksyminen",
                     "organization_units_activate_feature": "Organisaatioyksiköt",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Avaa yhtenäinen asteikko"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Asiakkaasi voivat määrittää ja hallita budjettirajoja hallitakseen paremmin organisaatioyksiköiden menoja.",
+        "budgetManagementName": "Budjetit",
         "employeeManagementDescription": "Asiakkaasi voivat luoda työntekijätilejä, joilla on rooleja ja käyttöoikeuksia yksittäisten tilausprosessien toteuttamiseksi.",
         "employeeManagementName": "Työntekijöiden johtaminen",
         "orderApprovalDescription": "Tarjoaa koko yrityksen laajuisen tilausprosessin hallinnan, auttaa pitämään budjetin noudattamisen ja vähentää tilausvirheitä.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Budjetin hallinta",
                     "EMPLOYEE_MANAGEMENT": "Työntekijöiden johtaminen",
                     "ORDER_APPROVAL": "Tilauksen hyväksyminen",
                     "ORGANIZATION_UNITS": "Organisaatioyksiköt",

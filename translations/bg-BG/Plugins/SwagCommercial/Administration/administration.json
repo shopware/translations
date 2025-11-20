@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Абонаменти",
                 "labelSubscription": "Абонамент"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Септември"
                         }
                     },
+                    "delayedInfoMessage": "Този интервал определя по-късен старт на доставката ({advancedSettings}). Смесените колички не се поддържат за такива интервали. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Този интервал ще бъде изтрит от всички планове, в които е избран. Свързаните абонаменти ще останат непроменени.",
                     "emptySubline": "Все още няма интервали.",
                     "emptyTitle": "Не са намерени интервали",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Първоначалната поръчка се брои като изпълнение.",
                 "minimumExecutionCountLabel": "Минимален срок (брой изпълнения на заповедите)",
                 "minimumExecutionCountPlaceholder": "Въведете минимален срок...",
+                "mixedCartDelayedInfo": "Клиентите, които изберат такъв абонамент, ще бъдат пренасочени към отделно плащане със специална количка. Това се дължи на конфликти при планиране с генерирани поръчки.",
                 "nameLabel": "Име",
                 "namePlaceholder": "Въведете име...",
                 "plan": {
                     "addProducts": "Добавяне на продукти",
                     "addProductsButton": "Добави продукти на {selectedProductsLength} | Добави продукт {selectedProductsLength} | Добави продукти на {selectedProductsLength}",
+                    "delayedInfoMessage": "Този план съдържа интервали, определящи по-късен старт на доставката (разширени настройки). Смесените колички не се поддържат за такива планове. {mixedCartDelayedInfo}\n\nПричинено от:",
                     "deleteModalInfoText": "Свързаните абонаменти и интервали ще останат непроменени.",
                     "emptyProductsSubline": "Все още няма продукти",
                     "emptyProductsTitle": "Няма намерени продукти",
@@ -152,6 +156,15 @@
                     "title": "Планове"
                 },
                 "plans": "Планове",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Позволете на клиентите да комбинират еднократни покупки и абонаментни продукти в една количка и плащане, вместо да се налага да използват отделни каси за отделни артикули. Това подобрява гъвкавостта и удобството на изживяването при покупката.",
+                        "note": "Смесените колички се поддържат за абонаменти, чиято доставка започва директно в деня на поръчката. {mixedCartDelayedInfo}",
+                        "title": "Смесени колички",
+                        "toggleLabel": "Активирайте смесени колички"
+                    },
+                    "title": "Настройки"
+                },
                 "subscriptions": "Абонаменти"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Уведомление за бюджета",
             "checkout_order_return_created": "Създадена е връщане на поръчката",
             "checkout_subscription_placed": "Създаден абонамент",
             "order_approval_pending_order_requested": "Поискана чакаща поръчка",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Броят на увеличението трябва да бъде положителна стойност",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Името за засилване вече съществува",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Датата на активиране трябва да бъде определена в бъдеще",
+            "BUDGET_END_DATE_INVALID": "Крайната дата трябва да е след началната дата.",
+            "BUDGET_FIELD_REQUIRED": "Това поле не трябва да е празно.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Моля, изберете поне един получател.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Това поле е задължително, когато одобряването на поръчката е активирано.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Моля, въведете валидна стойност за този тип тригер.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Това поле е задължително, когато известията са активирани.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Това поле не трябва да е празно.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Това поле не трябва да е празно."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Активен",
+                "budgetAmountLabel": "Сумата в {currency}",
+                "budgetAmountPlaceholder": "Въведете сумата на бюджета...",
+                "costCentreLabel": "Център за разходи",
+                "costCentrePlaceholder": "Въведете разходния център...",
+                "nameLabel": "Име на бюджета",
+                "namePlaceholder": "Въведете името на бюджета...",
+                "noOrganizationsFound": "Не са намерени организации",
+                "organizationUnitsLabel": "Организационни единици",
+                "organizationUnitsPlaceholder": "Търсене на организационни единици...",
+                "techNameLabel": "Техническо наименование",
+                "techNamePlaceholder": "Въведете техническо име...",
+                "title": "Обща информация"
+            },
+            "newTitle": "Нов бюджет",
+            "notification": {
+                "enableNotifications": "Активиране на известия",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X дни преди крайната дата",
+                    "percentage": "X процента от използвания бюджет",
+                    "specificDate": "Конкретна дата на уведомяване"
+                },
+                "triggerValue": "Задействаща стойност",
+                "triggerValuePlaceholder": "Изберете стойност на задействането...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Въведете брой дни",
+                    "percentage": "Въведете процента от бюджетната стойност",
+                    "specificDate": "Изберете дата на уведомяване"
+                },
+                "triggerWhen": "Задейства уведомление, когато",
+                "triggerWhenPlaceholder": "Изберете тригер за уведомяване..."
+            },
+            "notifications": {
+                "title": "Настройки за известяване"
+            },
+            "policies": {
+                "allowApproval": "Разрешаване на заявки за одобрение на поръчки, когато бюджетът е напълно използван",
+                "approvalRoleLabel": "Дава одобрения за поръчки",
+                "approvalRolePlaceholder": "Изберете ролята за одобрение...",
+                "showRemaining": "Позволете на потребителите да преглеждат оставащия бюджет",
+                "title": "Бюджетни политики"
+            },
+            "recipients": {
+                "noEmployees": "Няма налични служители",
+                "noEmployeesSubtitle": "Създаване на служители за управление на получателите на бюджета",
+                "noSearchResults": "Не са намерени контакти",
+                "noSearchResultsSubtitle": "Опитайте да коригирате думите си за търсене",
+                "searchRecipientsPlaceholder": "Търсене на служители...",
+                "title": "Получатели",
+                "unknownEmployee": "Неизвестен служител",
+                "unknownOrganization": "Неизвестна организация"
+            },
+            "statistic": {
+                "exceeded": "Бюджетът е надвишен:",
+                "remaining": "Оставащ бюджет:",
+                "used": "Използван бюджет:"
+            },
+            "statistics": {
+                "title": "Статистика"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Крайна дата",
+                "endDatePlaceholder": "Изберете крайна дата...",
+                "renewsTypeLabel": "Подновяване",
+                "renewsTypeOptions": {
+                    "biannual": "Двугодишен",
+                    "monthly": "Месечен",
+                    "none": "Никоя",
+                    "quarterly": "Тримесечни",
+                    "weekly": "Седмично",
+                    "yearly": "Годишно"
+                },
+                "renewsTypePlaceholder": "Изберете период на подновяване...",
+                "startDateLabel": "Начална дата",
+                "startDatePlaceholder": "Изберете начална дата...",
+                "title": "Период на подновяване"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Генериране на изображение",
         "elConfigImageGenerateLinkText": "Генериране на изображение",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Активен",
+            "availableColumn": "Налични",
+            "cardLabel": "Бюджети",
+            "costCentreColumn": "Център за разходи",
+            "createNewBudgetLabel": "Добавяне на бюджет",
+            "nameColumn": "Име",
+            "sublineEmptyState": "Управлявайте бюджетите на клиентите си тук",
+            "titleEmptyState": "Все още няма бюджети",
+            "totalColumn": "Общо",
+            "usedColumn": "Използвани"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Добавяне на акаунт на служител",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Управление на правилата за одобрение",
+                            "budget": "Управление на бюджета",
                             "employee": "Управление на служителите",
                             "order": "Поръчки",
                             "organization_unit": "Организационни единици",
@@ -1071,6 +1186,15 @@
                                 "delete": "Може да изтрие правилата за одобрение",
                                 "read": "Може да чете правилата за одобрение",
                                 "update": "Може да актуализира правилата за одобрение"
+                            },
+                            "budget": {
+                                "create": "Създаване на бюджети",
+                                "delete": "Изтриване на бюджетите",
+                                "edit": "Редактиране на бюджети",
+                                "place_order_without_specifying_budget": "Служителите в тази роля могат да правят поръчки, без да посочват бюджет",
+                                "read": {
+                                    "all": "Виж всички бюджети"
+                                }
                             },
                             "employee": {
                                 "create": "Може да създава служители",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Общо"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Няма налични служители",
+        "unknownEmployee": "Неизвестен служител"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Прието",
             "adminRequested": "Администраторът поиска",
             "approved": "Одобрен",
+            "budgetManagement": "Управление на бюджета",
+            "budgetNotification": "Уведомление за бюджета",
             "changeRequest": "Заявка за промяна",
             "created": "Създаден",
             "declined": "Отказа",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Използван бюджет"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Няма налични служители в тази организация"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Невъзложен"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Моля, уверете се, че тази организационна единица има поне един адрес за доставка и един адрес за фактуриране",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Ключова дума за изображение"
+            },
+            "b2b_components_budget": {
+                "label": "Управление на бюджета"
             },
             "b2b_components_organization": {
                 "label": "Организационни единици"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Изтриване на чернова",
             "titleQuote": "Цитат {quoteNumber}",
             "titleSendMessageOnly": "Изпрати съобщение",
-            "titleSendQuoteModal": "Изпрати оферта"
+            "titleSendQuoteModal": "Изпрати оферта",
+            "tooltipShippingCosts": "Разходите за доставка са само за справка и ще бъдат преизчислени, след като приемете офертата и направите поръчката."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Активиране на управление на бюджета на B2B компоненти",
                 "employee_management_activate_feature": "Активиране на управлението на служителите в B2B компонента",
                 "order_approval_activate_feature": "Активиране на одобряване на поръчка за B2B компоненти",
                 "organization_units_activate_feature": "Активиране на звена за организация на B2B компоненти",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Управление на бюджета",
                     "employee_management_activate_feature": "Управление на служителите",
                     "order_approval_activate_feature": "Одобрение на поръчката",
                     "organization_units_activate_feature": "Организационни единици",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Отключете еднаква скала"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Вашите клиенти могат да определят и управляват бюджетните ограничения, за да контролират по-добре разходите на организационните си единици.",
+        "budgetManagementName": "Бюджети",
         "employeeManagementDescription": "Вашите клиенти могат да създават акаунти на служители с роли и разрешения за реализиране на индивидуални процеси на поръчки.",
         "employeeManagementName": "Управление на служителите",
         "orderApprovalDescription": "Осигурява контрол в цялата компания върху процеса на поръчка, помага за поддържането на спазването на бюджета и намалява грешките при поръчки.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Управление на бюджета",
                     "EMPLOYEE_MANAGEMENT": "Управление на служителите",
                     "ORDER_APPROVAL": "Одобрение на поръчката",
                     "ORGANIZATION_UNITS": "Организационни единици",

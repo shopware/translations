@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Det gick inte att radera.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Saknade behörigheter.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "För många förfrågningar. Vänta {seconds} sekunder innan du försöker igen.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "Webbadressen {path} står i konflikt med den befintliga rutten {blockedSegment} och kan inte användas.",
             "INVALID_MAIL": "Ange en giltig e-postadress.",
             "INVALID_MEDIA_URL": "Ange en giltig URL för att ladda upp en fil.",
             "INVALID_URL": "Vänligen, ange en giltig URL.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Inga resultat funna för \"{term}\"."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Länkarv",
+            "ariaUnlinkInheritance": "Koppla bort arv",
             "notification": {
                 "notificationCopyFailureMessage": "Texten kunde inte kopieras till urklippet.",
                 "notificationCopySuccessMessage": "Texten har kopierats till urklippet."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Din webbläsare stöder inte den här audiotaggen",
             "fallbackVideoTagSupport": "Din webbläsare stöder inte den här videotaggen",
-            "textNoMedia": "Inga media tillgängliga"
+            "textNoMedia": "Inga media tillgängliga",
+            "warningUnsupportedFormat": "Formatet \"{format}\" kanske inte stöds i alla webbläsare."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Ladda upp filer",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Ofiltrerad HTML-kod kan leda till säkerhetsrisker. Infoga bara HTML-kod från betrodda källor och testa dina ändringar innan du publicerar dem."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Innehåll"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktivera det här alternativet om bilden är den första på sidan. Bilden kommer sedan att tilldelas attributet 'fetchpriority=\"high\"', vilket säger till webbläsaren att ladda den med högre prioritet. Detta kan hjälpa till att förbättra LCP (Largest Contentful Paint).",
+                        "isDecorative": "När det här alternativet är aktiverat läses inte bildinformationen av skärmläsarna. Detta innebär att taggarna ”alt” och ”title” förblir tomma."
+                    },
                     "label": {
                         "ariaLabel": "Länkbeskrivning",
                         "ariaLabelHelpText": "Denna text kommer att läsas upp av skärmläsare som länktext.",
+                        "fetchPriorityHigh": "Hög hämtningsprioritet",
                         "isDecorative": "Markera bilden som dekorativ",
                         "isDecorativeHelpText": "När det här alternativet är aktiverat läses inte bildinformationen av skärmläsare.",
                         "linkNewTab": "Öppna länken i ny flik",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Punktnavigering",
                         "navigationPositionInside": "Inuti",
                         "navigationPositionNone": "Ingen",
-                        "navigationPositionOutside": "Utanför"
+                        "navigationPositionOutside": "Utanför",
+                        "sliderItems": "Bilder"
                     }
                 },
                 "label": "Bildspel"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Upplevelsevärldar",
             "placeholderSearchBar": "Sök i layouter...",
             "privacyNotice": "Genom att välja Fortsätt bekräftar du att du har läst vår <a href=\"%privacyUrl%\">dataskyddsinformation</a> och accepterat våra <a href=\"%tosUrl%\">allmänna villkor</a>."
+        },
+        "inherit": {
+            "formBanner": "Den här layouten har ärvt fält. Det betyder att så länge det ärvda tillståndet är aktivt kommer innehållet att ärvas. Ärvda fält kan kopplas bort genom att klicka på länksymbolen. Om du klickar på symbolen igen ställs det ärvda tillståndet tillbaka.",
+            "tooltip": "Det här fältet finns inte i baslayouten och kan inte ärvas.",
+            "unlinkAllButton": "Återställ alla fält.",
+            "unlinkAllConfirmText": "Är du säker på att du vill återställa alla fält? Detta kommer att radera allt olänkat innehåll permanent.",
+            "unlinkAllTitle": "Återställ alla fält",
+            "unlinkFieldConfirmText": "Är du säker på att du vill återställa arvet? Detta tar bort alla anpassade data i det här fältet och återställer värden från det överordnade elementet.",
+            "unlinkFieldTitle": "Återställ ursprungliga inställningar",
+            "unlinkNotice": "Vissa ärvda fält har kopplats bort."
         },
         "list": {
             "gridHeaderAssignedPages": "Tilldelade sidor",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Följande försäljningskanaler påverkas:",
+            "confirmButton": "Fortsätt ändå",
             "mainContent": "Det finns redan en sidhuvud- och sidfotsmall som tilldelats följande försäljningskanaler. Om du fortsätter och sparar kommer det uppdraget att skrivas över med dina ändringar.",
             "title": "Flera uppdrag"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Bibliotek",
             "labelTabItemUpload": "Ladda upp filer",
             "titleModal": "Välj media"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Spara i media"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "och",
                     "by": "av",
                     "lastChanged": "Senast ändrad",
-                    "on": "på",
                     "with": "med"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Om du ändrar den här inställningen kan det leda till redovisningsproblem med externa betalningsleverantörer. Kontrollera hur moms beräknas av betalningsleverantörer du använder innan du gör några ändringar.",
             "favouriteLabel": "Markera Sales Channel som favorit",
             "footerCategory": "Startpunkt för sidfotsnavigeringen",
+            "foreignKeyDelete": "Den här försäljningskanalen kan inte tas bort eftersom den fortfarande används av {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Om en skatteleverantör är aktiverad kan dessa inställningar skrivas över. Du kan kontrollera detta i {link}.",
                 "linkText": "inställningar"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Anpassat fält",
                         "product": {
+                            "available": "Fortfarande tillgänglig",
                             "cheapestPrice": "Billigaste produktpriset",
                             "createdAt": "Tillverkningsdatum",
                             "listingPrices": "Pris för produktnotering",
@@ -8718,6 +8744,7 @@
                 "height": "Höjd",
                 "length": "Längd",
                 "manufacturerNumber": "Tillverkarens produktnummer",
+                "packUnit": "Förpackningsenhet",
                 "property": "Egenskap",
                 "referencePrice": "Styckpris",
                 "releaseDate": "Utgivningsdatum",

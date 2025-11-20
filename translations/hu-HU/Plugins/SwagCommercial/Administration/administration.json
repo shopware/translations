@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Előfizetések",
                 "labelSubscription": "Előfizetés"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "szeptember"
                         }
                     },
+                    "delayedInfoMessage": "Ez az intervallum meghatározza a kézbesítés későbbi kezdetét ({advancedSettings}). A vegyes kocsik ilyen időközönként nem támogatottak. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Ez az intervallum törlődik minden olyan tervből, amelyben kiválasztották. A kapcsolódó előfizetések változatlanok maradnak.",
                     "emptySubline": "Még nincsenek intervallumok.",
                     "emptyTitle": "Nem találtak intervallumokat",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "A kezdeti megbízás végrehajtásnak számít.",
                 "minimumExecutionCountLabel": "Minimális határidő (megbízások végrehajtásának száma)",
                 "minimumExecutionCountPlaceholder": "Adja meg a minimális határidőt...",
+                "mixedCartDelayedInfo": "Az ilyen előfizetést választó ügyfeleket külön pénztárra irányítják át egy dedikált kosárral. Ennek oka az ütemezés összeütközése a generált megrendelésekkel.",
                 "nameLabel": "Név",
                 "namePlaceholder": "Adja meg a nevet...",
                 "plan": {
                     "addProducts": "Termékek hozzáadása",
                     "addProductsButton": "{selectedProductsLength} termék hozzáadása | {selectedProductsLength} termék hozzáadása | {selectedProductsLength} termékek hozzáadása",
+                    "delayedInfoMessage": "Ez a csomag intervallumokat tartalmaz, amelyek meghatározzák a kézbesítés későbbi kezdetét (speciális beállítások). Az ilyen tervekhez vegyes kocsik nem támogatottak. {mixedCartDelayedInfo}\n\nA következők okozta:",
                     "deleteModalInfoText": "A kapcsolódó előfizetések és intervallumok változatlanok maradnak.",
                     "emptyProductsSubline": "Még nincsenek termékek",
                     "emptyProductsTitle": "Nem található termék",
@@ -152,6 +156,15 @@
                     "title": "Tervek"
                 },
                 "plans": "Tervek",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Engedje meg, hogy az ügyfelek egyszeri vásárlásokat és előfizetési termékeket egyetlen kosárban és pénztárban egyesítsék, ahelyett, hogy külön kifizetéseket kellene használniuk az egyes termékekhez. Ez javítja a vásárlási élmény rugalmasságát és kényelmét.",
+                        "note": "A vegyes kocsik támogatottak azoknál az előfizetéseknél, amelyek szállítása közvetlenül a megrendelés napján kezdődik. {mixedCartDelayedInfo}",
+                        "title": "Vegyes kocsik",
+                        "toggleLabel": "Vegyes kocsik aktiválása"
+                    },
+                    "title": "Beállítások"
+                },
                 "subscriptions": "Előfizetések"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Költségvetés",
             "checkout_order_return_created": "Megrendelés-visszatérítés létrehozása",
             "checkout_subscription_placed": "Előfizetés létrehozása",
             "order_approval_pending_order_requested": "Kért függőben lévő megrendelés",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "A növekedési számnak pozitív értéknek kell lennie",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "A bővítő név már létezik",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Az aktiválás dátumát a jövőben meg kell határozni",
+            "BUDGET_END_DATE_INVALID": "A befejezési dátumnak a kezdő dátum után kell lennie.",
+            "BUDGET_FIELD_REQUIRED": "Ez a mező nem lehet üres.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Kérjük, válasszon legalább egy címzettet.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Ez a mező akkor szükséges, ha a megrendelés jóváhagyása engedélyezve van.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Adjon meg egy érvényes értéket ehhez a triggertípushoz.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Ez a mező akkor kötelező, ha az értesítések engedélyezve vannak.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Ez a mező nem lehet üres.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Ez a mező nem lehet üres."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktív",
+                "budgetAmountLabel": "Összeg {currency}-ban",
+                "budgetAmountPlaceholder": "Adja meg a költségvetési összeget...",
+                "costCentreLabel": "Költségközpont",
+                "costCentrePlaceholder": "Lépjen be a költségközpontba...",
+                "nameLabel": "Költségvetés neve",
+                "namePlaceholder": "Adja meg a költségvetés nevét...",
+                "noOrganizationsFound": "Nem található szervezet",
+                "organizationUnitsLabel": "Szervezeti egységek",
+                "organizationUnitsPlaceholder": "Szervezeti egységek keresése...",
+                "techNameLabel": "Műszaki név",
+                "techNamePlaceholder": "Adja meg a műszaki nevet...",
+                "title": "Általános információk"
+            },
+            "newTitle": "Új költségvetés",
+            "notification": {
+                "enableNotifications": "Értékelések engedélyezése",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X nappal a befejezési dátum előtt",
+                    "percentage": "A felhasznált költségvetés X százaléka",
+                    "specificDate": "Konkrét értesítési dátum"
+                },
+                "triggerValue": "Indító érték",
+                "triggerValuePlaceholder": "Válassza ki a kiváltó értéket...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Adja meg a napok számát",
+                    "percentage": "Adja meg a költségvetési érték százalékát",
+                    "specificDate": "Válassza ki az értesítés dátumát"
+                },
+                "triggerWhen": "Értesítés indítása, amikor",
+                "triggerWhenPlaceholder": "Válassza ki az értesítési indítót..."
+            },
+            "notifications": {
+                "title": "Értesítési beállítások"
+            },
+            "policies": {
+                "allowApproval": "Rendelésjóváhagyási kérelmek engedélyezése a költségvetés teljes kihasználása",
+                "approvalRoleLabel": "Rendelési jóváhagyásokat ad",
+                "approvalRolePlaceholder": "Válassza ki a jóváhagyási szerepet...",
+                "showRemaining": "Lehetővé teszi a felhasználók számára a fennmaradó költségvetés",
+                "title": "Költségvetési politika"
+            },
+            "recipients": {
+                "noEmployees": "Nincsenek alkalmazottak",
+                "noEmployeesSubtitle": "Alkalmazottak létrehozása költségvetési címzettek kezeléséhez",
+                "noSearchResults": "Nem található névjegy",
+                "noSearchResultsSubtitle": "Próbálja meg módosítani a keresési kifejezéseket",
+                "searchRecipientsPlaceholder": "Keressen alkalmazottakat...",
+                "title": "Címzettek",
+                "unknownEmployee": "Ismeretlen alkalmazott",
+                "unknownOrganization": "Ismeretlen szervezet"
+            },
+            "statistic": {
+                "exceeded": "A költségvetés meghaladta:",
+                "remaining": "Fennmaradó költségvetés:",
+                "used": "Használt költségvetés:"
+            },
+            "statistics": {
+                "title": "Statisztikák"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Befejezési dátum",
+                "endDatePlaceholder": "Válassza ki a záró dátumot...",
+                "renewsTypeLabel": "Megújítás",
+                "renewsTypeOptions": {
+                    "biannual": "Kétévenkénti",
+                    "monthly": "Havi",
+                    "none": "Nincs",
+                    "quarterly": "Negyedéves",
+                    "weekly": "Heti",
+                    "yearly": "Évente"
+                },
+                "renewsTypePlaceholder": "Válassza ki a megújítási időszakot...",
+                "startDateLabel": "Kezdő dátum",
+                "startDatePlaceholder": "Válassza ki a kezdő dátumot...",
+                "title": "Megújítási időszak"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Kép létrehozása",
         "elConfigImageGenerateLinkText": "Kép létrehozása",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktív",
+            "availableColumn": "Elérhető",
+            "cardLabel": "A költségvetések",
+            "costCentreColumn": "Költségközpont",
+            "createNewBudgetLabel": "Hozzáadás költségvetése",
+            "nameColumn": "Név",
+            "sublineEmptyState": "Kezelje ügyfelei költségvetését itt",
+            "titleEmptyState": "Még nincs költségvetés",
+            "totalColumn": "Összesen",
+            "usedColumn": "Használt"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Munkavállalói fiók hozzáadása",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Jóváhagyási szabálykezelés",
+                            "budget": "A költségvetés-kezelés",
                             "employee": "Munkavállalói vezetés",
                             "order": "Rendelések",
                             "organization_unit": "Szervezeti egységek",
@@ -1071,6 +1186,15 @@
                                 "delete": "Törölheti a jóváhagyási szabályokat",
                                 "read": "Olvassa el a jóváhagyási szabályokat",
                                 "update": "Frissítheti a jóváhagyási szabályokat"
+                            },
+                            "budget": {
+                                "create": "Költségek létrehozása",
+                                "delete": "A költségvetések törlése",
+                                "edit": "Költségek szerkesztése",
+                                "place_order_without_specifying_budget": "Az ebben a szerepben betöltött alkalmazottak költségvetés megadása nélkül adhatnak megrendeléseket",
+                                "read": {
+                                    "all": "Összes költségvetés megtekintése"
+                                }
                             },
                             "employee": {
                                 "create": "Létrehozhat alkalmazottakat",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Összesen"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Nincsenek alkalmazottak",
+        "unknownEmployee": "Ismeretlen alkalmazott"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Elfogadva",
             "adminRequested": "Admin kért",
             "approved": "Jóváhagyott",
+            "budgetManagement": "A költségvetés-kezelés",
+            "budgetNotification": "Költségvetés",
             "changeRequest": "Módosítási kérelem",
             "created": "Létrehozott",
             "declined": "Elutasította",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Használt költségvetés"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Ebben a szervezetben nincsenek alkalmazottak"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Nem hozzárendelt"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Kérjük, győződjön meg arról, hogy ennek a szervezeti egységnek legalább egy szállítási és egy számlázási címe van",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Kép kulcsszóasszisztens"
+            },
+            "b2b_components_budget": {
+                "label": "A költségvetés-kezelés"
             },
             "b2b_components_organization": {
                 "label": "Szervezeti egységek"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Tervezetek törlése",
             "titleQuote": "Idézet {quoteNumber}",
             "titleSendMessageOnly": "Üzenet küldése",
-            "titleSendQuoteModal": "Árajánlat küldése"
+            "titleSendQuoteModal": "Árajánlat küldése",
+            "tooltipShippingCosts": "A szállítási költség csak referenciaként szolgál, és az árajánlat elfogadása és a megrendelés leadása után újraszámításra kerül."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "A B2B komponens költségvetés-kezelésének engedélyezése",
                 "employee_management_activate_feature": "A B2B komponens alkalmazottakezelésének engedélyezése",
                 "order_approval_activate_feature": "B2B alkatrészrendelés jóváhagyásának engedélyezése",
                 "organization_units_activate_feature": "B2B összetevőszervezési egységek engedélyezése",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Költségvetés kezel",
                     "employee_management_activate_feature": "Alkalmazottak vezetése",
                     "order_approval_activate_feature": "Megrendelés jóváhagyása",
                     "organization_units_activate_feature": "Szervezeti egységek",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Egységes skála feloldása"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Ügyfelei meghatározhatják és kezelhetik a költségvetési korlátokat, hogy jobban ellenőrizhessék szervezeti egységeik kiadásait.",
+        "budgetManagementName": "A költségvetések",
         "employeeManagementDescription": "Ügyfelei létrehozhatnak munkavállalói fiókokat szerepkörökkel és jogosultságokkal az egyes megrendelési folyamatok megvalósításához.",
         "employeeManagementName": "Alkalmazottak vezetése",
         "orderApprovalDescription": "Vállalati szintű ellenőrzést biztosít a megrendelési folyamat felett, segít fenntartani a költségvetés betartását és csökkenti a rendelési hibákat.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "A költségvetés-kezelés",
                     "EMPLOYEE_MANAGEMENT": "Alkalmazottak vezetése",
                     "ORDER_APPROVAL": "Megrendelés jóváhagyása",
                     "ORGANIZATION_UNITS": "Szervezeti egységek",

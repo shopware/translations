@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Odstranění selhalo.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Chybějící oprávnění.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Příliš mnoho žádostí. Počkejte prosím {seconds} sekund, než se pokusíte znovu.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "Adresa URL {path} je v konfliktu s existující trasou {blockedSegment} a nelze ji použít.",
             "INVALID_MAIL": "Zadejte platnou e-mailovou adresu.",
             "INVALID_MEDIA_URL": "K odeslání souboru zadejte platnou adresu URL.",
             "INVALID_URL": "Zadejte platnou adresu URL.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Pro \"{term}\" nebyly nalezeny žádné výsledky."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Dědičnost odkazu",
+            "ariaUnlinkInheritance": "Odpojit dědičnost",
             "notification": {
                 "notificationCopyFailureMessage": "Text se nepodařilo zkopírovat do schránky.",
                 "notificationCopySuccessMessage": "Text byl zkopírován do schránky."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Váš prohlížeč nepodporuje tento tag audia",
             "fallbackVideoTagSupport": "Váš prohlížeč nepodporuje tento tag videa",
-            "textNoMedia": "Žádné médium není k dispozici"
+            "textNoMedia": "Žádné médium není k dispozici",
+            "warningUnsupportedFormat": "Formát \"{format}\" nemusí být podporován ve všech prohlížečích."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Odeslat soubory",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Nefiltrovaný kód HTML může vést k bezpečnostním rizikům. Vložte prosím pouze kód HTML z důvěryhodných zdrojů a otestujte změny před jejich publikováním."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Obsahy"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktivujte tuto možnost, pokud je obrázek první na stránce. Obrazu bude poté přiřazen atribut 'fetchpriority=\"high\"', který řekne prohlížeči, aby jej načítal s vyšší prioritou. To může pomoci zlepšit velikost LCP (Largest Contentful Paint).",
+                        "isDecorative": "Pokud je tato možnost povolena, informace o obrázku nebudou čteny čtečkami obrazovky. To znamená, že značky „alt“ a „title“ zůstanou prázdné."
+                    },
                     "label": {
                         "ariaLabel": "Popis odkazu",
                         "ariaLabelHelpText": "Tento text bude přečten čtečkami obrazovky jako text odkazu.",
+                        "fetchPriorityHigh": "Priorita načítání vysoká",
                         "isDecorative": "Označit obrázek jako dekorativní",
                         "isDecorativeHelpText": "Pokud je tato možnost povolena, informace o obrázku nebudou čteny čtečkami obrazovky.",
                         "linkNewTab": "Odkaz k otevření na nové kartě",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Bodová navigace",
                         "navigationPositionInside": "Vnitřní",
                         "navigationPositionNone": "Žádné",
-                        "navigationPositionOutside": "Vnější"
+                        "navigationPositionOutside": "Vnější",
+                        "sliderItems": "Obrázky"
                     }
                 },
                 "label": "Posuvník obrazovky"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Svět zážitků",
             "placeholderSearchBar": "Prohledávání rozvržení...",
             "privacyNotice": "Výběrem možnosti Pokračovat potvrzujete, že jste si přečetli naše <a href=\"%privacyUrl%\">informace o ochraně osobních údajů</a> a souhlasili s našimi všeobecnými podmínkami <a href=\"%tosUrl%\"></a>."
+        },
+        "inherit": {
+            "formBanner": "Toto rozložení má zděděná pole. To znamená, že pokud je zděděný stav aktivní, bude obsah zděděn. Zděděná pole lze odpojit kliknutím na symbol odkazu. Opětovným kliknutím na symbol nastavíte zděděný stav zpět.",
+            "tooltip": "Toto pole neexistuje v základním rozvržení a nelze jej zdědit.",
+            "unlinkAllButton": "Resetujte všechna pole.",
+            "unlinkAllConfirmText": "Opravdu chcete resetovat všechna pole? Tím se trvale odstraní veškerý nepropojený obsah.",
+            "unlinkAllTitle": "Obnovit všechna pole",
+            "unlinkFieldConfirmText": "Jste si jisti, že chcete obnovit dědictví? Tím se odstraní všechna uživatelská data tohoto pole a obnoví se hodnoty z nadřazeného prvku.",
+            "unlinkFieldTitle": "Obnovit dědičnost",
+            "unlinkNotice": "Některá zděděná pole byla odpojena."
         },
         "list": {
             "gridHeaderAssignedPages": "Přiřazené stránky",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Jsou ovlivněny následující prodejní kanály:",
+            "confirmButton": "Pokračujte v každém případě",
             "mainContent": "K následujícím prodejním kanálům je již přiřazena šablona záhlaví a zápatí. Pokud pokračujete a uložíte, tento úkol bude přepsán vašimi změnami.",
             "title": "Vícenásobné přiřazení"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Knihovna",
             "labelTabItemUpload": "Odeslat soubory",
             "titleModal": "Vybrat média"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Uložit na médium"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "a",
                     "by": "podle",
                     "lastChanged": "Naposledy změněno",
-                    "on": "na",
                     "with": "s"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Změna tohoto nastavení by mohla vést k účetním problémům s externími poskytovateli plateb. Před provedením jakýchkoli změn zkontrolujte, jak DPH vypočítávají poskytovatelé plateb, které zaměstnáváte.",
             "favouriteLabel": "Označit prodejní kanál jako oblíbený",
             "footerCategory": "Vstupní bod navigace v zápatí",
+            "foreignKeyDelete": "Tento prodejní kanál nelze odstranit, protože jej stále používá {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Pokud je aktivován poskytovatel daně, mohou být tato nastavení přepsána. Můžete to zkontrolovat {link}.",
                 "linkText": "nastavení"
@@ -8338,6 +8363,7 @@
                         "_score": "_skóre",
                         "customField": "Vlastní pole",
                         "product": {
+                            "available": "Ještě k dispozici",
                             "cheapestPrice": "Nejlevnější cena produktu",
                             "createdAt": "Datum vytvoření",
                             "listingPrices": "Výpisová cena produktu",
@@ -8718,6 +8744,7 @@
                 "height": "Výška",
                 "length": "Délka",
                 "manufacturerNumber": "Číslo produktu výrobce",
+                "packUnit": "Jednotka balení",
                 "property": "Nemovitosti",
                 "referencePrice": "Jednotková cena",
                 "releaseDate": "Datum vydání",

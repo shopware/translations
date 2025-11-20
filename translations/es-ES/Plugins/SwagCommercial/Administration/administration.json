@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Suscripciones",
                 "labelSubscription": "Suscripción"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "septiembre"
                         }
                     },
+                    "delayedInfoMessage": "Este intervalo define un inicio posterior de la entrega ({advancedSettings}). No se admiten carritos mixtos para estos intervalos. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Este intervalo se eliminará de todos los planes en los que se seleccionó. Las suscripciones asociadas permanecerán sin cambios.",
                     "emptySubline": "Aún no hay intervalos.",
                     "emptyTitle": "No se han encontrado intervalos",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "La orden inicial se cuenta como una ejecución.",
                 "minimumExecutionCountLabel": "Plazo mínimo (número de órdenes ejecutadas)",
                 "minimumExecutionCountPlaceholder": "Introduzca el plazo mínimo...",
+                "mixedCartDelayedInfo": "Los clientes que elijan una suscripción de este tipo serán redirigidos a una caja independiente con un carrito dedicado. Esto se debe a conflictos de programación con los pedidos generados.",
                 "nameLabel": "Nombre",
                 "namePlaceholder": "Introducir nombre...",
                 "plan": {
                     "addProducts": "Agregar productos",
                     "addProductsButton": "Añadir productos {selectedProductsLength} | Añadir producto {selectedProductsLength} | Añadir productos {selectedProductsLength}",
+                    "delayedInfoMessage": "Este plan contiene intervalos que definen un inicio posterior de la entrega (configuración avanzada). Estos planes no admiten carritos mixtos. {mixedCartDelayedInfo}\n\nCausado por:",
                     "deleteModalInfoText": "Las suscripciones e intervalos asociados permanecerán sin cambios.",
                     "emptyProductsSubline": "Aún no hay productos",
                     "emptyProductsTitle": "No se han encontrado productos",
@@ -152,6 +156,15 @@
                     "title": "Planes"
                 },
                 "plans": "Planes",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Permita a los clientes combinar compras únicas y productos de suscripción en un solo carrito y pago, en lugar de tener que usar pagos separados para artículos individuales. Esto mejora la flexibilidad y la comodidad de la experiencia de compra.",
+                        "note": "Se admiten carritos mixtos para las suscripciones cuya entrega comience directamente el día del pedido. {mixedCartDelayedInfo}",
+                        "title": "Carros mixtos",
+                        "toggleLabel": "Activar carritos mixtos"
+                    },
+                    "title": "Ajustes"
+                },
                 "subscriptions": "Suscripciones"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Notificación de presupuesto",
             "checkout_order_return_created": "Se ha creado una devolución de pedido",
             "checkout_subscription_placed": "Suscripción creada",
             "order_approval_pending_order_requested": "Pedido pendiente solicitado",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "El número de impulso debe ser un valor positivo",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "El nombre de Boosting ya existe",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "La fecha de activación debe fijarse en el futuro",
+            "BUDGET_END_DATE_INVALID": "La fecha de finalización debe ser posterior a la fecha de inicio.",
+            "BUDGET_FIELD_REQUIRED": "Este campo no debe estar vacío.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Selecciona al menos un destinatario.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Este campo es obligatorio cuando la aprobación del pedido está habilitada.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Introduzca un valor válido para este tipo de desencadenador.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Este campo es obligatorio cuando las notificaciones están activadas.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Este campo no debe estar vacío.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Este campo no debe estar vacío."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Activo",
+                "budgetAmountLabel": "Cantidad en {currency}",
+                "budgetAmountPlaceholder": "Introduzca el importe del presupuesto...",
+                "costCentreLabel": "Centro de costos",
+                "costCentrePlaceholder": "Introduzca el centro de costes...",
+                "nameLabel": "Nombre del presupuesto",
+                "namePlaceholder": "Introduzca el nombre del presupuesto...",
+                "noOrganizationsFound": "No se encontró ninguna organización",
+                "organizationUnitsLabel": "Unidades organizativas",
+                "organizationUnitsPlaceholder": "Buscar unidades organizativas...",
+                "techNameLabel": "Nombre",
+                "techNamePlaceholder": "Introduzca el nombre técnico...",
+                "title": "Información"
+            },
+            "newTitle": "Nuevo presupuesto",
+            "notification": {
+                "enableNotifications": "Habilitar las notificaciones",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X días antes de la fecha de finalización",
+                    "percentage": "X por ciento del presupuesto utilizado",
+                    "specificDate": "Fecha de notificación específica"
+                },
+                "triggerValue": "Valor desencadenante",
+                "triggerValuePlaceholder": "Elija el valor de activación...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Ingresa el número de días",
+                    "percentage": "Introduzca el porcentaje del valor del presupuesto",
+                    "specificDate": "Seleccione la fecha de notificación"
+                },
+                "triggerWhen": "Activa la notificación cuando",
+                "triggerWhenPlaceholder": "Seleccione el activador de notificaciones..."
+            },
+            "notifications": {
+                "title": "Configuración de notificaciones"
+            },
+            "policies": {
+                "allowApproval": "Permitir solicitudes de aprobación de pedidos cuando el presupuesto se haya utilizado por completo",
+                "approvalRoleLabel": "Da aprobaciones de pedidos",
+                "approvalRolePlaceholder": "Seleccione el rol de aprobación...",
+                "showRemaining": "Permitir a los usuarios ver el presupuesto restante",
+                "title": "Políticas presupuestarias"
+            },
+            "recipients": {
+                "noEmployees": "No hay empleados disponibles",
+                "noEmployeesSubtitle": "Cree empleados para administrar los destinatarios del presupuesto",
+                "noSearchResults": "No se han encontrado contactos",
+                "noSearchResultsSubtitle": "Intenta ajustar los términos de búsqueda",
+                "searchRecipientsPlaceholder": "Buscar empleados...",
+                "title": "Destinatarios",
+                "unknownEmployee": "Empleado desconocido",
+                "unknownOrganization": "Organización desconocida"
+            },
+            "statistic": {
+                "exceeded": "Presupuesto superado:",
+                "remaining": "Presupuesto restante:",
+                "used": "Presupuesto utilizado:"
+            },
+            "statistics": {
+                "title": "Estadísticas"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Fecha de finalización",
+                "endDatePlaceholder": "Seleccionar fecha de finalización...",
+                "renewsTypeLabel": "Renovación",
+                "renewsTypeOptions": {
+                    "biannual": "Bianual",
+                    "monthly": "Mensual",
+                    "none": "No hay",
+                    "quarterly": "Trimestral",
+                    "weekly": "Semanalmente",
+                    "yearly": "Anual"
+                },
+                "renewsTypePlaceholder": "Seleccione el período de renovación...",
+                "startDateLabel": "Fecha de inicio",
+                "startDatePlaceholder": "Seleccionar fecha de inicio...",
+                "title": "Periodo de renovación"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generar imagen",
         "elConfigImageGenerateLinkText": "Generar imagen",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Activo",
+            "availableColumn": "Todavía disponible",
+            "cardLabel": "Presupuestos",
+            "costCentreColumn": "Centro de costos",
+            "createNewBudgetLabel": "Añadir presupuesto",
+            "nameColumn": "Nombre",
+            "sublineEmptyState": "Gestione los presupuestos de sus clientes aquí",
+            "titleEmptyState": "Aún no hay presupuestos",
+            "totalColumn": "Total",
+            "usedColumn": "Usado"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Añadir cuenta de empleado",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Gestión de reglas de aprobación",
+                            "budget": "Gestión presupuestaria",
                             "employee": "Gestión de empleados",
                             "order": "Pedidos",
                             "organization_unit": "Unidades organizativas",
@@ -1071,6 +1186,15 @@
                                 "delete": "Puede eliminar las reglas de aprobación",
                                 "read": "Puede leer las reglas de aprobación",
                                 "update": "Puede actualizar las reglas de aprobación"
+                            },
+                            "budget": {
+                                "create": "Crea presupuestos",
+                                "delete": "Eliminar presupuestos",
+                                "edit": "Editar presupuestos",
+                                "place_order_without_specifying_budget": "Los empleados que desempeñan esta función pueden realizar pedidos sin especificar un presupuesto.",
+                                "read": {
+                                    "all": "Ver todos los presupuestos"
+                                }
                             },
                             "employee": {
                                 "create": "Puede crear empleados",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Total"
         }
     },
+    "sw-employees": {
+        "noEmployees": "No hay empleados disponibles",
+        "unknownEmployee": "Empleado desconocido"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Aceptado",
             "adminRequested": "Solicitado por el administrador",
             "approved": "Aprobado",
+            "budgetManagement": "Gestión presupuestaria",
+            "budgetNotification": "Notificación de presupuesto",
             "changeRequest": "Solicitud de cambio",
             "created": "Creado",
             "declined": "Rechazado",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Presupuesto utilizado"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "No hay empleados disponibles en esta organización"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Sin asignar"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Asegúrate de que esta unidad organizativa tenga al menos una dirección de envío y una dirección de facturación",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Asistente de palabras clave de imagen"
+            },
+            "b2b_components_budget": {
+                "label": "Gestión presupuestaria"
             },
             "b2b_components_organization": {
                 "label": "Unidades organizativas"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Eliminar borrador",
             "titleQuote": "Cita {quoteNumber}",
             "titleSendMessageOnly": "Enviar mensaje",
-            "titleSendQuoteModal": "Enviar cotización"
+            "titleSendQuoteModal": "Enviar cotización",
+            "tooltipShippingCosts": "El costo de envío es solo de referencia y se volverá a calcular una vez que acepte la cotización y realice el pedido."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Habilite la administración del presupuesto de componentes B2B",
                 "employee_management_activate_feature": "Habilite la gestión de empleados del componente B2B",
                 "order_approval_activate_feature": "Habilitar la aprobación de pedidos de componentes B2B",
                 "organization_units_activate_feature": "Habilitar unidades organizativas de componentes B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Gestión del presupuesto",
                     "employee_management_activate_feature": "Administración de empleados",
                     "order_approval_activate_feature": "Aprobación del pedido",
                     "organization_units_activate_feature": "Unidades organizativas",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Desbloquea una escala uniforme"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Sus clientes pueden definir y administrar los límites presupuestarios para controlar mejor los gastos de sus unidades organizativas.",
+        "budgetManagementName": "Presupuestos",
         "employeeManagementDescription": "Sus clientes pueden crear cuentas de empleados con funciones y permisos para realizar procesos de pedidos individuales.",
         "employeeManagementName": "Administración de empleados",
         "orderApprovalDescription": "Proporciona un control del proceso de pedidos en toda la empresa, ayuda a mantener el cumplimiento del presupuesto y reduce los errores en los pedidos.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Gestión presupuestaria",
                     "EMPLOYEE_MANAGEMENT": "Administración de empleados",
                     "ORDER_APPROVAL": "Aprobación del pedido",
                     "ORGANIZATION_UNITS": "Unidades organizativas",

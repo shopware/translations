@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Abonamente",
                 "labelSubscription": "Abonament"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Septembrie"
                         }
                     },
+                    "delayedInfoMessage": "Acest interval definește un început ulterior al livrării ({advancedSettings}). Cărucioarele mixte nu sunt acceptate pentru astfel de intervale. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Acest interval va fi șters din toate planurile în care a fost selectat. Abonamentele asociate vor rămâne neschimbate.",
                     "emptySubline": "Încă nu există intervale.",
                     "emptyTitle": "Nu au fost găsite intervale",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Ordinul inițial este considerat o execuție.",
                 "minimumExecutionCountLabel": "Termen minim (număr de executări de ordine)",
                 "minimumExecutionCountPlaceholder": "Introduceți termenul minim...",
+                "mixedCartDelayedInfo": "Clienții care aleg un astfel de abonament vor fi redirecționați către o plată separată cu un coș dedicat. Acest lucru se datorează conflictelor de programare cu comenzile generate.",
                 "nameLabel": "Nume",
                 "namePlaceholder": "Introduceți numele...",
                 "plan": {
                     "addProducts": "Adauga produse",
                     "addProductsButton": "Adaugă produse {selectedProductsLength} | Adaugă produse {selectedProductsLength} | Adaugă produse {selectedProductsLength}",
+                    "delayedInfoMessage": "Acest plan conține intervale care definesc un început ulterior al livrării (setări avansate). Cărucioarele mixte nu sunt acceptate pentru astfel de planuri. {mixedCartDelayedInfo}\n\nCauzat de:",
                     "deleteModalInfoText": "Abonamentele și intervalele asociate vor rămâne neschimbate.",
                     "emptyProductsSubline": "Nu există încă produse",
                     "emptyProductsTitle": "Nu au fost găsite produse",
@@ -152,6 +156,15 @@
                     "title": "Planuri"
                 },
                 "plans": "Planuri",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Permiteți clienților să combine achizițiile unice și produsele de abonament într-un singur coș și finalizarea comenzii, în loc să fie nevoiți să utilizeze plăți separate pentru articole individuale. Acest lucru îmbunătățește flexibilitatea și comoditatea experienței de cumpărare.",
+                        "note": "Coșurile mixte sunt acceptate pentru abonamentele a căror livrare începe direct în ziua comenzii. {mixedCartDelayedInfo}",
+                        "title": "Cărucioare mixte",
+                        "toggleLabel": "Activați cărucioarele mixte"
+                    },
+                    "title": "Setări"
+                },
                 "subscriptions": "Abonamente"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Notificare bugetară",
             "checkout_order_return_created": "Returnarea comenzii creată",
             "checkout_subscription_placed": "Abonament creat",
             "order_approval_pending_order_requested": "Comanda în așteptare solicitată",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Numărul de impuls trebuie să fie o valoare pozitivă",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Numele de stimulare există deja",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Data activării ar trebui stabilită în viitor",
+            "BUDGET_END_DATE_INVALID": "Data de încheiere trebuie să fie după data de începere.",
+            "BUDGET_FIELD_REQUIRED": "Acest câmp nu trebuie să fie gol.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Vă rugăm să selectați cel puțin un destinatar.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Acest câmp este obligatoriu atunci când este activată aprobarea comenzii.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Vă rugăm să introduceți o valoare validă pentru acest tip de declanșare.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Acest câmp este obligatoriu atunci când notificările sunt activate.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Acest câmp nu trebuie să fie gol.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Acest câmp nu trebuie să fie gol."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Activ",
+                "budgetAmountLabel": "Suma în {currency}",
+                "budgetAmountPlaceholder": "Introduceți suma bugetului...",
+                "costCentreLabel": "Centru de costuri",
+                "costCentrePlaceholder": "Introduceți centrul de costuri...",
+                "nameLabel": "Denumirea bugetului",
+                "namePlaceholder": "Introduceți numele bugetului...",
+                "noOrganizationsFound": "Nu a fost găsită nicio organizație",
+                "organizationUnitsLabel": "Unități de organizare",
+                "organizationUnitsPlaceholder": "Căutați unități organizaționale...",
+                "techNameLabel": "Denumire tehnică",
+                "techNamePlaceholder": "Introduceți numele tehnic...",
+                "title": "Informaţii generale"
+            },
+            "newTitle": "Buget nou",
+            "notification": {
+                "enableNotifications": "Activați notificările",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X zile înainte de data de încheiere",
+                    "percentage": "X la sută din bugetul utilizat",
+                    "specificDate": "Data specifică a notificării"
+                },
+                "triggerValue": "Valoarea declanșatorului",
+                "triggerValuePlaceholder": "Alegeți valoarea declanșatorului...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Introduceți numărul de zile",
+                    "percentage": "Introduceți procentul din valoarea bugetului",
+                    "specificDate": "Selectați data notificării"
+                },
+                "triggerWhen": "Declanșați notificarea când",
+                "triggerWhenPlaceholder": "Selectați declanșatorul notificării..."
+            },
+            "notifications": {
+                "title": "Setări notificări"
+            },
+            "policies": {
+                "allowApproval": "Permiteți solicitările de aprobare a comenzilor atunci când bugetul este utilizat pe deplin",
+                "approvalRoleLabel": "Oferă aprobări de comenzi",
+                "approvalRolePlaceholder": "Selectați rolul de aprobare...",
+                "showRemaining": "Permiteți utilizatorilor să vizualizeze bugetul rămas",
+                "title": "Politici bugetare"
+            },
+            "recipients": {
+                "noEmployees": "Nu există angajați disponibili",
+                "noEmployeesSubtitle": "Creați angajați pentru a gestiona destinatarii bugetului",
+                "noSearchResults": "Nu au fost găsite contacte",
+                "noSearchResultsSubtitle": "Încercați să ajustați termenii de căutare",
+                "searchRecipientsPlaceholder": "Căutați angajați...",
+                "title": "Destinatari",
+                "unknownEmployee": "Angajat necunoscut",
+                "unknownOrganization": "Organizație necunoscută"
+            },
+            "statistic": {
+                "exceeded": "Bugetul depășit:",
+                "remaining": "Buget rămas:",
+                "used": "Bugetul utilizat:"
+            },
+            "statistics": {
+                "title": "Statistici"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Data de încheiere",
+                "endDatePlaceholder": "Selectați data de sfârșit...",
+                "renewsTypeLabel": "Reînnoire",
+                "renewsTypeOptions": {
+                    "biannual": "Bianual",
+                    "monthly": "Lunar",
+                    "none": "Nici unul",
+                    "quarterly": "Trimestrial",
+                    "weekly": "Săptămânal",
+                    "yearly": "anual"
+                },
+                "renewsTypePlaceholder": "Selectați perioada de reînnoire...",
+                "startDateLabel": "Data începerii",
+                "startDatePlaceholder": "Selectați data de începere...",
+                "title": "Perioada de reînnoire"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generați imagine",
         "elConfigImageGenerateLinkText": "Generați imagine",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Activ",
+            "availableColumn": "Disponibil",
+            "cardLabel": "Bugete",
+            "costCentreColumn": "Centru de costuri",
+            "createNewBudgetLabel": "Adăugați buget",
+            "nameColumn": "Nume",
+            "sublineEmptyState": "Gestionați bugetele clienților dvs. aici",
+            "titleEmptyState": "Încă nu există bugete",
+            "totalColumn": "Total",
+            "usedColumn": "Folosit"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Adăugați un cont de angajat",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Gestionarea regulilor de aprobare",
+                            "budget": "Gestionarea bugetară",
                             "employee": "Managementul angajaților",
                             "order": "Ordine",
                             "organization_unit": "Unități de organizare",
@@ -1071,6 +1186,15 @@
                                 "delete": "Poate șterge regulile de aprobare",
                                 "read": "Poate citi regulile de aprobare",
                                 "update": "Poate actualiza regulile de aprobare"
+                            },
+                            "budget": {
+                                "create": "Creați bugete",
+                                "delete": "Ștergeți bugetele",
+                                "edit": "Editați bugetele",
+                                "place_order_without_specifying_budget": "Angajații din acest rol pot plasa comenzi fără a specifica un buget",
+                                "read": {
+                                    "all": "Vezi toate bugetele"
+                                }
                             },
                             "employee": {
                                 "create": "Poate crea angajați",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Total"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Nu există angajați disponibili",
+        "unknownEmployee": "Angajat necunoscut"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Acceptat",
             "adminRequested": "Administratorul a solicitat",
             "approved": "Aprobat",
+            "budgetManagement": "Gestionarea bugetară",
+            "budgetNotification": "Notificare bugetară",
             "changeRequest": "Solicitare de modificare",
             "created": "Creat",
             "declined": "Refuzat",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Bugetul utilizat"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Nu există angajați disponibili în această organizație"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Neatribuit"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Vă rugăm să vă asigurați că această unitate organizațională are cel puțin o adresă de expediere și o adresă de facturare",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Asistent pentru cuvinte cheie pentru imagine"
+            },
+            "b2b_components_budget": {
+                "label": "Gestionarea bugetară"
             },
             "b2b_components_organization": {
                 "label": "Unități de organizare"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Ștergeți schița",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Trimite mesaj",
-            "titleSendQuoteModal": "Trimite oferta"
+            "titleSendQuoteModal": "Trimite oferta",
+            "tooltipShippingCosts": "Costul de expediere este doar pentru referință și va fi recalculat odată ce acceptați oferta și plasați comanda."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Activați gestionarea bugetului componentelor B2B",
                 "employee_management_activate_feature": "Activați gestionarea angajaților componentelor B2B",
                 "order_approval_activate_feature": "Activați aprobarea comenzii componentelor B2B",
                 "organization_units_activate_feature": "Activați unitățile de organizare a componentelor B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Managementul bugetului",
                     "employee_management_activate_feature": "Managementul angajaților",
                     "order_approval_activate_feature": "Aprobarea comenzii",
                     "organization_units_activate_feature": "Unități de organizare",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Deblocați scala uniformă"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Clienții dvs. pot defini și gestiona limitele bugetare pentru a controla mai bine cheltuielile unităților organizației lor.",
+        "budgetManagementName": "Bugete",
         "employeeManagementDescription": "Clienții dvs. pot crea conturi de angajați cu roluri și permisiuni pentru a realiza procese individuale de comandă.",
         "employeeManagementName": "Managementul angajaților",
         "orderApprovalDescription": "Oferă control la nivel de companie asupra procesului de comandă, ajută la menținerea conformității bugetului și reduce erorile de comandă.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Gestionarea bugetară",
                     "EMPLOYEE_MANAGEMENT": "Managementul angajaților",
                     "ORDER_APPROVAL": "Aprobarea comenzii",
                     "ORGANIZATION_UNITS": "Unități de organizare",

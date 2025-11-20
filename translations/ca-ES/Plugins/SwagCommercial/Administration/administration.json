@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Subscripcions",
                 "labelSubscription": "Subscripció"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Setembre"
                         }
                     },
+                    "delayedInfoMessage": "Aquest interval defineix un inici posterior del lliurament ({advancedSettings}). Els carros mixtes no són compatibles per a aquests intervals. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Aquest interval serà eliminat de tots els plans en què va ser seleccionat. Les subscripcions associades es mantindran sense canvis.",
                     "emptySubline": "Encara no hi ha intervals.",
                     "emptyTitle": "No s'han trobat intervals",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "L'ordre inicial es comptabilitza com una execució.",
                 "minimumExecutionCountLabel": "Termini mínim (nombre d'execucions d'ordres)",
                 "minimumExecutionCountPlaceholder": "Introduïu termini mínim...",
+                "mixedCartDelayedInfo": "Els clients que triïn aquesta subscripció seran redirigits a una caixa independent amb un carret dedicat. Això es deu als conflictes de programació amb les comandes generades.",
                 "nameLabel": "Nom",
                 "namePlaceholder": "Introduïu el nom...",
                 "plan": {
                     "addProducts": "Afegir productes",
                     "addProductsButton": "Afegeix productes {selectedProductsLength} | Afegeix producte {selectedProductsLength} | Afegeix productes de {selectedProductsLength}",
+                    "delayedInfoMessage": "Aquest pla conté intervals que defineixen un inici posterior del lliurament (configuració avançada). Els carros mixtos no són compatibles amb aquests plans. {mixedCartDelayedInfo}\n\nCausat per:",
                     "deleteModalInfoText": "Les subscripcions i els intervals associats es mantindran sense canvis.",
                     "emptyProductsSubline": "Encara no hi ha productes",
                     "emptyProductsTitle": "No s'han trobat productes",
@@ -152,6 +156,15 @@
                     "title": "Plànols"
                 },
                 "plans": "Plànols",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Permeteu als clients combinar compres puntuals i productes de subscripció en una sola cistella i caixa, en lloc d'haver d'utilitzar comprovacions separades per a articles individuals. Això millora la flexibilitat i comoditat de l'experiència de compra.",
+                        "note": "Els carros mixtes són compatibles amb subscripcions el lliurament de les quals comença directament el dia de la comanda. {mixedCartDelayedInfo}",
+                        "title": "Carros mixtos",
+                        "toggleLabel": "Activa els carros mixtos"
+                    },
+                    "title": "Configuració"
+                },
                 "subscriptions": "Subscripcions"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Notificació pressupostària",
             "checkout_order_return_created": "Creada la devolució de la comanda",
             "checkout_subscription_placed": "Subscripció creada",
             "order_approval_pending_order_requested": "Comanda pendent sol·licitada",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "El nombre d'impuls ha de ser un valor positiu",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "El nom d'impuls ja existeix",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "La data d'activació s'hauria de fixar en el futur",
+            "BUDGET_END_DATE_INVALID": "La data de finalització ha de ser posterior a la data d'inici.",
+            "BUDGET_FIELD_REQUIRED": "Aquest camp no ha d'estar buit.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Si us plau, seleccioneu almenys un destinatari.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Aquest camp és obligatori quan està activada l'aprovació de la comanda.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Si us plau, introduïu un valor vàlid per a aquest tipus de disparador.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Aquest camp és obligatori quan les notificacions estan habilitades.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Aquest camp no ha d'estar buit.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Aquest camp no ha d'estar buit."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Actiu",
+                "budgetAmountLabel": "Quantitat en {currency}",
+                "budgetAmountPlaceholder": "Introduïu l'import pressupostari...",
+                "costCentreLabel": "Centre de costos",
+                "costCentrePlaceholder": "Entra al centre de costos...",
+                "nameLabel": "Nom del pressupost",
+                "namePlaceholder": "Introduïu el nom del pressupost...",
+                "noOrganizationsFound": "No s'han trobat organitzacions",
+                "organizationUnitsLabel": "Unitats d'organització",
+                "organizationUnitsPlaceholder": "Cerca d'unitats d'organització...",
+                "techNameLabel": "Nom tècnic",
+                "techNamePlaceholder": "Introduïu el nom tècnic...",
+                "title": "Informació general"
+            },
+            "newTitle": "Nou pressupost",
+            "notification": {
+                "enableNotifications": "Habilitar notificacions",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dies abans de la data de finalització",
+                    "percentage": "X per cent del pressupost utilitzat",
+                    "specificDate": "Data específica de notificació"
+                },
+                "triggerValue": "Valor desencadenant",
+                "triggerValuePlaceholder": "Trieu el valor desencadenant...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Introduïu el nombre de dies",
+                    "percentage": "Introduïu el percentatge del valor pressupostari",
+                    "specificDate": "Selecciona la data de notificació"
+                },
+                "triggerWhen": "Activar la notificació quan",
+                "triggerWhenPlaceholder": "Selecciona el disparador de notificació..."
+            },
+            "notifications": {
+                "title": "Configuració de notificacions"
+            },
+            "policies": {
+                "allowApproval": "Permetre les sol·licituds d'aprovació de comandes quan s'utilitzi plenament el pressupost",
+                "approvalRoleLabel": "Dóna aprovacions de comandes",
+                "approvalRolePlaceholder": "Selecciona el rol d'aprovació...",
+                "showRemaining": "Permetre als usuaris veure el pressupost restant",
+                "title": "Polítiques pressupostàries"
+            },
+            "recipients": {
+                "noEmployees": "No hi ha empleats disponibles",
+                "noEmployeesSubtitle": "Crear empleats per gestionar els destinataris pressupostaris",
+                "noSearchResults": "No s'han trobat empleats",
+                "noSearchResultsSubtitle": "Proveu d'ajustar els termes de cerca",
+                "searchRecipientsPlaceholder": "Buscar empleats...",
+                "title": "Destinataris",
+                "unknownEmployee": "Empleat desconegut",
+                "unknownOrganization": "Organització desconeguda"
+            },
+            "statistic": {
+                "exceeded": "Pressupost superat:",
+                "remaining": "Pressupost restant:",
+                "used": "Pressupost utilitzat:"
+            },
+            "statistics": {
+                "title": "Estadístiques"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Data de finalització",
+                "endDatePlaceholder": "Seleccioneu la data final...",
+                "renewsTypeLabel": "Renovació",
+                "renewsTypeOptions": {
+                    "biannual": "Semestral",
+                    "monthly": "Mensualment",
+                    "none": "Cap",
+                    "quarterly": "Trimestral",
+                    "weekly": "Setmanal",
+                    "yearly": "Anualment"
+                },
+                "renewsTypePlaceholder": "Selecciona el període de renovació...",
+                "startDateLabel": "Data d'inici",
+                "startDatePlaceholder": "Seleccioneu la data d'inici...",
+                "title": "Període de renovació"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generar imatge",
         "elConfigImageGenerateLinkText": "Generar imatge",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Actiu",
+            "availableColumn": "Disponible",
+            "cardLabel": "Pressupostos",
+            "costCentreColumn": "Centre de costos",
+            "createNewBudgetLabel": "Afegir pressupost",
+            "nameColumn": "Nom",
+            "sublineEmptyState": "Gestiona els pressupostos dels teus clients aquí",
+            "titleEmptyState": "Encara no hi ha pressupostos",
+            "totalColumn": "Total",
+            "usedColumn": "Utilitzat"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Afegir compte d'empleat",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Gestió de regles d'aprovació",
+                            "budget": "Gestió pressupostària",
                             "employee": "Gestió d'empleats",
                             "order": "Comandes",
                             "organization_unit": "Unitats d'organització",
@@ -1071,6 +1186,15 @@
                                 "delete": "Pot suprimir les regles d'aprovació",
                                 "read": "Pot llegir les normes d'aprovació",
                                 "update": "Pot actualitzar les normes d'aprovació"
+                            },
+                            "budget": {
+                                "create": "Crear pressupostos",
+                                "delete": "Eliminar pressupostos",
+                                "edit": "Editar pressupostos",
+                                "place_order_without_specifying_budget": "Els empleats en aquesta funció poden fer comandes sense especificar un pressupost",
+                                "read": {
+                                    "all": "Veure tots els pressupostos"
+                                }
                             },
                             "employee": {
                                 "create": "Pot crear empleats",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Total"
         }
     },
+    "sw-employees": {
+        "noEmployees": "No hi ha empleats disponibles",
+        "unknownEmployee": "Empleat desconegut"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Acceptat",
             "adminRequested": "Administrador sol·licitat",
             "approved": "Aprovat",
+            "budgetManagement": "Gestió pressupostària",
+            "budgetNotification": "Notificació pressupostària",
             "changeRequest": "Sol·licitud de canvi",
             "created": "Creat",
             "declined": "Declinat",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Pressupost utilitzat"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "No hi ha empleats disponibles en aquesta organització"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "No assignat"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Assegureu-vos que aquesta unitat organitzativa tingui almenys una adreça d'enviament i una adreça de facturació",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Assistent de paraules clau d'imatge"
+            },
+            "b2b_components_budget": {
+                "label": "Gestió pressupostària"
             },
             "b2b_components_organization": {
                 "label": "Unitats d'organització"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Suprimeix l'esborrany",
             "titleQuote": "Cita {quoteNumber}",
             "titleSendMessageOnly": "Enviar missatge",
-            "titleSendQuoteModal": "Enviar pressupost"
+            "titleSendQuoteModal": "Enviar pressupost",
+            "tooltipShippingCosts": "El cost d'enviament és només de referència i es tornarà a calcular un cop accepteu el pressupost i feu la comanda."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Habilitar la gestió pressupostària de components B2B",
                 "employee_management_activate_feature": "Habilitar la gestió d'empleats de components B2B",
                 "order_approval_activate_feature": "Activa l'aprovació de comandes de components B2B",
                 "organization_units_activate_feature": "Habilitar les unitats d'organització de components B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Gestió pressupostària",
                     "employee_management_activate_feature": "Gestió d'Empleats",
                     "order_approval_activate_feature": "Aprovació de la comanda",
                     "organization_units_activate_feature": "Unitats d'organització",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Desbloquejar escala uniforme"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Els teus clients poden definir i gestionar els límits pressupostaris per controlar millor la despesa de les seves unitats d'organització.",
+        "budgetManagementName": "Pressupostos",
         "employeeManagementDescription": "Els teus clients poden crear comptes d'empleats amb rols i permisos per realitzar processos individuals de comandes.",
         "employeeManagementName": "Gestió d'Empleats",
         "orderApprovalDescription": "Proporciona un control a tota l'empresa sobre el procés de comanda, ajuda a mantenir el compliment del pressupost i redueix els errors de comanda.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Gestió pressupostària",
                     "EMPLOYEE_MANAGEMENT": "Gestió d'Empleats",
                     "ORDER_APPROVAL": "Aprovació de la comanda",
                     "ORGANIZATION_UNITS": "Unitats d'organització",

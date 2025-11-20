@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "서브스크립션",
                 "labelSubscription": "서브스크립션"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "9월"
                         }
                     },
+                    "delayedInfoMessage": "이 간격은 이후 배송 시작 시점을 정의합니다 ({advancedSettings}).이러한 간격에는 혼합 카트가 지원되지 않습니다. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "이 간격은 선택한 모든 계획에서 삭제됩니다.관련 구독은 변경되지 않습니다.",
                     "emptySubline": "아직 인터벌이 없습니다.",
                     "emptyTitle": "간격을 찾을 수 없음",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "초기 주문은 실행으로 간주됩니다.",
                 "minimumExecutionCountLabel": "최소 기간 (주문 실행 횟수)",
                 "minimumExecutionCountPlaceholder": "최소 기간 입력...",
+                "mixedCartDelayedInfo": "이러한 구독을 선택한 고객은 전용 카트가 있는 별도의 결제 페이지로 리디렉션됩니다.이는 생성된 주문과의 일정 충돌 때문입니다.",
                 "nameLabel": "이름",
                 "namePlaceholder": "이름 입력...",
                 "plan": {
                     "addProducts": "제품 추가",
                     "addProductsButton": "{selectedProductsLength} 제품 추가 | {selectedProductsLength} 제품 추가 | {selectedProductsLength} 제품 추가",
+                    "delayedInfoMessage": "이 계획에는 이후 배송 시작을 정의하는 간격이 포함되어 있습니다 (고급 설정).이러한 플랜에서는 혼합 카트가 지원되지 않습니다. {mixedCartDelayedInfo}\n\n원인:",
                     "deleteModalInfoText": "관련 구독 및 간격은 변경되지 않습니다.",
                     "emptyProductsSubline": "아직 제품이 없습니다",
                     "emptyProductsTitle": "제품을 찾을 수 없습니다",
@@ -152,6 +156,15 @@
                     "title": "플랜"
                 },
                 "plans": "플랜",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "고객이 개별 품목에 대해 별도의 체크아웃을 사용할 필요 없이 일회성 구매와 구독 제품을 하나의 카트에 결합하여 결제할 수 있습니다.이를 통해 구매 경험의 유연성과 편의성이 향상됩니다.",
+                        "note": "혼합 카트는 주문 당일에 바로 배송이 시작되는 구독에 사용할 수 있습니다. {mixedCartDelayedInfo}",
+                        "title": "혼합 카트",
+                        "toggleLabel": "혼합 카트 활성화"
+                    },
+                    "title": "설정"
+                },
                 "subscriptions": "서브스크립션"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "예산 알림",
             "checkout_order_return_created": "주문 반품 생성됨",
             "checkout_subscription_placed": "구독 생성됨",
             "order_approval_pending_order_requested": "보류 중인 주문 요청됨",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "부스트 번호는 양수여야 합니다.",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "부스팅 이름이 이미 있습니다",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "활성화 날짜는 나중에 설정해야 합니다.",
+            "BUDGET_END_DATE_INVALID": "종료일은 시작일 이후여야 합니다.",
+            "BUDGET_FIELD_REQUIRED": "이 필드는 비어 있으면 안 됩니다.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "수신자를 한 명 이상 선택하십시오.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "이 필드는 주문 승인이 활성화된 경우 필수입니다.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "이 트리거 유형에 유효한 값을 입력하십시오.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "이 필드는 알림이 활성화된 경우 필수입니다.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "이 필드는 비어 있으면 안 됩니다.",
             "SHOPPING_LIST_FIELD_REQUIRED": "이 필드는 비어 있으면 안 됩니다."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "활성",
+                "budgetAmountLabel": "금액 ( {currency})",
+                "budgetAmountPlaceholder": "예산 금액 입력...",
+                "costCentreLabel": "코스트 센터",
+                "costCentrePlaceholder": "코스트 센터 입력...",
+                "nameLabel": "예산 이름",
+                "namePlaceholder": "예산 이름 입력...",
+                "noOrganizationsFound": "조직을 찾을 수 없음",
+                "organizationUnitsLabel": "조직 단위",
+                "organizationUnitsPlaceholder": "조직 단위 검색...",
+                "techNameLabel": "기술 이름",
+                "techNamePlaceholder": "기술 이름 입력...",
+                "title": "일반 정보"
+            },
+            "newTitle": "새 예산",
+            "notification": {
+                "enableNotifications": "알림 활성화",
+                "triggerTypes": {
+                    "daysBeforeEnd": "종료일 X일 전",
+                    "percentage": "사용된 예산의 X 퍼센트",
+                    "specificDate": "특정 알림 날짜"
+                },
+                "triggerValue": "트리거 값",
+                "triggerValuePlaceholder": "트리거 값 선택...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "일수 입력",
+                    "percentage": "예산 금액의 퍼센트 입력",
+                    "specificDate": "알림 날짜 선택"
+                },
+                "triggerWhen": "트리거 알림 시기",
+                "triggerWhenPlaceholder": "알림 트리거 선택..."
+            },
+            "notifications": {
+                "title": "알림 설정"
+            },
+            "policies": {
+                "allowApproval": "예산이 모두 사용된 경우 주문 승인 요청 허용",
+                "approvalRoleLabel": "주문 승인 제공",
+                "approvalRolePlaceholder": "승인 역할 선택...",
+                "showRemaining": "사용자가 남은 예산을 볼 수 있도록 허용",
+                "title": "예산 정책"
+            },
+            "recipients": {
+                "noEmployees": "근무 가능한 직원 없음",
+                "noEmployeesSubtitle": "예산 수령자 관리를 위한 직원 생성",
+                "noSearchResults": "직원을 찾을 수 없습니다",
+                "noSearchResultsSubtitle": "검색어를 조정해 보세요",
+                "searchRecipientsPlaceholder": "직원 검색...",
+                "title": "수신자",
+                "unknownEmployee": "알 수 없는 직원",
+                "unknownOrganization": "알 수 없는 조직"
+            },
+            "statistic": {
+                "exceeded": "예산 초과:",
+                "remaining": "남은 예산:",
+                "used": "예산 사용:"
+            },
+            "statistics": {
+                "title": "통계"
+            },
+            "timeRenewal": {
+                "endDateLabel": "종료 날짜",
+                "endDatePlaceholder": "종료 날짜 선택...",
+                "renewsTypeLabel": "리뉴얼",
+                "renewsTypeOptions": {
+                    "biannual": "바이애뉴얼",
+                    "monthly": "월간",
+                    "none": "없음",
+                    "quarterly": "분기별",
+                    "weekly": "주간",
+                    "yearly": "연도별"
+                },
+                "renewsTypePlaceholder": "갱신 기간 선택...",
+                "startDateLabel": "시작 날짜",
+                "startDatePlaceholder": "시작 날짜 선택...",
+                "title": "리뉴얼 기간"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "이미지 생성",
         "elConfigImageGenerateLinkText": "이미지 생성",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "활성",
+            "availableColumn": "사용 가능",
+            "cardLabel": "예산",
+            "costCentreColumn": "코스트 센터",
+            "createNewBudgetLabel": "예산 추가",
+            "nameColumn": "이름",
+            "sublineEmptyState": "여기에서 고객 예산을 관리하세요",
+            "titleEmptyState": "아직 예산 없음",
+            "totalColumn": "합계",
+            "usedColumn": "중고"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "직원 계정 추가",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "승인 규칙 관리",
+                            "budget": "예산 관리",
                             "employee": "직원 관리",
                             "order": "주문",
                             "organization_unit": "조직 단위",
@@ -1071,6 +1186,15 @@
                                 "delete": "승인 규칙 삭제 가능",
                                 "read": "승인 규칙 읽기 가능",
                                 "update": "승인 규칙 업데이트 가능"
+                            },
+                            "budget": {
+                                "create": "예산 생성",
+                                "delete": "예산 삭제",
+                                "edit": "예산 편집",
+                                "place_order_without_specifying_budget": "이 역할을 맡은 직원은 예산을 지정하지 않고도 주문할 수 있습니다.",
+                                "read": {
+                                    "all": "전체 예산 보기"
+                                }
                             },
                             "employee": {
                                 "create": "직원 생성 가능",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "합계"
         }
     },
+    "sw-employees": {
+        "noEmployees": "근무 가능한 직원 없음",
+        "unknownEmployee": "알 수 없는 직원"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "수락됨",
             "adminRequested": "관리자 요청",
             "approved": "승인됨",
+            "budgetManagement": "예산 관리",
+            "budgetNotification": "예산 알림",
             "changeRequest": "변경 요청",
             "created": "생성됨",
             "declined": "거절",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "예산 사용"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "이 조직에는 직원이 없습니다."
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "할당되지 않음"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "이 조직 단위에 최소 하나의 배송 주소와 하나의 청구서 수신 주소가 있는지 확인하십시오.",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "이미지 키워드 어시스턴트"
+            },
+            "b2b_components_budget": {
+                "label": "예산 관리"
             },
             "b2b_components_organization": {
                 "label": "조직 단위"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "초안 삭제",
             "titleQuote": "인용문 {quoteNumber}",
             "titleSendMessageOnly": "메시지 보내기",
-            "titleSendQuoteModal": "견적 보내기"
+            "titleSendQuoteModal": "견적 보내기",
+            "tooltipShippingCosts": "배송비는 참고용이며 견적을 수락하고 주문을 하면 다시 계산됩니다."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "B2B 구성 요소 예산 관리 활성화",
                 "employee_management_activate_feature": "B2B 구성 요소 직원 관리 활성화",
                 "order_approval_activate_feature": "B2B 구성 요소 주문 승인 활성화",
                 "organization_units_activate_feature": "B2B 구성 요소 조직 단위 활성화",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "예산 관리",
                     "employee_management_activate_feature": "직원 관리",
                     "order_approval_activate_feature": "주문 승인",
                     "organization_units_activate_feature": "조직 단위",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "유니폼 스케일 잠금 해제"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "고객은 예산 한도를 정의하고 관리하여 조직 단위의 지출을 보다 효과적으로 관리할 수 있습니다.",
+        "budgetManagementName": "예산",
         "employeeManagementDescription": "고객은 역할과 권한이 있는 직원 계정을 만들어 개별 주문 프로세스를 실현할 수 있습니다.",
         "employeeManagementName": "직원 관리",
         "orderApprovalDescription": "주문 프로세스를 전사적으로 제어하고 예산 준수를 지원하며 주문 오류를 줄입니다.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "예산 관리",
                     "EMPLOYEE_MANAGEMENT": "직원 관리",
                     "ORDER_APPROVAL": "주문 승인",
                     "ORGANIZATION_UNITS": "조직 단위",

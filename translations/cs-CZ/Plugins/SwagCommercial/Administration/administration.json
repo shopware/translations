@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Předplatné",
                 "labelSubscription": "Předplatné"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "září"
                         }
                     },
+                    "delayedInfoMessage": "Tento interval definuje pozdější začátek dodávky ({advancedSettings}). Smíšené vozíky nejsou pro takové intervaly podporovány. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Tento interval bude odstraněn ze všech plánů, ve kterých byl vybrán. Přidružené předplatné zůstanou nezměněny.",
                     "emptySubline": "Zatím nejsou žádné intervaly.",
                     "emptyTitle": "Nebyly nalezeny žádné intervaly",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Počáteční příkaz se počítá jako provedení.",
                 "minimumExecutionCountLabel": "Minimální termín (počet provedených příkazů)",
                 "minimumExecutionCountPlaceholder": "Zadejte minimální termín...",
+                "mixedCartDelayedInfo": "Zákazníci, kteří si zvolí takové předplatné, budou přesměrováni na samostatnou pokladnu s vyhrazeným košíkem. To je způsobeno konflikty plánování s generovanými objednávkami.",
                 "nameLabel": "Název",
                 "namePlaceholder": "Zadejte název...",
                 "plan": {
                     "addProducts": "Přidat produkty",
                     "addProductsButton": "Přidat {selectedProductsLength} produkty | Přidat {selectedProductsLength} produkt | Přidat {selectedProductsLength} produkty",
+                    "delayedInfoMessage": "Tento plán obsahuje intervaly definující pozdější zahájení dodávky (rozšířená nastavení). Smíšené vozíky nejsou pro takové plány podporovány. {mixedCartDelayedInfo}\n\nZpůsobuje:",
                     "deleteModalInfoText": "Přidružené předplatné a intervaly zůstanou nezměněny.",
                     "emptyProductsSubline": "Zatím nejsou žádné produkty",
                     "emptyProductsTitle": "Nenalezeny žádné produkty",
@@ -152,6 +156,15 @@
                     "title": "Plánuje"
                 },
                 "plans": "Plánuje",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Umožněte zákazníkům kombinovat jednorázové nákupy a předplatné v jednom košíku a pokladně, místo aby museli používat samostatné pokladny pro jednotlivé položky. To zvyšuje flexibilitu a pohodlí nákupního zážitku.",
+                        "note": "Smíšené košíky jsou podporovány pro předplatné, jejichž doručení začíná přímo v den objednávky. {mixedCartDelayedInfo}",
+                        "title": "Smíšené vozíky",
+                        "toggleLabel": "Aktivace smíšených vozíků"
+                    },
+                    "title": "Nastavení"
+                },
                 "subscriptions": "Předplatné"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Oznámení o rozpočtu",
             "checkout_order_return_created": "Vytvořeno vrácení objednávky",
             "checkout_subscription_placed": "Vytvořeno předplatné",
             "order_approval_pending_order_requested": "Požadována čekající objednávka",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Číslo zvýšení musí být kladná hodnota",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Zesílení názvu již existuje",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Datum aktivace by mělo být stanoveno v budoucnu",
+            "BUDGET_END_DATE_INVALID": "Datum ukončení musí být po datu zahájení.",
+            "BUDGET_FIELD_REQUIRED": "Toto pole nesmí být prázdné.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Vyberte alespoň jednoho příjemce.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Toto pole je povinné, pokud je povoleno schválení objednávky.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Zadejte platnou hodnotu pro tento typ spouště.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Toto pole je povinné, pokud jsou oznámení povolena.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Toto pole nesmí být prázdné.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Toto pole nesmí být prázdné."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktivní",
+                "budgetAmountLabel": "Částka v {currency}",
+                "budgetAmountPlaceholder": "Zadejte částku rozpočtu...",
+                "costCentreLabel": "Nákladové středisko",
+                "costCentrePlaceholder": "Zadejte nákladové centrum...",
+                "nameLabel": "Název rozpočtu",
+                "namePlaceholder": "Zadejte název rozpočtu...",
+                "noOrganizationsFound": "Nebyly nalezeny žádné organizace",
+                "organizationUnitsLabel": "Organizační jednotky",
+                "organizationUnitsPlaceholder": "Vyhledejte organizační jednotky...",
+                "techNameLabel": "Název",
+                "techNamePlaceholder": "Zadejte technický název...",
+                "title": "Informace"
+            },
+            "newTitle": "Nový rozpočet",
+            "notification": {
+                "enableNotifications": "Povolit oznámení",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dní před datem ukončení",
+                    "percentage": "X procent použitého rozpočtu",
+                    "specificDate": "Konkrétní datum oznámení"
+                },
+                "triggerValue": "Hodnota spouště",
+                "triggerValuePlaceholder": "Zvolte spouštěcí hodnotu...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Zadejte počet dní",
+                    "percentage": "Zadejte procento hodnoty rozpočtu",
+                    "specificDate": "Vyberte datum oznámení"
+                },
+                "triggerWhen": "Spouštějte oznámení, když",
+                "triggerWhenPlaceholder": "Vyberte spouštěč oznámení..."
+            },
+            "notifications": {
+                "title": "Nastavení oznámení"
+            },
+            "policies": {
+                "allowApproval": "Povolit žádosti o schválení objednávky, když je rozpočet plně využit",
+                "approvalRoleLabel": "Poskytuje schválení objednávek",
+                "approvalRolePlaceholder": "Vyberte roli schvalování...",
+                "showRemaining": "Umožnit uživatelům zobrazit zbývající rozpočet",
+                "title": "Rozpočtové politiky"
+            },
+            "recipients": {
+                "noEmployees": "Žádní zaměstnanci nejsou k dispozici",
+                "noEmployeesSubtitle": "Vytvoření zaměstnanců pro správu příjemců rozpočtu",
+                "noSearchResults": "Nebyli nalezeni žádní zaměstnanci",
+                "noSearchResultsSubtitle": "Zkuste upravit hledané výrazy",
+                "searchRecipientsPlaceholder": "Hledejte zaměstnance...",
+                "title": "Příjemce",
+                "unknownEmployee": "Neznámý zaměstnanec",
+                "unknownOrganization": "Neznámá organizace"
+            },
+            "statistic": {
+                "exceeded": "Rozpočet překročen:",
+                "remaining": "Zbývající rozpočet:",
+                "used": "Použitý rozpočet:"
+            },
+            "statistics": {
+                "title": "Statistiky"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Datum ukončení",
+                "endDatePlaceholder": "Vyberte datum ukončení...",
+                "renewsTypeLabel": "Obnovení",
+                "renewsTypeOptions": {
+                    "biannual": "pololetý",
+                    "monthly": "Měsíčně",
+                    "none": "Žádné",
+                    "quarterly": "Čtvrtletně",
+                    "weekly": "Týdenní",
+                    "yearly": "Roční"
+                },
+                "renewsTypePlaceholder": "Vyberte období obnovení...",
+                "startDateLabel": "Počáteční datum",
+                "startDatePlaceholder": "Vyberte datum zahájení...",
+                "title": "Obnovená lhůta"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generovat obrázek",
         "elConfigImageGenerateLinkText": "Generovat obrázek",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktivní",
+            "availableColumn": "Ještě k dispozici",
+            "cardLabel": "Rozpočty",
+            "costCentreColumn": "Nákladové středisko",
+            "createNewBudgetLabel": "Přidat rozpočet",
+            "nameColumn": "Název",
+            "sublineEmptyState": "Zde spravujte rozpočty svých zákazníků",
+            "titleEmptyState": "Zatím žádné rozpočty",
+            "totalColumn": "Celkem",
+            "usedColumn": "Použité"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Přidat účet zaměstnance",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Správa schvalovacích pravidel",
+                            "budget": "Řízení rozpočtu",
                             "employee": "Řízení zaměstnanců",
                             "order": "Objednávky",
                             "organization_unit": "Organizační jednotky",
@@ -1071,6 +1186,15 @@
                                 "delete": "Lze odstranit pravidla schvalování",
                                 "read": "Dokáže číst pravidla schvalování",
                                 "update": "Může aktualizovat pravidla schvalování"
+                            },
+                            "budget": {
+                                "create": "Vytváření rozpočtů",
+                                "delete": "Odstranit rozpočty",
+                                "edit": "Upravit rozpočty",
+                                "place_order_without_specifying_budget": "Zaměstnanci v této roli mohou zadávat objednávky bez zadání rozpočtu",
+                                "read": {
+                                    "all": "Zobrazit všechny rozpočty"
+                                }
                             },
                             "employee": {
                                 "create": "Dokáže vytvářet zaměstnance",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Celkem"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Žádní zaměstnanci nejsou k dispozici",
+        "unknownEmployee": "Neznámý zaměstnanec"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Přijato",
             "adminRequested": "Admin požádán",
             "approved": "Schváleno",
+            "budgetManagement": "Řízení rozpočtu",
+            "budgetNotification": "Oznámení o rozpočtu",
             "changeRequest": "Žádost o změnu",
             "created": "Vytvořeno",
             "declined": "Odmítl",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Použitý rozpočet"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "V této organizaci nejsou k dispozici žádní zaměstnanci"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Nepřiřazeno"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Ujistěte se, že tato organizační jednotka má alespoň jednu dodací a jednu fakturační adresu",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Pomocník klíčových slov s obrázkem"
+            },
+            "b2b_components_budget": {
+                "label": "Řízení rozpočtu"
             },
             "b2b_components_organization": {
                 "label": "Organizační jednotky"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Odstranit koncept",
             "titleQuote": "Citace {quoteNumber}",
             "titleSendMessageOnly": "Poslat zprávu",
-            "titleSendQuoteModal": "Odeslat cenovou nabídku"
+            "titleSendQuoteModal": "Odeslat cenovou nabídku",
+            "tooltipShippingCosts": "Náklady na dopravu jsou pouze orientační a budou přepočítány, jakmile přijmete nabídku a zadáte objednávku."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Povolit správu rozpočtu komponent B2B",
                 "employee_management_activate_feature": "Povolit správu zaměstnanců komponent B2B",
                 "order_approval_activate_feature": "Povolit schvalování objednávky komponent B2B",
                 "organization_units_activate_feature": "Povolit organizační jednotky komponent B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Řízení rozpočtu",
                     "employee_management_activate_feature": "Řízení zaměstnanců",
                     "order_approval_activate_feature": "Schválení objednávky",
                     "organization_units_activate_feature": "Organizační jednotky",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Odemkněte jednotnou stupnici"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Vaši zákazníci mohou definovat a spravovat rozpočtové limity, aby lépe kontrolovali výdaje svých organizačních jednotek.",
+        "budgetManagementName": "Rozpočty",
         "employeeManagementDescription": "Vaši zákazníci mohou vytvářet účty zaměstnanců s rolemi a oprávněními pro realizaci jednotlivých objednávkových procesů.",
         "employeeManagementName": "Řízení zaměstnanců",
         "orderApprovalDescription": "Poskytuje celofiremní kontrolu nad procesem objednávek, pomáhá při dodržování rozpočtu a snižuje chyby při objednávání.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Řízení rozpočtu",
                     "EMPLOYEE_MANAGEMENT": "Řízení zaměstnanců",
                     "ORDER_APPROVAL": "Schválení objednávky",
                     "ORGANIZATION_UNITS": "Organizační jednotky",

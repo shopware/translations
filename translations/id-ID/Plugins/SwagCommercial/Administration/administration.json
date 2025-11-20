@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Berlangganan",
                 "labelSubscription": "Berlangganan"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "September"
                         }
                     },
+                    "delayedInfoMessage": "Interval ini menentukan awal pengiriman nanti ({advancedSettings}). Gerobak campuran tidak didukung untuk interval tersebut. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Interval ini akan dihapus dari semua rencana yang dipilih. Langganan terkait akan tetap tidak berubah.",
                     "emptySubline": "Belum ada interval.",
                     "emptyTitle": "Tidak ada interval yang ditemukan",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Pesanan awal dihitung sebagai eksekusi.",
                 "minimumExecutionCountLabel": "Jangka waktu minimum (jumlah eksekusi pesanan)",
                 "minimumExecutionCountPlaceholder": "Masukkan jangka waktu minimum...",
+                "mixedCartDelayedInfo": "Pelanggan yang memilih langganan seperti itu akan diarahkan ke checkout terpisah dengan keranjang khusus. Ini karena konflik penjadwalan dengan pesanan yang dihasilkan.",
                 "nameLabel": "Nama",
                 "namePlaceholder": "Masukkan nama...",
                 "plan": {
                     "addProducts": "Tambahkan produk",
                     "addProductsButton": "Tambahkan produk {selectedProductsLength} | Tambahkan produk {selectedProductsLength} | Tambahkan produk {selectedProductsLength}",
+                    "delayedInfoMessage": "Paket ini berisi interval yang menentukan awal pengiriman nanti (pengaturan lanjutan). Gerobak campuran tidak didukung untuk rencana tersebut. {mixedCartDelayedInfo}\n\nDisebabkan oleh:",
                     "deleteModalInfoText": "Langganan dan interval terkait akan tetap tidak berubah.",
                     "emptyProductsSubline": "Belum ada produk",
                     "emptyProductsTitle": "Produk tidak ditemukan",
@@ -152,6 +156,15 @@
                     "title": "Rencana"
                 },
                 "plans": "Rencana",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Izinkan pelanggan untuk menggabungkan pembelian satu kali dan produk berlangganan dalam satu keranjang dan checkout, daripada harus menggunakan checkout terpisah untuk masing-masing item. Ini meningkatkan fleksibilitas dan kenyamanan pengalaman membeli.",
+                        "note": "Keranjang campuran didukung untuk langganan yang pengirimannya dimulai langsung pada hari pemesanan. {mixedCartDelayedInfo}",
+                        "title": "Gerobak campuran",
+                        "toggleLabel": "Aktifkan gerobak campuran"
+                    },
+                    "title": "Pengaturan"
+                },
                 "subscriptions": "Berlangganan"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Pemberitahuan anggaran",
             "checkout_order_return_created": "Pengembalian pesanan dibuat",
             "checkout_subscription_placed": "Langganan dibuat",
             "order_approval_pending_order_requested": "Pesanan Tertunda Diminta",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Angka dorongan harus menjadi nilai positif",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Boosting name sudah ada",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Tanggal aktivasi harus ditetapkan di masa mendatang",
+            "BUDGET_END_DATE_INVALID": "Tanggal akhir harus setelah tanggal mulai.",
+            "BUDGET_FIELD_REQUIRED": "Bidang ini tidak boleh kosong.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Silakan pilih setidaknya satu penerima.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Bidang ini diperlukan saat persetujuan pesanan diaktifkan.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Harap masukkan nilai yang valid untuk jenis pemicu ini.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Bidang ini diperlukan saat notifikasi diaktifkan.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Bidang ini tidak boleh kosong.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Bidang ini tidak boleh kosong."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktif",
+                "budgetAmountLabel": "Jumlah dalam {currency}",
+                "budgetAmountPlaceholder": "Masukkan jumlah anggaran...",
+                "costCentreLabel": "Pusat biaya",
+                "costCentrePlaceholder": "Masuk ke pusat biaya...",
+                "nameLabel": "Nama anggaran",
+                "namePlaceholder": "Masukkan nama anggaran...",
+                "noOrganizationsFound": "Tidak ada organisasi yang ditemukan",
+                "organizationUnitsLabel": "Unit organisasi",
+                "organizationUnitsPlaceholder": "Cari unit organisasi...",
+                "techNameLabel": "Nama teknis",
+                "techNamePlaceholder": "Masukkan nama teknis...",
+                "title": "Informasi umum"
+            },
+            "newTitle": "Anggaran baru",
+            "notification": {
+                "enableNotifications": "Aktifkan notifikasi",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X hari sebelum tanggal akhir",
+                    "percentage": "X persen dari anggaran yang digunakan",
+                    "specificDate": "Tanggal pemberitahuan spesifik"
+                },
+                "triggerValue": "Nilai pemicu",
+                "triggerValuePlaceholder": "Pilih nilai pemicu...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Masukkan jumlah hari",
+                    "percentage": "Masukkan persentase dari nilai anggaran",
+                    "specificDate": "Pilih tanggal notifikasi"
+                },
+                "triggerWhen": "Pemicu notifikasi saat",
+                "triggerWhenPlaceholder": "Pilih pemicu notifikasi..."
+            },
+            "notifications": {
+                "title": "Pengaturan notifikasi"
+            },
+            "policies": {
+                "allowApproval": "Izinkan permintaan persetujuan pesanan saat anggaran digunakan sepenuhnya",
+                "approvalRoleLabel": "Memberikan persetujuan pesanan",
+                "approvalRolePlaceholder": "Pilih peran persetujuan...",
+                "showRemaining": "Izinkan pengguna untuk melihat anggaran yang tersisa",
+                "title": "Kebijakan anggaran"
+            },
+            "recipients": {
+                "noEmployees": "Tidak ada karyawan yang tersedia",
+                "noEmployeesSubtitle": "Buat karyawan untuk mengelola penerima anggaran",
+                "noSearchResults": "Tidak ada kontak yang ditemukan",
+                "noSearchResultsSubtitle": "Coba sesuaikan istilah pencarian Anda",
+                "searchRecipientsPlaceholder": "Cari karyawan...",
+                "title": "Penerima",
+                "unknownEmployee": "Karyawan tak dikenal",
+                "unknownOrganization": "Organisasi yang tidak dikenal"
+            },
+            "statistic": {
+                "exceeded": "Anggaran terlampaui:",
+                "remaining": "Anggaran yang tersisa:",
+                "used": "Anggaran yang digunakan:"
+            },
+            "statistics": {
+                "title": "Statistik"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Tanggal Akhir",
+                "endDatePlaceholder": "Pilih tanggal akhir...",
+                "renewsTypeLabel": "Pembaruan",
+                "renewsTypeOptions": {
+                    "biannual": "Dwiannual",
+                    "monthly": "Bulanan",
+                    "none": "Tidak ada",
+                    "quarterly": "Triwulanan",
+                    "weekly": "Mingguan",
+                    "yearly": "Tahunan"
+                },
+                "renewsTypePlaceholder": "Pilih periode perpanjangan...",
+                "startDateLabel": "Tanggal mulai",
+                "startDatePlaceholder": "Pilih tanggal mulai...",
+                "title": "Periode perpanjangan"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Hasilkan gambar",
         "elConfigImageGenerateLinkText": "Hasilkan gambar",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktif",
+            "availableColumn": "Tersedia",
+            "cardLabel": "Anggaran",
+            "costCentreColumn": "Pusat biaya",
+            "createNewBudgetLabel": "Tambahkan anggaran",
+            "nameColumn": "Nama",
+            "sublineEmptyState": "Kelola anggaran pelanggan Anda di sini",
+            "titleEmptyState": "Belum ada anggaran",
+            "totalColumn": "Total",
+            "usedColumn": "Digunakan"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Tambahkan akun karyawan",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Manajemen Aturan Persetujuan",
+                            "budget": "Pengelolaan anggaran",
                             "employee": "Manajemen karyawan",
                             "order": "Pesanan",
                             "organization_unit": "Unit Organisasi",
@@ -1071,6 +1186,15 @@
                                 "delete": "Dapat menghapus aturan persetujuan",
                                 "read": "Dapat membaca aturan persetujuan",
                                 "update": "Dapat memperbarui aturan persetujuan"
+                            },
+                            "budget": {
+                                "create": "Buat anggaran",
+                                "delete": "Hapus anggaran",
+                                "edit": "Edit anggaran",
+                                "place_order_without_specifying_budget": "Karyawan dalam peran ini dapat melakukan pemesanan tanpa menentukan anggaran",
+                                "read": {
+                                    "all": "Lihat semua anggaran"
+                                }
                             },
                             "employee": {
                                 "create": "Dapat membuat karyawan",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Total"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Tidak ada karyawan yang tersedia",
+        "unknownEmployee": "Karyawan tak dikenal"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Diterima",
             "adminRequested": "Admin diminta",
             "approved": "Disetujui",
+            "budgetManagement": "Pengelolaan anggaran",
+            "budgetNotification": "Pemberitahuan anggaran",
             "changeRequest": "Permintaan perubahan",
             "created": "Dibuat",
             "declined": "Ditolak",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Anggaran yang digunakan"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Tidak ada karyawan yang tersedia di organisasi ini"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Tidak ditugaskan"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Harap pastikan unit organisasi ini memiliki setidaknya satu alamat pengiriman dan satu alamat penagihan",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Asisten kata kunci gambar"
+            },
+            "b2b_components_budget": {
+                "label": "Pengelolaan anggaran"
             },
             "b2b_components_organization": {
                 "label": "Unit Organisasi"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Hapus draf",
             "titleQuote": "Kutipan {quoteNumber}",
             "titleSendMessageOnly": "Kirim pesan",
-            "titleSendQuoteModal": "Kirim penawaran"
+            "titleSendQuoteModal": "Kirim penawaran",
+            "tooltipShippingCosts": "Biaya pengiriman hanya untuk referensi dan akan dihitung ulang setelah Anda menerima penawaran dan melakukan pemesanan."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Aktifkan Manajemen Anggaran Komponen B2B",
                 "employee_management_activate_feature": "Aktifkan Manajemen Karyawan Komponen B2B",
                 "order_approval_activate_feature": "Aktifkan Persetujuan Pesanan Komponen B2B",
                 "organization_units_activate_feature": "Aktifkan Unit Organisasi Komponen B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Manajemen Anggaran",
                     "employee_management_activate_feature": "Manajemen Karyawan",
                     "order_approval_activate_feature": "Persetujuan Pesanan",
                     "organization_units_activate_feature": "Unit Organisasi",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Buka skala seragam"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Pelanggan Anda dapat menentukan dan mengelola batas anggaran untuk mengontrol pengeluaran unit organisasi mereka dengan lebih baik.",
+        "budgetManagementName": "Anggaran",
         "employeeManagementDescription": "Pelanggan Anda dapat membuat akun karyawan dengan peran dan izin untuk mewujudkan proses pesanan individu.",
         "employeeManagementName": "Manajemen Karyawan",
         "orderApprovalDescription": "Memberikan kontrol seluruh perusahaan atas proses pemesanan, membantu menjaga kepatuhan anggaran dan mengurangi kesalahan pemesanan.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Pengelolaan anggaran",
                     "EMPLOYEE_MANAGEMENT": "Manajemen Karyawan",
                     "ORDER_APPROVAL": "Persetujuan Pesanan",
                     "ORGANIZATION_UNITS": "Unit Organisasi",

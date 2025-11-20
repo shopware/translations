@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Abonnementer",
                 "labelSubscription": "Abonnement"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "september"
                         }
                     },
+                    "delayedInfoMessage": "Dette intervallet definerer en senere leveringsstart ({advancedSettings}). Blandede vogner støttes ikke for slike intervaller. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Dette intervallet vil bli slettet fra alle planer der det ble valgt. Tilknyttede abonnementer forblir uendret.",
                     "emptySubline": "Det er ingen intervaller ennå.",
                     "emptyTitle": "Ingen intervaller funnet",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Den første ordren regnes som en utførelse.",
                 "minimumExecutionCountLabel": "Minimumsperiode (antall ordreutførelser)",
                 "minimumExecutionCountPlaceholder": "Angi minimumsperiode...",
+                "mixedCartDelayedInfo": "Kunder som velger et slikt abonnement vil bli omdirigert til en egen kasse med en dedikert handlekurv. Dette skyldes planleggingskonflikter med genererte bestillinger.",
                 "nameLabel": "Navn",
                 "namePlaceholder": "Skriv inn navn...",
                 "plan": {
                     "addProducts": "Legg til produkter",
                     "addProductsButton": "Legg til {selectedProductsLength} produkter | Legg til {selectedProductsLength} produkt | Legg til {selectedProductsLength} produkter",
+                    "delayedInfoMessage": "Denne planen inneholder intervaller som definerer en senere leveringsstart (avanserte innstillinger). Blandede vogner støttes ikke for slike planer. {mixedCartDelayedInfo}\n\nForårsaket av:",
                     "deleteModalInfoText": "Tilknyttede abonnementer og intervaller forblir uendret.",
                     "emptyProductsSubline": "Det er ingen produkter ennå",
                     "emptyProductsTitle": "Ingen produkter funnet",
@@ -152,6 +156,15 @@
                     "title": "Planer"
                 },
                 "plans": "Planer",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Tillat kundene å kombinere engangskjøp og abonnementsprodukter i en enkelt handlekurv og kasse, i stedet for å måtte bruke separate utsjekkasser for individuelle varer. Dette forbedrer fleksibiliteten og bekvemmeligheten av kjøpsopplevelsen.",
+                        "note": "Blandede handlekurver støttes for abonnementer hvis levering begynner direkte på bestillingsdagen. {mixedCartDelayedInfo}",
+                        "title": "Blandede vogner",
+                        "toggleLabel": "Aktiver blandede vogner"
+                    },
+                    "title": "Innstillinger"
+                },
                 "subscriptions": "Abonnementer"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Budsjettvarsling",
             "checkout_order_return_created": "Bestillingsretur opprettet",
             "checkout_subscription_placed": "Abonnement opprettet",
             "order_approval_pending_order_requested": "Ventende bestilling forespurt",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Boost-tallet må være en positiv verdi",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Boosting navn eksisterer allerede",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktiveringsdatoen bør settes i fremtiden",
+            "BUDGET_END_DATE_INVALID": "Sluttdato må være etter startdato.",
+            "BUDGET_FIELD_REQUIRED": "Dette feltet må ikke være tomt.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Velg minst én mottaker.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Dette feltet er obligatorisk når ordregodkjenning er aktivert.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Vennligst skriv inn en gyldig verdi for denne utløsertypen.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Dette feltet er obligatorisk når varsler er aktivert.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Dette feltet må ikke være tomt.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Dette feltet må ikke være tomt."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktiv",
+                "budgetAmountLabel": "Beløp i {currency}",
+                "budgetAmountPlaceholder": "Angi budsjettbeløp...",
+                "costCentreLabel": "Kostnadssenter",
+                "costCentrePlaceholder": "Gå inn i kostnadssenteret...",
+                "nameLabel": "Budsjettnavn",
+                "namePlaceholder": "Skriv inn budsjettnavn...",
+                "noOrganizationsFound": "Ingen organisasjoner funnet",
+                "organizationUnitsLabel": "Organisasjonsenheter",
+                "organizationUnitsPlaceholder": "Søk etter organisasjonsenheter...",
+                "techNameLabel": "Teknisk navn",
+                "techNamePlaceholder": "Skriv inn teknisk navn...",
+                "title": "Generell informasjon"
+            },
+            "newTitle": "Nytt budsjett",
+            "notification": {
+                "enableNotifications": "Aktiver varsler",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dager før sluttdato",
+                    "percentage": "X prosent av budsjettet brukt",
+                    "specificDate": "Spesifikk varslingsdato"
+                },
+                "triggerValue": "Utløserverdi",
+                "triggerValuePlaceholder": "Velg utløserverdi...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Skriv inn antall dager",
+                    "percentage": "Angi prosent av budsjettverdien",
+                    "specificDate": "Velg varslingsdato"
+                },
+                "triggerWhen": "Utløser varsling når",
+                "triggerWhenPlaceholder": "Velg varslingsutløser..."
+            },
+            "notifications": {
+                "title": "Varslingsinnstillinger"
+            },
+            "policies": {
+                "allowApproval": "Tillat forespørsler om ordregodkjenning når budsjettet er fullt utnyttet",
+                "approvalRoleLabel": "Gir ordregodkjenninger",
+                "approvalRolePlaceholder": "Velg godkjenningsrolle...",
+                "showRemaining": "Tillat brukere å se gjenværende budsjett",
+                "title": "Budsjettpolitikk"
+            },
+            "recipients": {
+                "noEmployees": "Ingen ansatte tilgjengelig",
+                "noEmployeesSubtitle": "Opprette ansatte for å administrere budsjettmottakere",
+                "noSearchResults": "Ingen kontakter funnet",
+                "noSearchResultsSubtitle": "Prøv å justere søkeordene",
+                "searchRecipientsPlaceholder": "Søk ansatte...",
+                "title": "Mottakere",
+                "unknownEmployee": "Ukjent ansatt",
+                "unknownOrganization": "Ukjent organisasjon"
+            },
+            "statistic": {
+                "exceeded": "Budsjett overskredet:",
+                "remaining": "Resterende budsjett:",
+                "used": "Budsjett brukt:"
+            },
+            "statistics": {
+                "title": "Statistikk"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Sluttdato",
+                "endDatePlaceholder": "Velg sluttdato...",
+                "renewsTypeLabel": "Fornyelse",
+                "renewsTypeOptions": {
+                    "biannual": "Toårlig",
+                    "monthly": "Månedlig",
+                    "none": "Ingen",
+                    "quarterly": "Kvartalsvis",
+                    "weekly": "Ukentlig",
+                    "yearly": "Årlig"
+                },
+                "renewsTypePlaceholder": "Velg fornyelsesperiode...",
+                "startDateLabel": "Startdato",
+                "startDatePlaceholder": "Velg startdato...",
+                "title": "Fornyelsesperiode"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generer bilde",
         "elConfigImageGenerateLinkText": "Generer bilde",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktiv",
+            "availableColumn": "Tilgjengelig",
+            "cardLabel": "Budsjetter",
+            "costCentreColumn": "Kostnadssenter",
+            "createNewBudgetLabel": "Legg til budsjett",
+            "nameColumn": "Navn",
+            "sublineEmptyState": "Administrer kundens budsjetter her",
+            "titleEmptyState": "Ingen budsjetter ennå",
+            "totalColumn": "Totalt",
+            "usedColumn": "Brukt"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Legg til ansattes konto",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Administrasjon av godkjenningsregler",
+                            "budget": "Budsjettstyring",
                             "employee": "Medarbeiderledelse",
                             "order": "Ordre",
                             "organization_unit": "Organisasjonsenheter",
@@ -1071,6 +1186,15 @@
                                 "delete": "Kan slette godkjenningsregler",
                                 "read": "Kan lese godkjenningsregler",
                                 "update": "Kan oppdatere godkjenningsregler"
+                            },
+                            "budget": {
+                                "create": "Opprette budsjetter",
+                                "delete": "Slett budsjetter",
+                                "edit": "Rediger budsjetter",
+                                "place_order_without_specifying_budget": "Ansatte i denne rollen kan legge inn bestillinger uten å spesifisere et budsjett",
+                                "read": {
+                                    "all": "Vis alle budsjetter"
+                                }
                             },
                             "employee": {
                                 "create": "Kan skape ansatte",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Totalt"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Ingen ansatte tilgjengelig",
+        "unknownEmployee": "Ukjent ansatt"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Akseptert",
             "adminRequested": "Admin forespurt",
             "approved": "Godkjent",
+            "budgetManagement": "Budsjettstyring",
+            "budgetNotification": "Budsjettvarsling",
             "changeRequest": "Endre forespørsel",
             "created": "Opprettet",
             "declined": "Avvist",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Budsjett brukt"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Ingen ansatte tilgjengelig i denne organisasjonen"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Ikke tilordnet"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Forsikre deg om at denne organisasjonsenheten har minst én forsendelses- og en faktureringsadresse",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Bildenøkkelordassistent"
+            },
+            "b2b_components_budget": {
+                "label": "Budsjettstyring"
             },
             "b2b_components_organization": {
                 "label": "Organisasjonsenheter"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Slett utkast",
             "titleQuote": "Sitat {quoteNumber}",
             "titleSendMessageOnly": "Send melding",
-            "titleSendQuoteModal": "Send tilbud"
+            "titleSendQuoteModal": "Send tilbud",
+            "tooltipShippingCosts": "Fraktkostnaden er kun til referanse og vil bli beregnet på nytt når du godtar tilbudet og legger inn bestillingen."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Aktiver B2B-komponentbudsjettadministrasjon",
                 "employee_management_activate_feature": "Aktiver administrasjon av ansatte i B2B-komponenter",
                 "order_approval_activate_feature": "Aktiver godkjenning av B2B-komponentbestilling",
                 "organization_units_activate_feature": "Aktiver B2B-komponentorganisasjonsenheter",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Budsjettstyring",
                     "employee_management_activate_feature": "Medarbeiderledelse",
                     "order_approval_activate_feature": "Bestillingsgodkjenning",
                     "organization_units_activate_feature": "Organisasjonsenheter",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Lås opp ensartet skala"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Kundene dine kan definere og administrere budsjettgrenser for bedre å kontrollere organisasjonsenhetenes utgifter.",
+        "budgetManagementName": "Budsjetter",
         "employeeManagementDescription": "Kundene dine kan opprette medarbeiderkontoer med roller og tillatelser for å realisere individuelle bestillingsprosesser.",
         "employeeManagementName": "Medarbeiderledelse",
         "orderApprovalDescription": "Gir bedriftsomfattende kontroll over bestillingsprosessen, hjelper til med å holde budsjettsamsvar og reduserer bestillingsfeil.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Budsjettstyring",
                     "EMPLOYEE_MANAGEMENT": "Medarbeiderledelse",
                     "ORDER_APPROVAL": "Bestillingsgodkjenning",
                     "ORGANIZATION_UNITS": "Organisasjonsenheter",

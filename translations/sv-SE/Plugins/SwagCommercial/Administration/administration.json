@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Prenumerationer",
                 "labelSubscription": "Prenumeration"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "September"
                         }
                     },
+                    "delayedInfoMessage": "Detta intervall definierar en senare leveransstart ({advancedSettings}). Blandade vagnar stöds inte för sådana intervall. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Detta intervall kommer att raderas från alla planer där det valdes. Associerade prenumerationer förblir oförändrade.",
                     "emptySubline": "Det finns inga intervaller än.",
                     "emptyTitle": "Inga intervall hittades",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Den ursprungliga ordern räknas som en exekvering.",
                 "minimumExecutionCountLabel": "Minsta löptid (antal orderutföranden)",
                 "minimumExecutionCountPlaceholder": "Ange minsta löptid...",
+                "mixedCartDelayedInfo": "Kunder som väljer en sådan prenumeration kommer att omdirigeras till en separat kassa med en dedikerad kundvagn. Detta beror på schemaläggningskonflikter med genererade order.",
                 "nameLabel": "Namn",
                 "namePlaceholder": "Ange namn...",
                 "plan": {
                     "addProducts": "Lägg till produkter",
                     "addProductsButton": "Lägg till {selectedProductsLength} produkter | Lägg till {selectedProductsLength} produkt | Lägg till {selectedProductsLength} produkter",
+                    "delayedInfoMessage": "Denna plan innehåller intervall som definierar en senare leveransstart (avancerade inställningar). Blandade vagnar stöds inte för sådana planer. {mixedCartDelayedInfo}\n\nOrsakad av:",
                     "deleteModalInfoText": "Tillhörande prenumerationer och intervall förblir oförändrade.",
                     "emptyProductsSubline": "Det finns inga produkter än",
                     "emptyProductsTitle": "Inga produkter hittades",
@@ -152,6 +156,15 @@
                     "title": "Planer"
                 },
                 "plans": "Planer",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Låt kunderna kombinera engångsköp och prenumerationsprodukter i en enda kundvagn och kassan, istället för att behöva använda separata kassor för enskilda artiklar. Detta förbättrar flexibiliteten och bekvämligheten i köpupplevelsen.",
+                        "note": "Blandade kundvagnar stöds för prenumerationer vars leverans börjar direkt på beställningsdagen. {mixedCartDelayedInfo}",
+                        "title": "Blandade vagnar",
+                        "toggleLabel": "Aktivera blandade vagnar"
+                    },
+                    "title": "Inställningar"
+                },
                 "subscriptions": "Prenumerationer"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Budget anmälan",
             "checkout_order_return_created": "Orderretur skapad",
             "checkout_subscription_placed": "Prenumeration skapad",
             "order_approval_pending_order_requested": "Väntande beställning begärd",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Boost-numret måste vara ett positivt värde",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Boost-namnet finns redan",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktiveringsdatumet bör fastställas i framtiden",
+            "BUDGET_END_DATE_INVALID": "Slutdatum måste vara efter startdatum.",
+            "BUDGET_FIELD_REQUIRED": "Fältet får inte vara tomt.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Välj minst en mottagare.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Detta fält är obligatoriskt när ordergodkännande är aktiverat.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Ange ett giltigt värde för den här utlösningstypen.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Detta fält är obligatoriskt när aviseringar är aktiverade.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Fältet får inte vara tomt.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Fältet får inte vara tomt."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktiv",
+                "budgetAmountLabel": "Belopp i {currency}",
+                "budgetAmountPlaceholder": "Ange budgetbelopp...",
+                "costCentreLabel": "Kostnadscentrum",
+                "costCentrePlaceholder": "Ange kostnadscenter...",
+                "nameLabel": "Budgetnamn",
+                "namePlaceholder": "Ange budgetnamn...",
+                "noOrganizationsFound": "Inga organisationer hittades",
+                "organizationUnitsLabel": "Organisationsenheter",
+                "organizationUnitsPlaceholder": "Sök efter organisationsenheter...",
+                "techNameLabel": "Namn",
+                "techNamePlaceholder": "Ange tekniskt namn...",
+                "title": "Information"
+            },
+            "newTitle": "Ny budget",
+            "notification": {
+                "enableNotifications": "Aktivera aviseringar",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dagar före slutdatum",
+                    "percentage": "X procent av budgeten som används",
+                    "specificDate": "Specifikt anmälningsdatum"
+                },
+                "triggerValue": "Triggervärde",
+                "triggerValuePlaceholder": "Välj triggervärde...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Ange antal dagar",
+                    "percentage": "Ange procent av budgetvärdet",
+                    "specificDate": "Välj meddelandedatum"
+                },
+                "triggerWhen": "Utlösningsmeddelande när",
+                "triggerWhenPlaceholder": "Välj aviseringsutlösare..."
+            },
+            "notifications": {
+                "title": "Meddelandeinställningar"
+            },
+            "policies": {
+                "allowApproval": "Tillåt beställningsgodkännandeförfrågningar när budgeten är fullt utnyttjad",
+                "approvalRoleLabel": "Ger ordergodkännanden",
+                "approvalRolePlaceholder": "Välj godkännanderoll...",
+                "showRemaining": "Tillåt användare att visa återstående budget",
+                "title": "Budgetpolitik"
+            },
+            "recipients": {
+                "noEmployees": "Inga anställda tillgängliga",
+                "noEmployeesSubtitle": "Skapa anställda för att hantera budgetmottagare",
+                "noSearchResults": "Inga kontakter hittades",
+                "noSearchResultsSubtitle": "Försök att justera dina söktermer",
+                "searchRecipientsPlaceholder": "Sök anställda...",
+                "title": "Mottagare",
+                "unknownEmployee": "Okänd anställd",
+                "unknownOrganization": "Okänd organisation"
+            },
+            "statistic": {
+                "exceeded": "Budgeten överskreds:",
+                "remaining": "Återstående budget:",
+                "used": "Utnyttjad budget:"
+            },
+            "statistics": {
+                "title": "Statistik"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Slutdatum",
+                "endDatePlaceholder": "Välj slutdatum...",
+                "renewsTypeLabel": "Förnyelse",
+                "renewsTypeOptions": {
+                    "biannual": "Tvåårsvis",
+                    "monthly": "Månads",
+                    "none": "Ingen",
+                    "quarterly": "Kvartalsvis",
+                    "weekly": "Veckovis",
+                    "yearly": "Årsvis"
+                },
+                "renewsTypePlaceholder": "Välj förnyelseperiod...",
+                "startDateLabel": "Startdatum",
+                "startDatePlaceholder": "Välj startdatum...",
+                "title": "Förnyelseperiod"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generera bild",
         "elConfigImageGenerateLinkText": "Generera bild",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktiv",
+            "availableColumn": "Fortfarande tillgänglig",
+            "cardLabel": "budgetar",
+            "costCentreColumn": "Kostnadscentrum",
+            "createNewBudgetLabel": "Lägg till budget",
+            "nameColumn": "Namn",
+            "sublineEmptyState": "Hantera dina kunders budgetar här",
+            "titleEmptyState": "Inga budgetar än",
+            "totalColumn": "Totalt",
+            "usedColumn": "Används"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Lägg till medarbetarkonto",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Hantering av godkännanderegler",
+                            "budget": "Budgetförvaltning",
                             "employee": "Medarbetarledning",
                             "order": "Beställningar",
                             "organization_unit": "Organisationsenheter",
@@ -1071,6 +1186,15 @@
                                 "delete": "Kan ta bort godkännanderegler",
                                 "read": "Kan läsa godkännanderegler",
                                 "update": "Kan uppdatera godkännanderegler"
+                            },
+                            "budget": {
+                                "create": "Skapa budgetar",
+                                "delete": "Ta bort budgetar",
+                                "edit": "Redigera budgetar",
+                                "place_order_without_specifying_budget": "Anställda i den här rollen kan lägga beställningar utan att ange en budget",
+                                "read": {
+                                    "all": "Visa alla budgetar"
+                                }
                             },
                             "employee": {
                                 "create": "Kan skapa anställda",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Totalt"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Inga anställda tillgängliga",
+        "unknownEmployee": "Okänd anställd"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Accepterad",
             "adminRequested": "Admin begärde",
             "approved": "Godkänd",
+            "budgetManagement": "Budgetförvaltning",
+            "budgetNotification": "Budget anmälan",
             "changeRequest": "Ändringsförfrågan",
             "created": "Tillverkad",
             "declined": "Avböjt",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Budget som används"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Inga anställda tillgängliga i denna organisation"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Ej tilldelad"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Se till att den här organisationsenheten har minst en leverans- och en faktureringsadress",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Bildnyckelordsassistent"
+            },
+            "b2b_components_budget": {
+                "label": "Budgetförvaltning"
             },
             "b2b_components_organization": {
                 "label": "Organisationsenheter"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Radera utkast",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Skicka meddelande",
-            "titleSendQuoteModal": "Skicka offert"
+            "titleSendQuoteModal": "Skicka offert",
+            "tooltipShippingCosts": "Fraktkostnaden är endast för referens och kommer att beräknas om när du accepterar offerten och lägger beställningen."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Aktivera B2B-komponentbudgethantering",
                 "employee_management_activate_feature": "Aktivera personalhantering för B2B-komponenter",
                 "order_approval_activate_feature": "Aktivera godkännande av B2B-komponentorder",
                 "organization_units_activate_feature": "Aktivera B2B-komponentorganisationsenheter",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Budgethantering",
                     "employee_management_activate_feature": "Medarbetarledning",
                     "order_approval_activate_feature": "Beställningsgodkännande",
                     "organization_units_activate_feature": "Organisationsenheter",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Lås upp enhetlig skala"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Dina kunder kan definiera och hantera budgetgränser för att bättre kontrollera sina organisationsenheternas utgifter.",
+        "budgetManagementName": "budgetar",
         "employeeManagementDescription": "Dina kunder kan skapa medarbetarkonton med roller och behörigheter för att realisera individuella orderprocesser.",
         "employeeManagementName": "Medarbetarledning",
         "orderApprovalDescription": "Ger företagsomfattande kontroll över orderprocessen, hjälper till att hålla budgetefterlevnaden och minskar orderfel.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Budgetförvaltning",
                     "EMPLOYEE_MANAGEMENT": "Medarbetarledning",
                     "ORDER_APPROVAL": "Beställningsgodkännande",
                     "ORGANIZATION_UNITS": "Organisationsenheter",

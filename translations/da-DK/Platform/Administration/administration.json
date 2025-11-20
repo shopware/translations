@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Sletning mislykkedes.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Mangler tilladelser.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "For mange anmodninger. Vent venligst {seconds} sekunder, før du prøver igen.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL-adressen {path} er i konflikt med den eksisterende rute {blockedSegment} og kan ikke bruges.",
             "INVALID_MAIL": "Indtast venligst en gyldig e-mailadresse.",
             "INVALID_MEDIA_URL": "Venligst indtast en gyldig URL for at uploade en fil.",
             "INVALID_URL": "Indtast en valid Url.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Ingen resultater fundet for \"{term}\"."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Link arv",
+            "ariaUnlinkInheritance": "Fjern sammenkædning af arv",
             "notification": {
                 "notificationCopyFailureMessage": "Teksten kunne ikke kopieres til udklipsholderen.",
                 "notificationCopySuccessMessage": "Teksten er kopieret til udklipsholderen."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Din browser understøtter ikke dette audio tag",
             "fallbackVideoTagSupport": "Din browser understøtter ikke dette video tag",
-            "textNoMedia": "Intet medie tilgængeligt"
+            "textNoMedia": "Intet medie tilgængeligt",
+            "warningUnsupportedFormat": "Formatet \"{format}\" understøttes muligvis ikke i alle browsere."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Upload fil",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Ufiltreret HTML-kode kan føre til sikkerhedsrisici. Indsæt kun HTML-kode fra pålidelige kilder, og test dine ændringer, før du offentliggør dem."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Indhold"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktivér denne indstilling, hvis billedet er det første på siden. Billedet tildeles derefter attributten 'fetchpriority=\"high\"', hvilket beder browseren om at indlæse det med højere prioritet. Dette kan hjælpe med at forbedre LCP (Largest Contentful Paint).",
+                        "isDecorative": "Når denne indstilling er aktiveret, læses billedoplysningerne ikke af skærmlæsere. Dette betyder, at taggene „alt“ og „title“ forbliver tomme."
+                    },
                     "label": {
                         "ariaLabel": "Link beskrivelse",
                         "ariaLabelHelpText": "Denne tekst læses af skærmlæsere som linktekst.",
+                        "fetchPriorityHigh": "Hent prioritet høj",
                         "isDecorative": "Marker billedet som dekorativt",
                         "isDecorativeHelpText": "Når denne indstilling er aktiveret, læses billedoplysningerne ikke af skærmlæsere.",
                         "linkNewTab": "Åbn link i ny fane",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Priknavigation",
                         "navigationPositionInside": "Inden i",
                         "navigationPositionNone": "Ingen",
-                        "navigationPositionOutside": "Udenfor"
+                        "navigationPositionOutside": "Udenfor",
+                        "sliderItems": "Billeder"
                     }
                 },
                 "label": "Billedeslider"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "CMS sider",
             "placeholderSearchBar": "Søg i layout...",
             "privacyNotice": "Ved at vælge Fortsæt bekræfter du, at du har læst vores <a href=\"%privacyUrl%\">databeskyttelsesinformation</a> og accepteret vores <a href=\"%tosUrl%\">generelle vilkår og betingelser</a>."
+        },
+        "inherit": {
+            "formBanner": "Dette layout har nedarvede felter. Det betyder, at så længe den nedarvede tilstand er aktiv, vil indholdet blive arvet. Arvelige felter kan fjernes ved at klikke på linksymbolet. Hvis du klikker på symbolet igen, indstilles den nedarvede tilstand tilbage.",
+            "tooltip": "Dette felt findes ikke i basislayoutet og kan ikke arves.",
+            "unlinkAllButton": "Nulstil alle felter.",
+            "unlinkAllConfirmText": "Er du sikker på, at du vil nulstille alle felter? Dette sletter alt indhold, der ikke er linket, permanent.",
+            "unlinkAllTitle": "Nulstil alle felter",
+            "unlinkFieldConfirmText": "Er du sikker på, at du vil gendanne arv? Dette fjerner alle brugerdefinerede data i dette felt og gendanner værdier fra det overordnede element.",
+            "unlinkFieldTitle": "Gendan orginale indstillinger",
+            "unlinkNotice": "Nogle nedarvede felter er blevet fjernet."
         },
         "list": {
             "gridHeaderAssignedPages": "Tildelte sider",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Følgende salgskanaler vil blive påvirket:",
+            "confirmButton": "Fortsæt alligevel",
             "mainContent": "Der er allerede en sidehoved- og sidefodsskabelon tildelt til følgende salgskanaler. Hvis du fortsætter og gemmer, vil den tildeling blive overskrevet med dine ændringer.",
             "title": "Flere tildelinger"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Mediebibliotek",
             "labelTabItemUpload": "Upload filer",
             "titleModal": "Vælg medie"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Gem i medier"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "og",
                     "by": "af",
                     "lastChanged": "Sidst ændret",
-                    "on": "på",
                     "with": "med"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Hvis du ændrer denne indstilling, kan det medføre problemer med eksterne betalingsudbydere. Tjek, hvordan momsen beregnes af betalingsudbydere, du benytter, før du foretager ændringer.",
             "favouriteLabel": "Markér salgskanal som favorit",
             "footerCategory": "Vælg kategori for footer navigation",
+            "foreignKeyDelete": "Denne salgskanal kan ikke slettes, fordi den stadig er i brug af {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Hvis en skatteudbyder er aktiveret, kan disse indstillinger blive overskrevet. Du kan tjekke dette ind {link}.",
                 "linkText": "indstillinger"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Brugerdefineret felt",
                         "product": {
+                            "available": "Til rådig",
                             "cheapestPrice": "Billigste produktpris",
                             "createdAt": "Oprettelsesdato",
                             "listingPrices": "Produkt notering pris",
@@ -8718,6 +8744,7 @@
                 "height": "Højde",
                 "length": "Længde",
                 "manufacturerNumber": "Leverandør produkt nummer",
+                "packUnit": "Emballageenhed",
                 "property": "Egenskab",
                 "referencePrice": "Enhedspris",
                 "releaseDate": "Udgivelsesdato",

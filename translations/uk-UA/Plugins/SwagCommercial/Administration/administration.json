@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Підписки",
                 "labelSubscription": "Підписка"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Вересень"
                         }
                     },
+                    "delayedInfoMessage": "Цей інтервал визначає більш пізній початок доставки ({advancedSettings}). Змішані візки для таких інтервалів не підтримуються. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Цей інтервал буде видалений з усіх планів, в яких він був обраний. Пов'язані підписки залишаться незмінними.",
                     "emptySubline": "Проміжків поки немає.",
                     "emptyTitle": "Не знайдено інтервалів",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Початковий ордер зараховується як виконання.",
                 "minimumExecutionCountLabel": "Мінімальний термін (кількість виконаних замовлень)",
                 "minimumExecutionCountPlaceholder": "Введіть мінімальний термін...",
+                "mixedCartDelayedInfo": "Клієнти, які обрали таку підписку, будуть перенаправлені на окрему касу з виділеним кошиком. Це пов'язано з конфліктами планування зі сформованими замовленнями.",
                 "nameLabel": "Назва",
                 "namePlaceholder": "Введіть назву...",
                 "plan": {
                     "addProducts": "Додати продукти",
                     "addProductsButton": "Додати товари {selectedProductsLength} | Додати товар {selectedProductsLength} | Додати товари {selectedProductsLength}",
+                    "delayedInfoMessage": "Цей план містить інтервали, що визначають більш пізній початок доставки (розширені налаштування). Змішані візки для таких планів не підтримуються. {mixedCartDelayedInfo}\n\nВикликано:",
                     "deleteModalInfoText": "Пов'язані підписки та інтервали залишаться незмінними.",
                     "emptyProductsSubline": "Товарів поки немає",
                     "emptyProductsTitle": "Товарів не знайдено",
@@ -152,6 +156,15 @@
                     "title": "плани"
                 },
                 "plans": "плани",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Дозвольте клієнтам поєднувати одноразові покупки та продукти підписки в одному кошику та оформленні замовлення, а не використовувати окремі каси для окремих товарів. Це покращує гнучкість та зручність досвіду покупки.",
+                        "note": "Змішані кошики підтримуються для підписки, доставка яких починається безпосередньо в день замовлення. {mixedCartDelayedInfo}",
+                        "title": "Змішані візки",
+                        "toggleLabel": "Активуйте змішані візки"
+                    },
+                    "title": "Налаштування"
+                },
                 "subscriptions": "Підписки"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Сповіщення про бюджет",
             "checkout_order_return_created": "Повернення замовлення створено",
             "checkout_subscription_placed": "Підписка створена",
             "order_approval_pending_order_requested": "Запитується відкладене замовлення",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Число підвищення має бути позитивним значенням",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Ім'я підвищення вже існує",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Дата активації повинна бути встановлена в майбутньому",
+            "BUDGET_END_DATE_INVALID": "Дата закінчення повинна бути після дати початку.",
+            "BUDGET_FIELD_REQUIRED": "Це поле не повинно бути порожнім.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Будь ласка, виберіть принаймні одного одержувача.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Це поле є обов'язковим, якщо увімкнено затвердження замовлення.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Будь ласка, введіть допустиме значення для цього типу тригера.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Це поле обов'язкове, коли ввімкнено сповіщення.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Це поле не повинно бути порожнім.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Це поле не повинно бути порожнім."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Активний",
+                "budgetAmountLabel": "Сума в {currency}",
+                "budgetAmountPlaceholder": "Введіть суму бюджету...",
+                "costCentreLabel": "Центр витрат",
+                "costCentrePlaceholder": "Введіть центр витрат...",
+                "nameLabel": "Назва бюджету",
+                "namePlaceholder": "Введіть назву бюджету...",
+                "noOrganizationsFound": "Організації не знайдено",
+                "organizationUnitsLabel": "Організаційні підрозділи",
+                "organizationUnitsPlaceholder": "Пошук організаційних підрозділів...",
+                "techNameLabel": "Технічна назва",
+                "techNamePlaceholder": "Введіть технічну назву...",
+                "title": "Загальна інформація"
+            },
+            "newTitle": "Новий бюджет",
+            "notification": {
+                "enableNotifications": "Увімкнути сповіщення",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X днів до дати закінчення",
+                    "percentage": "X відсотків використаного бюджету",
+                    "specificDate": "Конкретна дата сповіщення"
+                },
+                "triggerValue": "Значення тригера",
+                "triggerValuePlaceholder": "Виберіть значення тригера...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Введіть кількість днів",
+                    "percentage": "Введіть відсоток від вартості бюджету",
+                    "specificDate": "Виберіть дату сповіщення"
+                },
+                "triggerWhen": "Увімкніть сповіщення, коли",
+                "triggerWhenPlaceholder": "Виберіть тригер сповіщення..."
+            },
+            "notifications": {
+                "title": "Налаштування сповіщень"
+            },
+            "policies": {
+                "allowApproval": "Дозволити запити на затвердження замовлень, коли бюджет повністю використаний",
+                "approvalRoleLabel": "Дає схвалення замовлень",
+                "approvalRolePlaceholder": "Виберіть роль затвердження...",
+                "showRemaining": "Дозволити користувачам переглядати залишок бюджету",
+                "title": "Бюджетна політика"
+            },
+            "recipients": {
+                "noEmployees": "Немає співробітників",
+                "noEmployeesSubtitle": "Створення співробітників для управління одержувачами бюджету",
+                "noSearchResults": "Контактів не знайдено",
+                "noSearchResultsSubtitle": "Спробуйте змінити пошукові терміни",
+                "searchRecipientsPlaceholder": "Пошук співробітників...",
+                "title": "Одержувачі",
+                "unknownEmployee": "Невідомий співробітник",
+                "unknownOrganization": "Невідома організація"
+            },
+            "statistic": {
+                "exceeded": "Бюджет перевищив:",
+                "remaining": "Залишився бюджет:",
+                "used": "Використовуваний бюджет:"
+            },
+            "statistics": {
+                "title": "Статистика"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Дата закінчення",
+                "endDatePlaceholder": "Виберіть дату завершення...",
+                "renewsTypeLabel": "поновлення",
+                "renewsTypeOptions": {
+                    "biannual": "Щорічні",
+                    "monthly": "Щомісяця",
+                    "none": "Немає",
+                    "quarterly": "Квартальний",
+                    "weekly": "Щотижневий",
+                    "yearly": "Щорічно"
+                },
+                "renewsTypePlaceholder": "Виберіть період поновлення...",
+                "startDateLabel": "Дата початку",
+                "startDatePlaceholder": "Виберіть дату початку...",
+                "title": "Період поновлення"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Створити зображення",
         "elConfigImageGenerateLinkText": "Створити зображення",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Активний",
+            "availableColumn": "Доступний",
+            "cardLabel": "Бюджети",
+            "costCentreColumn": "Центр витрат",
+            "createNewBudgetLabel": "Додати бюджет",
+            "nameColumn": "Назва",
+            "sublineEmptyState": "Керуйте бюджетами своїх клієнтів тут",
+            "titleEmptyState": "Бюджетів поки немає",
+            "totalColumn": "Всього",
+            "usedColumn": "Використовується"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Додати обліковий запис працівника",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Управління правилами затвердження",
+                            "budget": "Управління бюджетом",
                             "employee": "Управління працівниками",
                             "order": "Замовлення",
                             "organization_unit": "Організаційні підрозділи",
@@ -1071,6 +1186,15 @@
                                 "delete": "Може видаляти правила затвердження",
                                 "read": "Може читати правила затвердження",
                                 "update": "Може оновити правила затвердження"
+                            },
+                            "budget": {
+                                "create": "Створення бюджетів",
+                                "delete": "Видалення бюджетів",
+                                "edit": "Редагування бюджетів",
+                                "place_order_without_specifying_budget": "Співробітники на цій ролі можуть розміщувати замовлення без вказівки бюджету",
+                                "read": {
+                                    "all": "Переглянути всі бюджети"
+                                }
                             },
                             "employee": {
                                 "create": "Може створювати співробітників",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Всього"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Немає співробітників",
+        "unknownEmployee": "Невідомий співробітник"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Прийнято",
             "adminRequested": "Адміністратор запитав",
             "approved": "Затверджено",
+            "budgetManagement": "Управління бюджетом",
+            "budgetNotification": "Сповіщення про бюджет",
             "changeRequest": "Запит на зміну",
             "created": "Створено",
             "declined": "Відхилено",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Використовуваний бюджет"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "У цій організації немає співробітників"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Неприсвоєно"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Будь ласка, переконайтеся, що цей організаційний підрозділ має принаймні одну адресу доставки та одну платіжну адресу",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Помічник ключових слів зображення"
+            },
+            "b2b_components_budget": {
+                "label": "Управління бюджетом"
             },
             "b2b_components_organization": {
                 "label": "Організаційні підрозділи"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Видалити чернетку",
             "titleQuote": "Цитата {quoteNumber}",
             "titleSendMessageOnly": "Надіслати повідомлення",
-            "titleSendQuoteModal": "Надіслати пропозицію"
+            "titleSendQuoteModal": "Надіслати пропозицію",
+            "tooltipShippingCosts": "Вартість доставки призначена лише для довідки і буде перерахована після того, як ви приймете пропозицію та зробите замовлення."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Увімкнути управління бюджетом компонентів B2B",
                 "employee_management_activate_feature": "Увімкнути управління співробітниками компонентів B2B",
                 "order_approval_activate_feature": "Увімкнути затвердження замовлення компонентів B2B",
                 "organization_units_activate_feature": "Увімкнути блоки організації компонентів B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Бюджетний менеджмент",
                     "employee_management_activate_feature": "Управління працівниками",
                     "order_approval_activate_feature": "Затвердження замовлення",
                     "organization_units_activate_feature": "Організаційні підрозділи",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Розблокувати рівномірну шкалу"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Ваші клієнти можуть визначати та керувати бюджетними обмеженнями, щоб краще контролювати витрати своїх організаційних підрозділів.",
+        "budgetManagementName": "Бюджети",
         "employeeManagementDescription": "Ваші клієнти можуть створювати облікові записи співробітників з ролями та дозволами для реалізації індивідуальних процесів замовлення.",
         "employeeManagementName": "Управління працівниками",
         "orderApprovalDescription": "Забезпечує контроль над процесом замовлення на всю компанію, допомагає підтримувати дотримання бюджету та зменшує помилки замовлення.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Управління бюджетом",
                     "EMPLOYEE_MANAGEMENT": "Управління працівниками",
                     "ORDER_APPROVAL": "Затвердження замовлення",
                     "ORGANIZATION_UNITS": "Організаційні підрозділи",

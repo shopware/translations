@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "削除できませんでした。",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "権限がありません。",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "リクエストが多すぎます。{seconds} 秒待ってから再試行してください。",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} は既存のルート {blockedSegment} と競合するため、使用できません。",
             "INVALID_MAIL": "有効なEメールアドレスを入力してください",
             "INVALID_MEDIA_URL": "アップロードするファイルの正しいURLを入力してください。",
             "INVALID_URL": "有効なURLを入力してください。",
@@ -980,6 +981,8 @@
             "messageNoResults": "\"{term}\" にマッチする結果はありません。"
         },
         "sw-field": {
+            "ariaLinkInheritance": "リンク継承",
+            "ariaUnlinkInheritance": "継承をリンク解除",
             "notification": {
                 "notificationCopyFailureMessage": "テキストをクリップボードにコピーできませんでした。",
                 "notificationCopySuccessMessage": "テキストをクリップボードにコピーしました。"
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "お使いのブラウザはオーディオタグをサポートしていません。",
             "fallbackVideoTagSupport": "お使いのブラウザはビデオタグをサポートしていません。",
-            "textNoMedia": "メディアがありません"
+            "textNoMedia": "メディアがありません",
+            "warningUnsupportedFormat": "フォーマット \"{format}\" はすべてのブラウザでサポートされているわけではありません。"
         },
         "sw-media-upload": {
             "buttonFileUpload": "ファイルをアップロード",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "フィルタリングされていない HTML コードはセキュリティ上のリスクにつながる可能性があります。公開する前に、信頼できるソースの HTML コードのみを挿入し、変更をテストしてください。"
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "コンテンツ"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "画像がページの最初の画像である場合は、このオプションをアクティブにします。すると、画像には 'fetchpriority= \"high\"' という属性が割り当てられ、ブラウザに高い優先度で読み込むように指示されます。これは最大コンテンツフルペイント (LCP) の改善に役立ちます。",
+                        "isDecorative": "このオプションを有効にすると、画像情報はスクリーンリーダーで読み上げられません。つまり、「alt」タグと「title」タグは空のままになります。"
+                    },
                     "label": {
                         "ariaLabel": "リンク説明",
                         "ariaLabelHelpText": "このテキストは、スクリーンリーダーによってリンクテキストとして読み上げられます。",
+                        "fetchPriorityHigh": "フェッチ優先度高",
                         "isDecorative": "画像を装飾用としてマークする",
                         "isDecorativeHelpText": "このオプションを有効にすると、画像情報はスクリーンリーダーで読み上げられません。",
                         "linkNewTab": "リンクを新しいタブで開く",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "ナビゲーションドット",
                         "navigationPositionInside": "内側",
                         "navigationPositionNone": "なし",
-                        "navigationPositionOutside": "外側"
+                        "navigationPositionOutside": "外側",
+                        "sliderItems": "画像"
                     }
                 },
                 "label": "イメージスライダー"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "ショッピング体験",
             "placeholderSearchBar": "レイアウトを検索...",
             "privacyNotice": "[続行] を選択すると、 <a href=\"%privacyUrl%\">データ保護情報</a> を読み、 <a href=\"%tosUrl%\">一般利用規約</a>に同意したものとみなされます。"
+        },
+        "inherit": {
+            "formBanner": "このレイアウトにはフィールドが継承されています。つまり、継承されたステートがアクティブである限り、コンテンツは継承されます。継承されたフィールドは、リンク記号をクリックすることでリンクを解除できます。シンボルをもう一度クリックすると、継承された状態が元に戻ります。",
+            "tooltip": "このフィールドはベースレイアウトには存在しないため、継承できません。",
+            "unlinkAllButton": "すべてのフィールドをリセットします。",
+            "unlinkAllConfirmText": "すべてのフィールドをリセットしてよろしいですか?これにより、リンクされていないコンテンツはすべて完全に削除されます。",
+            "unlinkAllTitle": "すべてのフィールドをリセット",
+            "unlinkFieldConfirmText": "本当に相続を回復してもよろしいですか？これにより、このフィールドのすべてのカスタムデータが削除され、親要素の値が復元されます。",
+            "unlinkFieldTitle": "継承を復元",
+            "unlinkNotice": "一部の継承フィールドはリンク解除されました。"
         },
         "list": {
             "gridHeaderAssignedPages": "割り当てられたページ",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "次の販売チャネルが影響を受けます。",
+            "confirmButton": "とにかく続けて",
             "mainContent": "次の販売チャネルには、すでにヘッダーとフッターのテンプレートが割り当てられています。続けて保存すると、その課題は変更内容で上書きされます。",
             "title": "複数の課題"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "メディアライブラリー",
             "labelTabItemUpload": "ファイルをアップロード",
             "titleModal": "メディアを選択"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "メディアに保存"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "と",
                     "by": "by",
                     "lastChanged": "最終更新",
-                    "on": "オン",
                     "with": "と"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "この設定を変更すると、外部の決済サービスの会計上の問題が発生する可能性があります。変更を加える前に、採用している決済サービスによる VAT の計算方法をもう一度確認してください。",
             "favouriteLabel": "セールスチャネルをお気に入りとしてマークする",
             "footerCategory": "エントリポイントのフッターナビゲーション",
+            "foreignKeyDelete": "この販売チャネルは {assignment}でまだ使用中なので削除できません。",
             "helpTextTaxCalculation": {
                 "label": "税務プロバイダーが有効になっている場合、これらの設定は上書きされる可能性があります。 {link} でチェックできます。",
                 "linkText": "設定"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "カスタムフィールド",
                         "product": {
+                            "available": "利用可能",
                             "cheapestPrice": "最も安い製品価格",
                             "createdAt": "作成日時",
                             "listingPrices": "商品掲載価格",
@@ -8718,6 +8744,7 @@
                 "height": "高さ",
                 "length": "長さ",
                 "manufacturerNumber": "メーカー製品番号",
+                "packUnit": "梱包単位",
                 "property": "プロパティ",
                 "referencePrice": "単価",
                 "releaseDate": "リリース日",
