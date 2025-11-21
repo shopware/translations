@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Subskrypcje",
                 "labelSubscription": "Subskrypcja"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "wrzesień"
                         }
                     },
+                    "delayedInfoMessage": "Ten przedział określa późniejszy początek dostawy ({advancedSettings}). Wózki mieszane nie są obsługiwane w takich odstępach czasu. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Ten interwał zostanie usunięty ze wszystkich planów, w których został wybrany. Powiązane subskrypcje pozostaną niezmienione.",
                     "emptySubline": "Nie ma jeszcze interwałów.",
                     "emptyTitle": "Nie znaleziono interwałów",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Początkowe zlecenie jest liczone jako wykonanie.",
                 "minimumExecutionCountLabel": "Minimalny termin (liczba wykonań zleceń)",
                 "minimumExecutionCountPlaceholder": "Wprowadź minimalny termin...",
+                "mixedCartDelayedInfo": "Klienci, którzy wybiorą taką subskrypcję, zostaną przekierowani do osobnej kasy z dedykowanym koszykiem. Wynika to z konfliktów harmonogramowania z generowanymi zamówieniami.",
                 "nameLabel": "Nazwa",
                 "namePlaceholder": "Wprowadź nazwę...",
                 "plan": {
                     "addProducts": "Dodaj produkty",
                     "addProductsButton": "Dodaj produkty {selectedProductsLength} | Dodaj produkt {selectedProductsLength} | Dodaj produkty {selectedProductsLength}",
+                    "delayedInfoMessage": "Plan ten zawiera przedziały określające późniejszy początek dostawy (ustawienia zaawansowane). Wózki mieszane nie są obsługiwane dla takich planów. {mixedCartDelayedInfo}\n\nSpowodowane przez:",
                     "deleteModalInfoText": "Powiązane subskrypcje i interwały pozostaną niezmienione.",
                     "emptyProductsSubline": "Nie ma jeszcze produktów",
                     "emptyProductsTitle": "Nie znaleziono produktów",
@@ -152,6 +156,15 @@
                     "title": "Plany"
                 },
                 "plans": "Plany",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Pozwól klientom łączyć jednorazowe zakupy i produkty subskrypcyjne w jednym koszyku i kasie, zamiast używać oddzielnych kasy dla poszczególnych przedmiotów. Poprawia to elastyczność i wygodę zakupów.",
+                        "note": "Wózki mieszane są obsługiwane dla subskrypcji, których dostawa rozpoczyna się bezpośrednio w dniu zamówienia. {mixedCartDelayedInfo}",
+                        "title": "Wózki mieszane",
+                        "toggleLabel": "Aktywuj mieszane wózki"
+                    },
+                    "title": "Ustawienia"
+                },
                 "subscriptions": "Subskrypcje"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Powiadomienie budżetu",
             "checkout_order_return_created": "Utworzony zwrot zamówienia",
             "checkout_subscription_placed": "Utworzona subskrypcja",
             "order_approval_pending_order_requested": "Żądane zamówienie oczekujące",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Liczba zwiększenia musi być wartością dodatnią",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Nazwa wzmacniająca już istnieje",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Data aktywacji powinna zostać ustalona w przyszłości",
+            "BUDGET_END_DATE_INVALID": "Data zakończenia musi być następująca po dacie rozpoczęcia.",
+            "BUDGET_FIELD_REQUIRED": "To pole nie może być puste.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Proszę wybrać co najmniej jednego odbiorcę.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "To pole jest wymagane, gdy zatwierdzanie zamówienia jest włączone.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Wprowadź prawidłową wartość dla tego typu wyzwalacza.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "To pole jest wymagane, gdy powiadomienia są włączone.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "To pole nie może być puste.",
             "SHOPPING_LIST_FIELD_REQUIRED": "To pole nie może być puste."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktywny",
+                "budgetAmountLabel": "Kwota w {currency}",
+                "budgetAmountPlaceholder": "Wprowadź kwotę budżetu...",
+                "costCentreLabel": "Centrum kosztów",
+                "costCentrePlaceholder": "Wejdź do centrum kosztów...",
+                "nameLabel": "Nazwa budżetu",
+                "namePlaceholder": "Wprowadź nazwę budżetu...",
+                "noOrganizationsFound": "Nie znaleziono organizacji",
+                "organizationUnitsLabel": "Jednostki organizacyjne",
+                "organizationUnitsPlaceholder": "Szukaj jednostek organizacyjnych...",
+                "techNameLabel": "Nazwa",
+                "techNamePlaceholder": "Wprowadź nazwę techniczną...",
+                "title": "Informacje"
+            },
+            "newTitle": "Nowy budżet",
+            "notification": {
+                "enableNotifications": "Włącz powiadomienia",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dni przed datą zakończenia",
+                    "percentage": "X procent zużytego budżetu",
+                    "specificDate": "Konkretna data powiadomienia"
+                },
+                "triggerValue": "Wartość wyzwalająca",
+                "triggerValuePlaceholder": "Wybierz wartość wyzwalającą...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Wprowadź liczbę dni",
+                    "percentage": "Wprowadź procent wartości budżetu",
+                    "specificDate": "Wybierz datę powiadomienia"
+                },
+                "triggerWhen": "Wyzwalaj powiadomienie, gdy",
+                "triggerWhenPlaceholder": "Wybierz wyzwalacz powiadomień..."
+            },
+            "notifications": {
+                "title": "Ustawienia powiadomień"
+            },
+            "policies": {
+                "allowApproval": "Zezwalaj na żądania zatwierdzenia zamówienia, gdy budżet jest w pełni wykorzystany",
+                "approvalRoleLabel": "Umożliwia zatwierdzenie zamówień",
+                "approvalRolePlaceholder": "Wybierz rolę zatwierdzania...",
+                "showRemaining": "Zezwalaj użytkownikom na przeglądanie pozostałego budżetu",
+                "title": "Polityka budżetowa"
+            },
+            "recipients": {
+                "noEmployees": "Brak dostępnych pracowników",
+                "noEmployeesSubtitle": "Tworzenie pracowników do zarządzania odbiorcami budżetu",
+                "noSearchResults": "Nie znaleziono kontaktów",
+                "noSearchResultsSubtitle": "Spróbuj dostosować wyszukiwane hasła",
+                "searchRecipientsPlaceholder": "Szukaj pracowników...",
+                "title": "Odbiorca",
+                "unknownEmployee": "Nieznany pracownik",
+                "unknownOrganization": "Nieznana organizacja"
+            },
+            "statistic": {
+                "exceeded": "Przekroczony budżet:",
+                "remaining": "Pozostały budżet:",
+                "used": "Wykorzystany budżet:"
+            },
+            "statistics": {
+                "title": "Statystyki"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Data zakończenia",
+                "endDatePlaceholder": "Wybierz datę zakończenia...",
+                "renewsTypeLabel": "Odnowienie",
+                "renewsTypeOptions": {
+                    "biannual": "Dwuroczna",
+                    "monthly": "Co miesiąc",
+                    "none": "Brak",
+                    "quarterly": "Kwartalnie",
+                    "weekly": "Tygodniowy",
+                    "yearly": "Rocznie"
+                },
+                "renewsTypePlaceholder": "Wybierz okres odnowienia...",
+                "startDateLabel": "Data rozpoczęcia",
+                "startDatePlaceholder": "Wybierz datę rozpoczęcia...",
+                "title": "Okres odnowienia"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generuj obraz",
         "elConfigImageGenerateLinkText": "Generuj obraz",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktywny",
+            "availableColumn": "Produkt wciąż dostępny",
+            "cardLabel": "Budżety",
+            "costCentreColumn": "Centrum kosztów",
+            "createNewBudgetLabel": "Dodaj budżet",
+            "nameColumn": "Nazwa",
+            "sublineEmptyState": "Zarządzaj budżetami klientów tutaj",
+            "titleEmptyState": "Nie ma jeszcze budżetów",
+            "totalColumn": "Łącznie",
+            "usedColumn": "Używany"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Dodaj konto pracownika",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Zarządzanie regułami zatwierdzania",
+                            "budget": "Zarządzanie budżetem",
                             "employee": "Zarządzanie pracownikami",
                             "order": "Zamówienia",
                             "organization_unit": "Jednostki organizacyjne",
@@ -1071,6 +1186,15 @@
                                 "delete": "Może usunąć reguły zatwierdzania",
                                 "read": "Potrafi odczytać zasady zatwierdzania",
                                 "update": "Umożliwia aktualizację reguł zatwierdzania"
+                            },
+                            "budget": {
+                                "create": "Tworzenie budżetów",
+                                "delete": "Usuń budżety",
+                                "edit": "Edytuj budżety",
+                                "place_order_without_specifying_budget": "Pracownicy w tej roli mogą składać zamówienia bez określania budżetu",
+                                "read": {
+                                    "all": "Wyświetl wszystkie budżety"
+                                }
                             },
                             "employee": {
                                 "create": "Potrafi tworzyć pracowników",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Łącznie"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Brak dostępnych pracowników",
+        "unknownEmployee": "Nieznany pracownik"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Zaakceptowano",
             "adminRequested": "Administrator poprosił",
             "approved": "Zatwierdzony",
+            "budgetManagement": "Zarządzanie budżetem",
+            "budgetNotification": "Powiadomienie budżetu",
             "changeRequest": "Żądanie zmiany",
             "created": "Utworzono",
             "declined": "Odrzucono",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Wykorzystany budżet"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Brak dostępnych pracowników w tej organizacji"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Nieprzypisane"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Upewnij się, że ta jednostka organizacyjna ma co najmniej jeden adres wysyłki i jeden adres rozliczeniowy",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Asystent słowa kluczowego obrazu"
+            },
+            "b2b_components_budget": {
+                "label": "Zarządzanie budżetem"
             },
             "b2b_components_organization": {
                 "label": "Jednostki organizacyjne"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Usuń wersję roboczą",
             "titleQuote": "Cytat {quoteNumber}",
             "titleSendMessageOnly": "Wyślij wiadomość",
-            "titleSendQuoteModal": "Wyślij wycenę"
+            "titleSendQuoteModal": "Wyślij wycenę",
+            "tooltipShippingCosts": "Koszt wysyłki ma charakter informacyjny i zostanie ponownie obliczony po zaakceptowaniu wyceny i złożeniu zamówienia."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Włącz zarządzanie budżetem komponentów B2B",
                 "employee_management_activate_feature": "Włącz zarządzanie pracownikami komponentów B2B",
                 "order_approval_activate_feature": "Włącz zatwierdzanie zamówień komponentów B2B",
                 "organization_units_activate_feature": "Włącz jednostki organizacyjne komponentów B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Zarządzanie budżetem",
                     "employee_management_activate_feature": "Zarządzanie pracownikami",
                     "order_approval_activate_feature": "Zatwierdzenie zamówienia",
                     "organization_units_activate_feature": "Jednostki organizacyjne",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Odblokuj jednolitą skalę"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Twoi klienci mogą definiować limity budżetowe i zarządzać nimi, aby lepiej kontrolować wydatki jednostek organizacyjnych.",
+        "budgetManagementName": "Budżety",
         "employeeManagementDescription": "Twoi klienci mogą tworzyć konta pracowników z rolami i uprawnieniami do realizacji poszczególnych procesów zleceń.",
         "employeeManagementName": "Zarządzanie pracownikami",
         "orderApprovalDescription": "Zapewnia kontrolę nad procesem zamówienia w całej firmie, pomaga w utrzymaniu zgodności z budżetem i zmniejsza błędy w zamawianiu.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Zarządzanie budżetem",
                     "EMPLOYEE_MANAGEMENT": "Zarządzanie pracownikami",
                     "ORDER_APPROVAL": "Zatwierdzenie zamówienia",
                     "ORGANIZATION_UNITS": "Jednostki organizacyjne",

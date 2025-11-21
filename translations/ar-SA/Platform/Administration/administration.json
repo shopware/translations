@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "فشلت عملية الحذف.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "أذونات مفقودة.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "عدد كبير جدًا من الطلبات. يرجى الانتظار لمدة {seconds} ثانية قبل المحاولة مرة أخرى.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "يتعارض عنوان URL {path} مع المسار الحالي {blockedSegment} ولا يمكن استخدامه.",
             "INVALID_MAIL": "رجاء قم بإعارة بريد الكتروني.",
             "INVALID_MEDIA_URL": "الرجاء إدخال عنوان URL صالح لتحميل الملف.",
             "INVALID_URL": "الرجاء إدخال عنوان URL صحيح.",
@@ -980,6 +981,8 @@
             "messageNoResults": "لم يتم العثور على نتائج لـ \"{term}»."
         },
         "sw-field": {
+            "ariaLinkInheritance": "وراثة الرابط",
+            "ariaUnlinkInheritance": "إلغاء ربط الميراث",
             "notification": {
                 "notificationCopyFailureMessage": "لم يتم نسخ النص إلى الحافظة.",
                 "notificationCopySuccessMessage": "تم نسخ النص إلى الحافظة."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "متصفحك الحالي لا يدعم تشغيل الصوت",
             "fallbackVideoTagSupport": "متصفحك الحالي لا يدعم تشغيل الفيديو",
-            "textNoMedia": "لاتوجد ملفات وسائط متوفرة"
+            "textNoMedia": "لاتوجد ملفات وسائط متوفرة",
+            "warningUnsupportedFormat": "قد لا يكون التنسيق \"{format}\" مدعومًا في جميع المتصفحات."
         },
         "sw-media-upload": {
             "buttonFileUpload": "رفع ملف",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "يمكن أن تؤدي شفرة HTML غير المفلترة إلى مخاطر أمنية. يرجى فقط إدراج كود HTML من مصادر موثوقة واختبار التغييرات قبل نشرها."
                 },
-                "label": "أتش تي أم أل"
+                "label": "أتش تي أم أل",
+                "labelContent": "المحتوى"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "قم بتنشيط هذا الخيار إذا كانت الصورة هي الأولى على الصفحة. سيتم بعد ذلك تعيين السمة 'fetchpriority= «high\"' للصورة، لإخبار المتصفح بتحميلها بأولوية أعلى. يمكن أن يساعد ذلك في تحسين الطلاء الأكبر محتوى (LCP).",
+                        "isDecorative": "عند تمكين هذا الخيار، لن تتم قراءة معلومات الصورة بواسطة برامج قراءة الشاشة. هذا يعني أن علامتي «alt» و «title» ستظلان فارغتين."
+                    },
                     "label": {
                         "ariaLabel": "وصف الرابط",
                         "ariaLabelHelpText": "ستتم قراءة هذا النص بواسطة برامج قراءة الشاشة كنص رابط.",
+                        "fetchPriorityHigh": "أولوية الإحضار عالية",
                         "isDecorative": "ضع علامة على الصورة كصورة زخرفية",
                         "isDecorativeHelpText": "عند تمكين هذا الخيار، لن تتم قراءة معلومات الصورة بواسطة برامج قراءة الشاشة.",
                         "linkNewTab": "افتح الرابط في علامة تبويب جديدة",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "التنقل باستخدام النقاط",
                         "navigationPositionInside": "في الداخل",
                         "navigationPositionNone": "لا شيء",
-                        "navigationPositionOutside": "في الخارج"
+                        "navigationPositionOutside": "في الخارج",
+                        "sliderItems": "صور"
                     }
                 },
                 "label": "منزلق الصورة"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "تجارب التسوق",
             "placeholderSearchBar": "تخطيطات البحث...",
             "privacyNotice": "من خلال اختيار المتابعة، فإنك تؤكد أنك قد قرأت معلومات حماية البيانات <a href=\"%privacyUrl%\">الخاصة بنا</a> وقبلت الشروط والأحكام العامة <a href=\"%tosUrl%\"></a>."
+        },
+        "inherit": {
+            "formBanner": "يحتوي هذا التخطيط على حقول موروثة. بمعنى أنه طالما كانت الحالة الموروثة نشطة، فسيتم توريث المحتوى. يمكن إلغاء ربط الحقول الموروثة بالنقر فوق رمز الارتباط. سيؤدي النقر فوق الرمز مرة أخرى إلى إعادة الحالة الموروثة.",
+            "tooltip": "هذا الحقل غير موجود في التخطيط الأساسي ولا يمكن توريثه.",
+            "unlinkAllButton": "أعد تعيين جميع الحقول.",
+            "unlinkAllConfirmText": "هل تريد بالتأكيد إعادة تعيين جميع الحقول؟ سيؤدي هذا إلى حذف جميع المحتويات غير المرتبطة نهائيًا.",
+            "unlinkAllTitle": "إعادة تعيين جميع الحقول",
+            "unlinkFieldConfirmText": "هل تريد بالتأكيد استعادة الميراث؟ سيؤدي هذا إلى إزالة جميع البيانات المخصصة لهذا الحقل واستعادة القيم من العنصر الأصلي.",
+            "unlinkFieldTitle": "استعادة عملية الوراثة",
+            "unlinkNotice": "تم إلغاء ربط بعض الحقول الموروثة."
         },
         "list": {
             "gridHeaderAssignedPages": "الصفحات المعينة",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "تتأثر قنوات المبيعات التالية:",
+            "confirmButton": "استمر على أي حال",
             "mainContent": "يوجد بالفعل قالب رأس وتذييل تم تعيينه لقنوات المبيعات التالية. إذا قمت بالمضي قدمًا والحفظ، فسيتم استبدال هذه المهمة بالتغييرات التي أجريتها.",
             "title": "مهام متعددة"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "مكتبة الوسائط",
             "labelTabItemUpload": "تحميل ملفات",
             "titleModal": "اختر الوسائط"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "حفظ في الوسائط"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "و",
                     "by": "بواسطة",
                     "lastChanged": "تم التغيير الأخير",
-                    "on": "في",
                     "with": "مع"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "قد يؤدي تغيير هذا الإعداد إلى مشاكل محاسبية مع مزودي الدفع الخارجيين. تحقق مرة أخرى من كيفية حساب ضريبة القيمة المضافة من قبل مزودي الدفع الذين تستخدمهم، قبل إجراء أي تغييرات.",
             "favouriteLabel": "وضع علامة على قناة المبيعات كمفضلة",
             "footerCategory": "التنقل في تذييل نقطة الإدخال",
+            "foreignKeyDelete": "لا يمكن حذف قناة المبيعات هذه لأنها لا تزال قيد الاستخدام من قبل {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "إذا تم تنشيط موفر الضرائب، فقد تتم الكتابة فوق هذه الإعدادات. يمكنك التحقق من ذلك في {link}.",
                 "linkText": "الإعدادات"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "حقل مخصص",
                         "product": {
+                            "available": "متاح",
                             "cheapestPrice": "أرخص سعر المنتج",
                             "createdAt": "تاريخ الإنشاء",
                             "listingPrices": "سعر قائمة المنتجات",
@@ -8718,6 +8744,7 @@
                 "height": "الارتفاع",
                 "length": "الطول",
                 "manufacturerNumber": "رقم منتج الشركة المصنعة",
+                "packUnit": "وحدة العبوة",
                 "property": "الملكية",
                 "referencePrice": "سعر الوحدة",
                 "releaseDate": "تاريخ الإصدار",

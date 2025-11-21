@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Abonnementer",
                 "labelSubscription": "Abonnement"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "september"
                         }
                     },
+                    "delayedInfoMessage": "Dette interval definerer en senere leveringsstart ({advancedSettings}). Blandede vogne understøttes ikke i sådanne intervaller. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Dette interval slettes fra alle planer, hvor det blev valgt. Tilknyttede abonnementer forbliver uændrede.",
                     "emptySubline": "Der er ingen intervaller endnu.",
                     "emptyTitle": "Ingen intervaller fundet",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Den oprindelige ordre tælles som en udførelse.",
                 "minimumExecutionCountLabel": "Minimumsperiode (antal ordreudførelser)",
                 "minimumExecutionCountPlaceholder": "Angiv minimumsperiode...",
+                "mixedCartDelayedInfo": "Kunder, der vælger et sådant abonnement, vil blive omdirigeret til en separat kasse med en dedikeret indkøbskurv. Dette skyldes planlægningskonflikter med genererede ordrer.",
                 "nameLabel": "Navn",
                 "namePlaceholder": "Angiv navn...",
                 "plan": {
                     "addProducts": "Tilføj produkter",
                     "addProductsButton": "Tilføj {selectedProductsLength} produkter | Tilføj {selectedProductsLength} produkt | Tilføj {selectedProductsLength} produkter",
+                    "delayedInfoMessage": "Denne plan indeholder intervaller, der definerer en senere leveringsstart (avancerede indstillinger). Blandede vogne understøttes ikke til sådanne planer. {mixedCartDelayedInfo}\n\nForårsaget af:",
                     "deleteModalInfoText": "Tilknyttede abonnementer og intervaller forbliver uændrede.",
                     "emptyProductsSubline": "Der er ingen produkter endnu",
                     "emptyProductsTitle": "Ingen produkter fundet",
@@ -152,6 +156,15 @@
                     "title": "Planer"
                 },
                 "plans": "Planer",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Tillad kunderne at kombinere engangskøb og abonnementsprodukter i en enkelt indkøbsvogn og betaling, i stedet for at skulle bruge separate kassen til individuelle varer. Dette forbedrer fleksibiliteten og bekvemmeligheden ved købsoplevelsen.",
+                        "note": "Blandede kurve understøttes for abonnementer, hvis levering begynder direkte på ordredagen. {mixedCartDelayedInfo}",
+                        "title": "Blandede vogne",
+                        "toggleLabel": "Aktivér blandede vogne"
+                    },
+                    "title": "Indstillinger"
+                },
                 "subscriptions": "Abonnementer"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Budgetmeddelelse",
             "checkout_order_return_created": "Ordreretur oprettet",
             "checkout_subscription_placed": "Abonnement oprettet",
             "order_approval_pending_order_requested": "Anmodning om ventende ordre",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Boost-nummeret skal være en positiv værdi",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Boosting navn findes allerede",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktiveringsdatoen skal indstilles i fremtiden",
+            "BUDGET_END_DATE_INVALID": "Slutdato skal være efter startdatoen.",
+            "BUDGET_FIELD_REQUIRED": "Dette felt må ikke være tomt.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Vælg mindst én modtager.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Dette felt er påkrævet, når ordregodkendelse er aktiveret.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Angiv en gyldig værdi for denne udløsertype.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Dette felt er påkrævet, når meddelelser er aktiveret.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Dette felt må ikke være tomt.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Dette felt må ikke være tomt."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktive",
+                "budgetAmountLabel": "Beløb i {currency}",
+                "budgetAmountPlaceholder": "Angiv budgetbeløb...",
+                "costCentreLabel": "Omkostningscenter",
+                "costCentrePlaceholder": "Indtast omkostningscenter...",
+                "nameLabel": "Budgetnavn",
+                "namePlaceholder": "Angiv budgetnavn...",
+                "noOrganizationsFound": "Ingen organisationer fundet",
+                "organizationUnitsLabel": "Organisationsenheder",
+                "organizationUnitsPlaceholder": "Søg efter organisationsenheder...",
+                "techNameLabel": "Teknisk navn",
+                "techNamePlaceholder": "Indtast teknisk navn...",
+                "title": "Generel information"
+            },
+            "newTitle": "Nyt budget",
+            "notification": {
+                "enableNotifications": "Aktivér underretninger",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dage før slutdato",
+                    "percentage": "X procent af det anvendte budget",
+                    "specificDate": "Specifik meddelelsesdato"
+                },
+                "triggerValue": "Triggerværdi",
+                "triggerValuePlaceholder": "Vælg triggerværdi...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Indtast antal dage",
+                    "percentage": "Angiv procent af budgetværdien",
+                    "specificDate": "Vælg meddelelsesdato"
+                },
+                "triggerWhen": "Udløs meddelelse, når",
+                "triggerWhenPlaceholder": "Vælg meddelelsesudløser..."
+            },
+            "notifications": {
+                "title": "Meddelelsesindstillinger"
+            },
+            "policies": {
+                "allowApproval": "Tillad anmodninger om ordregodkendelse, når budgettet er fuldt udnyttet",
+                "approvalRoleLabel": "Giver ordregodkendelser",
+                "approvalRolePlaceholder": "Vælg godkendelsesrolle...",
+                "showRemaining": "Tillad brugere at se det resterende budget",
+                "title": "Budgetpolitikker"
+            },
+            "recipients": {
+                "noEmployees": "Ingen medarbejdere til rådighed",
+                "noEmployeesSubtitle": "Opret medarbejdere til at administrere budgetmodtagere",
+                "noSearchResults": "Ingen kontakter fundet",
+                "noSearchResultsSubtitle": "Prøv at justere dine søgeudtryk",
+                "searchRecipientsPlaceholder": "Søg medarbejdere...",
+                "title": "Modtagere",
+                "unknownEmployee": "Ukendt medarbejder",
+                "unknownOrganization": "Ukendt organisation"
+            },
+            "statistic": {
+                "exceeded": "Budgettet overskredet:",
+                "remaining": "Resterende budget:",
+                "used": "Brugt budget:"
+            },
+            "statistics": {
+                "title": "Statistik"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Slutdato",
+                "endDatePlaceholder": "Vælg slutdato...",
+                "renewsTypeLabel": "Fornyelse",
+                "renewsTypeOptions": {
+                    "biannual": "Hvert halvårligt",
+                    "monthly": "månedligt",
+                    "none": "Ingen",
+                    "quarterly": "kvartalsvis",
+                    "weekly": "Ugentlig",
+                    "yearly": "Årligt"
+                },
+                "renewsTypePlaceholder": "Vælg fornyelsesperiode...",
+                "startDateLabel": "Startdato",
+                "startDatePlaceholder": "Vælg startdato...",
+                "title": "Fornyelsesperiode"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generer billede",
         "elConfigImageGenerateLinkText": "Generer billede",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktive",
+            "availableColumn": "Til rådig",
+            "cardLabel": "Budgetter",
+            "costCentreColumn": "Omkostningscenter",
+            "createNewBudgetLabel": "Tilføj budget",
+            "nameColumn": "Navn",
+            "sublineEmptyState": "Administrer dine kunders budgetter her",
+            "titleEmptyState": "Ingen budgetter endnu",
+            "totalColumn": "I alt",
+            "usedColumn": "Brugt"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Tilføj medarbejderkonto",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Administration af godkendelsesregler",
+                            "budget": "Budgetforvaltning",
                             "employee": "Medarbejderledelse",
                             "order": "Ordrer",
                             "organization_unit": "Organisationsenheder",
@@ -1071,6 +1186,15 @@
                                 "delete": "Kan slette godkendelsesregler",
                                 "read": "Kan læse godkendelsesregler",
                                 "update": "Kan opdatere godkendelsesregler"
+                            },
+                            "budget": {
+                                "create": "Opret budgetter",
+                                "delete": "Slet budgetter",
+                                "edit": "Rediger budgetter",
+                                "place_order_without_specifying_budget": "Medarbejdere i denne rolle kan afgive ordrer uden at angive et budget",
+                                "read": {
+                                    "all": "Se alle budgetter"
+                                }
                             },
                             "employee": {
                                 "create": "Kan skabe medarbejdere",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "I alt"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Ingen medarbejdere til rådighed",
+        "unknownEmployee": "Ukendt medarbejder"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Accepteret",
             "adminRequested": "Admin anmodet",
             "approved": "Godkendt",
+            "budgetManagement": "Budgetforvaltning",
+            "budgetNotification": "Budgetmeddelelse",
             "changeRequest": "Ændringsanmodning",
             "created": "Oprettet",
             "declined": "Afvist",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Brugt budget"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Ingen medarbejdere til rådighed i denne organisation"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Ikke tildelt"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Sørg for, at denne organisationsenhed har mindst én forsendelses- og en faktureringsadresse",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Billedsøgeordsassistent"
+            },
+            "b2b_components_budget": {
+                "label": "Budgetforvaltning"
             },
             "b2b_components_organization": {
                 "label": "Organisationsenheder"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Slet udkast",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Send besked",
-            "titleSendQuoteModal": "Send tilbud"
+            "titleSendQuoteModal": "Send tilbud",
+            "tooltipShippingCosts": "Forsendelsesomkostningerne er kun til reference og vil blive genberegnet, når du accepterer tilbuddet og afgiver ordren."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Aktivér B2B-komponentbudgetstyring",
                 "employee_management_activate_feature": "Aktivér B2B-komponentmedarbejderstyring",
                 "order_approval_activate_feature": "Aktivér godkendelse af B2B-komponentordre",
                 "organization_units_activate_feature": "Aktivér B2B-komponentorganisationsenheder",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Budgetstyring",
                     "employee_management_activate_feature": "Medarbejderledelse",
                     "order_approval_activate_feature": "Ordregodkendelse",
                     "organization_units_activate_feature": "Organisationsenheder",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Lås op for ensartet skala"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Dine kunder kan definere og administrere budgetgrænser for bedre at kontrollere deres organisationsenheders udgifter.",
+        "budgetManagementName": "Budgetter",
         "employeeManagementDescription": "Dine kunder kan oprette medarbejderkonti med roller og tilladelser til at realisere individuelle ordreprocesser.",
         "employeeManagementName": "Medarbejderledelse",
         "orderApprovalDescription": "Giver kontrol over ordreprocessen i hele virksomheden, hjælper med at holde budgetoverholdelsen og reducerer ordrefejl.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Budgetforvaltning",
                     "EMPLOYEE_MANAGEMENT": "Medarbejderledelse",
                     "ORDER_APPROVAL": "Ordregodkendelse",
                     "ORGANIZATION_UNITS": "Organisationsenheder",

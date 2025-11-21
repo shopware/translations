@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Penghapusan gagal.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Izin hilang.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Terlalu banyak permintaan. Silakan tunggu {seconds} detik sebelum mencoba lagi.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} bertentangan dengan rute {blockedSegment} yang ada dan tidak dapat digunakan.",
             "INVALID_MAIL": "Silahkan masukkan alamat email yang valid.",
             "INVALID_MEDIA_URL": "Silahkan masukkan URL valid untuk mengupload berkas.",
             "INVALID_URL": "Sila masukkan url yang valid.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Tidak ada hasil ditemukan untuk\"{term}\"."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Warisan tautan",
+            "ariaUnlinkInheritance": "Putuskan tautan warisan",
             "notification": {
                 "notificationCopyFailureMessage": "Teks tidak bisa disalin ke klipboard.",
                 "notificationCopySuccessMessage": "Teks telah disalin ke klipboard."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Browser anda tidak mendukung tag audio",
             "fallbackVideoTagSupport": "Browser anda tidak mendukung tag video",
-            "textNoMedia": "Tidak ada media yang tersedia"
+            "textNoMedia": "Tidak ada media yang tersedia",
+            "warningUnsupportedFormat": "Format \"{format}\" mungkin tidak didukung di semua browser."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Unggah berkas",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Kode HTML yang tidak difilter dapat menyebabkan risiko keamanan. Harap hanya memasukkan kode HTML dari sumber tepercaya dan uji perubahan Anda sebelum menerbitkannya."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Konten"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktifkan opsi ini jika gambar adalah yang pertama di halaman. Gambar kemudian akan diberi atribut 'fetchpriority=\"high\"', memberitahu browser untuk memuatnya dengan prioritas yang lebih tinggi. Ini dapat membantu meningkatkan Largest Contentful Paint (LCP).",
+                        "isDecorative": "Ketika opsi ini diaktifkan, informasi gambar tidak akan dibaca oleh pembaca layar. Ini berarti bahwa tag “alt” dan “title” akan tetap kosong."
+                    },
                     "label": {
                         "ariaLabel": "Deskripsi tautan",
                         "ariaLabelHelpText": "Teks ini akan dibacakan oleh pembaca layar sebagai teks tautan.",
+                        "fetchPriorityHigh": "Ambil prioritas tinggi",
                         "isDecorative": "Tandai gambar sebagai dekoratif",
                         "isDecorativeHelpText": "Ketika opsi ini diaktifkan, informasi gambar tidak akan dibaca oleh pembaca layar.",
                         "linkNewTab": "Buka tautan di tab baru",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Navigasi dot",
                         "navigationPositionInside": "Di dalam",
                         "navigationPositionNone": "Tidak satupun",
-                        "navigationPositionOutside": "Di luar"
+                        "navigationPositionOutside": "Di luar",
+                        "sliderItems": "Gambar"
                     }
                 },
                 "label": "Slider gambar"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Pengalaman berbelanja",
             "placeholderSearchBar": "Cari layout...",
             "privacyNotice": "Dengan memilih lanjutkan, Anda mengonfirmasi bahwa Anda telah membaca informasi perlindungan data <a href=\"%privacyUrl%\">kami</a> dan menerima syarat dan ketentuan umum <a href=\"%tosUrl%\">kami</a>."
+        },
+        "inherit": {
+            "formBanner": "Tata letak ini telah mewarisi bidang. Artinya selama status warisan aktif konten akan diwariskan. Bidang yang diwariskan dapat dibatalkan tautan dengan mengklik simbol tautan. Mengklik simbol lagi akan mengatur status warisan kembali.",
+            "tooltip": "Bidang ini tidak ada pada tata letak dasar dan tidak dapat diwariskan.",
+            "unlinkAllButton": "Setel ulang semua bidang.",
+            "unlinkAllConfirmText": "Apakah Anda yakin ingin mengatur ulang semua bidang? Ini akan menghapus semua konten yang tidak ditautkan secara permanen.",
+            "unlinkAllTitle": "Setel ulang semua bidang",
+            "unlinkFieldConfirmText": "Apakah Anda yakin ingin mengembalikan warisan? Ini akan menghapus semua data kustom bidang ini dan mengembalikan nilai dari elemen induk.",
+            "unlinkFieldTitle": "Mengembalikan warisan",
+            "unlinkNotice": "Beberapa bidang yang diwariskan telah dibatalkan tautan."
         },
         "list": {
             "gridHeaderAssignedPages": "Halaman yang ditugaskan",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Saluran Penjualan berikut terpengaruh:",
+            "confirmButton": "Tetap lanjutkan",
             "mainContent": "Sudah ada template header dan footer yang ditugaskan ke Sales Channels berikut. Jika Anda melanjutkan dan menyimpan, tugas itu akan ditimpa dengan perubahan Anda.",
             "title": "Beberapa tugas"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Pustaka Media",
             "labelTabItemUpload": "Berkas yang diunggah",
             "titleModal": "Pilih media"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Simpan di media"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "dan",
                     "by": "oleh",
                     "lastChanged": "Perubahan terakhir",
-                    "on": "di atas",
                     "with": "bersama"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Mengubah pengaturan ini dapat menyebabkan masalah akuntansi dengan penyedia pembayaran eksternal. Periksa kembali bagaimana PPN dihitung oleh penyedia pembayaran yang Anda gunakan, sebelum Anda melakukan perubahan.",
             "favouriteLabel": "Tandai Sales Channel sebagai favorit",
             "footerCategory": "Navigasi footer titik masuk",
+            "foreignKeyDelete": "Saluran penjualan ini tidak dapat dihapus karena masih digunakan oleh {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Jika penyedia pajak diaktifkan, pengaturan ini dapat ditimpa. Anda dapat memeriksa ini di {link}.",
                 "linkText": "pengaturan"
@@ -8338,6 +8363,7 @@
                         "_score": "_skor",
                         "customField": "Bidang kustom",
                         "product": {
+                            "available": "Tersedia",
                             "cheapestPrice": "Harga produk termurah",
                             "createdAt": "Tanggal pembuatan",
                             "listingPrices": "Harga daftar produk",
@@ -8718,6 +8744,7 @@
                 "height": "Tinggi",
                 "length": "Panjang",
                 "manufacturerNumber": "Nomor produk produsen",
+                "packUnit": "Satuan kemasan",
                 "property": "Properti",
                 "referencePrice": "Harga unit",
                 "releaseDate": "Tanggal rilis",

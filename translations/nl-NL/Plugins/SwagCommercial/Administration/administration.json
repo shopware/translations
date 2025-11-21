@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Abonnementen",
                 "labelSubscription": "Abonnement"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "september"
                         }
                     },
+                    "delayedInfoMessage": "Dit interval bepaalt een latere start van de bevalling ({advancedSettings}). Gemengde karren worden voor dergelijke intervallen niet ondersteund. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Dit interval wordt verwijderd uit alle abonnementen waarin het is geselecteerd. Bijbehorende abonnementen blijven ongewijzigd.",
                     "emptySubline": "Er zijn nog geen tussenpozen.",
                     "emptyTitle": "Geen intervallen gevonden",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "De initiële order wordt als een uitvoering geteld.",
                 "minimumExecutionCountLabel": "Minimumtermijn (aantal executies van orders)",
                 "minimumExecutionCountPlaceholder": "Voer de minimumtermijn in...",
+                "mixedCartDelayedInfo": "Klanten die voor een dergelijk abonnement kiezen, worden doorgestuurd naar een aparte kassa met een speciaal winkelwagentje. Dit is te wijten aan planningsconflicten met gegenereerde orders.",
                 "nameLabel": "Naam",
                 "namePlaceholder": "Naam invoeren …",
                 "plan": {
                     "addProducts": "Producten toevoegen",
                     "addProductsButton": "{selectedProductsLength} producten toevoegen | {selectedProductsLength} product toevoegen | {selectedProductsLength} producten toevoegen",
+                    "delayedInfoMessage": "Dit plan bevat intervallen die een latere start van de levering definiëren (geavanceerde instellingen). Gemengde karren worden niet ondersteund voor dergelijke abonnementen. {mixedCartDelayedInfo}\n\nVeroorzaakt door:",
                     "deleteModalInfoText": "Bijbehorende abonnementen en tussenpozen blijven ongewijzigd.",
                     "emptyProductsSubline": "Er zijn nog geen producten",
                     "emptyProductsTitle": "Geen producten gevonden",
@@ -152,6 +156,15 @@
                     "title": "Plannen"
                 },
                 "plans": "Plannen",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Laat klanten eenmalige aankopen en abonnementsproducten combineren in één winkelwagentje en afrekenen, in plaats van afzonderlijke kassa's te gebruiken voor afzonderlijke artikelen. Dit verbetert de flexibiliteit en het gemak van de koopervaring.",
+                        "note": "Gemengde winkelwagentjes worden ondersteund voor abonnementen waarvan de levering direct op de dag van bestelling begint. {mixedCartDelayedInfo}",
+                        "title": "Gemengde karren",
+                        "toggleLabel": "Activeer gemengde karren"
+                    },
+                    "title": "Instellingen"
+                },
                 "subscriptions": "Abonnementen"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Budgetmelding",
             "checkout_order_return_created": "Retourzending van de bestelling aangemaakt",
             "checkout_subscription_placed": "Abonnement aangemaakt",
             "order_approval_pending_order_requested": "Bestelling in behandeling aangevraagd",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Het boostgetal moet een positieve waarde zijn",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "De boosting-naam bestaat al",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "De activeringsdatum moet in de toekomst worden ingesteld",
+            "BUDGET_END_DATE_INVALID": "De einddatum moet na de begindatum liggen.",
+            "BUDGET_FIELD_REQUIRED": "Dit veld mag niet leeg zijn.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Selecteer ten minste één ontvanger.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Dit veld is vereist wanneer ordergoedkeuring is ingeschakeld.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Voer een geldige waarde in voor dit triggertype.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Dit veld is vereist als meldingen zijn ingeschakeld.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Dit veld mag niet leeg zijn.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Dit veld mag niet leeg zijn."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Actief",
+                "budgetAmountLabel": "Bedrag in {currency}",
+                "budgetAmountPlaceholder": "Voer het budgetbedrag in...",
+                "costCentreLabel": "Kostenplaats",
+                "costCentrePlaceholder": "Voer de kostenplaats in...",
+                "nameLabel": "Naam van het budget",
+                "namePlaceholder": "Voer de naam van het budget in...",
+                "noOrganizationsFound": "Geen organisaties gevonden",
+                "organizationUnitsLabel": "Organisatie-eenheden",
+                "organizationUnitsPlaceholder": "Zoek naar organisatie-eenheden...",
+                "techNameLabel": "Naam",
+                "techNamePlaceholder": "Geef technische naam op...",
+                "title": "Algemene informatie"
+            },
+            "newTitle": "Nieuw budget",
+            "notification": {
+                "enableNotifications": "Meldingen inschakelen",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dagen voor de einddatum",
+                    "percentage": "X procent van het gebruikte budget",
+                    "specificDate": "Specifieke meldingsdatum"
+                },
+                "triggerValue": "Triggerwaarde",
+                "triggerValuePlaceholder": "Kies de triggerwaarde...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Voer het aantal dagen in",
+                    "percentage": "Voer het percentage van de budgetwaarde in",
+                    "specificDate": "Selecteer de meldingsdatum"
+                },
+                "triggerWhen": "Melding activeren wanneer",
+                "triggerWhenPlaceholder": "Selecteer de meldingstrigger..."
+            },
+            "notifications": {
+                "title": "Instellingen voor meldingen"
+            },
+            "policies": {
+                "allowApproval": "Goedkeuringsaanvragen voor bestellingen toestaan wanneer het budget volledig is opgebruikt",
+                "approvalRoleLabel": "Geeft goedkeuringen voor bestellingen",
+                "approvalRolePlaceholder": "Selecteer de goedkeuringsrol...",
+                "showRemaining": "Gebruikers toestaan het resterende budget te bekijken",
+                "title": "Begrotingsbeleid"
+            },
+            "recipients": {
+                "noEmployees": "Geen medewerkers beschikbaar",
+                "noEmployeesSubtitle": "Medewerkers aanmaken om de ontvangers van het budget te beheren",
+                "noSearchResults": "Geen contacten gevonden",
+                "noSearchResultsSubtitle": "Probeer je zoektermen aan te passen",
+                "searchRecipientsPlaceholder": "Zoek werknemers...",
+                "title": "Ontvangers",
+                "unknownEmployee": "Onbekende werknemer",
+                "unknownOrganization": "Onbekende organisatie"
+            },
+            "statistic": {
+                "exceeded": "Budget overschreden:",
+                "remaining": "Resterend budget:",
+                "used": "Gebruikt budget:"
+            },
+            "statistics": {
+                "title": "Statistieken"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Einddatum",
+                "endDatePlaceholder": "Einddatum selecteren...",
+                "renewsTypeLabel": "Verlenging",
+                "renewsTypeOptions": {
+                    "biannual": "Halfjaarlijkse",
+                    "monthly": "maandelijks",
+                    "none": "Geen",
+                    "quarterly": "Driemaandelijks",
+                    "weekly": "Wekelijks",
+                    "yearly": "Jaarlijks"
+                },
+                "renewsTypePlaceholder": "Selecteer de verlengingsperiode...",
+                "startDateLabel": "Startdatum",
+                "startDatePlaceholder": "Startdatum selecteren...",
+                "title": "Verlengingsperiode"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Afbeelding genereren",
         "elConfigImageGenerateLinkText": "Afbeelding genereren",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Actief",
+            "availableColumn": "Beschikbaar",
+            "cardLabel": "Budgetten",
+            "costCentreColumn": "Kostenplaats",
+            "createNewBudgetLabel": "Budget toevoegen",
+            "nameColumn": "Naam",
+            "sublineEmptyState": "Beheer hier de budgetten van je klanten",
+            "titleEmptyState": "Nog geen budgetten",
+            "totalColumn": "Totaal",
+            "usedColumn": "Gebruikt"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Werknemersaccount toevoegen",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Beheer van goedkeuringsregels",
+                            "budget": "Beheer van begroting",
                             "employee": "Personeelsbeheer",
                             "order": "Bestellingen",
                             "organization_unit": "Organisatie-eenheden",
@@ -1071,6 +1186,15 @@
                                 "delete": "Kan goedkeuringsregels verwijderen",
                                 "read": "Kan de goedkeuringsregels lezen",
                                 "update": "Kan goedkeuringsregels bijwerken"
+                            },
+                            "budget": {
+                                "create": "Budgetten aanmaken",
+                                "delete": "Budgetten verwijderen",
+                                "edit": "Budgetten bewerken",
+                                "place_order_without_specifying_budget": "Medewerkers in deze rol kunnen bestellingen plaatsen zonder een budget op te geven.",
+                                "read": {
+                                    "all": "Bekijk alle budgetten"
+                                }
                             },
                             "employee": {
                                 "create": "Kan werknemers aanmaken",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Totaal"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Geen medewerkers beschikbaar",
+        "unknownEmployee": "Onbekende werknemer"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Geaccepteerd",
             "adminRequested": "Admin aangevraagd",
             "approved": "Goedgekeurd",
+            "budgetManagement": "Beheer van begroting",
+            "budgetNotification": "Budgetmelding",
             "changeRequest": "Aanvraag wijzigen",
             "created": "Aangemaakt",
             "declined": "Geweigerd",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Gebruikt budget"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Er zijn geen werknemers beschikbaar in deze organisatie"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Niet toegewezen"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Zorg ervoor dat deze organisatie-eenheid ten minste één verzend- en één factuuradres heeft",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Assistent voor trefwoorden voor afbeeldingen"
+            },
+            "b2b_components_budget": {
+                "label": "Beheer van begroting"
             },
             "b2b_components_organization": {
                 "label": "Organisatie-eenheden"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Concept verwijderen",
             "titleQuote": "Citaat {quoteNumber}",
             "titleSendMessageOnly": "Bericht verzenden",
-            "titleSendQuoteModal": "Offerte verzenden"
+            "titleSendQuoteModal": "Offerte verzenden",
+            "tooltipShippingCosts": "De verzendkosten zijn alleen ter referentie en worden opnieuw berekend zodra u de offerte accepteert en de bestelling plaatst."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Budgetbeheer van B2B-componenten inschakelen",
                 "employee_management_activate_feature": "Personeelsbeheer voor B2B-componenten inschakelen",
                 "order_approval_activate_feature": "Goedkeuring van bestellingen van B2B-componenten inschakelen",
                 "organization_units_activate_feature": "Organisatie-eenheden voor B2B-componenten inschakelen",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Budgetbeheer",
                     "employee_management_activate_feature": "Personeelsbeheer",
                     "order_approval_activate_feature": "Goedkeuring van de bestelling",
                     "organization_units_activate_feature": "Organisatie-eenheden",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Ontgrendelen van een uniforme schaal"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Uw klanten kunnen budgetlimieten definiëren en beheren om de uitgaven van hun organisatie-eenheden beter te beheersen.",
+        "budgetManagementName": "Budgetten",
         "employeeManagementDescription": "Uw klanten kunnen werknemersaccounts aanmaken met rollen en machtigingen om individuele bestelprocessen te realiseren.",
         "employeeManagementName": "Personeelsbeheer",
         "orderApprovalDescription": "Biedt bedrijfsbrede controle over het bestelproces, helpt bij het handhaven van de naleving van het budget en vermindert bestelfouten.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Beheer van begroting",
                     "EMPLOYEE_MANAGEMENT": "Personeelsbeheer",
                     "ORDER_APPROVAL": "Goedkeuring van de bestelling",
                     "ORGANIZATION_UNITS": "Organisatie-eenheden",

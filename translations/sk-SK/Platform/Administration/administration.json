@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Odstránenie zlyhalo.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Chýbajúce povolenia.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Príliš veľa žiadostí. Prosím, počkajte {seconds} sekúnd, kým sa pokúsite znova.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "Adresa URL {path} je v rozpore s existujúcou trasou {blockedSegment} a nie je možné ju použiť.",
             "INVALID_MAIL": "Zadajte platnú e-mailovú adresu.",
             "INVALID_MEDIA_URL": "Zadajte platnú adresu URL na odovzdanie súboru.",
             "INVALID_URL": "Zadajte platnú adresu URL.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Neboli nájdené žiadne výsledky pre \"{term}“."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Dedičnosť prepojenia",
+            "ariaUnlinkInheritance": "Zrušiť prepojenie dedičstva",
             "notification": {
                 "notificationCopyFailureMessage": "Text sa nepodarilo skopírovať do schránky.",
                 "notificationCopySuccessMessage": "Text bol skopírovaný do schránky."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Váš prehliadač nepodporuje zvukovú značku",
             "fallbackVideoTagSupport": "Váš prehliadač nepodporuje značku videa",
-            "textNoMedia": "Nie sú dostupné žiadne médiá"
+            "textNoMedia": "Nie sú dostupné žiadne médiá",
+            "warningUnsupportedFormat": "Formát \"{format}\" nemusí byť podporovaný vo všetkých prehliadačoch."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Nahrať súbor",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Nefiltrovaný HTML kód môže viesť k bezpečnostným rizikám. Prosím, vložte iba kód HTML z dôveryhodných zdrojov a pred ich zverejnením otestujte svoje zmeny."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Obsah"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktivujte túto možnosť, ak je obrázok prvý na stránke. Obrázku sa potom priradí atribút 'fetchpriority=\"high\"', ktorý povie prehliadaču, aby ho načítal s vyššou prioritou. To môže pomôcť zlepšiť najväčšiu obsahovú farbu (LCP).",
+                        "isDecorative": "Ak je táto možnosť povolená, čítačky obrazovky nebudú čítať informácie o obrázku. To znamená, že značky „alt“ a „title“ zostanú prázdne."
+                    },
                     "label": {
                         "ariaLabel": "Popis odkazu",
                         "ariaLabelHelpText": "Tento text prečítajú čítačky obrazovky ako text odkazu.",
+                        "fetchPriorityHigh": "Získajte vysokú prioritu",
                         "isDecorative": "Označte obrázok ako dekoratívny",
                         "isDecorativeHelpText": "Ak je táto možnosť povolená, čítačky obrazovky nebudú čítať informácie o obrázku.",
                         "linkNewTab": "Otvoriť odkaz na novej karte",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Navigácia bodiek",
                         "navigationPositionInside": "Vnútri",
                         "navigationPositionNone": "Žiadne",
-                        "navigationPositionOutside": "Vonku"
+                        "navigationPositionOutside": "Vonku",
+                        "sliderItems": "Obrázky"
                     }
                 },
                 "label": "Posuvník obrázka"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Nákupné zážitky",
             "placeholderSearchBar": "Vyhľadávanie rozloženia...",
             "privacyNotice": "Výberom Pokračovať potvrdzujete, že ste si prečítali naše <a href=\"%privacyUrl%\">informácie o ochrane údajov</a> a súhlasili s našimi <a href=\"%tosUrl%\">všeobecnými obchodnými podmienkami</a>."
+        },
+        "inherit": {
+            "formBanner": "Toto rozloženie má zdedené polia. To znamená, že pokiaľ je dedičný stav aktívny, obsah bude zdedený. Zdedené polia je možné zrušiť kliknutím na symbol prepojenia. Opätovným kliknutím na symbol sa zdedený stav nastaví späť.",
+            "tooltip": "Toto pole neexistuje v základnom rozložení a nemôže byť zdedené.",
+            "unlinkAllButton": "Obnoviť všetky polia.",
+            "unlinkAllConfirmText": "Ste si istí, že chcete resetovať všetky polia? Tým sa natrvalo odstráni všetok neprepojený obsah.",
+            "unlinkAllTitle": "Obnoviť všetky polia",
+            "unlinkFieldConfirmText": "Ste si istí, že chcete obnoviť dedičstvo? Tým sa odstránia všetky vlastné údaje tohto poľa a obnovia sa hodnoty z nadradeného prvku.",
+            "unlinkFieldTitle": "Obnoviť dedičnosť",
+            "unlinkNotice": "Niektoré zdedené polia boli odpojené."
         },
         "list": {
             "gridHeaderAssignedPages": "Priradené stránky",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Tieto kanály predaja sú ovplyvnené:",
+            "confirmButton": "Pokračovať aj tak",
             "mainContent": "Existuje už šablóna hlavičky a päty priradená k nasledujúcim predajným kanálom. Ak pokračujete a uložíte, toto priradenie sa prepíše zmenami.",
             "title": "Viaceré priradenia"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Mediálna knižnica",
             "labelTabItemUpload": "Nahrať súbory",
             "titleModal": "Vybrať médiá"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Uložiť v médiách"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "a",
                     "by": "podľa",
                     "lastChanged": "Naposledy zmenené",
-                    "on": "na",
                     "with": "so"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Zmena tohto nastavenia by mohla viesť k problémom s účtovníctvom u externých poskytovateľov platieb. Pred vykonaním akýchkoľvek zmien skontrolujte, ako vypočítavajú DPH poskytovateľmi platieb, ktorých zamestnávate.",
             "favouriteLabel": "Označiť predajný kanál ako obľúbený",
             "footerCategory": "Navigácia v päte vstupného bodu",
+            "foreignKeyDelete": "Tento predajný kanál nemožno odstrániť, pretože ho stále používa {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Ak je aktivovaný poskytovateľ dane, tieto nastavenia sa môžu prepísať. Môžete to skontrolovať v {link}.",
                 "linkText": "nastavenia"
@@ -8338,6 +8363,7 @@
                         "_score": "_skóre",
                         "customField": "Vlastné pole",
                         "product": {
+                            "available": "Dostupné",
                             "cheapestPrice": "Najlacnejšia cena produktu",
                             "createdAt": "Dátum vytvorenia",
                             "listingPrices": "Výpisová cena výrobku",
@@ -8718,6 +8744,7 @@
                 "height": "Výška",
                 "length": "Dĺžka",
                 "manufacturerNumber": "Číslo produktu výrobcu",
+                "packUnit": "Jednotka balenia",
                 "property": "Nehnuteľnosť",
                 "referencePrice": "Jednotková cena",
                 "releaseDate": "Dátum vydania",

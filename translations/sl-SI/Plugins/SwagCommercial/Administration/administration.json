@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Naročnine",
                 "labelSubscription": "Naročnina"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Septembra"
                         }
                     },
+                    "delayedInfoMessage": "Ta interval določa poznejši začetek dostave ({advancedSettings}). Mešani vozički niso podprti za takšne intervale. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Ta interval bo izbrisan iz vseh načrtov, v katerih je bil izbran. Povezane naročnine bodo ostale nespremenjene.",
                     "emptySubline": "Intervalov še ni.",
                     "emptyTitle": "Ni najdenih intervalov",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Začetni nalog se šteje kot izvršitev.",
                 "minimumExecutionCountLabel": "Minimalni rok (število izvršitev naloga)",
                 "minimumExecutionCountPlaceholder": "Vnesite minimalni rok...",
+                "mixedCartDelayedInfo": "Stranke, ki izberejo takšno naročnino, bodo preusmerjene na ločeno blagajno z namensko košarico. To je posledica razporejanja sporov z ustvarjenimi naročili.",
                 "nameLabel": "Ime",
                 "namePlaceholder": "Vnesite ime...",
                 "plan": {
                     "addProducts": "Dodajanje izdelkov",
                     "addProductsButton": "Dodaj izdelke {selectedProductsLength} | Dodaj izdelek {selectedProductsLength} | Dodaj izdelke {selectedProductsLength}",
+                    "delayedInfoMessage": "Ta načrt vsebuje intervale, ki določajo poznejši začetek dostave (napredne nastavitve). Mešani vozički niso podprti za takšne načrte. {mixedCartDelayedInfo}\n\nPovzroča:",
                     "deleteModalInfoText": "Povezane naročnine in intervali ostanejo nespremenjeni.",
                     "emptyProductsSubline": "Izdelkov še ni",
                     "emptyProductsTitle": "Ni najdenih izdelkov",
@@ -152,6 +156,15 @@
                     "title": "Načrti"
                 },
                 "plans": "Načrti",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Dovolite strankam, da združujejo enkratne nakupe in naročniške izdelke v eni košarici in blagajni, namesto da bi morali uporabljati ločene blagajne za posamezne izdelke. To izboljša prilagodljivost in udobje nakupne izkušnje.",
+                        "note": "Mešani vozički so podprti za naročnine, katerih dostava se začne neposredno na dan naročila. {mixedCartDelayedInfo}",
+                        "title": "Mešani vozički",
+                        "toggleLabel": "Aktivirajte mešane vozičke"
+                    },
+                    "title": "Nastavitve"
+                },
                 "subscriptions": "Naročnine"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Obvestilo o proračunu",
             "checkout_order_return_created": "Vračilo naročila je ustvarjeno",
             "checkout_subscription_placed": "Ustvarjena naročnina",
             "order_approval_pending_order_requested": "Zahtevano naročilo v teku",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Število povečanja mora biti pozitivna vrednost",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Ime za povečanje že obstaja",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Datum aktivacije je treba določiti v prihodnosti",
+            "BUDGET_END_DATE_INVALID": "Končni datum mora biti po datumu začetka.",
+            "BUDGET_FIELD_REQUIRED": "To polje ne sme biti prazno.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Prosimo, izberite vsaj enega prejemnika.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "To polje je potrebno, če je omogočena odobritev naročila.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Prosimo, vnesite veljavno vrednost za to vrsto sprožilca.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "To polje je potrebno, če so obvestila omogočena.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "To polje ne sme biti prazno.",
             "SHOPPING_LIST_FIELD_REQUIRED": "To polje ne sme biti prazno."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktivni",
+                "budgetAmountLabel": "Znesek v {currency}",
+                "budgetAmountPlaceholder": "Vnesite znesek proračuna...",
+                "costCentreLabel": "Stroškovni center",
+                "costCentrePlaceholder": "Vnesite stroškovno središče...",
+                "nameLabel": "Ime proračuna",
+                "namePlaceholder": "Vnesite ime proračuna...",
+                "noOrganizationsFound": "Organizacije niso bile najdene",
+                "organizationUnitsLabel": "Organizacijske enote",
+                "organizationUnitsPlaceholder": "Iskanje organizacijskih enot...",
+                "techNameLabel": "Tehnično ime",
+                "techNamePlaceholder": "Vpišite tehnično ime...",
+                "title": "Splošne informacije"
+            },
+            "newTitle": "Novi proračun",
+            "notification": {
+                "enableNotifications": "Omogoči obvestila",
+                "triggerTypes": {
+                    "daysBeforeEnd": "X dni pred končnim datumom",
+                    "percentage": "X odstotkov porabljenega proračuna",
+                    "specificDate": "Poseben datum obveščanja"
+                },
+                "triggerValue": "Sprožilna vrednost",
+                "triggerValuePlaceholder": "Izberite sprožilno vrednost...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Vnesite število dni",
+                    "percentage": "Vnesite odstotek proračunske vrednosti",
+                    "specificDate": "Izberite datum obvestila"
+                },
+                "triggerWhen": "Obvestilo sproži, ko",
+                "triggerWhenPlaceholder": "Izberite sprožilec obvestila..."
+            },
+            "notifications": {
+                "title": "Nastavitve obveščanja"
+            },
+            "policies": {
+                "allowApproval": "Dovoli zahteve za odobritev naročila, ko je proračun v celoti porabljen",
+                "approvalRoleLabel": "Daje odobritve naročila",
+                "approvalRolePlaceholder": "Izberite vlogo odobritve...",
+                "showRemaining": "Omogoči uporabnikom ogled preostalega proračuna",
+                "title": "Proračunske politike"
+            },
+            "recipients": {
+                "noEmployees": "Zaposleni niso na voljo",
+                "noEmployeesSubtitle": "Ustvarjanje zaposlenih za upravljanje prejemnikov proračuna",
+                "noSearchResults": "Ni najdenih stikov",
+                "noSearchResultsSubtitle": "Poskusite prilagoditi iskalne izraze",
+                "searchRecipientsPlaceholder": "Iskanje zaposlenih...",
+                "title": "Prejemniki",
+                "unknownEmployee": "Neznani zaposleni",
+                "unknownOrganization": "Neznana organizacija"
+            },
+            "statistic": {
+                "exceeded": "Presežen proračun:",
+                "remaining": "Preostali proračun:",
+                "used": "Uporabljeni proračun:"
+            },
+            "statistics": {
+                "title": "Statistika"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Končni datum",
+                "endDatePlaceholder": "Izberite končni datum...",
+                "renewsTypeLabel": "Obnova",
+                "renewsTypeOptions": {
+                    "biannual": "Poletna",
+                    "monthly": "Mesečno",
+                    "none": "Noben",
+                    "quarterly": "Četrtletno",
+                    "weekly": "Tedensko",
+                    "yearly": "Letno"
+                },
+                "renewsTypePlaceholder": "Izberite obdobje podaljšanja...",
+                "startDateLabel": "Datum začetka",
+                "startDatePlaceholder": "Izberite začetni datum...",
+                "title": "Obdobje podaljšanja"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Ustvari sliko",
         "elConfigImageGenerateLinkText": "Ustvari sliko",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktivni",
+            "availableColumn": "Na voljo",
+            "cardLabel": "Proračuni",
+            "costCentreColumn": "Stroškovni center",
+            "createNewBudgetLabel": "Dodaj proračun",
+            "nameColumn": "Ime",
+            "sublineEmptyState": "Upravljajte proračune svojih strank tukaj",
+            "titleEmptyState": "Proračunov še ni",
+            "totalColumn": "Skupaj",
+            "usedColumn": "Rabljeni"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Dodaj račun zaposlenih",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Upravljanje pravil odobritve",
+                            "budget": "Upravljanje proračuna",
                             "employee": "Upravljanje zaposlenih",
                             "order": "Naročila",
                             "organization_unit": "Organizacijske enote",
@@ -1071,6 +1186,15 @@
                                 "delete": "Lahko izbriše pravila odobritve",
                                 "read": "Zna prebrati pravila odobritve",
                                 "update": "Lahko posodobi pravila odobritve"
+                            },
+                            "budget": {
+                                "create": "Ustvarite proračune",
+                                "delete": "Izbriši proračune",
+                                "edit": "Urejanje proračunov",
+                                "place_order_without_specifying_budget": "Zaposleni v tej vlogi lahko oddajajo naročila brez določitve proračuna",
+                                "read": {
+                                    "all": "Oglejte si vse proračune"
+                                }
                             },
                             "employee": {
                                 "create": "Lahko ustvari zaposlene",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Skupaj"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Zaposleni niso na voljo",
+        "unknownEmployee": "Neznani zaposleni"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Sprejeto",
             "adminRequested": "Admin zahteval",
             "approved": "Odobreno",
+            "budgetManagement": "Upravljanje proračuna",
+            "budgetNotification": "Obvestilo o proračunu",
             "changeRequest": "Zahteva za spremembo",
             "created": "Ustvarjeno",
             "declined": "Odpadla",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Uporabljeni proračun"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "V tej organizaciji ni na voljo zaposlenih"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Nedodeljeno"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Prepričajte se, da ima ta organizacijska enota vsaj en naslov za pošiljanje in en naslov za obračunavanje",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Pomočnik za ključne besede slike"
+            },
+            "b2b_components_budget": {
+                "label": "Upravljanje proračuna"
             },
             "b2b_components_organization": {
                 "label": "Organizacijske enote"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Izbriši osnutek",
             "titleQuote": "Citat {quoteNumber}",
             "titleSendMessageOnly": "Pošlji sporočilo",
-            "titleSendQuoteModal": "Pošlji ponudbo"
+            "titleSendQuoteModal": "Pošlji ponudbo",
+            "tooltipShippingCosts": "Stroški pošiljanja so samo za referenco in bodo ponovno izračunani, ko sprejmete ponudbo in oddate naročilo."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Omogočite upravljanje proračuna komponent B2B",
                 "employee_management_activate_feature": "Omogočite upravljanje zaposlenih v komponentah B2B",
                 "order_approval_activate_feature": "Omogoči odobritev naročila komponent B2B",
                 "organization_units_activate_feature": "Omogočite enote organizacije komponent B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Upravljanje proračuna",
                     "employee_management_activate_feature": "Upravljanje zaposlenih",
                     "order_approval_activate_feature": "Odobritev naročila",
                     "organization_units_activate_feature": "Organizacijske enote",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Odkleni enotno lestvico"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Vaše stranke lahko določijo in upravljajo proračunske omejitve za boljši nadzor nad porabo svojih organizacijskih enot.",
+        "budgetManagementName": "Proračuni",
         "employeeManagementDescription": "Vaše stranke lahko ustvarijo račune zaposlenih z vlogami in dovoljenji za izvajanje posameznih postopkov naročil.",
         "employeeManagementName": "Upravljanje zaposlenih",
         "orderApprovalDescription": "Zagotavlja nadzor nad postopkom naročanja na celotnem podjetju, pomaga pri ohranjanju skladnosti s proračunom in zmanjšuje napake pri naročanju.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Upravljanje proračuna",
                     "EMPLOYEE_MANAGEMENT": "Upravljanje zaposlenih",
                     "ORDER_APPROVAL": "Odobritev naročila",
                     "ORGANIZATION_UNITS": "Organizacijske enote",

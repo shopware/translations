@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Brisanje nije uspjelo.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Nedostajuće dozvole.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Previše zahtjeva. Pričekajte {seconds} sekundi prije nego što pokušate ponovo.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} je u sukobu s postojećom rutom {blockedSegment} i ne može se koristiti.",
             "INVALID_MAIL": "Molimo unesite valjanu e-mail adresu.",
             "INVALID_MEDIA_URL": "Molimo Vas da unesete važeći URL za prijenos datoteke.",
             "INVALID_URL": "Molimo Vas da unesete validan url.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Nema pronađenih rezultata za \"{term}\"."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Nasljeđivanje veze",
+            "ariaUnlinkInheritance": "Prekinite nasljedstvo",
             "notification": {
                 "notificationCopyFailureMessage": "Tekst ne može biti kopiran u međuspremnik.",
                 "notificationCopySuccessMessage": "Tekst je kopiran u međuspremnik."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Vaš preglednik ne podržava audio oznaku",
             "fallbackVideoTagSupport": "Vaš preglednik ne podržava video oznaku",
-            "textNoMedia": "Nema dostupnih medija"
+            "textNoMedia": "Nema dostupnih medija",
+            "warningUnsupportedFormat": "Format \"{format}\" možda neće biti podržan u svim preglednicima."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Učitaj datoteku",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Nefiltrirani HTML kod može dovesti do sigurnosnih rizika. Molimo unesite samo HTML kod iz pouzdanih izvora i testirajte svoje promjene prije nego što ih objavite."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Sadržaj"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktivirajte ovu opciju ako je slika prva na stranici. Sliku će tada biti dodijeljen atribut 'fetchpriority=\"high\"', govoreći pregledniku da je učita s većim prioritetom. Ovo može pomoći u poboljšanju najveće sadržajne boje (LCP).",
+                        "isDecorative": "Kada je ova opcija omogućena, čitači zaslona neće čitati informacije o slici. To znači da će oznake “alt” i “title” ostati prazne."
+                    },
                     "label": {
                         "ariaLabel": "Opis veze",
                         "ariaLabelHelpText": "Ovaj će tekst čitati čitači ekrana kao tekst veze.",
+                        "fetchPriorityHigh": "Dobivanje visokog prioriteta",
                         "isDecorative": "Označite sliku kao dekorativnu",
                         "isDecorativeHelpText": "Kada je ova opcija omogućena, čitači zaslona neće čitati informacije o slici.",
                         "linkNewTab": "Otvorite poveznicu u novoj kartici",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Navigacija u točkama",
                         "navigationPositionInside": "Unutra",
                         "navigationPositionNone": "Nijedan",
-                        "navigationPositionOutside": "Izvan"
+                        "navigationPositionOutside": "Izvan",
+                        "sliderItems": "Slike"
                     }
                 },
                 "label": "Slika slajda"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Doživljaj kupovine",
             "placeholderSearchBar": "Pretraživanje izgleda...",
             "privacyNotice": "Odabirom nastavi potvrđujete da ste pročitali naše <a href=\"%privacyUrl%\">informacije o zaštiti podataka</a> i prihvatili naše <a href=\"%tosUrl%\">opće uslove i odredbe</a>."
+        },
+        "inherit": {
+            "formBanner": "Ovaj raspored je naslijedio polja. Znači da sve dok je naslijeđeno stanje aktivno sadržaj će biti naslijeđen. Naslijeđena polja mogu se prekinuti klikom na simbol veze. Ponovnim klikom na simbol vratit će se naslijeđeno stanje.",
+            "tooltip": "Ovo polje ne postoji na osnovnom rasporedu i ne može se naslijediti.",
+            "unlinkAllButton": "Resetirajte sva polja.",
+            "unlinkAllConfirmText": "Jeste li sigurni da želite resetirati sva polja? Ovo će trajno izbrisati sav nepovezani sadržaj.",
+            "unlinkAllTitle": "Resetiraj sva polja",
+            "unlinkFieldConfirmText": "Jeste li sigurni da želite vratiti nasljedstvo? Ovo će ukloniti sve prilagođene podatke ovog polja i vratiti vrijednosti iz roditeljskog elementa.",
+            "unlinkFieldTitle": "Povratite naslijeđeno",
+            "unlinkNotice": "Neka naslijeđena polja nisu povezana."
         },
         "list": {
             "gridHeaderAssignedPages": "Dodijeljene stranice",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Utjecaju se sljedeći prodajni kanali:",
+            "confirmButton": "Nastavi svejedno",
             "mainContent": "Već postoji predložak zaglavlja i podnožja dodijeljen sljedećim prodajnim kanalima. Ako nastavite i spremite, taj zadatak će biti prepisan vašim promjenama.",
             "title": "Višestruki zadaci"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Biblioteka medijskih sadržaja",
             "labelTabItemUpload": "Učitaj datoteke",
             "titleModal": "Odaberi medije"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Sačuvaj u medijima"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "i",
                     "by": "od",
                     "lastChanged": "Posljednji put promijenjeno",
-                    "on": "na",
                     "with": "od"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Promjena ove postavke mogla bi dovesti do računovodstvenih problema sa vanjskim pružateljima plaćanja. Provjerite kako PDV obračunava pružatelji plaćanja koje zapošljavate, prije nego što izvršite bilo kakve izmjene.",
             "favouriteLabel": "Označite Sales Channel kao omiljeni",
             "footerCategory": "Navigacija ulazne tačke podnožja",
+            "foreignKeyDelete": "Ovaj prodajni kanal se ne može izbrisati jer ga još uvijek koristi {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Ako je aktiviran poreski davatelj, ove postavke mogu biti prepisane. Ovo možete provjeriti u {link}.",
                 "linkText": "podešavanja"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Proizvoljno polje",
                         "product": {
+                            "available": "Dostupan",
                             "cheapestPrice": "Najjeftinija cijena proizvoda",
                             "createdAt": "Datum kreiranja",
                             "listingPrices": "Cijena unosa proizvoda",
@@ -8718,6 +8744,7 @@
                 "height": "Visina",
                 "length": "Dužina",
                 "manufacturerNumber": "Broj proizvoda proizvođača",
+                "packUnit": "Jedinica pakiranja",
                 "property": "Svojstvo",
                 "referencePrice": "Cijena jedinice",
                 "releaseDate": "Datum izdavanja",

@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Prenumeratos",
                 "labelSubscription": "Prenumerata"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Rugsėjo mėn"
                         }
                     },
+                    "delayedInfoMessage": "Šis intervalas apibrėžia vėlesnę pristatymo pradžią ({advancedSettings}). Mišrūs vežimėliai tokiems intervalams nepalaikomi. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Šis intervalas bus ištrintas iš visų planų, kuriuose jis buvo pasirinktas. Susijusios prenumeratos išliks nepakitusios.",
                     "emptySubline": "Dar nėra intervalų.",
                     "emptyTitle": "Intervalų nerasta",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "Pradinis užsakymas skaičiuojamas kaip vykdymas.",
                 "minimumExecutionCountLabel": "Minimalus terminas (pavedimų įvykdymo skaičius)",
                 "minimumExecutionCountPlaceholder": "Įveskite minimalų terminą...",
+                "mixedCartDelayedInfo": "Klientai, pasirinkę tokią prenumeratą, bus nukreipti į atskirą kasą su tam skirtu krepšeliu. Taip yra dėl planavimo konfliktų su sugeneruotais užsakymais.",
                 "nameLabel": "Pavadinimas",
                 "namePlaceholder": "Įveskite pavadinimą...",
                 "plan": {
                     "addProducts": "Pridėti produktus",
                     "addProductsButton": "Pridėti {selectedProductsLength} produktus | Pridėti {selectedProductsLength} produktą | Pridėti {selectedProductsLength} produktus",
+                    "delayedInfoMessage": "Šiame plane yra intervalai, apibrėžiantys vėlesnę pristatymo pradžią (išplėstiniai nustatymai). Mišrūs vežimėliai tokiems planams nepalaikomi. {mixedCartDelayedInfo}\n\nSukelia:",
                     "deleteModalInfoText": "Susijusios prenumeratos ir intervalai išliks nepakitę.",
                     "emptyProductsSubline": "Kol kas nėra produktų",
                     "emptyProductsTitle": "Prekių nerasta",
@@ -152,6 +156,15 @@
                     "title": "Planai"
                 },
                 "plans": "Planai",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Leiskite klientams sujungti vienkartinius pirkimus ir prenumeratos produktus viename krepšelyje ir kasoje, o ne naudoti atskirus atsiskaitymus atskiroms prekėms. Tai pagerina pirkimo patirties lankstumą ir patogumą.",
+                        "note": "Mišrūs vežimėliai palaikomi prenumeratoms, kurių pristatymas prasideda tiesiogiai užsakymo dieną. {mixedCartDelayedInfo}",
+                        "title": "Mišrūs vežimėliai",
+                        "toggleLabel": "Suaktyvinkite mišrius vežimėlius"
+                    },
+                    "title": "Nustatymai"
+                },
                 "subscriptions": "Prenumeratos"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Pranešimas apie biudžetą",
             "checkout_order_return_created": "Sukurta užsakymo grąža",
             "checkout_subscription_placed": "Sukurta prenumerata",
             "order_approval_pending_order_requested": "Prašomas laukiantis užsakymas",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Padidinimo skaičius turi būti teigiamas",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Stiprinantis pavadinimas jau egzistuoja",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Aktyvinimo data turėtų būti nustatyta ateityje",
+            "BUDGET_END_DATE_INVALID": "Pabaigos data turi būti po pradžios datos.",
+            "BUDGET_FIELD_REQUIRED": "Laukas negali būti tuščias.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Pasirinkite bent vieną gavėją.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Šis laukas reikalingas, kai įgalintas užsakymo patvirtinimas.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Įveskite galiojančią šio trigerio tipo reikšmę.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Šis laukas yra būtinas, kai pranešimai įgalinti.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Laukas negali būti tuščias.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Laukas negali būti tuščias."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "aktyvus",
+                "budgetAmountLabel": "Suma {currency}",
+                "budgetAmountPlaceholder": "Įveskite biudžeto sumą...",
+                "costCentreLabel": "Išlaidų centras",
+                "costCentrePlaceholder": "Įveskite išlaidų centrą...",
+                "nameLabel": "Biudžeto pavadinimas",
+                "namePlaceholder": "Įveskite biudžeto pavadinimą...",
+                "noOrganizationsFound": "Organizacijų nerasta",
+                "organizationUnitsLabel": "Organizacijos padaliniai",
+                "organizationUnitsPlaceholder": "Organizacijos padalinių paieška...",
+                "techNameLabel": "Techninis pavadinimas",
+                "techNamePlaceholder": "Įveskite techninį pavadinimą...",
+                "title": "Bendroji informacija"
+            },
+            "newTitle": "Naujas biudžetas",
+            "notification": {
+                "enableNotifications": "Įgalinti pranešimus",
+                "triggerTypes": {
+                    "daysBeforeEnd": "Likus 10 dienų iki pabaigos datos",
+                    "percentage": "X procentas panaudoto biudžeto",
+                    "specificDate": "Konkreti pranešimo data"
+                },
+                "triggerValue": "Trigerio vertė",
+                "triggerValuePlaceholder": "Pasirinkite trigerio reikšmę...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Įveskite dienų skaičių",
+                    "percentage": "Įveskite biudžeto vertės procentą",
+                    "specificDate": "Pasirinkite pranešimo datą"
+                },
+                "triggerWhen": "Suaktyvinkite pranešimą, kai",
+                "triggerWhenPlaceholder": "Pasirinkite pranešimo gaiduką..."
+            },
+            "notifications": {
+                "title": "Pranešimų nustatymai"
+            },
+            "policies": {
+                "allowApproval": "Leisti užsakymo patvirtinimo prašymus, kai biudžetas yra visiškai panaudotas",
+                "approvalRoleLabel": "Suteikia užsakymų patvirtinimus",
+                "approvalRolePlaceholder": "Pasirinkite patvirtinimo vaidmenį...",
+                "showRemaining": "Leisti vartotojams peržiūrėti likusį biudžetą",
+                "title": "Biudžeto politika"
+            },
+            "recipients": {
+                "noEmployees": "Nėra darbuotojų",
+                "noEmployeesSubtitle": "Sukurkite darbuotojus biudžeto gavėjams valdyti",
+                "noSearchResults": "Darbuotojų nerasta",
+                "noSearchResultsSubtitle": "Pabandykite koreguoti paieškos terminus",
+                "searchRecipientsPlaceholder": "Ieškokite darbuotojų...",
+                "title": "Gavėjai",
+                "unknownEmployee": "Nežinomas darbuotojas",
+                "unknownOrganization": "Nežinoma organizacija"
+            },
+            "statistic": {
+                "exceeded": "Biudžetas viršytas:",
+                "remaining": "Likęs biudžetas:",
+                "used": "Naudojamas biudžetas:"
+            },
+            "statistics": {
+                "title": "Statistiniai"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Pabaigos data",
+                "endDatePlaceholder": "Pasirinkite pabaigos datą...",
+                "renewsTypeLabel": "Atnaujinimas",
+                "renewsTypeOptions": {
+                    "biannual": "Pusmetinis",
+                    "monthly": "Mėnesinis",
+                    "none": "Nėra",
+                    "quarterly": "Kas ketvirtį",
+                    "weekly": "Kas savaitę",
+                    "yearly": "Metinis"
+                },
+                "renewsTypePlaceholder": "Pasirinkite atnaujinimo laikotarpį...",
+                "startDateLabel": "Pradžios data",
+                "startDatePlaceholder": "Pasirinkite pradžios datą...",
+                "title": "Atnaujinimo laikotarpis"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Sukurti vaizdą",
         "elConfigImageGenerateLinkText": "Sukurti vaizdą",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "aktyvus",
+            "availableColumn": "Turimas",
+            "cardLabel": "Biudžetai",
+            "costCentreColumn": "Išlaidų centras",
+            "createNewBudgetLabel": "Pridėti biudžetą",
+            "nameColumn": "Pavadinimas",
+            "sublineEmptyState": "Tvarkykite savo klientų biudžetus čia",
+            "titleEmptyState": "Dar nėra biudžetų",
+            "totalColumn": "Viso",
+            "usedColumn": "Panaudota"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Pridėti darbuotojo paskyrą",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Patvirtinimo taisyklių valdymas",
+                            "budget": "Biudžeto valdymas",
                             "employee": "Darbuotojų valdymas",
                             "order": "užsakymai",
                             "organization_unit": "Organizacijos padaliniai",
@@ -1071,6 +1186,15 @@
                                 "delete": "Gali ištrinti patvirtinimo taisykles",
                                 "read": "Gali skaityti patvirtinimo taisykles",
                                 "update": "Gali atnaujinti patvirtinimo taisykles"
+                            },
+                            "budget": {
+                                "create": "Sukurkite biudžetus",
+                                "delete": "Ištrinti biudžetus",
+                                "edit": "Redaguoti biudžetus",
+                                "place_order_without_specifying_budget": "Darbuotojai, atliekantys šį vaidmenį, gali pateikti užsakymus nenurodydami biudžeto",
+                                "read": {
+                                    "all": "Peržiūrėti visus biudžetus"
+                                }
                             },
                             "employee": {
                                 "create": "Gali sukurti darbuotojus",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Viso"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Nėra darbuotojų",
+        "unknownEmployee": "Nežinomas darbuotojas"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Priimta",
             "adminRequested": "Administratorius paprašė",
             "approved": "Patvirtinta",
+            "budgetManagement": "Biudžeto valdymas",
+            "budgetNotification": "Pranešimas apie biudžetą",
             "changeRequest": "Pakeisti užklausą",
             "created": "Sukurta",
             "declined": "Atsisakė",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Panaudotas biudžetas"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Šioje organizacijoje nėra darbuotojų"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Nepriskirtas"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Įsitikinkite, kad šis organizacinis padalinys turi bent vieną siuntimo ir vieną atsiskaitymo adresą",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Vaizdo raktažodžių asistentas"
+            },
+            "b2b_components_budget": {
+                "label": "Biudžeto valdymas"
             },
             "b2b_components_organization": {
                 "label": "Organizacijos padaliniai"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Ištrinti juodraštį",
             "titleQuote": "Citata {quoteNumber}",
             "titleSendMessageOnly": "Siųsti žinutę",
-            "titleSendQuoteModal": "Siųsti citatą"
+            "titleSendQuoteModal": "Siųsti citatą",
+            "tooltipShippingCosts": "Siuntimo kaina yra tik nuoroda ir bus perskaičiuota, kai priimsite pasiūlymą ir pateiksite užsakymą."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "Įgalinti B2B komponentų biudžeto valdymą",
                 "employee_management_activate_feature": "Įgalinti B2B komponentų darbuotojų valdymą",
                 "order_approval_activate_feature": "Įgalinti B2B komponentų užsakymo patvirtinimą",
                 "organization_units_activate_feature": "Įgalinti B2B komponentų organizavimo padalinius",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Biudžeto valdymas",
                     "employee_management_activate_feature": "Darbuotojų valdymas",
                     "order_approval_activate_feature": "Užsakymo patvirtinimas",
                     "organization_units_activate_feature": "Organizacijos padaliniai",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Atrakinkite vienodą skalę"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Jūsų klientai gali apibrėžti ir valdyti biudžeto limitus, kad geriau kontroliuotų savo organizacijos padalinių išlaidas.",
+        "budgetManagementName": "Biudžetai",
         "employeeManagementDescription": "Jūsų klientai gali kurti darbuotojų paskyras su vaidmenimis ir leidimais individualiems užsakymų procesams realizuoti.",
         "employeeManagementName": "Darbuotojų valdymas",
         "orderApprovalDescription": "Užtikrina užsakymo proceso kontrolę visoje įmonėje, padeda išlaikyti biudžeto laikymąsi ir sumažina užsakymo klaidas.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Biudžeto valdymas",
                     "EMPLOYEE_MANAGEMENT": "Darbuotojų valdymas",
                     "ORDER_APPROVAL": "Užsakymo patvirtinimas",
                     "ORGANIZATION_UNITS": "Organizacijos padaliniai",

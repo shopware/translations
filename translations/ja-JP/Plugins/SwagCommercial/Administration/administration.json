@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "サブスクリプション",
                 "labelSubscription": "サブスクリプション"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "9月"
                         }
                     },
+                    "delayedInfoMessage": "この間隔により、配信開始が遅くなります ({advancedSettings})。このような間隔では、混合カートはサポートされません。 {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "この間隔は、選択したすべてのプランから削除されます。関連するサブスクリプションは変わりません。",
                     "emptySubline": "まだインターバルはありません。",
                     "emptyTitle": "インターバルが見つかりません",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "最初の注文は実行としてカウントされます。",
                 "minimumExecutionCountLabel": "最小期間 (注文実行回数)",
                 "minimumExecutionCountPlaceholder": "最低期間を入力...",
+                "mixedCartDelayedInfo": "このようなサブスクリプションを選択したお客様は、専用カート付きの別のチェックアウトにリダイレクトされます。これは、生成された注文とスケジュールが競合するためです。",
                 "nameLabel": "名前",
                 "namePlaceholder": "名前を入力...",
                 "plan": {
                     "addProducts": "商品を追加",
                     "addProductsButton": "{selectedProductsLength} 製品を追加 | {selectedProductsLength} 製品を追加 | {selectedProductsLength} 製品を追加",
+                    "delayedInfoMessage": "このプランには、後で配信を開始するまでの間隔 (詳細設定) が含まれています。このようなプランでは、混合カートはサポートされていません。 {mixedCartDelayedInfo}\n\n原因:",
                     "deleteModalInfoText": "関連するサブスクリプションと間隔は変わりません。",
                     "emptyProductsSubline": "まだ商品はありません",
                     "emptyProductsTitle": "商品が見つかりません",
@@ -152,6 +156,15 @@
                     "title": "計画"
                 },
                 "plans": "計画",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "個々の商品に個別のチェックアウトを使用するのではなく、顧客が1回限りの購入品と定期購入品を1つのカートにまとめてチェックアウトできるようにします。これにより、購入体験の柔軟性と利便性が向上します。",
+                        "note": "混合カートは、注文日に配送が直接開始されるサブスクリプションでサポートされています。 {mixedCartDelayedInfo}",
+                        "title": "ミックスカート",
+                        "toggleLabel": "混合カートを有効にする"
+                    },
+                    "title": "設定"
+                },
                 "subscriptions": "サブスクリプション"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "予算の通知",
             "checkout_order_return_created": "注文返品が作成されました",
             "checkout_subscription_placed": "購読が作成されました",
             "order_approval_pending_order_requested": "保留中の注文がリクエストされました",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "ブースト数は正の値でなければなりません",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "ブースティング名は既に存在します",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "アクティベーション日は将来に設定する必要があります",
+            "BUDGET_END_DATE_INVALID": "終了日は開始日より後にする必要があります。",
+            "BUDGET_FIELD_REQUIRED": "このフィールドは空にできません。",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "受信者を少なくとも 1 人選択してください。",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "このフィールドは、注文承認が有効になっている場合に必須です。",
+            "BUDGET_TRIGGER_VALUE_INVALID": "このトリガータイプに有効な値を入力してください。",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "通知が有効な場合、このフィールドは必須です。",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "このフィールドは空にできません。",
             "SHOPPING_LIST_FIELD_REQUIRED": "このフィールドは空にできません。"
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "有効",
+                "budgetAmountLabel": "{currency}内の金額",
+                "budgetAmountPlaceholder": "予算金額を入力...",
+                "costCentreLabel": "コストセンター",
+                "costCentrePlaceholder": "コストセンターを入力してください...",
+                "nameLabel": "予算名",
+                "namePlaceholder": "予算名を入力...",
+                "noOrganizationsFound": "組織が見つかりません",
+                "organizationUnitsLabel": "組織単位",
+                "organizationUnitsPlaceholder": "組織ユニットを検索...",
+                "techNameLabel": "技術名",
+                "techNamePlaceholder": "テクニカル名を入力...",
+                "title": "一般情報"
+            },
+            "newTitle": "新しい予算",
+            "notification": {
+                "enableNotifications": "通知を有効にする",
+                "triggerTypes": {
+                    "daysBeforeEnd": "終了日の X 日前",
+                    "percentage": "使用された予算の X パーセント",
+                    "specificDate": "特定の通知日"
+                },
+                "triggerValue": "トリガー値",
+                "triggerValuePlaceholder": "トリガー値を選択...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "日数を入力してください",
+                    "percentage": "予算額のパーセントを入力",
+                    "specificDate": "通知日を選択"
+                },
+                "triggerWhen": "通知をトリガーするタイミング",
+                "triggerWhenPlaceholder": "通知トリガーを選択..."
+            },
+            "notifications": {
+                "title": "通知設定"
+            },
+            "policies": {
+                "allowApproval": "予算が使い果たされたら注文承認リクエストを許可する",
+                "approvalRoleLabel": "注文承認を行います",
+                "approvalRolePlaceholder": "承認ロールを選択...",
+                "showRemaining": "ユーザーに残余予算の表示を許可",
+                "title": "予算政策"
+            },
+            "recipients": {
+                "noEmployees": "従業員がいません",
+                "noEmployeesSubtitle": "予算受取人を管理する従業員を作成",
+                "noSearchResults": "連絡先が見つかりませんでした",
+                "noSearchResultsSubtitle": "検索語を調整してみてください",
+                "searchRecipientsPlaceholder": "従業員を検索...",
+                "title": "受信者",
+                "unknownEmployee": "不明な従業員",
+                "unknownOrganization": "不明な組織"
+            },
+            "statistic": {
+                "exceeded": "予算超過:",
+                "remaining": "残りの予算:",
+                "used": "使用予算:"
+            },
+            "statistics": {
+                "title": "統計"
+            },
+            "timeRenewal": {
+                "endDateLabel": "終了日",
+                "endDatePlaceholder": "終了日を選択...",
+                "renewsTypeLabel": "リニューアル",
+                "renewsTypeOptions": {
+                    "biannual": "年二回",
+                    "monthly": "毎月",
+                    "none": "なし",
+                    "quarterly": "四半期毎",
+                    "weekly": "毎週",
+                    "yearly": "毎年"
+                },
+                "renewsTypePlaceholder": "更新期間を選択...",
+                "startDateLabel": "開始日",
+                "startDatePlaceholder": "開始日を選択...",
+                "title": "更新期間"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "画像を生成",
         "elConfigImageGenerateLinkText": "画像を生成",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "有効",
+            "availableColumn": "利用可能",
+            "cardLabel": "予算",
+            "costCentreColumn": "コストセンター",
+            "createNewBudgetLabel": "予算を追加",
+            "nameColumn": "名前",
+            "sublineEmptyState": "ここでお客様の予算を管理してください",
+            "titleEmptyState": "予算はまだありません",
+            "totalColumn": "合計",
+            "usedColumn": "使用済"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "従業員アカウントを追加",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "承認ルール管理",
+                            "budget": "予算管理",
                             "employee": "従業員管理",
                             "order": "注文",
                             "organization_unit": "組織単位",
@@ -1071,6 +1186,15 @@
                                 "delete": "承認ルールを削除できます",
                                 "read": "承認ルールを読むことができます",
                                 "update": "承認ルールを更新できます"
+                            },
+                            "budget": {
+                                "create": "予算の作成",
+                                "delete": "予算を削除",
+                                "edit": "予算を編集",
+                                "place_order_without_specifying_budget": "このロールの従業員は、予算を指定せずに注文できます。",
+                                "read": {
+                                    "all": "すべての予算を表示"
+                                }
                             },
                             "employee": {
                                 "create": "従業員を作成できる",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "合計"
         }
     },
+    "sw-employees": {
+        "noEmployees": "従業員がいません",
+        "unknownEmployee": "不明な従業員"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "承認済み",
             "adminRequested": "管理者がリクエストしました",
             "approved": "承認済み",
+            "budgetManagement": "予算管理",
+            "budgetNotification": "予算の通知",
             "changeRequest": "変更要求",
             "created": "作成日",
             "declined": "拒否",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "使用予算"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "この組織には従業員がいません"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "未割り当て"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "この組織単位には、少なくとも1つの配送先住所と1つの請求先住所があることを確認してください",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "画像キーワードアシスタント"
+            },
+            "b2b_components_budget": {
+                "label": "予算管理"
             },
             "b2b_components_organization": {
                 "label": "組織単位"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "下書きを削除",
             "titleQuote": "引用 {quoteNumber}",
             "titleSendMessageOnly": "メッセージを送信",
-            "titleSendQuoteModal": "見積もりを送信"
+            "titleSendQuoteModal": "見積もりを送信",
+            "tooltipShippingCosts": "送料は参考用であり、見積もりを受け入れて注文すると再計算されます。"
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "B2B コンポーネント予算管理を有効にする",
                 "employee_management_activate_feature": "B2B コンポーネント従業員管理を有効にする",
                 "order_approval_activate_feature": "B2B コンポーネント注文承認を有効にする",
                 "organization_units_activate_feature": "B2B コンポーネント組織単位を有効にする",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "予算管理",
                     "employee_management_activate_feature": "従業員管理",
                     "order_approval_activate_feature": "注文承認",
                     "organization_units_activate_feature": "組織単位",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "ユニフォームスケールのロックを解除"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "顧客は予算制限を定義および管理して、組織部門の支出をより適切に管理できます。",
+        "budgetManagementName": "予算",
         "employeeManagementDescription": "顧客は、個々の注文プロセスを実現するための役割と権限を持つ従業員アカウントを作成できます。",
         "employeeManagementName": "従業員管理",
         "orderApprovalDescription": "注文プロセスを全社的に管理できるため、予算遵守の維持に役立ち、注文ミスを減らすことができます。",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "予算管理",
                     "EMPLOYEE_MANAGEMENT": "従業員管理",
                     "ORDER_APPROVAL": "注文承認",
                     "ORGANIZATION_UNITS": "組織単位",

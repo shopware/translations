@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Ištrynimas nepavyko.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Trūksta leidimų.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Per daug užklausų. Prašome palaukti {seconds} sekundžių ir badyti dar kartą,.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} prieštarauja esamam maršrutui {blockedSegment} ir negali būti naudojamas.",
             "INVALID_MAIL": "Įveskite teisingą el. pašto adresą.",
             "INVALID_MEDIA_URL": "Norėdami įkelti failą, įveskite galiojantį URL.",
             "INVALID_URL": "Įveskite teisingą URL adresą.",
@@ -980,6 +981,8 @@
             "messageNoResults": "“{term}” rezultatų nerasta."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Susieti paveldėjimas",
+            "ariaUnlinkInheritance": "Atsieti paveldėjimą",
             "notification": {
                 "notificationCopyFailureMessage": "Nepavyko nukopijuoti teksto į iškarpinę.",
                 "notificationCopySuccessMessage": "Tekstas nukopijuotas į iškarpinę."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Jūsų naršyklė nepalaiko garso žymos",
             "fallbackVideoTagSupport": "Jūsų naršyklė nepalaiko vaizdo žymos",
-            "textNoMedia": "Nėra medijos elementų"
+            "textNoMedia": "Nėra medijos elementų",
+            "warningUnsupportedFormat": "Formatas “{format}” gali būti nepalaikomas visose naršyklėse."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Įkelti failą",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Nefiltruotas HTML kodas gali sukelti pavojų saugumui. Prašome įterpti tik HTML kodą iš patikimų šaltinių ir išbandyti savo pakeitimus prieš juos skelbdami."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Turinys"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Suaktyvinkite šią parinktį, jei vaizdas yra pirmasis puslapyje. Tada vaizdui bus priskirtas atributas 'fetchpriority=\"high\"', nurodantis naršyklę įkelti jį didesniu prioritetu. Tai gali padėti pagerinti didžiausius turinio dažus (LCP).",
+                        "isDecorative": "Įjungus šią parinktį, ekrano skaitytuvai vaizdo informacijos neskaitys. Tai reiškia, kad žymos “alt” ir “title” liks tuščios."
+                    },
                     "label": {
                         "ariaLabel": "Nuorodos aprašymas",
                         "ariaLabelHelpText": "Šį tekstą ekrano skaitytojai perskaitys kaip nuorodos tekstą.",
+                        "fetchPriorityHigh": "Gauti aukštą prioritetą",
                         "isDecorative": "Pažymėkite vaizdą kaip dekoratyvinį",
                         "isDecorativeHelpText": "Įjungus šią parinktį, ekrano skaitytuvai vaizdo informacijos neskaitys.",
                         "linkNewTab": "Atidaryti naujame skirtuke",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Navigacija taškeliais",
                         "navigationPositionInside": "Viduje",
                         "navigationPositionNone": "Nieko",
-                        "navigationPositionOutside": "Išorėje"
+                        "navigationPositionOutside": "Išorėje",
+                        "sliderItems": "Paveikslėliai"
                     }
                 },
                 "label": "Paveikslėlių karuselė"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Apsipirkimo patirtys",
             "placeholderSearchBar": "Ieškoti maketų...",
             "privacyNotice": "Pasirinkę tęsti patvirtinate, kad perskaitėte mūsų <a href=\"%privacyUrl%\">duomenų apsaugos informaciją</a> ir sutikote su mūsų <a href=\"%tosUrl%\">bendrosiomis sąlygomis</a>."
+        },
+        "inherit": {
+            "formBanner": "Šis maketas turi paveldėtus laukus. Tai reiškia, kad tol, kol paveldima būsena yra aktyvi, turinys bus paveldimas. Paveldėtus laukus galima atsieti spustelėjus nuorodos simbolį. Dar kartą spustelėjus simbolį, paveldėta būsena bus grąžinta.",
+            "tooltip": "Šis laukas neegzistuoja baziniame makete ir negali būti paveldimas.",
+            "unlinkAllButton": "Iš naujo nustatyti visus laukus.",
+            "unlinkAllConfirmText": "Ar tikrai norite iš naujo nustatyti visus laukus? Tai visam laikui ištrins visą nesusietą turinį.",
+            "unlinkAllTitle": "Iš naujo nustatyti visus laukus",
+            "unlinkFieldConfirmText": "Ar tikrai norite atkurti paveldėjimą? Tai pašalins visus šio lauko pasirinktinius duomenis ir atkurs reikšmes iš pirminio elemento.",
+            "unlinkFieldTitle": "Atkurti paveldėjimą",
+            "unlinkNotice": "Kai kurie paveldėti laukai buvo atsieti."
         },
         "list": {
             "gridHeaderAssignedPages": "Priskirti puslapiai",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Paveikti šie pardavimo kanalai:",
+            "confirmButton": "Tęskite vis tiek",
             "mainContent": "Jau yra antraštės ir poraštės šablonas, priskirtas šiems pardavimo kanalams. Jei einate ir išsaugosite, šis priskyrimas bus perrašytas su jūsų pakeitimais.",
             "title": "Keli priskyrimai"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Žiniasklaidos biblioteka",
             "labelTabItemUpload": "Įkelti failus",
             "titleModal": "Pasirinkite mediją"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Išsaugoti žiniasklaidoje"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "ir",
                     "by": "autorius",
                     "lastChanged": "Paskutinis pakeitimas",
-                    "on": "įjungta",
                     "with": "su"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Pakeitus šį nustatymą, gali kilti išorinių mokėjimo paslaugų teikėjų apskaitos problemų. Prieš atlikdami pakeitimus, patikrinkite, kaip PVM apskaičiuoja jūsų įdarbinti mokėjimo paslaugų teikėjai.",
             "favouriteLabel": "Pažymėkite Pardavimų kanalą kaip mėgstamą",
             "footerCategory": "Įėjimo taško poraštės navigacija",
+            "foreignKeyDelete": "Šis pardavimo kanalas negali būti ištrintas, nes jį vis dar naudoja {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Jei mokesčių teikėjas yra aktyvuotas, šie nustatymai gali būti perrašyti. Tai galite patikrinti {link}puslapyje.",
                 "linkText": "nustatymai"
@@ -8338,6 +8363,7 @@
                         "_score": "_balas",
                         "customField": "Papildomi laukai",
                         "product": {
+                            "available": "Turimas",
                             "cheapestPrice": "Pigiausia produkto kaina",
                             "createdAt": "Sukūrimo data",
                             "listingPrices": "Produkto sąrašo kaina",
@@ -8718,6 +8744,7 @@
                 "height": "Aukštis",
                 "length": "Ilgis",
                 "manufacturerNumber": "Gamintojo numeris",
+                "packUnit": "Pakavimo vienetai",
                 "property": "Ypatybė",
                 "referencePrice": "Vieneto kaina",
                 "releaseDate": "Išleidimo data",

@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "الإشتراكات",
                 "labelSubscription": "الإشتراك"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "سبتمبر"
                         }
                     },
+                    "delayedInfoMessage": "تحدد هذه الفترة الزمنية بداية التسليم اللاحقة ({advancedSettings}). لا يتم دعم العربات المختلطة لمثل هذه الفواصل الزمنية. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "سيتم حذف هذا الفاصل الزمني من جميع الخطط التي تم تحديدها فيها. ستبقى الاشتراكات المرتبطة دون تغيير.",
                     "emptySubline": "لا توجد فترات حتى الآن.",
                     "emptyTitle": "لم يتم العثور على فترات",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "يتم احتساب الطلب الأولي كتنفيذ.",
                 "minimumExecutionCountLabel": "الحد الأدنى للمدة (عدد أوامر التنفيذ)",
                 "minimumExecutionCountPlaceholder": "أدخل الحد الأدنى للمدة...",
+                "mixedCartDelayedInfo": "سيتم إعادة توجيه العملاء الذين يختارون مثل هذا الاشتراك إلى عملية دفع منفصلة باستخدام عربة مخصصة. هذا بسبب تعارضات الجدولة مع الطلبات التي تم إنشاؤها.",
                 "nameLabel": "اسم",
                 "namePlaceholder": "أدخل الاسم...",
                 "plan": {
                     "addProducts": "إضافة منتجات",
                     "addProductsButton": "إضافة {selectedProductsLength} منتجات | إضافة {selectedProductsLength} منتج | إضافة {selectedProductsLength} منتجات",
+                    "delayedInfoMessage": "تحتوي هذه الخطة على فترات تحدد بداية التسليم اللاحقة (الإعدادات المتقدمة). لا يتم دعم العربات المختلطة لمثل هذه الخطط. {mixedCartDelayedInfo}\n\nبسبب:",
                     "deleteModalInfoText": "ستبقى الاشتراكات والفترات الزمنية المرتبطة دون تغيير.",
                     "emptyProductsSubline": "لا توجد منتجات حتى الآن",
                     "emptyProductsTitle": "لم يتم العثور على أي منتج",
@@ -152,6 +156,15 @@
                     "title": "خطط"
                 },
                 "plans": "خطط",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "اسمح للعملاء بدمج عمليات الشراء لمرة واحدة ومنتجات الاشتراك في عربة التسوق الواحدة والدفع، بدلاً من الاضطرار إلى استخدام عمليات سحب منفصلة للعناصر الفردية. هذا يحسن مرونة وراحة تجربة الشراء.",
+                        "note": "يتم دعم عربات التسوق المختلطة للاشتراكات التي يبدأ تسليمها مباشرة في يوم الطلب. {mixedCartDelayedInfo}",
+                        "title": "عربات مختلطة",
+                        "toggleLabel": "قم بتنشيط عربات التسوق المختلطة"
+                    },
+                    "title": "إعدادات"
+                },
                 "subscriptions": "الإشتراكات"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "إشعار الميزانية",
             "checkout_order_return_created": "تم إنشاء إرجاع الطلب",
             "checkout_subscription_placed": "تم إنشاء الاشتراك",
             "order_approval_pending_order_requested": "طلب معلق مطلوب",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "يجب أن يكون رقم التعزيز قيمة إيجابية",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "اسم التعزيز موجود بالفعل",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "يجب تعيين تاريخ التنشيط في المستقبل",
+            "BUDGET_END_DATE_INVALID": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء.",
+            "BUDGET_FIELD_REQUIRED": "يجب ألا يكون هذا الحقل فارغًا.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "يرجى تحديد مستلم واحد على الأقل.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "هذا الحقل مطلوب عند تمكين الموافقة على الطلب.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "يرجى إدخال قيمة صالحة لنوع المشغل هذا.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "هذا الحقل مطلوب عند تمكين الإشعارات.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "يجب ألا يكون هذا الحقل فارغًا.",
             "SHOPPING_LIST_FIELD_REQUIRED": "يجب ألا يكون هذا الحقل فارغًا."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "نشطة",
+                "budgetAmountLabel": "المبلغ في {currency}",
+                "budgetAmountPlaceholder": "أدخل مبلغ الميزانية...",
+                "costCentreLabel": "مركز التكلفة",
+                "costCentrePlaceholder": "أدخل مركز التكلفة...",
+                "nameLabel": "اسم الميزانية",
+                "namePlaceholder": "أدخل اسم الميزانية...",
+                "noOrganizationsFound": "لم يتم العثور على منظمات",
+                "organizationUnitsLabel": "الوحدات التنظيمية",
+                "organizationUnitsPlaceholder": "ابحث عن وحدات تنظيمية...",
+                "techNameLabel": "الاسم الفني",
+                "techNamePlaceholder": "أدخل الاسم الفني...",
+                "title": "معلومات عامة"
+            },
+            "newTitle": "ميزانية جديدة",
+            "notification": {
+                "enableNotifications": "تمكين الإشعارات",
+                "triggerTypes": {
+                    "daysBeforeEnd": "قبل X يومًا من تاريخ الانتهاء",
+                    "percentage": "تم استخدام X بالمائة من الميزانية",
+                    "specificDate": "تاريخ إشعار محدد"
+                },
+                "triggerValue": "قيمة الزناد",
+                "triggerValuePlaceholder": "اختر قيمة المشغل...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "أدخل عدد الأيام",
+                    "percentage": "أدخل النسبة المئوية من قيمة الميزانية",
+                    "specificDate": "حدد تاريخ الإخطار"
+                },
+                "triggerWhen": "قم بتشغيل الإشعار عندما",
+                "triggerWhenPlaceholder": "حدد مشغل الإشعارات..."
+            },
+            "notifications": {
+                "title": "إعدادات الإشعارات"
+            },
+            "policies": {
+                "allowApproval": "السماح بطلبات الموافقة على الطلبات عند استخدام الميزانية بالكامل",
+                "approvalRoleLabel": "يعطي الموافقات على الطلبات",
+                "approvalRolePlaceholder": "حدد دور الموافقة...",
+                "showRemaining": "السماح للمستخدمين بعرض الميزانية المتبقية",
+                "title": "سياسات الميزانية"
+            },
+            "recipients": {
+                "noEmployees": "لا يوجد موظفون متاحون",
+                "noEmployeesSubtitle": "إنشاء موظفين لإدارة مستلمي الميزانية",
+                "noSearchResults": "لم يتم العثور على موظفين",
+                "noSearchResultsSubtitle": "حاول تعديل مصطلحات البحث",
+                "searchRecipientsPlaceholder": "ابحث عن الموظفين...",
+                "title": "المستلمون",
+                "unknownEmployee": "موظف غير معروف",
+                "unknownOrganization": "منظمة غير معروفة"
+            },
+            "statistic": {
+                "exceeded": "تجاوزت الميزانية:",
+                "remaining": "الميزانية المتبقية:",
+                "used": "الميزانية المستخدمة:"
+            },
+            "statistics": {
+                "title": "الإحصائيات"
+            },
+            "timeRenewal": {
+                "endDateLabel": "تاريخ الانتهاء",
+                "endDatePlaceholder": "حدد تاريخ الانتهاء...",
+                "renewsTypeLabel": "التجديد",
+                "renewsTypeOptions": {
+                    "biannual": "نصف سنوي",
+                    "monthly": "شهرياً",
+                    "none": "لا شيء",
+                    "quarterly": "ربع سنوية",
+                    "weekly": "أسبوعي",
+                    "yearly": "سنويًا"
+                },
+                "renewsTypePlaceholder": "حدد فترة التجديد...",
+                "startDateLabel": "تاريخ البدء",
+                "startDatePlaceholder": "حدد تاريخ البدء...",
+                "title": "فترة التجديد"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "توليد صورة",
         "elConfigImageGenerateLinkText": "توليد صورة",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "نشطة",
+            "availableColumn": "متاح",
+            "cardLabel": "الميزانيات",
+            "costCentreColumn": "مركز التكلفة",
+            "createNewBudgetLabel": "إضافة ميزانية",
+            "nameColumn": "اسم",
+            "sublineEmptyState": "قم بإدارة ميزانيات عملائك هنا",
+            "titleEmptyState": "لا توجد ميزانيات حتى الآن",
+            "totalColumn": "الإجمالي",
+            "usedColumn": "مستعمل"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "إضافة حساب موظف",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "إدارة قواعد الموافقة",
+                            "budget": "إدارة الميزانية",
                             "employee": "إدارة الموظفين",
                             "order": "الطلبيات",
                             "organization_unit": "الوحدات التنظيمية",
@@ -1071,6 +1186,15 @@
                                 "delete": "يمكن حذف قواعد الموافقة",
                                 "read": "يمكن قراءة قواعد الموافقة",
                                 "update": "يمكن تحديث قواعد الموافقة"
+                            },
+                            "budget": {
+                                "create": "إنشاء ميزانيات",
+                                "delete": "حذف الميزانيات",
+                                "edit": "تحرير الميزانيات",
+                                "place_order_without_specifying_budget": "يمكن للموظفين في هذا الدور تقديم الطلبات دون تحديد ميزانية",
+                                "read": {
+                                    "all": "عرض جميع الميزانيات"
+                                }
                             },
                             "employee": {
                                 "create": "يمكن إنشاء موظفين",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "الإجمالي"
         }
     },
+    "sw-employees": {
+        "noEmployees": "لا يوجد موظفون متاحون",
+        "unknownEmployee": "موظف غير معروف"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "تم قبولها",
             "adminRequested": "تم طلب المشرف",
             "approved": "تمت الموافقة عليها",
+            "budgetManagement": "إدارة الميزانية",
+            "budgetNotification": "إشعار الميزانية",
             "changeRequest": "طلب تغيير",
             "created": "تم إنشاؤه",
             "declined": "تم رفضه",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "الميزانية المستخدمة"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "لا يوجد موظفون متاحون في هذه المؤسسة"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "غير المعين"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "يرجى التأكد من أن هذه الوحدة التنظيمية تحتوي على عنوان شحن واحد على الأقل وعنوان إرسال فواتير واحد",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "مساعد الكلمات الرئيسية للصور"
+            },
+            "b2b_components_budget": {
+                "label": "إدارة الميزانية"
             },
             "b2b_components_organization": {
                 "label": "الوحدات التنظيمية"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "حذف المسودة",
             "titleQuote": "اقتباس {quoteNumber}",
             "titleSendMessageOnly": "أرسل رسالة",
-            "titleSendQuoteModal": "أرسل اقتباس"
+            "titleSendQuoteModal": "أرسل اقتباس",
+            "tooltipShippingCosts": "تكلفة الشحن هي للإشارة فقط وسيتم إعادة حسابها بمجرد قبول عرض الأسعار وتقديم الطلب."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "تمكين إدارة ميزانية مكونات B2B",
                 "employee_management_activate_feature": "تمكين إدارة موظفي مكونات B2B",
                 "order_approval_activate_feature": "تمكين الموافقة على طلب مكونات B2B",
                 "organization_units_activate_feature": "تمكين وحدات تنظيم مكونات B2B",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "إدارة الميزانية",
                     "employee_management_activate_feature": "إدارة الموظفين",
                     "order_approval_activate_feature": "الموافقة على الطلبية",
                     "organization_units_activate_feature": "الوحدات التنظيمية",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "افتح المقياس الموحد"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "يمكن لعملائك تحديد حدود الميزانية وإدارتها للتحكم بشكل أفضل في إنفاق وحدات المؤسسة الخاصة بهم.",
+        "budgetManagementName": "الميزانيات",
         "employeeManagementDescription": "يمكن لعملائك إنشاء حسابات الموظفين مع الأدوار والأذونات لتحقيق عمليات الطلبات الفردية.",
         "employeeManagementName": "إدارة الموظفين",
         "orderApprovalDescription": "يوفر التحكم على مستوى الشركة في عملية الطلب، ويساعد في الحفاظ على الامتثال للميزانية ويقلل من أخطاء الطلب.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "إدارة الميزانية",
                     "EMPLOYEE_MANAGEMENT": "إدارة الموظفين",
                     "ORDER_APPROVAL": "الموافقة على الطلبية",
                     "ORGANIZATION_UNITS": "الوحدات التنظيمية",

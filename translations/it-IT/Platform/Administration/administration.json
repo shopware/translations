@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Eliminazione non riuscita.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Autorizzazioni mancanti.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Troppe richieste. Attendi {seconds} secondi prima di riprovare.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "L'URL {path} è in conflitto con la route {blockedSegment} esistente e non può essere utilizzato.",
             "INVALID_MAIL": "Ti preghiamo di inserire un indirizzo e-mail valido.",
             "INVALID_MEDIA_URL": "Inserisci un URL valido per caricare un file.",
             "INVALID_URL": "Ti preghiamo di inserire un URL valido.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Non è stato trovato alcun risultato per \"{term}\"."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Ereditarietà dei link",
+            "ariaUnlinkInheritance": "Scollegare l'ereditarietà",
             "notification": {
                 "notificationCopyFailureMessage": "Non è stato possibile copiare il testo negli appunti.",
                 "notificationCopySuccessMessage": "Il testo è stato copiato negli appunti."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Il tuo browser non supporta questo tag audio",
             "fallbackVideoTagSupport": "Il tuo browser non supporta questo tag video",
-            "textNoMedia": "Nessun supporto disponibile"
+            "textNoMedia": "Nessun supporto disponibile",
+            "warningUnsupportedFormat": "Il formato \"{format}\" potrebbe non essere supportato in tutti i browser."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Carica file",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Il codice HTML non filtrato può comportare rischi per la sicurezza. Inserisci solo codice HTML proveniente da fonti attendibili e verifica le modifiche prima di pubblicarle."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Contenuti"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Attiva questa opzione se l'immagine è la prima della pagina. All'immagine verrà quindi assegnato l'attributo 'fetchpriority=\"high\"', indicando al browser di caricarla con una priorità più alta. Questo può aiutare a migliorare il Largest Contentful Paint (LCP).",
+                        "isDecorative": "Quando questa opzione è abilitata, le informazioni sull'immagine non verranno lette dagli screen reader. Ciò significa che i tag «alt» e «title» rimarranno vuoti."
+                    },
                     "label": {
                         "ariaLabel": "Descrizione del link",
                         "ariaLabelHelpText": "Questo testo verrà letto dagli screen reader come testo del link.",
+                        "fetchPriorityHigh": "Priorità di recupero alta",
                         "isDecorative": "Contrassegna l'immagine come decorativa",
                         "isDecorativeHelpText": "Quando questa opzione è abilitata, le informazioni sull'immagine non verranno lette dagli screen reader.",
                         "linkNewTab": "Apri link nella nuova scheda",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Navigazione a punti",
                         "navigationPositionInside": "Interno",
                         "navigationPositionNone": "Nessuna",
-                        "navigationPositionOutside": "Esterno"
+                        "navigationPositionOutside": "Esterno",
+                        "sliderItems": "Immagini"
                     }
                 },
                 "label": "Slider immagine"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Mondi d'esperienza",
             "placeholderSearchBar": "Cerca layout...",
             "privacyNotice": "Selezionando continua confermi di aver letto la nostra informativa sulla protezione dei dati <a href=\"%privacyUrl%\"></a> e di aver accettato i nostri termini e condizioni generali <a href=\"%tosUrl%\"></a>."
+        },
+        "inherit": {
+            "formBanner": "Questo layout ha campi ereditati. Ciò significa che finché lo stato ereditato è attivo, il contenuto verrà ereditato. I campi ereditati possono essere scollegati facendo clic sul simbolo del collegamento. Facendo nuovamente clic sul simbolo si ripristinerà lo stato ereditato.",
+            "tooltip": "Questo campo non esiste nel layout di base e non può essere ereditato.",
+            "unlinkAllButton": "Reimposta tutti i campi.",
+            "unlinkAllConfirmText": "Sei sicuro di voler reimpostare tutti i campi? Questo eliminerà definitivamente tutti i contenuti non collegati.",
+            "unlinkAllTitle": "Reimposta tutti i campi",
+            "unlinkFieldConfirmText": "Sei sicuro di voler ripristinare l'eredità? Questo rimuoverà tutti i dati personalizzati di questo campo e ripristinerà i valori dall'elemento principale.",
+            "unlinkFieldTitle": "Ripristina ereditarietà",
+            "unlinkNotice": "Alcuni campi ereditati non sono stati collegati."
         },
         "list": {
             "gridHeaderAssignedPages": "Pagine assegnate",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "I seguenti Canali di Vendita sono influenzati:",
+            "confirmButton": "Continua comunque",
             "mainContent": "Un modello dell'intestazione e del piè di pagina sono già assegnati ai seguenti Canali di Vendita. Se prosegui e salvi, l'incarico sarà sovrascritto con le tue modifiche.",
             "title": "Incarichi multipli"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Libreria",
             "labelTabItemUpload": "Carica file",
             "titleModal": "Seleziona supporti"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Salva nei file multimediali"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "e",
                     "by": "da",
                     "lastChanged": "Ultima modifica",
-                    "on": "attivo",
                     "with": "con"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Modificare quest'impostazione potrebbe condurre a problemi di contabilità con i fornitori di pagamento esterni. Ricontrolla com'è calcolata l'IVA dai fornitori di pagamento che impieghi, prima di effettuare qualsiasi modifica.",
             "favouriteLabel": "Segna Canale di Vendita come preferito",
             "footerCategory": "Punto di accesso per la navigazione piè di pagina",
+            "foreignKeyDelete": "Questo canale di vendita non può essere eliminato perché è ancora utilizzato da {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Se un fornitore fiscale è attivato, queste impostazioni potrebbero essere sovrascritte. Puoi verificarlo in {link}.",
                 "linkText": "impostazioni"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Campo personalizzato",
                         "product": {
+                            "available": "Ancora disponibile",
                             "cheapestPrice": "Prezzo del prodotto più economico",
                             "createdAt": "Data creazione",
                             "listingPrices": "Prezzo di listino prodotto",
@@ -8718,6 +8744,7 @@
                 "height": "Altezza",
                 "length": "Lunghezza",
                 "manufacturerNumber": "Numero del prodotto del produttore",
+                "packUnit": "Unità di imballaggio",
                 "property": "Proprietà",
                 "referencePrice": "Prezzo unitario",
                 "releaseDate": "Data di rilascio",

@@ -44,6 +44,7 @@
         },
         "subscriptions": {
             "order": {
+                "labelMixedSubscription": "Abonelikler",
                 "labelSubscription": "Abonelik"
             },
             "product": {
@@ -100,6 +101,7 @@
                             "september": "Eylül"
                         }
                     },
+                    "delayedInfoMessage": "Bu aralık daha sonraki bir teslimat başlangıcını tanımlar ({advancedSettings}). Karışık arabalar bu aralıklar için desteklenmez. {mixedCartDelayedInfo}",
                     "deleteModalInfoText": "Bu aralık, seçildiği tüm planlardan silinecektir. İlişkili abonelikler değişmeden kalacaktır.",
                     "emptySubline": "Henüz aralıklar yok.",
                     "emptyTitle": "Aralıklar bulunamadı",
@@ -131,11 +133,13 @@
                 "minimumExecutionCountHelpText": "İlk emir bir icra olarak sayılır.",
                 "minimumExecutionCountLabel": "Minimum süre (sipariş yürütme sayısı)",
                 "minimumExecutionCountPlaceholder": "Minimum dönem girin...",
+                "mixedCartDelayedInfo": "Böyle bir aboneliği seçen müşteriler, özel bir sepete sahip ayrı bir ödeme sayfasına yönlendirilecektir. Bunun nedeni, oluşturulan siparişlerle zamanlama çakışmalarıdır.",
                 "nameLabel": "İsim",
                 "namePlaceholder": "İsim girin...",
                 "plan": {
                     "addProducts": "Ürün ekle",
                     "addProductsButton": "{selectedProductsLength} ürün ekle | {selectedProductsLength} ürünü ekle | {selectedProductsLength} ürün ekle",
+                    "delayedInfoMessage": "Bu plan, teslimatın daha sonraki bir başlangıcını tanımlayan aralıkları içerir (gelişmiş ayarlar). Karışık arabalar bu tür planlar için desteklenmez. {mixedCartDelayedInfo}\n\nNedeni:",
                     "deleteModalInfoText": "İlişkili abonelikler ve aralıklar değişmeden kalacaktır.",
                     "emptyProductsSubline": "Henüz ürün yok",
                     "emptyProductsTitle": "Ürün bulunamadı",
@@ -152,6 +156,15 @@
                     "title": "Planlar"
                 },
                 "plans": "Planlar",
+                "settings": {
+                    "mixedCarts": {
+                        "description": "Müşterilerin tek tek ürünler için ayrı ödeme yapmak zorunda kalmak yerine tek seferlik satın alımları ve abonelik ürünlerini tek bir sepette ve ödeme işleminde birleştirmesine izin verin. Bu, satın alma deneyiminin esnekliğini ve rahatlığını artırır.",
+                        "note": "Karma sepetler, teslimatı doğrudan sipariş gününde başlayan abonelikler için desteklenir. {mixedCartDelayedInfo}",
+                        "title": "Karışık arabalar",
+                        "toggleLabel": "Karışık sepetleri etkinleştir"
+                    },
+                    "title": "Ayarlar"
+                },
                 "subscriptions": "Abonelikler"
             },
             "subscriptions": {
@@ -281,6 +294,7 @@
     },
     "global": {
         "businessEvents": {
+            "budget_management_budget_notification": "Bütçe bildirimi",
             "checkout_order_return_created": "Sipariş iadesi oluşturuldu",
             "checkout_subscription_placed": "Abonelik oluşturuldu",
             "order_approval_pending_order_requested": "Bekleyen Sipariş Talep Edildi",
@@ -343,6 +357,12 @@
             "ADVANCED_SEARCH_BOOSTING_BOOST_INVALID": "Takviye sayısı pozitif bir değer olmalıdır",
             "ADVANCED_SEARCH_BOOSTING_NAME_DUPLICATED": "Yükseltme adı zaten var",
             "ADVANCED_SEARCH_BOOSTING_VALID_TO_INVALID": "Etkinleştirme tarihi gelecekte belirlenmelidir",
+            "BUDGET_END_DATE_INVALID": "Bitiş tarihi başlangıç tarihinden sonra olmalıdır.",
+            "BUDGET_FIELD_REQUIRED": "Bu alan boş olmamalıdır.",
+            "BUDGET_NOTIFICATION_RECIPIENTS_REQUIRED": "Lütfen en az bir alıcı seçin.",
+            "BUDGET_REVIEWER_ROLE_REQUIRED": "Sipariş onayı etkinleştirildiğinde bu alan zorunludur.",
+            "BUDGET_TRIGGER_VALUE_INVALID": "Lütfen bu tetikleyici türü için geçerli bir değer girin.",
+            "BUDGET_TRIGGER_VALUE_REQUIRED": "Bildirimler etkinleştirildiğinde bu alan zorunludur.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "Bu alan boş olmamalıdır.",
             "SHOPPING_LIST_FIELD_REQUIRED": "Bu alan boş olmamalıdır."
         },
@@ -819,6 +839,88 @@
             }
         }
     },
+    "sw-budget": {
+        "detail": {
+            "generalInformation": {
+                "activeLabel": "Aktif",
+                "budgetAmountLabel": "{currency}cinsinden miktar",
+                "budgetAmountPlaceholder": "Bütçe tutarını girin...",
+                "costCentreLabel": "Maliyet merkezi",
+                "costCentrePlaceholder": "Maliyet merkezine girin...",
+                "nameLabel": "Bütçe adı",
+                "namePlaceholder": "Bütçe adını girin...",
+                "noOrganizationsFound": "Hiçbir kuruluş bulunamadı",
+                "organizationUnitsLabel": "Organizasyon birimleri",
+                "organizationUnitsPlaceholder": "Organizasyon birimlerini ara...",
+                "techNameLabel": "Teknik adı",
+                "techNamePlaceholder": "Teknik adı girin...",
+                "title": "Genel bilgiler"
+            },
+            "newTitle": "Yeni bütçe",
+            "notification": {
+                "enableNotifications": "Bildirimleri etkinleştir",
+                "triggerTypes": {
+                    "daysBeforeEnd": "Bitiş tarihinden X gün önce",
+                    "percentage": "Kullanılan bütçenin yüzde X",
+                    "specificDate": "Belirli bildirim tarihi"
+                },
+                "triggerValue": "Tetikleme değeri",
+                "triggerValuePlaceholder": "Tetikleme değerini seç...",
+                "triggerValuePlaceholders": {
+                    "daysBeforeEnd": "Gün sayısını girin",
+                    "percentage": "Bütçe değerinin yüzdesini girin",
+                    "specificDate": "Bildirim tarihini seçin"
+                },
+                "triggerWhen": "Bildirimi ne zaman tetikleyin",
+                "triggerWhenPlaceholder": "Bildirim tetikleyicisini seçin..."
+            },
+            "notifications": {
+                "title": "Bildirim ayarları"
+            },
+            "policies": {
+                "allowApproval": "Bütçe tam olarak kullanıldığında sipariş onay taleplerine izin ver",
+                "approvalRoleLabel": "Sipariş onayları verir",
+                "approvalRolePlaceholder": "Onay rolünü seçin...",
+                "showRemaining": "Kullanıcıların kalan bütçeyi görüntülemesine izin ver",
+                "title": "Bütçe politikaları"
+            },
+            "recipients": {
+                "noEmployees": "Çalışan yok",
+                "noEmployeesSubtitle": "Bütçe alıcılarını yönetmek için çalışanlar oluşturun",
+                "noSearchResults": "Kişi bulunamadı",
+                "noSearchResultsSubtitle": "Arama terimlerinizi ayarlamayı deneyin",
+                "searchRecipientsPlaceholder": "Çalışanları ara...",
+                "title": "Alıcılar",
+                "unknownEmployee": "Bilinmeyen çalışan",
+                "unknownOrganization": "Bilinmeyen kuruluş"
+            },
+            "statistic": {
+                "exceeded": "Bütçe aşıldı:",
+                "remaining": "Kalan bütçe:",
+                "used": "Kullanılan bütçe:"
+            },
+            "statistics": {
+                "title": "İstatistik"
+            },
+            "timeRenewal": {
+                "endDateLabel": "Bitiş tarihi",
+                "endDatePlaceholder": "Bitiş tarihi seç...",
+                "renewsTypeLabel": "Yenileme",
+                "renewsTypeOptions": {
+                    "biannual": "İki Yıllık",
+                    "monthly": "Aylık",
+                    "none": "Yok",
+                    "quarterly": "Üç Aylık",
+                    "weekly": "Haftalık",
+                    "yearly": "Yıllık"
+                },
+                "renewsTypePlaceholder": "Yenileme süresini seçin...",
+                "startDateLabel": "Başlangıç tarihi",
+                "startDatePlaceholder": "Başlangıç tarihini seç...",
+                "title": "Yenileme süresi"
+            }
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Görüntü oluştur",
         "elConfigImageGenerateLinkText": "Görüntü oluştur",
@@ -932,6 +1034,18 @@
         }
     },
     "sw-customer": {
+        "budgetManagement": {
+            "activeColumn": "Aktif",
+            "availableColumn": "Mevcut",
+            "cardLabel": "Bütçeler",
+            "costCentreColumn": "Maliyet merkezi",
+            "createNewBudgetLabel": "Bütçe ekle",
+            "nameColumn": "İsim",
+            "sublineEmptyState": "Müşterilerinizin bütçelerini buradan yönetin",
+            "titleEmptyState": "Henüz bütçe yok",
+            "totalColumn": "Toplam",
+            "usedColumn": "Kullanılmış"
+        },
         "businessPartner": {
             "buttonCreateEmployee": "Çalışan hesabı ekle",
             "grid": {
@@ -1049,6 +1163,7 @@
                     "tree": {
                         "groups": {
                             "approval_rule": "Onay Kuralı Yönetimi",
+                            "budget": "Bütçe yönetimi",
                             "employee": "Çalışan yönetimi",
                             "order": "Siparişler",
                             "organization_unit": "Organizasyon Birimleri",
@@ -1071,6 +1186,15 @@
                                 "delete": "Onay kurallarını silebilir",
                                 "read": "Onay kurallarını okuyabilir",
                                 "update": "Onay kurallarını güncelleyebilir"
+                            },
+                            "budget": {
+                                "create": "Bütçe oluşturma",
+                                "delete": "Bütçeleri sil",
+                                "edit": "Bütçeleri düzenle",
+                                "place_order_without_specifying_budget": "Bu roldeki çalışanlar bütçe belirtmeden sipariş verebilir",
+                                "read": {
+                                    "all": "Tüm bütçeleri görüntüleyin"
+                                }
                             },
                             "employee": {
                                 "create": "Çalışan oluşturabilir",
@@ -1187,6 +1311,10 @@
             "totalPriceColumn": "Toplam"
         }
     },
+    "sw-employees": {
+        "noEmployees": "Çalışan yok",
+        "unknownEmployee": "Bilinmeyen çalışan"
+    },
     "sw-flow": {
         "action": {
             "descriptionAuthorizePayment": "{payer}",
@@ -1216,6 +1344,8 @@
             "accepted": "Kabul",
             "adminRequested": "Yönetici istedi",
             "approved": "Onaylandı",
+            "budgetManagement": "Bütçe yönetimi",
+            "budgetNotification": "Bütçe bildirimi",
             "changeRequest": "Değişim isteği",
             "created": "Oluşturuldu",
             "declined": "Reddedilen",
@@ -1520,6 +1650,17 @@
             }
         }
     },
+    "sw-order": {
+        "budgetManagement": {
+            "budgetUsed": "Kullanılan bütçe"
+        }
+    },
+    "sw-organization": {
+        "noEmployeesTooltip": "Bu organizasyonda çalışan yok"
+    },
+    "sw-organization-employee": {
+        "unassignedEmployees": "Atanmamış"
+    },
     "sw-organization-unit": {
         "detail": {
             "addressErrorNotification": "Lütfen bu kuruluş biriminin en az bir gönderim ve bir fatura adresi olduğundan emin olun",
@@ -1594,6 +1735,9 @@
         "permissions": {
             "ai-image": {
                 "label": "Resim anahtar kelime asistanı"
+            },
+            "b2b_components_budget": {
+                "label": "Bütçe yönetimi"
             },
             "b2b_components_organization": {
                 "label": "Organizasyon Birimleri"
@@ -1837,7 +1981,8 @@
             "titleDraftDeletion": "Taslağı sil",
             "titleQuote": "Alıntı {quoteNumber}",
             "titleSendMessageOnly": "Mesaj gönder",
-            "titleSendQuoteModal": "Teklif gönder"
+            "titleSendQuoteModal": "Teklif gönder",
+            "tooltipShippingCosts": "Nakliye ücreti yalnızca referans içindir ve teklifi kabul edip siparişi verdikten sonra yeniden hesaplanacaktır.."
         },
         "filters": {
             "createdByFilter": {
@@ -2263,6 +2408,7 @@
     "sw-settings-customer-group": {
         "registration": {
             "activateCheckbox": {
+                "budget_management_activate_feature": "B2B Bileşen Bütçe Yönetimini Etkinleştir",
                 "employee_management_activate_feature": "B2B Bileşeni Çalışan Yönetimini Etkinleştir",
                 "order_approval_activate_feature": "B2B Bileşen Sipariş Onayını Etkinleştir",
                 "organization_units_activate_feature": "B2B Bileşen Organizasyon Birimlerini Etkinleştir",
@@ -2272,6 +2418,7 @@
             },
             "activateHelptext": {
                 "features": {
+                    "budget_management_activate_feature": "Bütçe Yönetimi",
                     "employee_management_activate_feature": "Çalışan Yönetimi",
                     "order_approval_activate_feature": "Sipariş Onayı",
                     "organization_units_activate_feature": "Organizasyon Birimleri",
@@ -2542,6 +2689,8 @@
         "unlock-uniform-scale": "Düzgün ölçeğin kilidini açın"
     },
     "swag-b2b-features": {
+        "budgetManagementDescription": "Müşterileriniz, kuruluş birimlerinin harcamalarını daha iyi kontrol etmek için bütçe sınırlarını tanımlayabilir ve yönetebilir.",
+        "budgetManagementName": "Bütçeler",
         "employeeManagementDescription": "Müşterileriniz, bireysel sipariş süreçlerini gerçekleştirmek için rol ve izinlere sahip çalışan hesapları oluşturabilir.",
         "employeeManagementName": "Çalışan Yönetimi",
         "orderApprovalDescription": "Sipariş süreci üzerinde şirket genelinde kontrol sağlar, bütçe uyumluluğunun korunmasına yardımcı olur ve sipariş hatalarını azaltır.",
@@ -2557,6 +2706,7 @@
         "specificFeaturesCard": {
             "activateHelpText": {
                 "features": {
+                    "BUDGET_MANAGEMENT": "Bütçe yönetimi",
                     "EMPLOYEE_MANAGEMENT": "Çalışan Yönetimi",
                     "ORDER_APPROVAL": "Sipariş Onayı",
                     "ORGANIZATION_UNITS": "Organizasyon Birimleri",

@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Sletting mislyktes.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Mangler tillatelser.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "For mange forespørsler. Vennligst vent {seconds} sekunder før du prøver igjen.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL-adressen {path} er i konflikt med den eksisterende ruten {blockedSegment} og kan ikke brukes.",
             "INVALID_MAIL": "Skriv inn en gyldig e-postadresse.",
             "INVALID_MEDIA_URL": "Angi en gyldig URL-adresse for å laste opp en fil.",
             "INVALID_URL": "Skriv inn en gyldig url.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Ingen resultater funnet for \"{term}»."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Link arv",
+            "ariaUnlinkInheritance": "Koble fra arv",
             "notification": {
                 "notificationCopyFailureMessage": "Tekst kunne ikke kopieres til udklipsholder.",
                 "notificationCopySuccessMessage": "Tekst har blitt kopiert til utklippstavlen."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Nettleseren din støtter ikke lydkoden",
             "fallbackVideoTagSupport": "Nettleseren din støtter ikke video-taggen",
-            "textNoMedia": "Ingen medier tilgjengelig"
+            "textNoMedia": "Ingen medier tilgjengelig",
+            "warningUnsupportedFormat": "Formatet \"{format}\" støttes kanskje ikke i alle nettlesere."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Last opp fil",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Ufiltrert HTML-kode kan føre til sikkerhetsrisiko. Vennligst sett inn HTML-kode fra pålitelige kilder og test endringene før du publiserer dem."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Innhold"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Aktiver dette alternativet hvis bildet er det første på siden. Bildet vil da bli tildelt attributtet 'fetchpriority=\"high\"', slik at nettleseren skal laste det med høyere prioritet. Dette kan bidra til å forbedre Largest Contentful Paint (LCP).",
+                        "isDecorative": "Når dette alternativet er aktivert, blir ikke bildeinformasjonen lest opp av skjermlesere. Dette betyr at «alt» og «title» -kodene forblir tomme."
+                    },
                     "label": {
                         "ariaLabel": "Link beskrivelse",
                         "ariaLabelHelpText": "Denne teksten blir lest opp av skjermlesere som lenketekst.",
+                        "fetchPriorityHigh": "Hent prioritet høy",
                         "isDecorative": "Merk bildet som dekorativt",
                         "isDecorativeHelpText": "Når dette alternativet er aktivert, blir ikke bildeinformasjonen lest opp av skjermlesere.",
                         "linkNewTab": "Åpne lenke i ny fane",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Prikker navigasjon",
                         "navigationPositionInside": "Innvendig",
                         "navigationPositionNone": "Ingen",
-                        "navigationPositionOutside": "Utenfor"
+                        "navigationPositionOutside": "Utenfor",
+                        "sliderItems": "Bilder"
                     }
                 },
                 "label": "Skyvekontrollen"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Shoppingopplevelser",
             "placeholderSearchBar": "Søk i oppsett...",
             "privacyNotice": "Ved å velge Fortsett bekrefter du at du har lest vår <a href=\"%privacyUrl%\">databeskyttelsesinformasjon</a> og akseptert våre <a href=\"%tosUrl%\">generelle vilkår og betingelser</a>."
+        },
+        "inherit": {
+            "formBanner": "Denne layouten har arvet felt. Det betyr at så lenge den arvelige tilstanden er aktiv, vil innholdet bli arvet. Arvede felt kan kobles fra ved å klikke på koblingssymbolet. Hvis du klikker på symbolet igjen, settes den arvede tilstanden tilbake.",
+            "tooltip": "Dette feltet finnes ikke i basisoppsettet og kan ikke arves.",
+            "unlinkAllButton": "Tilbakestill alle felt.",
+            "unlinkAllConfirmText": "Er du sikker på at du vil tilbakestille alle feltene? Dette vil slette alt innhold som ikke er koblet til permanent.",
+            "unlinkAllTitle": "Tilbakestill alle felt",
+            "unlinkFieldConfirmText": "Er du sikker på at du vil gjenopprette arv? Dette vil fjerne alle egendefinerte data i dette feltet og gjenopprette verdier fra det overordnede elementet.",
+            "unlinkFieldTitle": "Gjenopprett arv",
+            "unlinkNotice": "Noen arvelige felt er frakoblet."
         },
         "list": {
             "gridHeaderAssignedPages": "Tildelte sider",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Følgende salgskanaler påvirkes:",
+            "confirmButton": "Fortsett uansett",
             "mainContent": "Det er allerede en topp- og bunntekstmal tilordnet følgende salgskanaler. Hvis du fortsetter og sparer, den oppgaven vil bli overskrevet med endringene dine.",
             "title": "Flere oppgaver"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Mediebibliotek",
             "labelTabItemUpload": "Last opp filer",
             "titleModal": "Velg medier"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Lagre i media"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "og",
                     "by": "av",
                     "lastChanged": "Sist endret",
-                    "on": "på",
                     "with": "med"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Endring av denne innstillingen kan føre til regnskapsproblemer med eksterne betalingsleverandører. Sjekk tilbake hvordan mva beregnes av betalingsleverandører du ansetter, før du gjør noen endringer.",
             "favouriteLabel": "Merk salgskanalen som favoritt",
             "footerCategory": "Navigering av bunntekst",
+            "foreignKeyDelete": "Denne salgskanalen kan ikke slettes fordi den fortsatt er i bruk av {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Hvis en skatteleverandør er aktivert, kan disse innstillingene bli overskrevet. Du kan sjekke dette i {link}.",
                 "linkText": "innstillinger"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Egendefinert felt",
                         "product": {
+                            "available": "Tilgjengelig",
                             "cheapestPrice": "Billigste produktpris",
                             "createdAt": "Opprettelsesdato",
                             "listingPrices": "Pris for oppføring av produktet",
@@ -8718,6 +8744,7 @@
                 "height": "Høyde",
                 "length": "Lengde",
                 "manufacturerNumber": "Produsent produktnummer",
+                "packUnit": "Pakke enhet",
                 "property": "Eiendom",
                 "referencePrice": "Enhetspris",
                 "releaseDate": "Utgivelsesdato",

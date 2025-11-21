@@ -503,6 +503,7 @@
             "FRAMEWORK__DELETE_RESTRICTED": "Xóa bị lỗi.",
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Thiếu quyền.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Quá nhiều yêu cầu. Vui lòng đợi {seconds} giây trước khi thử lại.",
+            "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} xung đột với tuyến hiện có {blockedSegment} và không thể được sử dụng.",
             "INVALID_MAIL": "Vui lòng nhập địa chỉ email hợp lệ.",
             "INVALID_MEDIA_URL": "Vui lòng nhập một URL hợp lệ để tải lên một tập tin.",
             "INVALID_URL": "Vui lòng nhập một url hợp lệ.",
@@ -980,6 +981,8 @@
             "messageNoResults": "Không tìm thấy kết quả cho \"{term}”."
         },
         "sw-field": {
+            "ariaLinkInheritance": "Kế thừa liên kết",
+            "ariaUnlinkInheritance": "Hủy liên kết thừa kế",
             "notification": {
                 "notificationCopyFailureMessage": "Không thể sao chép văn bản vào bảng tạm.",
                 "notificationCopySuccessMessage": "Văn bản đã được sao chép vào clipboard."
@@ -1218,7 +1221,8 @@
         "sw-media-preview-v2": {
             "fallbackAudioTagSupport": "Trình duyệt của bạn không hỗ trợ thẻ âm thanh",
             "fallbackVideoTagSupport": "Trình duyệt của bạn không hỗ trợ thẻ video",
-            "textNoMedia": "Không có phương tiện nào"
+            "textNoMedia": "Không có phương tiện nào",
+            "warningUnsupportedFormat": "Định dạng \"{format}\" có thể không được hỗ trợ trong tất cả các trình duyệt."
         },
         "sw-media-upload": {
             "buttonFileUpload": "Tải lên tệp",
@@ -2708,13 +2712,19 @@
                 "config": {
                     "warning": "Mã HTML không được lọc có thể dẫn đến rủi ro bảo mật. Vui lòng chỉ chèn mã HTML từ các nguồn đáng tin cậy và kiểm tra các thay đổi của bạn trước khi xuất bản chúng."
                 },
-                "label": "HTML"
+                "label": "HTML",
+                "labelContent": "Nội dung"
             },
             "image": {
                 "config": {
+                    "helpText": {
+                        "fetchPriorityHigh": "Kích hoạt tùy chọn này nếu hình ảnh là hình ảnh đầu tiên trên trang. Hình ảnh sau đó sẽ được gán thuộc tính 'fetchpriority=\"high\"', yêu cầu trình duyệt tải nó với mức độ ưu tiên cao hơn. Điều này có thể giúp cải thiện Largest Contentful Paint (LCP).",
+                        "isDecorative": "Khi tùy chọn này được bật, thông tin hình ảnh sẽ không được đọc ra bởi trình đọc màn hình. Điều này có nghĩa là các thẻ “alt” và “title” sẽ vẫn trống."
+                    },
                     "label": {
                         "ariaLabel": "Mô tả liên kết",
                         "ariaLabelHelpText": "Văn bản này sẽ được đọc bởi trình đọc màn hình dưới dạng văn bản liên kết.",
+                        "fetchPriorityHigh": "Ưu tiên tìm nạp cao",
                         "isDecorative": "Đánh dấu hình ảnh là trang trí",
                         "isDecorativeHelpText": "Khi tùy chọn này được bật, thông tin hình ảnh sẽ không được đọc ra bởi trình đọc màn hình.",
                         "linkNewTab": "Mở liên kết trong tab mới",
@@ -2759,7 +2769,8 @@
                         "navigationDots": "Điều hướng dấu chấm",
                         "navigationPositionInside": "Bên trong",
                         "navigationPositionNone": "Không có",
-                        "navigationPositionOutside": "Bên ngoài"
+                        "navigationPositionOutside": "Bên ngoài",
+                        "sliderItems": "Hình ảnh"
                     }
                 },
                 "label": "Trượt hình ảnh"
@@ -2977,6 +2988,16 @@
             "moduleTitle": "Trải nghiệm mua sắm",
             "placeholderSearchBar": "Tìm kiếm bố trí...",
             "privacyNotice": "Bằng cách chọn tiếp tục, bạn xác nhận rằng bạn đã đọc thông tin bảo vệ dữ liệu <a href=\"%privacyUrl%\">của chúng tôi</a> và chấp nhận các điều khoản và điều kiện chung <a href=\"%tosUrl%\">của chúng tôi</a>."
+        },
+        "inherit": {
+            "formBanner": "Bố cục này đã kế thừa các trường. Có nghĩa là miễn là trạng thái thừa kế hoạt động, nội dung sẽ được kế thừa. Các trường kế thừa có thể được hủy liên kết bằng cách nhấp vào biểu tượng liên kết. Nhấp vào biểu tượng một lần nữa sẽ đặt trạng thái thừa kế trở lại.",
+            "tooltip": "Trường này không tồn tại trên bố cục cơ sở và không thể được kế thừa.",
+            "unlinkAllButton": "Đặt lại tất cả các trường.",
+            "unlinkAllConfirmText": "Bạn có chắc chắn muốn thiết lập lại tất cả các trường không? Điều này sẽ xóa vĩnh viễn tất cả nội dung chưa được liên kết.",
+            "unlinkAllTitle": "Đặt lại tất cả các trường",
+            "unlinkFieldConfirmText": "Bạn có chắc chắn muốn khôi phục quyền thừa kế? Thao tác này sẽ xóa tất cả dữ liệu tùy chỉnh của trường này và khôi phục các giá trị khỏi phần tử cha.",
+            "unlinkFieldTitle": "Khôi phục thừa kế",
+            "unlinkNotice": "Một số trường thừa kế đã bị hủy liên kết."
         },
         "list": {
             "gridHeaderAssignedPages": "Các trang được chỉ định",
@@ -4877,6 +4898,7 @@
         },
         "modal": {
             "affectedList": "Các kênh bán hàng sau bị ảnh hưởng:",
+            "confirmButton": "Dù sao vẫn tiếp tục",
             "mainContent": "Đã có một mẫu đầu trang và chân trang được gán cho các kênh bán hàng sau đây. Nếu bạn tiếp tục và lưu, nhiệm vụ đó sẽ bị ghi đè bằng các thay đổi của bạn.",
             "title": "Nhiều bài tập"
         }
@@ -5102,6 +5124,9 @@
             "labelTabItemLibrary": "Thư viện phương tiện",
             "labelTabItemUpload": "Tải lên tệp",
             "titleModal": "Chọn phương tiện"
+        },
+        "sw-media-save-modal": {
+            "titleModal": "Lưu trong phương tiện truyền thông"
         }
     },
     "sw-meteor": {
@@ -5619,7 +5644,6 @@
                     "and": "và",
                     "by": "bởi",
                     "lastChanged": "Thay đổi lần cuối",
-                    "on": "trên",
                     "with": "với"
                 }
             },
@@ -7366,6 +7390,7 @@
             "descriptionTaxCalculation": "Thay đổi cài đặt này có thể dẫn đến vấn đề kế toán với các nhà cung cấp thanh toán bên ngoài. Kiểm tra lại cách VAT được tính bởi các nhà cung cấp thanh toán mà bạn sử dụng, trước khi bạn thực hiện bất kỳ thay đổi nào.",
             "favouriteLabel": "Đánh dấu Kênh Sales là yêu thích",
             "footerCategory": "Điều hướng chân trang điểm nhập",
+            "foreignKeyDelete": "Kênh bán hàng này không thể bị xóa vì nó vẫn đang được sử dụng bởi {assignment}.",
             "helpTextTaxCalculation": {
                 "label": "Nếu nhà cung cấp dịch vụ thuế được kích hoạt, các cài đặt này có thể bị ghi đè. Bạn có thể kiểm tra điều này trong {link}.",
                 "linkText": "cài đặt"
@@ -8338,6 +8363,7 @@
                         "_score": "_score",
                         "customField": "Trường tùy chỉnh",
                         "product": {
+                            "available": "Có sẵn",
                             "cheapestPrice": "Giá sản phẩm rẻ nhất",
                             "createdAt": "Ngày tạo",
                             "listingPrices": "Giá niêm yết sản phẩm",
@@ -8718,6 +8744,7 @@
                 "height": "Chiều cao",
                 "length": "Chiều dài",
                 "manufacturerNumber": "Số sản phẩm nhà sản xuất",
+                "packUnit": "Đơn vị gói",
                 "property": "Bất động sản",
                 "referencePrice": "Đơn giá",
                 "releaseDate": "Ngày phát hành",
