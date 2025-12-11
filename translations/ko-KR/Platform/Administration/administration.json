@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "파일을 업로드하는 동안 오류가 발생했습니다."
                 },
+                "illegalFileType": {
+                    "message": "\"{name}\" 파일을 업로드할 수 없습니다.이 파일 형식은 지원되지 않습니다."
+                },
                 "illegalFileUrl": {
                     "message": "로컬 URL에서 업로드할 수 없습니다.",
                     "title": "잘못된 URL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "파일 이름 \"{fileName}“에 잘못된 문자가 있습니다."
                 },
+                "requestCanceled": {
+                    "message": "업로드가 취소되었습니다."
+                },
                 "success": {
                     "message": "파일이 저장되지 않았습니다. | 파일이 저장되었습니다. | {count} / {total} 파일이 저장되었습니다."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "파일을 업로드할 수 없습니다. | 일부 파일을 업로드할 수 없습니다.",
+                "message": "파일 업로드 | 파일 업로드"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "배송 상태 선택...",
                 "placeholderOrderStatus": "주문 상태 선택...",
                 "placeholderPaymentStatus": "지급 상태 선택...",
-                "titleSetStatus": "상태 할당"
+                "titleSetStatus": "상태 할당",
+                "transitionWarning": {
+                    "message": "상태 전환이 유효하지 않을 경우 흐름이 실패할 수 있으므로 상태 전환을 사용할 때는 주의하십시오.이러한 문제를 피하려면 '강제 상태 전환'을 활성화하는 것이 좋습니다."
+                }
             },
             "tag": {
                 "labelAddTag": "태그 추가",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "사용 가능한 등록 정보",
             "columnProperty": "부동산",
             "columnValue": "등록 정보 값",
+            "descriptionEmptyState": "여기에서 등록 정보를 관리합니다.",
             "emptyStateNoOptionsDescription": "먼저 등록 정보 및 등록 정보 값을 작성한 다음 여기로 돌아와 할당하십시오.",
             "emptyStateNoOptionsTitle": "사용 가능한 값 없음",
             "emptyStateNoSelectedOptionsDescription": "위의 검색에서 값을 선택하십시오.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "동적 제품 그룹 \"{name}“이 (가) 저장되었습니다.",
             "placeholderDescription": "설명 입력...",
             "placeholderName": "제목 입력...",
+            "productStreamIndexingWarning": {
+                "action": "설명서에서 자세히 알아보기",
+                "message": "일부 기능은 예상대로 작동하지 않을 수 있습니다. <ul><li>범주 페이지는 HTTP 캐시가 만료되거나 수동으로 지워질 때까지 변경 사항을 반영하지 않을 수 있습니다.</li><li>“동적 제품 그룹의 항목”이라는 규칙 조건은 절대 사실이 아닙니다.</li></ul>",
+                "title": "동적 제품 그룹 인덱싱이 비활성화됨"
+            },
             "textHeadline": "새로운 동적 제품 그룹",
             "titleCard": "일반 정보",
             "titleFilter": "조건",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "환경설정 저장",
+                "share-all-data": "모두 공유하기",
+                "share-nothing": "아무것도 공유하지 않음"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/en/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "자세한 내용은 {data-use-details} 및 {privacy-policy}를 참조하십시오.",
+                "privacy-policy": {
+                    "label": "개인정보 보호 정책",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "매장 및 사용자 데이터를 공유하면 관리자가 어떻게 사용되는지 이해하고 일상 업무를 더 쉽게 수행할 수 있는 개선 사항을 개발하는 데 도움이 됩니다.",
+            "opt-out-info": "설정 및 프로필 설정을 통해 언제든지 거부할 수 있습니다.",
+            "promises": {
+                "gdpr-compliant": "GDPR을 준수합니다.",
+                "no-third-party": "제3자와 데이터를 공유하지 않습니다",
+                "securely-processed": "안전하게 저장된 데이터"
+            },
+            "store-data": {
+                "description": "{order}, {diagnostic}, {store} 데이터를 결합하면 기능을 개선하는 데 도움이 됩니다.회사에 동의할 권한이 있는지 확인하세요.",
+                "emphasizes": {
+                    "diagnostic": "진단",
+                    "order": "명령",
+                    "store": "데이터 저장"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Shopware 내의 진단 데이터</strong> 란 플랫폼의 시스템 상태, 오류 및 성능 메트릭과 관련된 정보를 말합니다.여기에는 시스템 로그, 오류 메시지, 서버 응답 시간 및 기타 기술 지표와 같은 세부 정보가 포함됩니다.이 데이터를 분석하면 일반적인 문제나 취약점을 신속하게 식별, 해결 및 수정하여 배포하여 플랫폼의 무결성을 유지할 수 있습니다.",
+                    "order": "<strong>Shopware 내 주문 데이터</strong> 는 플랫폼에서 이루어진 고객 주문에 대한 세부 정보를 말합니다.여기에는 주문한 제품, 수량, 가격, 원산지, 결제 방법, 배송 등과 같은 세부 정보가 포함됩니다.당사는 이 데이터를 분석하여 추세와 패턴을 파악하여 기능을 개선하고 비즈니스 성공을 개선하기 위해 설계된 새로운 서비스를 개발하는 데 도움이 됩니다.당사는 고객의 개인을 식별하는 데 사용할 수 있는 개인 데이터를 수집하지 않습니다.",
+                    "store": "<strong>Shopware 내 스토어 데이터</strong> 는 온라인 스토어와 관련된 모든 정보와 관련이 있습니다.제품, 목록, 가격, 이미지, 설명 등, 상점 설정에 관한 메타데이터 (예: 테마 및 플러그인) 등.당사는 관리자 또는 매장 방문자를 식별하는 데 사용할 수 있는 개인 데이터를 수집하지 않습니다.집계된 매장 데이터를 사용하여 머신 러닝을 통해 신흥 시장 트렌드와 같은 통찰력을 제공할 수 있으므로 이에 따라 제품 오퍼링이나 마케팅 전략을 조정할 수 있습니다."
+                },
+                "label-checkbox": "스토어 데이터 공유",
+                "title": "데이터 저장"
+            },
+            "title": "개선할 수 있도록 도와주세요",
+            "user-data": {
+                "description": "관리자와의 상호 작용 방식에 대해 {data} 를 사용하여 사용성 및 성능을 개선합니다.",
+                "emphasizes": {
+                    "data": "데이터"
+                },
+                "help-text": {
+                    "data": "<strong>Shopware 내 사용 데이터</strong> 는 관리자 사용자 및 매장 방문자가 당사 플랫폼과 상호 작용하는 방식과 관련된 정보와 관련이 있습니다.여기에는 다양한 Shopware 관리자 모듈과의 상호 작용, 조회한 페이지, 방문 기간, 클릭 경로, 플랫폼 및 상점에서의 사용자 활동 등의 세부 정보가 포함됩니다.사용 데이터를 평가하여 플랫폼에서 자주 방문하거나 방문하지 않는 영역을 식별하여 기능 채택을 측정할 수 있으며, 이를 통해 레이아웃, 디자인 및 기능을 개선할 수 있습니다."
+                },
+                "label-checkbox": "내 데이터 공유",
+                "title": "내 데이터"
+            }
+        },
         "general": {
             "description": "사용 데이터를 당사와 공유하도록 구성하여 Shopware를 개선하십시오.",
             "mainMenuItemGeneral": "데이터 공유",

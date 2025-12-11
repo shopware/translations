@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Kļūda augšuplādējot failu."
                 },
+                "illegalFileType": {
+                    "message": "Failu \"{name}\" nevarēja augšupielādēt. Šis faila tips netiek atbalstīts."
+                },
                 "illegalFileUrl": {
                     "message": "Augšupielāde no lokālā URL nav atļauta.",
                     "title": "Nederīga URL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "Faila nosaukums \"{fileName}\" satur nederīgas rakstzīmes."
                 },
+                "requestCanceled": {
+                    "message": "Augšupielāde ir atcelta."
+                },
                 "success": {
                     "message": "Nav saglabāts neviens fails. | Fails ir saglabāts. | {count} / {total} faili ir saglabāti."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Failu nevarēja augšupielādēt. | Dažus failus nevarēja augšupielādēt.",
+                "message": "Faila augšupielāde | Failu augšupielāde"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Izvēlēties piegādes statusu...",
                 "placeholderOrderStatus": "Izvēlēties pasūtījuma statusu...",
                 "placeholderPaymentStatus": "Izvēlēties maksājuma statusu...",
-                "titleSetStatus": "Piešķirt statusu"
+                "titleSetStatus": "Piešķirt statusu",
+                "transitionWarning": {
+                    "message": "Esiet piesardzīgs, lietojot statusa pārejas, jo tās var izraisīt neveiksmīgas plūsmas, ja statusa pāreja nav derīga. Lai izvairītos no šādām problēmām, apsveriet iespēju iespējot “Piespiedu statusa pārejas”."
+                }
             },
             "tag": {
                 "labelAddTag": "Pievienot tagu",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Iespējamie iestatījumi",
             "columnProperty": "Īpašības",
             "columnValue": "Īpašuma vērtība",
+            "descriptionEmptyState": "Īpašības pārvaldiet šeit.",
             "emptyStateNoOptionsDescription": "Vispirms izveidojiet rekvizītus un īpašuma vērtības, pēc tam atgriezieties šeit, lai tos piešķirtu.",
             "emptyStateNoOptionsTitle": "Nav pieejamu vērtību",
             "emptyStateNoSelectedOptionsDescription": "Lūdzu izvēlieties vērtibas no meklēšanas augstāk.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "Dinamiskā produktu grupa \"{name}\" ir saglabāta.",
             "placeholderDescription": "Ievadiet aprakstu...",
             "placeholderName": "Ievadiet virsrakstu...",
+            "productStreamIndexingWarning": {
+                "action": "Uzziniet vairāk mūsu dokumentācijā",
+                "message": "Dažas funkcijas var nedarboties, kā paredzēts: <ul><li>Kategorijas lapas var neatspoguļot izmaiņas, kamēr HTTP kešatmiņa beidzas vai tiek manuāli notīrīta.</li><li>Noteikuma nosacījums “Vienība dinamiskajā produktu grupā” nekad nebūs patiess.</li></ul>",
+                "title": "Dinamiskā produktu grupas indeksēšana ir atspējota"
+            },
             "textHeadline": "Jauna dinamiskā produktu grupa",
             "titleCard": "Pamatinformācija",
             "titleFilter": "Nosacījumi",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Saglabāt preferences",
+                "share-all-data": "Kopīgot visu",
+                "share-nothing": "Nedalieties neko"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/lv/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Lai iegūtu pilnu informāciju, skatiet {data-use-details} un mūsu {privacy-policy}.",
+                "privacy-policy": {
+                    "label": "Privātuma politika",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "Kopīgojot veikala un lietotāju datus, jūs palīdzat mums saprast, kā tiek izmantota administrācija, un izstrādāt uzlabojumus, kas atvieglo jūsu ikdienas darbu.",
+            "opt-out-info": "Jūs varat atteikties jebkurā laikā, izmantojot iestatījumus un profila iestatījumus.",
+            "promises": {
+                "gdpr-compliant": "Atbilst GDPR",
+                "no-third-party": "Dati netiek kopīgoti ar trešajām personām",
+                "securely-processed": "Droši glabātie dati"
+            },
+            "store-data": {
+                "description": "Apvienotie dati no {order}, {diagnostic}un {store} palīdz mums uzlabot funkcijas. Lūdzu, apstipriniet, ka esat pilnvarots sniegt piekrišanu savam uzņēmumam.",
+                "emphasizes": {
+                    "diagnostic": "diagnostika",
+                    "order": "rīkojumi",
+                    "store": "uzglabāt datus"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Diagnostikas dati</strong> Shopware ietvaros attiecas uz informāciju, kas saistīta ar sistēmas veselību, kļūdām un platformas veiktspējas metriku. Tas ietver informāciju, piemēram, sistēmas žurnālus, kļūdu ziņojumus, servera reakcijas laikus un citus tehniskos rādītājus. Šo datu analīze palīdz mums ātri identificēt, risināt un izvietot labojumus izplatītām problēmām vai ievainojamībām, saglabājot platformas integritāti.",
+                    "order": "<strong>Pasūtījumu dati</strong> Shopware ietvaros attiecas uz detalizētu informāciju par klientu pasūtījumiem, kas veikti platformā. Tas ietver tādas specifikas kā pasūtītie produkti, daudzumi, cenas, izcelsme, maksājuma veidi, sūtījums utt. Mēs analizējam šos datus, lai izprastu tendences un modeļus, kas palīdz mums uzlabot funkcijas, kā arī izstrādāt jaunus pakalpojumus, kas paredzēti, lai uzlabotu jūsu biznesa panākumus. Mēs neapkopojam jūsu klientu personas datus, kurus var izmantot, lai identificētu vienu personu.",
+                    "store": "<strong>Veikala dati</strong> veikalā Shopware attiecas uz visu informāciju, kas saistīta ar jūsu tiešsaistes veikalu. Piemēram, produkti, saraksti, cenas, attēli, apraksti utt., kā arī metadati par jūsu veikala iestatījumiem, piemēram, motīvi un spraudņi. Mēs neapkopojam personas datus, kurus var izmantot, lai identificētu administratora lietotāju vai veikala apmeklētāju. Izmantojot apkopotos veikala datus, mēs varam sniegt ieskatu, izmantojot mašīnmācīšanos, piemēram, jaunās tirgus tendences, ļaujot attiecīgi pielāgot produktu piedāvājumus vai mārketinga stratēģijas."
+                },
+                "label-checkbox": "Kopīgojiet veikala datus",
+                "title": "Glabājiet datus"
+            },
+            "title": "Palīdziet mums uzlabot",
+            "user-data": {
+                "description": "Mēs izmantojam {data} par to, kā jūs mijiedarboties ar administrāciju, lai uzlabotu tās lietojamību un veiktspēju.",
+                "emphasizes": {
+                    "data": "dati"
+                },
+                "help-text": {
+                    "data": "<strong>Lietošanas dati</strong> Shopware ietvaros attiecas uz informāciju, kas saistīta ar to, kā administratora lietotāji un veikalu apmeklētāji mijiedarbojas ar mūsu platformu. Tas ietver informāciju, piemēram, mijiedarbību ar dažādiem Shopware administratora moduļiem, skatītās lapas, apmeklējumu ilgumu, klikšķu ceļus un lietotāju darbības platformā un veikalā. Novērtējot lietošanas datus, mēs varam identificēt platformas apgabalus, kurus bieži apmeklē vai no kurām izvairās, lai izmērītu funkciju pieņemšanu, kā rezultātā iespējamie uzlabojumi izkārtojumā, dizainā un funkcionalitātē."
+                },
+                "label-checkbox": "Kopīgot savus datus",
+                "title": "Mani dati"
+            }
+        },
         "general": {
             "description": "Konfigurējiet, lai kopīgotu lietojuma datus ar mums, lai uzlabotu Shopware.",
             "mainMenuItemGeneral": "Datu koplietošana",

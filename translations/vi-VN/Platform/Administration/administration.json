@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Lỗi khi tải lên tệp."
                 },
+                "illegalFileType": {
+                    "message": "Không thể tải lên tệp \"{name}\". Loại tệp này không được hỗ trợ."
+                },
                 "illegalFileUrl": {
                     "message": "Không được phép tải lên từ URL địa phương.",
                     "title": "URL không hợp lệ"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "Tên tập tin \"{fileName}\" chứa các ký tự không hợp lệ."
                 },
+                "requestCanceled": {
+                    "message": "Việc tải lên đã bị hủy."
+                },
                 "success": {
                     "message": "Không có tập tin nào được lưu. | tập tin đã được lưu. | {count} / {total} tập tin đã được lưu."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Không thể tải lên tệp | Không thể tải lên một số tệp.",
+                "message": "Tải lên tập tin | Tải lên tập tin"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Chọn trạng thái vận chuyển...",
                 "placeholderOrderStatus": "Chọn trạng thái đơn hàng...",
                 "placeholderPaymentStatus": "Chọn trạng thái thanh toán...",
-                "titleSetStatus": "Gán trạng thái"
+                "titleSetStatus": "Gán trạng thái",
+                "transitionWarning": {
+                    "message": "Hãy cẩn thận khi sử dụng chuyển đổi trạng thái, vì chúng có thể dẫn đến luồng thất bại nếu quá trình chuyển trạng thái không hợp lệ. Cân nhắc bật “Buộc chuyển trạng thái” để tránh các vấn đề như vậy."
+                }
             },
             "tag": {
                 "labelAddTag": "Thêm thẻ",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Thuộc tính có sẵn",
             "columnProperty": "Thuộc tính",
             "columnValue": "Giá trị thuộc tính",
+            "descriptionEmptyState": "Quản lý các thuộc tính tại đây.",
             "emptyStateNoOptionsDescription": "Tạo các thuộc tính và giá trị thuộc tính trước tiên, sau đó trở lại đây để gán chúng.",
             "emptyStateNoOptionsTitle": "Không có giá trị sẵn dùng",
             "emptyStateNoSelectedOptionsDescription": "Vui lòng chọn giá trị từ tìm kiếm ở trên.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "Nhóm sản phẩm động \"{name}\" đã được lưu.",
             "placeholderDescription": "Nhập mô tả...",
             "placeholderName": "Nhập tiêu đề...",
+            "productStreamIndexingWarning": {
+                "action": "Tìm hiểu thêm trong tài liệu của chúng tôi",
+                "message": "Một số tính năng có thể không hoạt động như mong đợi: <ul><li>Các trang Danh mục có thể không phản ánh các thay đổi cho đến khi bộ nhớ cache HTTP hết hạn hoặc được xóa thủ công.</li><li>Điều kiện quy tắc “Mục trong nhóm sản phẩm động” sẽ không bao giờ đúng.</li></ul>",
+                "title": "Tính năng lập chỉ mục Nhóm sản phẩm động bị vô hiệu hóa"
+            },
             "textHeadline": "Nhóm sản phẩm động mới",
             "titleCard": "Thông tin chung",
             "titleFilter": "Điều kiện",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Lưu tùy chọn",
+                "share-all-data": "Chia sẻ tất cả",
+                "share-nothing": "Không chia sẻ gì"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/vi/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Để biết chi tiết đầy đủ, hãy xem {data-use-details} và {privacy-policy}của chúng tôi.",
+                "privacy-policy": {
+                    "label": "Chính sách bảo mật",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "Bằng cách chia sẻ dữ liệu cửa hàng và người dùng, bạn giúp chúng tôi hiểu cách Quản trị được sử dụng và phát triển các cải tiến giúp công việc hàng ngày của bạn dễ dàng hơn.",
+            "opt-out-info": "Bạn có thể chọn không tham gia bất cứ lúc nào thông qua cài đặt và cài đặt Hồ sơ.",
+            "promises": {
+                "gdpr-compliant": "Tuân thủ GDPR",
+                "no-third-party": "Không có dữ liệu nào được chia sẻ với bên thứ ba",
+                "securely-processed": "Dữ liệu được lưu trữ an toàn"
+            },
+            "store-data": {
+                "description": "Dữ liệu kết hợp từ {order}, {diagnostic}và {store} giúp chúng tôi cải thiện các tính năng. Vui lòng xác nhận bạn được ủy quyền đồng ý cho công ty của bạn.",
+                "emphasizes": {
+                    "diagnostic": "chẩn đoán",
+                    "order": "mệnh lệnh",
+                    "store": "lưu trữ dữ liệu"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Dữ liệu chẩn đoán</strong> trong Shopware đề cập đến thông tin liên quan đến tình trạng hệ thống, lỗi và chỉ số hiệu suất của nền tảng. Điều này bao gồm các chi tiết như nhật ký hệ thống, thông báo lỗi, thời gian phản hồi của máy chủ và các chỉ số kỹ thuật khác. Phân tích dữ liệu này giúp chúng tôi nhanh chóng xác định, giải quyết và triển khai các bản sửa lỗi cho các vấn đề hoặc lỗ hổng phổ biến, duy trì tính toàn vẹn của nền tảng.",
+                    "order": "<strong>Dữ liệu đơn hàng</strong> trong Shopware đề cập đến thông tin chi tiết về các đơn đặt hàng của khách hàng được đặt trên nền tảng. Điều này bao gồm các chi tiết cụ thể như sản phẩm được đặt hàng, số lượng, giá cả, xuất xứ, phương thức thanh toán, lô hàng, v.v. Chúng tôi phân tích dữ liệu này để hiểu các xu hướng và mô hình giúp chúng tôi nâng cao các tính năng cũng như phát triển các dịch vụ mới được thiết kế để cải thiện thành công kinh doanh của bạn. Chúng tôi không thu thập dữ liệu cá nhân từ khách hàng của bạn có thể được sử dụng để xác định một người duy nhất.",
+                    "store": "<strong>Lưu trữ dữ liệu</strong> trong Shopware liên quan đến tất cả thông tin liên quan đến cửa hàng trực tuyến của bạn. Chẳng hạn như sản phẩm, danh sách, giá cả, hình ảnh, mô tả, v.v., và siêu dữ liệu về thiết lập cửa hàng của bạn, chẳng hạn như chủ đề và plugin. Chúng tôi không thu thập dữ liệu cá nhân có thể được sử dụng để xác định người dùng quản trị viên hoặc khách truy cập cửa hàng. Sử dụng dữ liệu cửa hàng tổng hợp, chúng tôi có thể cung cấp thông tin chi tiết thông qua học máy như xu hướng thị trường mới nổi, cho phép bạn điều chỉnh các dịch vụ sản phẩm hoặc chiến lược tiếp thị cho phù hợp."
+                },
+                "label-checkbox": "Chia sẻ dữ liệu cửa hàng",
+                "title": "Lưu trữ dữ liệu"
+            },
+            "title": "Giúp chúng tôi cải thiện",
+            "user-data": {
+                "description": "Chúng tôi sử dụng {data} về cách bạn tương tác với Quản trị để cải thiện khả năng sử dụng và hiệu suất của Quản trị.",
+                "emphasizes": {
+                    "data": "dữ liệu"
+                },
+                "help-text": {
+                    "data": "<strong>Dữ liệu sử dụng</strong> trong Shopware liên quan đến thông tin liên quan đến cách người dùng quản trị và khách truy cập cửa hàng tương tác với nền tảng của chúng tôi. Điều này bao gồm các chi tiết như tương tác với các mô-đun quản trị Shopware khác nhau, các trang đã xem, thời lượng truy cập, đường dẫn nhấp chuột và hành động của người dùng trong nền tảng và mặt tiền cửa hàng. Bằng cách đánh giá dữ liệu sử dụng, chúng tôi có thể xác định các khu vực của nền tảng thường xuyên được truy cập hoặc tránh để đo lường việc áp dụng tính năng, dẫn đến những cải tiến tiềm năng trong bố cục, thiết kế và chức năng."
+                },
+                "label-checkbox": "Chia sẻ dữ liệu của tôi",
+                "title": "Dữ liệu của tôi"
+            }
+        },
         "general": {
             "description": "Định cấu hình để chia sẻ dữ liệu sử dụng với chúng tôi để cải thiện Shopware.",
             "mainMenuItemGeneral": "Chia sẻ dữ liệu",
