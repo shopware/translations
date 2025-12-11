@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Erreur lors du téléchargement"
                 },
+                "illegalFileType": {
+                    "message": "Le fichier « {name} » n'a pas pu être chargé. Ce type de fichier n'est pas pris en charge."
+                },
                 "illegalFileUrl": {
                     "message": "Le téléchargement par URL locales n'est pas autorisé.",
                     "title": "URL non valide"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "Le nom du fichier \"{fileName}\" contient des caractères spéciaux incorrects."
                 },
+                "requestCanceled": {
+                    "message": "Le téléchargement a été annulé."
+                },
                 "success": {
                     "message": "Aucun fichier enregistré. | Un fichier enregistré. | {count} / {total} fichiers enregistrés."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Le fichier n'a pas pu être chargé. | Certains fichiers n'ont pas pu être chargés.",
+                "message": "Téléchargement d'un fichier | Téléchargement de fichiers"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Sélectionnez le statut de livraison...",
                 "placeholderOrderStatus": "Sélectionner le statut de la commande...",
                 "placeholderPaymentStatus": "Sélectionner le statut du paiement...",
-                "titleSetStatus": "Assigner un statut"
+                "titleSetStatus": "Assigner un statut",
+                "transitionWarning": {
+                    "message": "Soyez prudent lorsque vous utilisez des transitions d'état, car elles peuvent entraîner l'échec des flux si la transition d'état n'est pas valide. Envisagez d'activer les « transitions de statut de la force » pour éviter de tels problèmes."
+                }
             },
             "tag": {
                 "labelAddTag": "Ajouter un tag",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Propriétés",
             "columnProperty": "Propriété",
             "columnValue": "Caractéristiques",
+            "descriptionEmptyState": "Gestion des propriétés.",
             "emptyStateNoOptionsDescription": "Vous devez d'abord créer les propriétés et leurs caractéristiques afin de pouvoir les attribuer ici.",
             "emptyStateNoOptionsTitle": "Il n'existe aucune valeur caractéristique.",
             "emptyStateNoSelectedOptionsDescription": "Veuillez sélectionner les caractéristiques dans la recherche.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "Le groupe de produits \"{name}\" a été enregistré.",
             "placeholderDescription": "Saisissez une description...",
             "placeholderName": "Saisissez un nom...",
+            "productStreamIndexingWarning": {
+                "action": "Pour en savoir plus, consultez notre documentation",
+                "message": "Certaines fonctionnalités peuvent ne pas fonctionner comme prévu : les pages de catégorie <ul><li>peuvent ne pas refléter les modifications avant l'expiration du cache HTTP ou son effacement manuel.</li><li>La condition de règle « Article dans un groupe de produits dynamique » ne sera jamais vraie.</li></ul>",
+                "title": "L'indexation dynamique des groupes de produits est désactivée"
+            },
             "textHeadline": "Nouveau groupe de produits",
             "titleCard": "Informations",
             "titleFilter": "Conditions",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Enregistrer les préférences",
+                "share-all-data": "Partagez tout",
+                "share-nothing": "Ne rien partager"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/fr/details d'utilisation des données",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Pour plus de détails, consultez {data-use-details} et notre {privacy-policy}.",
+                "privacy-policy": {
+                    "label": "Politique de confidentialité",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "En partageant les données de la boutique et des utilisateurs, vous nous aidez à comprendre comment l'Administration est utilisée et à développer des améliorations qui facilitent votre travail quotidien.",
+            "opt-out-info": "Vous pouvez vous désinscrire à tout moment via les paramètres et les paramètres du profil.",
+            "promises": {
+                "gdpr-compliant": "Conforme au RGPD",
+                "no-third-party": "Aucune donnée n'est partagée avec des tiers",
+                "securely-processed": "Données stockées en toute sécurité"
+            },
+            "store-data": {
+                "description": "Les données combinées de {order}, {diagnostic}et {store} nous aident à améliorer les fonctionnalités. Veuillez confirmer que vous êtes autorisé à donner votre consentement pour votre entreprise.",
+                "emphasizes": {
+                    "diagnostic": "diagnostics",
+                    "order": "commandes",
+                    "store": "stocker des données"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Les données de diagnostic</strong> de Shopware font référence aux informations relatives à l'état du système, aux erreurs et aux mesures de performance de la plateforme. Cela inclut des détails tels que les journaux système, les messages d'erreur, les temps de réponse du serveur et d'autres indicateurs techniques. L'analyse de ces données nous permet d'identifier, de résoudre et de déployer rapidement des correctifs pour les problèmes ou vulnérabilités courants, tout en préservant l'intégrité de la plateforme.",
+                    "order": "<strong>Les données de commande</strong> dans Shopware font référence aux informations détaillées sur les commandes des clients passées sur la plateforme. Cela inclut des informations spécifiques telles que les produits commandés, les quantités, les prix, l'origine, les modes de paiement, l'expédition, etc. Nous analysons ces données pour comprendre les tendances et les modèles qui nous aident à améliorer les fonctionnalités et à développer de nouveaux services conçus pour améliorer la réussite de votre entreprise. Nous ne collectons pas de données personnelles auprès de vos clients qui peuvent être utilisées pour identifier une seule personne.",
+                    "store": "<strong>Les données de boutique</strong> de Shopware concernent toutes les informations relatives à votre vitrine en ligne. Tels que les produits, les listes, les prix, les images, les descriptions, etc., et les métadonnées relatives à la configuration de votre boutique, telles que les thèmes et les plugins. Nous ne collectons pas de données personnelles pouvant être utilisées pour identifier un utilisateur administrateur ou un visiteur de la boutique. À l'aide des données agrégées des magasins, nous pouvons fournir des informations via l'apprentissage automatique, telles que les tendances émergentes du marché, ce qui vous permet d'ajuster les offres de produits ou les stratégies marketing en conséquence."
+                },
+                "label-checkbox": "Partager les données de la boutique",
+                "title": "Stockez les données"
+            },
+            "title": "Aidez-nous à nous améliorer",
+            "user-data": {
+                "description": "Nous utilisons {data} pour expliquer comment vous interagissez avec l'Administration afin d'améliorer sa facilité d'utilisation et ses performances.",
+                "emphasizes": {
+                    "data": "données"
+                },
+                "help-text": {
+                    "data": "<strong>Les données d'utilisation</strong> de Shopware concernent les informations relatives à la manière dont les utilisateurs administrateurs et les visiteurs de la vitrine interagissent avec notre plateforme. Cela inclut des détails tels que les interactions avec les différents modules d'administration de Shopware, les pages consultées, la durée des visites, les chemins de clics et les actions des utilisateurs au sein de la plateforme et de la vitrine. En évaluant les données d'utilisation, nous pouvons identifier les zones de la plateforme qui sont fréquemment visitées ou évitées afin de mesurer l'adoption des fonctionnalités, ce qui peut entraîner des améliorations potentielles en termes de mise en page, de conception et de fonctionnalités."
+                },
+                "label-checkbox": "Partager mes données",
+                "title": "Mes données"
+            }
+        },
         "general": {
             "description": "Configurez pour partager les données d'utilisation avec nous afin d'améliorer Shopware.",
             "mainMenuItemGeneral": "Données d'utilisation",

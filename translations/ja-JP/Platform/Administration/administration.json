@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "ファイルアップロード中にエラーが発生しました。"
                 },
+                "illegalFileType": {
+                    "message": "ファイル \"{name}\" をアップロードできませんでした。このファイルタイプはサポートされていません。"
+                },
                 "illegalFileUrl": {
                     "message": "ローカルURLからのアップロードは許可されていません。",
                     "title": "不正なURL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "ファイル名 \"{fileName}\" にはご利用いただけない文字が含まれています。"
                 },
+                "requestCanceled": {
+                    "message": "アップロードはキャンセルされました。"
+                },
                 "success": {
                     "message": "保存されたファイルはありません。 | ファイルは保存されました。 | {total} 件中 {count} 件のファイルが保存されました。"
                 }
+            },
+            "snackbar": {
+                "errorMessage": "ファイルをアップロードできませんでした。| 一部のファイルをアップロードできませんでした。",
+                "message": "ファイルのアップロード | ファイルのアップロード"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "配送状況を選択...",
                 "placeholderOrderStatus": "注文状況を選択...",
                 "placeholderPaymentStatus": "支払い状況を選択...",
-                "titleSetStatus": "ステータスの割り当て"
+                "titleSetStatus": "ステータスの割り当て",
+                "transitionWarning": {
+                    "message": "ステータス遷移を使用する場合は注意が必要です。ステータス遷移が有効でないと、フローが失敗する可能性があるためです。このような問題を回避するには、「ステータス遷移を強制する」を有効にすることを検討してください。"
+                }
             },
             "tag": {
                 "labelAddTag": "タグを追加",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "利用可能なプロパティ",
             "columnProperty": "プロパティ",
             "columnValue": "プロパティ値",
+            "descriptionEmptyState": "ここでプロパティを管理します。",
             "emptyStateNoOptionsDescription": "最初にプロパティとプロパティ値を作成してから、ここに戻ってそれらを割り当てます。",
             "emptyStateNoOptionsTitle": "使用可能な値はありません",
             "emptyStateNoSelectedOptionsDescription": "上の検索から値を選択してください。",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "動的製品グループ「{name}」が保存されました。",
             "placeholderDescription": "説明を入力...",
             "placeholderName": "タイトルを入力…",
+            "productStreamIndexingWarning": {
+                "action": "詳しくはドキュメンテーションをご覧ください",
+                "message": "一部の機能は期待どおりに動作しない場合があります。 <ul><li>カテゴリページは、HTTP キャッシュの有効期限が切れるか、手動でクリアされるまで、変更が反映されない場合があります。</li><li>「動的商品グループの商品」というルール条件は決して当てはまりません。</li></ul>",
+                "title": "動的製品グループのインデックス作成は無効になっています"
+            },
             "textHeadline": "新しいダイナミック製品グループ",
             "titleCard": "一般情報",
             "titleFilter": "条件",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "環境設定を保存",
+                "share-all-data": "すべてシェア",
+                "share-nothing": "何も共有しない"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/en/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "詳細については、 {data-use-details} と {privacy-policy}をご覧ください。",
+                "privacy-policy": {
+                    "label": "プライバシーポリシー",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "ストアとユーザーのデータを共有することで、アドミニストレーションがどのように使用されているかを理解し、日常業務をより簡単にするための改善策を開発するのに役立ちます。",
+            "opt-out-info": "設定とプロフィール設定からいつでもオプトアウトできます。",
+            "promises": {
+                "gdpr-compliant": "GDPR に準拠",
+                "no-third-party": "第三者とデータが共有されることはありません",
+                "securely-processed": "安全に保管されたデータ"
+            },
+            "store-data": {
+                "description": "{order}、 {diagnostic}、 {store} のデータを組み合わせると、機能の改善に役立ちます。会社に対する同意を与える権限があることを確認してください。",
+                "emphasizes": {
+                    "diagnostic": "診断",
+                    "order": "注文",
+                    "store": "データを保存する"
+                },
+                "help-text": {
+                    "diagnostic": "Shopware 内の <strong>診断データ</strong> とは、プラットフォームのシステムヘルス、エラー、およびパフォーマンスメトリックに関連する情報を指します。これには、システムログ、エラーメッセージ、サーバーの応答時間、その他の技術指標などの詳細が含まれます。このデータを分析することで、一般的な問題や脆弱性を迅速に特定、対処、修正プログラムを展開し、プラットフォームの整合性を維持することができます。",
+                    "order": "Shopware 内の <strong>注文データ</strong> は、プラットフォーム上で行われた顧客注文に関する詳細情報を指します。これには、注文された商品、数量、価格、原産地、支払い方法、出荷などの詳細が含まれます。このデータを分析して、機能の強化やお客様のビジネスの成功に役立つ新しいサービスの開発に役立つ傾向やパターンを理解します。個人を特定できるような個人データを顧客から収集することはありません。",
+                    "store": "<strong>Shopware内のストアデータ</strong> には、オンラインストアフロントに関連するすべての情報が含まれます。商品、出品情報、価格、画像、説明など、ショップの設定に関するメタデータ (テーマやプラグインなど)。管理者ユーザーやストアフロントの訪問者を特定できるような個人データは収集しません。集約された店舗データを使用して、新興市場の動向などの洞察を機械学習で提供できるため、ユーザーはそれに応じて商品の提供やマーケティング戦略を調整できます。"
+                },
+                "label-checkbox": "ストアデータを共有する",
+                "title": "データを保存する"
+            },
+            "title": "改善にご協力ください",
+            "user-data": {
+                "description": "アドミニストレーションの使い勝手とパフォーマンスを向上させるため、アドミニストレーションとのやりとりには {data} を使用しています。",
+                "emphasizes": {
+                    "data": "データ"
+                },
+                "help-text": {
+                    "data": "<strong>Shopware内の使用状況データ</strong> は、管理者ユーザーおよびストアフロント訪問者が当社のプラットフォームをどのように利用しているかに関する情報に関するものです。これには、さまざまなShopware管理モジュールとのやり取り、閲覧ページ、訪問時間、クリックパス、プラットフォームおよびストアフロント内でのユーザーアクションなどの詳細が含まれます。利用状況データを評価することで、プラットフォーム内で頻繁に訪問される領域や避けている領域を特定し、機能の採用状況を測定できます。これにより、レイアウト、デザイン、機能の改善につながる可能性があります。"
+                },
+                "label-checkbox": "私のデータを共有する",
+                "title": "マイデータ"
+            }
+        },
         "general": {
             "description": "Shopwareを改善するために、使用状況データを当社と共有するように設定してください。",
             "mainMenuItemGeneral": "使用データ",

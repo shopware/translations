@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Error durant la càrrega d'arxiu."
                 },
+                "illegalFileType": {
+                    "message": "El fitxer \"{name}\" no s'ha pogut carregar. Aquest tipus de fitxer no és compatible."
+                },
                 "illegalFileUrl": {
                     "message": "Carregar des d'URL locals no permesos.",
                     "title": "URL no vàlid"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "El nom de fitxer \"{fileName}\" conté caràcters no vàlids."
                 },
+                "requestCanceled": {
+                    "message": "La càrrega ha estat cancel·lada."
+                },
                 "success": {
                     "message": "No s'ha desat cap fitxer. | S'ha desat el fitxer. | S'han desat {count} / {total} fitxers."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "No s'ha pogut carregar el fitxer. | Alguns arxius no s'han pogut carregar.",
+                "message": "Carregar fitxer | Pujar arxius"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Seleccioneu l'estat de l'enviament...",
                 "placeholderOrderStatus": "Seleccioneu l'estat de l'ordre...",
                 "placeholderPaymentStatus": "Seleccioneu l'estat del pagament...",
-                "titleSetStatus": "Assignar estat"
+                "titleSetStatus": "Assignar estat",
+                "transitionWarning": {
+                    "message": "Aneu amb compte quan utilitzeu transicions d'estat, ja que poden provocar fluxos fallats si la transició d'estat no és vàlida. Considereu activar “Forçar transicions d'estat” per evitar aquests problemes."
+                }
             },
             "tag": {
                 "labelAddTag": "Afegir etiqueta",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Propietats disponibles",
             "columnProperty": "Immoble",
             "columnValue": "Valor immoble",
+            "descriptionEmptyState": "Gestiona les propietats aquí.",
             "emptyStateNoOptionsDescription": "Crea primer propietats i valors de propietat, després torna aquí per assignar-los.",
             "emptyStateNoOptionsTitle": "No hi ha valors disponibles",
             "emptyStateNoSelectedOptionsDescription": "Seleccioneu valors de la cerca anterior.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "S'ha desat el grup dinàmic de productes \"{name}\".",
             "placeholderDescription": "Introduir la descripció...",
             "placeholderName": "Introduïu el títol...",
+            "productStreamIndexingWarning": {
+                "action": "Obteniu més informació a la nostra documentació",
+                "message": "És possible que algunes funcions no funcionin com s'esperava: <ul><li>Les pàgines de categoria poden no reflectir canvis fins que la memòria cau HTTP caduca o s'esborri manualment.</li><li>La condició de regla “Element en grup de producte dinàmic” no serà mai certa.</li></ul>",
+                "title": "La indexació dinàmica de grups de productes està desactivada"
+            },
             "textHeadline": "Nou grup de productes dinàmics",
             "titleCard": "Informació general",
             "titleFilter": "Condicions",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Desa les preferències",
+                "share-all-data": "Comparteix tot",
+                "share-nothing": "No comparteix res"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/ca/dada-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Per a més detalls, vegeu {data-use-details} i el nostre {privacy-policy}.",
+                "privacy-policy": {
+                    "label": "Política de privacitat",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "En compartir dades de la botiga i dels usuaris, ens ajudes a entendre com s'utilitza l'Administració i desenvolupar millores que facilitin la teva feina diària més fàcil.",
+            "opt-out-info": "Pots donar-te de baixa en qualsevol moment a través de la configuració i la configuració del perfil.",
+            "promises": {
+                "gdpr-compliant": "Compatible amb RGPD",
+                "no-third-party": "No es comparteixen dades amb tercers",
+                "securely-processed": "Dades emmagatzemades de forma segura"
+            },
+            "store-data": {
+                "description": "Les dades combinades de {order}, {diagnostic}i {store} ens ajuden a millorar les característiques. Si us plau, confirmeu que esteu autoritzats a donar el consentiment per a la vostra empresa.",
+                "emphasizes": {
+                    "diagnostic": "diagnòstics",
+                    "order": "ordres",
+                    "store": "emmagatzemar dades"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Les dades diagnòstiques</strong> dins de Shopware es refereixen a la informació relacionada amb la salut del sistema, els errors, i les mètriques de rendiment de la plataforma. Això inclou detalls com ara registres del sistema, missatges d'error, temps de resposta del servidor i altres indicadors tècnics. L'anàlisi d'aquestes dades ens ajuda a identificar ràpidament, abordar i desplegar correccions de problemes o vulnerabilitats habituals, mantenint la integritat de la plataforma.",
+                    "order": "<strong>Dades de comandes</strong> dins Shopware fa referència a la informació detallada sobre les comandes dels clients realitzades a la plataforma. Això inclou especificitats com ara productes ordenats, quantitats, preus, origen, mètodes de pagament, enviament, etc.. Analitzem aquestes dades per comprendre tendències i patrons que ens ajudin a potenciar funcionalitats així com desenvolupar nous serveis dissenyats per millorar el seu èxit empresarial. No recopilem dades personals dels seus clients que es puguin utilitzar per identificar una sola persona.",
+                    "store": "<strong>Les dades de l'emmagatzematge</strong> dins de Shopware corresponen a tota la informació relacionada amb la vostra botiga en línia. Com ara productes, llistats, preus, imatges, descripcions, etc., i metadades sobre la configuració de la vostra botiga, com ara temes i connectors. No recopilem dades personals que es puguin utilitzar per identificar un usuari administrador o un visitant de la botiga. Utilitzant dades agregades de la botiga, podem proporcionar informació mitjançant l'aprenentatge automàtic, com ara tendències emergents del mercat, permetent ajustar les ofertes de productes o les estratègies de màrqueting en conseqüència."
+                },
+                "label-checkbox": "Compartir dades de la botiga",
+                "title": "Emmagatzemar dades"
+            },
+            "title": "Ajuda'ns a millorar",
+            "user-data": {
+                "description": "Utilitzem {data} sobre com interactues amb l'Administració per millorar la seva usabilitat i rendiment.",
+                "emphasizes": {
+                    "data": "dades"
+                },
+                "help-text": {
+                    "data": "<strong>Les dades d'ús</strong> dins de Shopware pertanyen a la informació relacionada amb com interactuen els usuaris administradors i els visitants de la botiga amb la nostra plataforma. Això inclou detalls com interaccions amb diferents mòduls d'administració de Shopware, pàgines vistes, durada de les visites, camins de clics i accions dels usuaris dins de la plataforma i la botiga. Mitjançant l'avaluació de les dades d'ús, podem identificar àrees de la plataforma que es visiten freqüentment o s'eviten per mesurar l'adopció de característiques, cosa que condueix a millores potencials en el disseny, el disseny i la funcionalitat."
+                },
+                "label-checkbox": "Comparteix les meves dades",
+                "title": "Les meves dades"
+            }
+        },
         "general": {
             "description": "Configurar per compartir dades d'ús amb nosaltres per millorar Shopware.",
             "mainMenuItemGeneral": "Compartició de dades",

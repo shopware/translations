@@ -2,7 +2,7 @@
     "entityCategories": {
         "additional_privileges": {
             "entities": {
-                "api_feature_flag_toggle": "Funksie vlae skakel API",
+                "api_feature_flag_toggle": "Funksie vlae skakelaar API",
                 "api_service_list": "Dienste lys API",
                 "api_service_toggle": "Diens skakelaar API"
             },
@@ -19,11 +19,11 @@
         },
         "app": {
             "entities": {
-                "app": "App",
-                "app_action_button": "Aksieknoppie",
-                "app_action_button_translation": "Vertaling van aksie knoppie",
-                "app_template": "App sjabloon",
-                "app_translation": "App vertaling"
+                "app": "Toepassing",
+                "app_action_button": "Aksie knoppie",
+                "app_action_button_translation": "Aksie knoppie vertaling",
+                "app_template": "Toepassing sjabloon",
+                "app_translation": "Toepassing vertaling"
             },
             "title": "Programme"
         },
@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Fout tydens die oplaai van lêer."
                 },
+                "illegalFileType": {
+                    "message": "Die lêer \"{name}\" kon nie opgelaai word nie. Hierdie lêertipe word nie ondersteun nie."
+                },
                 "illegalFileUrl": {
                     "message": "Laai vanaf plaaslike URL's nie toegelaat nie.",
                     "title": "Ongeldige URL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "Die lêernaam \"{fileName}\" bevat ongeldige karakters."
                 },
+                "requestCanceled": {
+                    "message": "Die oplaai is gekanselleer."
+                },
                 "success": {
                     "message": "Geen lêer is gestoor nie. | Lêer is gestoor. | {count} / {total} lêers is gestoor."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Lêer kon nie opgelaai word nie. | Sommige lêers kon nie opgelaai word nie.",
+                "message": "Laai lêer op | Laai lêers op"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Kies afleweringstatus...",
                 "placeholderOrderStatus": "Kies bestellingstatus...",
                 "placeholderPaymentStatus": "Kies betalingstatus...",
-                "titleSetStatus": "Ken status toe"
+                "titleSetStatus": "Ken status toe",
+                "transitionWarning": {
+                    "message": "Wees versigtig wanneer u statusoorgange gebruik, aangesien dit kan lei tot mislukkende vloei as die statusoorgang nie geldig is nie. Oorweeg dit om “Force status -oorgange” in te skakel om sulke probleme te vermy."
+                }
             },
             "tag": {
                 "labelAddTag": "Voeg tag by",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Beskikbare eiendomme",
             "columnProperty": "eiendom",
             "columnValue": "Eiendomswaarde",
+            "descriptionEmptyState": "Bestuur eiendomme hier.",
             "emptyStateNoOptionsDescription": "Skep eers eienskappe en eiendomswaardes en keer dan terug hier om dit toe te ken.",
             "emptyStateNoOptionsTitle": "Geen waardes beskikbaar nie",
             "emptyStateNoSelectedOptionsDescription": "Kies asseblief waardes uit die soektog hierbo.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "Dinamiese produkgroep \"{name}\" is gestoor.",
             "placeholderDescription": "Voer beskrywing in...",
             "placeholderName": "Voer titel in...",
+            "productStreamIndexingWarning": {
+                "action": "Kom meer te wete in ons dokumentasie",
+                "message": "Sommige funksies werk dalk nie soos verwag nie: <ul><li>Kategorie bladsye weerspieël dalk nie veranderinge totdat die HTTP-kas verstryk of met die hand skoongemaak word nie.</li><li>Die reëlvoorwaarde “Item in dinamiese produkgroep” sal nooit waar wees nie.</li></ul>",
+                "title": "Dinamiese produkgroep-indeksering is gedeaktiveer"
+            },
             "textHeadline": "Nuwe dinamiese produkgroep",
             "titleCard": "Algemene inligting",
             "titleFilter": "Voorwaardes",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Stoor voorkeure",
+                "share-all-data": "Deel alles",
+                "share-nothing": "Deel niks"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/en/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Vir volledige besonderhede, sien {data-use-details} en ons {privacy-policy}.",
+                "privacy-policy": {
+                    "label": "Privaatheidsbeleid",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "Deur winkel- en gebruikersdata te deel, help u ons om te verstaan hoe die administrasie gebruik word en verbeterings ontwikkel wat u daaglikse werk makliker maak.",
+            "opt-out-info": "U kan te eniger tyd afsluit via die instellings en profielinstellings.",
+            "promises": {
+                "gdpr-compliant": "GDPR voldoen",
+                "no-third-party": "Geen data word met derde partye gedeel nie",
+                "securely-processed": "Veilig gestoorde data"
+            },
+            "store-data": {
+                "description": "Gekombineerde data van {order}, {diagnostic}en {store} help ons om funksies te verbeter. Bevestig asseblief dat u gemagtig is om toestemming vir u maatskappy te gee.",
+                "emphasizes": {
+                    "diagnostic": "diagnostiek",
+                    "order": "opdragte",
+                    "store": "stoor data"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Diagnostiese data</strong> binne Shopware verwys na die inligting wat verband hou met stelselgesondheid, foute en prestasiematrieke van die platform. Dit sluit besonderhede in soos stelsellogboodskappe, foutboodskappe, bediener-reaksietye en ander tegniese aanwysers. Die ontleding van hierdie data help ons om oplossings vir algemene probleme of kwesbaarhede vinnig te identifiseer, aan te spreek en te implementeer, en die integriteit van die platform te handhaaf.",
+                    "order": "<strong>Bestellingsdata</strong> binne Shopware verwys na die gedetailleerde inligting oor kliëntebestellings wat op die platform geplaas word. Dit sluit besonderhede in soos bestelde produkte, hoeveelhede, pryse, oorsprong, betaalmetodes, versending, ens. Ons ontleed hierdie data om tendense en patrone te verstaan wat ons help om funksies te verbeter asook om nuwe dienste te ontwikkel wat ontwerp is om u besigheidsukses te verbeter. Ons versamel nie persoonlike data van u kliënte wat gebruik kan word om 'n enkele persoon te identifiseer nie.",
+                    "store": "<strong>Stoordata</strong> binne Shopware het betrekking tot al die inligting wat verband hou met u aanlynwinkelfront. Soos produkte, lyste, pryse, beelde, beskrywings, ens., en metadata oor die opstelling van u winkel, soos temas en plugins. Ons versamel nie persoonlike data wat gebruik kan word om 'n admingebruiker of 'n winkelbesoeker te identifiseer nie. Met behulp van saamgestelde winkeldata kan ons insigte verskaf via masjienleer soos opkomende marktendense, sodat u produkaanbiedings of bemarkingstrategieë dienooreenkomstig kan aanpas."
+                },
+                "label-checkbox": "Deel winkeldata",
+                "title": "Stoor data"
+            },
+            "title": "Help ons om te verbeter",
+            "user-data": {
+                "description": "Ons gebruik {data} oor hoe u met die administrasie kommunikeer om die bruikbaarheid en prestasie daarvan te verbeter.",
+                "emphasizes": {
+                    "data": "inligting"
+                },
+                "help-text": {
+                    "data": "<strong>Gebruiksdata</strong> binne Shopware het betrekking tot die inligting wat verband hou met hoe admingebruikers en winkelbesoekers met ons platform omgaan. Dit sluit besonderhede in soos interaksies met verskillende Shopware-administraatormodules, bladsye wat gekyk word, duur van besoeke, klikpaaie en gebruikersaksies binne die platform en winkelfront. Deur die gebruiksdata te evalueer, kan ons areas van die platform identifiseer wat gereeld besoek word of vermy word om die aanvaarding van funksies te meet, wat lei tot moontlike verbeterings in uitleg, ontwerp en funksionaliteit."
+                },
+                "label-checkbox": "Deel my data",
+                "title": "My data"
+            }
+        },
         "general": {
             "description": "Stel op om gebruiksdata met ons te deel om Shopware te verbeter.",
             "mainMenuItemGeneral": "Data-deling",

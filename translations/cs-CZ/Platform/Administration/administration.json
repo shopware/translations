@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Chyba při odesílání."
                 },
+                "illegalFileType": {
+                    "message": "Soubor \"{name}\" nelze nahrát. Tento typ souboru není podporován."
+                },
                 "illegalFileUrl": {
                     "message": "Odeslání prostřednictvím místních adres URL není povoleno.",
                     "title": "Neplatná adresa URL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "Název souboru \"{fileName}\" obsahuje neplatné zvláštní znaky."
                 },
+                "requestCanceled": {
+                    "message": "Nahrávání bylo zrušeno."
+                },
                 "success": {
                     "message": "Žádný soubor nebyl úspěšně uložen. | Jeden soubor byl úspěšně uložen. | Počet úspěšně uložených souborů: {count} / {total}"
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Soubor nelze nahrát. | Některé soubory nelze nahrát.",
+                "message": "Nahrávání souboru | Nahrávání souborů"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Vyberte stav odeslání...",
                 "placeholderOrderStatus": "Vyberte stav objednávky...",
                 "placeholderPaymentStatus": "Zvolte stav platby...",
-                "titleSetStatus": "Přiřadit stav"
+                "titleSetStatus": "Přiřadit stav",
+                "transitionWarning": {
+                    "message": "Při používání stavových přechodů buďte opatrní, protože pokud přechod stavu není platný, mohou vést k selhání toků. Zvažte povolení „Vynutit přechody stavu“, abyste se těmto problémům vyhnuli."
+                }
             },
             "tag": {
                 "labelAddTag": "Přidat štítek",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Vlastnosti",
             "columnProperty": "Vlastnost",
             "columnValue": "Specifikace",
+            "descriptionEmptyState": "Správa vlastností.",
             "emptyStateNoOptionsDescription": "Abyste je zde mohli přiřadit, musíte nejdříve vytvořit vlastnosti a jejich specifikace.",
             "emptyStateNoOptionsTitle": "Neexistují žádné specifikace vlastností.",
             "emptyStateNoSelectedOptionsDescription": "Z vyhledání zvolte specifikaci.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "Skupina výrobků \"{name}\" byla úspěšně uložena.",
             "placeholderDescription": "Zadejte popis...",
             "placeholderName": "Zadejte název...",
+            "productStreamIndexingWarning": {
+                "action": "Další informace naleznete v naší dokumentaci",
+                "message": "Některé funkce nemusí fungovat podle očekávání: <ul><li>Stránky kategorií nemusí odrážet změny, dokud nevyprší platnost mezipaměti HTTP nebo nebude ručně vymazána.</li><li>Podmínka pravidla „Položka v dynamické skupině produktů“ nebude nikdy pravdivá.</li></ul>",
+                "title": "Dynamické indexování skupiny produktů je zakázáno"
+            },
             "textHeadline": "Nová skupina produktů",
             "titleCard": "Informace",
             "titleFilter": "Podmínky",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Uložit předvolby",
+                "share-all-data": "Sdílet vše",
+                "share-nothing": "Nesdílejte nic"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/cs/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Úplné podrobnosti viz {data-use-details} a náš {privacy-policy}.",
+                "privacy-policy": {
+                    "label": "Zásady ochrany osobních údajů",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "Sdílením údajů o úložištích a uživatelích nám pomáháte pochopit, jak je správa využívána, a vyvíjet vylepšení, která usnadňují vaši každodenní práci.",
+            "opt-out-info": "Můžete se kdykoli odhlásit prostřednictvím nastavení, a nastavení profilu.",
+            "promises": {
+                "gdpr-compliant": "V souladu s GDPR",
+                "no-third-party": "Žádné údaje nejsou sdíleny s třetími stranami",
+                "securely-processed": "Bezpečně uložená data"
+            },
+            "store-data": {
+                "description": "Kombinovaná data z {order}, {diagnostic}a {store} nám pomáhají vylepšovat funkce. Potvrďte prosím, že jste oprávněni udělit souhlas vaší společnosti.",
+                "emphasizes": {
+                    "diagnostic": "diagnostiky",
+                    "order": "rozkazy",
+                    "store": "ukládat data"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Diagnostická data</strong> v Shopware odkazují na informace týkající se stavu systému, chyb a metrik výkonu platformy. To zahrnuje podrobnosti, jako jsou systémové protokoly, chybové zprávy, doby odezvy serveru a další technické ukazatele. Analýza těchto dat nám pomáhá rychle identifikovat, řešit a nasadit opravy běžných problémů nebo zranitelností a zachovat integritu platformy.",
+                    "order": "<strong>Údaje o objednávce</strong> v rámci Shopware odkazují na podrobné informace o objednávkách zákazníků zadaných na platformě. To zahrnuje specifika, jako jsou objednané produkty, množství, ceny, původ, způsoby platby, zásilka atd. Tyto údaje analyzujeme, abychom porozuměli trendům a vzorcům, které nám pomáhají vylepšovat funkce a vyvíjet nové služby určené ke zlepšení vašeho obchodního úspěchu. Neshromažďujeme od vašich zákazníků osobní údaje, které by mohly být použity k identifikaci jedné osoby.",
+                    "store": "<strong>Úložiště dat</strong> v Shopware se týkají všech informací souvisejících s vaším online obchodem. Například produkty, nabídky, ceny, obrázky, popisy atd. a metadata o nastavení vašeho obchodu, jako jsou témata a pluginy. Neshromažďujeme osobní údaje, které lze použít k identifikaci uživatele administrátora nebo návštěvníka obchodu. Pomocí agregovaných dat z obchodů můžeme poskytnout informace prostřednictvím strojového učení, jako jsou trendy na rozvíjejících se trzích, což vám umožní odpovídajícím způsobem upravit nabídku produktů nebo marketingové strategie."
+                },
+                "label-checkbox": "Sdílení dat úložiště",
+                "title": "Uložit data"
+            },
+            "title": "Pomozte nám zlepšit",
+            "user-data": {
+                "description": "Používáme {data} o tom, jak komunikujete se správou, abychom zlepšili její použitelnost a výkon.",
+                "emphasizes": {
+                    "data": "data"
+                },
+                "help-text": {
+                    "data": "<strong>Údaje o používání</strong> v rámci Shopware se týkají informací souvisejících s tím, jak uživatelé administrátorů a návštěvníci obchodů interagují s naší platformou. To zahrnuje podrobnosti, jako jsou interakce s různými moduly pro správu Shopware, zobrazené stránky, doba návštěv, cesty kliknutí a akce uživatelů v rámci platformy a obchodu. Vyhodnocením údajů o využití můžeme identifikovat oblasti platformy, které jsou často navštěvovány nebo se jim vyhýbají, abychom změřili přijetí funkcí, což vede k potenciálním vylepšením rozložení, designu a funkčnosti."
+                },
+                "label-checkbox": "Sdílejte moje data",
+                "title": "Moje data"
+            }
+        },
         "general": {
             "description": "Nakonfigurujte, abyste s námi sdíleli údaje o využití, abyste vylepšili Shopware.",
             "mainMenuItemGeneral": "Údaje o použití",

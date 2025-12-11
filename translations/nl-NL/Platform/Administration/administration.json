@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Fout bij het uploaden."
                 },
+                "illegalFileType": {
+                    "message": "Het bestand \"{name}\" kon niet worden geüpload. Dit bestandstype wordt niet ondersteund."
+                },
                 "illegalFileUrl": {
                     "message": "Uploaden vanaf lokale URLs niet toegestaan.",
                     "title": "Ongeldige URL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "De bestandsnaam \"{fileName}\" bevat ongeldige speciale tekens."
                 },
+                "requestCanceled": {
+                    "message": "De upload is geannuleerd."
+                },
                 "success": {
                     "message": "Geen bestand opgeslagen. | Een bestand opgeslagen. | {count} / {total} bestanden opgeslagen."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Bestand kon niet worden geüpload. | Sommige bestanden konden niet worden geüpload.",
+                "message": "Bestand uploaden | Bestanden uploaden"
             }
         },
         "sw-media-upload-v2": {
@@ -1541,7 +1551,7 @@
         "ariaLabelButtonClose": "Zijbalk sluiten",
         "ariaLabelButtonCollapse": "Zijbalk samenvouwen",
         "ariaLabelButtonOpen": "Zijbalk openen",
-        "buttonCollapse": "ineenstorting"
+        "buttonCollapse": "Uitvouwen"
     },
     "sw-ai-copilot-warning": {
         "text": "AI-reacties kunnen onnauwkeurig of misleidend zijn."
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Selecteer de verzendstatus...",
                 "placeholderOrderStatus": "Status van bestelling selecteren...",
                 "placeholderPaymentStatus": "Selecteer betalingsstatus...",
-                "titleSetStatus": "Status toewijzen"
+                "titleSetStatus": "Status toewijzen",
+                "transitionWarning": {
+                    "message": "Wees voorzichtig bij het gebruik van statusovergangen, omdat deze kunnen leiden tot falende stromen als de statusovergang niet geldig is. Overweeg om „Forceer statusovergangen” in te schakelen om dergelijke problemen te voorkomen."
+                }
             },
             "tag": {
                 "labelAddTag": "Tag toevoegen",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Eigenschappen",
             "columnProperty": "Eigenschap",
             "columnValue": "Eigenschapswaarde",
+            "descriptionEmptyState": "Beheer van attribbuten.",
             "emptyStateNoOptionsDescription": "Maak eerst eigenschappen en eigenschapswaarden aan, keer dan terug om ze toe te wijzen.",
             "emptyStateNoOptionsTitle": "Geen gegevens beschikbaar",
             "emptyStateNoSelectedOptionsDescription": "Selecteer opties uit de bovenstaande zoekresultaten.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "De productgroep \"{name}\" is opgeslagen.",
             "placeholderDescription": "Voer een beschrijving in …",
             "placeholderName": "Titel invoeren...",
+            "productStreamIndexingWarning": {
+                "action": "Meer informatie vindt u in onze documentatie",
+                "message": "Sommige functies werken mogelijk niet zoals verwacht: op de categoriepagina's van <ul><li>worden wijzigingen mogelijk pas weergegeven nadat de HTTP-cache is verlopen of handmatig is gewist.</li><li>De regelvoorwaarde „Artikel in dynamische productgroep” zal nooit waar zijn.</li></ul>",
+                "title": "Dynamische productgroepindexering is uitgeschakeld"
+            },
             "textHeadline": "Nieuwe dynamische productgroep",
             "titleCard": "Algemene informatie",
             "titleFilter": "Voorwaarden",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Voorkeuren opslaan",
+                "share-all-data": "Alles delen",
+                "share-nothing": "Niets delen"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/en/gegevens over het gebruik van gegevens",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "Zie {data-use-details} en onze {privacy-policy}voor meer informatie.",
+                "privacy-policy": {
+                    "label": "Privacybeleid",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "Door winkel- en gebruikersgegevens te delen, helpt u ons te begrijpen hoe de administratie wordt gebruikt en verbeteringen te ontwikkelen die uw dagelijkse werk eenvoudiger maken.",
+            "opt-out-info": "Je kunt je op elk gewenst moment afmelden via de instellingen en de profielinstellingen.",
+            "promises": {
+                "gdpr-compliant": "Voldoet aan de AVG",
+                "no-third-party": "Er worden geen gegevens gedeeld met derden",
+                "securely-processed": "Veilig opgeslagen gegevens"
+            },
+            "store-data": {
+                "description": "Gecombineerde gegevens van {order}, {diagnostic}en {store} helpen ons om functies te verbeteren. Bevestig dat je bevoegd bent om toestemming te geven voor je bedrijf.",
+                "emphasizes": {
+                    "diagnostic": "diagnostiek",
+                    "order": "orders",
+                    "store": "gegevens opslaan"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Diagnostische gegevens</strong> binnen Shopware verwijst naar de informatie met betrekking tot de systeemstatus, fouten en prestatiestatistieken van het platform. Dit omvat details zoals systeemlogboeken, foutmeldingen, responstijden van de server en andere technische indicatoren. Door deze gegevens te analyseren, kunnen we snel oplossingen voor veelvoorkomende problemen of kwetsbaarheden identificeren, aanpakken en implementeren, waarbij de integriteit van het platform behouden blijft.",
+                    "order": "<strong>Bestelgegevens</strong> binnen Shopware verwijst naar de gedetailleerde informatie over bestellingen van klanten die op het platform zijn geplaatst. Dit omvat specifieke informatie zoals bestelde producten, hoeveelheden, prijzen, herkomst, betaalmethoden, verzending, enz. We analyseren deze gegevens om inzicht te krijgen in trends en patronen die ons helpen om functies te verbeteren en nieuwe diensten te ontwikkelen die zijn ontworpen om het succes van uw bedrijf te verbeteren. We verzamelen geen persoonlijke gegevens van uw klanten die kunnen worden gebruikt om één persoon te identificeren.",
+                    "store": "<strong>Bewaar gegevens</strong> in Shopware heeft betrekking op alle informatie met betrekking tot uw online winkel. Zoals producten, aanbiedingen, prijzen, afbeeldingen, beschrijvingen, enz., en metagegevens over de instellingen van je winkel, zoals thema's en plug-ins. We verzamelen geen persoonlijke gegevens die kunnen worden gebruikt om een beheerdergebruiker of een winkelbezoeker te identificeren. Met behulp van geaggregeerde winkelgegevens kunnen we via machine learning inzichten verschaffen, zoals trends in opkomende markten, zodat u productaanbod of marketingstrategieën daarop kunt aanpassen."
+                },
+                "label-checkbox": "Winkelgegevens delen",
+                "title": "Gegevens opslaan"
+            },
+            "title": "Help ons te verbeteren",
+            "user-data": {
+                "description": "We gebruiken {data} over hoe u omgaat met de administratie om de bruikbaarheid en prestaties te verbeteren.",
+                "emphasizes": {
+                    "data": "gegevens"
+                },
+                "help-text": {
+                    "data": "<strong>Gebruiksgegevens</strong> binnen Shopware hebben betrekking op de manier waarop beheerders en winkelbezoekers omgaan met ons platform. Dit omvat details zoals interacties met verschillende Shopware-beheermodules, bekeken pagina's, duur van bezoeken, klikpaden en gebruikersacties binnen het platform en de winkel. Door de gebruiksgegevens te evalueren, kunnen we delen van het platform identificeren die vaak worden bezocht of vermeden om de acceptatie van functies te meten, wat kan leiden tot mogelijke verbeteringen in lay-out, ontwerp en functionaliteit."
+                },
+                "label-checkbox": "Mijn gegevens delen",
+                "title": "Mijn gegevens"
+            }
+        },
         "general": {
             "description": "Configureer om gebruiksgegevens met ons te delen om Shopware te verbeteren.",
             "mainMenuItemGeneral": "Het delen van gegevens",

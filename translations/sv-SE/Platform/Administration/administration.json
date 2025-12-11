@@ -1238,6 +1238,9 @@
                 "failure": {
                     "message": "Fel vid uppladdning."
                 },
+                "illegalFileType": {
+                    "message": "Filen \"{name}\" kunde inte laddas upp. Den här filtypen stöds inte."
+                },
                 "illegalFileUrl": {
                     "message": "Det går inte att ladda upp via lokala webbadresser",
                     "title": "Ogiltig URL"
@@ -1245,9 +1248,16 @@
                 "illegalFilename": {
                     "message": "Filnamnet \"{fileName}\" innehåller ogiltiga specialtecken."
                 },
+                "requestCanceled": {
+                    "message": "Uppladdningen har avbrutits."
+                },
                 "success": {
                     "message": "Ingen fil framgångsrikt sparad. | En fil framgångsrikt sparad | {count} / {total} Filer framgångsrikt sparade."
                 }
+            },
+            "snackbar": {
+                "errorMessage": "Filen kunde inte laddas upp. | Vissa filer kunde inte laddas upp.",
+                "message": "Ladda upp fil | Ladda upp filer"
             }
         },
         "sw-media-upload-v2": {
@@ -4321,7 +4331,10 @@
                 "placeholderDeliveryStatus": "Välj leveransstatus...",
                 "placeholderOrderStatus": "Välj orderstatus...",
                 "placeholderPaymentStatus": "Välj betalningsstatus...",
-                "titleSetStatus": "Tilldela status"
+                "titleSetStatus": "Tilldela status",
+                "transitionWarning": {
+                    "message": "Var försiktig när du använder statusövergångar, eftersom de kan leda till misslyckade flöden om statusövergången inte är giltig. Överväg att aktivera ”Tvinga statusövergångar” för att undvika sådana problem."
+                }
             },
             "tag": {
                 "labelAddTag": "Lägg till tagg",
@@ -6372,6 +6385,7 @@
             "cardTitleProperties": "Egenskaper",
             "columnProperty": "Egenskap",
             "columnValue": "Specifikationer",
+            "descriptionEmptyState": "Hantering av egenskaper",
             "emptyStateNoOptionsDescription": "Du måste först skapa egenskaper och dess specifikationer för att kunna tilldela dem här.",
             "emptyStateNoOptionsTitle": "Ännu finns inga egenskaper-specifikationer",
             "emptyStateNoSelectedOptionsDescription": "Vänligen välj specifikationer från ovanstående sökning.",
@@ -6598,6 +6612,11 @@
             "messageSaveSuccess": "Produktgruppen \"{name}\" sparades framgångsrikt.",
             "placeholderDescription": "Ange en beskrivning...",
             "placeholderName": "Ange ett namn...",
+            "productStreamIndexingWarning": {
+                "action": "Läs mer i vår dokumentation",
+                "message": "Vissa funktioner kanske inte fungerar som förväntat: <ul><li>Kategorisidor kanske inte återspeglar ändringar förrän HTTP-cachen löper ut eller rensas manuellt.</li><li>Regelvillkoret ”Objekt i dynamisk produktgrupp” kommer aldrig att vara sant.</li></ul>",
+                "title": "Dynamisk indexering av produktgrupper är inaktiverad"
+            },
             "textHeadline": "Nya produktgrupper",
             "titleCard": "Information",
             "titleFilter": "Villkor",
@@ -9732,6 +9751,58 @@
         }
     },
     "sw-settings-usage-data": {
+        "consent-modal": {
+            "actions": {
+                "save-preferences": "Spara inställningar",
+                "share-all-data": "Dela alla",
+                "share-nothing": "Dela ingenting"
+            },
+            "external-links": {
+                "data-use-details": {
+                    "label": "shopware.com/sv/data-use-details",
+                    "link": "https://www.shopware.com/en/data-use-details/"
+                },
+                "label": "För fullständig information, se {data-use-details} och vår {privacy-policy}.",
+                "privacy-policy": {
+                    "label": "Sekretesspolicy",
+                    "link": "https://www.shopware.com/en/privacy/"
+                }
+            },
+            "intro": "Genom att dela butiks- och användardata hjälper du oss att förstå hur administrationen används och utveckla förbättringar som underlättar ditt dagliga arbete.",
+            "opt-out-info": "Du kan välja bort när som helst via inställningarna, och Profilinställningar.",
+            "promises": {
+                "gdpr-compliant": "GDPR-kompatibel",
+                "no-third-party": "Ingen data delas med tredje part",
+                "securely-processed": "Säkert lagrade data"
+            },
+            "store-data": {
+                "description": "Kombinerade data från {order}, {diagnostic}och {store} hjälper oss att förbättra funktioner. Bekräfta att du är behörig att ge samtycke till ditt företag.",
+                "emphasizes": {
+                    "diagnostic": "diagnostik",
+                    "order": "order",
+                    "store": "lagra data"
+                },
+                "help-text": {
+                    "diagnostic": "<strong>Diagnostiska data</strong> inom Shopware avser information relaterad till systemhälsa, fel och prestandamätvärden för plattformen. Detta inkluderar detaljer som systemloggar, felmeddelanden, serverns svarstider och andra tekniska indikatorer. Genom att analysera dessa data kan vi snabbt identifiera, åtgärda och distribuera korrigeringar för vanliga problem eller sårbarheter, vilket bibehåller plattformens integritet.",
+                    "order": "<strong>Beställningsdata</strong> inom Shopware avser detaljerad information om kundorder som görs på plattformen. Detta inkluderar detaljer som beställda produkter, kvantiteter, priser, ursprung, betalningsmetoder, leverans, etc.. Vi analyserar dessa data för att förstå trender och mönster som hjälper oss att förbättra funktioner samt utveckla nya tjänster som är utformade för att förbättra din affärsframgång. Vi samlar inte in personuppgifter från dina kunder som kan användas för att identifiera en enda person.",
+                    "store": "<strong>Butiksdata</strong> inom Shopware avser all information relaterad till din onlinebutik. Till exempel produkter, listor, priser, bilder, beskrivningar etc. och metadata om din butiks inställningar, till exempel teman och plugins. Vi samlar inte in personuppgifter som kan användas för att identifiera en administratörsanvändare eller en butiksbesökare. Med hjälp av aggregerade butiksdata kan vi ge insikter via maskininlärning, till exempel trender på framväxande marknader, så att du kan anpassa produktutbud eller marknadsföringsstrategier därefter."
+                },
+                "label-checkbox": "Dela butiksdata",
+                "title": "Lagra data"
+            },
+            "title": "Hjälp oss att förbättra",
+            "user-data": {
+                "description": "Vi använder {data} om hur du interagerar med administrationen för att förbättra dess användbarhet och prestanda.",
+                "emphasizes": {
+                    "data": "data"
+                },
+                "help-text": {
+                    "data": "<strong>Användningsdata</strong> inom Shopware avser information relaterad till hur administratörsanvändare och butiksbesökare interagerar med vår plattform. Detta inkluderar detaljer som interaktioner med olika Shopware-administratörsmoduler, visade sidor, besökstid, klickvägar, och användaråtgärder inom plattformen och butiken. Genom att utvärdera användningsdata kan vi identifiera områden på plattformen som ofta besöks eller undviks för att mäta användningen av funktioner, vilket leder till potentiella förbättringar av layout, design och funktionalitet."
+                },
+                "label-checkbox": "Dela mina uppgifter",
+                "title": "Mina uppgifter"
+            }
+        },
         "general": {
             "description": "Konfigurera för att dela användningsdata med oss för att förbättra Shopware.",
             "mainMenuItemGeneral": "Användningsdata",
