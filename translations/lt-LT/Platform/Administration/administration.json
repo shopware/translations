@@ -306,6 +306,7 @@
             "contact_form_send": "Kontaktinė forma išsiųsta",
             "customer_group_registration_accepted": "Klientų grupės registracijos užklausa priimta",
             "customer_group_registration_declined": "Klientų grupės registracijos prašymas atmestas",
+            "customer_password_changed": "Pakeistas kliento slaptažodis",
             "customer_recovery_request": "Klientas prašo naujo slaptažodžio",
             "mail_after_create_message": "Sukurtas el. paštas",
             "mail_before_send": "Siunčiamas el. Paštas",
@@ -732,6 +733,7 @@
                     "product": "Produktas"
                 },
                 "lineItemProductStates": "Prekė su produkto būsena",
+                "lineItemProductType": "Prekė su produkto tipu",
                 "lineItemPromotedRule": "Prekė reklamuojama",
                 "lineItemPropertyRule": "Prekė su variantu arba turto verte",
                 "lineItemPropertyValueRule": "Prekė su turto verte",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Skaitmeninis",
                         "is-physical": "Fizinis"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Skaitmeninis",
+                        "physical": "Fizinis"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Kopijuoti nuorodą",
             "labelContextMenuDetail": "Išsamiau",
             "labelContextMenuMove": "Perkelti",
+            "labelContextMenuRemoveCover": "Nuimkite dangtelį",
             "labelContextMenuRename": "Pervadinti",
             "labelContextMenuReplace": "Pakeisti",
+            "labelContextMenuSetCover": "Nustatykite viršelio vaizdą",
             "labelUploading": "Įkeliama...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "Viršelio vaizdas buvo pašalintas."
+                },
+                "coverSaveError": {
+                    "message": "Viršelio vaizdo nepavyko išsaugoti."
+                },
+                "coverSaveSuccess": {
+                    "message": "Viršelio vaizdas buvo išsaugotas."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Prašome pasirinkti vaizdą, kurį norite naudoti kaip viršelį."
+                },
                 "errorBlankItemName": {
                     "message": "Vaizdai negali būti išsaugoti: Prašome įvesti pavadinimą."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "Failo pavadinime \"{fileName}\" yra neleistinų simbolių."
                 },
+                "payloadTooLarge": {
+                    "message": "Failas yra per didelis. Prašome sumažinti failo dydį arba patikrinti serverio konfigūraciją."
+                },
                 "requestCanceled": {
                     "message": "Įkėlimas buvo atšauktas."
                 },
                 "success": {
                     "message": "Failas nebuvo išsaugotas. | Failas buvo išsaugotas. | {count} / {total} failai buvo išsaugoti."
+                },
+                "transportError": {
+                    "message": "Įkelti nepavyko dėl ryšio ar serverio laiko pabaigos. Patikrinkite savo ryšio ar serverio apribojimus."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Šis veiksmas padidina atitinkamo skaičiaus diapazono vertę.",
                     "label": "Sukurkite: sąskaitą faktūrą",
                     "labelDatePicker": "Data",
-                    "labelTextarea": "Pastaba",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Pastaba"
                 },
                 "warning": "Masinis redagavimas dabar naudoja patobulintą dokumento kūrimą. Tačiau vienas ar keli jūsų sistemos plėtiniai gali duoti skirtingus rezultatus kuriant naują dokumentą.\nTodėl patikrinkite, ar jūsų dokumentuose nėra skirtumų naudojant masinį redagavimą ir jo nenaudojant."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Dinaminė produktų grupės informacija",
                 "dynamicProductGroupHelpText": {
                     "label": "Produktai priklauso dinamiškai produktų grupei, jei jie atitinka tos produktų grupės sąlygas. Sąlygos gali būti apibrėžtos {link} modulyje.",
-                    "linkText": "dinaminės produktų grupės",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "dinaminės produktų grupės"
                 },
                 "dynamicProductGroupInvalidMessage": "Pasirinkta dinaminė produktų grupė negalioja. Prašome patikrinti savo dinaminę produktų grupės informaciją.",
                 "productAssignmentEmptyStateDescription": "Nepriskirta priskirtų produktų",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Vaizdo įrašas"
+                },
                 "vimeoVideo": {
                     "label": "Vimeo vaizdo įrašas"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Šį tekstą ekrano skaitytojai perskaitys kaip nuorodos tekstą.",
                         "fetchPriorityHigh": "Suaktyvinkite šią parinktį, jei vaizdas yra pirmasis puslapyje. Tada vaizdui bus priskirtas atributas 'fetchpriority=\"high\"', nurodantis naršyklę įkelti jį didesniu prioritetu. Tai gali padėti pagerinti didžiausius turinio dažus (LCP).",
-                        "isDecorative": "Įjungus šią parinktį, ekrano skaitytuvai vaizdo informacijos neskaitys. Tai reiškia, kad žymos “alt” ir “title” liks tuščios."
+                        "isDecorative": "Įjungus šią parinktį, ekrano skaitytuvai vaizdo informacijos neskaitys. Tai reiškia, kad žymos “alt” ir “title” liks tuščios.",
+                        "minHeight": "Įveskite minimalų aukštį su norimu įrenginiu. Pvz.: 200pikselių",
+                        "useFetchPriorityOnFirstItem": "Kai ši parinktis įjungta, pirmasis vaizdas įkeliamas su didesniu prioritetu. Tai gali pagerinti puslapio atvaizdavimo naršyklėje greitį."
                     },
                     "label": {
                         "ariaLabel": "Nuorodos aprašymas",
-                        "ariaLabelHelpText": "Šį tekstą ekrano skaitytojai perskaitys kaip nuorodos tekstą.",
                         "fetchPriorityHigh": "Gauti aukštą prioritetą",
                         "isDecorative": "Pažymėkite vaizdą kaip dekoratyvinį",
-                        "isDecorativeHelpText": "Įjungus šią parinktį, ekrano skaitytuvai vaizdo informacijos neskaitys.",
                         "linkNewTab": "Atidaryti naujame skirtuke",
                         "linkTo": "Nuorodos tikslas",
                         "minHeight": "Minimalus aukštis",
-                        "minHeightHelpText": "Įveskite minimalų aukštį su norimu įrenginiu. Pvz.: 200pikselių",
-                        "useFetchPriorityOnFirstItem": "Įkelkite pirmąjį vaizdą su didesniu prioritetu",
-                        "useFetchPriorityOnFirstItemHelpText": "Kai ši parinktis įjungta, pirmasis vaizdas įkeliamas su didesniu prioritetu. Tai gali pagerinti puslapio atvaizdavimo naršyklėje greitį."
+                        "useFetchPriorityOnFirstItem": "Įkelkite pirmąjį vaizdą su didesniu prioritetu"
                     },
                     "placeholder": {
                         "enterMinHeight": "Nurodykite minimalų aukštį...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Produkto aprašymas ir atsiliepimai",
                         "reviews": "Atsiliepimai"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Gamintojo logotipas"
+                },
+                "name": {
+                    "label": "Produkto pavadinimas"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Tekstas"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Skaitykite ekrano skaitytuvų ir turėtų trumpai apibūdinti vaizdo įrašo turinį ar paskirtį. Jei paliktas tuščias, vietoj to bus naudojamas pavadinimas arba alt tekstas, sukonfigūruotas medijos modulyje.",
+                        "autoPlay": "Automatinį paleidimą daugelis naršyklių leidžia tik tada, kai vaizdo įrašas yra nutildytas.<br>Naudojant automatinį paleidimą, viršelis nėra prasmingas, nes atkūrimas prasideda iškart ir patvirtinimo nereikia.",
+                        "minHeight": "Įveskite minimalų aukštį su norimu įrenginiu. Pvz.: 200pikselių",
+                        "playsInline": "“IOS” sistemoje vaizdo įrašai dažnai atidaromi per visą ekraną. Įgalinkite šią parinktį, kad atkūrimas būtų įtrauktas.",
+                        "showCover": "Medijos pasirinkime sukonfigūruotas viršelis bus rodomas tol, kol vartotojas patvirtins įkelti vaizdo įrašą spustelėjimu."
+                    },
+                    "label": {
+                        "ariaLabel": "Ekrano skaitytuvo pavadinimas",
+                        "autoPlay": "Leisti vaizdo įrašus automatiškai",
+                        "loop": "Nuolatos leisti vaizdo įrašą",
+                        "minHeight": "Minimalus aukštis",
+                        "muted": "Žaisti nutildytas",
+                        "playsInline": "Žaiskite “Inline” “iOS” įrenginiuose",
+                        "showControls": "Rodyti vaizdo įrašo valdymą",
+                        "showCover": "Įkelkite vaizdo įrašą tik po vartotojo patvirtinimo"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Įveskite ekrano skaitytuvo pavadinimą...",
+                        "minHeight": "Įveskite minimalų aukštį..."
+                    }
+                },
+                "label": "Vaizdo įrašas"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Patvirtinti",
             "acceptMessage": "Klientų grupė buvo pakeista",
             "alert": "Pateikta užklausa prieigai prie \"{name}\" klientų grupės.",
+            "customerInactiveMessage": "Neaktyvių klientų negalima priimti ar atmesti jokiai klientų grupei.",
             "decline": "Atmesti",
             "declineMessage": "Prašymas buvo atmestas",
             "errorMessage": "Nepavyksta apdoroti prašymo",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Užsakykite sandorių surinkimo grąžinimą",
             "paid": "Mokama",
             "paidPartially": "Mokama iš dalies",
+            "password": "Slaptažodis",
             "paymentMethod": "Mokėjimo būdas",
             "pending": "Laukiama",
             "placed": "Sukurtas",
@@ -4437,8 +4502,7 @@
                 "profile": "profilis",
                 "records": "Įrašai",
                 "size": "Dydis",
-                "state": "Būsena",
-                "user": "Vartotojas"
+                "state": "Būsena"
             },
             "contextMenu": {
                 "abortProcess": "Aborto procesas",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Atidaryti žurnalo informaciją",
                 "showProfile": "Rodyti profilį",
                 "showResults": "Rodyti santrauką"
+            },
+            "detail": {
+                "ExportLabel": "Eksportas",
+                "importLabel": "Importo"
             },
             "dryrun": "Sausas paleisti",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "Neteisingas taikymo srities prašymas.",
             "messageServerError": "Leidimų serveris susidūrė su netikėta būkle.",
             "messageUnsupportedGrantType": "Leidimo suteikimo tipas, nepalaikomas autorizacijos serverio.",
+            "orContinueWith": "Arba tęskite",
             "placeholderPassword": "Įveskite savo slaptažodį...",
             "placeholderUsername": "Įveskite savo vartotojo vardą...",
             "subheadlineMain": "Sveiki atvykę atgal."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Pridėkite el. Pašto šablonus spustelėdami mygtuką “pridėti”.",
             "emptyStateTitle": "Kol kas nėra el. pašto šablonų",
             "errorMediaItemDuplicated": "Žiniasklaidos elementas jau priskirtas",
+            "tabHeaderFooter": "Antraštės ir poraštės",
+            "tabMailTemplates": "Šablonai",
             "textDeleteConfirm": "Ar tikrai norite ištrinti el. Pašto šabloną \"{subject}“?",
             "textMailTemplateOverview": "Pašto šablonai",
             "titleMailFooterList": "Poraštė",
@@ -5072,7 +5143,9 @@
                 "download": "Atsisiųsti",
                 "horizontal": "horizontalios",
                 "move": "Perkelti",
+                "removeCover": "Nuimkite dangtelį",
                 "replace": "Pakeiskite",
+                "setCover": "Nustatykite viršelio vaizdą",
                 "settings": "Nustatymai",
                 "vertical": "vertikalus"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Išsaugoti žiniasklaidoje"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Modelių peržiūros priemonė"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Įveskite produkto numerį..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Produkto būsenų filtras yra pasenęs ir bus pašalintas iš v6.8. Vietoj to naudokite produkto tipo filtrą.",
                 "label": "Produkto būsenos",
                 "options": {
                     "digital": "Skaitmeninis",
                     "physical": "Fizinis"
                 },
                 "placeholder": "Pasirinkite produkto būseną..."
+            },
+            "productTypeFilter": {
+                "label": "Tipas",
+                "placeholder": "Pasirinkite produkto tipą..."
             },
             "releaseDateFilter": {
                 "label": "Išleidimo data"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Savybės",
             "cardTitleSellingPackaging": "Informacija apie pardavimą ir pakavimą"
         },
+        "type": {
+            "digital": "Skaitmeninis",
+            "physical": "Fizinis"
+        },
         "variations": {
             "backVariationsButton": "Grįžti",
             "configuratorCardTitle": "variantas generatorius",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "Dinaminė produktų grupė \"{name}\" buvo išsaugota.",
             "placeholderDescription": "Įveskite aprašymą...",
             "placeholderName": "Įveskite pavadinimą...",
+            "productStatesFilterWarning": "Ši dinaminė produktų grupė vis dar naudoja pasenusių produktų būsenų filtrą. Jis bus pašalintas v6.8 - vietoj to pereikite prie produkto tipo filtrą.",
             "productStreamIndexingWarning": {
                 "action": "Sužinokite daugiau mūsų dokumentuose",
                 "message": "Kai kurios funkcijos gali neveikti taip, kaip tikėtasi: <ul><li>Kategorijos puslapiai gali neatspindėti pakeitimų, kol pasibaigs HTTP talpykla arba bus rankiniu būdu išvalyta.</li><li>Taisyklės sąlyga “Prekė dinamiškoje produktų grupėje” niekada nebus teisinga.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "Bendrieji nustatymai"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Privatumo nuostatos"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "Anonimizuoti IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Kai įjungta, “view_cart” įvykis taip pat paleidžiamas, kai atidaromas offcanvas krepšelis, ne tik tam skirtame krepšelio puslapyje. Naudinga atliekant išsamią piltuvo analizę, tačiau gali išpūsti krepšelio peržiūros metriką.",
+                        "label": "“Track Offcanvas” krepšelis"
+                    },
                     "trackOrders": {
                         "label": "Sekti užsakymus"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Nustatymai"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "Nustatymų nepavyko rasti. Pabandykite naudoti kitą paieškos terminą.",
+                "noResultsHeadline": "Įrašų nerasta",
+                "placeholder": "Rasti nustatymus..."
+            },
             "tabAutomation": "Automatizavimas",
             "tabCommerce": "Komercija",
             "tabContent": "Turinys",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Rekomenduojama iš naujo indeksuoti duomenis, jei pasikeitė paieškos būsena, siekiant užtikrinti tikslius paieškos rezultatus.",
                 "buttonAddOption": "Pridėti parinktį",
                 "buttonEditApply": "Pritaikyti pakeitimus",
                 "helpTextEntitySelect": "Esybės tipas negali būti pakeistas naudojant papildomus laukus.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Jei sukurtas pasirinktinis laukas, bus sukurtas ir visų jūsų fragmentų rinkinių fragmentas. Shippet bus pavadintas “customFields.{name}”.",
                 "labelAllowCartExpose": "Galima įsigyti pirkinių krepšeliuose",
                 "labelAllowCustomerWrite": "Modifikuojamas per parduotuvės API",
+                "labelAllowSearchable": "Įtraukti į paiešką",
                 "labelCustomFieldPosition": "Pozicija",
                 "labelCustomFieldType": "Tipas",
                 "labelDate": "Data",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Naujas papildomas laukas",
                 "tooltipAllowCartExpose": "Suaktyvinkite, kad šis pasirinktinis laukas būtų prieinamas pirkinių krepšelio eilutės elementų naudingojoje apkrovoje. Tai reikalinga norint iš pradžių naudoti šį pasirinktinį lauką Taisyklių kūrimo priemonėje arba pasirinktiniuose šablonuose.",
                 "tooltipAllowCustomerWrite": "Kai aktyvi, parduotuvės API leidžiama keisti šį lauką. Tai gali būti naudojama pasirinktiniams duomenims saugoti, jei į parduotuvę įtraukiami nauji laukai. Pavyzdžiui, naujiems laukams registracijos formoje.",
+                "tooltipAllowSearchable": "Kai aktyvus, šis pasirinktinis laukas bus indeksuotas ir gali būti naudojamas paieškos konfigūracijose. Jei šis laukas paieškai nereikalingas, jis turėtų būti išjungtas, kad sumažintumėte indekso saugyklos dydį ir pagerintumėte paieškos našumą.",
                 "tooltipCartExposeDisabled": "Šiuo metu šis nustatymas negali būti pakeistas, nes pasirinktinį lauką naudoja viena ar daugiau taisyklių kūrėjo sąlygų.",
                 "tooltipCustomFieldPosition": "Kontroliuoja šio pasirinktinio lauko poziciją išsamių puslapių.",
                 "tooltipStoreApiAware": "Kai jis bus aktyvus, šis laukas bus prieinamas parduotuvės API. Ši parinktis gali būti išjungta, kad pasirinktinius duomenis būtų galima laikyti tik viduje, o ne padaryti juos prieinamus per parduotuvės API."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Numatytasis paieškos rezultatų rūšiavimas",
             "labelDefaultSorting": "numatytasis rūšiavimas",
             "mainMenuItemGeneral": "Produktai",
+            "messageSaveDefaultValuesEmpty": "Reikalinga numatytoji reikšmė",
             "messageSaveError": "Konfigūracijos nepavyko išsaugoti.",
             "messageSaveSuccess": "Nustatymai išsaugoti.",
             "placeholderDefaultSearchResultSorting": "Pasirinkite numatytąjį paieškos rezultatų rūšiavimą...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Pakeiskite šviesos intensyvumą 3D rodinyje.",
-                "label": "Šviesos intensyvumas"
-            }
-        },
         "general": {
             "buttonSave": "Išsaugoti",
             "description": "Tvarkykite medijos nustatymus čia.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Nustatykite šios taisyklės pavadinimą...",
             "placeholderPriority": "Nustatykite šios taisyklės prioritetą...",
             "placeholderTags": "Įveskite žymą...",
+            "placeholderType": "Įveskite tipą...",
+            "productStatesConditionWarning": "Sąlyga “Prekė su produkto būsena” yra pasenusi ir bus pašalinta iš v6.8. Vietoj to naudokite “Prekė su produkto tipu”.",
             "productStreamIndexingWarning": {
                 "action": "Sužinokite daugiau mūsų dokumentuose",
                 "message": "Sąlyga “Prekė dinamiškoje produktų grupėje” niekada nebus teisinga.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Duomenys nėra dalijamasi su trečiosiomis šalimis",
                 "securely-processed": "Saugiai saugomi duomenys"
             },
+            "share-store-data": "Dalindamiesi parduotuvės duomenimis, padedate mums suprasti, kaip naudojama Administracija, ir kurti patobulinimus, kurie palengvina jūsų kasdienį darbą.",
+            "share-user-data": "Dalindamiesi savo vartotojo duomenimis, padedate mums suprasti, kaip naudojama Administracija, ir kurti patobulinimus, kurie palengvina jūsų kasdienį darbą.",
             "store-data": {
                 "description": "Kombinuoti duomenys iš {order}, {diagnostic}ir {store} padeda mums pagerinti funkcijas. Patvirtinkite, kad esate įgaliotas duoti sutikimą dėl savo įmonės.",
                 "emphasizes": {

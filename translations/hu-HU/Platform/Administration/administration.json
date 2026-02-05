@@ -306,6 +306,7 @@
             "contact_form_send": "Kapcsolatfelvételi űrlap",
             "customer_group_registration_accepted": "Ügyfélcsoport regisztrációs kérelem elfogadva",
             "customer_group_registration_declined": "Elutasította az ügyfélcsoport regisztrációs kérelmét",
+            "customer_password_changed": "Megváltozott az ügyfél jelszava",
             "customer_recovery_request": "Az ügyfél új jelszót kér",
             "mail_after_create_message": "E-mail létrehozva",
             "mail_before_send": "E-mailt küldünk",
@@ -732,6 +733,7 @@
                     "product": "Termék"
                 },
                 "lineItemProductStates": "Termék állapotú termék",
+                "lineItemProductType": "Terméktípusú tétel",
                 "lineItemPromotedRule": "Az elem előléptetésre kerül",
                 "lineItemPropertyRule": "Cikk változattal vagy tulajdonságértékkel",
                 "lineItemPropertyValueRule": "Tétel tulajdonság értékkel",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Digitális",
                         "is-physical": "Fizikai"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Digitális",
+                        "physical": "Fizikai"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Link Másolása",
             "labelContextMenuDetail": "Részletek",
             "labelContextMenuMove": "Mozgás",
+            "labelContextMenuRemoveCover": "Távolítsa el a fedelet",
             "labelContextMenuRename": "Átnevezés",
             "labelContextMenuReplace": "Csere",
+            "labelContextMenuSetCover": "Borítókép beállítása",
             "labelUploading": "Feltöltés...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "A borítókép eltávolításra került."
+                },
+                "coverSaveError": {
+                    "message": "A borítóképet nem sikerült menteni."
+                },
+                "coverSaveSuccess": {
+                    "message": "A borítókép mentett."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Kérjük, válasszon ki egy képet, amelyet borítóként szeretne használni."
+                },
                 "errorBlankItemName": {
                     "message": "A hordozóelem nem menthető: Adjon meg egy nevet."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "A „{fileName}” fájlnév érvénytelen karaktereket tartalmaz."
                 },
+                "payloadTooLarge": {
+                    "message": "A fájl túl nagy. Kérjük, csökkentse a fájlméretet, vagy ellenőrizze a kiszolgáló konfigurációját."
+                },
                 "requestCanceled": {
                     "message": "A feltöltést törölték."
                 },
                 "success": {
                     "message": "Nincs fájl mentve. | A fájl mentve lett. | {count} / {total} fájl lett mentve."
+                },
+                "transportError": {
+                    "message": "A feltöltés sikertelen kapcsolat vagy kiszolgáló időtúllépése miatt. Kérjük, ellenőrizze a kapcsolat vagy a szerver korlátozásait."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Ez a művelet növeli a megfelelő számtartomány értékét.",
                     "label": "Generálás: Számla",
                     "labelDatePicker": "Dátum",
-                    "labelTextarea": "Megjegyzés",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Megjegyzés"
                 },
                 "warning": "A tömeges szerkesztés mostantól továbbfejlesztett dokumentumkészítést használ. A rendszer egy vagy több kiterjesztése azonban eltérő eredményeket hozhat az új dokumentum létrehozásával.\nEzért ellenőrizze, hogy dokumentumai eltéréseket mutatnak-e a tömeges szerkesztéssel és anélkül."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Dinamikus termékcsoport részletei",
                 "dynamicProductGroupHelpText": {
                     "label": "A termékek dinamikus termékcsoporthoz tartoznak, ha megfelelnek az adott termékcsoport feltételeinek. A feltételeket a {link} modulon belül lehet meghatározni.",
-                    "linkText": "dinamikus termékcsoportok",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "dinamikus termékcsoportok"
                 },
                 "dynamicProductGroupInvalidMessage": "A kiválasztott dinamikus termékcsoport érvénytelen. Kérjük, ellenőrizze a dinamikus termékcsoport adatait.",
                 "productAssignmentEmptyStateDescription": "Nincs hozzárendelt termék",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Videó"
+                },
                 "vimeoVideo": {
                     "label": "Vimeo videó"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Ezt a szöveget a képernyőolvasók hivatkozásként olvasják el.",
                         "fetchPriorityHigh": "Aktiválja ezt az opciót, ha a kép az első az oldalon. A képhez ezután hozzárendeljük a 'fetchpriority=\"high\"' attribútumot, és azt mondja a böngészőnek, hogy töltse be nagyobb prioritással. Ez segíthet a legnagyobb tartalmú festék (LCP) fejlesztésében.",
-                        "isDecorative": "Ha ez az opció engedélyezve van, a képernyőolvasók nem olvassák el a képadatokat. Ez azt jelenti, hogy az „alt” és „title” címkék üresek maradnak."
+                        "isDecorative": "Ha ez az opció engedélyezve van, a képernyőolvasók nem olvassák el a képadatokat. Ez azt jelenti, hogy az „alt” és „title” címkék üresek maradnak.",
+                        "minHeight": "Adja meg a minimális magasságot a kívánt egységgel. Például: 200px",
+                        "useFetchPriorityOnFirstItem": "Ha ez az opció engedélyezve van, az első kép nagyobb prioritással töltődik be. Ez javíthatja az oldal megjelenítésének sebességét a böngészőben."
                     },
                     "label": {
                         "ariaLabel": "Link leírása",
-                        "ariaLabelHelpText": "Ezt a szöveget a képernyőolvasók hivatkozásként olvasják el.",
                         "fetchPriorityHigh": "Magas prioritás elérése",
                         "isDecorative": "Jelölje meg a képet dekoratívnak",
-                        "isDecorativeHelpText": "Ha ez az opció engedélyezve van, a képernyőolvasók nem olvassák el a képadatokat.",
                         "linkNewTab": "Hivatkozás megnyitása új lapon",
                         "linkTo": "Link cél",
                         "minHeight": "Minimális magasság",
-                        "minHeightHelpText": "Adja meg a minimális magasságot a kívánt egységgel. Például: 200px",
-                        "useFetchPriorityOnFirstItem": "Töltse be az első képet nagyobb prioritással",
-                        "useFetchPriorityOnFirstItemHelpText": "Ha ez az opció engedélyezve van, az első kép nagyobb prioritással töltődik be. Ez javíthatja az oldal megjelenítésének sebességét a böngészőben."
+                        "useFetchPriorityOnFirstItem": "Töltse be az első képet nagyobb prioritással"
                     },
                     "placeholder": {
                         "enterMinHeight": "Adjon meg egy minimális magasságot...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Termékleírás és vélemények",
                         "reviews": "Vélemények"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Gyártó logója"
+                },
+                "name": {
+                    "label": "Terméknév"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Szöveg"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Olvassa el a képernyőolvasók, és röviden ismertesse a videó tartalmát vagy célját. Ha üresen hagyja, helyette a médiamodulban konfigurált cím vagy alt szöveg kerül felhasználásra.",
+                        "autoPlay": "Az automatikus lejátszást sok böngésző csak akkor engedélyezi, ha a videó elnémított.<br>Az automatikus lejátszás esetén a borító nincs értelme, mert a lejátszás azonnal elindul, és nincs szükség megerősítésre.",
+                        "minHeight": "Adja meg a minimális magasságot a kívánt egységgel. Például: 200px",
+                        "playsInline": "Az iOS rendszeren a videók gyakran teljes képernyőn nyílnak meg. Engedélyezze ezt az opciót a beépített lejátszás megtartásához",
+                        "showCover": "A hordozóválasztásban konfigurált borító addig jelenik meg, amíg a felhasználó meg nem erősíti, hogy kattintással tölti be a videót."
+                    },
+                    "label": {
+                        "ariaLabel": "Képernyőolvasó címe",
+                        "autoPlay": "Videó automatikus lejátszása",
+                        "loop": "Videó lejátszása hurokban",
+                        "minHeight": "Minimális magasság",
+                        "muted": "Némított lejátszás",
+                        "playsInline": "Inline lejátszás iOS-eszközökön",
+                        "showControls": "Videóvezérlők megjelenítése",
+                        "showCover": "A videó betöltése csak a felhasználó jóváhagyása után"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Adja meg a képernyőolvasó címét...",
+                        "minHeight": "Adja meg a minimális magasságot..."
+                    }
+                },
+                "label": "Videó"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Elfogadja",
             "acceptMessage": "Az ügyfélcsoport megváltozott",
             "alert": "Hozzáférés az ügyfélcsoporthoz \"{name}\" kért.",
+            "customerInactiveMessage": "Az inaktív ügyfelek nem fogadhatók el vagy elutasíthatók egyetlen ügyfélcsoporttól sem.",
             "decline": "Elutasítás",
             "declineMessage": "A kérést elutasították",
             "errorMessage": "A kérés feldolgozása nem sikerült",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Rendelési tranzakció rögzítési visszatérítés",
             "paid": "Fizetett",
             "paidPartially": "Részben fizetett",
+            "password": "Jelszó",
             "paymentMethod": "Fizetési mód",
             "pending": "Függőben",
             "placed": "elhelyezett",
@@ -4437,8 +4502,7 @@
                 "profile": "Profil",
                 "records": "rekordok",
                 "size": "Méret",
-                "state": "státusz",
-                "user": "Felhasználó"
+                "state": "státusz"
             },
             "contextMenu": {
                 "abortProcess": "A folyamat megszakítása",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Nyitott napló információ",
                 "showProfile": "Profil megjelenítése",
                 "showResults": "Összefoglaló megjelenítése"
+            },
+            "detail": {
+                "ExportLabel": "Export",
+                "importLabel": "Import"
             },
             "dryrun": "Száraz futás",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "Érvénytelen hatókör kérelem.",
             "messageServerError": "Az engedélyezési kiszolgáló váratlan feltételt észlelt.",
             "messageUnsupportedGrantType": "Az engedélyezési támogatás típusát az engedélyezési kiszolgáló nem támogatja.",
+            "orContinueWith": "Vagy folytassa",
             "placeholderPassword": "Adja meg a jelszavát...",
             "placeholderUsername": "Adja meg felhasználónevét...",
             "subheadlineMain": "Üdv újra itt."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Adja hozzá az e-mail sablonokat a „Hozzáadás” gombra kattintva.",
             "emptyStateTitle": "Még nincs e-mail sablon",
             "errorMediaItemDuplicated": "Már hozzárendelt hordozóelem",
+            "tabHeaderFooter": "Fejlécek és láblécek",
+            "tabMailTemplates": "sablonok",
             "textDeleteConfirm": "Biztosan törölni szeretné a \"{subject}„e-mail sablont?",
             "textMailTemplateOverview": "E-mail sablonok",
             "titleMailFooterList": "Lábléc",
@@ -5072,7 +5143,9 @@
                 "download": "Letöltés",
                 "horizontal": "Vízszintes",
                 "move": "Mozgás",
+                "removeCover": "Távolítsa el a fedelet",
                 "replace": "Csere",
+                "setCover": "Borítókép beállítása",
                 "settings": "Beállítások",
                 "vertical": "függőleges"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Mentés a médiában"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Modellnéző"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Adjon meg egy termékszámot..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "A termék állapotszűrője elavult, és eltávolításra kerül a v6.8 verzióban. Kérjük, használja helyette a terméktípusszűrőt.",
                 "label": "Termék állapotok",
                 "options": {
                     "digital": "Digitális",
                     "physical": "Fizikai"
                 },
                 "placeholder": "Válassza ki a termék állapotát..."
+            },
+            "productTypeFilter": {
+                "label": "Típus",
+                "placeholder": "Válassza ki a termék típusát..."
             },
             "releaseDateFilter": {
                 "label": "Megjelenés dátuma"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Tulajdonságok",
             "cardTitleSellingPackaging": "Értékesítési és csomagolási információk"
         },
+        "type": {
+            "digital": "Digitális",
+            "physical": "Fizikai"
+        },
         "variations": {
             "backVariationsButton": "Vissza",
             "configuratorCardTitle": "Változat generátor",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "A dinamikus „{name}” termékcsoport mentésre került.",
             "placeholderDescription": "Adja meg a leírást...",
             "placeholderName": "Adja meg a címet...",
+            "productStatesFilterWarning": "Ez a dinamikus termékcsoport továbbra is használja az elavult termékállapot-szűrőt. A v6.8-ban eltávolítják - kérjük, váltson helyette a terméktípusszűrőre.",
             "productStreamIndexingWarning": {
                 "action": "Tudjon meg többet dokumentációnkban",
                 "message": "Előfordulhat, hogy egyes funkciók nem működnek a vártnak megfelelően: Előfordulhat, hogy a <ul><li>Kategóriaoldalak addig nem tükrözik a változásokat, amíg a HTTP-gyorsítótár le nem jár, vagy manuáli</li><li>A „Elem dinamikus termékcsoportban” szabályfeltétel soha nem lesz igaz.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "Általános"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Adatvédelmi beállítások"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "IP anonimizálása"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Ha engedélyezve van, akkor a „view_cart” esemény is elindul, amikor az offcanvas kosár megnyílik, nem csak a dedikált kosár oldalon. Hasznos a részletes tölcsérelemzéshez, de felfújhatja a kosárnézet mutatóit.",
+                        "label": "Track off-canvas kosár"
+                    },
                     "trackOrders": {
                         "label": "Rendelések követése"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Beállítások"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "A beállítások nem találhatók. Próbáljon meg egy másik keresési kifejezést használni.",
+                "noResultsHeadline": "Nem található bejegyzés",
+                "placeholder": "Keresse meg a beállításokat..."
+            },
             "tabAutomation": "Automatizálás",
             "tabCommerce": "kereskedelem",
             "tabContent": "Tartalom",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Ajánlott az adatok újraindexelése, ha a keresési állapot megváltozott, a pontos keresési eredmények biztosítása érdekében.",
                 "buttonAddOption": "Opció hozzáadása",
                 "buttonEditApply": "Változtatások alkalmazása",
                 "helpTextEntitySelect": "Az entitástípus nem módosítható az egyéni mező létrehozása után.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Ha egyéni mezőt hoz létre, akkor az összes kódrészletkészlet megfelelő kódrészletét is létrehozza. A kódrészlet neve „CustomFields.{name}”.",
                 "labelAllowCartExpose": "Bevásárlókocsikban kapható",
                 "labelAllowCustomerWrite": "A Store API-n keresztül módosítható",
+                "labelAllowSearchable": "Tartalmazza a keresésbe",
                 "labelCustomFieldPosition": "Pozíció",
                 "labelCustomFieldType": "Típus",
                 "labelDate": "Dátum",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Új egyéni mező",
                 "tooltipAllowCartExpose": "Aktiválja, hogy ez az egyéni mező elérhető legyen a bevásárlókosár sorok hasznos terhelésében. Erre azért van szükség, hogy először használhassa ezt az egyéni mezőt a Szabálykészítőben vagy az egyéni sablonokban.",
                 "tooltipAllowCustomerWrite": "Ha aktív, az Áruház API módosíthatja ezt a mezőt. Ez felhasználható egyéni adatok tárolására, ha új mezőket ad hozzá a kirakathoz. Például a regisztrációs űrlap új mezőihez.",
+                "tooltipAllowSearchable": "Ha aktív, ez az egyéni mező indexelésre kerül, és felhasználható a keresési konfigurációkban. Ha ez a mező nem szükséges a kereséshez, azt le kell tiltani az indextároló méretének csökkentése és a keresés teljesítményének javítása érdekében.",
                 "tooltipCartExposeDisabled": "Ez a beállítás jelenleg nem módosítható, mert az egyéni mezőt egy vagy több feltétel használja a Szabálykészítőben.",
                 "tooltipCustomFieldPosition": "Az egyéni mező pozícióját szabályozza a részletoldalakon.",
                 "tooltipStoreApiAware": "Ha aktív, ez a mező elérhető lesz a Store API-ban. Ez az opció letiltható, hogy az egyéni adatokat csak belsőleg tárolja, és ne tegye elérhetővé azokat a Store API-n keresztül."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Alapértelmezett keresési eredmény rendezése",
             "labelDefaultSorting": "Alapértelmezett rendezés",
             "mainMenuItemGeneral": "Termékek",
+            "messageSaveDefaultValuesEmpty": "Alapértelmezett érték szükséges",
             "messageSaveError": "A konfiguráció nem menthető.",
             "messageSaveSuccess": "Konfiguráció mentve",
             "placeholderDefaultSearchResultSorting": "Válasszon ki egy alapértelmezett keresési eredmény rendezését...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Módosítsa a fényintenzitást a 3D nézetben.",
-                "label": "Fényintenzitás"
-            }
-        },
         "general": {
             "buttonSave": "Mentés",
             "description": "Itt kezelheti a médiabeállításokat.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Adja meg ennek a szabálynak a nevét...",
             "placeholderPriority": "Állítson be prioritást ehhez a szabályhoz...",
             "placeholderTags": "Adjon meg egy címkét...",
+            "placeholderType": "Adjon meg egy típust...",
+            "productStatesConditionWarning": "A „Termékállapotú elem” feltétel elavult, és eltávolításra kerül a 6.8-as verzióban. Kérjük, használja helyette a „Terméktípusú termék” lehetőséget.",
             "productStreamIndexingWarning": {
                 "action": "Tudjon meg többet dokumentációnkban",
                 "message": "A „Elem dinamikus termékcsoportban” feltétel soha nem lesz igaz.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Nem osztanak meg adatokat harmadik felekkel",
                 "securely-processed": "Biztonságosan tárolt adatok"
             },
+            "share-store-data": "A tárolóadatok megosztásával Ön segít megérteni, hogyan használják az adminisztrációt, és olyan fejlesztéseket dolgozunk ki, amelyek megkönnyítik a mindennapi munkát.",
+            "share-user-data": "Felhasználói adatainak megosztásával segít megérteni, hogyan használják az Adminisztrációt, és olyan fejlesztéseket dolgozunk ki, amelyek megkönnyítik a mindennapi munkát.",
             "store-data": {
                 "description": "A {order}, {diagnostic}és {store} kombinált adatai segítenek javítani a funkciókat. Kérjük, erősítse meg, hogy jogosult hozzájárulni vállalatához.",
                 "emphasizes": {

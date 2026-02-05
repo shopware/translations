@@ -306,6 +306,7 @@
             "contact_form_send": "Contactformulier verzonden",
             "customer_group_registration_accepted": "Aanvraag voor klantgroep geaccepteerd",
             "customer_group_registration_declined": "Klantengroep registratieverzoek geweigerd",
+            "customer_password_changed": "Wachtwoord van de klant gewijzigd",
             "customer_recovery_request": "Klant vraagt een nieuw wachtwoord aan",
             "mail_after_create_message": "E-mail aangemaakt",
             "mail_before_send": "E-mail wordt verzonden",
@@ -732,6 +733,7 @@
                     "product": "Product"
                 },
                 "lineItemProductStates": "Artikel met productstatus",
+                "lineItemProductType": "Artikel met producttype",
                 "lineItemPromotedRule": "Object wordt gepromoveerd",
                 "lineItemPropertyRule": "Item met een variant of eigenschapswaarde",
                 "lineItemPropertyValueRule": "Object met eigendomswaarde",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Digitaal",
                         "is-physical": "Fysiek"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Digitaal",
+                        "physical": "Fysiek"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Link kopiëren",
             "labelContextMenuDetail": "Details",
             "labelContextMenuMove": "Verplaatsen",
+            "labelContextMenuRemoveCover": "Deksel verwijderen",
             "labelContextMenuRename": "Hernoemen",
             "labelContextMenuReplace": "Vervangen",
+            "labelContextMenuSetCover": "Omslagafbeelding instellen",
             "labelUploading": "Wordt geüpload...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "De omslagafbeelding is verwijderd."
+                },
+                "coverSaveError": {
+                    "message": "De omslagafbeelding kon niet worden opgeslagen."
+                },
+                "coverSaveSuccess": {
+                    "message": "De omslagafbeelding is opgeslagen."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Selecteer een afbeelding om als omslag te gebruiken."
+                },
                 "errorBlankItemName": {
                     "message": "Media item kan niet worden opgeslagen. Voeg een bestandsnaam toe."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "De bestandsnaam \"{fileName}\" bevat ongeldige speciale tekens."
                 },
+                "payloadTooLarge": {
+                    "message": "Het bestand is te groot. Verklein de bestandsgrootte of controleer de serverconfiguratie."
+                },
                 "requestCanceled": {
                     "message": "De upload is geannuleerd."
                 },
                 "success": {
                     "message": "Geen bestand opgeslagen. | Een bestand opgeslagen. | {count} / {total} bestanden opgeslagen."
+                },
+                "transportError": {
+                    "message": "Het uploaden is mislukt vanwege een verbinding of een time-out op de server. Controleer de limieten van je verbinding of server."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Deze actie verhoogt de waarde van het overeenkomstige getalbereik.",
                     "label": "Genereren: factuur",
                     "labelDatePicker": "Datum",
-                    "labelTextarea": "Commentaar",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Commentaar"
                 },
                 "warning": "De bulkbewerking maakt nu gebruik van een verbeterde documentcreatie. Een of meer extensies op uw systeem kunnen echter verschillende resultaten opleveren wanneer u een nieuw document maakt.\nControleer daarom of uw documenten verschillen vertonen met en zonder de bulkbewerking te gebruiken."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Dynamische produktgroep details",
                 "dynamicProductGroupHelpText": {
                     "label": "Producten behoren tot een dynamische productgroep als ze voldoen aan de voorwaarden van die productgroep. Condities kunnen worden gedefinieerd binnen de {link} module.",
-                    "linkText": "dynamische productgroepen",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "dynamische productgroepen"
                 },
                 "dynamicProductGroupInvalidMessage": "De geselecteerde dynamische productgroep is niet geldig. Controleer uw dynamische productgroepdetails.",
                 "productAssignmentEmptyStateDescription": "Geen producten toegewezen",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Video"
+                },
                 "vimeoVideo": {
                     "label": "Vimeo video"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Deze tekst wordt door schermlezers voorgelezen als linktekst.",
                         "fetchPriorityHigh": "Activeer deze optie als de afbeelding de eerste is op de pagina. De afbeelding krijgt dan het attribuut 'fetchpriority=\"high\"' toegewezen, zodat de browser de afbeelding met een hogere prioriteit moet laden. Dit kan helpen om de Largest Contentful Paint (LCP) te verbeteren.",
-                        "isDecorative": "Als deze optie is ingeschakeld, wordt de beeldinformatie niet voorgelezen door schermlezers. Dit betekent dat de tags „alt” en „title” leeg blijven."
+                        "isDecorative": "Als deze optie is ingeschakeld, wordt de beeldinformatie niet voorgelezen door schermlezers. Dit betekent dat de tags „alt” en „title” leeg blijven.",
+                        "minHeight": "Voer de minimale hoogte in met de gewenste eenheid. Bijvoorbeeld: 200px",
+                        "useFetchPriorityOnFirstItem": "Als deze optie is ingeschakeld, wordt de eerste afbeelding met een hogere prioriteit geladen. Dit kan de snelheid verbeteren waarmee de pagina in de browser wordt weergegeven."
                     },
                     "label": {
                         "ariaLabel": "Beschrijving van de link",
-                        "ariaLabelHelpText": "Deze tekst wordt door schermlezers voorgelezen als linktekst.",
                         "fetchPriorityHigh": "Hoogste prioriteit ophalen",
                         "isDecorative": "Markeer de afbeelding als decoratief",
-                        "isDecorativeHelpText": "Als deze optie is ingeschakeld, wordt de beeldinformatie niet voorgelezen door schermlezers.",
                         "linkNewTab": "Open link in nieuw tabblad",
                         "linkTo": "Doel van de link",
                         "minHeight": "Minimale hoogte",
-                        "minHeightHelpText": "Voer de minimale hoogte in bij de gewenste eenheid. Bijvoorbeeld: 200px",
-                        "useFetchPriorityOnFirstItem": "Laad de eerste afbeelding met een hogere prioriteit",
-                        "useFetchPriorityOnFirstItemHelpText": "Als deze optie is ingeschakeld, wordt de eerste afbeelding met een hogere prioriteit geladen. Dit kan de snelheid verbeteren waarmee de pagina in de browser wordt weergegeven."
+                        "useFetchPriorityOnFirstItem": "Laad de eerste afbeelding met een hogere prioriteit"
                     },
                     "placeholder": {
                         "enterMinHeight": "Minimale hoogte invoeren...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Beschrijving van het product & beoordelingen",
                         "reviews": "Beoordelingen"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Logo van de fabrikant"
+                },
+                "name": {
+                    "label": "Product Naam"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Tekst"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Voorgelezen door schermlezers en moet de inhoud of het doel van de video kort beschrijven. Indien leeg gelaten, wordt in plaats daarvan de titel of de alt-tekst gebruikt die in de mediamodule is geconfigureerd.",
+                        "autoPlay": "Autoplay is in veel browsers alleen toegestaan als de video gedempt is.<br>Bij autoplay heeft een cover geen betekenis omdat het afspelen onmiddellijk start en er geen bevestiging nodig is.",
+                        "minHeight": "Voer de minimale hoogte in met de gewenste eenheid. Bijvoorbeeld: 200px",
+                        "playsInline": "Op iOS worden video's vaak op volledig scherm geopend. Schakel deze optie in om de weergave inline te houden.",
+                        "showCover": "De cover die in de mediaselectie is geconfigureerd, wordt weergegeven totdat de gebruiker met een klik bevestigt dat de video is geladen."
+                    },
+                    "label": {
+                        "ariaLabel": "Titel van de schermlezer",
+                        "autoPlay": "Video automatisch afspelen",
+                        "loop": "Video herhalend afspelen",
+                        "minHeight": "Minimale hoogte",
+                        "muted": "Speel gedempt",
+                        "playsInline": "Speel online op iOS-apparaten",
+                        "showControls": "Video navigatie tonen",
+                        "showCover": "Video alleen laden na bevestiging door de gebruiker"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Voer de titel van de schermlezer in...",
+                        "minHeight": "Voer de minimumhoogte in..."
+                    }
+                },
+                "label": "Video"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Akkoord",
             "acceptMessage": "De klantgroep is verwijderd",
             "alert": "Toegang tot klantgroep \"{name}\" verzocht.",
+            "customerInactiveMessage": "Inactieve klanten kunnen voor geen enkele klantgroep worden geaccepteerd of geweigerd.",
             "decline": "Weigeren",
             "declineMessage": "Verzoek is afgewezen",
             "errorMessage": "Kan verzoek niet verwerken",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Terugbetaling van de bestelling, transactie vastleggen",
             "paid": "Betaald",
             "paidPartially": "Gedeeltelijk betaald",
+            "password": "Wachtwoord",
             "paymentMethod": "Betaalwijze",
             "pending": "In afwachting",
             "placed": "Geplaatst",
@@ -4437,8 +4502,7 @@
                 "profile": "Profiel",
                 "records": "Records",
                 "size": "Maat",
-                "state": "Status",
-                "user": "Gebruiker"
+                "state": "Status"
             },
             "contextMenu": {
                 "abortProcess": "Proces afbreken",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Log-informatie openen",
                 "showProfile": "Profiel tonen",
                 "showResults": "Samenvatting tonen"
+            },
+            "detail": {
+                "ExportLabel": "Export",
+                "importLabel": "Import"
             },
             "dryrun": "Proefdraai",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "De opgegeven scope is ongeldig.",
             "messageServerError": "Bij de verificatieserver is een algemene fout opgetreden.",
             "messageUnsupportedGrantType": "Grant-type wordt niet ondersteund.",
+            "orContinueWith": "Of ga verder met",
             "placeholderPassword": "Voer je wachtwoord in...",
             "placeholderUsername": "Voer je gebruikersnaam in...",
             "subheadlineMain": "Welkom terug."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Voeg e-mailsjablonen toe door op de knop „Toevoegen” te klikken.",
             "emptyStateTitle": "Nog geen e-mailsjablonen",
             "errorMediaItemDuplicated": "Media item al gebruikt",
+            "tabHeaderFooter": "Kop- en voettekst",
+            "tabMailTemplates": "Sjablonen",
             "textDeleteConfirm": "Wil je het e-mailsjabloon \"{subject}\" echt verwijderen?",
             "textMailTemplateOverview": "E-mailsjablonen",
             "titleMailFooterList": "Voetteksten",
@@ -5072,7 +5143,9 @@
                 "download": "Download",
                 "horizontal": "Horizontaal",
                 "move": "Verplaatsen",
+                "removeCover": "Deksel verwijderen",
                 "replace": "Vervangen",
+                "setCover": "Omslagafbeelding instellen",
                 "settings": "Instellingen",
                 "vertical": "Verticaal"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Opslaan in media"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Modelviewer"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Voer een productnummer in..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Het filter met de productstatus is verouderd en wordt verwijderd in v6.8. Gebruik in plaats daarvan het producttypefilter.",
                 "label": "Statussen van het product",
                 "options": {
                     "digital": "Digitaal",
                     "physical": "Fysiek"
                 },
                 "placeholder": "Selecteer de staat van het product..."
+            },
+            "productTypeFilter": {
+                "label": "Type",
+                "placeholder": "Selecteer het producttype..."
             },
             "releaseDateFilter": {
                 "label": "Release datum"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Eigenschappen",
             "cardTitleSellingPackaging": "Verkoop- en verpakkingsinformatie"
         },
+        "type": {
+            "digital": "Digitaal",
+            "physical": "Fysiek"
+        },
         "variations": {
             "backVariationsButton": "Terug",
             "configuratorCardTitle": "Varianten genereren",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "De productgroep \"{name}\" is opgeslagen.",
             "placeholderDescription": "Voer een beschrijving in …",
             "placeholderName": "Titel invoeren...",
+            "productStatesFilterWarning": "Deze dynamische productgroep gebruikt nog steeds het filter voor verouderde productstatussen. Het wordt verwijderd in v6.8 — schakel in plaats daarvan over naar het producttypefilter.",
             "productStreamIndexingWarning": {
                 "action": "Meer informatie vindt u in onze documentatie",
                 "message": "Sommige functies werken mogelijk niet zoals verwacht: op de categoriepagina's van <ul><li>worden wijzigingen mogelijk pas weergegeven nadat de HTTP-cache is verlopen of handmatig is gewist.</li><li>De regelvoorwaarde „Artikel in dynamische productgroep” zal nooit waar zijn.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "Generaal"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Privacyvoorkeuren"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "Anoniem IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Indien ingeschakeld, wordt een 'view_cart'-gebeurtenis ook geactiveerd wanneer de offcanvas-winkelwagen wordt geopend, niet alleen op de speciale winkelwagenpagina. Handig voor gedetailleerde trechteranalyses, maar kan de statistieken van de winkelwagenweergave verhogen.",
+                        "label": "Canvaswagen met track off"
+                    },
                     "trackOrders": {
                         "label": "Bestellingen tracken"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Instellingen"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "De instellingen konden niet worden gevonden. Probeer een andere zoekterm te gebruiken.",
+                "noResultsHeadline": "Geen inzendingen gevonden",
+                "placeholder": "Instellingen zoeken..."
+            },
             "tabAutomation": "Automatisering",
             "tabCommerce": "Handel",
             "tabContent": "Inhoud",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Het wordt aanbevolen om de gegevens opnieuw te indexeren, als de zoekstatus is gewijzigd, om nauwkeurige zoekresultaten te garanderen.",
                 "buttonAddOption": "Optie toevoegen",
                 "buttonEditApply": "Wijzigingen toepassen",
                 "helpTextEntitySelect": "Het entiteitstype kan niet worden gewijzigd nadat het aangepaste veld is gemaakt.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Als er een aangepast veld wordt gemaakt, wordt ook het betreffende fragment voor al uw snippetsets gemaakt. Het fragment krijgt de naam „CustomFields.{name}”.",
                 "labelAllowCartExpose": "Verkrijgbaar in winkelwagentjes",
                 "labelAllowCustomerWrite": "Aanpasbaar via Store API",
+                "labelAllowSearchable": "In de zoekopdracht opnemen",
                 "labelCustomFieldPosition": "Positie",
                 "labelCustomFieldType": "Type",
                 "labelDate": "Datum",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Nieuw vrij tekstveld",
                 "tooltipAllowCartExpose": "Activeer, om dit aangepaste veld beschikbaar te maken in de payload van artikelen in de winkelwagenlijn. Dit is vereist om dit aangepaste veld in eerste instantie te kunnen gebruiken in de Rule Builder of aangepaste sjablonen.",
                 "tooltipAllowCustomerWrite": "Indien actief, mag de Store API dit veld wijzigen. Dit kan worden gebruikt om aangepaste gegevens op te slaan als u nieuwe velden aan de webwinkel toevoegt. Bijvoorbeeld voor nieuwe velden in het registratieformulier.",
+                "tooltipAllowSearchable": "Indien actief, wordt dit aangepaste veld geïndexeerd en kan het worden gebruikt in zoekconfiguraties. Als dit veld niet vereist is voor de zoekopdracht, moet het worden uitgeschakeld om de omvang van de indexopslag te beperken en de prestaties van de zoekopdracht te verbeteren.",
                 "tooltipCartExposeDisabled": "Deze instelling kan momenteel niet worden gewijzigd, omdat het aangepaste veld wordt gebruikt door een of meer voorwaarden in de Rule Builder.",
                 "tooltipCustomFieldPosition": "Bepaalt de positie van het vrije tekstveld op de detailpagina's.",
                 "tooltipStoreApiAware": "Indien actief, is dit veld beschikbaar in de Store API. Deze optie kan worden uitgeschakeld om aangepaste gegevens alleen intern op te slaan en niet beschikbaar te maken via de Store API."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Standaard sortering van zoekresultaten",
             "labelDefaultSorting": "Standaardsortering",
             "mainMenuItemGeneral": "Producten",
+            "messageSaveDefaultValuesEmpty": "De standaardwaarde is vereist",
             "messageSaveError": "Configuratie kon niet worden opgeslagen.",
             "messageSaveSuccess": "Configuratie opgeslagen.",
             "placeholderDefaultSearchResultSorting": "Selecteer een standaardsortering van zoekresultaten...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Wijzig de lichtintensiteit in de 3D-weergave.",
-                "label": "Lichtintensiteit"
-            }
-        },
         "general": {
             "buttonSave": "Opslaan",
             "description": "Beheer hier de media-instellingen.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Geef deze regel een naam …",
             "placeholderPriority": "Geef deze regel een prioriteit …",
             "placeholderTags": "Voer tags in…",
+            "placeholderType": "Voer een type in...",
+            "productStatesConditionWarning": "De voorwaarde „Artikel met productstatus” is verouderd en wordt verwijderd in v6.8. Gebruik in plaats daarvan „Artikel met producttype”.",
             "productStreamIndexingWarning": {
                 "action": "Meer informatie vindt u in onze documentatie",
                 "message": "De voorwaarde „Artikel in dynamische productgroep” zal nooit waar zijn.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Er worden geen gegevens gedeeld met derden",
                 "securely-processed": "Veilig opgeslagen gegevens"
             },
+            "share-store-data": "Door winkelgegevens te delen, helpt u ons te begrijpen hoe de administratie wordt gebruikt en verbeteringen te ontwikkelen die uw dagelijkse werk eenvoudiger maken.",
+            "share-user-data": "Door uw gebruikersgegevens te delen, helpt u ons te begrijpen hoe de administratie wordt gebruikt en verbeteringen te ontwikkelen die uw dagelijkse werk eenvoudiger maken.",
             "store-data": {
                 "description": "Gecombineerde gegevens van {order}, {diagnostic}en {store} helpen ons om functies te verbeteren. Bevestig dat je bevoegd bent om toestemming te geven voor je bedrijf.",
                 "emphasizes": {
