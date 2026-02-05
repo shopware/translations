@@ -306,6 +306,7 @@
             "contact_form_send": "Yhteydenotto lähetetty",
             "customer_group_registration_accepted": "Asiakasryhmän rekisteröintipyyntö hyväksytty",
             "customer_group_registration_declined": "Asiakasryhmän rekisteröintipyyntö hylätty",
+            "customer_password_changed": "Asiakkaan salasana vaihdettu",
             "customer_recovery_request": "Asiakas pyytää uutta salasan",
             "mail_after_create_message": "Sähköposti luotu",
             "mail_before_send": "Sähköposti lähetetään",
@@ -732,6 +733,7 @@
                     "product": "Tuote"
                 },
                 "lineItemProductStates": "Tuote, jossa on tuotteen tila",
+                "lineItemProductType": "Tuote tuotetyypillä",
                 "lineItemPromotedRule": "Kohta mainostetaan",
                 "lineItemPropertyRule": "Tuote, jolla on variantti tai ominaisuuden arvo",
                 "lineItemPropertyValueRule": "Kohde, jolla on ominaisuuden arvo",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Digitaalinen",
                         "is-physical": "fyysinen"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Digitaalinen",
+                        "physical": "fyysinen"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Kopioi linkki",
             "labelContextMenuDetail": "Yksityiskohdat",
             "labelContextMenuMove": "Siirrä",
+            "labelContextMenuRemoveCover": "Poista kansi",
             "labelContextMenuRename": "Nimeä uudelleen",
             "labelContextMenuReplace": "Korvaa",
+            "labelContextMenuSetCover": "Aseta kansikuva",
             "labelUploading": "Lataaminen...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "Kansikuva on poistettu."
+                },
+                "coverSaveError": {
+                    "message": "Kansikuvaa ei voitu tallentaa."
+                },
+                "coverSaveSuccess": {
+                    "message": "Kansikuva on tallennettu."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Valitse kuva, jota haluat käyttää kannena."
+                },
                 "errorBlankItemName": {
                     "message": "Tietovälineen kohdetta ei voitu tallentaa: Kirjoita nimi."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "Tiedostonimi \"{fileName}\" sisältää virheellisiä merkkejä."
                 },
+                "payloadTooLarge": {
+                    "message": "Tiedosto on liian suuri. Pienennä tiedostokokoa tai tarkista palvelimen kokoonpano."
+                },
                 "requestCanceled": {
                     "message": "Lataus on peruutettu."
                 },
                 "success": {
                     "message": "Tiedostoa ei ole tallennettu. | Tiedosto on tallennettu. | {count} / {total} tiedostoa on tallennettu."
+                },
+                "transportError": {
+                    "message": "Lataus epäonnistui yhteyden tai palvelimen aikakatkaisun vuoksi. Tarkista yhteys- tai palvelinrajoitukset."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Tämä toiminto lisää vastaavan lukualueen arvoa.",
                     "label": "Luo: Lasku",
                     "labelDatePicker": "Päivämäärä",
-                    "labelTextarea": "kommentti",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "kommentti"
                 },
                 "warning": "Joukkomuokkaus käyttää nyt parannettua asiakirjan luomista. Yksi tai useampi laajennus järjestelmässäsi voi kuitenkin tuottaa erilaisia tuloksia uuden asiakirjan luomisen yhteydessä.\nTarkista siis, onko asiakirjoissasi eroja joukkomuokkauksen kanssa ja käyttämättä sitä."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Dynaamisen tuoter",
                 "dynamicProductGroupHelpText": {
                     "label": "Tuotteet kuuluvat dynaamiseen tuoteryhmään, jos ne täyttävät kyseisen tuoteryhmän ehdot. Ehdot voidaan määritellä sisällä {link} moduuli.",
-                    "linkText": "dynaamiset tuoter",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "dynaamiset tuoter"
                 },
                 "dynamicProductGroupInvalidMessage": "Valittu dynaaminen tuoteryhmä ei kelpaa. Tarkista dynaamisen tuoteryhmän tiedot.",
                 "productAssignmentEmptyStateDescription": "Ei annettuja tuotteita",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Video"
+                },
                 "vimeoVideo": {
                     "label": "Vimeo-video"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Näytönlukijat lukevat tämän tekstin linkkitektinä.",
                         "fetchPriorityHigh": "Aktivoi tämä vaihtoehto, jos kuva on sivun ensimmäinen. Kuvalle annetaan sitten attribuutti 'fetchpriority=\"high\"', joka kehottaa selainta lataamaan sen korkeammalla prioriteetilla. Tämä voi auttaa parantamaan Largest Contentful Paint (LCP) -mallia.",
-                        "isDecorative": "Kun tämä asetus on käytössä, näytönlukijat eivät lue kuvatietoja. Tämä tarkoittaa, että ”alt” ja ”title” -tunnisteet pysyvät tyhjinä."
+                        "isDecorative": "Kun tämä asetus on käytössä, näytönlukijat eivät lue kuvatietoja. Tämä tarkoittaa, että ”alt” ja ”title” -tunnisteet pysyvät tyhjinä.",
+                        "minHeight": "Anna minimikorkeus haluamallasi yksiköllä. Esimerkiksi: 200px",
+                        "useFetchPriorityOnFirstItem": "Kun tämä asetus on käytössä, ensimmäinen kuva ladataan korkeammalla prioriteetilla. Tämä voi parantaa nopeutta, jolla sivu renderöidään selaimessa."
                     },
                     "label": {
                         "ariaLabel": "Linkkien kuvaus",
-                        "ariaLabelHelpText": "Näytönlukijat lukevat tämän tekstin linkkitektinä.",
                         "fetchPriorityHigh": "Haun prioriteetti korkea",
                         "isDecorative": "Merkitse kuva koristeelliseksi",
-                        "isDecorativeHelpText": "Kun tämä asetus on käytössä, näytönlukijat eivät lue kuvan tietoja.",
                         "linkNewTab": "Avaa linkki uuteen välilehteen",
                         "linkTo": "Linkkikohde",
                         "minHeight": "Vähimmäiskorkeus",
-                        "minHeightHelpText": "Syötä minimikorkeus haluamallasi yksiköllä. Esimerkiksi: 200px",
-                        "useFetchPriorityOnFirstItem": "Lataa ensimmäinen kuva korkeammalla prioriteetilla",
-                        "useFetchPriorityOnFirstItemHelpText": "Kun tämä asetus on käytössä, ensimmäinen kuva ladataan korkeammalla prioriteetilla. Tämä voi parantaa nopeutta, jolla sivu renderöidään selaimessa."
+                        "useFetchPriorityOnFirstItem": "Lataa ensimmäinen kuva korkeammalla prioriteetilla"
                     },
                     "placeholder": {
                         "enterMinHeight": "Anna vähimmäiskorkeus...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Tuotekuvaus ja arvostelut",
                         "reviews": "Arviot"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Valmistajan logo"
+                },
+                "name": {
+                    "label": "Tuotteen nimi"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Teksti"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Lue näytönlukijoiden avulla, ja sen tulisi kuvata lyhyesti videon sisältö tai tarkoitus. Jos jätetään tyhjäksi, käytetään sen sijaan joko mediamoduulissa määritettyä otsikkoa tai vaihtoehtoista tekstiä.",
+                        "autoPlay": "Monet selaimet sallivat automaattisen toiston vain, kun video on mykistetty.<br>Automaattisessa toistossa kansi ei ole merkityksellistä, koska toisto alkaa heti eikä vahvistusta tarvita.",
+                        "minHeight": "Anna minimikorkeus haluamallasi yksiköllä. Esimerkiksi: 200px",
+                        "playsInline": "IOS: ssä videot avautuvat usein koko näytöllä. Ota tämä asetus käyttöön, jos haluat pitää toiston sisäisenä.",
+                        "showCover": "Mediavalinnassa määritetty kansi näkyy, kunnes käyttäjä vahvistaa videon lataamisen napsautuksella."
+                    },
+                    "label": {
+                        "ariaLabel": "Näytönlukijan otsikko",
+                        "autoPlay": "Videon toistaminen automaattisesti",
+                        "loop": "Toista video silmukassa",
+                        "minHeight": "Vähimmäiskorkeus",
+                        "muted": "Toista mykistettynä",
+                        "playsInline": "Toista inline-tilassa iOS-laitteilla",
+                        "showControls": "Näytä video-ohjaimet",
+                        "showCover": "Lataa video vasta käyttäjän vahvistuksen jälkeen"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Anna näytönlukijan otsikko...",
+                        "minHeight": "Anna vähimmäiskorkeus..."
+                    }
+                },
+                "label": "Video"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Hyväksy",
             "acceptMessage": "Asiakasryhmää on muutettu",
             "alert": "Pääsy asiakasryhmään \"{name}\" pyydetty.",
+            "customerInactiveMessage": "Passiivisia asiakkaita ei voida hyväksyä tai hylätä mihinkään asiakasryhmään.",
             "decline": "Lasku",
             "declineMessage": "Pyyntö on hylätty",
             "errorMessage": "Pyynnöstä ei voi käsitellä",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Tilaustapahtuman kaappauksen palautus",
             "paid": "Maksettu",
             "paidPartially": "Maksettu osittain",
+            "password": "salasana",
             "paymentMethod": "Maksutapa",
             "pending": "Odottaa",
             "placed": "Sijoitettu",
@@ -4437,8 +4502,7 @@
                 "profile": "Profile",
                 "records": "Levyt",
                 "size": "Koko",
-                "state": "Tila",
-                "user": "Käyttäjä"
+                "state": "Tila"
             },
             "contextMenu": {
                 "abortProcess": "Keskeytä prosessi",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Avaa lokitiedot",
                 "showProfile": "Näytä profiili",
                 "showResults": "Näytä yhteenveto"
+            },
+            "detail": {
+                "ExportLabel": "vienti",
+                "importLabel": "Tuo"
             },
             "dryrun": "Kuivajuoksu",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "Virheellinen laajuuspyyntö.",
             "messageServerError": "Valtuutuspalvelin kohtasi odottamattoman ehdon.",
             "messageUnsupportedGrantType": "Valtuutustietojen myöntämisen tyyppi ei tue valtuutustietopalvelinta.",
+            "orContinueWith": "Tai jatka",
             "placeholderPassword": "Anna salasanasi...",
             "placeholderUsername": "Anna käyttäjänimesi...",
             "subheadlineMain": "Tervetuloa takaisin."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Lisää sähköpostimalleja klikkaamalla ”Lisää” -painiketta.",
             "emptyStateTitle": "Ei vielä sähköpostimalleja",
             "errorMediaItemDuplicated": "Tietovälineen kohde jo määritetty",
+            "tabHeaderFooter": "Ylä- ja alatunnistimet",
+            "tabMailTemplates": "Mallit",
             "textDeleteConfirm": "Oletko varma, että haluat poistaa sähköpostimallin \"{subject}”?",
             "textMailTemplateOverview": "Sähköpostimallit",
             "titleMailFooterList": "Alatunniste",
@@ -5072,7 +5143,9 @@
                 "download": "Lataa",
                 "horizontal": "Vaaka",
                 "move": "Siirrä",
+                "removeCover": "Poista kansi",
                 "replace": "Korvaa",
+                "setCover": "Aseta kansikuva",
                 "settings": "Asetukset",
                 "vertical": "pystysuora"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Tallenna mediaan"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Mallin katseluohjelma"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Anna tuotenumero..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Tuotteen tilasuodatin on vanhentunut ja se poistetaan versiosta 6.8. Käytä sen sijaan tuotetyyppisuodatinta.",
                 "label": "Tuotteen tilat",
                 "options": {
                     "digital": "Digitaalinen",
                     "physical": "fyysinen"
                 },
                 "placeholder": "Valitse tuotteen tila..."
+            },
+            "productTypeFilter": {
+                "label": "Tyyppi",
+                "placeholder": "Valitse tuotetyyppi..."
             },
             "releaseDateFilter": {
                 "label": "Julkaisupäivä"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Ominaisuudet",
             "cardTitleSellingPackaging": "Myynti- ja pakkaustiedot"
         },
+        "type": {
+            "digital": "Digitaalinen",
+            "physical": "fyysinen"
+        },
         "variations": {
             "backVariationsButton": "Takaisin",
             "configuratorCardTitle": "Vaihtoehtoinen generaattori",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "Dynaaminen tuoteryhmä \"{name}\" on tallennettu.",
             "placeholderDescription": "Kirjoita kuvaus...",
             "placeholderName": "Kirjoita otsikko...",
+            "productStatesFilterWarning": "Tämä dynaaminen tuoteryhmä käyttää edelleen vanhentunutta tuotetilasuodatinta. Se poistetaan versiosta v6.8 - vaihda sen sijaan tuotetyyppisuodattimeen.",
             "productStreamIndexingWarning": {
                 "action": "Lue lisää dokumentaatiostamme",
                 "message": "Jotkin ominaisuudet eivät ehkä toimi odotetulla tavalla: <ul><li>Luokkasivut eivät välttämättä näytä muutoksia ennen kuin HTTP-välimuisti vanhenee tai tyhjennetään manuaalisesti.</li><li>Sääntöehto ”Tuote dynaamisessa tuoteryhmässä” ei koskaan pidä paikkaansa.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "Kenraali"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Tietosuoja-asetukset"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "Anonymisoi IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Kun tämä on käytössä, ”view_cart” -tapahtuma käynnistyy myös offcanvas-ostoskorin avautuessa, ei vain omistetulla ostoskorisivulla. Hyödyllinen yksityiskohtaiseen suppilo-analyysiin, mutta voi lisätä ostoskorin näkymän mittareita.",
+                        "label": "Seuraa offcanvas-ostoskoria"
+                    },
                     "trackOrders": {
                         "label": "Seuraa tilauksia"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Asetukset"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "Asetuksia ei löytynyt. Yritä käyttää toista hakutermiä.",
+                "noResultsHeadline": "Merkintöjä ei löytynyt",
+                "placeholder": "Etsi asetukset..."
+            },
             "tabAutomation": "Automaatio",
             "tabCommerce": "kaupankäynti",
             "tabContent": "Sisältö",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "On suositeltavaa indeksoida tiedot uudelleen, jos haun tila on muuttunut, tarkan hakutuloksen varmistamiseksi.",
                 "buttonAddOption": "Lisää vaihtoehto",
                 "buttonEditApply": "Käytä muutoksia",
                 "helpTextEntitySelect": "Entiteetin tyyppiä ei voi muuttaa, kun mukautettu kenttä on luotu.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Jos mukautettu kenttä luodaan, myös kaikkien katkelmajoukkojesi mukainen katkelma luodaan. Katkelman nimeksi tulee ”CustomFields.{name}”.",
                 "labelAllowCartExpose": "Saatavana ostoskärryissä",
                 "labelAllowCustomerWrite": "Muokattavissa Kaupan sovellusliittymän kautta",
+                "labelAllowSearchable": "Sisällytä hakuun",
                 "labelCustomFieldPosition": "Sijainti",
                 "labelCustomFieldType": "Tyyppi",
                 "labelDate": "Päivämäärä",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Uusi mukautettu kenttä",
                 "tooltipAllowCartExpose": "Aktivoi, jotta tämä mukautettu kenttä on käytettävissä ostoskorin rivituotteiden hyötykuormassa. Tämä on tarpeen, jotta tätä mukautettua kenttää voidaan alun perin käyttää Säännön muodostimessa tai mukautetuissa malleissa.",
                 "tooltipAllowCustomerWrite": "Kun se on aktiivinen, Kaupan sovellusliittymä saa muokata tätä kenttää. Tätä voidaan käyttää mukautettujen tietojen tallentamiseen, jos lisäät uusia kenttiä myymälään. Esimerkiksi rekisteröintilomakkeen uusille kentille.",
+                "tooltipAllowSearchable": "Kun se on aktiivinen, tämä mukautettu kenttä indeksoidaan ja sitä voidaan käyttää hakukonfiguraatioissa. Jos tätä kenttää ei vaadita haussa, se on poistettava käytöstä indeksitallennustilan koon pienentämiseksi ja haun suorituskyvyn parantamiseksi.",
                 "tooltipCartExposeDisabled": "Tätä asetusta ei voi tällä hetkellä muuttaa, koska mukautettu kenttä on käytössä yhdessä tai useammassa säännön muodostajan ehdossa.",
                 "tooltipCustomFieldPosition": "Ohjaa tämän mukautetun kentän sijaintia tietosivuilla.",
                 "tooltipStoreApiAware": "Kun se on aktiivinen, tämä kenttä on käytettävissä Storen sovellusliittymässä. Tämä vaihtoehto voidaan poistaa käytöstä, jos haluat tallentaa mukautettuja tietoja vain sisäisesti eikä asettaa niitä saataville Storen sovellusliittymän kautta."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Oletushakutulosten lajittelu",
             "labelDefaultSorting": "Oletuslajittelu",
             "mainMenuItemGeneral": "Tuotteet",
+            "messageSaveDefaultValuesEmpty": "Oletusarvo vaaditaan",
             "messageSaveError": "Määrityksiä ei voitu tallentaa.",
             "messageSaveSuccess": "Määritykset tallennettu",
             "placeholderDefaultSearchResultSorting": "Valitse oletushakutulosten lajittelu...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Muuta valon voimakkuutta 3D-näkymässä.",
-                "label": "Valon voimakkuus"
-            }
-        },
         "general": {
             "buttonSave": "Tallenna",
             "description": "Hallitse media-asetuksia täällä.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Aseta tämän säännön nimi...",
             "placeholderPriority": "Aseta prioriteetti tälle säännölle...",
             "placeholderTags": "Kirjoita tunniste...",
+            "placeholderType": "Kirjoita tyyppi...",
+            "productStatesConditionWarning": "Ehto ”Tuote, jossa on tuotetila” on vanhentunut, ja se poistetaan versiosta 6.8. Käytä sen sijaan ”Tuote tuotetyypillä”.",
             "productStreamIndexingWarning": {
                 "action": "Lue lisää dokumentaatiostamme",
                 "message": "Ehto ”Tuote dynaamisessa tuoteryhmässä” ei koskaan pidä paikkaansa.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Tietoja ei jaeta kolmansille osapuolille",
                 "securely-processed": "Turvallisesti tallennetut tiedot"
             },
+            "share-store-data": "Jakamalla tallennustietoja autat meitä ymmärtämään, miten hallintoa käytetään, ja kehittämään parannuksia, jotka helpottavat päivittäistä työtäsi.",
+            "share-user-data": "Jakamalla käyttäjätietojasi autat meitä ymmärtämään, miten hallintoa käytetään, ja kehittämään parannuksia, jotka helpottavat päivittäistä työtäsi.",
             "store-data": {
                 "description": "Yhdistetyt tiedot osoitteista {order}, {diagnostic}ja {store} auttavat meitä parantamaan ominaisuuksia. Vahvista, että sinulla on lupa antaa suostumus yrityksellesi.",
                 "emphasizes": {

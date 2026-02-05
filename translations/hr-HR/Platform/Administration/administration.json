@@ -306,6 +306,7 @@
             "contact_form_send": "Obrazac za kontakt poslan",
             "customer_group_registration_accepted": "Prihvaćen zahtjev za registraciju grupe kupaca",
             "customer_group_registration_declined": "Zahtjev za registraciju grupe kupaca odbijen",
+            "customer_password_changed": "Promijenjena lozinka kupca",
             "customer_recovery_request": "Kupac traži novu lozinku",
             "mail_after_create_message": "E-mail kreiran",
             "mail_before_send": "E-mail se šalje",
@@ -732,6 +733,7 @@
                     "product": "Proizvod"
                 },
                 "lineItemProductStates": "Stavka sa stanjem proizvoda",
+                "lineItemProductType": "Artikal s vrstom proizvoda",
                 "lineItemPromotedRule": "Predmet se promovira",
                 "lineItemPropertyRule": "Stavka s varijantnom ili vrijednošću svojstva",
                 "lineItemPropertyValueRule": "Stavka s vrijednošću imovine",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Digitalna",
                         "is-physical": "Fizička"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Digitalna",
+                        "physical": "Fizička"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Kopiraj poveznicu",
             "labelContextMenuDetail": "Detalji",
             "labelContextMenuMove": "Premjesti",
+            "labelContextMenuRemoveCover": "Uklonite poklopac",
             "labelContextMenuRename": "Preimenuj",
             "labelContextMenuReplace": "Zamijeni",
+            "labelContextMenuSetCover": "Postavite sliku naslovnice",
             "labelUploading": "Učitavanje...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "Slika naslovnice je uklonjena."
+                },
+                "coverSaveError": {
+                    "message": "Slika naslovnice nije se mogla spremiti."
+                },
+                "coverSaveSuccess": {
+                    "message": "Slika naslovnice je spremljena."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Molimo odaberite sliku koju ćete koristiti kao naslovnicu."
+                },
                 "errorBlankItemName": {
                     "message": "Medijsku stavku nije bilo moguće spremiti: Molimo unesite ime."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "Naziv datoteke \"{fileName}\" sadrži nevažeće znakove."
                 },
+                "payloadTooLarge": {
+                    "message": "Datoteka je prevelika. Molimo smanjite veličinu datoteke ili provjerite konfiguraciju poslužitelja."
+                },
                 "requestCanceled": {
                     "message": "Učitavanje je otkazano."
                 },
                 "success": {
                     "message": "Nijedna datoteka nije spremljena. | Datoteka je spremljena. | {count} / {total} datoteka je spremljeno."
+                },
+                "transportError": {
+                    "message": "Prijenos nije uspio zbog veze ili isteka vremena poslužitelja. Molimo provjerite ograničenja veze ili poslužitelja."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Ova akcija povećava vrijednost odgovarajućeg raspona brojeva.",
                     "label": "Generiraj: račun",
                     "labelDatePicker": "Datum",
-                    "labelTextarea": "Komentar",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Komentar"
                 },
                 "warning": "Skupno uređivanje sada koristi poboljšanu izradu dokumenata. Međutim, jedno ili više proširenja na vašem sustavu mogu proizvesti različite rezultate s izradom novog dokumenta.\nStoga provjerite pokazuju li vaši dokumenti razlike sa i bez korištenja skupnog uređivanja."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Pojedinosti o dinamičnoj grupi proizvoda",
                 "dynamicProductGroupHelpText": {
                     "label": "Proizvodi pripadaju dinamičkoj grupi proizvoda ako ispunjavaju uvjete te grupe proizvoda. Uvjeti se mogu definirati u {link} modulu.",
-                    "linkText": "dinamične grupe proizvoda",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "dinamične grupe proizvoda"
                 },
                 "dynamicProductGroupInvalidMessage": "Odabrana dinamična grupa proizvoda nije važeća. Provjerite svoje dinamične detalje o grupi proizvoda.",
                 "productAssignmentEmptyStateDescription": "Nijedan proizvod nije dodijeljen",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Videozapis"
+                },
                 "vimeoVideo": {
                     "label": "Vimeo video"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Ovaj će tekst čitati čitači zaslona kao tekst veze.",
                         "fetchPriorityHigh": "Aktivirajte ovu opciju ako je slika prva na stranici. Tada će slici biti dodijeljen atribut 'fetchpriority=\"high\"', koji će pregledniku reći da je učita s većim prioritetom. To može pomoći u poboljšanju najveće sadržajne boje (LCP).",
-                        "isDecorative": "Kada je ova opcija omogućena, čitači zaslona neće čitati informacije o slici. To znači da će oznake \"alt\" i \"naslov\" ostati prazne."
+                        "isDecorative": "Kada je ova opcija omogućena, čitači zaslona neće čitati informacije o slici. To znači da će oznake \"alt\" i \"naslov\" ostati prazne.",
+                        "minHeight": "Unesite minimalnu visinu sa željenom jedinicom. Na primjer: 200px",
+                        "useFetchPriorityOnFirstItem": "Kada je ova opcija omogućena, prva slika učitava se s većim prioritetom. To može poboljšati brzinu prikazivanja stranice u pregledniku."
                     },
                     "label": {
                         "ariaLabel": "Opis veze",
-                        "ariaLabelHelpText": "Ovaj će tekst čitati čitači zaslona kao tekst veze.",
                         "fetchPriorityHigh": "Dobivanje visokog prioriteta",
                         "isDecorative": "Označite sliku kao ukrasnu",
-                        "isDecorativeHelpText": "Kada je ova opcija omogućena, čitači zaslona neće čitati informacije o slici.",
                         "linkNewTab": "Otvorite poveznicu u novoj kartici",
                         "linkTo": "Cilj veze",
                         "minHeight": "Minimalna visina",
-                        "minHeightHelpText": "Unesite minimalnu visinu sa željenom jedinicom. Na primjer: 200px",
-                        "useFetchPriorityOnFirstItem": "Učitajte prvu sliku s većim prioritetom",
-                        "useFetchPriorityOnFirstItemHelpText": "Kada je ova opcija omogućena, prva slika učitava se s većim prioritetom. To može poboljšati brzinu prikazivanja stranice u pregledniku."
+                        "useFetchPriorityOnFirstItem": "Učitajte prvu sliku s većim prioritetom"
                     },
                     "placeholder": {
                         "enterMinHeight": "Unesi minimalnu visinu...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Opis proizvoda i recenzije",
                         "reviews": "Recenzije"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Logotip proizvođača"
+                },
+                "name": {
+                    "label": "Ime proizvoda"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Tekst"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Čitaju čitači zaslona i trebali bi ukratko opisati sadržaj ili svrhu videozapisa. Ako ostane prazan, umjesto toga koristit će se naslov ili alt tekst konfiguriran u medijskom modulu.",
+                        "autoPlay": "Automatsko reproduciranje je dopušteno od strane mnogih preglednika samo kada je videozapis isključen.<br>Kod automatske reprodukcije naslovnica nema smisla jer reprodukcija počinje odmah i nije potrebna potvrda.",
+                        "minHeight": "Unesite minimalnu visinu sa željenom jedinicom. Na primjer: 200px",
+                        "playsInline": "Na iOS-u se videozapisi često otvaraju preko cijelog zaslona. Omogućite ovu opciju da biste reprodukciju zadržali u liniji.",
+                        "showCover": "Poklopac konfiguriran u odabiru medija prikazat će se sve dok korisnik ne potvrdi učitavanje videozapisa klikom."
+                    },
+                    "label": {
+                        "ariaLabel": "Naslov čitača zaslona",
+                        "autoPlay": "Automatsko pokretanje videa",
+                        "loop": "Reprodukujte videozapis tako da se automatski ponavlja",
+                        "minHeight": "Minimalna visina",
+                        "muted": "Igrajte prigušeno",
+                        "playsInline": "Reproducirajte inline na iOS uređajima",
+                        "showControls": "Prikaži video kontrole",
+                        "showCover": "Učitajte videozapis tek nakon potvrde korisnika"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Unesite naslov čitača zaslona...",
+                        "minHeight": "Unesite minimalnu visinu..."
+                    }
+                },
+                "label": "Videozapis"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Prihvati",
             "acceptMessage": "Izmijenjena je grupa kupaca",
             "alert": "Zatražen je pristup grupi kupaca \"{name}\".",
+            "customerInactiveMessage": "Neaktivni kupci ne mogu biti prihvaćeni ili odbijeni nijednoj grupi kupaca.",
             "decline": "Odbij",
             "declineMessage": "Zahtjev je odbijen",
             "errorMessage": "Zahtjev nije moguće obraditi",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Naručite povrat transakcija",
             "paid": "Plaćeni",
             "paidPartially": "Plaćeno djelomično",
+            "password": "Lozinka",
             "paymentMethod": "Način plaćanja",
             "pending": "U tijeku",
             "placed": "Postavljen",
@@ -4437,8 +4502,7 @@
                 "profile": "Profil",
                 "records": "Zapisi",
                 "size": "Veličina",
-                "state": "Status",
-                "user": "Korisnik"
+                "state": "Status"
             },
             "contextMenu": {
                 "abortProcess": "Prekid postupka",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Otvori podatke o zapisniku",
                 "showProfile": "Prikaži profil",
                 "showResults": "Prikaži sažetak"
+            },
+            "detail": {
+                "ExportLabel": "Izvoz",
+                "importLabel": "Uvoz"
             },
             "dryrun": "Suha vožnja",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "Nevažeći zahtjev za ovo polje.",
             "messageServerError": "Poslužitelj autorizacije naišao je na neočekivano stanje.",
             "messageUnsupportedGrantType": "Vrsta odobrenja za autorizaciju nije podržana od strane autorizacijskog severa.",
+            "orContinueWith": "Ili nastavite s",
             "placeholderPassword": "Unesite svoju lozinku...",
             "placeholderUsername": "Unesite svoje korisničko ime...",
             "subheadlineMain": "Dobrodošli natrag."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "E-mail predloške dodajte klikom na gumb \"dodaj\".",
             "emptyStateTitle": "Još nema e-mail predložaka",
             "errorMediaItemDuplicated": "Medijska stavka je već dodijeljena",
+            "tabHeaderFooter": "Zaglavlja i podnožja",
+            "tabMailTemplates": "Predlošci",
             "textDeleteConfirm": "D li ste sigurni da želite izbrisati E-mail predložak \"{subject}\"?",
             "textMailTemplateOverview": "E-mail predlošci",
             "titleMailFooterList": "Podnožje",
@@ -5072,7 +5143,9 @@
                 "download": "Preuzmite",
                 "horizontal": "Horizontalno",
                 "move": "Premjesti",
+                "removeCover": "Uklonite poklopac",
                 "replace": "Zamijeni",
+                "setCover": "Postavite sliku naslovnice",
                 "settings": "Postavke",
                 "vertical": "Uspravno"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Spremi u medijima"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Preglednik modela"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Unesite broj proizvoda..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Filter stanja proizvoda je zastario i uklonit će se u v6.8. Umjesto toga upotrijebite filter vrste proizvoda.",
                 "label": "Stanja proizvoda",
                 "options": {
                     "digital": "Digitalna",
                     "physical": "Fizička"
                 },
                 "placeholder": "Odaberite stanje proizvoda..."
+            },
+            "productTypeFilter": {
+                "label": "Vrsta",
+                "placeholder": "Odaberite vrstu proizvoda..."
             },
             "releaseDateFilter": {
                 "label": "Datum izdavanja"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Postavke",
             "cardTitleSellingPackaging": "Informacije o prodaji i pakiranju"
         },
+        "type": {
+            "digital": "Digitalna",
+            "physical": "Fizička"
+        },
         "variations": {
             "backVariationsButton": "Natrag",
             "configuratorCardTitle": "Proizvođač varijanti",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "Dinamična grupa proizvoda \"{name}\" je spremljena.",
             "placeholderDescription": "Unesite opis...",
             "placeholderName": "Unesite titulu...",
+            "productStatesFilterWarning": "Ova dinamička grupa proizvoda i dalje koristi zastarjeli filter stanja proizvoda. Uklonit će se u v6.8 - umjesto toga prebacite se na filter tipa proizvoda.",
             "productStreamIndexingWarning": {
                 "action": "Saznajte više u našoj dokumentaciji",
                 "message": "Neke značajke možda neće raditi kako se očekivalo: <ul><li>Stranice kategorije možda neće odražavati promjene dok HTTP predmemorija ne istekne ili se ručno ne izbriše.</li><li>Uvjet pravila \"Artikal u dinamičkoj grupi proizvoda\" nikada neće biti istinit.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "General"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Postavke privatnosti"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "Anonimni IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Kada je omogućeno, događaj 'view_cart' također se pokreće kada se otvori offcanvas košarica, a ne samo na namjenskoj stranici košarice. Korisno za detaljnu analizu lijevka, ali može napuhati metrike prikaza košarice.",
+                        "label": "Košaricu za praćenje izvan platna"
+                    },
                     "trackOrders": {
                         "label": "Pratite narudžbe"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Postavke"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "Postavke nisu pronađene. Pokušajte upotrijebiti drugi pojam za pretraživanje.",
+                "noResultsHeadline": "Nisu pronađeni unosi",
+                "placeholder": "Pronađite postavke..."
+            },
             "tabAutomation": "Automatizacija",
             "tabCommerce": "Trgovina",
             "tabContent": "Sadržaj",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Preporučuje se ponovno indeksiranje podataka, ako se status pretraživanja promijenio, kako bi se osigurali točni rezultati pretraživanja.",
                 "buttonAddOption": "Dodaj opciju",
                 "buttonEditApply": "Primijeni promjene",
                 "helpTextEntitySelect": "Vrsta entiteta ne može se prebaciti nakon što se kreira prilagođeno polje.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Ako se kreira prilagođeno polje, stvorit će se i odgovarajući isječak za sve vaše skupove isječaka. Isječak će se zvati \"prilagođenoPolje.{name}\".",
                 "labelAllowCartExpose": "Dostupno u košaricama",
                 "labelAllowCustomerWrite": "Izmjenjivo putem API-ja trgovine",
+                "labelAllowSearchable": "Uključite u pretraživanje",
                 "labelCustomFieldPosition": "Pozicija",
                 "labelCustomFieldType": "Vrsta",
                 "labelDate": "Datum",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Novo prilagođeno polje",
                 "tooltipAllowCartExpose": "Aktivirajte, kako biste ovo prilagođeno polje učinili dostupnim u korisnom opterećenju artikala linije košarice. To je potrebno da biste u početku koristili ovo prilagođeno polje u programu Rule Builder ili prilagođenim predlošcima.",
                 "tooltipAllowCustomerWrite": "Kada je aktivan, API-ju trgovine dopušteno je izmijeniti ovo polje. To se može koristiti za pohranu prilagođenih podataka ako dodate nova polja u izlog. Na primjer, za nova polja u obrascu za registraciju.",
+                "tooltipAllowSearchable": "Kada je aktivno, ovo prilagođeno polje bit će indeksirano i može se koristiti u konfiguracijama pretraživanja. Ako ovo polje nije potrebno za pretraživanje, trebalo bi ga onemogućiti kako bi se smanjila veličina pohrane indeksa i poboljšala izvedba pretraživanja.",
                 "tooltipCartExposeDisabled": "Ova se postavka trenutno ne može mijenjati jer prilagođeno polje koristi jedan ili više uvjeta u Izradi pravila.",
                 "tooltipCustomFieldPosition": "Upravlja poziciju ovog prilagođenog polja na stranici s detaljima.",
                 "tooltipStoreApiAware": "Kada je aktivno, ovo polje bit će dostupno u API-ju trgovine. Ova se opcija može onemogućiti za pohranu prilagođenih podataka samo interno i ne učiniti ih dostupnima putem API-ja trgovine."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Zadano sortiranje rezultata pretraživanja",
             "labelDefaultSorting": "Zadano razvrstavanje",
             "mainMenuItemGeneral": "Proizvodi",
+            "messageSaveDefaultValuesEmpty": "Potrebna je zadana vrijednost",
             "messageSaveError": "Konfiguracija nije mogla biti spremljena.",
             "messageSaveSuccess": "Postavke su spremljene.",
             "placeholderDefaultSearchResultSorting": "Odaberite zadano sortiranje rezultata pretraživanja...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Promijenite intenzitet svjetla u 3D prikazu.",
-                "label": "Intenzitet svjetlosti"
-            }
-        },
         "general": {
             "buttonSave": "Spremi",
             "description": "Ovdje upravljajte postavkama medija.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Postavite naziv za ovo pravilo...",
             "placeholderPriority": "Postavite prioritet za ovo pravilo...",
             "placeholderTags": "Unesite oznaku...",
+            "placeholderType": "Unesite vrstu...",
+            "productStatesConditionWarning": "Uvjet \"Stavka sa stanjem proizvoda\" zastario je i bit će uklonjen u v6.8. Umjesto toga upotrijebite \"Artikal s vrstom proizvoda\".",
             "productStreamIndexingWarning": {
                 "action": "Saznajte više u našoj dokumentaciji",
                 "message": "Uvjet \"Artikal u dinamičkoj grupi proizvoda\" nikada neće biti istinit.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Podaci se ne dijele s trećim stranama",
                 "securely-processed": "Sigurno pohranjeni podaci"
             },
+            "share-store-data": "Dijeljenjem podataka iz trgovine pomažete nam da razumijemo kako se koristi Administracija i razvijemo poboljšanja koja olakšavaju vaš svakodnevni rad.",
+            "share-user-data": "Dijeljenjem vaših korisničkih podataka pomažete nam razumjeti kako se koristi Administracija i razviti poboljšanja koja olakšavaju vaš svakodnevni rad.",
             "store-data": {
                 "description": "Kombinirani podaci iz {order}, {diagnostic}i {store} pomažu nam da poboljšamo značajke. Molimo potvrdite da ste ovlašteni dati pristanak za svoju tvrtku.",
                 "emphasizes": {

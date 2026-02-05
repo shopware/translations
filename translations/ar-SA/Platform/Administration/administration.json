@@ -306,6 +306,7 @@
             "contact_form_send": "تم إرسال نموذج الاتصال",
             "customer_group_registration_accepted": "تم قبول طلب تسجيل مجموعة العملاء",
             "customer_group_registration_declined": "تم رفض طلب تسجيل مجموعة العملاء",
+            "customer_password_changed": "تم تغيير كلمة مرور العميل",
             "customer_recovery_request": "يطلب العميل كلمة مرور جديدة",
             "mail_after_create_message": "تم إنشاء البريد الإلكتروني",
             "mail_before_send": "يتم إرسال البريد الإلكتروني",
@@ -732,6 +733,7 @@
                     "product": "المنتج"
                 },
                 "lineItemProductStates": "العنصر مع حالة المنتج",
+                "lineItemProductType": "عنصر مع نوع المنتج",
                 "lineItemPromotedRule": "تمت ترقية العنصر",
                 "lineItemPropertyRule": "عنصر ذو قيمة متغيرة أو خاصية",
                 "lineItemPropertyValueRule": "عنصر بقيمة الخاصية",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "رقمي",
                         "is-physical": "فيزيائي"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "رقمي",
+                        "physical": "فيزيائي"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "انسخ الرابط",
             "labelContextMenuDetail": "تفاصيل",
             "labelContextMenuMove": "نقل",
+            "labelContextMenuRemoveCover": "قم بإزالة الغطاء",
             "labelContextMenuRename": "إعادة تسمية",
             "labelContextMenuReplace": "يحل محل",
+            "labelContextMenuSetCover": "تعيين صورة الغلاف",
             "labelUploading": "جارٍ التحميل ...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "تمت إزالة صورة الغلاف."
+                },
+                "coverSaveError": {
+                    "message": "لا يمكن حفظ صورة الغلاف."
+                },
+                "coverSaveSuccess": {
+                    "message": "تم حفظ صورة الغلاف."
+                },
+                "coverSelectionInvalid": {
+                    "message": "يرجى اختيار صورة لاستخدامها كغلاف."
+                },
                 "errorBlankItemName": {
                     "message": "لا يمكن حفظ عنصر الوسائط: الرجاء إدخال اسم."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "يحتوي اسم الملف \"{fileName}\" على أحرف غير صالحة."
                 },
+                "payloadTooLarge": {
+                    "message": "الملف كبير جدًا. يرجى تقليل حجم الملف أو التحقق من تكوين الخادم."
+                },
                 "requestCanceled": {
                     "message": "تم إلغاء التحميل."
                 },
                 "success": {
                     "message": "لم يتم حفظ أي ملف. | تم حفظ الملف. | {count} / {total} تم حفظ الملفات."
+                },
+                "transportError": {
+                    "message": "فشل التحميل بسبب الاتصال أو انتهاء مهلة الخادم. يرجى التحقق من حدود الاتصال أو الخادم."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "يؤدي هذا الإجراء إلى زيادة قيمة نطاق الأرقام المقابل.",
                     "label": "توليد: فاتورة",
                     "labelDatePicker": "التاريخ",
-                    "labelTextarea": "تعليق",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "تعليق"
                 },
                 "warning": "يستخدم التعديل المجمع الآن إنشاء مستند محسّن. ومع ذلك، قد ينتج ملحق واحد أو أكثر على نظامك نتائج مختلفة مع إنشاء المستند الجديد.\nلذلك، يرجى التحقق مما إذا كانت مستنداتك تظهر اختلافات مع أو بدون استخدام التحرير المجمع."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "تفاصيل مجموعة المنتجات الديناميكية",
                 "dynamicProductGroupHelpText": {
                     "label": "تنتمي المنتجات إلى مجموعة منتجات ديناميكية إذا كانت تستوفي شروط مجموعة المنتجات هذه. يمكن تحديد الشروط داخل الوحدة {link} .",
-                    "linkText": "مجموعات المنتجات الديناميكية",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "مجموعات المنتجات الديناميكية"
                 },
                 "dynamicProductGroupInvalidMessage": "مجموعة المنتجات الديناميكية المحددة غير صالحة. يرجى التحقق من تفاصيل مجموعة المنتجات الديناميكية الخاصة بك.",
                 "productAssignmentEmptyStateDescription": "لم يتم تعيين أي منتجات",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "فيديو"
+                },
                 "vimeoVideo": {
                     "label": "فيديو فيميو"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "ستتم قراءة هذا النص بواسطة برامج قراءة الشاشة كنص رابط.",
                         "fetchPriorityHigh": "قم بتنشيط هذا الخيار إذا كانت الصورة هي الأولى على الصفحة. سيتم بعد ذلك تعيين السمة 'fetchpriority= «high\"' للصورة، لإخبار المتصفح بتحميلها بأولوية أعلى. يمكن أن يساعد ذلك في تحسين الطلاء الأكبر محتوى (LCP).",
-                        "isDecorative": "عند تمكين هذا الخيار، لن تتم قراءة معلومات الصورة بواسطة برامج قراءة الشاشة. هذا يعني أن علامتي «alt» و «title» ستظلان فارغتين."
+                        "isDecorative": "عند تمكين هذا الخيار، لن تتم قراءة معلومات الصورة بواسطة برامج قراءة الشاشة. هذا يعني أن علامتي «alt» و «title» ستظلان فارغتين.",
+                        "minHeight": "أدخل الحد الأدنى للارتفاع مع الوحدة التي تريدها. على سبيل المثال: 200px",
+                        "useFetchPriorityOnFirstItem": "عند تمكين هذا الخيار، يتم تحميل الصورة الأولى بأولوية أعلى. يمكن أن يؤدي ذلك إلى تحسين السرعة التي يتم بها عرض الصفحة في المتصفح."
                     },
                     "label": {
                         "ariaLabel": "وصف الرابط",
-                        "ariaLabelHelpText": "ستتم قراءة هذا النص بواسطة برامج قراءة الشاشة كنص رابط.",
                         "fetchPriorityHigh": "أولوية الإحضار عالية",
                         "isDecorative": "ضع علامة على الصورة كصورة زخرفية",
-                        "isDecorativeHelpText": "عند تمكين هذا الخيار، لن تتم قراءة معلومات الصورة بواسطة برامج قراءة الشاشة.",
                         "linkNewTab": "افتح الرابط في علامة تبويب جديدة",
                         "linkTo": "هدف الارتباط",
                         "minHeight": "الحد الأدنى للارتفاع",
-                        "minHeightHelpText": "أدخل الحد الأدنى للارتفاع بالوحدة التي تريدها. على سبيل المثال: 200 بكسل",
-                        "useFetchPriorityOnFirstItem": "قم بتحميل الصورة الأولى بأولوية أعلى",
-                        "useFetchPriorityOnFirstItemHelpText": "عند تمكين هذا الخيار، يتم تحميل الصورة الأولى بأولوية أعلى. يمكن أن يؤدي ذلك إلى تحسين السرعة التي يتم بها عرض الصفحة في المتصفح."
+                        "useFetchPriorityOnFirstItem": "قم بتحميل الصورة الأولى بأولوية أعلى"
                     },
                     "placeholder": {
                         "enterMinHeight": "أدخل الحد الأدنى للارتفاع...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "وصف المنتج والمراجعات",
                         "reviews": "تعليقات"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "شعار الشركة المصنعة"
+                },
+                "name": {
+                    "label": "اسم المنتج"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "نص"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "اقرأ بواسطة برامج قراءة الشاشة ويجب أن تصف بإيجاز محتوى الفيديو أو الغرض منه. في حالة تركها فارغة، سيتم استخدام العنوان أو النص البديل الذي تم تكوينه في وحدة الوسائط، بدلاً من ذلك.",
+                        "autoPlay": "يُسمح بالتشغيل التلقائي من قبل العديد من المتصفحات فقط عندما يتم كتم الفيديو.<br>مع التشغيل التلقائي، لا يكون الغلاف مفيدًا لأن التشغيل يبدأ فورًا ولا حاجة إلى تأكيد.",
+                        "minHeight": "أدخل الحد الأدنى للارتفاع مع الوحدة التي تريدها. على سبيل المثال: 200px",
+                        "playsInline": "على iOS، غالبًا ما تفتح مقاطع الفيديو بملء الشاشة. قم بتمكين هذا الخيار للحفاظ على التشغيل مضمنًا.",
+                        "showCover": "سيتم عرض الغلاف الذي تم تكوينه في اختيار الوسائط حتى يؤكد المستخدم تحميل الفيديو عبر النقر."
+                    },
+                    "label": {
+                        "ariaLabel": "عنوان قارئ الشاشة",
+                        "autoPlay": "تشغيل الفيديو تلقائيًا",
+                        "loop": "تشغيل الفيديو في حلقة",
+                        "minHeight": "الحد الأدنى للارتفاع",
+                        "muted": "تم كتم التشغيل",
+                        "playsInline": "العب على الإنترنت على أجهزة iOS",
+                        "showControls": "عرض عناصر التحكم في الفيديو",
+                        "showCover": "قم بتحميل الفيديو فقط بعد التأكيد من قبل المستخدم"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "أدخل عنوان قارئ الشاشة...",
+                        "minHeight": "أدخل الحد الأدنى للارتفاع..."
+                    }
+                },
+                "label": "فيديو"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "اقبل",
             "acceptMessage": "تم تغيير مجموعة العملاء",
             "alert": "تم طلب الوصول إلى مجموعة العملاء \"{name}\".",
+            "customerInactiveMessage": "لا يمكن قبول العملاء غير النشطين أو رفضهم لأي مجموعة عملاء.",
             "decline": "انخفاض",
             "declineMessage": "تم رفض الطلب",
             "errorMessage": "لا يمكن معالجة الطلب",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "طلب القبض على المعاملات واسترداد الأموال",
             "paid": "مدفوعة",
             "paidPartially": "مدفوع جزئيًا",
+            "password": "كلمة المرور",
             "paymentMethod": "طريقة الدفع",
             "pending": "قيد الانتظار",
             "placed": "تم وضعه",
@@ -4437,8 +4502,7 @@
                 "profile": "الملف الشخصي",
                 "records": "السجلات",
                 "size": "الحجم",
-                "state": "الحالة",
-                "user": "المستخدم"
+                "state": "الحالة"
             },
             "contextMenu": {
                 "abortProcess": "قم بإجهاض العملية",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "معلومات السجل المفتوح",
                 "showProfile": "عرض الملف الشخصي",
                 "showResults": "عرض الملخص"
+            },
+            "detail": {
+                "ExportLabel": "تصدير",
+                "importLabel": "الاستيراد"
             },
             "dryrun": "الجري الجاف",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "طلب نطاق غير صالح.",
             "messageServerError": "واجه خادم التخويل حالة غير متوقعة.",
             "messageUnsupportedGrantType": "نوع منح التخويل غير مدعوم من قبل خادم التخويل.",
+            "orContinueWith": "أو تابع مع",
             "placeholderPassword": "أدخل كلمة المرور الخاصة بك...",
             "placeholderUsername": "أدخل اسم المستخدم الخاص بك...",
             "subheadlineMain": "مرحباً بك مرة أخرى."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "أضف قوالب البريد الإلكتروني بالنقر فوق الزر «إضافة».",
             "emptyStateTitle": "لا توجد قوالب بريد إلكتروني بعد",
             "errorMediaItemDuplicated": "تم تعيين عنصر الوسائط بالفعل",
+            "tabHeaderFooter": "الرؤوس والتذييلات",
+            "tabMailTemplates": "قوالب",
             "textDeleteConfirm": "هل تريد بالتأكيد حذف قالب البريد الإلكتروني \"{subject}\"؟",
             "textMailTemplateOverview": "قوالب البريد الإلكتروني",
             "titleMailFooterList": "تذييل",
@@ -5072,7 +5143,9 @@
                 "download": "تنزيل",
                 "horizontal": "أفقي",
                 "move": "تحرّك",
+                "removeCover": "قم بإزالة الغطاء",
                 "replace": "يحل محل",
+                "setCover": "تعيين صورة الغلاف",
                 "settings": "إعدادات",
                 "vertical": "عمودي"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "حفظ في الوسائط"
+        },
+        "sw-model-viewer": {
+            "titleModal": "عارض النماذج"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "أدخل رقم المنتج..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "تم إيقاف عامل تصفية حالات المنتج وستتم إزالته في v6.8. يرجى استخدام فلتر نوع المنتج بدلاً من ذلك.",
                 "label": "حالات المنتج",
                 "options": {
                     "digital": "رقمي",
                     "physical": "فيزيائي"
                 },
                 "placeholder": "حدد حالة المنتج..."
+            },
+            "productTypeFilter": {
+                "label": "النوع",
+                "placeholder": "حدد نوع المنتج..."
             },
             "releaseDateFilter": {
                 "label": "تاريخ الإصدار"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "خصائص",
             "cardTitleSellingPackaging": "معلومات البيع والتغليف"
         },
+        "type": {
+            "digital": "رقمي",
+            "physical": "فيزيائي"
+        },
         "variations": {
             "backVariationsButton": "إلى الخلف",
             "configuratorCardTitle": "مولد متغير",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "تم حفظ مجموعة المنتجات الديناميكية \"{name}\".",
             "placeholderDescription": "أدخل الوصف...",
             "placeholderName": "أدخل المسمى الوظيفي...",
+            "productStatesFilterWarning": "لا تزال مجموعة المنتجات الديناميكية هذه تستخدم فلتر حالات المنتج الذي تم إيقافه. ستتم إزالته في v6.8 - يرجى التبديل إلى مرشح نوع المنتج بدلاً من ذلك.",
             "productStreamIndexingWarning": {
                 "action": "تعرف على المزيد في وثائقنا",
                 "message": "قد لا تعمل بعض الميزات كما هو متوقع: <ul><li>قد لا تعكس صفحات الفئة التغييرات حتى تنتهي صلاحية ذاكرة التخزين المؤقت لـ HTTP أو يتم مسحها يدويًا.</li><li>لن يكون شرط القاعدة «العنصر في مجموعة المنتجات الديناميكية» صحيحًا أبدًا.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "عام"
+        },
+        "tabPrivacyPreferences": {
+            "title": "تفضيلات الخصوصية"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "إخفاء عنوان IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "عند التمكين، يتم تشغيل حدث «view_cart» أيضًا عند فتح عربة offcanvas، وليس فقط على صفحة عربة التسوق المخصصة. مفيد لتحليل مسار التحويل التفصيلي ولكنه قد يؤدي إلى تضخيم مقاييس عرض عربة التسوق.",
+                        "label": "تعقب عربة القماش"
+                    },
                     "trackOrders": {
                         "label": "تتبع الطلبات"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "إعدادات"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "تعذّر العثور على الإعدادات. حاول استخدام مصطلح بحث آخر.",
+                "noResultsHeadline": "لم يتم العثور على أية إدخالات",
+                "placeholder": "ابحث عن الإعدادات..."
+            },
             "tabAutomation": "التشغيل الآلي",
             "tabCommerce": "تجارة",
             "tabContent": "المحتوى",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "يوصى بإعادة فهرسة البيانات، إذا تغيرت حالة البحث، لضمان نتائج بحث دقيقة.",
                 "buttonAddOption": "إضافة خيار",
                 "buttonEditApply": "تطبيق التغييرات",
                 "helpTextEntitySelect": "لا يمكن تغيير نوع الكيان بمجرد إنشاء الحقل المخصص.",
@@ -8026,6 +8125,7 @@
                 "infoText": "إذا تم إنشاء حقل مخصص، فسيتم إنشاء المقتطف وفقًا لجميع مجموعات المقتطفات أيضًا. سيتم تسمية المقتطف باسم «customFields.{name}».",
                 "labelAllowCartExpose": "متوفر في عربات التسوق",
                 "labelAllowCustomerWrite": "قابل للتعديل عبر واجهة برمجة تطبيقات المتجر",
+                "labelAllowSearchable": "قم بالتضمين في البحث",
                 "labelCustomFieldPosition": "موضع",
                 "labelCustomFieldType": "النوع",
                 "labelDate": "التاريخ",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "حقل مخصص جديد",
                 "tooltipAllowCartExpose": "لجعل حقل مخصص متاحًا في بيانات الحمولة لعناصر سلة التسوق في Shopware، يجب تفعيله. هذا مطلوب لاستخدام الحقل المخصص في Rule Builder أو القوالب المخصصة.",
                 "tooltipAllowCustomerWrite": "عندما تكون نشطة، يُسمح لواجهة برمجة تطبيقات المتجر بتعديل هذا الحقل. يمكن استخدام هذا لتخزين البيانات المخصصة في حالة إضافة حقول جديدة إلى واجهة المتجر. على سبيل المثال للحقول الجديدة في نموذج التسجيل.",
+                "tooltipAllowSearchable": "عند تنشيطه، ستتم فهرسة هذا الحقل المخصص ويمكن استخدامه في تكوينات البحث. إذا لم يكن هذا الحقل مطلوبًا للبحث، فيجب تعطيله لتقليل حجم تخزين الفهرس وتحسين أداء البحث.",
                 "tooltipCartExposeDisabled": "لا يمكن تغيير هذا الإعداد حاليًا، لأن الحقل المخصص قيد الاستخدام بواسطة شرط واحد أو أكثر في Rule Builder.",
                 "tooltipCustomFieldPosition": "يتحكم في موضع هذا الحقل المخصص على صفحات التفاصيل.",
                 "tooltipStoreApiAware": "عند التفعيل، سيكون هذا الحقل متاحًا في واجهة برمجة تطبيقات المتجر. يمكن تعطيل هذا الخيار لتخزين البيانات المخصصة داخليًا فقط وعدم إتاحتها عبر Store API."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "فرز نتائج البحث الافتراضي",
             "labelDefaultSorting": "الفرز الافتراضي",
             "mainMenuItemGeneral": "منتجات",
+            "messageSaveDefaultValuesEmpty": "القيمة الافتراضية مطلوبة",
             "messageSaveError": "لا يمكن حفظ التكوين.",
             "messageSaveSuccess": "تم حفظ التكوين.",
             "placeholderDefaultSearchResultSorting": "حدد فرز نتائج البحث الافتراضي...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "قم بتغيير شدة الضوء في العرض ثلاثي الأبعاد.",
-                "label": "كثافة الضوء"
-            }
-        },
         "general": {
             "buttonSave": "وفر",
             "description": "قم بإدارة إعدادات الوسائط هنا.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "قم بتعيين اسم لهذه القاعدة...",
             "placeholderPriority": "قم بتعيين أولوية لهذه القاعدة...",
             "placeholderTags": "أدخل علامة...",
+            "placeholderType": "أدخل النوع...",
+            "productStatesConditionWarning": "تم إيقاف شرط «العنصر بحالة المنتج» وستتم إزالته في v6.8. يرجى استخدام «العنصر مع نوع المنتج» بدلاً من ذلك.",
             "productStreamIndexingWarning": {
                 "action": "تعرف على المزيد في وثائقنا",
                 "message": "لن يكون شرط «العنصر في مجموعة المنتجات الديناميكية» صحيحًا أبدًا.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "لا تتم مشاركة أي بيانات مع أطراف ثالثة",
                 "securely-processed": "بيانات مخزنة بشكل آمن"
             },
+            "share-store-data": "من خلال مشاركة بيانات المتجر، فإنك تساعدنا على فهم كيفية استخدام الإدارة وتطوير التحسينات التي تجعل عملك اليومي أسهل.",
+            "share-user-data": "من خلال مشاركة بيانات المستخدم الخاصة بك، فإنك تساعدنا على فهم كيفية استخدام الإدارة وتطوير التحسينات التي تجعل عملك اليومي أسهل.",
             "store-data": {
                 "description": "تساعدنا البيانات المجمعة من {order}و {diagnostic}و {store} على تحسين الميزات. يرجى تأكيد أنك مفوّض بمنح الموافقة لشركتك.",
                 "emphasizes": {

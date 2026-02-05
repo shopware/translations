@@ -306,6 +306,7 @@
             "contact_form_send": "연락처 양식 전송",
             "customer_group_registration_accepted": "고객 그룹 등록 요청 수락",
             "customer_group_registration_declined": "고객 그룹 등록 요청이 거부되었습니다.",
+            "customer_password_changed": "고객 비밀번호가 변경됨",
             "customer_recovery_request": "고객이 새 비밀번호 요청",
             "mail_after_create_message": "이메일이 생성됨",
             "mail_before_send": "전자 메일을 보내는 중입니다.",
@@ -732,6 +733,7 @@
                     "product": "제품"
                 },
                 "lineItemProductStates": "제품 상태가 포함된 품목",
+                "lineItemProductType": "제품 유형이 있는 품목",
                 "lineItemPromotedRule": "항목이 프로모션됨",
                 "lineItemPropertyRule": "변형 또는 속성 값이 있는 항목",
                 "lineItemPropertyValueRule": "속성 값이 있는 항목",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "디지털",
                         "is-physical": "물리적"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "디지털",
+                        "physical": "물리적"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "링크 복사",
             "labelContextMenuDetail": "세부 정보",
             "labelContextMenuMove": "이동",
+            "labelContextMenuRemoveCover": "커버 제거",
             "labelContextMenuRename": "이름 바꾸기",
             "labelContextMenuReplace": "바꾸기",
+            "labelContextMenuSetCover": "커버이미지 설정",
             "labelUploading": "업로드 중...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "커버이미지가 제거되었습니다."
+                },
+                "coverSaveError": {
+                    "message": "커버이미지를 저장할 수 없습니다."
+                },
+                "coverSaveSuccess": {
+                    "message": "커버이미지가 저장되었습니다."
+                },
+                "coverSelectionInvalid": {
+                    "message": "커버로 사용할 이미지를 선택하세요."
+                },
                 "errorBlankItemName": {
                     "message": "미디어 항목을 저장할 수 없습니다. 이름을 입력하십시오."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "파일 이름 \"{fileName}“에 잘못된 문자가 있습니다."
                 },
+                "payloadTooLarge": {
+                    "message": "파일이 너무 큽니다.파일 크기를 줄이거나 서버 구성을 확인하십시오."
+                },
                 "requestCanceled": {
                     "message": "업로드가 취소되었습니다."
                 },
                 "success": {
                     "message": "파일이 저장되지 않았습니다. | 파일이 저장되었습니다. | {count} / {total} 파일이 저장되었습니다."
+                },
+                "transportError": {
+                    "message": "연결 또는 서버 시간 초과로 인해 업로드에 실패했습니다.연결 또는 서버 제한을 확인하세요."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "이 작업을 수행하면 해당 번호 범위의 값이 증가합니다.",
                     "label": "생성: 인보이스",
                     "labelDatePicker": "날짜",
-                    "labelTextarea": "코멘트",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "코멘트"
                 },
                 "warning": "이제 일괄 편집에서는 향상된 문서 작성을 사용합니다.그러나 시스템에 있는 하나 이상의 확장 프로그램을 사용하면 새 문서를 만들 때 다른 결과가 나올 수 있습니다.\n따라서 일괄 편집을 사용하거나 사용하지 않고 문서에 차이가 있는지 확인하십시오."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "동적 제품 그룹 세부 정보",
                 "dynamicProductGroupHelpText": {
                     "label": "제품이 해당 제품 그룹의 조건을 충족하는 경우 동적 제품 그룹에 속합니다.조건은 {link} 모듈 내에서 정의 할 수 있습니다.",
-                    "linkText": "동적 제품 그룹",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "동적 제품 그룹"
                 },
                 "dynamicProductGroupInvalidMessage": "선택한 동적 제품 그룹이 유효하지 않습니다.동적 제품 그룹 세부 정보를 확인하십시오.",
                 "productAssignmentEmptyStateDescription": "할당된 제품이 없습니다.",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "비디오"
+                },
                 "vimeoVideo": {
                     "label": "비메오 비디오"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "이 텍스트는 스크린 리더에 의해 링크 텍스트로 읽혀집니다.",
                         "fetchPriorityHigh": "이미지가 페이지의 첫 번째 이미지인 경우 이 옵션을 활성화합니다.그러면 이미지에 'fetchpriority=\"high\"' 속성이 할당되어 브라우저에 더 높은 우선 순위로 로드하도록 알립니다.이렇게 하면 최대 콘텐츠풀 페인트 (LCP) 를 개선하는 데 도움이 될 수 있습니다.",
-                        "isDecorative": "이 옵션을 활성화하면 화면 판독기가 이미지 정보를 읽을 수 없습니다.즉, “alt” 및 “title” 태그는 비어 있게 됩니다."
+                        "isDecorative": "이 옵션을 활성화하면 화면 판독기가 이미지 정보를 읽을 수 없습니다.즉, “alt” 및 “title” 태그는 비어 있게 됩니다.",
+                        "minHeight": "원하는 단위로 최소 높이를 입력합니다.예: 200픽셀",
+                        "useFetchPriorityOnFirstItem": "이 옵션을 활성화하면 첫 번째 이미지가 더 높은 우선 순위로 로드됩니다.이렇게 하면 브라우저에서 페이지가 렌더링되는 속도가 향상될 수 있습니다."
                     },
                     "label": {
                         "ariaLabel": "링크 설명",
-                        "ariaLabelHelpText": "이 텍스트는 스크린 리더에 의해 링크 텍스트로 읽혀집니다.",
                         "fetchPriorityHigh": "가져오기 우선 순위 높음",
                         "isDecorative": "이미지를 장식용으로 표시",
-                        "isDecorativeHelpText": "이 옵션을 활성화하면 화면 판독기가 이미지 정보를 읽을 수 없습니다.",
                         "linkNewTab": "새 탭에서 링크 열기",
                         "linkTo": "링크 대상",
                         "minHeight": "최소 높이",
-                        "minHeightHelpText": "원하는 단위로 최소 높이를 입력합니다.예: 200 픽셀",
-                        "useFetchPriorityOnFirstItem": "우선 순위가 높은 첫 번째 이미지 불러오기",
-                        "useFetchPriorityOnFirstItemHelpText": "이 옵션을 활성화하면 첫 번째 이미지가 더 높은 우선 순위로 로드됩니다.이렇게 하면 브라우저에서 페이지가 렌더링되는 속도가 향상될 수 있습니다."
+                        "useFetchPriorityOnFirstItem": "우선 순위가 높은 첫 번째 이미지 불러오기"
                     },
                     "placeholder": {
                         "enterMinHeight": "최소 높이 입력...",
@@ -2754,7 +2783,7 @@
             "imageGallery": {
                 "config": {
                     "helpText": {
-                        "displayMode": "<strong>원본:</strong> 이미지가 원본 해상도로 표시되거나 슬라이더 높이까지 축소됩니다.<br><br><strong>고정 높이:</strong> 이미지가 원래 해상도로 표시되거나 구성된 높이로 축소됩니다.<br><br><strong>잘림:</strong> 이미지가 현재 CMS 페이지 너비에 맞게 조정됩니다.모든 세로 오버플로우는 구성된 높이로 잘립니다."
+                        "displayMode": "<strong>원본:</strong> 이미지가 원본 해상도로 표시되거나 슬라이더 높이까지 축소됩니다.<br><br><strong>고정 높이:</strong> 이미지가 원래 해상도로 표시되거나 구성된 높이로 축소됩니다.<br><br><strong>잘림:</strong> 이미지가 현재 CMS 페이지 너비에 맞게 조정됩니다. 모든 초과된 세로 범위는 구성된 높이로 잘립니다."
                     },
                     "label": {
                         "fullscreen": "전체 화면 갤러리",
@@ -2831,6 +2860,14 @@
                     }
                 }
             },
+            "productHeading": {
+                "logo": {
+                    "label": "제조업체 로고"
+                },
+                "name": {
+                    "label": "제품 이름"
+                }
+            },
             "productListing": {
                 "config": {
                     "filter": {
@@ -2879,7 +2916,7 @@
             "productSlider": {
                 "config": {
                     "helpText": {
-                        "displayMode": "<strong>원본:</strong> 이미지는 항상 지정된 영역에 맞도록 제품 상자의 높이 또는 너비에 맞게 조정됩니다.이미지는 절대 확대되지 않습니다.<br><br><strong>고정 높이:</strong> 이미지는 항상 지정된 영역에 맞도록 제품 상자의 높이 또는 너비에 맞게 조정됩니다.이미지를 확대할 수 있습니다.<br><br><strong>잘림:</strong> 이미지가 제품 상자의 높이 또는 너비에 맞게 조정됩니다.모든 오버플로우는 잘립니다.",
+                        "displayMode": "<strong>원본:</strong> 이미지는 항상 지정된 영역에 맞도록 제품 상자의 높이 또는 너비에 맞게 조정됩니다.이미지는 절대 확대되지 않습니다.<br><br><strong>고정 높이:</strong> 이미지는 항상 지정된 영역에 맞도록 제품 상자의 높이 또는 너비에 맞게 조정됩니다.이미지를 확대할 수 있습니다.<br><br><strong>잘림:</strong> 이미지가 제품 상자의 높이 또는 너비에 맞게 조정됩니다. 초과된 모든 범위는 잘리게 됩니다.",
                         "minWidth": "원하는 단위로 최소 너비를 입력합니다.예: 200픽셀"
                     },
                     "label": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "텍스트"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "화면 판독기로 읽고 동영상의 내용이나 목적을 간략하게 설명해야 합니다.비워 두면 미디어 모듈에 구성된 제목 또는 대체 텍스트가 대신 사용됩니다.",
+                        "autoPlay": "대부분의 브라우저는 동영상이 음소거된 경우에만 자동 재생을 허용합니다.<br>자동 재생을 사용하면 재생이 즉시 시작되고 확인이 필요 없기 때문에 커버는 의미가 없습니다.",
+                        "minHeight": "원하는 단위로 최소 높이를 입력합니다.예: 200픽셀",
+                        "playsInline": "iOS에서는 동영상이 전체 화면으로 열리는 경우가 많습니다.이 옵션을 활성화하면 재생을 인라인으로 유지할 수 있습니다.",
+                        "showCover": "미디어 선택에서 구성된 커버는 사용자가 클릭으로 비디오 로드를 확인할 때까지 표시됩니다."
+                    },
+                    "label": {
+                        "ariaLabel": "스크린 리더 제목",
+                        "autoPlay": "자동으로 비디오 재생",
+                        "loop": "루프에서 비디오 재생",
+                        "minHeight": "최소 높이",
+                        "muted": "음소거 상태로 재생",
+                        "playsInline": "iOS 기기에서 인라인 플레이",
+                        "showControls": "비디오 컨트롤 표시",
+                        "showCover": "사용자가 확인한 후에 만 비디오를로드하십시오."
+                    },
+                    "placeholder": {
+                        "ariaLabel": "스크린 리더 제목 입력...",
+                        "minHeight": "최소 높이 입력..."
+                    }
+                },
+                "label": "비디오"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "수락",
             "acceptMessage": "고객 그룹이 변경되었습니다.",
             "alert": "고객 그룹 \"{name}“에 대한 액세스가 요청되었습니다.",
+            "customerInactiveMessage": "비활성 고객은 어떤 고객 그룹에서도 수락하거나 거부할 수 없습니다.",
             "decline": "거절",
             "declineMessage": "요청이 거부되었습니다.",
             "errorMessage": "요청을 처리할 수 없습니다.",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "주문 거래 캡처 환불",
             "paid": "유료",
             "paidPartially": "일부 결제",
+            "password": "비밀번호",
             "paymentMethod": "결제 방법",
             "pending": "보류 중",
             "placed": "배치됨",
@@ -4437,8 +4502,7 @@
                 "profile": "프로필",
                 "records": "레코드",
                 "size": "사이즈",
-                "state": "상태",
-                "user": "사용자"
+                "state": "상태"
             },
             "contextMenu": {
                 "abortProcess": "중단 프로세스",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "오픈 로그 정보",
                 "showProfile": "프로필 표시",
                 "showResults": "요약 보기"
+            },
+            "detail": {
+                "ExportLabel": "내보내기",
+                "importLabel": "가져오기"
             },
             "dryrun": "드라이 런",
             "emptyState": {
@@ -4627,7 +4695,7 @@
             "nameColumn": "이름",
             "newProfileLabel": "새 프로필",
             "newsletterRecipientLabel": "뉴스레터 수신자",
-            "objectTypeDisabledText": "'객체 유형'을 선택할 수 있으려면 '사용'을 지우십시오.",
+            "objectTypeDisabledText": "'객체 유형'을 선택하려면 '사용'을 지우십시오.",
             "objectTypeFieldLabel": "객체 유형",
             "objectTypeFieldTooltipText": "매핑 옵션이 있는 경우 객체 유형을 변경할 수 없습니다.",
             "openLabel": "편집",
@@ -4636,7 +4704,7 @@
             "productLabel": "제품",
             "productPriceLabel": "고급 가격",
             "profileNameFieldLabel": "프로파일 이름",
-            "profileTypeDisabledText": "'용도'를 선택할 수 있으려면 '객체 유형'의 선택을 취소하십시오.",
+            "profileTypeDisabledText": "'용도'를 선택하려면 '객체 유형'의 선택을 취소하십시오.",
             "promotionDiscountLabel": "프로모션 할인",
             "promotionIndividualCodesLabel": "프로모션 코드",
             "propertyLabel": "등록 정보",
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "잘못된 범위 요청입니다.",
             "messageServerError": "권한 부여 서버에 예기치 않은 조건이 발생했습니다.",
             "messageUnsupportedGrantType": "권한 부여 유형은 권한 부여 서버에서 지원되지 않습니다.",
+            "orContinueWith": "또는 계속",
             "placeholderPassword": "암호를 입력하십시오...",
             "placeholderUsername": "사용자 이름 입력...",
             "subheadlineMain": "돌아온 걸 환영해요"
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "“추가” 버튼을 클릭하여 이메일 템플릿을 추가합니다.",
             "emptyStateTitle": "아직 이메일 템플릿이 없습니다.",
             "errorMediaItemDuplicated": "미디어 항목이 이미 할당되었습니다.",
+            "tabHeaderFooter": "머리글 및 바닥글",
+            "tabMailTemplates": "템플릿",
             "textDeleteConfirm": "이메일 템플릿 \"{subject}“을 (를) 삭제하시겠습니까?",
             "textMailTemplateOverview": "전자 메일 서식 파일",
             "titleMailFooterList": "바닥글",
@@ -5072,7 +5143,9 @@
                 "download": "다운로드",
                 "horizontal": "수평",
                 "move": "이동",
+                "removeCover": "커버 제거",
                 "replace": "바꾸기",
+                "setCover": "커버이미지 설정",
                 "settings": "설정",
                 "vertical": "수직"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "미디어에 저장"
+        },
+        "sw-model-viewer": {
+            "titleModal": "모델 뷰어"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "제품 번호 입력..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "제품 상태 필터는 더 이상 사용되지 않으며 v6.8에서 제거될 예정입니다.대신 제품 유형 필터를 사용하세요.",
                 "label": "제품 상태",
                 "options": {
                     "digital": "디지털",
                     "physical": "물리적"
                 },
                 "placeholder": "제품 상태 선택..."
+            },
+            "productTypeFilter": {
+                "label": "유형",
+                "placeholder": "제품 유형 선택..."
             },
             "releaseDateFilter": {
                 "label": "출시 날짜"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "등록 정보",
             "cardTitleSellingPackaging": "판매 및 포장 정보"
         },
+        "type": {
+            "digital": "디지털",
+            "physical": "물리적"
+        },
         "variations": {
             "backVariationsButton": "뒤로",
             "configuratorCardTitle": "변형 생성기",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "동적 제품 그룹 \"{name}“이 (가) 저장되었습니다.",
             "placeholderDescription": "설명 입력...",
             "placeholderName": "제목 입력...",
+            "productStatesFilterWarning": "이 동적 제품 그룹은 더 이상 사용되지 않는 제품 상태 필터를 계속 사용합니다.v6.8에서 제거될 예정입니다. 대신 제품 유형 필터로 전환하세요.",
             "productStreamIndexingWarning": {
                 "action": "설명서에서 자세히 알아보기",
                 "message": "일부 기능은 예상대로 작동하지 않을 수 있습니다. <ul><li>범주 페이지는 HTTP 캐시가 만료되거나 수동으로 지워질 때까지 변경 사항을 반영하지 않을 수 있습니다.</li><li>“동적 제품 그룹의 항목”이라는 규칙 조건은 절대 사실이 아닙니다.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "일반"
+        },
+        "tabPrivacyPreferences": {
+            "title": "개인정보 기본 설정"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "익명화 IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "활성화하면 전용 카트 페이지뿐만 아니라 오프 캔버스 카트가 열릴 때 'view_cart' 이벤트도 실행됩니다.세부 퍼널 분석에 유용하지만 카트 보기 지표가 부풀려질 수 있습니다.",
+                        "label": "트랙 오프 캔버스 카트"
+                    },
                     "trackOrders": {
                         "label": "주문 추적"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "설정"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "설정을 찾을 수 없습니다.다른 검색어를 사용해 보세요.",
+                "noResultsHeadline": "항목을 찾을 수 없음",
+                "placeholder": "설정 찾기..."
+            },
             "tabAutomation": "오토메이션",
             "tabCommerce": "상업",
             "tabContent": "콘텐츠",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "검색 상태가 변경된 경우 정확한 검색 결과를 얻으려면 데이터를 다시 인덱싱하는 것이 좋습니다.",
                 "buttonAddOption": "추가 옵션",
                 "buttonEditApply": "변경 사항 적용",
                 "helpTextEntitySelect": "사용자 지정 필드를 만든 후에는 엔터티 유형을 변경할 수 없습니다.",
@@ -8026,6 +8125,7 @@
                 "infoText": "사용자 정의 필드가 생성되면 모든 스 니펫 세트에 대한 해당 스 니펫도 생성됩니다.스 니펫의 이름은 “CustomFields.{name}”.",
                 "labelAllowCartExpose": "쇼핑 카트에 담아도 구매 가능",
                 "labelAllowCustomerWrite": "스토어 API를 통해 수정 가능",
+                "labelAllowSearchable": "검색에 포함",
                 "labelCustomFieldPosition": "직책",
                 "labelCustomFieldType": "유형",
                 "labelDate": "날짜",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "새 사용자 정의 필드",
                 "tooltipAllowCartExpose": "이 사용자 지정 필드를 장바구니 품목의 페이로드에서 사용할 수 있게 하려면 를 활성화하십시오.Rule Builder 또는 사용자 지정 템플릿에서 이 사용자 지정 필드를 처음 사용하려면 이 사용자 지정 필드를 사용해야 합니다.",
                 "tooltipAllowCustomerWrite": "활성화되면 Store API에서 이 필드를 수정할 수 있습니다.스토어프론트에 새 필드를 추가할 때 사용자 지정 데이터를 저장하는 데 사용할 수 있습니다.등록 양식의 새 필드를 예로 들 수 있습니다.",
+                "tooltipAllowSearchable": "활성화되면 이 사용자 지정 필드가 색인화되어 검색 구성에 사용할 수 있습니다.이 필드가 검색에 필요하지 않은 경우 색인 저장소 크기를 줄이고 검색 성능을 향상시키려면 이 필드를 비활성화해야 합니다.",
                 "tooltipCartExposeDisabled": "사용자 정의 필드가 규칙 빌더에 있는 하나 이상의 조건에서 사용되고 있기 때문에 이 설정은 현재 변경할 수 없습니다.",
                 "tooltipCustomFieldPosition": "세부 정보 페이지에서 이 사용자 정의 필드의 위치를 제어합니다.",
                 "tooltipStoreApiAware": "활성화되면 스토어 API에서 이 필드를 사용할 수 있습니다.이 옵션을 비활성화하여 사용자 지정 데이터를 내부적으로만 저장하고 Store API를 통해 사용할 수 없게 할 수 있습니다."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "기본 검색 결과 정렬",
             "labelDefaultSorting": "기본 정렬",
             "mainMenuItemGeneral": "제품 소개",
+            "messageSaveDefaultValuesEmpty": "기본값은 필수입니다.",
             "messageSaveError": "구성을 저장할 수 없습니다.",
             "messageSaveSuccess": "구성이 저장되었습니다.",
             "placeholderDefaultSearchResultSorting": "기본 검색 결과 정렬 선택...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "3D 보기에서 광도를 변경합니다.",
-                "label": "조명 강도"
-            }
-        },
         "general": {
             "buttonSave": "저장",
             "description": "여기에서 미디어 설정을 관리하세요.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "이 규칙의 이름을 설정합니다...",
             "placeholderPriority": "이 규칙에 대한 우선 순위 설정...",
             "placeholderTags": "태그 입력...",
+            "placeholderType": "유형 입력...",
+            "productStatesConditionWarning": "“제품 상태의 항목” 조건은 더 이상 사용되지 않으며 v6.8에서 제거될 예정입니다.대신 “제품 유형이 있는 항목”을 사용하세요.",
             "productStreamIndexingWarning": {
                 "action": "설명서에서 자세히 알아보기",
                 "message": "“동적 제품 그룹의 항목”이라는 조건은 절대 사실이 아닙니다.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "제3자와 데이터를 공유하지 않습니다",
                 "securely-processed": "안전하게 저장된 데이터"
             },
+            "share-store-data": "매장 데이터를 공유하면 관리자가 어떻게 사용되는지 이해하고 일상 업무를 더 쉽게 수행할 수 있는 개선 사항을 개발하는 데 도움이 됩니다.",
+            "share-user-data": "사용자 데이터를 공유하면 관리자가 어떻게 사용되는지 이해하고 일상 업무를 더 쉽게 수행할 수 있는 개선 사항을 개발하는 데 도움이 됩니다.",
             "store-data": {
                 "description": "{order}, {diagnostic}, {store} 데이터를 결합하면 기능을 개선하는 데 도움이 됩니다.회사에 동의할 권한이 있는지 확인하세요.",
                 "emphasizes": {

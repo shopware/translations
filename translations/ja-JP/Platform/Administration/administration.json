@@ -306,6 +306,7 @@
             "contact_form_send": "お問い合わせフォームを送信",
             "customer_group_registration_accepted": "カスタマーグループ登録申請を承認",
             "customer_group_registration_declined": "カスタマーグループ登録申請を拒否",
+            "customer_password_changed": "カスタマーパスワードが変更されました",
             "customer_recovery_request": "顧客が新しいパスワードを申請",
             "mail_after_create_message": "メールが作成されました",
             "mail_before_send": "メール送信中",
@@ -732,6 +733,7 @@
                     "product": "商品"
                 },
                 "lineItemProductStates": "商品状態のある商品",
+                "lineItemProductType": "商品タイプのある商品",
                 "lineItemPromotedRule": "商品のプロモーション",
                 "lineItemPropertyRule": "バリアントまたはプロパティ値を含むアイテム",
                 "lineItemPropertyValueRule": "プロパティ値のあるアイテム",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "デジタル",
                         "is-physical": "Physical"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "デジタル",
+                        "physical": "Physical"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "リンクをコピー",
             "labelContextMenuDetail": "詳細",
             "labelContextMenuMove": "移動",
+            "labelContextMenuRemoveCover": "カバーを取り外す",
             "labelContextMenuRename": "リネーム",
             "labelContextMenuReplace": "置換",
+            "labelContextMenuSetCover": "表紙画像を設定",
             "labelUploading": "アップロード中...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "表紙画像は削除されました。"
+                },
+                "coverSaveError": {
+                    "message": "表紙画像を保存できませんでした。"
+                },
+                "coverSaveSuccess": {
+                    "message": "表紙画像が保存されました。"
+                },
+                "coverSelectionInvalid": {
+                    "message": "表紙として使用する画像を選択してください。"
+                },
                 "errorBlankItemName": {
                     "message": "メディアアイテムを保存できませんでした: 名前を入力してください。"
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "ファイル名 \"{fileName}\" にはご利用いただけない文字が含まれています。"
                 },
+                "payloadTooLarge": {
+                    "message": "ファイルが大きすぎます。ファイルサイズを小さくするか、サーバーの設定を確認してください。"
+                },
                 "requestCanceled": {
                     "message": "アップロードはキャンセルされました。"
                 },
                 "success": {
                     "message": "保存されたファイルはありません。 | ファイルは保存されました。 | {total} 件中 {count} 件のファイルが保存されました。"
+                },
+                "transportError": {
+                    "message": "接続またはサーバーのタイムアウトによりアップロードが失敗しました。接続またはサーバーの制限を確認してください。"
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "このアクションにより、対応する数値範囲の値が増加します。",
                     "label": "生成:請求書",
                     "labelDatePicker": "日付",
-                    "labelTextarea": "コメント",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "コメント"
                 },
                 "warning": "一括編集では、文書作成が改善されました。ただし、システムに 1 つまたは複数の拡張機能があると、新しい文書を作成すると結果が異なる場合があります。\nそのため、一括編集を使用した場合と使用していない場合で文書に違いがあるかどうかを確認してください。"
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "ダイナミック製品グループの詳細",
                 "dynamicProductGroupHelpText": {
                     "label": "製品は、その製品グループの条件を満たす場合、動的製品グループに属します。条件は {link} モジュール内で定義できます。",
-                    "linkText": "ダイナミック製品グループ",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "ダイナミック製品グループ"
                 },
                 "dynamicProductGroupInvalidMessage": "選択した動的製品グループは無効です。動的商品グループの詳細を確認してください。",
                 "productAssignmentEmptyStateDescription": "商品が割り当てられていません",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "動画"
+                },
                 "vimeoVideo": {
                     "label": "Vimeoビデオ"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "このテキストは、スクリーンリーダーによってリンクテキストとして読み上げられます。",
                         "fetchPriorityHigh": "画像がページの最初の画像である場合は、このオプションをアクティブにします。すると、画像には 'fetchpriority= \"high\"' という属性が割り当てられ、ブラウザに高い優先度で読み込むように指示されます。これは最大コンテンツフルペイント (LCP) の改善に役立ちます。",
-                        "isDecorative": "このオプションを有効にすると、画像情報はスクリーンリーダーで読み上げられません。つまり、「alt」タグと「title」タグは空のままになります。"
+                        "isDecorative": "このオプションを有効にすると、画像情報はスクリーンリーダーで読み上げられません。つまり、「alt」タグと「title」タグは空のままになります。",
+                        "minHeight": "希望する単位で最小の高さを入力します。例:200 ピクセル",
+                        "useFetchPriorityOnFirstItem": "このオプションを有効にすると、最初の画像がより高い優先度でロードされます。これにより、ブラウザーでのページのレンダリング速度が向上します。"
                     },
                     "label": {
                         "ariaLabel": "リンク説明",
-                        "ariaLabelHelpText": "このテキストは、スクリーンリーダーによってリンクテキストとして読み上げられます。",
                         "fetchPriorityHigh": "フェッチ優先度高",
                         "isDecorative": "画像を装飾用としてマークする",
-                        "isDecorativeHelpText": "このオプションを有効にすると、画像情報はスクリーンリーダーで読み上げられません。",
                         "linkNewTab": "リンクを新しいタブで開く",
                         "linkTo": "リンクターゲット",
                         "minHeight": "最低高",
-                        "minHeightHelpText": "希望する単位で最小の高さを入力します。例: 200px",
-                        "useFetchPriorityOnFirstItem": "優先度の高い最初の画像を読み込む",
-                        "useFetchPriorityOnFirstItemHelpText": "このオプションを有効にすると、最初の画像がより高い優先度でロードされます。これにより、ブラウザーでのページのレンダリング速度が向上します。"
+                        "useFetchPriorityOnFirstItem": "優先度の高い最初の画像を読み込む"
                     },
                     "placeholder": {
                         "enterMinHeight": "最低の高さを入力してください...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "商品説明とレビュー",
                         "reviews": "レビュー"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "メーカーロゴ"
+                },
+                "name": {
+                    "label": "商品名"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "テキスト"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "スクリーンリーダーで読み、動画の内容や目的を簡単に説明してください。空白のままにすると、メディアモジュールで設定されたタイトルまたは代替テキストが代わりに使用されます。",
+                        "autoPlay": "多くのブラウザでは、動画がミュートされている場合にのみ自動再生が許可されます。<br>自動再生では、カバーは意味がありません。再生がすぐに始まり、確認する必要がないからです。",
+                        "minHeight": "希望する単位で最小の高さを入力します。例:200 ピクセル",
+                        "playsInline": "iOS では、動画はフルスクリーンで開くことがよくあります。このオプションを有効にすると、再生がインラインのままになります。",
+                        "showCover": "メディアセレクションで設定されたカバーは、ユーザーがクリックして動画の読み込みを確認するまで表示されます。"
+                    },
+                    "label": {
+                        "ariaLabel": "スクリーンリーダーのタイトル",
+                        "autoPlay": "動画を自動再生",
+                        "loop": "ビデオをループ再生",
+                        "minHeight": "最低高",
+                        "muted": "ミュートして再生",
+                        "playsInline": "iOS デバイスでインラインプレイ",
+                        "showControls": "ビデオコントロールを表示",
+                        "showCover": "ユーザーが確認した後にのみ動画を読み込む"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "スクリーンリーダーのタイトルを入力...",
+                        "minHeight": "最小の高さを入力..."
+                    }
+                },
+                "label": "動画"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "同意",
             "acceptMessage": "顧客グループが変更されました",
             "alert": "顧客グループ「{name}」へのアクセスがリクエストされました。",
+            "customerInactiveMessage": "非アクティブな顧客は、どの顧客グループにも受け入れたり拒否したりすることはできません。",
             "decline": "拒否",
             "declineMessage": "リクエストは拒否されました",
             "errorMessage": "リクエストを処理できません",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "注文トランザクションキャプチャの払い戻しを行う",
             "paid": "支払済",
             "paidPartially": "部分的に支払い済み",
+            "password": "パスワード",
             "paymentMethod": "支払方法",
             "pending": "保留中",
             "placed": "設置済み",
@@ -4437,8 +4502,7 @@
                 "profile": "プロファイル",
                 "records": "件数",
                 "size": "サイズ",
-                "state": "ステータス",
-                "user": "ユーザー"
+                "state": "ステータス"
             },
             "contextMenu": {
                 "abortProcess": "プロセスを中止",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "オープンログ情報",
                 "showProfile": "プロファイルを表示",
                 "showResults": "概要を表示"
+            },
+            "detail": {
+                "ExportLabel": "エクスポート",
+                "importLabel": "インポート"
             },
             "dryrun": "ドライラン",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "スコープリクエストが無効です。",
             "messageServerError": "認証サーバーが予期しない状況に遭遇しました。",
             "messageUnsupportedGrantType": "承認グラントタイプは認証サーバーでサポートされていません。",
+            "orContinueWith": "または続けて",
             "placeholderPassword": "パスワードを入力...",
             "placeholderUsername": "ユーザー名を入力...",
             "subheadlineMain": "お帰りなさい。"
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "[追加] ボタンをクリックしてメールテンプレートを追加します。",
             "emptyStateTitle": "メールテンプレートはまだありません",
             "errorMediaItemDuplicated": "メディアアイテムはすでに割り当てられています",
+            "tabHeaderFooter": "ヘッダーとフッター",
+            "tabMailTemplates": "テンプレート",
             "textDeleteConfirm": "メールテンプレート \"{subject}「を削除してもよろしいですか?",
             "textMailTemplateOverview": "メールテンプレート",
             "titleMailFooterList": "フッター",
@@ -5072,7 +5143,9 @@
                 "download": "ダウンロード",
                 "horizontal": "水平",
                 "move": "移動",
+                "removeCover": "カバーを取り外す",
                 "replace": "置換",
+                "setCover": "表紙画像を設定",
                 "settings": "設定",
                 "vertical": "縦向き"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "メディアに保存"
+        },
+        "sw-model-viewer": {
+            "titleModal": "モデルビューア"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "製品番号を入力..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "製品ステータスフィルターは廃止され、v6.8 で削除される予定です。代わりに製品タイプフィルターを使用してください。",
                 "label": "製品の状態",
                 "options": {
                     "digital": "デジタル",
                     "physical": "Physical"
                 },
                 "placeholder": "製品の状態を選択..."
+            },
+            "productTypeFilter": {
+                "label": "タイプ",
+                "placeholder": "製品タイプを選択..."
             },
             "releaseDateFilter": {
                 "label": "リリース日"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "プロパティ",
             "cardTitleSellingPackaging": "販売およびパッケージ情報"
         },
+        "type": {
+            "digital": "デジタル",
+            "physical": "Physical"
+        },
         "variations": {
             "backVariationsButton": "戻る",
             "configuratorCardTitle": "バリアントジェネレータ",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "動的製品グループ「{name}」が保存されました。",
             "placeholderDescription": "説明を入力...",
             "placeholderName": "タイトルを入力…",
+            "productStatesFilterWarning": "この動的製品グループでは、引き続き非推奨の製品状態フィルターが使用されています。v6.8 で削除される予定です。代わりに製品タイプフィルターに切り替えてください。",
             "productStreamIndexingWarning": {
                 "action": "詳しくはドキュメンテーションをご覧ください",
                 "message": "一部の機能は期待どおりに動作しない場合があります。 <ul><li>カテゴリページは、HTTP キャッシュの有効期限が切れるか、手動でクリアされるまで、変更が反映されない場合があります。</li><li>「動的商品グループの商品」というルール条件は決して当てはまりません。</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "一般設定"
+        },
+        "tabPrivacyPreferences": {
+            "title": "プライバシー設定"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "アクセス元IPを匿名化"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "有効にすると、専用のカートページだけでなく、オフキャンバスカートが開いたときも「view_cart」イベントが発生します。詳細なファネル分析には役立ちますが、カートビューの指標が大きくなる可能性があります。",
+                        "label": "トラックオフキャンバスカート"
+                    },
                     "trackOrders": {
                         "label": "注文追跡"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "設定"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "設定が見つかりませんでした。別の検索語を使ってみてください。",
+                "noResultsHeadline": "エントリが見つかりません",
+                "placeholder": "設定を検索..."
+            },
             "tabAutomation": "オートメーション",
             "tabCommerce": "コマース",
             "tabContent": "コンテンツ",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "検索ステータスが変化した場合は、正確な検索結果が得られるように、データのインデックスを再作成することをお勧めします。",
                 "buttonAddOption": "オプションを追加",
                 "buttonEditApply": "変更を適用",
                 "helpTextEntitySelect": "カスタムフィールドが作成されると、エンティティタイプは変更できません。",
@@ -8026,6 +8125,7 @@
                 "infoText": "カスタムフィールドを作成すると、すべてのスニペットセットに対応するスニペットも作成されます。スニペットの名前は「CustomFields」になります。{name}」。",
                 "labelAllowCartExpose": "ショッピングカートに入っています",
                 "labelAllowCustomerWrite": "ストアAPI経由で変更可能",
+                "labelAllowSearchable": "検索に含める",
                 "labelCustomFieldPosition": "位置",
                 "labelCustomFieldType": "タイプ",
                 "labelDate": "日付",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "新しいカスタムフィールド",
                 "tooltipAllowCartExpose": "有効にすると、このカスタムフィールドがショッピングカートのラインアイテムのペイロードで使用できるようになります。これは、ルールビルダーまたはカスタムテンプレートでこのカスタムフィールドを最初に使用するために必要です。",
                 "tooltipAllowCustomerWrite": "アクティブになっている場合、Store APIはこのフィールドを変更できます。ストアフロントに新しいフィールドを追加する場合に、これを使用してカスタムデータを保存できます。たとえば、登録フォームの新しいフィールドの場合。",
+                "tooltipAllowSearchable": "有効にすると、このカスタムフィールドはインデックス化され、検索設定で使用できます。このフィールドが検索に必要ない場合は、インデックスのストレージサイズを小さくして検索のパフォーマンスを向上させるために、このフィールドを無効にする必要があります。",
                 "tooltipCartExposeDisabled": "カスタムフィールドはルールビルダーの 1 つ以上の条件で使用されているため、この設定は現在変更できません。",
                 "tooltipCustomFieldPosition": "詳細ページにおけるこのカスタム項目の位置を制御します。",
                 "tooltipStoreApiAware": "有効にすると、このフィールドはStore APIで利用できるようになります。このオプションを無効にすると、カスタムデータを内部にのみ保存し、Store API 経由では利用できないようにすることができます。"
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "デフォルトの検索結果のソート",
             "labelDefaultSorting": "デフォルトソート方法",
             "mainMenuItemGeneral": "商品",
+            "messageSaveDefaultValuesEmpty": "デフォルト値が必要です",
             "messageSaveError": "構成を保存できませんでした。",
             "messageSaveSuccess": "構成が保存されました。",
             "placeholderDefaultSearchResultSorting": "デフォルトの検索結果のソートを選択...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "3D ビューで光の強度を変更します。",
-                "label": "ライト強度"
-            }
-        },
         "general": {
             "buttonSave": "保存",
             "description": "ここでメディア設定を管理します。",
@@ -8860,6 +8956,8 @@
             "placeholderName": "このルールに名前を設定...",
             "placeholderPriority": "このルールに優先順位を設定...",
             "placeholderTags": "タグを入力...",
+            "placeholderType": "タイプを入力...",
+            "productStatesConditionWarning": "条件「商品ステータスのある商品」は廃止され、v6.8で削除される予定です。代わりに「商品タイプのある商品」を使用してください。",
             "productStreamIndexingWarning": {
                 "action": "詳しくはドキュメンテーションをご覧ください",
                 "message": "「動的商品グループの商品」という条件は決して当てはまりません。",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "第三者とデータが共有されることはありません",
                 "securely-processed": "安全に保管されたデータ"
             },
+            "share-store-data": "店舗データを共有することで、アドミニストレーションがどのように使用されているかを理解し、日常業務をより簡単にするための改善策を開発するのに役立ちます。",
+            "share-user-data": "ユーザーデータを共有することで、アドミニストレーションがどのように使用されているかを理解し、日常業務をより簡単にするための改善策を開発するのに役立ちます。",
             "store-data": {
                 "description": "{order}、 {diagnostic}、 {store} のデータを組み合わせると、機能の改善に役立ちます。会社に対する同意を与える権限があることを確認してください。",
                 "emphasizes": {

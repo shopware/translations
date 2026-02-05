@@ -306,6 +306,7 @@
             "contact_form_send": "Mẫu liên hệ đã gửi",
             "customer_group_registration_accepted": "Yêu cầu đăng ký nhóm khách hàng được chấp nhận",
             "customer_group_registration_declined": "Yêu cầu đăng ký nhóm khách hàng bị từ chối",
+            "customer_password_changed": "Mật khẩu khách hàng đã thay đổi",
             "customer_recovery_request": "Khách hàng yêu cầu mật khẩu mới",
             "mail_after_create_message": "Email đã tạo",
             "mail_before_send": "Email đang được gửi",
@@ -732,6 +733,7 @@
                     "product": "Sản Phẩm"
                 },
                 "lineItemProductStates": "Mục có trạng thái sản phẩm",
+                "lineItemProductType": "Mặt hàng có loại sản phẩm",
                 "lineItemPromotedRule": "Mục được quảng bá",
                 "lineItemPropertyRule": "Mục có giá trị mẫu mã hoặc thuộc tính",
                 "lineItemPropertyValueRule": "Mục có giá trị tài sản",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Kỹ thuật số",
                         "is-physical": "Vật lý"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Kỹ thuật số",
+                        "physical": "Vật lý"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Sao chép liên kết",
             "labelContextMenuDetail": "Thông tin chi tiết",
             "labelContextMenuMove": "Di chuyển",
+            "labelContextMenuRemoveCover": "Tháo nắp",
             "labelContextMenuRename": "Đổi tên",
             "labelContextMenuReplace": "Thay thế",
+            "labelContextMenuSetCover": "Đặt hình ảnh bìa",
             "labelUploading": "Đang tải lên...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "Ảnh bìa đã bị xóa."
+                },
+                "coverSaveError": {
+                    "message": "Hình ảnh bìa không thể được lưu."
+                },
+                "coverSaveSuccess": {
+                    "message": "Ảnh bìa đã được lưu."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Vui lòng chọn một hình ảnh để sử dụng làm bìa."
+                },
                 "errorBlankItemName": {
                     "message": "Không thể lưu mục phương tiện: Vui lòng nhập tên."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "Tên tập tin \"{fileName}\" chứa các ký tự không hợp lệ."
                 },
+                "payloadTooLarge": {
+                    "message": "File quá lớn Vui lòng giảm kích thước tệp hoặc kiểm tra cấu hình máy chủ."
+                },
                 "requestCanceled": {
                     "message": "Việc tải lên đã bị hủy."
                 },
                 "success": {
                     "message": "Không có tập tin nào được lưu. | tập tin đã được lưu. | {count} / {total} tập tin đã được lưu."
+                },
+                "transportError": {
+                    "message": "Tải lên không thành công do kết nối hoặc thời gian chờ máy chủ. Vui lòng kiểm tra giới hạn kết nối hoặc máy chủ của bạn."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Hành động này làm tăng giá trị của phạm vi số tương ứng.",
                     "label": "Tạo: Hóa đơn",
                     "labelDatePicker": "Ngày",
-                    "labelTextarea": "Bình luận",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Bình luận"
                 },
                 "warning": "Chỉnh sửa hàng loạt bây giờ sử dụng một cải tiến tạo tài liệu. Tuy nhiên, một hoặc nhiều phần mở rộng trên hệ thống của bạn có thể tạo ra kết quả khác nhau với việc tạo tài liệu mới.\nVì vậy, vui lòng kiểm tra xem tài liệu của bạn có thể hiện sự khác biệt với và không sử dụng chỉnh sửa hàng loạt."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Chi tiết nhóm sản phẩm động",
                 "dynamicProductGroupHelpText": {
                     "label": "Sản phẩm thuộc nhóm sản phẩm năng động nếu đáp ứng các điều kiện của nhóm sản phẩm đó. Điều kiện có thể được xác định trong mô-đun {link} .",
-                    "linkText": "nhóm sản phẩm động",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "nhóm sản phẩm động"
                 },
                 "dynamicProductGroupInvalidMessage": "Nhóm sản phẩm động đã chọn không hợp lệ. Vui lòng xác minh chi tiết nhóm sản phẩm động của bạn.",
                 "productAssignmentEmptyStateDescription": "Không có sản phẩm được chỉ định",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Video"
+                },
                 "vimeoVideo": {
                     "label": "Vimeo video"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Văn bản này sẽ được đọc bởi trình đọc màn hình dưới dạng văn bản liên kết.",
                         "fetchPriorityHigh": "Kích hoạt tùy chọn này nếu hình ảnh là hình ảnh đầu tiên trên trang. Hình ảnh sau đó sẽ được gán thuộc tính 'fetchpriority=\"high\"', yêu cầu trình duyệt tải nó với mức độ ưu tiên cao hơn. Điều này có thể giúp cải thiện Largest Contentful Paint (LCP).",
-                        "isDecorative": "Khi tùy chọn này được bật, thông tin hình ảnh sẽ không được đọc ra bởi trình đọc màn hình. Điều này có nghĩa là các thẻ “alt” và “title” sẽ vẫn trống."
+                        "isDecorative": "Khi tùy chọn này được bật, thông tin hình ảnh sẽ không được đọc ra bởi trình đọc màn hình. Điều này có nghĩa là các thẻ “alt” và “title” sẽ vẫn trống.",
+                        "minHeight": "Nhập chiều cao tối thiểu với đơn vị mong muốn của bạn. Ví dụ: 200px",
+                        "useFetchPriorityOnFirstItem": "Khi tùy chọn này được bật, hình ảnh đầu tiên được tải với mức độ ưu tiên cao hơn. Điều này có thể cải thiện tốc độ hiển thị trang trong trình duyệt."
                     },
                     "label": {
                         "ariaLabel": "Mô tả liên kết",
-                        "ariaLabelHelpText": "Văn bản này sẽ được đọc bởi trình đọc màn hình dưới dạng văn bản liên kết.",
                         "fetchPriorityHigh": "Ưu tiên tìm nạp cao",
                         "isDecorative": "Đánh dấu hình ảnh là trang trí",
-                        "isDecorativeHelpText": "Khi tùy chọn này được bật, thông tin hình ảnh sẽ không được đọc ra bởi trình đọc màn hình.",
                         "linkNewTab": "Mở liên kết trong tab mới",
                         "linkTo": "Mục tiêu liên kết",
                         "minHeight": "Chiều cao tối thiểu",
-                        "minHeightHelpText": "Nhập chiều cao tối thiểu với đơn vị mong muốn của bạn. Ví dụ: 200px",
-                        "useFetchPriorityOnFirstItem": "Tải hình ảnh đầu tiên với mức độ ưu tiên cao hơn",
-                        "useFetchPriorityOnFirstItemHelpText": "Khi tùy chọn này được bật, hình ảnh đầu tiên được tải với mức độ ưu tiên cao hơn. Điều này có thể cải thiện tốc độ hiển thị trang trong trình duyệt."
+                        "useFetchPriorityOnFirstItem": "Tải hình ảnh đầu tiên với mức độ ưu tiên cao hơn"
                     },
                     "placeholder": {
                         "enterMinHeight": "Nhập chiều cao tối thiểu...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Mô tả & đánh giá sản phẩm",
                         "reviews": "Đánh giá"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Logo nhà sản xuất"
+                },
+                "name": {
+                    "label": "Tên sản phẩm"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Văn bản"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Đọc bởi trình đọc màn hình và nên mô tả ngắn gọn nội dung hoặc mục đích của video. Nếu để trống, tiêu đề hoặc văn bản thay thế được cấu hình trong mô-đun phương tiện sẽ được sử dụng thay thế.",
+                        "autoPlay": "Tự động phát được nhiều trình duyệt chỉ cho phép khi video bị tắt tiếng.<br>Với tính năng tự động phát, ảnh bìa không có ý nghĩa vì việc phát lại bắt đầu ngay lập tức và không cần xác nhận.",
+                        "minHeight": "Nhập chiều cao tối thiểu với đơn vị mong muốn của bạn. Ví dụ: 200px",
+                        "playsInline": "Trên iOS, video thường mở toàn màn hình. Bật tùy chọn này để giữ cho phát lại nội tuyến.",
+                        "showCover": "Bìa được cấu hình trong lựa chọn phương tiện truyền thông sẽ được hiển thị cho đến khi người dùng xác nhận tải video thông qua nhấp chuột."
+                    },
+                    "label": {
+                        "ariaLabel": "Tiêu đề trình đọc màn hình",
+                        "autoPlay": "Phát video tự động",
+                        "loop": "Phát video trong một vòng lặp",
+                        "minHeight": "Chiều cao tối thiểu",
+                        "muted": "Chơi tắt tiếng",
+                        "playsInline": "Chơi nội tuyến trên thiết bị iOS",
+                        "showControls": "Hiển thị điều khiển video",
+                        "showCover": "Chỉ tải video sau khi xác nhận bởi người dùng"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Nhập tiêu đề trình đọc màn hình...",
+                        "minHeight": "Nhập chiều cao tối thiểu..."
+                    }
+                },
+                "label": "Video"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Chấp nhận",
             "acceptMessage": "Nhóm khách hàng đã được thay đổi",
             "alert": "Yêu cầu truy cập vào nhóm khách hàng \"{name}\".",
+            "customerInactiveMessage": "Khách hàng không hoạt động không thể được chấp nhận hoặc từ chối cho bất kỳ nhóm khách hàng nào.",
             "decline": "Từ chối",
             "declineMessage": "Yêu cầu đã bị từ chối",
             "errorMessage": "Không thể xử lý yêu cầu",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Hoàn tiền nắm bắt giao dịch đơn hàng",
             "paid": "Đã thanh toán",
             "paidPartially": "Trả một phần",
+            "password": "Mật khẩu",
             "paymentMethod": "Phương thức thanh toán",
             "pending": "Đang chờ xử lý",
             "placed": "Đặt",
@@ -4437,8 +4502,7 @@
                 "profile": "Hồ sơ Cá nhân",
                 "records": "Bản ghi",
                 "size": "Kích thước",
-                "state": "Trạng thái",
-                "user": "Người dùng"
+                "state": "Trạng thái"
             },
             "contextMenu": {
                 "abortProcess": "Quá trình hủy",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Mở thông tin nhật ký",
                 "showProfile": "Hiển thị trang cá nhân",
                 "showResults": "Hiển thị tóm tắt"
+            },
+            "detail": {
+                "ExportLabel": "Xuất",
+                "importLabel": "Nhập"
             },
             "dryrun": "Chạy khô",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "Yêu cầu phạm vi không hợp lệ.",
             "messageServerError": "Máy chủ ủy quyền gặp phải một điều kiện bất ngờ.",
             "messageUnsupportedGrantType": "Loại cấp ủy quyền không được hỗ trợ bởi máy chủ ủy quyền.",
+            "orContinueWith": "Hoặc tiếp tục với",
             "placeholderPassword": "Nhập mật khẩu của bạn...",
             "placeholderUsername": "Nhập tên người dùng của bạn...",
             "subheadlineMain": "Chào mừng trở lại."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Thêm mẫu email bằng cách nhấp vào nút “thêm”.",
             "emptyStateTitle": "Chưa có mẫu email",
             "errorMediaItemDuplicated": "Mục phương tiện đã được gán",
+            "tabHeaderFooter": "Đầu trang và chân trang",
+            "tabMailTemplates": "Mẫu",
             "textDeleteConfirm": "Bạn có chắc muốn xóa mẫu email \"{subject}“không?",
             "textMailTemplateOverview": "Mẫu email",
             "titleMailFooterList": "Chân trang",
@@ -5072,7 +5143,9 @@
                 "download": "Tải xuống",
                 "horizontal": "Ngang",
                 "move": "Di chuyển",
+                "removeCover": "Tháo nắp",
                 "replace": "Thay thế",
+                "setCover": "Đặt hình ảnh bìa",
                 "settings": "Thiết đặt",
                 "vertical": "Dọc"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Lưu trong phương tiện truyền thông"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Trình xem mô hình"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Nhập số sản phẩm..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Bộ lọc trạng thái sản phẩm không được sử dụng và sẽ bị xóa trong v6.8. Vui lòng sử dụng bộ lọc loại sản phẩm thay thế.",
                 "label": "Trạng thái sản phẩm",
                 "options": {
                     "digital": "Kỹ thuật số",
                     "physical": "Vật lý"
                 },
                 "placeholder": "Chọn trạng thái sản phẩm..."
+            },
+            "productTypeFilter": {
+                "label": "Loại",
+                "placeholder": "Chọn loại sản phẩm..."
             },
             "releaseDateFilter": {
                 "label": "Ngày phát hành"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Thuộc tính",
             "cardTitleSellingPackaging": "Thông tin bán hàng & đóng gói"
         },
+        "type": {
+            "digital": "Kỹ thuật số",
+            "physical": "Vật lý"
+        },
         "variations": {
             "backVariationsButton": "Quay lại",
             "configuratorCardTitle": "Máy phát biến thể",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "Nhóm sản phẩm động \"{name}\" đã được lưu.",
             "placeholderDescription": "Nhập mô tả...",
             "placeholderName": "Nhập tiêu đề...",
+            "productStatesFilterWarning": "Nhóm sản phẩm động này vẫn sử dụng bộ lọc trạng thái sản phẩm không dùng nữa. Nó sẽ bị xóa trong v6.8 - thay vào đó, vui lòng chuyển sang bộ lọc loại sản phẩm.",
             "productStreamIndexingWarning": {
                 "action": "Tìm hiểu thêm trong tài liệu của chúng tôi",
                 "message": "Một số tính năng có thể không hoạt động như mong đợi: <ul><li>Các trang Danh mục có thể không phản ánh các thay đổi cho đến khi bộ nhớ cache HTTP hết hạn hoặc được xóa thủ công.</li><li>Điều kiện quy tắc “Mục trong nhóm sản phẩm động” sẽ không bao giờ đúng.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "Chung"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Tùy chọn quyền riêng tư"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "IP ẩn danh"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Khi bật, sự kiện 'view_cart' cũng được kích hoạt khi giỏ hàng offcanvas mở ra, không chỉ trên trang giỏ hàng chuyên dụng. Hữu ích cho việc phân tích kênh chi tiết nhưng có thể làm tăng số liệu xem giỏ hàng.",
+                        "label": "Theo dõi giỏ hàng ngoài canvas"
+                    },
                     "trackOrders": {
                         "label": "Theo dõi đơn đặt hàng"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Cài đặt"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "Không thể tìm thấy cài đặt. Cố gắng sử dụng một cụm từ tìm kiếm khác.",
+                "noResultsHeadline": "Không có mục nào được tìm thấy",
+                "placeholder": "Tìm cài đặt..."
+            },
             "tabAutomation": "Tự động hóa",
             "tabCommerce": "thương mại",
             "tabContent": "Nội dung",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Bạn nên lập chỉ mục lại dữ liệu, nếu trạng thái tìm kiếm đã thay đổi, để đảm bảo kết quả tìm kiếm chính xác.",
                 "buttonAddOption": "Thêm tùy chọn",
                 "buttonEditApply": "Áp dụng thay đổi",
                 "helpTextEntitySelect": "Không thể thay đổi kiểu thực thể sau khi trường tùy chỉnh đã được tạo ra.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Nếu một trường tùy chỉnh được tạo ra, đoạn mã theo cho tất cả các tập đoạn mã của bạn cũng sẽ được tạo ra. Đoạn mã sẽ được đặt tên là “CustomFields.{name}”.",
                 "labelAllowCartExpose": "Có sẵn trong giỏ hàng",
                 "labelAllowCustomerWrite": "Sửa đổi được thông qua API Store",
+                "labelAllowSearchable": "Bao gồm trong tìm kiếm",
                 "labelCustomFieldPosition": "Vị trí",
                 "labelCustomFieldType": "Loại",
                 "labelDate": "Ngày",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Trường tùy chỉnh mới",
                 "tooltipAllowCartExpose": "Kích hoạt, để làm cho trường tùy chỉnh này có sẵn trong trọng tải của các mục hàng giỏ hàng. Điều này là bắt buộc để ban đầu sử dụng trường tùy chỉnh này trong Trình tạo quy tắc hoặc mẫu tùy chỉnh.",
                 "tooltipAllowCustomerWrite": "Khi hoạt động, API Store được phép sửa đổi trường này. Điều này có thể được sử dụng để lưu trữ dữ liệu tùy chỉnh nếu thêm trường mới vào cửa hàng. Ví dụ cho các trường mới trong biểu mẫu đăng ký.",
+                "tooltipAllowSearchable": "Khi hoạt động, trường tùy chỉnh này sẽ được lập chỉ mục và có thể được sử dụng trong cấu hình tìm kiếm. Nếu trường này không bắt buộc cho tìm kiếm, nó sẽ bị vô hiệu hóa để giảm kích thước lưu trữ chỉ mục và cải thiện hiệu suất tìm kiếm.",
                 "tooltipCartExposeDisabled": "Cài đặt này hiện không thể thay đổi, vì trường tùy chỉnh đang được sử dụng bởi một hoặc nhiều điều kiện trong Trình tạo quy tắc.",
                 "tooltipCustomFieldPosition": "Điều khiển vị trí của trường tùy chỉnh này trên các trang chi tiết.",
                 "tooltipStoreApiAware": "Khi hoạt động, trường này sẽ có sẵn trong API Store. Tùy chọn này có thể bị vô hiệu hóa để chỉ lưu trữ dữ liệu tùy chỉnh trong nội bộ và không cung cấp dữ liệu đó thông qua API Store."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Sắp xếp kết quả tìm kiếm mặc định",
             "labelDefaultSorting": "Sắp xếp mặc định",
             "mainMenuItemGeneral": "Sản Phẩm",
+            "messageSaveDefaultValuesEmpty": "Giá trị mặc định là bắt buộc",
             "messageSaveError": "Không thể lưu cấu hình.",
             "messageSaveSuccess": "Cấu hình đã lưu.",
             "placeholderDefaultSearchResultSorting": "Chọn sắp xếp kết quả tìm kiếm mặc định...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Thay đổi cường độ ánh sáng trong chế độ xem 3D.",
-                "label": "Cường độ ánh sáng"
-            }
-        },
         "general": {
             "buttonSave": "Lưu",
             "description": "Quản lý cài đặt phương tiện tại đây.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Đặt tên cho quy tắc này...",
             "placeholderPriority": "Đặt ưu tiên cho quy tắc này...",
             "placeholderTags": "Nhập thẻ...",
+            "placeholderType": "Nhập một loại...",
+            "productStatesConditionWarning": "Điều kiện “Mục có trạng thái sản phẩm” không được sử dụng và sẽ bị xóa trong v6.8. Vui lòng sử dụng “Item with product type” để thay thế.",
             "productStreamIndexingWarning": {
                 "action": "Tìm hiểu thêm trong tài liệu của chúng tôi",
                 "message": "Điều kiện “Mục trong nhóm sản phẩm động” sẽ không bao giờ đúng.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Không có dữ liệu nào được chia sẻ với bên thứ ba",
                 "securely-processed": "Dữ liệu được lưu trữ an toàn"
             },
+            "share-store-data": "Bằng cách chia sẻ dữ liệu cửa hàng, bạn giúp chúng tôi hiểu cách quản trị được sử dụng và phát triển các cải tiến giúp công việc hàng ngày của bạn dễ dàng hơn.",
+            "share-user-data": "Bằng cách chia sẻ dữ liệu người dùng của bạn, bạn giúp chúng tôi hiểu cách Quản trị được sử dụng và phát triển các cải tiến giúp công việc hàng ngày của bạn dễ dàng hơn.",
             "store-data": {
                 "description": "Dữ liệu kết hợp từ {order}, {diagnostic}và {store} giúp chúng tôi cải thiện các tính năng. Vui lòng xác nhận bạn được ủy quyền đồng ý cho công ty của bạn.",
                 "emphasizes": {

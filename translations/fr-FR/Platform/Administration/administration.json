@@ -306,6 +306,7 @@
             "contact_form_send": "Formulaire de contact envoyé",
             "customer_group_registration_accepted": "Demande d'inscription au groupe de clients acceptée",
             "customer_group_registration_declined": "Demande d'inscription au groupe de clients refusée",
+            "customer_password_changed": "Mot de passe du client modifié",
             "customer_recovery_request": "Le client demande un nouveau mot de passe",
             "mail_after_create_message": "Courrier électronique créé",
             "mail_before_send": "E-mail est en cours d'envoi",
@@ -732,6 +733,7 @@
                     "product": "Produit"
                 },
                 "lineItemProductStates": "Article avec état du produit",
+                "lineItemProductType": "Article avec type de produit",
                 "lineItemPromotedRule": "L'article est promu",
                 "lineItemPropertyRule": "Élément avec valeur de variante ou de propriété",
                 "lineItemPropertyValueRule": "Objet ayant une valeur de propriété",
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Numérique",
                         "is-physical": "Physique"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Numérique",
+                        "physical": "Physique"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Copier le lien",
             "labelContextMenuDetail": "Informations",
             "labelContextMenuMove": "Déplacer",
+            "labelContextMenuRemoveCover": "Enlever le couvercle",
             "labelContextMenuRename": "Renommer",
             "labelContextMenuReplace": "Remplacer",
+            "labelContextMenuSetCover": "Définir l'image de couverture",
             "labelUploading": "En cours de téléchargement...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "L'image de couverture a été supprimée."
+                },
+                "coverSaveError": {
+                    "message": "L'image de couverture n'a pas pu être enregistrée."
+                },
+                "coverSaveSuccess": {
+                    "message": "L'image de couverture a été enregistrée."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Veuillez sélectionner une image à utiliser comme couverture."
+                },
                 "errorBlankItemName": {
                     "message": "Le média n'a pas pu être renommé. Veuillez ajouter un nom de fichier."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "Le nom du fichier \"{fileName}\" contient des caractères spéciaux incorrects."
                 },
+                "payloadTooLarge": {
+                    "message": "Le fichier est trop volumineux. Réduisez la taille du fichier ou vérifiez la configuration du serveur."
+                },
                 "requestCanceled": {
                     "message": "Le téléchargement a été annulé."
                 },
                 "success": {
                     "message": "Aucun fichier enregistré. | Un fichier enregistré. | {count} / {total} fichiers enregistrés."
+                },
+                "transportError": {
+                    "message": "Le téléchargement a échoué en raison d'une connexion ou d'un délai d'attente du serveur. Vérifiez les limites de votre connexion ou de votre serveur."
                 }
             },
             "snackbar": {
@@ -1764,8 +1794,7 @@
                     "helpText": "Cette action augmente la valeur de la plage de numéros correspondante.",
                     "label": "Générer : Facture",
                     "labelDatePicker": "Date",
-                    "labelTextarea": "Commentaire",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Commentaire"
                 },
                 "warning": "La modification en bloc utilise désormais une création de document améliorée. Cependant, une ou plusieurs extensions de votre système peuvent produire des résultats différents lors de la création du nouveau document.\nPar conséquent, veuillez vérifier si vos documents présentent des différences avec et sans utilisation de l'édition groupée."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Détails du groupe de produits dynamique",
                 "dynamicProductGroupHelpText": {
                     "label": "Les produits appartiennent à un groupe de produits dynamique s'ils remplissent les conditions de ce groupe de produits. Les conditions peuvent être définies dans le module {link}.",
-                    "linkText": "groupes de produits dynamiques",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "groupes de produits dynamiques"
                 },
                 "dynamicProductGroupInvalidMessage": "Le groupe de produits dynamique sélectionné n'est pas valide. Veuillez vérifier les détails de votre groupe de produits dynamique.",
                 "productAssignmentEmptyStateDescription": "Aucun produit n'a été attribué",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Vidéo"
+                },
                 "vimeoVideo": {
                     "label": "Vidéo Vimeo"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Ce texte sera lu par les lecteurs d'écran sous forme de texte de lien.",
                         "fetchPriorityHigh": "Activez cette option si l'image est la première de la page. L'attribut 'fetchpriority=\"high\"' sera alors attribué à l'image, indiquant au navigateur de la charger avec une priorité plus élevée. Cela peut contribuer à améliorer le Largest Contentful Paint (LCP).",
-                        "isDecorative": "Lorsque cette option est activée, les informations relatives à l'image ne sont pas lues par les lecteurs d'écran. Cela signifie que les balises « alt » et « title » resteront vides."
+                        "isDecorative": "Lorsque cette option est activée, les informations relatives à l'image ne sont pas lues par les lecteurs d'écran. Cela signifie que les balises « alt » et « title » resteront vides.",
+                        "minHeight": "Entrez la hauteur minimale avec l'unité souhaitée. Par exemple : 200 pixels",
+                        "useFetchPriorityOnFirstItem": "Lorsque cette option est activée, la première image est chargée avec une priorité plus élevée. Cela peut améliorer la vitesse de rendu de la page dans le navigateur."
                     },
                     "label": {
                         "ariaLabel": "Description du lien",
-                        "ariaLabelHelpText": "Ce texte sera lu par les lecteurs d'écran sous forme de texte de lien.",
                         "fetchPriorityHigh": "Priorité de récupération élevée",
                         "isDecorative": "Marquer l'image comme décorative",
-                        "isDecorativeHelpText": "Lorsque cette option est activée, les informations relatives à l'image ne sont pas lues par les lecteurs d'écran.",
                         "linkNewTab": "Ouvrir le lien dans un nouvel onglet",
                         "linkTo": "Cible du lien",
                         "minHeight": "Hauteur minimale",
-                        "minHeightHelpText": "Entrez la hauteur minimale avec l'unité souhaitée. Par exemple : 200 pixels",
-                        "useFetchPriorityOnFirstItem": "Charger la première image avec une priorité plus élevée",
-                        "useFetchPriorityOnFirstItemHelpText": "Lorsque cette option est activée, la première image est chargée avec une priorité plus élevée. Cela peut améliorer la vitesse de rendu de la page dans le navigateur."
+                        "useFetchPriorityOnFirstItem": "Charger la première image avec une priorité plus élevée"
                     },
                     "placeholder": {
                         "enterMinHeight": "Entrer une hauteur minimale",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Description du produit et avis",
                         "reviews": "Avis"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Logo du fabriquant"
+                },
+                "name": {
+                    "label": "Nom du produit"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Texte"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Lue par un lecteur d'écran et doit décrire brièvement le contenu ou l'objectif de la vidéo. Si ce champ est laissé vide, le titre ou le texte alternatif configuré dans le module multimédia sera utilisé à la place.",
+                        "autoPlay": "La lecture automatique est autorisée par de nombreux navigateurs uniquement lorsque la vidéo est désactivée.<br>Avec la lecture automatique, une couverture n'a pas de sens car la lecture démarre immédiatement et aucune confirmation n'est nécessaire.",
+                        "minHeight": "Entrez la hauteur minimale avec l'unité souhaitée. Par exemple : 200 pixels",
+                        "playsInline": "Sur iOS, les vidéos s'ouvrent souvent en plein écran. Activez cette option pour maintenir la lecture en ligne.",
+                        "showCover": "La couverture configurée dans la sélection multimédia sera affichée jusqu'à ce que l'utilisateur confirme le chargement de la vidéo par un clic."
+                    },
+                    "label": {
+                        "ariaLabel": "Titre du lecteur d'écran",
+                        "autoPlay": "Lecture automatique",
+                        "loop": "Répéter la lecture de la vidéo",
+                        "minHeight": "Hauteur minimale",
+                        "muted": "Jouez en mode silencieux",
+                        "playsInline": "Jouez en ligne sur les appareils iOS",
+                        "showControls": "Afficher la commande vidéo",
+                        "showCover": "Charger la vidéo uniquement après confirmation par l'utilisateur"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Entrez le titre du lecteur d'écran...",
+                        "minHeight": "Entrez la hauteur minimale..."
+                    }
+                },
+                "label": "Vidéo"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Accepter",
             "acceptMessage": "Le groupe de clients a été modifié",
             "alert": "Accès au groupe de clients \"{name}\" demandé.",
+            "customerInactiveMessage": "Les clients inactifs ne peuvent être acceptés ou refusés à aucun groupe de clients.",
             "decline": "Refuser",
             "declineMessage": "La demande a été refusée",
             "errorMessage": "Impossible de traiter la demande",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Capture de la transaction de commande et remboursement",
             "paid": "Payée",
             "paidPartially": "Payée partiellement",
+            "password": "Mot de passe",
             "paymentMethod": "Moyen de paiement",
             "pending": "En attente",
             "placed": "Placée",
@@ -4437,8 +4502,7 @@
                 "profile": "Profil",
                 "records": "Entrées",
                 "size": "Taille",
-                "state": "Statut",
-                "user": "Utilisateur"
+                "state": "Statut"
             },
             "contextMenu": {
                 "abortProcess": "Processus d'abandon",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Informations sur le journal ouvert",
                 "showProfile": "Afficher le profil",
                 "showResults": "Afficher le résumé"
+            },
+            "detail": {
+                "ExportLabel": "Exportation",
+                "importLabel": "Importation"
             },
             "dryrun": "Course à sec",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "La portée indiquée n'est pas valide.",
             "messageServerError": "Une erreur générale est survenue au niveau du serveur d'authentification.",
             "messageUnsupportedGrantType": "Le type d'autorisation n'est pas pris en charge.",
+            "orContinueWith": "Ou continuez avec",
             "placeholderPassword": "Saisissez votre mot de passe...",
             "placeholderUsername": "Entrez votre nom d'utilisateur...",
             "subheadlineMain": "Nous sommes ravis de vous revoir."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Ajoutez des modèles d'e-mail en cliquant sur le bouton « ajouter ».",
             "emptyStateTitle": "Aucun modèle d'e-mail pour l'instant",
             "errorMediaItemDuplicated": "Média déjà utilisé",
+            "tabHeaderFooter": "En-têtes et pieds de page",
+            "tabMailTemplates": "Modèles",
             "textDeleteConfirm": "Voulez-vous vraiment supprimer le modèle d'e-mail \"{subject}\" ?",
             "textMailTemplateOverview": "Modèles d'e-mail",
             "titleMailFooterList": "Pieds de page",
@@ -5072,7 +5143,9 @@
                 "download": "Télécharger",
                 "horizontal": "Horizontal",
                 "move": "Déplacer",
+                "removeCover": "Enlever le couvercle",
                 "replace": "Remplacer",
+                "setCover": "Définir l'image de couverture",
                 "settings": "Paramètres",
                 "vertical": "Vertical"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Enregistrer dans les médias"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Visualiseur de modèles"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Entrez un numéro de produit..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Le filtre des états du produit est obsolète et sera supprimé dans la version 6.8. Utilisez plutôt le filtre par type de produit.",
                 "label": "États du produit",
                 "options": {
                     "digital": "Numérique",
                     "physical": "Physique"
                 },
                 "placeholder": "Sélectionnez l'état du produit..."
+            },
+            "productTypeFilter": {
+                "label": "Type",
+                "placeholder": "Sélectionnez le type de produit..."
             },
             "releaseDateFilter": {
                 "label": "Date de sortie"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Propriétés",
             "cardTitleSellingPackaging": "Informations sur la vente et l'emballage"
         },
+        "type": {
+            "digital": "Numérique",
+            "physical": "Physique"
+        },
         "variations": {
             "backVariationsButton": "Retour",
             "configuratorCardTitle": "Générer des variantes",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "Le groupe de produits \"{name}\" a été enregistré.",
             "placeholderDescription": "Saisissez une description...",
             "placeholderName": "Saisissez un nom...",
+            "productStatesFilterWarning": "Ce groupe de produits dynamique utilise toujours le filtre d'état des produits obsolète. Il sera supprimé dans la version 6.8. Veuillez plutôt passer au filtre par type de produit.",
             "productStreamIndexingWarning": {
                 "action": "Pour en savoir plus, consultez notre documentation",
                 "message": "Certaines fonctionnalités peuvent ne pas fonctionner comme prévu : les pages de catégorie <ul><li>peuvent ne pas refléter les modifications avant l'expiration du cache HTTP ou son effacement manuel.</li><li>La condition de règle « Article dans un groupe de produits dynamique » ne sera jamais vraie.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "Général"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Préférences de confidentialité"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "Anonymisation IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Lorsque cette option est activée, un événement « view_cart » est également déclenché lorsque le panier offcanvas s'ouvre, et pas seulement sur la page dédiée au panier. Utile pour une analyse détaillée de l'entonnoir, mais peut gonfler les statistiques de visualisation du panier.",
+                        "label": "Chariot en toile Track Off"
+                    },
                     "trackOrders": {
                         "label": "Faire le suivi des commandes"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Paramètres"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "Les paramètres n'ont pas pu être trouvés. Essayez d'utiliser un autre terme de recherche.",
+                "noResultsHeadline": "Aucune entrée n'a été trouvée",
+                "placeholder": "Rechercher les paramètres..."
+            },
             "tabAutomation": "Automatisation",
             "tabCommerce": "Commerce",
             "tabContent": "Contenu",
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Il est recommandé de réindexer les données, si l'état de la recherche a changé, afin de garantir des résultats de recherche précis.",
                 "buttonAddOption": "Ajouter une option",
                 "buttonEditApply": "Appliquer les modifications",
                 "helpTextEntitySelect": "Le type d'entité ne peut pas être modifié une fois le champ personnalisé créé.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Si un champ personnalisé est créé, l'extrait correspondant pour tous vos jeux d'extraits sera également créé. L'extrait sera nommé « CustomFields.{name} ».",
                 "labelAllowCartExpose": "Disponible dans les paniers",
                 "labelAllowCustomerWrite": "Modifiable via l'API Store",
+                "labelAllowSearchable": "Inclure dans la recherche",
                 "labelCustomFieldPosition": "Position",
                 "labelCustomFieldType": "Type",
                 "labelDate": "Date",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Créer un nouveau champ supplémentaire",
                 "tooltipAllowCartExpose": "Activez, pour que ce champ personnalisé soit disponible dans la charge utile des articles du panier d'achat. Cela est nécessaire pour utiliser initialement ce champ personnalisé dans le générateur de règles ou dans des modèles personnalisés.",
                 "tooltipAllowCustomerWrite": "Lorsqu'elle est active, l'API Store est autorisée à modifier ce champ. Cela peut être utilisé pour stocker des données personnalisées si vous ajoutez de nouveaux champs à la vitrine. Par exemple pour les nouveaux champs du formulaire d'inscription.",
+                "tooltipAllowSearchable": "Lorsqu'il est actif, ce champ personnalisé sera indexé et pourra être utilisé dans les configurations de recherche. Si ce champ n'est pas obligatoire pour la recherche, il doit être désactivé pour réduire la taille de stockage de l'index et améliorer les performances de la recherche.",
                 "tooltipCartExposeDisabled": "Ce paramètre ne peut actuellement pas être modifié, car le champ personnalisé est utilisé par une ou plusieurs conditions dans le générateur de règles.",
                 "tooltipCustomFieldPosition": "Commande la position du champ supplémentaire sur les pages détaillées.",
                 "tooltipStoreApiAware": "Lorsqu'il est actif, ce champ sera disponible dans l'API Store. Cette option peut être désactivée pour stocker les données personnalisées uniquement en interne et ne pas les rendre disponibles via l'API Store."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Tri des résultats de recherche par défaut",
             "labelDefaultSorting": "Tri par défaut",
             "mainMenuItemGeneral": "Produits",
+            "messageSaveDefaultValuesEmpty": "La valeur par défaut est requise",
             "messageSaveError": "Impossible d'enregistrer la configuration.",
             "messageSaveSuccess": "La configuration a été enregistrée.",
             "placeholderDefaultSearchResultSorting": "Sélectionnez un tri des résultats de recherche par défaut...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Modifiez l'intensité lumineuse dans la vue 3D.",
-                "label": "Intensité lumineuse"
-            }
-        },
         "general": {
             "buttonSave": "Enregistrer",
             "description": "Gérez les paramètres multimédia ici.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Spécifiez un nom pour cette règle...",
             "placeholderPriority": "Spécifiez une priorité pour cette règle...",
             "placeholderTags": "Entrez des balises...",
+            "placeholderType": "Entrez un type...",
+            "productStatesConditionWarning": "La condition « Article dans l'état du produit » est obsolète et sera supprimée dans la version 6.8. Veuillez utiliser « Article avec type de produit » à la place.",
             "productStreamIndexingWarning": {
                 "action": "Pour en savoir plus, consultez notre documentation",
                 "message": "La condition « Article dans un groupe de produits dynamique » ne sera jamais vraie.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Aucune donnée n'est partagée avec des tiers",
                 "securely-processed": "Données stockées en toute sécurité"
             },
+            "share-store-data": "En partageant les données de la boutique, vous nous aidez à comprendre comment l'Administration est utilisée et à développer des améliorations qui facilitent votre travail quotidien.",
+            "share-user-data": "En partageant vos données d'utilisateur, vous nous aidez à comprendre comment l'Administration est utilisée et à développer des améliorations qui facilitent votre travail quotidien.",
             "store-data": {
                 "description": "Les données combinées de {order}, {diagnostic}et {store} nous aident à améliorer les fonctionnalités. Veuillez confirmer que vous êtes autorisé à donner votre consentement pour votre entreprise.",
                 "emphasizes": {

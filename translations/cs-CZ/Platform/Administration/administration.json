@@ -306,6 +306,7 @@
             "contact_form_send": "Kontaktní formulář odeslán",
             "customer_group_registration_accepted": "Žádost o registraci skupiny zákazníků přijata",
             "customer_group_registration_declined": "Žádost o registraci skupiny zákazníků zamítnuta",
+            "customer_password_changed": "Heslo zákazníka bylo změněno",
             "customer_recovery_request": "Zákazník požaduje nové heslo",
             "mail_after_create_message": "Vytvořený e-mail",
             "mail_before_send": "E-mail se odesílá",
@@ -658,7 +659,7 @@
                 "customerAffiliateCodeRule": "Kód pobočky",
                 "customerAgeRule": "Věk zákazníka",
                 "customerBirthdayRule": "Datum narození zákazníka",
-                "customerCampaignCodeRule": "Kód kampaně",
+                "customerCampaignCodeRule": "Kód kampaně (zákazník)",
                 "customerCreatedByAdminRule": "Zákazník vytvořený administrátorem",
                 "customerCustomFieldRule": "Zákazník s vlastním polem",
                 "customerDaysSinceFirstLogin": "Čas od prvního přihlášení",
@@ -732,6 +733,7 @@
                     "product": "Výrobek"
                 },
                 "lineItemProductStates": "Položka se stavem produktu",
+                "lineItemProductType": "Položka s typem produktu",
                 "lineItemPromotedRule": "Položka je povýšena",
                 "lineItemPropertyRule": "Položka s variantou nebo hodnotou vlastnosti",
                 "lineItemPropertyValueRule": "Položka s hodnotou vlastnosti",
@@ -752,12 +754,12 @@
                 },
                 "numberOfReviews": "Počet odeslaných recenzí",
                 "or": "Nebo",
-                "orderAffiliateCodeRule": "Affiliate kód (objednávka)",
+                "orderAffiliateCodeRule": "Partnerský kód (objednávka)",
                 "orderCampaignCodeRule": "Kód kampaně (objednávka)",
                 "orderCountRule": "Množství dokončených objednávek",
-                "orderCreatedByAdminRule": "Objednávka vytvořená administrátorem",
+                "orderCreatedByAdminRule": "Objednávku zadal administrátor (proces)",
                 "orderCustomFieldRule": "Objednávka s vlastním polem",
-                "orderDeliveryStatusRule": "Stav dodávky",
+                "orderDeliveryStatusRule": "Stav doručení (průběh)",
                 "orderDocumentTypeRule": "Objednávka s dokumentem",
                 "orderDocumentTypeSentRule": "Objednávka s odeslaným dokumentem",
                 "orderStatusRule": "Stav objednávky",
@@ -813,7 +815,7 @@
                 "lineItemType": {
                     "options": {
                         "product": "Výrobek",
-                        "promotion": "Sleva / přirážka"
+                        "promotion": "Sleva / poplatek"
                     }
                 }
             },
@@ -822,6 +824,14 @@
                     "options": {
                         "is-download": "Digitální",
                         "is-physical": "Fyzikální"
+                    }
+                }
+            },
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "digital": "Digitální",
+                        "physical": "Fyzikální"
                     }
                 }
             },
@@ -837,7 +847,7 @@
                 "type": {
                     "options": {
                         "gross": "Brutto",
-                        "net": "Netto"
+                        "net": "Čistá cena"
                     }
                 }
             },
@@ -1088,10 +1098,24 @@
             "labelContextMenuCopyLink": "Zkopírovat odkaz",
             "labelContextMenuDetail": "Informace",
             "labelContextMenuMove": "Přesunout",
+            "labelContextMenuRemoveCover": "Odstraňte kryt",
             "labelContextMenuRename": "Přejmenovat",
             "labelContextMenuReplace": "Nahradit",
+            "labelContextMenuSetCover": "Nastavit titulní obrázek",
             "labelUploading": "Bude odesláno...",
             "notification": {
+                "coverRemoveSuccess": {
+                    "message": "Titulní obrázek byl odstraněn."
+                },
+                "coverSaveError": {
+                    "message": "Titulní obrázek nelze uložit."
+                },
+                "coverSaveSuccess": {
+                    "message": "Titulní obrázek byl uložen."
+                },
+                "coverSelectionInvalid": {
+                    "message": "Vyberte obrázek, který chcete použít jako obálku."
+                },
                 "errorBlankItemName": {
                     "message": "Médium se nezdařilo přejmenovat. Přidejte název souboru."
                 },
@@ -1248,11 +1272,17 @@
                 "illegalFilename": {
                     "message": "Název souboru \"{fileName}\" obsahuje neplatné zvláštní znaky."
                 },
+                "payloadTooLarge": {
+                    "message": "Soubor je příliš velký. Zmenšete velikost souboru nebo zkontrolujte konfiguraci serveru."
+                },
                 "requestCanceled": {
                     "message": "Nahrávání bylo zrušeno."
                 },
                 "success": {
                     "message": "Žádný soubor nebyl úspěšně uložen. | Jeden soubor byl úspěšně uložen. | Počet úspěšně uložených souborů: {count} / {total}"
+                },
+                "transportError": {
+                    "message": "Nahrávání se nezdařilo kvůli časovému limitu připojení nebo serveru. Zkontrolujte prosím limity připojení nebo serveru."
                 }
             },
             "snackbar": {
@@ -1540,7 +1570,7 @@
         "defaultTitle": "Není přiřazeno žádné téma",
         "editContent": "Upravit téma",
         "modal": {
-            "buttonCancel": "Přerušit",
+            "buttonCancel": "Zrušit",
             "buttonChange": "Změnit téma",
             "modalTitleChange": "Změnit téma",
             "textChangeTheme": "Opravdu chcete změnit téma? To může změnit vizualizaci vašeho obchodu."
@@ -1764,8 +1794,7 @@
                     "helpText": "Tato akce zvyšuje hodnotu odpovídajícího číselného rozsahu.",
                     "label": "Generovat: Faktura",
                     "labelDatePicker": "Datum",
-                    "labelTextarea": "Komentář",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Komentář"
                 },
                 "warning": "Hromadná úprava nyní používá vylepšené vytvoření dokumentu. Jedno nebo více rozšíření ve vašem systému však může při vytváření nového dokumentu přinést různé výsledky.\nProto zkontrolujte, zda vaše dokumenty vykazují rozdíly s a bez použití hromadné úpravy."
             },
@@ -2142,9 +2171,7 @@
                 "dynamicProductGroupDetailLinkText": "Dynamická produktová skupina podrobností",
                 "dynamicProductGroupHelpText": {
                     "label": "Produkty patří do dynamické skupiny výrobků, pokud splňují podmínky dané skupiny výrobků. Podmínky lze definovat v modulu {link}.",
-                    "linkText": "dynamické skupiny produktů",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "linkText": "dynamické skupiny produktů"
                 },
                 "dynamicProductGroupInvalidMessage": "Vybraná dynamická skupina produktů není platná. Ověřte prosím své dynamické údaje o skupině produktů.",
                 "productAssignmentEmptyStateDescription": "Nepřiřazeny žádné výrobky",
@@ -2346,6 +2373,9 @@
                 }
             },
             "video": {
+                "video": {
+                    "label": "Video"
+                },
                 "vimeoVideo": {
                     "label": "Video Vimeo"
                 },
@@ -2728,21 +2758,20 @@
             "image": {
                 "config": {
                     "helpText": {
+                        "ariaLabel": "Tento text bude přečten čtečkami obrazovky jako text odkazu.",
                         "fetchPriorityHigh": "Aktivujte tuto možnost, pokud je obrázek první na stránce. Obrazu bude poté přiřazen atribut 'fetchpriority=\"high\"', který řekne prohlížeči, aby jej načítal s vyšší prioritou. To může pomoci zlepšit velikost LCP (Largest Contentful Paint).",
-                        "isDecorative": "Pokud je tato možnost povolena, informace o obrázku nebudou čteny čtečkami obrazovky. To znamená, že značky „alt“ a „title“ zůstanou prázdné."
+                        "isDecorative": "Pokud je tato možnost povolena, informace o obrázku nebudou čteny čtečkami obrazovky. To znamená, že značky „alt“ a „title“ zůstanou prázdné.",
+                        "minHeight": "Zadejte minimální výšku s požadovanou jednotkou. Například: 200px",
+                        "useFetchPriorityOnFirstItem": "Je-li tato možnost povolena, první obrázek se načte s vyšší prioritou. To může zlepšit rychlost, jakou je stránka vykreslena v prohlížeči."
                     },
                     "label": {
                         "ariaLabel": "Popis odkazu",
-                        "ariaLabelHelpText": "Tento text bude přečten čtečkami obrazovky jako text odkazu.",
                         "fetchPriorityHigh": "Priorita načítání vysoká",
                         "isDecorative": "Označit obrázek jako dekorativní",
-                        "isDecorativeHelpText": "Pokud je tato možnost povolena, informace o obrázku nebudou čteny čtečkami obrazovky.",
                         "linkNewTab": "Odkaz k otevření na nové kartě",
                         "linkTo": "Cíl odkazu",
                         "minHeight": "Minimální výška",
-                        "minHeightHelpText": "Zadejte minimální výšku s požadovanou jednotkou. Například: 200px",
-                        "useFetchPriorityOnFirstItem": "Načíst první obrázek s vyšší prioritou",
-                        "useFetchPriorityOnFirstItemHelpText": "Je-li tato možnost povolena, první obrázek se načte s vyšší prioritou. To může zlepšit rychlost, jakou je stránka vykreslena v prohlížeči."
+                        "useFetchPriorityOnFirstItem": "Načíst první obrázek s vyšší prioritou"
                     },
                     "placeholder": {
                         "enterMinHeight": "Zadejte minimální výšku...",
@@ -2829,6 +2858,14 @@
                         "descriptionAndReviews": "Popis produktu a recenze",
                         "reviews": "Recenze"
                     }
+                }
+            },
+            "productHeading": {
+                "logo": {
+                    "label": "Logo výrobce"
+                },
+                "name": {
+                    "label": "Název produktu"
                 }
             },
             "productListing": {
@@ -2953,6 +2990,32 @@
                     }
                 },
                 "label": "Text"
+            },
+            "video": {
+                "config": {
+                    "helpText": {
+                        "ariaLabel": "Přečtěte si čtečky obrazovky a měly by stručně popsat obsah nebo účel videa. Pokud zůstane prázdný, použije se místo toho buď nadpis nebo alternativní text nakonfigurovaný v modulu médií.",
+                        "autoPlay": "Automatické přehrávání je povoleno mnoha prohlížeči pouze tehdy, když je video ztlumeno.<br>Při automatickém přehrávání nemá obálka smysl, protože přehrávání začíná okamžitě a není potřeba žádné potvrzení.",
+                        "minHeight": "Zadejte minimální výšku s požadovanou jednotkou. Například: 200px",
+                        "playsInline": "V systému iOS se videa často otevírají na celou obrazovku. Povolte tuto možnost, aby přehrávání zůstalo vložené.",
+                        "showCover": "Kryt nakonfigurovaný ve výběru médií se zobrazí, dokud uživatel nepotvrdí načtení videa kliknutím."
+                    },
+                    "label": {
+                        "ariaLabel": "Název čtečky obrazovky",
+                        "autoPlay": "Automaticky přehrát",
+                        "loop": "Opakovat video",
+                        "minHeight": "Minimální výška",
+                        "muted": "Přehrát ztlumené",
+                        "playsInline": "Hrajte inline na zařízeních iOS",
+                        "showControls": "Zobrazit řízení videa",
+                        "showCover": "Nahrát video pouze po potvrzení uživatelem"
+                    },
+                    "placeholder": {
+                        "ariaLabel": "Zadejte název čtečky obrazovky...",
+                        "minHeight": "Zadejte minimální výšku..."
+                    }
+                },
+                "label": "Video"
             },
             "vimeoVideo": {
                 "config": {
@@ -3245,6 +3308,7 @@
             "accept": "Přijmout",
             "acceptMessage": "Skupina zákazníků byla změněna",
             "alert": "Požadován přístup ke skupině zákazníků \"{name}“.",
+            "customerInactiveMessage": "Neaktivní zákazníky nelze přijmout ani odmítnout žádné skupině zákazníků.",
             "decline": "Odmítnout",
             "declineMessage": "Žádost byla zamítnuta",
             "errorMessage": "Požadavek nelze zpracovat",
@@ -4399,6 +4463,7 @@
             "orderTransactionCaptureRefund": "Refundace zachycení transakce objednávky",
             "paid": "Zaplaceno",
             "paidPartially": "Částečně zaplaceno",
+            "password": "Heslo",
             "paymentMethod": "Způsob platby",
             "pending": "Čekající",
             "placed": "Umístěny",
@@ -4437,8 +4502,7 @@
                 "profile": "Profil",
                 "records": "Záznamy",
                 "size": "Velikost",
-                "state": "Stav",
-                "user": "Uživatel"
+                "state": "Stav"
             },
             "contextMenu": {
                 "abortProcess": "Přerušit proces",
@@ -4450,6 +4514,10 @@
                 "showLogInfo": "Informace o otevření protokolu",
                 "showProfile": "Zobrazit profil",
                 "showResults": "Zobrazit souhrn"
+            },
+            "detail": {
+                "ExportLabel": "Export",
+                "importLabel": "Import"
             },
             "dryrun": "Suchý běh",
             "emptyState": {
@@ -4825,6 +4893,7 @@
             "messageInvalidScope": "Zadaný rozsah je neplatný.",
             "messageServerError": "Na ověřovacím serveru se vyskytla všeobecná chyba.",
             "messageUnsupportedGrantType": "Typ \"Grant\" není podporován.",
+            "orContinueWith": "Nebo pokračujte",
             "placeholderPassword": "Zadejte své heslo...",
             "placeholderUsername": "Zadejte své uživatelské jméno...",
             "subheadlineMain": "Vítejte zpátky."
@@ -4991,6 +5060,8 @@
             "emptyStateSubTitle": "Přidejte e-mailové šablony kliknutím na tlačítko „Přidat“.",
             "emptyStateTitle": "Zatím žádné emailové šablony",
             "errorMediaItemDuplicated": "Médium je již používáno",
+            "tabHeaderFooter": "Řádky záhlaví a zápatí",
+            "tabMailTemplates": "Šablony",
             "textDeleteConfirm": "Opravdu si přejete smazat šablonu e-mailu \"{subject}\"?",
             "textMailTemplateOverview": "Šablony e-mailů",
             "titleMailFooterList": "Zápatí",
@@ -5072,7 +5143,9 @@
                 "download": "Stáhnout",
                 "horizontal": "Horizontální",
                 "move": "Přesunout",
+                "removeCover": "Odstraňte kryt",
                 "replace": "Nahradit",
+                "setCover": "Nastavit titulní obrázek",
                 "settings": "Nastavení",
                 "vertical": "Vertikální"
             },
@@ -5140,6 +5213,9 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Uložit na médium"
+        },
+        "sw-model-viewer": {
+            "titleModal": "Prohlížeč modelů"
         }
     },
     "sw-meteor": {
@@ -6200,12 +6276,17 @@
                 "placeholder": "Zadejte číslo produktu..."
             },
             "productStatesFilter": {
+                "deprecationWarning": "Filtr stavů produktu je zastaralý a bude odstraněn ve verzi 6.8. Místo toho použijte filtr typu produktu.",
                 "label": "Stavy produktu",
                 "options": {
                     "digital": "Digitální",
                     "physical": "Fyzikální"
                 },
                 "placeholder": "Zvolte stav produktu..."
+            },
+            "productTypeFilter": {
+                "label": "Typ",
+                "placeholder": "Vyberte typ produktu..."
             },
             "releaseDateFilter": {
                 "label": "Datum vydání"
@@ -6481,6 +6562,10 @@
             "cardTitleProperties": "Vlastnosti",
             "cardTitleSellingPackaging": "Informace o prodeji a balení"
         },
+        "type": {
+            "digital": "Digitální",
+            "physical": "Fyzikální"
+        },
         "variations": {
             "backVariationsButton": "Zpět",
             "configuratorCardTitle": "Vygenerovat varianty",
@@ -6612,6 +6697,7 @@
             "messageSaveSuccess": "Skupina výrobků \"{name}\" byla úspěšně uložena.",
             "placeholderDescription": "Zadejte popis...",
             "placeholderName": "Zadejte název...",
+            "productStatesFilterWarning": "Tato dynamická skupina produktů stále používá filtr zastaralých stavů produktu. Bude odstraněn ve verzi 6.8 - místo toho přepněte na filtr typu produktu.",
             "productStreamIndexingWarning": {
                 "action": "Další informace naleznete v naší dokumentaci",
                 "message": "Některé funkce nemusí fungovat podle očekávání: <ul><li>Stránky kategorií nemusí odrážet změny, dokud nevyprší platnost mezipaměti HTTP nebo nebude ručně vymazána.</li><li>Podmínka pravidla „Položka v dynamické skupině produktů“ nebude nikdy pravdivá.</li></ul>",
@@ -6782,6 +6868,9 @@
         },
         "tabGeneral": {
             "title": "generál"
+        },
+        "tabPrivacyPreferences": {
+            "title": "Nastavení soukromí"
         },
         "tabSearchPreferences": {
             "alert_elasticsearch": {
@@ -7400,6 +7489,10 @@
                     "anonymizeIp": {
                         "label": "Anonymizace IP"
                     },
+                    "trackOffcanvasCart": {
+                        "helpText": "Pokud je povoleno, událost 'view_cart' se také spustí při otevření košíku mimo plátno, nejen na vyhrazené stránce košíku. Užitečné pro podrobnou analýzu trychtýře, ale může nafouknout metriky zobrazení košíku.",
+                        "label": "Sledování košíku mimo plátno"
+                    },
                     "trackOrders": {
                         "label": "Sledovat objednávky"
                     },
@@ -7739,6 +7832,11 @@
             "mainMenuItemGeneral": "Nastavení"
         },
         "index": {
+            "search": {
+                "noResultsDescription": "Nastavení nebylo nalezeno. Zkuste použít jiný hledaný výraz.",
+                "noResultsHeadline": "Nebyly nalezeny žádné záznamy",
+                "placeholder": "Najít nastavení..."
+            },
             "tabAutomation": "Automatizace",
             "tabCommerce": "Komerce",
             "tabContent": "Obsahy",
@@ -7748,7 +7846,7 @@
             "tabPlugins": "Rozšíření",
             "tabShop": "Obchod",
             "tabSystem": "Systém",
-            "textSettingRenameBanner": "Nastavení <b>Scale units</b> bylo přejmenováno na <b>Product units</b>.",
+            "textSettingRenameBanner": "Nastavení <b>Jednotky měřítka</b> bylo přejmenováno na <b>Produktové jednotky.</b>.",
             "title": "Nastavení"
         },
         "system-config": {
@@ -8019,6 +8117,7 @@
     "sw-settings-custom-field": {
         "customField": {
             "detail": {
+                "bannerSearchableEnabled": "Pokud jste změnili stav vyhledávání, znovu připravte data, aby hledání fungovalo správně.",
                 "buttonAddOption": "Přidat možnost",
                 "buttonEditApply": "Převzít změny",
                 "helpTextEntitySelect": "Po vytvoření vlastního pole nelze typ entity změnit.",
@@ -8026,6 +8125,7 @@
                 "infoText": "Pokud je vytvořeno vlastní pole, vytvoří se také úryvek pro všechny sady fragmentů. Výstřižek bude pojmenován „CustomFields.{name}“.",
                 "labelAllowCartExpose": "K dispozici v nákupních vozících",
                 "labelAllowCustomerWrite": "Upravitelné pomocí rozhraní Store API",
+                "labelAllowSearchable": "Zahrnout do hledání",
                 "labelCustomFieldPosition": "Pozice",
                 "labelCustomFieldType": "Typ",
                 "labelDate": "Datum",
@@ -8053,6 +8153,7 @@
                 "titleNewCustomField": "Založit nové doplňkové pole",
                 "tooltipAllowCartExpose": "Aktivovat, aby bylo toto vlastní pole k dispozici v užitečném zatížení položek řádku nákupního košíku. To je nutné, aby bylo možné nejprve použít toto vlastní pole v nástroji Tvůrce pravidel nebo ve vlastních šablonách.",
                 "tooltipAllowCustomerWrite": "Pokud je aktivní, rozhraní API úložiště je povoleno toto pole upravit. To lze použít k ukládání vlastních dat při přidávání nových polí do výkladní skříně. Například pro nová pole v registračním formuláři.",
+                "tooltipAllowSearchable": "Pokud je toto vlastní pole aktivní, bude zahrnuto do hledání a můžete ho používat při jeho nastavení. Pokud ho pro hledání nepotřebujete, doporučujeme ho vypnout, ušetříte místo a hledání poběží rychleji.",
                 "tooltipCartExposeDisabled": "Toto nastavení nelze aktuálně změnit, protože vlastní pole je používáno jednou nebo více podmínkami v Tvůrci pravidel.",
                 "tooltipCustomFieldPosition": "Řídí polohu doplňkového pole na stránkách podrobností.",
                 "tooltipStoreApiAware": "Pokud je toto pole aktivní, bude k dispozici v rozhraní API obchodu. Tuto možnost lze zakázat, aby se vlastní data ukládala pouze interně a nezpřístupnila je prostřednictvím rozhraní API obchodu."
@@ -8389,6 +8490,7 @@
             "labelDefaultSearchResultSorting": "Výchozí řazení výsledků vyhledávání",
             "labelDefaultSorting": "Výchozí řazení",
             "mainMenuItemGeneral": "Výrobky",
+            "messageSaveDefaultValuesEmpty": "Výchozí hodnota je vyžadována",
             "messageSaveError": "Konfiguraci nelze uložit.",
             "messageSaveSuccess": "Konfigurace byla úspěšně uložena.",
             "placeholderDefaultSearchResultSorting": "Vyberte výchozí řazení výsledků hledání...",
@@ -8576,12 +8678,6 @@
         }
     },
     "sw-settings-media": {
-        "3d": {
-            "lightIntensity": {
-                "helpText": "Změňte intenzitu světla ve 3D pohledu.",
-                "label": "Intenzita světla"
-            }
-        },
         "general": {
             "buttonSave": "Uložit",
             "description": "Spravujte nastavení médií zde.",
@@ -8860,6 +8956,8 @@
             "placeholderName": "Stanovte název pro toto pravidlo...",
             "placeholderPriority": "Stanovte prioritu pro toto pravidlo...",
             "placeholderTags": "Zadejte tagy...",
+            "placeholderType": "Zadejte typ...",
+            "productStatesConditionWarning": "Podmínka „Položka se stavem produktu“ je zastaralá a bude odstraněna ve verzi 6.8. Místo toho použijte „Položka s typem produktu“.",
             "productStreamIndexingWarning": {
                 "action": "Další informace naleznete v naší dokumentaci",
                 "message": "Podmínka „Položka v dynamické skupině produktů“ nebude nikdy pravdivá.",
@@ -9775,6 +9873,8 @@
                 "no-third-party": "Žádné údaje nejsou sdíleny s třetími stranami",
                 "securely-processed": "Bezpečně uložená data"
             },
+            "share-store-data": "Sdílením údajů o obchodě nám pomáháte pochopit, jak se používá administrace, a vyvíjet vylepšení, která vám usnadní každodenní práci.",
+            "share-user-data": "Sdílením svých uživatelských dat nám pomáháte lépe pochopit, jak používáte administraci, a vyvíjet vylepšení, která vám usnadní každodenní práci.",
             "store-data": {
                 "description": "Kombinovaná data z {order}, {diagnostic}a {store} nám pomáhají vylepšovat funkce. Potvrďte prosím, že jste oprávněni udělit souhlas vaší společnosti.",
                 "emphasizes": {
