@@ -22,6 +22,12 @@ const url = `https://api.crowdin.com/api/v2/projects/${CROWDIN_PROJECT_ID}/langu
 // All changed files passed in as CLI arguments (after index 2 because index 0 is node and index 1 is the script name)
 const changedFiles = process.argv.slice(2);
 
+// Keep metadata locales aligned with our repository locale conventions, but re-map Crowdin's locale identifiers to match our expected format if necessary.
+const CROWDIN_LOCALE_MAP = {
+    'sr-CS': 'sr-RS',
+    'no-NO': 'nn-NO',
+};
+
 async function run() {
     // Build a payload containing updates for locales that had changes
     let diffData = await getDiffPayload(changedFiles);
@@ -98,7 +104,8 @@ async function fetchCrowdinData() {
 
     for (const item of fetched.data) {
         const data = item.data;
-        const locale = data.language.locale;
+        const rawLocale = data.language.locale;
+        const locale = CROWDIN_LOCALE_MAP[rawLocale] ?? rawLocale;
 
         result[locale] = {
             progress: data.translationProgress,
