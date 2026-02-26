@@ -342,6 +342,7 @@
             "b2b_components_shopping_list": "Списки покупок",
             "b2b_employee": "Сотрудник | Сотрудники",
             "export_assistant": "Ассистент экспорта",
+            "individual_pricing": "Индивидуальное ценообразование",
             "quote": "Цитата | Цитаты",
             "quote_line_item": "Элемент строки предложения | Элементы строки предложения",
             "search_assistant": "Второй пилот ИИ",
@@ -784,7 +785,8 @@
                 "default": "Помощник по ключевым словам изображений обнаружил ошибку при обработке изображения.",
                 "rateLimit": "Достигнут предел скорости помощника по ключевым словам изображений. Пожалуйста, повторите попытку позже."
             },
-            "infoText": "Помощник по ключевым словам изображений обрабатывает это изображение, на это может потребоваться некоторое время."
+            "infoText": "Помощник по ключевым словам изображений обрабатывает это изображение, на это может потребоваться некоторое время.",
+            "resultLabel": "Сгенерированные ключевые слова"
         },
         "settings": {
             "alert": "Помощник по ключевым словам изображений будет работать только с изображениями типа файла PNG или JPG. Изображения, размер которых превышает 5 МБ, не будут обработаны.",
@@ -1613,6 +1615,178 @@
             }
         }
     },
+    "sw-individual-pricing": {
+        "assignmentModal": {
+            "allOrgUnitsAssignedScope": "Назначены все организационные подразделения {count}",
+            "buttonAssign": "Назначить",
+            "chooseTarget": "Выберите цель",
+            "displayOnlySelected": "Отображать только выбранное",
+            "emptyStateCompanies": "Компаний не найдено",
+            "emptyStateCompaniesTitle": "Компаний не найдено",
+            "emptyStateOrgUnits": "Организационные подразделения не найдены",
+            "emptyStateOrgUnitsTitle": "Организационные подразделения не найдены",
+            "entireCompanyScope": "Вся компания (включая организационные подразделения)",
+            "errorAssigningNewCompany": "При назначении новой компании произошла ошибка.",
+            "errorChangingCompanyAssignmentScope": "Произошла ошибка при изменении объема корпоративного задания.",
+            "errorLoadingCompanies": "Произошла ошибка при загрузке компаний.",
+            "errorLoadingOrganisationUnits": "Произошла ошибка при загрузке организационных единиц.",
+            "noOrgUnits": "Нет организационных подразделений",
+            "noOrgUnitsForCompany": "У этой компании нет организационных подразделений",
+            "scopeAllOrgUnits": "Все организационные подразделения",
+            "scopeNone": "Выберите область применения...",
+            "scopeSpecificUnits": "Назначайте только организационные подразделения",
+            "scopeWholeCompany": "Вся компания",
+            "searchCompanyPlaceholder": "Ищите компанию...",
+            "searchOrgUnitPlaceholder": "Поиск организационных подразделений...",
+            "selectionLabel": "Отбор",
+            "specificUnitsAssigned": "Назначено организационное подразделение {count} | {count} назначены организационные подразделения",
+            "tabCompanies": "Компании",
+            "tabOrgUnits": "Организационные подразделения",
+            "title": "Назначьте компании и организационные подразделения",
+            "totalOrgUnits": "Организационное подразделение {count} | {count} организационные подразделения"
+        },
+        "detail": {
+            "buttonAssign": "Назначить",
+            "buttonCreate": "Создавайте индивидуальные цены",
+            "cardTitleDiscounts": "Скидки",
+            "cardTitleGeneralSettings": "Основные настройки",
+            "cardTitleProductFilters": "Фильтры продуктов",
+            "cardTitleTargetAssignment": "Целевое назначение",
+            "cardTitleVolumePricingTiers": "Уровни оптовых цен",
+            "columnCompany": "Компания",
+            "columnScope": "Область применения",
+            "combinationModeCombinable": "Комбинируемый",
+            "combinationModeNonCombinable": "Не комбинируется",
+            "conditionWarningMessage": "Для повышения производительности цены на продукцию предварительно рассчитываются. Этот процесс может занять некоторое время, поэтому цены могут появиться на витрине через некоторое время.",
+            "conditionWarningTitle": "Цены рассчитываются в фоновом режиме",
+            "discountTypeByFixed": "Фиксированная сумма скидки",
+            "discountTypeByPercent": "Процентная скидка",
+            "discountTypeToFixed": "Окончательная цена к фиксированной стоимости",
+            "discountTypeVolumePricing": "Оптовое ценообразование",
+            "emptyStateAssignmentsDescription": "Пока не выбрано ни одной компании или подразделения",
+            "emptyStateAssignmentsTitle": "Пока не выбрано ни одной компании или подразделения",
+            "emptyStateProductFiltersDescription": "Добавьте фильтры продуктов, чтобы указать, к каким продуктам должно применяться это ценовое правило.",
+            "emptyStateProductFiltersTitle": "Фильтры продуктов не настроены",
+            "emptyStateTiersDescription": "Добавьте уровни оптовых цен, чтобы определять разные цены в зависимости от количественных диапазонов.",
+            "emptyStateTiersTitle": "Уровни оптовых цен не настроены",
+            "errorActionAmountRequired": "Поле суммы действия обязательно.",
+            "errorCompanyAssignmentsRequired": "При выборе «Корпоративные клиенты» требуется хотя бы одно корпоративное задание.",
+            "errorDiscountTypeRequired": "Поле типа скидки обязательно.",
+            "errorLoadingEntity": "Произошла ошибка при загрузке индивидуального правила ценообразования.",
+            "errorNameRequired": "Поле имени обязательно.",
+            "errorPriorityRequired": "Поле приоритета обязательно.",
+            "errorTagsRequired": "При выборе «Теги» требуется хотя бы один тег.",
+            "errorTargetGroupRequired": "Выберите целевую группу.",
+            "errorValidFromLessThanValidUntil": "Дата «Действует с» должна быть раньше даты «Действует до».",
+            "errorValidFromRequired": "Если включен диапазон действия, необходимо указать дату «Дата действительна с».",
+            "errorValidUntilRequired": "Если включен диапазон действия, необходимо указать дату «Действует до».",
+            "helpTextApplyToAllProducts": "Если включено, это ценовое правило будет применяться ко всем продуктам. В противном случае будут применены настроенные фильтры продуктов.",
+            "helpTextAssignedCustomers": "Только пользователи из выбранных целевых объектов получат скорректированные цены.",
+            "helpTextAssignedTags": "Только пользователи с выбранными тегами получат скорректированные цены.",
+            "helpTextCanBeCombined": "Если включено, это ценовое правило можно применять вместе с другими индивидуальными правилами ценообразования",
+            "helpTextPriority": "В первую очередь будут применяться правила с более высоким приоритетом. Правила с одинаковым приоритетом сортируются по дате создания.",
+            "helpTextProductFilters": "Настройте, к каким продуктам должно применяться это правило ценообразования.",
+            "helpTextVolumePricingTiers": "Настройте уровни оптовых цен на основе количественных диапазонов.",
+            "labelActionAmount": "Сумма действия",
+            "labelActionValueByFixed": "Сумма скидки в {symbol}",
+            "labelActionValueByPercent": "Процент скидки (в%)",
+            "labelActionValueToFixed": "Фиксированная цена в {symbol}",
+            "labelActive": "Активный",
+            "labelApplyToAll": "Применить ко всем продуктам",
+            "labelApplyToAllProducts": "Применить ко всем продуктам",
+            "labelCanBeCombined": "Может сочетаться со всеми другими индивидуальными правилами ценообразования",
+            "labelCombinationMode": "Комбинированный режим",
+            "labelCustomers": "Клиенты",
+            "labelDescription": "Описание",
+            "labelDiscountType": "Тип скидки",
+            "labelName": "Индивидуальное название цены",
+            "labelPriority": "Приоритет",
+            "labelSelectValidityRange": "Выберите диапазон действия",
+            "labelShowStrikeThrough": "Показать цену в виде зачеркивания",
+            "labelTags": "Теги",
+            "labelTargetGroup": "Целевая группа",
+            "labelValidFrom": "Действует с",
+            "labelValidUntil": "Действует до",
+            "labelVolumePricing": "Оптовое ценообразование",
+            "messageSaveError": "Произошла ошибка при сохранении индивидуального правила ценообразования.",
+            "messageSaveSuccess": "Индивидуальные цены сохранены.",
+            "messageValidationError": "Пожалуйста, заполните все обязательные поля правильно.",
+            "optionBusinessCustomers": "Компании и организационные подразделения",
+            "optionCustomerTags": "Теги",
+            "placeholderActionAmount": "Введите сумму...",
+            "placeholderActionValue": "Введите значение действия...",
+            "placeholderCombinationMode": "Выберите комбинированный режим...",
+            "placeholderCustomers": "Выберите клиентов...",
+            "placeholderDescription": "Введите описание...",
+            "placeholderDiscountType": "Выберите тип скидки...",
+            "placeholderName": "Введите имя...",
+            "placeholderPriority": "Введите приоритет...",
+            "placeholderTags": "Выберите тег...",
+            "placeholderTargetGroup": "Выберите...",
+            "placeholderValidFrom": "Выберите дату...",
+            "placeholderValidUntil": "Выберите дату...",
+            "scopeAllOrgUnits": "Выбраны все организационные подразделения",
+            "scopeWholeCompany": "Выбрана вся компания",
+            "sectionTitleAssignedCustomers": "Назначенные компании и организационные подразделения",
+            "sectionTitleAssignedTags": "Назначенные теги",
+            "tabConditions": "Условия",
+            "tabGeneral": "Генеральной",
+            "targetProducts": "Целевые продукты",
+            "titleCreate": "Создайте новую индивидуальную цену"
+        },
+        "filters": {
+            "activeFilter": {
+                "label": "Активный",
+                "placeholder": "Выберите статус..."
+            },
+            "companyFilter": {
+                "label": "Компания-целевой клиент",
+                "placeholder": "Выберите компанию-заказчик..."
+            },
+            "nameFilter": {
+                "label": "Название",
+                "placeholder": "Искать имя"
+            },
+            "priorityFilter": {
+                "label": "Приоритет",
+                "placeholder": "Выберите приоритет..."
+            },
+            "tagFilter": {
+                "label": "Теги целевых клиентов",
+                "placeholder": "Выберите теги клиентов..."
+            },
+            "validityFilter": {
+                "label": "Срок действия"
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Управляйте индивидуальными правилами ценообразования для клиентов B2B.",
+            "mainMenuItemGeneral": "Индивидуальное ценообразование",
+            "mainMenuItemList": "Индивидуальное ценообразование",
+            "searchBarPlaceholder": "Ищите индивидуальные правила ценообразования..."
+        },
+        "list": {
+            "buttonAddIndividualPricing": "Добавьте индивидуальные цены",
+            "deleteConfirmText": "Вы действительно хотите удалить индивидуальное ценовое правило \"{name}«?",
+            "deleteConfirmTitle": "Удалить отдельные цены",
+            "deleteErrorMessage": "Произошла ошибка при удалении отдельного правила ценообразования.",
+            "gridHeaderActive": "Активный",
+            "gridHeaderName": "Название",
+            "gridHeaderPriority": "Приоритет",
+            "gridHeaderTargetCompany": "Компания-целевой клиент",
+            "gridHeaderTargetTag": "Тег целевого клиента",
+            "gridHeaderValidFrom": "Действует с",
+            "gridHeaderValidUntil": "Действует до",
+            "inlineEditSaveErrorMessage": "Произошла ошибка при сохранении индивидуального правила ценообразования.",
+            "inlineEditSaveSuccessMessage": "Индивидуальное ценовое правило сохранено.",
+            "labelExpired": "Истек",
+            "labelInactive": "Неактивный",
+            "loadErrorMessage": "Произошла ошибка при загрузке отдельных правил ценообразования.",
+            "messageEmpty": "Индивидуальных правил ценообразования пока нет",
+            "textIndividualPricing": "Индивидуальное ценообразование",
+            "titleSidebarItemRefresh": "Обновить"
+        }
+    },
     "sw-label-ai": {
         "AITextButton": "Спросите второго пилота AI",
         "AIToggle": "Второй пилот ИИ"
@@ -1764,6 +1938,9 @@
             "custom_price": {
                 "label": "Цена продукта для клиентов"
             },
+            "individual_pricing": {
+                "label": "Индивидуальное ценообразование"
+            },
             "order_return": {
                 "label": "Возвращает"
             },
@@ -1867,6 +2044,9 @@
     "sw-profile": {
         "tabSearchPreferences": {
             "modules": {
+                "b2b_components_individual_pricing": {
+                    "name": "Название"
+                },
                 "order": {
                     "returnNumber": "Номер возврата"
                 },
@@ -2703,6 +2883,8 @@
         "budgetManagementName": "Бюджеты",
         "employeeManagementDescription": "Ваши клиенты могут создавать учетные записи сотрудников с ролями и разрешениями для реализации индивидуальных процессов заказа.",
         "employeeManagementName": "Управление сотрудниками",
+        "individualPricingDescription": "Управляйте индивидуальными правилами ценообразования для клиентов B2B.",
+        "individualPricingName": "Индивидуальное ценообразование",
         "orderApprovalDescription": "Обеспечивает контроль над процессом заказа в масштабах всей компании, помогает соблюдать бюджет и снижает количество ошибок при заказе.",
         "orderApprovalName": "Утверждение заказа",
         "organizationUnitDescription": "Ваши клиенты могут организовать своих сотрудников с помощью ролей и разрешений.",
