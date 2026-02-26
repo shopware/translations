@@ -342,6 +342,7 @@
             "b2b_components_shopping_list": "Listes d'achats",
             "b2b_employee": "Employé | Employés",
             "export_assistant": "Assistant à l'exportation",
+            "individual_pricing": "Tarification individuelle",
             "quote": "Citation | Citations",
             "quote_line_item": "Elément de ligne de devis | Eléments de ligne de devis",
             "search_assistant": "Copilote IA",
@@ -784,7 +785,8 @@
                 "default": "L'assistant de mots-clés d'image a rencontré une erreur lors du traitement de l'image.",
                 "rateLimit": "La limite de débit de l'assistant Image Keyword a été atteinte. Veuillez réessayer ultérieurement."
             },
-            "infoText": "Image keyword assistant est en train de traiter cette image, cela peut prendre un certain temps."
+            "infoText": "Image keyword assistant est en train de traiter cette image, cela peut prendre un certain temps.",
+            "resultLabel": "Mots clés générés"
         },
         "settings": {
             "alert": "L'assistant de mots-clés Image ne fonctionne qu'avec des images de type PNG ou JPG. Les images dépassant 5 Mo ne seront pas traitées.",
@@ -1613,6 +1615,178 @@
             }
         }
     },
+    "sw-individual-pricing": {
+        "assignmentModal": {
+            "allOrgUnitsAssignedScope": "Toutes les unités organisationnelles {count} assignées",
+            "buttonAssign": "Affecter",
+            "chooseTarget": "Choisissez la cible",
+            "displayOnlySelected": "Afficher uniquement sélectionné",
+            "emptyStateCompanies": "Aucune entreprise n'a été trouvée",
+            "emptyStateCompaniesTitle": "Aucune entreprise n'a été trouvée",
+            "emptyStateOrgUnits": "Aucune unité d'organisation n'a été trouvée",
+            "emptyStateOrgUnitsTitle": "Aucune unité d'organisation n'a été trouvée",
+            "entireCompanyScope": "L'ensemble de l'entreprise (y compris les unités organisationnelles)",
+            "errorAssigningNewCompany": "Une erreur s'est produite lors de l'attribution de la nouvelle société.",
+            "errorChangingCompanyAssignmentScope": "Une erreur s'est produite lors de la modification de l'étendue de la mission de l'entreprise.",
+            "errorLoadingCompanies": "Une erreur s'est produite lors du chargement des entreprises.",
+            "errorLoadingOrganisationUnits": "Une erreur s'est produite lors du chargement des unités d'organisation.",
+            "noOrgUnits": "Aucune unité d'organisation",
+            "noOrgUnitsForCompany": "Cette société n'a aucune unité organisationnelle",
+            "scopeAllOrgUnits": "Toutes les unités de l'organisation",
+            "scopeNone": "Sélectionnez une étendue...",
+            "scopeSpecificUnits": "Attribuer uniquement les unités organisationnelles",
+            "scopeWholeCompany": "Toute l'entreprise",
+            "searchCompanyPlaceholder": "Recherchez une entreprise...",
+            "searchOrgUnitPlaceholder": "Rechercher des unités organisationnelles...",
+            "selectionLabel": "Sélection",
+            "specificUnitsAssigned": "{count} unité organisationnelle assignée | {count} unités organisationnelles assignées",
+            "tabCompanies": "Les entreprises",
+            "tabOrgUnits": "Unités d'organisation",
+            "title": "Attribuer des entreprises et des unités organisationnelles",
+            "totalOrgUnits": "Unité d'organisation {count} | Unités d'organisation {count}"
+        },
+        "detail": {
+            "buttonAssign": "Affecter",
+            "buttonCreate": "Créez une tarification individuelle",
+            "cardTitleDiscounts": "Réductions",
+            "cardTitleGeneralSettings": "Paramètres généraux",
+            "cardTitleProductFilters": "Filtres de produits",
+            "cardTitleTargetAssignment": "Affectation de cibles",
+            "cardTitleVolumePricingTiers": "Niveaux de tarification selon le volume",
+            "columnCompany": "Société",
+            "columnScope": "Portée",
+            "combinationModeCombinable": "Combinable",
+            "combinationModeNonCombinable": "Non combinable",
+            "conditionWarningMessage": "Pour améliorer les performances, les prix des produits sont précalculés. Ce processus peut prendre un certain temps, de sorte que les prix peuvent mettre un peu de temps à apparaître sur la vitrine.",
+            "conditionWarningTitle": "Les prix sont calculés en arrière-plan",
+            "discountTypeByFixed": "Montant fixe de la réduction",
+            "discountTypeByPercent": "Pourcentage de réduction",
+            "discountTypeToFixed": "Prix final par rapport à la valeur fixe",
+            "discountTypeVolumePricing": "Tarification en volume",
+            "emptyStateAssignmentsDescription": "Aucune entreprise ou unité n'a encore été sélectionnée",
+            "emptyStateAssignmentsTitle": "Aucune entreprise ou unité n'a encore été sélectionnée",
+            "emptyStateProductFiltersDescription": "Ajoutez des filtres de produits pour spécifier les produits auxquels cette règle tarifaire doit s'appliquer.",
+            "emptyStateProductFiltersTitle": "Aucun filtre de produit configuré",
+            "emptyStateTiersDescription": "Ajoutez des niveaux de tarification en fonction du volume pour définir différents prix en fonction des fourchettes de quantités.",
+            "emptyStateTiersTitle": "Aucun niveau de tarification en fonction du volume n'est configuré",
+            "errorActionAmountRequired": "Le champ montant de l'action est obligatoire.",
+            "errorCompanyAssignmentsRequired": "Au moins une mission d'entreprise est requise lorsque « Clients professionnels » est sélectionné.",
+            "errorDiscountTypeRequired": "Le champ Type de réduction est obligatoire.",
+            "errorLoadingEntity": "Une erreur s'est produite lors du chargement de la règle de tarification individuelle.",
+            "errorNameRequired": "Le champ du nom est obligatoire.",
+            "errorPriorityRequired": "Le champ de priorité est obligatoire.",
+            "errorTagsRequired": "Au moins une balise est requise lorsque « Tags » est sélectionné.",
+            "errorTargetGroupRequired": "Sélectionnez un groupe cible.",
+            "errorValidFromLessThanValidUntil": "La date « Valable à partir de » doit être antérieure à la date « Valable jusqu'à ».",
+            "errorValidFromRequired": "La date « Date de validité » est requise lorsque la plage de validité est activée.",
+            "errorValidUntilRequired": "La date « Valable jusqu'au » est requise lorsque la plage de validité est activée.",
+            "helpTextApplyToAllProducts": "Si elle est activée, cette règle tarifaire sera appliquée à tous les produits. Dans le cas contraire, les filtres de produits configurés seront appliqués.",
+            "helpTextAssignedCustomers": "Seuls les utilisateurs des cibles sélectionnées recevront les prix ajustés.",
+            "helpTextAssignedTags": "Seuls les utilisateurs possédant les tags sélectionnés recevront les prix ajustés.",
+            "helpTextCanBeCombined": "Si elle est activée, cette règle de tarification peut être appliquée conjointement avec d'autres règles de tarification individuelles",
+            "helpTextPriority": "Les règles de priorité les plus élevées seront appliquées en premier. Les règles ayant la même priorité sont triées par date de création.",
+            "helpTextProductFilters": "Configurez les produits auxquels cette règle tarifaire doit s'appliquer.",
+            "helpTextVolumePricingTiers": "Configurez les niveaux de tarification en fonction des volumes en fonction des plages de quantités.",
+            "labelActionAmount": "Montant de l'action",
+            "labelActionValueByFixed": "Montant de la réduction en {symbol}",
+            "labelActionValueByPercent": "Pourcentage de réduction (en %)",
+            "labelActionValueToFixed": "Prix fixe en {symbol}",
+            "labelActive": "Actif",
+            "labelApplyToAll": "Appliquer à tous les produits",
+            "labelApplyToAllProducts": "Appliquer à tous les produits",
+            "labelCanBeCombined": "Peut être combiné avec toutes les autres règles de tarification individuelles",
+            "labelCombinationMode": "Mode combiné",
+            "labelCustomers": "Clients",
+            "labelDescription": "Description",
+            "labelDiscountType": "Type de remise",
+            "labelName": "Nom de la tarification individuelle",
+            "labelPriority": "Priorité",
+            "labelSelectValidityRange": "Sélectionnez une plage de validité",
+            "labelShowStrikeThrough": "Afficher le prix barré",
+            "labelTags": "Balises",
+            "labelTargetGroup": "Groupe cible",
+            "labelValidFrom": "Valable à partir",
+            "labelValidUntil": "Valable jusqu'à",
+            "labelVolumePricing": "Tarification en volume",
+            "messageSaveError": "Une erreur s'est produite lors de l'enregistrement de la règle de tarification individuelle.",
+            "messageSaveSuccess": "La tarification individuelle a été enregistrée.",
+            "messageValidationError": "Veuillez remplir correctement tous les champs obligatoires.",
+            "optionBusinessCustomers": "Entreprises et unités organisationnelles",
+            "optionCustomerTags": "Balises",
+            "placeholderActionAmount": "Entrez le montant...",
+            "placeholderActionValue": "Entrez la valeur de l'action...",
+            "placeholderCombinationMode": "Sélectionnez le mode de combinaison...",
+            "placeholderCustomers": "Sélectionnez des clients...",
+            "placeholderDescription": "Saisir une description...",
+            "placeholderDiscountType": "Sélectionnez le type de réduction...",
+            "placeholderName": "Saisir un nom...",
+            "placeholderPriority": "Entrez la priorité...",
+            "placeholderTags": "Sélectionnez un tag...",
+            "placeholderTargetGroup": "Veuillez sélectionner...",
+            "placeholderValidFrom": "Sélectionnez la date...",
+            "placeholderValidUntil": "Sélectionnez la date...",
+            "scopeAllOrgUnits": "Toutes les unités organisationnelles sélectionnées",
+            "scopeWholeCompany": "Toute l'entreprise a été sélectionnée",
+            "sectionTitleAssignedCustomers": "Entreprises et unités organisationnelles assignées",
+            "sectionTitleAssignedTags": "Tags assignés",
+            "tabConditions": "Conditions",
+            "tabGeneral": "Général",
+            "targetProducts": "Produits cibles",
+            "titleCreate": "Créer une nouvelle tarification individuelle"
+        },
+        "filters": {
+            "activeFilter": {
+                "label": "Actif",
+                "placeholder": "Veuillez sélectionner..."
+            },
+            "companyFilter": {
+                "label": "Entreprise cliente cible",
+                "placeholder": "Sélectionnez l'entreprise cliente..."
+            },
+            "nameFilter": {
+                "label": "Nom",
+                "placeholder": "Rechercher un nom"
+            },
+            "priorityFilter": {
+                "label": "Priorité",
+                "placeholder": "Sélectionnez une priorité..."
+            },
+            "tagFilter": {
+                "label": "Tags des clients cibles",
+                "placeholder": "Sélectionnez les étiquettes des clients..."
+            },
+            "validityFilter": {
+                "label": "Validité"
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Gérez les règles de tarification individuelles pour les clients B2B.",
+            "mainMenuItemGeneral": "Tarification individuelle",
+            "mainMenuItemList": "Tarification individuelle",
+            "searchBarPlaceholder": "Rechercher des règles de tarification individuelles..."
+        },
+        "list": {
+            "buttonAddIndividualPricing": "Ajouter une tarification individuelle",
+            "deleteConfirmText": "Êtes-vous sûr de vouloir supprimer la règle de tarification individuelle « {name} » ?",
+            "deleteConfirmTitle": "Supprimer la tarification individuelle",
+            "deleteErrorMessage": "Une erreur s'est produite lors de la suppression de la règle de tarification individuelle.",
+            "gridHeaderActive": "Actif",
+            "gridHeaderName": "Nom",
+            "gridHeaderPriority": "Priorité",
+            "gridHeaderTargetCompany": "Entreprise cliente cible",
+            "gridHeaderTargetTag": "Tag du client cible",
+            "gridHeaderValidFrom": "Valable à partir",
+            "gridHeaderValidUntil": "Valable jusqu'à",
+            "inlineEditSaveErrorMessage": "Une erreur s'est produite lors de l'enregistrement de la règle de tarification individuelle.",
+            "inlineEditSaveSuccessMessage": "La règle de tarification individuelle a été enregistrée.",
+            "labelExpired": "Expiré",
+            "labelInactive": "Inactif",
+            "loadErrorMessage": "Une erreur s'est produite lors du chargement des différentes règles de tarification.",
+            "messageEmpty": "Il n'y a pas encore de règles de tarification individuelles",
+            "textIndividualPricing": "Tarification individuelle",
+            "titleSidebarItemRefresh": "Mettre à jour"
+        }
+    },
     "sw-label-ai": {
         "AITextButton": "Demandez à AI Copilot",
         "AIToggle": "Copilote IA"
@@ -1764,6 +1938,9 @@
             "custom_price": {
                 "label": "Prix du produit pour le client"
             },
+            "individual_pricing": {
+                "label": "Tarification individuelle"
+            },
             "order_return": {
                 "label": "Retours"
             },
@@ -1867,6 +2044,9 @@
     "sw-profile": {
         "tabSearchPreferences": {
             "modules": {
+                "b2b_components_individual_pricing": {
+                    "name": "Nom"
+                },
                 "order": {
                     "returnNumber": "Numéro de retour"
                 },
@@ -2703,6 +2883,8 @@
         "budgetManagementName": "Budgets",
         "employeeManagementDescription": "Vos clients peuvent créer des comptes d'employés dotés de rôles et d'autorisations pour réaliser des processus de commande individuels.",
         "employeeManagementName": "Gestion des employés",
+        "individualPricingDescription": "Gérez les règles de tarification individuelles pour les clients B2B.",
+        "individualPricingName": "Tarification individuelle",
         "orderApprovalDescription": "Vos clients peuvent créer des règles d'approbation des commandes pour gérer les autorisations de commande de leurs employés.",
         "orderApprovalName": "Approbations des commandes",
         "organizationUnitDescription": "Vos clients peuvent organiser leurs employés avec des rôles et des autorisations.",

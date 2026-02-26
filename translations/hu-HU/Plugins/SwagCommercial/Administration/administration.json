@@ -342,6 +342,7 @@
             "b2b_components_shopping_list": "Bevásárlólisták",
             "b2b_employee": "Alkalmazott | Munkavállalók",
             "export_assistant": "Exportasszisztens",
+            "individual_pricing": "Egyéni árképzés",
             "quote": "Idézet | Idézetek",
             "quote_line_item": "Idézetsor tétel | Idézetsor tételei",
             "search_assistant": "AI Copilot",
@@ -784,7 +785,8 @@
                 "default": "A Image kulcsszóasszisztens hibát észlelett a kép feldolgozása során.",
                 "rateLimit": "Elérte a képkulcsszó-asszisztens aránykorlátja. Kérjük, próbálkozzon újra később."
             },
-            "infoText": "A Image kulcsszóasszisztens feldolgozza ezt a képet, ennek befejezése eltarthat egy ideig."
+            "infoText": "A Image kulcsszóasszisztens feldolgozza ezt a képet, ennek befejezése eltarthat egy ideig.",
+            "resultLabel": "Generált kulcsszavak"
         },
         "settings": {
             "alert": "A Kép kulcsszó-asszisztens csak PNG vagy JPG fájltípusú képekkel fog működni. Az 5 MB-ot meghaladó képek nem kerülnek feldolgozásra.",
@@ -1613,6 +1615,178 @@
             }
         }
     },
+    "sw-individual-pricing": {
+        "assignmentModal": {
+            "allOrgUnitsAssignedScope": "Minden {count} szervezeti egység hozzárendelve",
+            "buttonAssign": "Rendeljen",
+            "chooseTarget": "Válassza ki a célt",
+            "displayOnlySelected": "Csak a kijelölt megjelenítés",
+            "emptyStateCompanies": "Nem található cégek",
+            "emptyStateCompaniesTitle": "Nem található cégek",
+            "emptyStateOrgUnits": "Nem található szervezeti egység",
+            "emptyStateOrgUnitsTitle": "Nem található szervezeti egység",
+            "entireCompanyScope": "Teljes vállalat (beleértve a szervezeti egységeket is)",
+            "errorAssigningNewCompany": "Hiba történt az új vállalat hozzárendelésekor.",
+            "errorChangingCompanyAssignmentScope": "Hiba történt a vállalati hozzárendelés hatókörének megváltoztatásakor.",
+            "errorLoadingCompanies": "Hiba történt a vállalatok betöltése közben.",
+            "errorLoadingOrganisationUnits": "Hiba történt a szervezeti egységek betöltése közben.",
+            "noOrgUnits": "Nincsenek szervezeti egységek",
+            "noOrgUnitsForCompany": "Ennek a cégnek nincsenek szervezeti egységei",
+            "scopeAllOrgUnits": "Minden szervezeti egység",
+            "scopeNone": "Válasszon egy hatókört...",
+            "scopeSpecificUnits": "Csak szervezeti egységek hozzárendelése",
+            "scopeWholeCompany": "Az egész vállalat",
+            "searchCompanyPlaceholder": "Keressen egy céget...",
+            "searchOrgUnitPlaceholder": "Szervezeti egységek keresése...",
+            "selectionLabel": "Kiválasztás",
+            "specificUnitsAssigned": "{count} hozzárendelt szervezeti egység | {count} hozzárendelt szervezeti egység",
+            "tabCompanies": "Vállalatok",
+            "tabOrgUnits": "Szervezeti egységek",
+            "title": "Cégek és szervezeti egységek hozzárendelése",
+            "totalOrgUnits": "{count} szervezeti egység | {count} szervezeti egységek"
+        },
+        "detail": {
+            "buttonAssign": "Rendeljen",
+            "buttonCreate": "Egyéni árképzés létrehozása",
+            "cardTitleDiscounts": "Kedvezmények",
+            "cardTitleGeneralSettings": "Általános beállítások",
+            "cardTitleProductFilters": "Termékszűrők",
+            "cardTitleTargetAssignment": "Cél hozzárendelés",
+            "cardTitleVolumePricingTiers": "Volumen árképzési szintek",
+            "columnCompany": "Cég",
+            "columnScope": "Hatály",
+            "combinationModeCombinable": "Kombinálható",
+            "combinationModeNonCombinable": "Nem kombinálható",
+            "conditionWarningMessage": "A teljesítmény javítása érdekében a termékárakat előre kiszámítják. Ez a folyamat eltarthat egy ideig, így az árak egy kis ideig tarthatnak, amíg megjelennek a boltban.",
+            "conditionWarningTitle": "Az árak a háttérben kerülnek kiszámításra",
+            "discountTypeByFixed": "Rögzített összegű kedvezmény",
+            "discountTypeByPercent": "Százalékos kedvezmény",
+            "discountTypeToFixed": "Végső ár rögzített értékig",
+            "discountTypeVolumePricing": "Volumenárazás",
+            "emptyStateAssignmentsDescription": "Még nincsenek kiválasztott vállalatok vagy egységek",
+            "emptyStateAssignmentsTitle": "Még nincsenek kiválasztott vállalatok vagy egységek",
+            "emptyStateProductFiltersDescription": "Termékszűrők hozzáadásával megadhatja, hogy mely termékekre vonatkozzon ez az árszabály.",
+            "emptyStateProductFiltersTitle": "Nincs konfigurált termékszűrő",
+            "emptyStateTiersDescription": "Adjon hozzá mennyiségi árképzési szinteket a különböző árak mennyiségi tartományok alapján történő meghatározásához.",
+            "emptyStateTiersTitle": "Nincs konfigurálva a mennyiségi árazási szint",
+            "errorActionAmountRequired": "A műveleti összeg mező kötelező.",
+            "errorCompanyAssignmentsRequired": "Legalább egy vállalati megbízásra van szükség az „Üzleti ügyfelek” kiválasztásakor.",
+            "errorDiscountTypeRequired": "A kedvezmény típusa mező kötelező.",
+            "errorLoadingEntity": "Hiba történt az egyedi árszabály betöltésekor.",
+            "errorNameRequired": "A név mező kötelező.",
+            "errorPriorityRequired": "A prioritási mező kötelező.",
+            "errorTagsRequired": "Legalább egy címke szükséges a „Címkék” kiválasztásakor.",
+            "errorTargetGroupRequired": "Kérjük, válasszon ki egy célcsoportot.",
+            "errorValidFromLessThanValidUntil": "A „Érvényes” dátumnak korábban kell lennie, mint a „Érvényes” dátum.",
+            "errorValidFromRequired": "Az érvényességi tartomány engedélyezésekor a „Érvényes attól” dátum szükséges.",
+            "errorValidUntilRequired": "Az érvényességi tartomány engedélyezésekor a „Érvényes áig” dátum szükséges.",
+            "helpTextApplyToAllProducts": "Ha engedélyezve van, ez az árszabály minden termékre vonatkozik. Ellenkező esetben a konfigurált termékszűrők kerülnek alkalmazásra.",
+            "helpTextAssignedCustomers": "Csak a kiválasztott célok felhasználói kapják meg a kiigazított árakat.",
+            "helpTextAssignedTags": "Csak a kiválasztott címkékkel rendelkező felhasználók kapják meg a módosított árakat.",
+            "helpTextCanBeCombined": "Ha engedélyezve van, ez az árszabály más egyedi árazási szabályokkal együtt alkalmazható",
+            "helpTextPriority": "Először magasabb prioritási szabályokat kell alkalmazni. Az azonos prioritású szabályok a létrehozás dátuma szerint vannak rendezve.",
+            "helpTextProductFilters": "Konfigurálja, hogy mely termékekre vonatkozzon ez az árszabály.",
+            "helpTextVolumePricingTiers": "Konfigurálja a mennyiségi árazási szinteket mennyiségi tartományok alapján.",
+            "labelActionAmount": "Akció összege",
+            "labelActionValueByFixed": "Kedvezmény a {symbol} -ban",
+            "labelActionValueByPercent": "Kedvezmény százalékos aránya (% -ban)",
+            "labelActionValueToFixed": "Rögzített ár {symbol} -ban",
+            "labelActive": "Aktív",
+            "labelApplyToAll": "Alkalmazza az összes termékre",
+            "labelApplyToAllProducts": "Alkalmazza az összes termékre",
+            "labelCanBeCombined": "Kombinálható minden más egyedi árképzési szabállyal",
+            "labelCombinationMode": "Kombinált mód",
+            "labelCustomers": "Ügyfelek",
+            "labelDescription": "Leírás",
+            "labelDiscountType": "Kedvezmény típusa",
+            "labelName": "Egyéni árképzési név",
+            "labelPriority": "prioritás",
+            "labelSelectValidityRange": "Érvényességi tartomány kiválasztása",
+            "labelShowStrikeThrough": "Ár mutatása átírásként",
+            "labelTags": "Címkék",
+            "labelTargetGroup": "Célcsoport",
+            "labelValidFrom": "Érvényes",
+            "labelValidUntil": "Érvényes",
+            "labelVolumePricing": "Volumenárazás",
+            "messageSaveError": "Hiba történt az egyedi árszabály mentésekor.",
+            "messageSaveSuccess": "Az egyéni árképzés megmentésre került.",
+            "messageValidationError": "Kérjük, töltse ki helyesen az összes kötelező mezőt.",
+            "optionBusinessCustomers": "Vállalatok és szervezeti egységek",
+            "optionCustomerTags": "Címkék",
+            "placeholderActionAmount": "Adja meg az összeget...",
+            "placeholderActionValue": "Adja meg a művelet értékét...",
+            "placeholderCombinationMode": "Válassza ki a kombinációs módot...",
+            "placeholderCustomers": "Válassza ki az ügyfeleket...",
+            "placeholderDescription": "Adja meg a leírást...",
+            "placeholderDiscountType": "Válassza ki a kedvezmény típusát...",
+            "placeholderName": "Adja meg a nevet...",
+            "placeholderPriority": "Adja meg a prioritást...",
+            "placeholderTags": "Válasszon ki egy címkét...",
+            "placeholderTargetGroup": "Kérjük, válasszon...",
+            "placeholderValidFrom": "Válassza ki a dátumot...",
+            "placeholderValidUntil": "Válassza ki a dátumot...",
+            "scopeAllOrgUnits": "Minden kiválasztott szervezeti egység",
+            "scopeWholeCompany": "Egész cég kiválasztása",
+            "sectionTitleAssignedCustomers": "Kijelölt vállalatok és szervezeti egységek",
+            "sectionTitleAssignedTags": "Hozzárendelt címkék",
+            "tabConditions": "Feltételek",
+            "tabGeneral": "Általános",
+            "targetProducts": "Céltermékek",
+            "titleCreate": "Új egyéni árképzés létrehozása"
+        },
+        "filters": {
+            "activeFilter": {
+                "label": "Aktív",
+                "placeholder": "Állapot kiválasztása..."
+            },
+            "companyFilter": {
+                "label": "Célügyfélvállalat",
+                "placeholder": "Válassza ki az ügyfélcéget..."
+            },
+            "nameFilter": {
+                "label": "Név",
+                "placeholder": "Név keresése"
+            },
+            "priorityFilter": {
+                "label": "prioritás",
+                "placeholder": "Válasszon prioritást..."
+            },
+            "tagFilter": {
+                "label": "Cél ügyfélcímkék",
+                "placeholder": "Válassza ki az ügyfélcímkéket..."
+            },
+            "validityFilter": {
+                "label": "Érvényesség"
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Kezelje az egyedi árazási szabályokat a B2B ügyfelek számára.",
+            "mainMenuItemGeneral": "Egyéni árképzés",
+            "mainMenuItemList": "Egyéni árképzés",
+            "searchBarPlaceholder": "Keressen egyedi árazási szabályokat..."
+        },
+        "list": {
+            "buttonAddIndividualPricing": "Adjon hozzá egyedi árakat",
+            "deleteConfirmText": "Biztosan törölni szeretné az \"{name} „egyedi árazási szabályt?",
+            "deleteConfirmTitle": "Az egyedi árak törlése",
+            "deleteErrorMessage": "Hiba történt az egyedi árszabály törlésekor.",
+            "gridHeaderActive": "Aktív",
+            "gridHeaderName": "Név",
+            "gridHeaderPriority": "prioritás",
+            "gridHeaderTargetCompany": "Célügyfélvállalat",
+            "gridHeaderTargetTag": "Cél ügyfélcímke",
+            "gridHeaderValidFrom": "Érvényes",
+            "gridHeaderValidUntil": "Érvényes",
+            "inlineEditSaveErrorMessage": "Hiba történt az egyedi árszabály mentésekor.",
+            "inlineEditSaveSuccessMessage": "Az egyéni árszabály mentésre került.",
+            "labelExpired": "Lejárt",
+            "labelInactive": "Inaktív",
+            "loadErrorMessage": "Hiba történt az egyes árazási szabályok betöltése során.",
+            "messageEmpty": "Egyelőre nincsenek egyedi árazási szabályok",
+            "textIndividualPricing": "Egyéni árképzés",
+            "titleSidebarItemRefresh": "Frissítés"
+        }
+    },
     "sw-label-ai": {
         "AITextButton": "Kérdezze meg az AI Copilot-ot",
         "AIToggle": "AI Copilot"
@@ -1764,6 +1938,9 @@
             "custom_price": {
                 "label": "Termék vásárlói ár"
             },
+            "individual_pricing": {
+                "label": "Egyéni árképzés"
+            },
             "order_return": {
                 "label": "Visszatér"
             },
@@ -1867,6 +2044,9 @@
     "sw-profile": {
         "tabSearchPreferences": {
             "modules": {
+                "b2b_components_individual_pricing": {
+                    "name": "Név"
+                },
                 "order": {
                     "returnNumber": "Visszatérési szám"
                 },
@@ -2703,6 +2883,8 @@
         "budgetManagementName": "A költségvetések",
         "employeeManagementDescription": "Ügyfelei létrehozhatnak munkavállalói fiókokat szerepkörökkel és jogosultságokkal az egyes megrendelési folyamatok megvalósításához.",
         "employeeManagementName": "Alkalmazottak vezetése",
+        "individualPricingDescription": "Kezelje az egyedi árazási szabályokat a B2B ügyfelek számára.",
+        "individualPricingName": "Egyéni árképzés",
         "orderApprovalDescription": "Vállalati szintű ellenőrzést biztosít a megrendelési folyamat felett, segít fenntartani a költségvetés betartását és csökkenti a rendelési hibákat.",
         "orderApprovalName": "Megrendelés jóváhagyása",
         "organizationUnitDescription": "Ügyfelei szerepekkel és engedélyekkel szervezhetik alkalmazottaikat.",

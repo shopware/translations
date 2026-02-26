@@ -342,6 +342,7 @@
             "b2b_components_shopping_list": "รายการช้อปปิ้ง",
             "b2b_employee": "พนักงาน | พนักงาน",
             "export_assistant": "ผู้ช่วยส่งออก",
+            "individual_pricing": "การกำหนดราคาส่วนบุคคล",
             "quote": "ใบเสนอราคา | คำพูด",
             "quote_line_item": "รายการบรรทัดใบเสนอราคา | รายการบรรทัดใบเสนอ",
             "search_assistant": "ไพลอต AI",
@@ -784,7 +785,8 @@
                 "default": "ผู้ช่วยคำหลักรูปภาพพบข้อผิดพลาดขณะประมวลผลภาพ",
                 "rateLimit": "ขีดจำกัดอัตราของผู้ช่วยคีย์เวิร์ดรูปภาพได้ถึงแล้วโปรดลองอีกครั้งในภายหลัง"
             },
-            "infoText": "ผู้ช่วยคำหลักรูปภาพกำลังประมวลผลภาพนี้ซึ่งอาจใช้เวลาสักครู่ในการเสร็จสิ้น"
+            "infoText": "ผู้ช่วยคำหลักรูปภาพกำลังประมวลผลภาพนี้ซึ่งอาจใช้เวลาสักครู่ในการเสร็จสิ้น",
+            "resultLabel": "คำหลักที่สร้างขึ้น"
         },
         "settings": {
             "alert": "ผู้ช่วยคีย์เวิร์ดรูปภาพจะทำงานกับรูปภาพของไฟล์ประเภท PNG หรือ JPG เท่านั้นภาพที่เกิน 5MB จะไม่ได้รับการประมวลผล",
@@ -1613,6 +1615,178 @@
             }
         }
     },
+    "sw-individual-pricing": {
+        "assignmentModal": {
+            "allOrgUnitsAssignedScope": "หน่วยองค์กร {count} ทั้งหมดที่ได้รับมอบหมาย",
+            "buttonAssign": "กำหนดให้",
+            "chooseTarget": "เลือกเป้าหมาย",
+            "displayOnlySelected": "แสดงเฉพาะที่เลือกไว้",
+            "emptyStateCompanies": "ไม่พบ บริษัท",
+            "emptyStateCompaniesTitle": "ไม่พบ บริษัท",
+            "emptyStateOrgUnits": "ไม่พบหน่วยองค์กร",
+            "emptyStateOrgUnitsTitle": "ไม่พบหน่วยองค์กร",
+            "entireCompanyScope": "ทั้งบริษัท (รวมหน่วยองค์กร)",
+            "errorAssigningNewCompany": "เกิดข้อผิดพลาดขณะมอบหมาย บริษัท ใหม่",
+            "errorChangingCompanyAssignmentScope": "เกิดข้อผิดพลาดขณะเปลี่ยนขอบเขตของการมอบหมาย บริษัท",
+            "errorLoadingCompanies": "เกิดข้อผิดพลาดขณะโหลด บริษัท",
+            "errorLoadingOrganisationUnits": "เกิดข้อผิดพลาดขณะโหลดหน่วยองค์กร",
+            "noOrgUnits": "ไม่มีหน่วยองค์กร",
+            "noOrgUnitsForCompany": "บริษัทนี้ไม่มีหน่วยองค์กร",
+            "scopeAllOrgUnits": "หน่วยองค์กรทั้งหมด",
+            "scopeNone": "เลือกขอบเขต...",
+            "scopeSpecificUnits": "กำหนดเฉพาะหน่วยองค์กร",
+            "scopeWholeCompany": "บริษัททั้งหมด",
+            "searchCompanyPlaceholder": "ค้นหา บริษัท...",
+            "searchOrgUnitPlaceholder": "ค้นหาหน่วยองค์กร...",
+            "selectionLabel": "การคัดเลือก",
+            "specificUnitsAssigned": "{count} หน่วยองค์กรที่ได้รับมอบหมาย | {count} หน่วยองค์กร ที่ได้รับมอบหมาย",
+            "tabCompanies": "บริษัท",
+            "tabOrgUnits": "หน่วยองค์กร",
+            "title": "มอบหมายบริษัทและหน่วยองค์กร",
+            "totalOrgUnits": "หน่วยองค์กร {count} | หน่วยองค์กร {count}"
+        },
+        "detail": {
+            "buttonAssign": "กำหนดให้",
+            "buttonCreate": "สร้างการกำหนดราคาส่วนบุคคล",
+            "cardTitleDiscounts": "ส่วนลด",
+            "cardTitleGeneralSettings": "การตั้งค่าทั่วไป",
+            "cardTitleProductFilters": "ตัวกรองผลิตภัณฑ์",
+            "cardTitleTargetAssignment": "การกำหนดเป้าหมาย",
+            "cardTitleVolumePricingTiers": "ระดับการกำหนดราคาปริมาณ",
+            "columnCompany": "บริษัท",
+            "columnScope": "ขอบเขต",
+            "combinationModeCombinable": "ผสานได้",
+            "combinationModeNonCombinable": "ไม่สามารถผสมผสานได้",
+            "conditionWarningMessage": "เพื่อปรับปรุงประสิทธิภาพราคาผลิตภัณฑ์จะถูกคำนวณล่วงหน้ากระบวนการนี้อาจใช้เวลาสักครู่ดังนั้นราคาอาจใช้เวลาสักครู่ในการปรากฏในหน้าร้าน",
+            "conditionWarningTitle": "ราคาจะถูกคำนวณในพื้นหลัง",
+            "discountTypeByFixed": "ลดจำนวนคงที่",
+            "discountTypeByPercent": "ลดเปอร์เซ็นต์",
+            "discountTypeToFixed": "ราคาสุดท้ายเป็นมูลค่าคงที่",
+            "discountTypeVolumePricing": "การกำหนดราคาปริมาณ",
+            "emptyStateAssignmentsDescription": "ยังไม่มีบริษัทหรือหน่วยงานที่เลือก",
+            "emptyStateAssignmentsTitle": "ยังไม่มีบริษัทหรือหน่วยงานที่เลือก",
+            "emptyStateProductFiltersDescription": "เพิ่มตัวกรองผลิตภัณฑ์เพื่อระบุว่ากฎการกำหนดราคานี้ควรใช้กับผลิตภัณฑ์ใด",
+            "emptyStateProductFiltersTitle": "ไม่มีการกำหนดค่าตัวกรองผลิตภัณฑ์",
+            "emptyStateTiersDescription": "เพิ่มระดับการกำหนดราคาปริมาณเพื่อกำหนดราคาที่แตกต่างกันตามช่วงปริมาณ",
+            "emptyStateTiersTitle": "ไม่มีการกำหนดค่าระดับการกำหนดค่าปริมาณ",
+            "errorActionAmountRequired": "ต้องกรอกฟิลด์จำนวนการดำเนินการ",
+            "errorCompanyAssignmentsRequired": "จำเป็นต้องมีการมอบหมายบริษัทอย่างน้อยหนึ่งรายเมื่อเลือก “ลูกค้าธุรกิจ”",
+            "errorDiscountTypeRequired": "กรอกข้อมูลประเภทส่วนลด",
+            "errorLoadingEntity": "เกิดข้อผิดพลาดขณะโหลดกฎการกำหนดราคาแต่ละบุคคล",
+            "errorNameRequired": "จำเป็นต้องกรอกชื่อ",
+            "errorPriorityRequired": "จำเป็นต้องมีฟิลด์ลำดับความสำคัญ",
+            "errorTagsRequired": "ต้องใช้แท็กอย่างน้อยหนึ่งแท็กเมื่อเลือก “แท็ก”",
+            "errorTargetGroupRequired": "กรุณาเลือกกลุ่มเป้าหมาย",
+            "errorValidFromLessThanValidUntil": "วันที่ “ถูกต้องตั้งแต่” จะต้องเร็วกว่าวันที่ “ถูกต้องจนถึง”",
+            "errorValidFromRequired": "ต้องใช้วันที่ “ถูกต้องจาก” เมื่อเปิดใช้งานช่วงความถูกต้อง",
+            "errorValidUntilRequired": "ต้องใช้วันที่ “ใช้ได้จนถึง” เมื่อเปิดใช้งานช่วงความถูกต้อง",
+            "helpTextApplyToAllProducts": "หากเปิดใช้งาน กฎการกำหนดราคานี้จะถูกนำไปใช้กับผลิตภัณฑ์ทั้งหมดมิฉะนั้นตัวกรองผลิตภัณฑ์ที่กำหนดค่าจะถูกนำไปใช้",
+            "helpTextAssignedCustomers": "เฉพาะผู้ใช้จากเป้าหมายที่เลือกเท่านั้นที่จะได้รับราคาที่ปรับปรุง",
+            "helpTextAssignedTags": "เฉพาะผู้ใช้ที่มีแท็กที่เลือกเท่านั้นที่จะได้รับราคาที่ปรับแล้ว",
+            "helpTextCanBeCombined": "หากเปิดใช้งาน กฎการกำหนดราคานี้สามารถนำไปใช้ร่วมกับกฎการกำหนดราคาส่วนบุคคลอื่น ๆ",
+            "helpTextPriority": "กฎลำดับความสำคัญที่สูงขึ้นจะถูกนำไปใช้ก่อนกฎที่มีลำดับความสำคัญเดียวกันจะถูกจัดเรียงตามวันที่สร้าง",
+            "helpTextProductFilters": "กำหนดค่าผลิตภัณฑ์ใดที่ควรนำกฎการกำหนดราคานี้ใช้กับผลิตภัณฑ์",
+            "helpTextVolumePricingTiers": "กำหนดค่าระดับการกำหนดราคาปริมาณตามช่วงปริมาณ",
+            "labelActionAmount": "จำนวนการดำเนินการ",
+            "labelActionValueByFixed": "ส่วนลดในจำนวน {symbol}",
+            "labelActionValueByPercent": "ส่วนลดเปอร์เซ็นต์ (เป็น%)",
+            "labelActionValueToFixed": "ราคาคงที่ใน {symbol}",
+            "labelActive": "แอคทีฟ",
+            "labelApplyToAll": "นำไปใช้กับผลิตภัณฑ์ทั้งหมด",
+            "labelApplyToAllProducts": "นำไปใช้กับผลิตภัณฑ์ทั้งหมด",
+            "labelCanBeCombined": "สามารถใช้ร่วมกับกฎการกำหนดราคาส่วนบุคคลอื่น ๆ",
+            "labelCombinationMode": "โหมดการผสมผสาน",
+            "labelCustomers": "ลูกค้า",
+            "labelDescription": "คำอธิบาย",
+            "labelDiscountType": "ประเภทส่วนลด",
+            "labelName": "ชื่อการกำหนดราคาส่วนบุคคล",
+            "labelPriority": "ลำดับความสำคัญ",
+            "labelSelectValidityRange": "เลือกช่วงความถูกต้อง",
+            "labelShowStrikeThrough": "แสดงราคาเป็นแบบครบวงจร",
+            "labelTags": "ป้ายกำกับ",
+            "labelTargetGroup": "กลุ่มเป้าหมาย",
+            "labelValidFrom": "ใช้ได้ตั้งแต่",
+            "labelValidUntil": "ใช้ได้จนถึง",
+            "labelVolumePricing": "การกำหนดราคาปริมาณ",
+            "messageSaveError": "เกิดข้อผิดพลาดขณะบันทึกกฎการกำหนดราคาแต่ละรายการ",
+            "messageSaveSuccess": "ราคาส่วนบุคคลถูกบันทึกไว้",
+            "messageValidationError": "กรุณากรอกข้อมูลในช่องที่จำเป็นทั้งหมดอย่างถูกต้อง",
+            "optionBusinessCustomers": "บริษัท และหน่วยองค์กร",
+            "optionCustomerTags": "ป้ายกำกับ",
+            "placeholderActionAmount": "ป้อนจำนวน...",
+            "placeholderActionValue": "ป้อนค่าการดำเนินการ...",
+            "placeholderCombinationMode": "เลือกโหมดการผสม...",
+            "placeholderCustomers": "เลือกลูกค้า...",
+            "placeholderDescription": "ป้อนคำอธิบาย...",
+            "placeholderDiscountType": "เลือกประเภทส่วนลด...",
+            "placeholderName": "ป้อนชื่อ...",
+            "placeholderPriority": "ป้อนลำดับความสำคัญ...",
+            "placeholderTags": "เลือกแท็ก...",
+            "placeholderTargetGroup": "กรุณาเลือก...",
+            "placeholderValidFrom": "เลือกวันที่...",
+            "placeholderValidUntil": "เลือกวันที่...",
+            "scopeAllOrgUnits": "หน่วยองค์กรทั้งหมดที่เลือก",
+            "scopeWholeCompany": "เลือกทั้งบริษัท",
+            "sectionTitleAssignedCustomers": "บริษัทที่ได้รับมอบหมายและหน่วยองค์กร",
+            "sectionTitleAssignedTags": "แท็กที่กำหนด",
+            "tabConditions": "เงื่อนไขการให้บริการ",
+            "tabGeneral": "ทั่วไป",
+            "targetProducts": "ผลิตภัณฑ์เป้าหมาย",
+            "titleCreate": "สร้างราคาส่วนบุคคลใหม่"
+        },
+        "filters": {
+            "activeFilter": {
+                "label": "แอคทีฟ",
+                "placeholder": "เลือกสถานะ..."
+            },
+            "companyFilter": {
+                "label": "บริษัทลูกค้าเป้าหมาย",
+                "placeholder": "เลือก บริษัท ลูกค้า..."
+            },
+            "nameFilter": {
+                "label": "ชื่อ",
+                "placeholder": "ค้นหาชื่อ"
+            },
+            "priorityFilter": {
+                "label": "ลำดับความสำคัญ",
+                "placeholder": "เลือกลำดับความสำคัญ..."
+            },
+            "tagFilter": {
+                "label": "เป้าหมายแท็กลูกค้า",
+                "placeholder": "เลือกแท็กของลูกค้า..."
+            },
+            "validityFilter": {
+                "label": "ความถูกต้อง"
+            }
+        },
+        "general": {
+            "descriptionTextModule": "จัดการกฎการกำหนดราคาส่วนบุคคลสำหรับลูกค้า B2B",
+            "mainMenuItemGeneral": "การกำหนดราคาส่วนบุคคล",
+            "mainMenuItemList": "การกำหนดราคาส่วนบุคคล",
+            "searchBarPlaceholder": "ค้นหากฎการกำหนดราคาส่วนบุคคล..."
+        },
+        "list": {
+            "buttonAddIndividualPricing": "เพิ่มราคาส่วนบุคคล",
+            "deleteConfirmText": "คุณแน่ใจหรือไม่ว่าต้องการลบกฎการกำหนดราคาแต่ละรายการ \"{name}“?",
+            "deleteConfirmTitle": "ลบการกำหนดราคาแต่ละรายการ",
+            "deleteErrorMessage": "เกิดข้อผิดพลาดขณะลบกฎการกำหนดราคาแต่ละรายการ",
+            "gridHeaderActive": "แอคทีฟ",
+            "gridHeaderName": "ชื่อ",
+            "gridHeaderPriority": "ลำดับความสำคัญ",
+            "gridHeaderTargetCompany": "บริษัทลูกค้าเป้าหมาย",
+            "gridHeaderTargetTag": "แท็กลูกค้าเป้าหมาย",
+            "gridHeaderValidFrom": "ใช้ได้ตั้งแต่",
+            "gridHeaderValidUntil": "ใช้ได้จนถึง",
+            "inlineEditSaveErrorMessage": "เกิดข้อผิดพลาดขณะบันทึกกฎการกำหนดราคาแต่ละรายการ",
+            "inlineEditSaveSuccessMessage": "กฎการกำหนดราคาส่วนบุคคลถูกบันทึกไว้",
+            "labelExpired": "หมดอายุแล้ว",
+            "labelInactive": "ไม่ได้ใช้งาน",
+            "loadErrorMessage": "เกิดข้อผิดพลาดขณะโหลดกฎการกำหนดราคาแต่ละรายการ",
+            "messageEmpty": "ยังไม่มีกฎการกำหนดราคาส่วนบุคคล",
+            "textIndividualPricing": "การกำหนดราคาส่วนบุคคล",
+            "titleSidebarItemRefresh": "รีเฟรช"
+        }
+    },
     "sw-label-ai": {
         "AITextButton": "สอบถาม AI โคไพลอต",
         "AIToggle": "ไพลอต AI"
@@ -1764,6 +1938,9 @@
             "custom_price": {
                 "label": "ราคาสินค้าสำหรับลูกค้า"
             },
+            "individual_pricing": {
+                "label": "การกำหนดราคาส่วนบุคคล"
+            },
             "order_return": {
                 "label": "ผลตอบแทน"
             },
@@ -1867,6 +2044,9 @@
     "sw-profile": {
         "tabSearchPreferences": {
             "modules": {
+                "b2b_components_individual_pricing": {
+                    "name": "ชื่อ"
+                },
                 "order": {
                     "returnNumber": "หมายเลขส่งคืน"
                 },
@@ -2703,6 +2883,8 @@
         "budgetManagementName": "งบประมาณ",
         "employeeManagementDescription": "ลูกค้าของคุณสามารถสร้างบัญชีพนักงานที่มีบทบาทและสิทธิ์เพื่อดำเนินการตามขั้นตอนการสั่งซื้อแต่ละบุคคล",
         "employeeManagementName": "การจัดการพนักงาน",
+        "individualPricingDescription": "จัดการกฎการกำหนดราคาส่วนบุคคลสำหรับลูกค้า B2B",
+        "individualPricingName": "การกำหนดราคาส่วนบุคคล",
         "orderApprovalDescription": "ให้การควบคุมกระบวนการสั่งซื้อทั่วทั้งบริษัทช่วยรักษาการปฏิบัติตามงบประมาณและลดข้อผิดพลาดในการสั่งซื้อ",
         "orderApprovalName": "อนุมัติคำสั่งซื้อ",
         "organizationUnitDescription": "ลูกค้าของคุณสามารถจัดระเบียบพนักงานด้วยบทบาทและสิทธิ์ได้",
