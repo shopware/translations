@@ -342,6 +342,8 @@
             "b2b_components_role": "Rolle | Rollen",
             "b2b_components_shopping_list": "Einkaufslisten",
             "b2b_employee": "Mitarbeiter | Mitarbeiter",
+            "bundle": "Bundle | Bundles",
+            "bundle_item": "Bundle-Produkt | Bundle-Produkte",
             "export_assistant": "Exportassistent",
             "quote": "Angebot | Angebote",
             "quote_line_item": "Angebotsposition | Angebotspositionen",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Position ist Bundle-Bestandteil",
+                "lineItemOfBundleRule": "Position gehört zum ausgewählten Bundle",
                 "subscriptionCartRule": "Abonnement-Warenkorb",
                 "subscriptionIntervalRule": "Abonnement-Intervall",
                 "subscriptionPlanRule": "Abonnement-Plan"
             },
             "group": {
                 "subscription": "Abonnement"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Bundle"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Danke, dass du den Bundles-Blueprint ausprobierst. Wir würden uns über dein Feedback freuen.",
+                "link": "Feedback geben"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Freitextfelder"
+            },
+            "general": {
+                "title": "Allgemeine Informationen"
+            },
+            "items": {
+                "actionOpenProductDetails": "Produktdetails öffnen",
+                "buttonAddBundleItems": "Produkte hinzufügen",
+                "columnName": "Name",
+                "columnPosition": "Position",
+                "columnPrice": "Preis",
+                "emptyStateDescription": "Füge dem Bundle mindestens zwei Produkte hinzu.",
+                "emptyStateTitle": "Noch keine Produkte hinzugefügt",
+                "title": "Produkte ({count})",
+                "tooltipBundleItemCustomizedProduct": "Custom-Products-Vorlage zugewiesen",
+                "tooltipBundleItemHasVariants": "Produkt hat Varianten",
+                "tooltipBundleItemInactive": "Inaktiv",
+                "tooltipBundleItemIncompatibleVisibilities": "Nicht den Verkaufskanälen des Bundles zugeordnet: {salesChannels}",
+                "tooltipBundleItemIssues": "Probleme:",
+                "tooltipBundleItemOutOfStockCloseout": "Nicht auf Lager (Abverkauf)",
+                "tooltipBundleItemOutOfStockTemporary": "Dieses Produkt ist aktuell nicht auf Lager. Das Bundle wird wieder kaufbar, sobald alle Produkte wieder auf Lager sind.",
+                "tooltipBundleItemOutOfStockTitle": "Nicht auf Lager",
+                "tooltipRefreshData": "Daten aktualisieren"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Erscheinungsdatum",
+                    "placeholder": "Erscheinungsdatum eingeben ..."
+                },
+                "title": "Auszeichnung"
+            },
+            "media": {
+                "subtitle": "Füge Dateien zur Mediengalerie des Bundles hinzu.",
+                "title": "Medien"
+            },
+            "messageMinBundleItemsRequired": "Füge mindestens zwei Produkte hinzu, um das Bundle zu erstellen.",
+            "messageNoChanges": "Keine Änderungen zum Speichern",
+            "messageSaveError": "Bundle konnte nicht gespeichert werden",
+            "messageSaveSuccess": "Bundle erfolgreich gespeichert",
+            "price": {
+                "addDiscount": "Rabatt hinzufügen",
+                "currencyDependingPrices": "Währungsabhängige Preise",
+                "discount": "Rabatt",
+                "discountRules": "Rabattregeln",
+                "discountTitle": "Rabatt",
+                "discountType": "Art",
+                "discountTypeAbsolute": "Absolut",
+                "discountTypePercentage": "Prozentual",
+                "discountValue": "Wert",
+                "discountValuePlaceholder": "Wert hinzufügen ...",
+                "doNotCombineWith": "Nicht kombinieren mit",
+                "maxValuePlaceholder": "Unbegrenzt",
+                "maximumDiscountValue": "Maximaler Rabattwert",
+                "openAdvancedPricesView": "Erweiterte Preisansicht öffnen",
+                "preventCombination": "Verhindert die Kombination mit anderen Aktionen",
+                "preventCombinationHelpText": "Wenn aktiviert, kann dieser Rabatt nicht mit anderen Aktionen kombiniert werden",
+                "promotionsPlaceholder": "Aktionen hinzufügen ...",
+                "rulesPlaceholder": "Regeln hinzufügen ...",
+                "subtotalBased": "Zwischensumme basierend auf 1 Produkt | Zwischensumme basierend auf {count} Produkten",
+                "title": "Preise",
+                "total": "Gesamt",
+                "totalBased": "Summe basierend auf 1 Produkt | Summe basierend auf {count} Produkten"
+            },
+            "tabGeneral": "Allgemein",
+            "tabLayout": "Layout",
+            "tabSeo": "SEO",
+            "textHeadline": "Neues Bundle",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Dadurch ist das Bundle in diesen Kanälen nicht sichtbar. Bitte überprüfe die Sichtbarkeit für die folgenden Produkte:",
+                    "notAssignedTo": "nicht zugeordnet zu",
+                    "title": "Einige Produkte sind nicht allen ausgewählten Verkaufskanälen zugeordnet"
+                },
+                "title": "Zuweisung"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktiv",
+                "placeholder": "Status auswählen ..."
+            },
+            "availabilityFilter": {
+                "label": "Verfügbarkeit",
+                "placeholder": "Verfügbarkeit auswählen ..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Enthaltene Produkte",
+                "placeholder": "Enthaltene Produkte auswählen ..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorien",
+                "placeholder": "Kategorien auswählen ..."
+            },
+            "fromPlaceholder": "Startwert eingeben ...",
+            "imagesFilter": {
+                "label": "Bilder",
+                "placeholder": "Bildstatus auswählen ...",
+                "textHasCriteria": "Verfügt über mind. eine Produktbildzuordnung",
+                "textNoCriteria": "Keine Produktbilder zugeordnet"
+            },
+            "priceFilter": {
+                "label": "Preis"
+            },
+            "productNumberFilter": {
+                "label": "Produktnummer",
+                "placeholder": "Produktnummer eingeben ..."
+            },
+            "releaseDateFilter": {
+                "label": "Erscheinungsdatum"
+            },
+            "salesChannelsFilter": {
+                "label": "Verkaufskanäle",
+                "placeholder": "Verkaufskanäle auswählen ..."
+            },
+            "salesFilter": {
+                "label": "Verkäufe"
+            },
+            "tagsFilter": {
+                "label": "Tags",
+                "placeholder": "Tags auswählen ..."
+            },
+            "toPlaceholder": "Endwert eingeben ..."
+        },
+        "general": {
+            "description": "Bundles",
+            "headlineBundles": "Bundles",
+            "mainMenuItemGeneral": "Bundles",
+            "placeholderSearchBar": "Bundles durchsuchen ...",
+            "title": "Bundles"
+        },
+        "generalForm": {
+            "highlightHelpText": "Hervorgehobene Bundles werden in allen Produktlisten mit einem farbigen Etikett und der Aufschrift \"Tipp\" markiert. Du kannst die Farbe des Etiketts mit der Einstellung \"Hinweis\" in den {themeLink}-Einstellungen anpassen. Die Beschriftung kannst Du über den entsprechenden <a href=\"{snippetUrl}\">Textbaustein</a> anpassen.",
+            "labelDescription": "Beschreibung",
+            "labelMarkAsTopseller": "Bundle hervorheben",
+            "labelName": "Name",
+            "labelProductNumber": "Produktnummer",
+            "placeholderDescription": "Bundle-Beschreibung eingeben ...",
+            "placeholderName": "Bundle-Namen eingeben ...",
+            "placeholderProductNumber": "Produktnummer eingeben ..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Ein Bundle benötigt mindestens zwei Produkte.",
+            "notEnoughProductsTitle": "Zu wenige Produkte",
+            "restrictions": "Ein oder mehrere Produkte haben Einschränkungen, die die Verfügbarkeit dieses Bundles beeinflussen. Siehe die Warnsymbole für Details.",
+            "restrictionsTitle": "Einige Produkte haben Einschränkungen"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Keine passenden Produkte gefunden",
+            "noProductsMatchingBundleSalesChannels": "Es gibt keine aktiven Produkte, die den ausgewählten Verkaufskanälen des Bundles entsprechen.",
+            "noProductsMatchingTermAndFilter": "Passe den Suchbegriff oder die Filter an.",
+            "placeholderSearch": "Produkte suchen ...",
+            "showIncluded": "Nur ausgewählte anzeigen ({count})",
+            "textWhySomeItemsMissing": "Warum fehlen einige Produkte?",
+            "title": "Produkte hinzufügen",
+            "tooltipVariant": "Variante",
+            "tooltipWhySomeItemsMissing": "Derzeit funktionieren Bundles nur mit physischen Produkten und Einzelvarianten.<br /><br />Produkte müssen den ausgewählten Verkaufskanälen des Bundles zugeordnet sein, um in der Liste zu erscheinen."
+        },
+        "list": {
+            "available": "Verfügbar",
+            "buttonAddBundle": "Bundle anlegen",
+            "columnActive": "Aktiv",
+            "columnAvailable": "Verfügbarkeit",
+            "columnBundleItemCount": "Anz. Produkte",
+            "columnCreatedAt": "Hinzugefügt am",
+            "columnName": "Name",
+            "columnProductNumber": "Produktnummer",
+            "columnSales": "Verkäufe",
+            "columnTotalPrice": "Gesamtpreis",
+            "columnUpdatedAt": "Aktualisiert am",
+            "emptyStateDescription": "Bundles können den durchschnittlichen Bestellwert erhöhen und Kunden zum Kauf verwandter Produkte anregen.",
+            "emptyStateTitle": "Bundles hinzufügen, um den Umsatz zu steigern",
+            "messageSaveSuccess": "Das Bundle \"{name}\" wurde erfolgreich gespeichert.",
+            "titleSidebarItemRefresh": "Aktualisieren",
+            "unavailable": "Nicht verfügbar"
+        },
+        "priceModal": {
+            "currency": "Währung",
+            "price": "Wert",
+            "title": "Erweiterte Preise"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Produkte hinzufügen",
+            "description": "Wähle zuerst einen Verkaufskanal, um zu sehen, welche Produkte dem Bundle hinzugefügt werden können. Du kannst dies später in der Karte \"Zuweisung\" anpassen.",
+            "title": "Verkaufskanal erforderlich"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Bild generieren",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Bundle-Beschreibung"
+                },
+                "bundleHeading": {
+                    "label": "Bundle-Name"
+                },
+                "bundleItems": {
+                    "label": "Bundle-Produkte"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galerie und Bundle-Buybox"
+                },
+                "recommendedBundles": {
+                    "label": "Empfohlene Bundles"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Standardlayout – Produkt-Bundle-Seite",
+                "setAsDefaultBundleDetail": "Als Standardlayout für Produkt-Bundle-Seiten festlegen"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Bundle-Seite"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Bild generieren",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Die Produktdaten dieses Elements werden automatisch aus dem mit dem Layout verbundenen Produkt geladen. Der angezeigte Inhalt ist nur eine Beispielvorschau."
+                },
+                "label": "Bundle-Buybox"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Die Produktdaten dieses Elements werden automatisch aus dem mit dem Layout verbundenen Produkt geladen. Der angezeigte Inhalt ist nur eine Beispielvorschau."
+                },
+                "label": "Bundle-Beschreibung",
+                "preview": {
+                    "descriptionTab": "Beschreibung",
+                    "title": "Bundle"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Ermöglicht Bundle-Produkte direkt in den Warenkorb zu legen, ohne die Produktdetailseite zu öffnen.",
+                        "labelTitle": "Verwende {count}, um die Anzahl der Produkte im Bundle anzuzeigen"
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Die Produktdaten dieses Elements werden automatisch aus dem mit dem Layout verbundenen Produkt geladen. Der angezeigte Inhalt ist nur eine Beispielvorschau."
+                    },
+                    "label": {
+                        "boxSettings": "Produktbox-Einstellungen",
+                        "cta": "CTA anzeigen, um Bundle-Produkte direkt in den Warenkorb zu legen",
+                        "minWidth": "Mindestbreite",
+                        "title": "Titel"
+                    }
+                },
+                "label": "Enthaltene Produkte"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Die Produktdaten dieses Elements werden automatisch aus dem mit dem Layout verbundenen Produkt geladen. Der angezeigte Inhalt ist nur eine Beispielvorschau."
+                },
+                "label": "Bundle-Name"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Wenn aktiviert, wird anfänglich nur ein Teil der Bundles angezeigt. Nutzer können die Liste erweitern, um mehr zu sehen.",
+                        "maxVisibleBundles": "Legt fest wie viele Bundles angezeigt werden, bevor sie hinter \"Mehr anzeigen\" verborgen werden.",
+                        "productBoxSettings": "Produktbox-Einstellungen",
+                        "productDetailElement": "Die Produktdaten dieses Elements werden automatisch aus dem mit dem Layout verbundenen Produkt geladen. Der angezeigte Inhalt ist nur eine Beispielvorschau.",
+                        "showCTAInfo": "Ermöglicht Bundle-Produkte direkt in den Warenkorb zu legen, ohne die Produktdetailseite zu öffnen.",
+                        "sliderSettings": "Slider-Einstellungen"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Anzahl der anfangs angezeigten Bundles begrenzen",
+                        "maxVisibleBundles": "Anfangs angezeigte Bundles",
+                        "minWidth": "Mindestbreite",
+                        "recommendedCombinationsTitle": "Empfohlene Kombinationen",
+                        "showBundleName": "Bundle-Name anzeigen",
+                        "showCTA": "CTA anzeigen, um Bundle-Produkte direkt in den Warenkorb zu legen",
+                        "showCurrentProduct": "Aktuell angesehenes Produkt zuerst im Bundle anzeigen",
+                        "title": "Titel"
+                    },
+                    "placeholder": {
+                        "minWidth": "Mindestbreite eingeben ...",
+                        "title": "Empfohlene Kombinationen"
+                    }
+                },
+                "label": "Empfohlene Kombinationen",
+                "preview": {
+                    "label": {
+                        "title": "Empfohlene Kombinationen"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Bild generieren",
             "contentText": "Kreiere Deine eigenen atmosphärischen Hintergründe mit der Hilfe unseres AI-Services",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Bundle"
         }
     },
     "sw-cms-generation": {
@@ -1944,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rollenverwaltung"
             },
+            "bundle": {
+                "label": "Bundles"
+            },
             "custom_price": {
                 "label": "Kundenindividuelle Preise"
             },
@@ -1975,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Produkt zu Bundles hinzufügen",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Verstanden",
+                "description": "Dieses Produkt konnte nicht aus den folgenden Bundles entfernt werden, da Bundles mindestens zwei Produkte benötigen:",
+                "hint": "Um dieses Produkt zu entfernen, füge zuerst ein weiteres Produkt zu diesen Bundles hinzu.",
+                "title": "Produkt konnte nicht aus allen Bundles entfernt werden"
+            },
+            "bundleCardSubtitle": "Alle Bundles, die dieses Produkt enthalten",
+            "bundleCardTitle": "Bundles ({count})",
+            "buttonAddBundle": "Produkt zu Bundles hinzufügen",
+            "buttonAddBundleLanguageWarning": "Bundles können nur in der System-Standardsprache hinzugefügt werden.",
+            "buttonCreateBundle": "Bundle erstellen",
+            "buttonManageBundles": "Bundles verwalten",
+            "columnActive": "Aktiv",
+            "columnAvailability": "Verfügbarkeit",
+            "columnBundleItemCount": "Anzahl der Produkte",
+            "columnCreatedAt": "Hinzugefügt am",
+            "columnName": "Name",
+            "columnProductNumber": "Produktnummer",
+            "columnSales": "Verkäufe",
+            "columnShowBundleOnItemPdp": "Auf Produktdetailseite anzeigen",
+            "columnUpdatedAt": "Aktualisiert am",
+            "emptyStateDescription": "Bundles können den durchschnittlichen Bestellwert erhöhen und Kunden zum Kauf verwandter Produkte anregen. Bundles werden auf der Produktdetailseite angezeigt, wenn das CMS-Layout ein Bundle-Element enthält.",
+            "emptyStateDescriptionCreateFirst": "Bundles können den durchschnittlichen Bestellwert erhöhen und Kunden zum Kauf verwandter Produkte anregen. Bundles werden auf der Produktdetailseite angezeigt, wenn das CMS-Layout ein Bundle-Element enthält. Erstelle ein Bundle, um dieses Produkt hinzuzufügen.",
+            "emptyStateNoBundlesFound": "Keine passenden Bundles gefunden",
+            "emptyStateNoBundlesFoundDescription": "Passende Bundles finden, indem du den Suchbegriff oder die Filter anpasst.",
+            "emptyStateTitle": "Produkt zu Bundles hinzufügen, um den Umsatz zu steigern",
+            "hideOnProductDetailPage": "Auf Produktdetailseite nicht anzeigen",
+            "messageSaveSuccess": "Das Bundle \"{name}\" wurde erfolgreich gespeichert.",
+            "openBundlesDetail": "Bundle-Details öffnen",
+            "placeholderSearch": "Bundles suchen ...",
+            "refreshDataTooltip": "Daten aktualisieren",
+            "showOnProductDetailPage": "Auf Produktdetailseite anzeigen",
+            "showOnlyIncluded": "Nur ausgewählte anzeigen",
+            "tooltipBundleHasRestrictions": "Ein oder mehrere Produkte haben Einschränkungen, die die Verfügbarkeit dieses Bundles beeinträchtigen. Besuche die Bundle-Details für weitere Informationen.",
+            "tooltipBundleInactive": "Inaktiv",
+            "tooltipBundleIssues": "Probleme:",
+            "tooltipBundleMismatchedSalesChannels": "Nicht den Verkaufskanälen des Produkts zugeordnet: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Dieses Produkt kann nicht entfernt werden, da Bundles mindestens zwei Produkte benötigen."
+        },
         "card": {
             "textHeadline": "Lagerbestand & Lieferbarkeit",
             "textLinkModal": "Verfügbarkeit und Lieferzeit nach Lagern und Lagergruppen anzeigen",
             "textProductWarehouseModalDisabled": "Speichere Deine Änderungen, bevor Du weitere Bestandsdetails öffnen kannst.",
             "textTooltipMultiSelect": "Weise Lagerhausgruppen zu, um Deinen Bestand und Lieferzeit über mehrere Lagerhäuser individuell zu verwalten."
+        },
+        "detail": {
+            "tabBundle": "Bundles"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Schließen",
@@ -1995,6 +2359,9 @@
             "tabStock": "Bestand",
             "textHeadline": "Verfügbarkeit und Lieferzeiten von Lagern und Lagergruppen",
             "textInlineEdit": "Bestand bearbeiten"
+        },
+        "type": {
+            "grouped_bundle": "Bundle"
         },
         "variants-overview": {
             "inlineText": "siehe Details"
@@ -2549,6 +2916,11 @@
         },
         "item": {
             "emptyText": "Leere Szene"
+        }
+    },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Bundle-Produktdetailseite"
         }
     },
     "sw-settings": {
