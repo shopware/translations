@@ -3653,6 +3653,36 @@
         "noCriteria": "No {criteriaName}",
         "placeholder": "All"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Export channel",
+                        "placeholder": "Select export channels…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Export channel"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Export channel",
+                        "placeholder": "Select export channels…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Export channel"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Adds export channel columns and filters to the order and customer lists.",
+            "mainMenuItemGeneral": "Export Channel Tracking"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Extension \"{name}\" is not compatible with this Shopware version",
@@ -6564,15 +6594,23 @@
             "helpTextKeywords": "Here you can define optionally three to five keywords under which your product should be found.",
             "helpTextMetaDescription": "With the meta description, you confirm to your customers that they are in the right place in your store. You create incentives, build trust and invite to an action. You should limit yourself to a maximum of 155 characters. Shopware allows a maximum length of 255 characters.",
             "helpTextMetaTitle": "The meta title is the most important SEO element and should be unique for each page. You should limit yourself in length to a maximum of 56 characters. Your keyword should ideally be placed at the very front.",
+            "helpTextOpenGraphDescription": "The Open Graph description is used when sharing the product on social media. If left empty, the meta description will be used as a fallback.",
+            "helpTextOpenGraphTitle": "The Open Graph title is used when sharing the product on social media. If left empty, the meta title will be used as a fallback.",
             "labelCanonicalProduct": "Variant for canonical URL",
             "labelCanonicalUrlMode": "Use single canonical URL for all variants",
             "labelKeywords": "SEO keywords",
             "labelMetaDescription": "Meta description",
             "labelMetaTitle": "Meta title",
+            "labelOpenGraphDescription": "OG description",
+            "labelOpenGraphImage": "OG image",
+            "labelOpenGraphTitle": "OG title",
             "placeholderCanonicalProduct": "Select a variant...",
             "placeholderKeywords": "Enter one or more keywords...",
             "placeholderMetaDescription": "Enter meta description...",
-            "placeholderMetaTitle": "Enter meta title..."
+            "placeholderMetaTitle": "Enter meta title...",
+            "placeholderOpenGraphDescription": "Enter Open Graph description...",
+            "placeholderOpenGraphTitle": "Enter Open Graph title...",
+            "titleOpenGraph": "Open Graph"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Backorders denied.",
@@ -7537,8 +7575,42 @@
         "ruleCard": "Conditions"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Affiliate code",
+            "affiliateCodePlaceholder": "Enter affiliate code…",
+            "campaignCodeLabel": "Campaign code",
+            "campaignCodePlaceholder": "Enter campaign code…",
+            "cardTitle": "Tracking codes",
+            "description": "Configure the affiliate and campaign codes that will be embedded in product URLs of this channel's feeds. These codes identify orders and customers referred from this Agentic Commerce channel."
+        },
         "detail": {
             "activateDisable": "Please assign a theme before activating and saving the Sales Channel.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Reset to default",
+                "errorLoadingTemplate": "Could not load default template.",
+                "integration": {
+                    "feedUrlLabel": "Export URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI connection",
+                            "introduction": {
+                                "description": "This Sales Channel generates a JSONL product feed so your products can appear in ChatGPT search results. To do this, you have to apply as a merchant and share the feed URL with OpenAI. Everything else is explained in the step by step guide below.",
+                                "title": "How to: Setup and connection"
+                            },
+                            "stepByStep": "<li>Apply as a merchant at <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchants</a></li><li>Copy the export URL (below) and share it with OpenAI according to the <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Product feeds docs</a></li><li>Make sure the export URL is publicly accessible</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Step by step"
+                },
+                "openAiSettingsTitle": "OpenAI settings",
+                "resetTemplateSuccess": "Template has been reset to default. Please save to keep the changes.",
+                "tabIntegration": "Integration",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "With the help of Google Analytics you can collect and analyse your shop's data. In order to make use of this function, a Google Account is necessary. If you don't yet own a Google Analytics account, you may want to sign up here: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. After successfully signing-up you will receive a tracking ID, which is to be filled in below to activate the integration.",
@@ -7747,6 +7819,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Referred customers",
+                    "dateRanges": {
+                        "14Days": "Last 14 days",
+                        "180Days": "Last 180 days",
+                        "24Hours": "Last 24 hours",
+                        "30Days": "Last 30 days",
+                        "7Days": "Last 7 days",
+                        "yesterday": "Yesterday"
+                    },
+                    "numbers": "Count",
+                    "orderCardHeadline": "Referred orders",
+                    "summary": "Summary",
+                    "totalTurnover": "Turnover",
+                    "turnoverCardHeadline": "Referred turnover"
+                },
+                "tabInsights": "Insights"
             },
             "products": {
                 "buttonAddProducts": "Add {productCount} products | Add {productCount} product | Add {productCount} products",
@@ -10429,48 +10520,6 @@
         "childrenLabel": "Subitems for \"{name}\"",
         "toggleItem": "Toggle item \"{name}\"",
         "toggleTreeItem": "Toggle tree item \"{name}\""
-    },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Agree",
-        "checkListDataSharing": {
-            "gdprCompliant": "We are GDPR compliant",
-            "helpText": {
-                "shareDataHelpText": "<strong>\"Share\"</strong> refers to disclosure of data for the receiving party’s own purposes; we may disclose data to our service providers."
-            },
-            "personalData": "We don’t collect personal data",
-            "securelyProcessed": "Your data is securely processed and stored",
-            "thirdParty": "We don’t share your data with third parties for their own purposes",
-            "title": "We can assure you that:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostic data",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Diagnostic data</strong> within Shopware refers to the information related to system health, errors and performance metrics of the platform. This includes details such as system logs, error messages, server response times, and other technical indicators. Analysing this data helps us to quickly identify, address and deploy fixes for common issues or vulnerabilities, maintaining the integrity of the platform.",
-                "orderDataHelp": "<strong>Order data</strong> within Shopware refers to the detailed information about customer orders placed on the platform. This includes specifics such as products ordered, quantities, prices, origin, payment methods, shipment, etc. We analyze this data to understand trends and patterns that help us to enhance features as well as develop new services designed to improve your business success. We don’t collect personal data from your customers that can be used to identify a single person.",
-                "storeDataHelp": "<strong>Store data</strong> within Shopware pertains to all the information related to your online storefront. Such as products, listings, prices, images, descriptions, etc. and metadata about your shop's setup, such as themes and plugins. We don’t collect personal data that can be used to identify an admin user or a storefront visitor. Using aggregated store data, we can provide insights via machine learning such as emerging market trends, allowing you to adjust product offerings or marketing strategies accordingly.",
-                "usageDataHelp": "<strong>Usage data</strong> within Shopware pertains to the information related to how admin users and storefront visitors interact with our platform. This includes details like interactions with different Shopware admin modules, pages viewed, duration of visits, click paths, and user actions within the platform and storefront. By evaluating the usage data, we can identify areas of the platform that are frequently visit or avoid to measure feature adoption, leading to potential improvements in layout, design, and functionality. We don’t collect personal data that can be used to identify an admin or storefront visitors."
-            },
-            "orderData": "Order data",
-            "storeData": "Store data",
-            "usageData": "Usage data"
-        },
-        "confirmAuthorization": "By clicking \"Agree\", you confirm that you are authorised to enter into this agreement on behalf of your company.",
-        "declineDataCollection": "Not at the moment",
-        "fullDetailsDescription": "Full details of this agreement can be found at {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "You can opt out of data sharing at any time.",
-        "headline": "Shaping the future of ecommerce",
-        "improvingDescription": "We are constantly improving the services we provide to you. To take the next step, we are analyzing your data using techniques such as machine learning (e.g. pattern recognition) to develop and improve our product. Your data will also be used to develop data-driven services designed to enhance your business success. This is the data we are collecting:",
-        "improvingDescriptionNotAccepted": "We are constantly improving the services we provide to you. To take the next step, we would like to analyze your data using techniques such as machine learning (e.g. pattern recognition) to develop and improve our product. Your data will also be used to develop data-driven services designed to enhance your business success. This is the data we will collect:",
-        "privacyPolicy": "shopware.com/en/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "You can at any time enter into the agreement and thus contribute to and profit from the constant evolution of our services, by allowing data sharing in your {link}",
-        "settings": {
-            "deactivateDataCollection": "Disable data sharing",
-            "sharingInformation": "You are sharing data with us"
-        },
-        "thankYouMessage": "{thanksForParticipation} You may opt out of this agreement at any time and thus stop contributing to and benefiting from the ongoing development of our services by disabling data sharing in your {link}",
-        "thanksForParticipation": "Thank you for your participation!",
-        "togglePath": "Settings"
     },
     "sw-users-permissions": {
         "general": {
