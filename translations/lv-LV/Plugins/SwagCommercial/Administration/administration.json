@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Abonēšana atstāj statusu apturētu"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuāla cenu noteikšana",
             "b2b_components_role": "Loma | Lomas",
             "b2b_components_shopping_list": "Iepirkumu saraksti",
             "b2b_employee": "Darbinieks | Darbinieki",
+            "bundle": "Komplekts | Komplekti",
+            "bundle_item": "Komplekta prece | Komplekta preces",
             "export_assistant": "Eksporta palīgs",
-            "individual_pricing": "Individuāla cenu noteikšana",
             "quote": "Citāts | Citāti",
             "quote_line_item": "Citāta līnijas vienums | Citāta līnijas vienumi",
             "search_assistant": "AI kopilots",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Vienība ir komplekta vienība",
+                "lineItemOfBundleRule": "Izvēlētā komplekta vienība",
                 "subscriptionCartRule": "Abonēšanas grozs",
                 "subscriptionIntervalRule": "Abonēšanas intervāls",
                 "subscriptionPlanRule": "Abonēšanas plāns"
             },
             "group": {
                 "subscription": "Abonements"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Komplekts"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Paldies, ka izmēģinājāt Komplekta plānu. Mēs labprāt dzirdētu jūsu atsauksmes.",
+                "link": "Sniegt atsauksmes"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Pielāgojami lauki"
+            },
+            "general": {
+                "title": "Vispārīga informācija"
+            },
+            "items": {
+                "actionOpenProductDetails": "Atvērt produkta informāciju",
+                "buttonAddBundleItems": "Pievienot produktus",
+                "columnName": "Nosaukums",
+                "columnPosition": "Pozīcija",
+                "columnPrice": "Cena",
+                "emptyStateDescription": "Pievienojiet komplektam vismaz divus produktus.",
+                "emptyStateTitle": "Pagaidām nav pievienoti produkti",
+                "title": "Produkti ({count})",
+                "tooltipBundleItemCustomizedProduct": "Pielāgota produkta veidne",
+                "tooltipBundleItemHasVariants": "Produktam ir varianti",
+                "tooltipBundleItemInactive": "Neaktīvs",
+                "tooltipBundleItemIncompatibleVisibilities": "Nav piešķirts komplekta pārdošanas kanāliem: {salesChannels}",
+                "tooltipBundleItemIssues": "Problēmas:",
+                "tooltipBundleItemOutOfStockCloseout": "Nav noliktavā (izpārdošana)",
+                "tooltipBundleItemOutOfStockTemporary": "Šis produkts pašlaik nav noliktavā. Komplekts atkal kļūs iegādājams, tiklīdz visi produkti būs atkal noliktavā.",
+                "tooltipBundleItemOutOfStockTitle": "Nav noliktavā",
+                "tooltipRefreshData": "Atsvaidzināt datus"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Izdošanas datums",
+                    "placeholder": "Ievadīt izdošanas datumu..."
+                },
+                "title": "Marķējumi"
+            },
+            "media": {
+                "subtitle": "Pievienojiet failus komplekta multivides galerijai.",
+                "title": "Mēdiji"
+            },
+            "messageMinBundleItemsRequired": "Pievienojiet vismaz divus produktus, lai izveidotu komplektu.",
+            "messageNoChanges": "Nav izmaiņu, lai saglabātu",
+            "messageSaveError": "Neizdevās saglabāt komplektu",
+            "messageSaveSuccess": "Komplekts veiksmīgi saglabāts",
+            "price": {
+                "addDiscount": "Pievienot atlaidi",
+                "currencyDependingPrices": "Valūta atkarībā no cenām",
+                "discount": "Atlaide",
+                "discountRules": "Atlaižu noteikumi",
+                "discountTitle": "Atlaide",
+                "discountType": "Tips",
+                "discountTypeAbsolute": "Absolūts",
+                "discountTypePercentage": "Procenti",
+                "discountValue": "Vērtība",
+                "discountValuePlaceholder": "Pievienojiet vērtību...",
+                "doNotCombineWith": "Nelietojiet kombinēt ar",
+                "maxValuePlaceholder": "Neierobežots",
+                "maximumDiscountValue": "Maksimalā atlaides summa",
+                "openAdvancedPricesView": "Atveriet uzlaboto cenu skatu",
+                "preventCombination": "Novērst kombināciju ar citām akcijām",
+                "preventCombinationHelpText": "Ja tā ir iespējota, šo atlaidi nevar apvienot ar citām akcijām",
+                "promotionsPlaceholder": "Pievienojiet akcijas...",
+                "rulesPlaceholder": "Pievienot noteikumus...",
+                "subtotalBased": "Starpsumma balstīta uz 1 produktu | Starpsumma balstīta uz {count} produktiem",
+                "title": "Rādīt cenas",
+                "total": "Kopā",
+                "totalBased": "Kopā balstīta uz 1 produktiem | Kopā balstīti uz {count} produktiem"
+            },
+            "tabGeneral": "Vispārīgi",
+            "tabLayout": "Izvietojums",
+            "tabSeo": "SEO",
+            "textHeadline": "Jauns komplekts",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Tas novērš saišķa redzamību šajos kanālos. Lūdzu, pārbaudiet šādu produktu redzamību:",
+                    "notAssignedTo": "nav piešķirts",
+                    "title": "Daži produkti nav piešķirti visiem atlasītajiem pārdošanas kanāliem"
+                },
+                "title": "Redzamība un struktūra"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktīvs",
+                "placeholder": "Izvēlieties statusu..."
+            },
+            "availabilityFilter": {
+                "label": "Pieejamība",
+                "placeholder": "Izvēlieties pieejamību..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Iekļauti produkti",
+                "placeholder": "Izvēlieties iekļautos produktus..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorijas",
+                "placeholder": "Izvēlēties kategorijas..."
+            },
+            "fromPlaceholder": "Ievadiet sākuma vērtību...",
+            "imagesFilter": {
+                "label": "Attēli",
+                "placeholder": "Izvēlieties attēla statusu...",
+                "textHasCriteria": "Vismaz vienam piešķirtajam produkta attēlam",
+                "textNoCriteria": "Produktu attēli nav piešķirti"
+            },
+            "priceFilter": {
+                "label": "Cena"
+            },
+            "productNumberFilter": {
+                "label": "Produkta numurs",
+                "placeholder": "Ievadiet produkta numuru..."
+            },
+            "releaseDateFilter": {
+                "label": "Izdošanas datums"
+            },
+            "salesChannelsFilter": {
+                "label": "Pārdošanas kanāli",
+                "placeholder": "Izvēlieties pārdošanas kanālus..."
+            },
+            "salesFilter": {
+                "label": "Izpārdošana"
+            },
+            "tagsFilter": {
+                "label": "Tagi",
+                "placeholder": "Izvēlēties tagus..."
+            },
+            "toPlaceholder": "Ievadiet beigu vērtību..."
+        },
+        "general": {
+            "description": "Komplekti",
+            "headlineBundles": "Komplekti",
+            "mainMenuItemGeneral": "Komplekti",
+            "placeholderSearchBar": "Meklēt komplektus...",
+            "title": "Komplekti"
+        },
+        "generalForm": {
+            "highlightHelpText": "Izceltie saišķi visos komplektu sarakstos ir apzīmēti ar spilgtas krāsas etiķeti un vārdu “Padoms”. Jūs varat pielāgot etiķetes krāsu, mainot opciju “Paziņojums” <a href=\"{themeUrl}\">motīvu</a> iestatījumos. Varat arī mainīt etiķetes tekstu, rediģējot atbilstošo <a href=\"{snippetUrl}\">teksta fragmentu</a>.",
+            "labelDescription": "Apraksts",
+            "labelMarkAsTopseller": "Iezīmējiet komplektu",
+            "labelName": "Nosaukums",
+            "labelProductNumber": "Produkta numurs",
+            "placeholderDescription": "Ievadiet komplekta aprakstu...",
+            "placeholderName": "Ievadiet komplekta nosaukumu...",
+            "placeholderProductNumber": "Ievadiet produkta numuru..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Komplektam nepieciešami vismaz divi produkti.",
+            "notEnoughProductsTitle": "Nav pietiekami daudz produktu",
+            "restrictions": "Vienam vai vairākiem produktiem ir ierobežojumi, kas ietekmē šī paketa pieejamību. Sīkāku informāciju skatiet brīdinājuma ikonās.",
+            "restrictionsTitle": "Dažiem produktiem ir ierobežojumi"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Nav atrasts atbilstošs produkts",
+            "noProductsMatchingBundleSalesChannels": "Nav aktīvu produktu, kas atbilstu komplekta atlasītajiem pārdošanas kanāliem.",
+            "noProductsMatchingTermAndFilter": "Pielāgojiet meklēšanas terminu vai filtrus.",
+            "placeholderSearch": "Meklēt produktus...",
+            "showIncluded": "Rādīt tikai atlasīto ({count})",
+            "textWhySomeItemsMissing": "Kāpēc trūkst dažu produktu?",
+            "title": "Pievienot produktus",
+            "tooltipVariant": "Variants",
+            "tooltipWhySomeItemsMissing": "Šobrīd komplekti darbojas tikai ar fiziskiem produktiem un atsevišķiem variantiem. <br /><br /> Produkti ir jāpiešķir komplekta atlasītajiem pārdošanas kanāliem, lai tie tiktu parādīti sarakstā."
+        },
+        "list": {
+            "available": "Pieejams",
+            "buttonAddBundle": "Pievienot komplektu",
+            "columnActive": "Aktīvs",
+            "columnAvailable": "Pieejamība",
+            "columnBundleItemCount": "Produktu skaits",
+            "columnCreatedAt": "Izveidots",
+            "columnName": "Nosaukums",
+            "columnProductNumber": "Produkta numurs",
+            "columnSales": "Izpārdošana",
+            "columnTotalPrice": "Kopējā cena",
+            "columnUpdatedAt": "Atjaunots",
+            "emptyStateDescription": "Komplekti var palielināt jūsu vidējo pasūtījuma vērtību un mudināt klientus iegādāties saistītus produktus.",
+            "emptyStateTitle": "Pievienojiet komplektus, lai palielinātu pārdošanas apjomus",
+            "messageSaveSuccess": "Komplekts \"{name}\" ir saglabāts.",
+            "titleSidebarItemRefresh": "Atjaunot",
+            "unavailable": "Nepieejams"
+        },
+        "priceModal": {
+            "currency": "Valūta",
+            "price": "Vērtība",
+            "title": "Izvērsta cenošana"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Pievienot produktus",
+            "description": "Vispirms atlasiet pārdošanas kanālu, lai redzētu, kurus produktus var pievienot komplektam. To vēlāk varat pielāgot kartē Redzamība un struktūra.",
+            "title": "Nepieciešams pārdošanas kanāls"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Ģenerēt attēlu",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Komplekta apraksts"
+                },
+                "bundleHeading": {
+                    "label": "Komplekta nosaukums"
+                },
+                "bundleItems": {
+                    "label": "Komplekta preces"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Attēlu galerija un komplekta pirkšanas kaste"
+                },
+                "recommendedBundles": {
+                    "label": "Ieteicamie saišķi"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Noklusējuma izkārtojums - Produkta komplekta lapa",
+                "setAsDefaultBundleDetail": "Iestatīt kā produktu paketes lapu noklusējumu"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Komplekta lapa"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Ģenerēt attēlu",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Šī elementa produkta datus automātiski ielādē produkts, kas saistīts ar šo izkārtojumu. Saturs tikai parāda parauga priekšskatījumu."
+                },
+                "label": "Komplekta pirkšanas kaste"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Šī elementa produkta datus automātiski ielādē produkts, kas saistīts ar šo izkārtojumu. Saturs tikai parāda parauga priekšskatījumu."
+                },
+                "label": "Komplekta apraksts",
+                "preview": {
+                    "descriptionTab": "Apraksts",
+                    "title": "Komplekts"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Ļauj pievienot komplekta preces tieši grozam, nevis atvērt produkta informācijas lapu.",
+                        "labelTitle": "Izmantojiet {count}, lai parādītu komplektā esošo produktu skaitu."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Šī elementa produkta datus automātiski ielādē produkts, kas saistīts ar šo izkārtojumu. Saturs tikai parāda parauga priekšskatījumu."
+                    },
+                    "label": {
+                        "boxSettings": "Produkta kastes iestatījumi",
+                        "cta": "Rādīt CTA, lai pievienotu komplekta preces tieši grozam",
+                        "minWidth": "Minimālais platums",
+                        "title": "Virsraksts"
+                    }
+                },
+                "label": "Iekļauti produkti"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Šī elementa komplekta datus automātiski ielādē komplekts, kas saistīts ar šo izkārtojumu. Saturs parāda tikai priekšskatījuma paraugu."
+                },
+                "label": "Komplekta nosaukums"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Kad tas ir iespējots, sākotnēji tiek parādīta tikai pakešu apakškopa. Lietotāji var paplašināt sarakstu, lai parādītu vairāk.",
+                        "maxVisibleBundles": "Kontrolē, cik daudz komplektu tiks parādīti, līdz tie tiks paslēpti aiz funkcionalitātes “Rādīt vairāk”.",
+                        "productBoxSettings": "Produkta kastes iestatījumi",
+                        "productDetailElement": "Šī elementa produkta datus automātiski ielādē produkts, kas saistīts ar šo izkārtojumu. Saturs tikai parāda parauga priekšskatījumu.",
+                        "showCTAInfo": "Ļauj pievienot komplekta preces tieši grozam, nevis atvērt produkta informācijas lapu.",
+                        "sliderSettings": "Slīdņa iestatījumi"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Sākotnēji parādīto saišķu ierobežojums",
+                        "maxVisibleBundles": "Sākotnēji parādīti saišķi",
+                        "minWidth": "Minimālais platums",
+                        "recommendedCombinationsTitle": "Ieteicamās kombinācijas",
+                        "showBundleName": "Rādīt komplekta nosaukumu",
+                        "showCTA": "Rādīt CTA, lai pievienotu komplekta preces tieši grozam",
+                        "showCurrentProduct": "Parādiet pašlaik skatīto produktu vispirms komplektā",
+                        "title": "Virsraksts"
+                    },
+                    "placeholder": {
+                        "minWidth": "Ievadiet minimālo platumu...",
+                        "title": "Ieteicamās kombinācijas"
+                    }
+                },
+                "label": "Ieteicamās kombinācijas",
+                "preview": {
+                    "label": {
+                        "title": "Ieteicamās kombinācijas"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Ģenerēt attēlu",
             "contentText": "Izveidojiet savus noskaņojuma attēlus, lai pielāgotu savu izkārtojumu, izmantojot AI ģenerēto attēlu.",
             "header": "AI kopilots"
+        },
+        "tags": {
+            "bundle": "Komplekts"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organizācijas vienības adreses",
                             "pending_order": "Gaidāmā pasūtījumu pārvaldība",
                             "quote": "Citātu pārvaldība",
-                            "role": "Lomu pārvaldība"
+                            "role": "Lomu pārvaldība",
+                            "subscription": "Pasūtīt abonementu"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Dzēst piegādes adresi",
                                     "update": "Labot piegādes adresi"
                                 },
+                                "subscription": {
+                                    "read": "Skatīt visus pasūtījumu abonementus no piešķirtās organizācijas vienības"
+                                },
                                 "update": "Rediģēt organizācijas vienību"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Var izdzēst lomas",
                                 "edit": "Var rediģēt lomas",
                                 "read": "Var apskatīt lomas"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Skatīt visus pasūtījumu abonementus"
+                                }
                             }
                         },
                         "switchAllLabel": "Visas atļaujas"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Lomu vadība"
             },
+            "bundle": {
+                "label": "Komplekti"
+            },
             "custom_price": {
                 "label": "Produkta klienta cena"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Pievienot produktu komplektiem",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Saņēmu",
+                "description": "Šo produktu nevarēja noņemt no šiem komplektiem, jo komplektam nepieciešami vismaz divi produkti:",
+                "hint": "Lai noņemtu šo produktu, vispirms pievienojiet šiem komplektiem citu produktu.",
+                "title": "Produktu nevarēja noņemt no visiem komplektiem"
+            },
+            "bundleCardSubtitle": "Visi komplekti, kas satur šo produktu",
+            "bundleCardTitle": "Komplekti ({count})",
+            "buttonAddBundle": "Pievienot produktu komplektiem",
+            "buttonAddBundleLanguageWarning": "Komplektu pievienošana ir iespējama tikai sistēmas noklusējuma valodā.",
+            "buttonCreateBundle": "Izveidot komplektu",
+            "buttonManageBundles": "Pārvaldīt komplektus",
+            "columnActive": "Aktīvs",
+            "columnAvailability": "Pieejamība",
+            "columnBundleItemCount": "Produktu skaits",
+            "columnCreatedAt": "Izveidots",
+            "columnName": "Nosaukums",
+            "columnProductNumber": "Produkta numurs",
+            "columnSales": "Izpārdošana",
+            "columnShowBundleOnItemPdp": "Parādīt detalizētajā lapā",
+            "columnUpdatedAt": "Atjaunots",
+            "emptyStateDescription": "Komplekti var palielināt vidējo pasūtījuma vērtību un mudināt klientus iegādāties saistītus produktus. Komplekti parādās produkta informācijas lapā, ja CMS izkārtojumā ir iekļauts komplekta elements.",
+            "emptyStateDescriptionCreateFirst": "Komplekti var palielināt vidējo pasūtījuma vērtību un mudināt klientus iegādāties saistītus produktus. Komplekti parādās produkta informācijas lapā, ja CMS izkārtojumā ir iekļauts komplekta elements. Izveidojiet komplektu, lai pievienotu šo produktu.",
+            "emptyStateNoBundlesFound": "Netika atrasti atbilstoši komplekti",
+            "emptyStateNoBundlesFoundDescription": "Pielāgojiet meklēšanas terminu vai filtrus.",
+            "emptyStateTitle": "Pievienojiet produktu komplektiem, lai palielinātu pārdošanas apjomus",
+            "hideOnProductDetailPage": "Paslēpt produkta informācijas lapā",
+            "messageSaveSuccess": "Komplekts \"{name}\" ir saglabāts.",
+            "openBundlesDetail": "Atveriet komplekta informāciju",
+            "placeholderSearch": "Meklēt komplektus...",
+            "refreshDataTooltip": "Atsvaidzināt datus",
+            "showOnProductDetailPage": "Parādīt produkta detaļu lapā",
+            "showOnlyIncluded": "Rādīt tikai atlasīto",
+            "tooltipBundleHasRestrictions": "Vienam vai vairākiem produktiem ir ierobežojumi, kas ietekmē šī paketa pieejamību. Lai iegūtu vairāk informācijas, apmeklējiet komplekta informāciju.",
+            "tooltipBundleInactive": "Neaktīvs",
+            "tooltipBundleIssues": "Problēmas:",
+            "tooltipBundleMismatchedSalesChannels": "Nav piešķirts Produkta pārdošanas kanāliem: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Šo produktu nevar noņemt, jo komplektiem nepieciešami vismaz divi produkti."
+        },
         "card": {
             "textHeadline": "Krājumi un piegādājamība",
             "textLinkModal": "Skatīt krājumus pa noliktavām un noliktavu grupām",
             "textProductWarehouseModalDisabled": "Saglabājiet izmaiņas, pirms varat atvērt papildu informāciju par krājumu.",
             "textTooltipMultiSelect": "Piešķiriet noliktavu grupas, lai pārvaldītu savus krājumus atsevišķi vairākās noliktavās."
+        },
+        "detail": {
+            "tabBundle": "Komplekti"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Aizvērt",
@@ -1986,6 +2359,9 @@
             "tabStock": "Krājums",
             "textHeadline": "Krājumi pa noliktavu un noliktavu grupām",
             "textInlineEdit": "Rediģēt krājumu"
+        },
+        "type": {
+            "grouped_bundle": "Komplekts"
         },
         "variants-overview": {
             "inlineText": "Skatīt sīkāku informāciju"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tukša aina"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Komplekta produkta detaļas lapa"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Atļaut reklāmas kodus pasūtījumiem no piedāvājumiem"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Draudzīgs Captcha",
+                "friendlyCaptchaApiKey": "Draudzīga Captcha API atslēga",
                 "friendlyCaptchaDescription": "Balstoties uz darba pierādīšanas mehānismiem un uzlabotiem riska signāliem, Friendly Captcha izmanto pilnīgi jaunu pieeju, lai droši aizsargātu jūsu vietnes un tiešsaistes pakalpojumus no surogātpastu un robotprogrammatūrām.",
+                "friendlyCaptchaRegion": "API reģions",
+                "friendlyCaptchaRegionEu": "ES (Eiropas Savienība)",
+                "friendlyCaptchaRegionGlobal": "Globāls",
+                "friendlyCaptchaRegionHelpText": "Izvēlieties “EU”, lai visus captcha pieprasījumus maršrutētu tikai caur Eiropas serveriem. Tas var attiekties uz GDPR atbilstību.",
                 "friendlyCaptchaSecretKey": "Draudzīga Captcha slepenā atslēga",
-                "friendlyCaptchaSiteKey": "Draudzīga Captcha vietnes atslēga"
+                "friendlyCaptchaSiteKey": "Draudzīga Captcha vietnes atslēga",
+                "friendlyCaptchaV1DeprecationNotice": "1. versija ir mantota un tiks noņemta turpmākajā izlaidumā. Mēs iesakām jaunināt uz 2. versiju, lai uzlabotu drošību un nodrošinātu tīrāku logrīku pieredzi.",
+                "friendlyCaptchaVersion": "Draudzīga Captcha versija",
+                "friendlyCaptchaVersionV1": "1. versija (mantojums)",
+                "friendlyCaptchaVersionV2": "2. versija (jauns)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Atcelt",
         "retry": "Mēģiniet vēlreiz"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Bloķējiet vienotu skalu",
-        "unlock-uniform-scale": "Atbloķējiet vienotu skalu"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Jūsu klienti var definēt un pārvaldīt budžeta ierobežojumus, lai labāk kontrolētu savu organizācijas vienību izdevumus.",
         "budgetManagementName": "Budžeti",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Pasūtījuma apstiprināšana",
                     "ORGANIZATION_UNITS": "Organizācijas vienības",
                     "QUICK_ORDER": "Ātrie pasūtījumi",
-                    "QUOTE_MANAGEMENT": "Citātu pārvaldība"
+                    "QUOTE_MANAGEMENT": "Citātu pārvaldība",
+                    "SHOPPING_LISTS": "Iepirkumu saraksti"
                 },
                 "template": "{dependency} ir nepieciešams {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nosaukums",
             "columnOrderQuantity": "Pasūtījuma daudzums",
             "columnReturnQuantity": "Atgriešanās daudzums",
+            "includesShippingCosts": "Ieskaitot piegādes izmaksas",
             "messageErrorNoItemHasQuantity": "Lai izveidotu atgriešanos, jābūt vismaz 1 rindas vienumam ir daudzums lielāks par 0",
             "messagePreventAddItem": "Šī prece jau ir daļa no atgriešanas vai tā statuss ir atcelts, atgriezts vai daļēji atgriezts.",
             "placeholderComment": "Ievadiet komentāru...",
