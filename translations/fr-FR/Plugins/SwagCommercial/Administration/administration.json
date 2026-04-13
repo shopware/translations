@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "L'abonnement laisse le statut suspendu"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Tarification individuelle",
             "b2b_components_role": "Rôle | Rôles",
             "b2b_components_shopping_list": "Listes d'achats",
             "b2b_employee": "Employé | Employés",
+            "bundle": "Forfait | Lots",
+            "bundle_item": "Article groupé | Articles groupés",
             "export_assistant": "Assistant à l'exportation",
-            "individual_pricing": "Tarification individuelle",
             "quote": "Citation | Citations",
             "quote_line_item": "Elément de ligne de devis | Eléments de ligne de devis",
             "search_assistant": "Copilote IA",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "L'article est un article groupé",
+                "lineItemOfBundleRule": "Article du lot sélectionné",
                 "subscriptionCartRule": "Panier d'abonnement",
                 "subscriptionIntervalRule": "Intervalle d'abonnement",
                 "subscriptionPlanRule": "Plan d'abonnement"
             },
             "group": {
                 "subscription": "Abonnement"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Forfait"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Merci d'avoir essayé le plan Bundles. Nous aimerions connaître vos commentaires.",
+                "link": "Donnez des commentaires"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Champs supplémentaires"
+            },
+            "general": {
+                "title": "Informations générales"
+            },
+            "items": {
+                "actionOpenProductDetails": "Ouvrir les détails du produit",
+                "buttonAddBundleItems": "Ajouter des produits",
+                "columnName": "Nom",
+                "columnPosition": "Position",
+                "columnPrice": "Prix",
+                "emptyStateDescription": "Ajoutez au moins deux produits au lot.",
+                "emptyStateTitle": "Aucun produit n'a encore été ajouté",
+                "title": "Produits ({count})",
+                "tooltipBundleItemCustomizedProduct": "Modèle de produit personnalisé attribué",
+                "tooltipBundleItemHasVariants": "Le produit a des variantes",
+                "tooltipBundleItemInactive": "Inactif",
+                "tooltipBundleItemIncompatibleVisibilities": "Non attribué aux canaux de vente du pack : {salesChannels}",
+                "tooltipBundleItemIssues": "Enjeux :",
+                "tooltipBundleItemOutOfStockCloseout": "En rupture de stock (Soldes)",
+                "tooltipBundleItemOutOfStockTemporary": "Ce produit est actuellement en rupture de stock. Le lot pourra à nouveau être acheté une fois que tous les produits seront de nouveau en stock.",
+                "tooltipBundleItemOutOfStockTitle": "En rupture de stock",
+                "tooltipRefreshData": "Actualiser les données"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Date de mise en production",
+                    "placeholder": "Entrez une date de configuration..."
+                },
+                "title": "Balise"
+            },
+            "media": {
+                "subtitle": "Ajoutez des fichiers à la galerie multimédia du bundle.",
+                "title": "Médias"
+            },
+            "messageMinBundleItemsRequired": "Ajoutez au moins deux produits pour créer le bundle.",
+            "messageNoChanges": "Aucune modification à enregistrer",
+            "messageSaveError": "Impossible d'enregistrer le bundle",
+            "messageSaveSuccess": "Bundle enregistré avec succès",
+            "price": {
+                "addDiscount": "Ajouter une réduction",
+                "currencyDependingPrices": "Prix en fonction de la devise",
+                "discount": "Réduction",
+                "discountRules": "Règles relatives aux remises",
+                "discountTitle": "Réduction",
+                "discountType": "Type",
+                "discountTypeAbsolute": "Absolu",
+                "discountTypePercentage": "En pourcentage",
+                "discountValue": "Valeur",
+                "discountValuePlaceholder": "Ajoutez de la valeur...",
+                "doNotCombineWith": "Ne pas combiner avec",
+                "maxValuePlaceholder": "Illimité",
+                "maximumDiscountValue": "Valeur de la réduction maximale",
+                "openAdvancedPricesView": "Ouvrir la vue étendue des prix",
+                "preventCombination": "Empêcher la combinaison avec d'autres",
+                "preventCombinationHelpText": "Lorsqu'elle est activée, cette réduction ne peut pas être cumulée avec d'autres promotions",
+                "promotionsPlaceholder": "Ajoutez des promotions...",
+                "rulesPlaceholder": "Ajoutez des règles...",
+                "subtotalBased": "Sous-total basé sur 1 produit | Sous-total basé sur {count} produits",
+                "title": "Afficher les prix",
+                "total": "Total",
+                "totalBased": "Total basé sur 1 produit | Total basé sur {count} produits"
+            },
+            "tabGeneral": "Général",
+            "tabLayout": "Mise en page",
+            "tabSeo": "Référencement",
+            "textHeadline": "Nouveau bundle",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Cela empêche le bundle d'être visible sur ces chaînes. Veuillez vérifier la visibilité des produits suivants :",
+                    "notAssignedTo": "non attribué à",
+                    "title": "Certains produits ne sont pas attribués à tous les canaux de vente sélectionnés"
+                },
+                "title": "Visibilité et structure"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Actif",
+                "placeholder": "Veuillez sélectionner..."
+            },
+            "availabilityFilter": {
+                "label": "Règle de disponibilité",
+                "placeholder": "Sélectionnez la disponibilité..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Produits inclus",
+                "placeholder": "Sélectionnez les produits inclus..."
+            },
+            "categoriesFilter": {
+                "label": "Catégories",
+                "placeholder": "Sélectionner des catégories..."
+            },
+            "fromPlaceholder": "Saisissez la valeur de début...",
+            "imagesFilter": {
+                "label": "Images",
+                "placeholder": "Sélectionnez l'état de l'image...",
+                "textHasCriteria": "Au moins une image de produit affectée",
+                "textNoCriteria": "Aucune image de produit affectée"
+            },
+            "priceFilter": {
+                "label": "Prix"
+            },
+            "productNumberFilter": {
+                "label": "Numéro de produit",
+                "placeholder": "Entrez un numéro de produit..."
+            },
+            "releaseDateFilter": {
+                "label": "Date de mise en production"
+            },
+            "salesChannelsFilter": {
+                "label": "Canal de vente",
+                "placeholder": "Sélectionnez des canaux de vente..."
+            },
+            "salesFilter": {
+                "label": "Ventes"
+            },
+            "tagsFilter": {
+                "label": "Balises",
+                "placeholder": "Sélectionnez les balises"
+            },
+            "toPlaceholder": "Saisissez la valeur finale..."
+        },
+        "general": {
+            "description": "Lots",
+            "headlineBundles": "Lots",
+            "mainMenuItemGeneral": "Lots",
+            "placeholderSearchBar": "Rechercher des lots...",
+            "title": "Lots"
+        },
+        "generalForm": {
+            "highlightHelpText": "Les lots surlignés sont marqués d'une étiquette aux couleurs vives et du mot « Conseil » dans toutes les listes de lots. Vous pouvez ajuster la couleur de l'étiquette en modifiant l'option « Remarque » dans les paramètres de <a href=\"{themeUrl}\">themes</a> . Vous pouvez également modifier le texte de l'étiquette en modifiant l'extrait de texte <a href=\"{snippetUrl}\"></a> correspondant.",
+            "labelDescription": "Description",
+            "labelMarkAsTopseller": "Pack phare",
+            "labelName": "Nom",
+            "labelProductNumber": "Numéro de produit",
+            "placeholderDescription": "Entrez la description du pack...",
+            "placeholderName": "Entrez le nom du bundle...",
+            "placeholderProductNumber": "Saisissez un numéro de produit..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Un lot nécessite au moins deux produits.",
+            "notEnoughProductsTitle": "Pas assez de produits",
+            "restrictions": "Un ou plusieurs produits sont soumis à des restrictions qui affectent la disponibilité de ce lot. Consultez les icônes d'avertissement pour plus de détails.",
+            "restrictionsTitle": "Certains produits sont soumis à des restrictions"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Aucun produit correspondant n'a été trouvé",
+            "noProductsMatchingBundleSalesChannels": "Aucun produit actif ne correspond aux canaux de vente sélectionnés pour l'offre groupée.",
+            "noProductsMatchingTermAndFilter": "Ajustez le terme de recherche ou les filtres.",
+            "placeholderSearch": "Rechercher parmi tous les produits...",
+            "showIncluded": "Afficher uniquement la sélection ({count})",
+            "textWhySomeItemsMissing": "Pourquoi certains produits sont-ils absents ?",
+            "title": "Ajouter des produits",
+            "tooltipVariant": "Variante",
+            "tooltipWhySomeItemsMissing": "À l'heure actuelle, les offres groupées ne fonctionnent qu'avec des produits physiques et des variantes uniques. <br /><br /> Les produits doivent être affectés aux canaux de vente sélectionnés pour apparaître dans la liste."
+        },
+        "list": {
+            "available": "Encore disponible",
+            "buttonAddBundle": "Ajouter un bundle",
+            "columnActive": "Actif",
+            "columnAvailable": "Règle de disponibilité",
+            "columnBundleItemCount": "Nr. de produits",
+            "columnCreatedAt": "Ajouté le",
+            "columnName": "Nom",
+            "columnProductNumber": "Numéro de produit",
+            "columnSales": "Ventes",
+            "columnTotalPrice": "Prix total",
+            "columnUpdatedAt": "Mis à jour le",
+            "emptyStateDescription": "Les offres groupées peuvent augmenter la valeur moyenne de vos commandes et encourager les clients à acheter des produits connexes.",
+            "emptyStateTitle": "Ajoutez des offres groupées pour augmenter vos ventes",
+            "messageSaveSuccess": "Le bundle « {name} » a été enregistré.",
+            "titleSidebarItemRefresh": "Mettre à jour",
+            "unavailable": "Non disponible"
+        },
+        "priceModal": {
+            "currency": "Devise",
+            "price": "Valeur",
+            "title": "Prix étendus"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Ajouter des produits",
+            "description": "Sélectionnez d'abord un canal de vente pour voir quels produits peuvent être ajoutés à l'offre groupée. Vous pourrez ajuster cela ultérieurement dans la carte Visibilité et structure.",
+            "title": "Canal de vente requis"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Générer une image",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Description du lot"
+                },
+                "bundleHeading": {
+                    "label": "Nom du bundle"
+                },
+                "bundleItems": {
+                    "label": "Articles groupés"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galerie d'images et boîte d'achat groupé"
+                },
+                "recommendedBundles": {
+                    "label": "Offres groupées recommandées"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Mise en page par défaut - Page du lot de produits",
+                "setAsDefaultBundleDetail": "Définir comme page de lot de produits par défaut"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Page groupée"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Générer une image",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Les données de produit de cet élément sont automatiquement chargées par le produit associé à cette mise en page. Le contenu n'affiche qu'un exemple de prévisualisation."
+                },
+                "label": "Coffret d'achat groupé"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Les données de produit de cet élément sont automatiquement chargées par le produit associé à cette mise en page. Le contenu n'affiche qu'un exemple de prévisualisation."
+                },
+                "label": "Description du lot",
+                "preview": {
+                    "descriptionTab": "Description",
+                    "title": "Forfait"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Permet d'ajouter des articles groupés directement au panier au lieu d'ouvrir la page de détails du produit.",
+                        "labelTitle": "Utilisez {count} pour afficher le nombre de produits du lot."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Les données de produit de cet élément sont automatiquement chargées par le produit associé à cette mise en page. Le contenu n'affiche qu'un exemple de prévisualisation."
+                    },
+                    "label": {
+                        "boxSettings": "Paramètres de la boîte de produits",
+                        "cta": "Afficher le CTA pour ajouter des articles groupés directement au panier",
+                        "minWidth": "Largeur minimale",
+                        "title": "Titre"
+                    }
+                },
+                "label": "Produits inclus"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Les données du bundle de cet élément sont automatiquement chargées par le bundle associé à cette mise en page. Le contenu ne montre qu'un exemple d'aperçu."
+                },
+                "label": "Nom du bundle"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Lorsque cette option est activée, seul un sous-ensemble de lots est affiché initialement. Les utilisateurs peuvent élargir la liste pour en afficher davantage.",
+                        "maxVisibleBundles": "Contrôle le nombre de lots qui seront affichés jusqu'à ce qu'ils soient masqués derrière une fonctionnalité « Afficher plus ».",
+                        "productBoxSettings": "Paramètres de la boîte de produits",
+                        "productDetailElement": "Les données de produit de cet élément sont automatiquement chargées par le produit associé à cette mise en page. Le contenu n'affiche qu'un exemple de prévisualisation.",
+                        "showCTAInfo": "Permet d'ajouter des articles groupés directement au panier au lieu d'ouvrir la page de détails du produit.",
+                        "sliderSettings": "Réglages du curseur"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Nombre limite de lots initialement affichés",
+                        "maxVisibleBundles": "Lots présentés initialement",
+                        "minWidth": "Largeur minimale",
+                        "recommendedCombinationsTitle": "Combinaisons recommandées",
+                        "showBundleName": "Afficher le nom du bundle",
+                        "showCTA": "Afficher le CTA pour ajouter des articles groupés directement au panier",
+                        "showCurrentProduct": "Afficher le produit actuellement consulté en premier dans le lot",
+                        "title": "Titre"
+                    },
+                    "placeholder": {
+                        "minWidth": "Entrez la largeur minimale...",
+                        "title": "Combinaisons recommandées"
+                    }
+                },
+                "label": "Combinaisons recommandées",
+                "preview": {
+                    "label": {
+                        "title": "Combinaisons recommandées"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Générer une image",
             "contentText": "Créez vos propres images d'ambiance pour personnaliser votre mise en page à l'aide de l'image générée par l'IA.",
             "header": "Copilote IA"
+        },
+        "tags": {
+            "bundle": "Forfait"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adresses des unités organisationnelles",
                             "pending_order": "Gestion des commandes en attente",
                             "quote": "Gestion des devis",
-                            "role": "Gestion des rôles"
+                            "role": "Gestion des rôles",
+                            "subscription": "Abonnement à la commande"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Supprimer l'adresse de livraison",
                                     "update": "Modifier l'adresse de livraison"
                                 },
+                                "subscription": {
+                                    "read": "Afficher toutes les commandes d'abonnements provenant de l'unité organisationnelle attribuée"
+                                },
                                 "update": "Modifier l'unité organisationnelle"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Peut supprimer des rôles",
                                 "edit": "Peut modifier les rôles",
                                 "read": "Peut afficher les rôles"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Afficher toutes les commandes et abonnements"
+                                }
                             }
                         },
                         "switchAllLabel": "Toutes les autorisations"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Gestion des Rôles"
             },
+            "bundle": {
+                "label": "Lots"
+            },
             "custom_price": {
                 "label": "Prix du produit pour le client"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Ajouter un produit aux lots",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "J'ai compris",
+                "description": "Ce produit n'a pas pu être retiré des offres groupées suivantes, car une offre groupée nécessite au moins deux produits :",
+                "hint": "Pour supprimer ce produit, ajoutez d'abord un autre produit à ces offres groupées.",
+                "title": "Le produit n'a pas pu être retiré de tous les lots"
+            },
+            "bundleCardSubtitle": "Tous les lots contenant ce produit",
+            "bundleCardTitle": "Lots ({count})",
+            "buttonAddBundle": "Ajouter un produit aux lots",
+            "buttonAddBundleLanguageWarning": "L'ajout de lots n'est possible que dans la langue par défaut du système.",
+            "buttonCreateBundle": "Créer un bundle",
+            "buttonManageBundles": "Gérer les offres groupées",
+            "columnActive": "Actif",
+            "columnAvailability": "Règle de disponibilité",
+            "columnBundleItemCount": "Nr. de produits",
+            "columnCreatedAt": "Ajouté le",
+            "columnName": "Nom",
+            "columnProductNumber": "Numéro de produit",
+            "columnSales": "Ventes",
+            "columnShowBundleOnItemPdp": "Afficher sur la page détaillée",
+            "columnUpdatedAt": "Mis à jour le",
+            "emptyStateDescription": "Les offres groupées peuvent augmenter la valeur moyenne des commandes et encourager les clients à acheter des produits connexes. Les lots apparaissent sur la page détaillée du produit si la mise en page du CMS inclut un élément d'ensemble.",
+            "emptyStateDescriptionCreateFirst": "Les offres groupées peuvent augmenter la valeur moyenne des commandes et encourager les clients à acheter des produits connexes. Les lots apparaissent sur la page détaillée du produit si la mise en page du CMS inclut un élément d'ensemble. Créez un bundle pour ajouter ce produit.",
+            "emptyStateNoBundlesFound": "Aucun lot correspondant n'a été trouvé",
+            "emptyStateNoBundlesFoundDescription": "Ajustez le terme de recherche ou les filtres.",
+            "emptyStateTitle": "Ajoutez des produits aux lots pour augmenter les ventes",
+            "hideOnProductDetailPage": "Masquer sur la page détaillée du produit",
+            "messageSaveSuccess": "Le bundle « {name} » a été enregistré.",
+            "openBundlesDetail": "Ouvrir les détails du pack",
+            "placeholderSearch": "Rechercher des lots...",
+            "refreshDataTooltip": "Actualiser les données",
+            "showOnProductDetailPage": "Afficher sur la page détaillée du produit",
+            "showOnlyIncluded": "Afficher uniquement les éléments sélectionnés",
+            "tooltipBundleHasRestrictions": "Un ou plusieurs produits sont soumis à des restrictions qui affectent la disponibilité de cette offre groupée. Consultez les détails du pack pour plus d'informations.",
+            "tooltipBundleInactive": "Inactif",
+            "tooltipBundleIssues": "Enjeux :",
+            "tooltipBundleMismatchedSalesChannels": "Non attribué aux canaux de vente du produit : {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Ce produit ne peut pas être retiré car les lots nécessitent au moins deux produits."
+        },
         "card": {
             "textHeadline": "Stock et livrabilité",
             "textLinkModal": "Voir le stock par entrepôts et groupes d'entrepôts",
             "textProductWarehouseModalDisabled": "Enregistrez vos modifications avant de pouvoir accéder à d'autres informations sur les stocks.",
             "textTooltipMultiSelect": "Assignez des groupes d'entrepôts pour gérer votre stock individuellement dans plusieurs entrepôts."
+        },
+        "detail": {
+            "tabBundle": "Lots"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Fermer",
@@ -1986,6 +2359,9 @@
             "tabStock": "Stock disponible",
             "textHeadline": "Stock par entrepôt et groupes d'entrepôts",
             "textInlineEdit": "Modifier le stock"
+        },
+        "type": {
+            "grouped_bundle": "Forfait"
         },
         "variants-overview": {
             "inlineText": "Voir les détails"
@@ -2542,6 +2918,16 @@
             "emptyText": "Scène vide"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Page détaillée du produit de l'offre groupée"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Autoriser les codes promotionnels pour les commandes à partir de devis"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha convivial",
+                "friendlyCaptchaApiKey": "Clé de l'API de Friendly Captcha",
                 "friendlyCaptchaDescription": "Sur la base de mécanismes de preuve de travail et de signaux de risque avancés, Friendly Captcha utilise une approche fondamentalement nouvelle pour défendre en toute sécurité vos sites Web et vos services en ligne contre le spam et les robots.",
+                "friendlyCaptchaRegion": "Région API",
+                "friendlyCaptchaRegionEu": "UE (Union européenne)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Sélectionnez « UE » pour acheminer toutes les demandes de captcha exclusivement via des serveurs européens. Cela peut être pertinent pour la conformité au RGPD.",
                 "friendlyCaptchaSecretKey": "Clé secrète Captcha conviviale",
-                "friendlyCaptchaSiteKey": "Clé de site Captcha conviviale"
+                "friendlyCaptchaSiteKey": "Clé de site Captcha conviviale",
+                "friendlyCaptchaV1DeprecationNotice": "La version 1 est ancienne et sera supprimée dans une prochaine version. Nous vous recommandons de passer à la version 2 pour améliorer la sécurité et améliorer l'expérience des widgets.",
+                "friendlyCaptchaVersion": "Version Captcha conviviale",
+                "friendlyCaptchaVersionV1": "Version 1 (ancienne)",
+                "friendlyCaptchaVersionV2": "Version 2 (nouvelle)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Annuler",
         "retry": "Réessayer"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Échelle uniforme Lock",
-        "unlock-uniform-scale": "Débloquez une échelle uniforme"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Vos clients peuvent définir et gérer des limites budgétaires afin de mieux contrôler les dépenses de leurs unités organisationnelles.",
         "budgetManagementName": "Budgets",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Approbation de la commande",
                     "ORGANIZATION_UNITS": "Unités d'organisation",
                     "QUICK_ORDER": "Commandes rapides",
-                    "QUOTE_MANAGEMENT": "Gestion des devis"
+                    "QUOTE_MANAGEMENT": "Gestion des devis",
+                    "SHOPPING_LISTS": "Listes d'achats"
                 },
                 "template": "{dependency} est obligatoire pour {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nom",
             "columnOrderQuantity": "Quantité commande",
             "columnReturnQuantity": "Quantité à retourner",
+            "includesShippingCosts": "Frais de port inclus",
             "messageErrorNoItemHasQuantity": "Doit avoir au moins une ligne et une quantité supérieure à 0 pour créer un retour",
             "messagePreventAddItem": "Cet article fait déjà partie du retour ou son statut est Annulé, Retourné ou Retourné partiellement.",
             "placeholderComment": "Entrez votre commentaire...",

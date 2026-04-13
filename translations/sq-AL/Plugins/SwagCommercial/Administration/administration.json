@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Abonimi lë statusin të ndaluar"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Çmimet individuale",
             "b2b_components_role": "Roli | Rolet",
             "b2b_components_shopping_list": "Listat e Blerjeve",
             "b2b_employee": "Punonjës | Punëtorët",
+            "bundle": "Paketa | Paketa",
+            "bundle_item": "Artikulli i paketës | Artikujt e paketës",
             "export_assistant": "Asistent i eksportit",
-            "individual_pricing": "Çmimet individuale",
             "quote": "Citim | Kuotat",
             "quote_line_item": "Artikulli i linjës së cituar | Artikujt e vijës",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Artikulli është artikull i paketës",
+                "lineItemOfBundleRule": "Artikulli i paketës së zgjedhur",
                 "subscriptionCartRule": "Shporta e pajtimit",
                 "subscriptionIntervalRule": "Intervali i pajtimit",
                 "subscriptionPlanRule": "Plani i pajtimit"
             },
             "group": {
                 "subscription": "Abonimi"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Paketa"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Faleminderit që keni provuar planin e Bundles. Ne do të dëshironim të dëgjojmë reagimet tuaja.",
+                "link": "Jepni reagime"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Fushat e personalizuara"
+            },
+            "general": {
+                "title": "Informacione të përgjithshme"
+            },
+            "items": {
+                "actionOpenProductDetails": "Hapni detajet e produktit",
+                "buttonAddBundleItems": "Shto produkte",
+                "columnName": "Emri",
+                "columnPosition": "Pozicioni",
+                "columnPrice": "Çmimi",
+                "emptyStateDescription": "Shtoni të paktën dy produkte në pako.",
+                "emptyStateTitle": "Asnjë produkt nuk është shtuar ende",
+                "title": "Produkte ({count})",
+                "tooltipBundleItemCustomizedProduct": "Caktuar shablloni i produktit të personaliz",
+                "tooltipBundleItemHasVariants": "Produkti ka variante",
+                "tooltipBundleItemInactive": "joaktiv",
+                "tooltipBundleItemIncompatibleVisibilities": "Nuk është caktuar për Kanalet e Shitjes së Paketës: {salesChannels}",
+                "tooltipBundleItemIssues": "Çështjet:",
+                "tooltipBundleItemOutOfStockCloseout": "Jashtë në magazinë (Shitje e pastrimit)",
+                "tooltipBundleItemOutOfStockTemporary": "Ky produkt aktualisht nuk është në magazinë. Paketa do të bëhet e blershme përsëri pasi të gjitha produktet të jenë përsëri në magazinë.",
+                "tooltipBundleItemOutOfStockTitle": "Jashtë në magazinë",
+                "tooltipRefreshData": "Rifreskoni të dhënat"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Data e lëshimit",
+                    "placeholder": "Shkruani datën e lëshimit..."
+                },
+                "title": "Etiketimi"
+            },
+            "media": {
+                "subtitle": "Shtoni skedarë në galerinë e mediave të paketës.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Shtoni të paktën dy produkte për të krijuar paketën.",
+            "messageNoChanges": "Nuk ka ndryshime për të ruajtur",
+            "messageSaveError": "Dështoi për të ruajtur paketën",
+            "messageSaveSuccess": "Paketa e ruajtur me sukses",
+            "price": {
+                "addDiscount": "Shto zbritje",
+                "currencyDependingPrices": "Valuta në varësi të çmimeve",
+                "discount": "Zbritje",
+                "discountRules": "Rregullat e zbritjes",
+                "discountTitle": "Zbritje",
+                "discountType": "Lloji",
+                "discountTypeAbsolute": "Absolute",
+                "discountTypePercentage": "Përqindja",
+                "discountValue": "Vlera",
+                "discountValuePlaceholder": "Shto vlerë...",
+                "doNotCombineWith": "Mos e kombinoni me",
+                "maxValuePlaceholder": "I pakufizuar",
+                "maximumDiscountValue": "Vlera maksimale e zbritjes",
+                "openAdvancedPricesView": "Hapni pamjen e çmimeve të avan",
+                "preventCombination": "Parandaloni kombinimin me promovime të tjera",
+                "preventCombinationHelpText": "Kur aktivizohet, kjo zbritje nuk mund të kombinohet me promovime të tjera",
+                "promotionsPlaceholder": "Shto promovime...",
+                "rulesPlaceholder": "Shto rregulla...",
+                "subtotalBased": "Nëntotali bazuar në 1 produkt | Nëntotali bazuar në produktet {count}",
+                "title": "Shfaq çmimet",
+                "total": "Gjithsej",
+                "totalBased": "Totali i bazuar në 1 produkt | Totali i bazuar në produktet {count}"
+            },
+            "tabGeneral": "i gjithanshëm",
+            "tabLayout": "Paraqitja",
+            "tabSeo": "SEO",
+            "textHeadline": "Paketa e re",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Kjo parandalon që pako të jetë e dukshme në ato kanale. Ju lutemi kontrolloni shikueshmërinë për produktet e mëposhtme:",
+                    "notAssignedTo": "nuk është caktuar për",
+                    "title": "Disa produkte nuk u caktohen të gjitha kanaleve të zgjedhura të shitjes"
+                },
+                "title": "Dukshmëria dhe struktura"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktiv",
+                "placeholder": "Zgjidhni një status..."
+            },
+            "availabilityFilter": {
+                "label": "disponueshmëria",
+                "placeholder": "Zgjidh disponueshmërinë"
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Produktet e përfshira",
+                "placeholder": "Zgjidhni produktet e përfshira..."
+            },
+            "categoriesFilter": {
+                "label": "Kategoritë",
+                "placeholder": "Zgjidhni kategoritë..."
+            },
+            "fromPlaceholder": "Futni vlerën e fillimit...",
+            "imagesFilter": {
+                "label": "Imazhe",
+                "placeholder": "Zgjidhni statusin e imazhit...",
+                "textHasCriteria": "Të paktën një imazh i produktit është caktuar",
+                "textNoCriteria": "Asnjë imazh produkti nuk është caktuar"
+            },
+            "priceFilter": {
+                "label": "Çmimi"
+            },
+            "productNumberFilter": {
+                "label": "Numri i produktit",
+                "placeholder": "Shkruani numrin e produktit..."
+            },
+            "releaseDateFilter": {
+                "label": "Data e lëshimit"
+            },
+            "salesChannelsFilter": {
+                "label": "Kanalet e shitjes",
+                "placeholder": "Zgjidhni kanalet e shitjes..."
+            },
+            "salesFilter": {
+                "label": "Shitjet"
+            },
+            "tagsFilter": {
+                "label": "Etiketat",
+                "placeholder": "Zgjidhni etiketat..."
+            },
+            "toPlaceholder": "Futni vlerën përfundimtare..."
+        },
+        "general": {
+            "description": "Paketa",
+            "headlineBundles": "Paketa",
+            "mainMenuItemGeneral": "Paketa",
+            "placeholderSearchBar": "Kërko paketat...",
+            "title": "Paketa"
+        },
+        "generalForm": {
+            "highlightHelpText": "Paketat e theksuara shënohen me një etiketë me ngjyra të ndritshme dhe fjalën “Këshillë” në të gjitha listat e paketave. Ju mund të rregulloni ngjyrën e etiketës duke ndryshuar opsionin “Njoftim” në cilësimet <a href=\"{themeUrl}\">temat</a> . Ju gjithashtu mund të ndryshoni tekstin e etiketës duke redaktuar fragmentin përkatës të tekstit <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Përshkrimi",
+            "labelMarkAsTopseller": "Theksoni paketën",
+            "labelName": "Emri",
+            "labelProductNumber": "Numri i produktit",
+            "placeholderDescription": "Shkruani përshkrimin e paketës...",
+            "placeholderName": "Shkruani emrin e paketës...",
+            "placeholderProductNumber": "Shkruani numrin e produktit..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Një paketë kërkon të paktën dy produkte.",
+            "notEnoughProductsTitle": "Jo produkte të mjaftueshme",
+            "restrictions": "Një ose më shumë produkte kanë kufizime që ndikojnë në disponueshmërinë e kësaj pako. Shikoni ikonat paralajmëruese për detaje.",
+            "restrictionsTitle": "Disa produkte kanë kufizime"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Nuk u gjet asnjë produkt përputhës",
+            "noProductsMatchingBundleSalesChannels": "Nuk ka produkte aktive që përputhen me Kanalet e zgjedhura të shitjes së paketës.",
+            "noProductsMatchingTermAndFilter": "Rregulloni termin ose filtrat e kërkimit.",
+            "placeholderSearch": "Kërko produkte...",
+            "showIncluded": "Vetëm trego të përzgjedhur ({count})",
+            "textWhySomeItemsMissing": "Pse mungojnë disa produkte?",
+            "title": "Shto produkte",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Tani për tani, paketat funksionojnë vetëm me produkte fizike dhe variante të vetme. <br /><br /> Produktet duhet të caktohen në Kanalet e Shitjes të zgjedhura të paketës për t'u shfaqur në listë."
+        },
+        "list": {
+            "available": "Në dispozicion",
+            "buttonAddBundle": "Shto paketë",
+            "columnActive": "Aktiv",
+            "columnAvailable": "disponueshmëria",
+            "columnBundleItemCount": "Numri i produkteve",
+            "columnCreatedAt": "Krijuar në",
+            "columnName": "Emri",
+            "columnProductNumber": "Numri i produktit",
+            "columnSales": "Shitjet",
+            "columnTotalPrice": "Çmimi i përgjithshëm",
+            "columnUpdatedAt": "Përditësuar në",
+            "emptyStateDescription": "Paketat mund të rrisin vlerën mesatare të porosisë tuaj dhe të inkurajojnë klientët të blejnë produkte të lidhura.",
+            "emptyStateTitle": "Shtoni paketa për të rritur shitjet",
+            "messageSaveSuccess": "Paketa \"{name}\" është ruajtur.",
+            "titleSidebarItemRefresh": "Rifreskoni",
+            "unavailable": "I padisponueshëm"
+        },
+        "priceModal": {
+            "currency": "Monedha",
+            "price": "Vlera",
+            "title": "Çmime të avancuara"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Shto produkte",
+            "description": "Zgjidhni së pari një kanal shitjeje për të parë se cilat produkte mund të shtohen në paketë. Ju mund ta rregulloni këtë më vonë në kartën Dukshmëria dhe struktura.",
+            "title": "Kërkohet kanali i shitjes"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Gjeneroni imazh",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Përshkrimi i paketës"
+                },
+                "bundleHeading": {
+                    "label": "Emri i paketës"
+                },
+                "bundleItems": {
+                    "label": "Artikujt e paketës"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galeria e imazheve dhe kuti për blerjen e paketave"
+                },
+                "recommendedBundles": {
+                    "label": "Paketat e rekomanduara"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Paraqitja e paracaktuar - faqja e paketës",
+                "setAsDefaultBundleDetail": "Vendosni si parazgjedhje e faqes së paketës së"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Faqja e paketës"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Gjeneroni imazh",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Të dhënat e produktit të këtij elementi ngarkohen automatikisht nga produkti i lidhur me këtë paraqitje. Përmbajtja thjesht tregon një pamje paraprake të mostrës."
+                },
+                "label": "Kuti për blerjen e paketës"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Të dhënat e produktit të këtij elementi ngarkohen automatikisht nga produkti i lidhur me këtë paraqitje. Përmbajtja thjesht tregon një pamje paraprake të mostrës."
+                },
+                "label": "Përshkrimi i paketës",
+                "preview": {
+                    "descriptionTab": "Përshkrimi",
+                    "title": "Paketa"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Lejon shtimin e artikujve të paketës direkt në karrocë në vend që të hapni faqen e detajeve të produktit.",
+                        "labelTitle": "Përdorni {count} për të shfaqur numrin e produkteve në paketë."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Të dhënat e produktit të këtij elementi ngarkohen automatikisht nga produkti i lidhur me këtë paraqitje. Përmbajtja thjesht tregon një pamje paraprake të mostrës."
+                    },
+                    "label": {
+                        "boxSettings": "Cilësimet e kutisë së produktit",
+                        "cta": "Trego CTA për të shtuar artikujt e paketës direkt në karrocë",
+                        "minWidth": "Gjerësia minimale",
+                        "title": "Titulli"
+                    }
+                },
+                "label": "Produktet e përfshira"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Të dhënat e paketës së këtij elementi ngarkohen automatikisht nga paketa e lidhur me këtë paraqitje. Përmbajtja thjesht tregon një pamje paraprake të mostrës."
+                },
+                "label": "Emri i paketës"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Kur aktivizohet, fillimisht tregohet vetëm një nëngrup paketash. Përdoruesit mund të zgjerojnë listën për të treguar më shumë.",
+                        "maxVisibleBundles": "Kontrollon se sa paketa do të shfaqen derisa ato të fshihen pas një funksioni “Trego më shumë”.",
+                        "productBoxSettings": "Cilësimet e kutisë së produktit",
+                        "productDetailElement": "Të dhënat e produktit të këtij elementi ngarkohen automatikisht nga produkti i lidhur me këtë paraqitje. Përmbajtja thjesht tregon një pamje paraprake të mostrës.",
+                        "showCTAInfo": "Lejon shtimin e artikujve të paketës direkt në karrocë në vend që të hapni faqen e detajeve të produktit.",
+                        "sliderSettings": "Cilësimet e rrymës"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Kufizoni numrin e paketave të treguara fillimisht",
+                        "maxVisibleBundles": "Paketat e treguara fillimisht",
+                        "minWidth": "Gjerësia minimale",
+                        "recommendedCombinationsTitle": "Kombinimet e rekomanduara",
+                        "showBundleName": "Trego emrin e paketës",
+                        "showCTA": "Trego CTA për të shtuar artikujt e paketës direkt në karrocë",
+                        "showCurrentProduct": "Trego produktin e shikuar aktualisht së pari në paketë",
+                        "title": "Titulli"
+                    },
+                    "placeholder": {
+                        "minWidth": "Futni gjerësinë minimale...",
+                        "title": "Kombinimet e rekomanduara"
+                    }
+                },
+                "label": "Kombinimet e rekomanduara",
+                "preview": {
+                    "label": {
+                        "title": "Kombinimet e rekomanduara"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Gjeneroni imazh",
             "contentText": "Krijoni imazhet tuaja të humorit për të personalizuar paraqitjen tuaj me ndihmën e imazheve të krijuara nga AI.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Paketa"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adresa e Njësisë së Organizatës",
                             "pending_order": "Menaxhimi i porosive në prit",
                             "quote": "Menaxhimi i citimit",
-                            "role": "Menaxhimi i rolit"
+                            "role": "Menaxhimi i rolit",
+                            "subscription": "Abonimi i porosisë"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Fshini adresën e transportit",
                                     "update": "Ndrysho adresën e transportit"
                                 },
+                                "subscription": {
+                                    "read": "Shikoni të gjitha pajtimet e porosisë nga njësia e caktuar"
+                                },
                                 "update": "Redakto njësinë e organizatës"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Fshini rolet",
                                 "edit": "Redaktoni rolet",
                                 "read": "Shikoni rolet"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Shiko të gjitha abonimet e porosisë"
+                                }
                             }
                         },
                         "switchAllLabel": "Të gjitha lejet"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Menaxhimi i Roleve"
             },
+            "bundle": {
+                "label": "Paketa"
+            },
             "custom_price": {
                 "label": "Çmimi i klientit të produktit"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Shto produkt në paketa",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "E kuptova",
+                "description": "Ky produkt nuk mund të hiqet nga paketat e mëposhtme sepse një paketë kërkon të paktën dy produkte:",
+                "hint": "Për të hequr këtë produkt, së pari shtoni një produkt tjetër në këto paketa.",
+                "title": "Produkti nuk mund të hiqet nga të gjitha paketat"
+            },
+            "bundleCardSubtitle": "Të gjitha paketat që përmbajnë këtë produkt",
+            "bundleCardTitle": "Paketa ({count})",
+            "buttonAddBundle": "Shto produkt në paketa",
+            "buttonAddBundleLanguageWarning": "Shtimi i paketave është e mundur vetëm në gjuhën e parazgjedhur të sistemit.",
+            "buttonCreateBundle": "Krijo paketë",
+            "buttonManageBundles": "Menaxhoni paketat",
+            "columnActive": "Aktiv",
+            "columnAvailability": "disponueshmëria",
+            "columnBundleItemCount": "Numri i produkteve",
+            "columnCreatedAt": "Krijuar në",
+            "columnName": "Emri",
+            "columnProductNumber": "Numri i produktit",
+            "columnSales": "Shitjet",
+            "columnShowBundleOnItemPdp": "Shfaq në faqen e detajeve",
+            "columnUpdatedAt": "Përditësuar në",
+            "emptyStateDescription": "Paketat mund të rrisin vlerën mesatare të porosisë dhe të inkurajojnë klientët të blejnë produkte të lidhura. Paketat shfaqen në faqen e detajeve të produktit nëse paraqitja e CMS përfshin një element pako.",
+            "emptyStateDescriptionCreateFirst": "Paketat mund të rrisin vlerën mesatare të porosisë dhe të inkurajojnë klientët të blejnë produkte të lidhura. Paketat shfaqen në faqen e detajeve të produktit nëse paraqitja e CMS përfshin një element pako. Krijoni një paketë për të shtuar këtë produkt.",
+            "emptyStateNoBundlesFound": "Asnjë pako përputhëse nuk u gjetën",
+            "emptyStateNoBundlesFoundDescription": "Rregulloni termin ose filtrat e kërkimit.",
+            "emptyStateTitle": "Shtoni produkt në paketa për të rritur shitjet",
+            "hideOnProductDetailPage": "Fshih në faqen e detajeve të produktit",
+            "messageSaveSuccess": "Paketa \"{name}\" është ruajtur.",
+            "openBundlesDetail": "Hapni detajet e paketës",
+            "placeholderSearch": "Kërko paketat...",
+            "refreshDataTooltip": "Rifreskoni të dhënat",
+            "showOnProductDetailPage": "Shfaq në faqen e detajeve të produktit",
+            "showOnlyIncluded": "Vetëm shfaqja e zgjedhur",
+            "tooltipBundleHasRestrictions": "Një ose më shumë produkte kanë kufizime që ndikojnë në disponueshmërinë e kësaj pako. Vizitoni detajet e paketës për më shumë informacion.",
+            "tooltipBundleInactive": "joaktiv",
+            "tooltipBundleIssues": "Çështjet:",
+            "tooltipBundleMismatchedSalesChannels": "Nuk është caktuar për Kanalet e Shitjes së Produktit: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Ky produkt nuk mund të hiqet sepse paketat kërkojnë të paktën dy produkte."
+        },
         "card": {
             "textHeadline": "Stoku dhe Dorëzimi",
             "textLinkModal": "Shihni aksionin dhe kohën e dorëzimit bazuar në magazinat dhe grupet e magazinave",
             "textProductWarehouseModalDisabled": "Ruani ndryshimet tuaja para se të hapni detaje të mëtejshme të aksioneve.",
             "textTooltipMultiSelect": "Caktoni grupe magazinash për të menaxhuar stokun tuaj dhe kohën e dorëzimit individualisht në shumë depo."
+        },
+        "detail": {
+            "tabBundle": "Paketa"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Mbyll",
@@ -1986,6 +2359,9 @@
             "tabStock": "Aksionet",
             "textHeadline": "Stok dhe koha e dorëzimit sipas grupeve të magazinës dhe magazinës",
             "textInlineEdit": "Ndryshoni aksionin"
+        },
+        "type": {
+            "grouped_bundle": "Paketa"
         },
         "variants-overview": {
             "inlineText": "Shiko detajet"
@@ -2542,6 +2918,16 @@
             "emptyText": "Skena e zbrazët"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Faqja e detajeve të produktit të"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Lejoni kodet e promovimit për porositë nga kuotat"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha miqësore",
+                "friendlyCaptchaApiKey": "Çelësi miqësor i Captcha API",
                 "friendlyCaptchaDescription": "Bazuar në mekanizmat e provës së punës dhe sinjalet e përparuara të rrezikut, Friendly Captcha përdor një qasje krejtësisht të re për të mbrojtur në mënyrë të sigurt faqet tuaja të internetit dhe shërbimet në internet nga spam dhe robotët.",
+                "friendlyCaptchaRegion": "Rajoni API",
+                "friendlyCaptchaRegionEu": "BE (Bashkimi Evropian)",
+                "friendlyCaptchaRegionGlobal": "globale",
+                "friendlyCaptchaRegionHelpText": "Zgjidhni “BE” për të drejtuar të gjitha kërkesat captcha ekskluzivisht përmes serverëve evropianë. Kjo mund të jetë e rëndësishme për pajtueshmërinë e GDPR.",
                 "friendlyCaptchaSecretKey": "Çelësi sekret miqësor Captcha",
-                "friendlyCaptchaSiteKey": "Çelësi miqësor i faqes Captcha"
+                "friendlyCaptchaSiteKey": "Çelësi miqësor i faqes Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Versioni 1 është trashëgimi dhe do të hiqet në një lëshim të ardhshëm. Ne rekomandojmë përmirësimin në Versionin 2 për siguri të përmirësuar dhe një përvojë më të pastër widget.",
+                "friendlyCaptchaVersion": "Versioni miqësor i Captcha",
+                "friendlyCaptchaVersionV1": "Versioni 1 (trashëgimi)",
+                "friendlyCaptchaVersionV2": "Version 2 (i ri)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Anuloni",
         "retry": "Provo përsëri"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Bllokoni shkallën uniforme",
-        "unlock-uniform-scale": "Zbllokoni shkallën uniforme"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Klientët tuaj mund të përcaktojnë dhe menaxhojnë kufijtë e buxhetit për të kontrolluar më mirë shpenzimet e njësive të",
         "budgetManagementName": "Buxhetet",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Miratimi i porosisë",
                     "ORGANIZATION_UNITS": "Njësitë e organizimit",
                     "QUICK_ORDER": "Porositë e Shpejta",
-                    "QUOTE_MANAGEMENT": "Menaxhimi i kuoti"
+                    "QUOTE_MANAGEMENT": "Menaxhimi i kuoti",
+                    "SHOPPING_LISTS": "Listat e Blerjeve"
                 },
                 "template": "{dependency} kërkohet për {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Emri",
             "columnOrderQuantity": "Sasia e porosisë",
             "columnReturnQuantity": "Sasia e kthimit",
+            "includesShippingCosts": "Përfshirë kostot e transportit",
             "messageErrorNoItemHasQuantity": "Duhet të ketë të paktën një artikull rresht me një sasi më shumë se 0 për të krijuar një kthim.",
             "messagePreventAddItem": "Ky artikull tashmë është pjesë e kthimit ose statusi i tij është anuluar, kthyer ose kthyer pjesërisht.",
             "placeholderComment": "Shkruani komentin...",

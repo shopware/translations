@@ -317,6 +317,7 @@
             "newsletter_update": "ニュースレターサインアップ更新",
             "product_export_log": "製品の出荷を実行",
             "review_form_send": "レビューフォームが送信されました",
+            "revocation_request_sent": "取り消しリクエストフォームが送信されました。",
             "state_enter_order_delivery_state_cancelled": "キャンセル状態の出荷が入る",
             "state_enter_order_delivery_state_open": "オープン状態の出荷が入る",
             "state_enter_order_delivery_state_returned": "返送状態の出荷が入る",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "ファイルを選択",
             "caption": "アップロードするファイルをここにドラッグしてください",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "選択したファイル \"{name}\" のファイル拡張子はサポートされていません。次のいずれかのファイル拡張子を使用してください: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "選択されたファイル \"{name}\" はファイルサイズが大きすぎます。ファイルサイズは {limit} までに制限されています。"
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "ドキュメントが見つかりません",
                 "title": "一括編集-成功"
             },
-            "warningText": "一括編集が完了するまでお待ちください。これにはしばらく時間がかかるかもしれません。ブラウザのタブを閉じるか、処理を途中でキャンセルした場合、すべての変更が適用されるわけではありません。一括編集はいつでも再実行できます。"
+            "warningText": "一括編集が完了するまでお待ちください。これにはしばらく時間がかかるかもしれません。ブラウザのタブを閉じるか、処理を途中でキャンセルした場合、すべての変更が適用されるわけではありません。一括編集はいつでも再実行できます。",
+            "warningTextDocumentDeletion": "書類は注文の一部であり、税務上の関連がある場合があります。これらを削除すると、会計記録のトレーサビリティに影響する可能性があります。削除が法的に許可されていることを確認してください。"
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "ドキュメント",
+                "deleteDocuments": {
+                    "helpText": "このオプションでは、選択したすべての種類のドキュメントが削除されます。",
+                    "label": "削除:ドキュメント"
+                },
                 "downloadDocuments": {
                     "helpText": "このオプションでは、入手可能な最新のドキュメントをダウンロードできます。複数の文書が同じファイルに結合されます。複数の変更が完了すると、ダウンロードが可能になります。",
                     "label": "ダウンロード:ドキュメント"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "ニュースレターページ",
                     "privacyPage": "プライバシーポリシーページ",
                     "revocationPage": "失効通知",
+                    "revocationRequestPage": "取り消しリクエストフォーム",
                     "shippingPaymentInfoPage": "支払いと配送に関する情報",
                     "tosPage": "TOSページ"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "タイトル",
                         "type": "フォームタイプ",
                         "typeContact": "お問い合わせ",
-                        "typeNewsletter": "ニュースレター"
+                        "typeNewsletter": "ニュースレター",
+                        "typeRevocationRequest": "取り消し"
                     },
                     "placeholder": {
                         "type": "フォームの種類を選択..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "アクション",
+                        "comment": "コメント",
+                        "contractNumber": "契約番号 (注文番号、購読番号、...) *    ",
                         "email": "メールアドレス*",
                         "firstName": "名*",
                         "lastName": "姓*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum 色シットアメット, consetetur sadipscing elitr, seddiam nonumy eirmod temporinduunt ut labore et dolore magna aliquyam erat, SED diam voluptua.ベロでエオスらアキュサムらジュスト・デュオ・ドロレスらエ・エ・レバム.",
+                        "contractNumber": "SW123456789",
                         "email": "john{'@'}doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "いいえ {criteriaName}",
         "placeholder": "すべて"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "チャンネルをエクスポート",
+                        "placeholder": "エクスポートチャンネルを選択…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "チャンネルをエクスポート"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "チャンネルをエクスポート",
+                        "placeholder": "エクスポートチャンネルを選択…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "チャンネルをエクスポート"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "注文リストと顧客リストにエクスポートチャネルの列とフィルターを追加します。",
+            "mainMenuItemGeneral": "チャネルトラッキングをエクスポート"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "エクステンション \"{name}\" は、このShopwareのバージョンと互換性がありません",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "タイプ",
                 "labelRecipient": "受信者",
                 "labelReplyTo": "返信先アドレス",
+                "labelRevocationRequestFormMail": "問い合わせる　",
                 "labelSenderName": "送信者名",
                 "labelSubject": "件名",
                 "placeholderDescription": "説明を入力...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "ルール名を入力...",
                 "placeholderPriority": "ルール優先度を入力...",
                 "placeholderType": "ルールタイプを選択...",
+                "productStatesConditionWarning": "条件「商品ステータスのある商品」は廃止され、v6.8で削除される予定です。代わりに「商品タイプのある商品」を使用してください。",
                 "tabDetail": "一般設定",
                 "tabRule": "条件"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Returned",
             "returnedPartially": "一部返品",
             "reviewForm": "製品レビュー",
+            "revocationRequestCustomer": "取り消しリクエストが送信されました",
+            "revocationRequestMerchant": "取り消しリクエストを受け取りました",
             "send": "送信",
             "sent": "送信済み",
             "shipped": "発送済み",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "キャレット(^)",
             "categoriesLabel": "カテゴリー",
             "closeProfileLabel": "プロファイルを閉じる",
-            "closeViolation": "閉じる",
             "commasLabel": "コンマ (,)",
             "configuratorSettingLabel": "バリアント構成設定",
             "copyOfLabel": "コピー:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "インポート"
             },
             "updateEntitiesLabel": "既存のデータを更新",
-            "violationMessage": "あなたのプロフィールはまだ有効ではありません。プロファイルを保存するには、以下に示す必須フィールドにマッピングを追加する必要があります。"
+            "violationModal": {
+                "duplicateMappings": "次のフィールドに <strong>個の重複マッピング</strong> があります。重複を削除してプロファイルを保存してください。",
+                "missingRequiredFields": "プロファイルを保存するには、以下に示す <strong>必須フィールド</strong> にマッピングを追加する必要があります。",
+                "title": "あなたのプロフィールはまだ有効ではありません"
+            }
         },
         "progress": {
             "startExportLabel": "エクスポート開始",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "メディアに保存"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "[オブジェクトを移動]",
-                "rotate-tooltip": "[オブジェクトを回転]",
-                "scale-tooltip": "スケールオブジェクト"
-            },
-            "saveChanges": "変更を保存",
-            "titleModal": "モデルエディター"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "戻る"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "[オブジェクトを移動]",
+            "rotate-tooltip": "[オブジェクトを回転]",
+            "scale-tooltip": "スケールオブジェクト"
+        },
+        "open-model-editor-tooltip": "モデルエディターを開く",
+        "properties": {
+            "transformation": {
+                "label": "トランスフォーメーション",
+                "position": {
+                    "label": "位置"
+                },
+                "rotation": {
+                    "label": "ローテーション"
+                },
+                "scale": {
+                    "label": "スケール"
+                }
+            }
+        },
+        "titleModal": "モデルエディター"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "クレジットノートを作成するには、最初にクレジット項目を追加します。",
-                    "storno": "キャンセル請求書は、請求書がないと作成できません。"
+                    "storno": "キャンセル請求書は、請求書がないと作成できません。",
+                    "zugferd_cancellation_invoice": "ZugFerdキャンセル請求書は、請求書がないと作成できません。",
+                    "zugferd_credit_note": "ZugFerdクレジットノートを作成するには、請求書と少なくとも1つのクレジット項目が必要です。",
+                    "zugferd_embedded_cancellation_invoice": "埋め込まれたZugFerdキャンセル請求書は、請求書がないと作成できません。",
+                    "zugferd_embedded_credit_note": "埋め込みZugFerdクレジットノートを作成するには、請求書と少なくとも1つのクレジット項目が必要です。"
                 },
                 "primaryAction": "ドキュメントの作成",
+                "showZugferd": "ツークフェルドのバリエーションを表示",
                 "title": "ドキュメントの作成"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "ドキュメント",
+            "confirmDeleteText": "この文書は注文の一部であり、税務上の関連がある場合があります。この文書を削除すると、会計記録のトレーサビリティに影響が出る可能性があります。削除が法的に許可されていることを確認してください。この操作は元に戻せません。",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "文書番号 {number} はすでに割り当てられています。"
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "カスタムドキュメントのアップロード",
             "labelCancel": "閉じる",
             "labelCreate": "作成",
+            "labelCreateDownload": "作成してダウンロード",
             "labelCreateDownloadPdf": "PDF の作成とダウンロード",
             "labelCreateSend": "作成して送信",
             "labelDeliveryDate": "配送日",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "フィルター",
             "titleSidebarItemFilterAffiliateCode": "アフィリエイトコード",
             "titleSidebarItemFilterCampaignCode": "キャンペーンコード",
-            "titleSidebarItemRefresh": "更新"
+            "titleSidebarItemRefresh": "更新",
+            "tooltipCustomerComment": "追加情報: {comment}",
+            "tooltipInternalComment": "内部コメント: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "名前",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "ここでは、商品を検索するキーワードを3～5個任意で定義できます。",
             "helpTextMetaDescription": "メタディスクリプションを使用すると、ストア内の適切な場所にいることを顧客に確認できます。あなたはインセンティブを作り、信頼を築き、行動を促します。最大155文字に制限してください。Shopwareでは最大255文字まで使用できます。",
             "helpTextMetaTitle": "メタタイトルは最も重要なSEO要素であり、ページごとに一意でなければなりません。長さは最大56文字に制限してください。キーワードは最前面に配置するのが理想的です。",
+            "helpTextOpenGraphDescription": "Open Graphの説明は、ソーシャルメディアで製品を共有するときに使用されます。空欄のままにしておくと、メタディスクリプションがフォールバックとして使用されます。",
+            "helpTextOpenGraphTitle": "Open Graphのタイトルは、ソーシャルメディアで製品を共有するときに使用されます。空欄のままにしておくと、メタタイトルがフォールバックとして使用されます。",
             "labelCanonicalProduct": "カノニカル URL のバリアント",
             "labelCanonicalUrlMode": "すべてのバリアントに単一の正規 URL を使用",
             "labelKeywords": "SEO キーワード",
             "labelMetaDescription": "Meta Description",
             "labelMetaTitle": "Metaタイトル",
+            "labelOpenGraphDescription": "組織図の説明",
+            "labelOpenGraphImage": "OG イメージ",
+            "labelOpenGraphTitle": "組織タイトル",
             "placeholderCanonicalProduct": "バリエーションを選択...",
             "placeholderKeywords": "1 つまたは複数のキーワードを入力...",
             "placeholderMetaDescription": "メタディスクリプションを入力...",
-            "placeholderMetaTitle": "メタタイトルを入力..."
+            "placeholderMetaTitle": "メタタイトルを入力...",
+            "placeholderOpenGraphDescription": "オープングラフの説明を入力...",
+            "placeholderOpenGraphTitle": "オープングラフのタイトルを入力...",
+            "titleOpenGraph": "オープングラフ"
         },
         "settingsForm": {
             "isCloseoutHelpText": "バックオーダーは拒否されました。",
@@ -7494,8 +7577,42 @@
         "ruleCard": "条件"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "アフィリエイトコード",
+            "affiliateCodePlaceholder": "アフィリエイトコード… を入力",
+            "campaignCodeLabel": "キャンペーンコード",
+            "campaignCodePlaceholder": "キャンペーンコード… を入力",
+            "cardTitle": "トラッキングコード",
+            "description": "このチャンネルのフィードの商品 URL に埋め込むアフィリエイトコードとキャンペーンコードを設定します。これらのコードは、この Agentic Commerce チャネルから紹介された注文や顧客を識別します。"
+        },
         "detail": {
             "activateDisable": "販売チャンネルを有効化し保存する前に、テーマを割り当ててください。",
+            "agenticCommerce": {
+                "buttonResetTemplate": "デフォルトにリセット",
+                "errorLoadingTemplate": "デフォルトテンプレートを読み込めませんでした。",
+                "integration": {
+                    "feedUrlLabel": "エクスポートURL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "オープンAI 接続",
+                            "introduction": {
+                                "description": "この販売チャネルはJSONL商品フィードを生成し、ChatGPTの検索結果に商品が表示されるようにします。そのためには、マーチャントとして申請し、フィード URL を OpenAI と共有する必要があります。それ以外は、以下のステップバイステップガイドで説明されています。",
+                                "title": "How to: セットアップと接続"
+                            },
+                            "stepByStep": "<li> <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchants</a></li>でマーチャントとして申し込んでください<li>エクスポート URL (下記) をコピーし、 <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">製品フィードドキュメント</a></li><li>エクスポート URL が公開されていることを確認してください</li>"
+                        }
+                    },
+                    "stepByStepTitle": "セットアップ手順"
+                },
+                "openAiSettingsTitle": "オープンAI 設定",
+                "resetTemplateSuccess": "テンプレートはデフォルトにリセットされました。変更を保存するには保存してください。",
+                "tabIntegration": "インテグレーション",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Googleアナリティクスを利用すると、ショップのデータを収集して分析できます。この機能を利用するには、Googleアカウントが必要です。Googleアナリティクスのアカウントをまだお持ちでない場合は、こちらからサインアップしてください。 <a href=\"https://analytics.google.com/\" target=\"_blank\">Googleアナリティクス</a>.サインアップが完了すると、トラッキングIDが届きます。このIDを以下に入力して統合を有効にします。",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "紹介したお客様",
+                    "dateRanges": {
+                        "14Days": "過去14日間",
+                        "180Days": "過去 180 日間",
+                        "24Hours": "過去 24 時間",
+                        "30Days": "過去30日間",
+                        "7Days": "過去7日間",
+                        "yesterday": "昨日"
+                    },
+                    "numbers": "件数",
+                    "orderCardHeadline": "紹介注文",
+                    "summary": "概要",
+                    "totalTurnover": "売上高",
+                    "turnoverCardHeadline": "紹介売上高"
+                },
+                "tabInsights": "統計"
             },
             "products": {
                 "buttonAddProducts": "{productCount} 個の製品を追加 | {productCount} 個の製品を追加 | {productCount} 個の製品を追加",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "このセールス・チャネルには、すでに同じタイプのドキュメントがもう1つあります。",
             "disabledSalesChannelSelect": "最初にドキュメントタイプを選択してください。",
             "disabledTypeSelect": "グローバルドキュメントの種類は変更できません。",
+            "displayTitle": "ディスプレイ:",
             "helpTextDisplayAdditionalNoteDelivery": "EU 加盟国のみが対象です。「設定 > 国」も参照してください。",
-            "helpTextDisplayCompanyAddress": "文書の右側のヘッダーの下に会社の住所が表示されます。",
-            "helpTextDisplayDeliveryCountries": "選択した国の請求書に「地域内配達」の表示を表示します。",
             "helpTextDisplayDocumentInCustomerAccount": "文書は、それぞれの顧客アカウントの「注文」の下に表示されます。顧客アカウントには、実際に顧客に送信された文書のみが表示されることに注意してください。",
-            "helpTextDisplayReturnAddress": "住所ブロック内の顧客住所の上に会社の住所を返信住所として表示します。",
-            "helpTextPaymentDueDate": "例:+30 日、+4 週間、+1 週 2 日",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "銀行",
             "labelCompanyCity": "市区町村",
             "labelCompanyCountry": "国",
             "labelCompanyEmail": "メールアドレス",
+            "labelCompanyLogo": "会社ロゴ",
             "labelCompanyName": "名前",
             "labelCompanyPhone": "電話番号",
             "labelCompanyStreet": "番地",
             "labelCompanyUrl": "ウェブサイト",
             "labelCompanyZipcode": "郵便番号",
-            "labelDeliveryCountries": "会員の国",
             "labelDisplayAdditionalNoteDelivery": "「コミュニティ内配信」ラベルを表示",
             "labelDisplayCompanyAddress": "会社の住所を表示",
             "labelDisplayCustomerVatId": "カスタマーのVAT-IDを表示",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "ファイルフォーマット",
             "labelItemsPerPage": "ページあたりの表示件数",
             "labelName": "技術名",
-            "labelOptionMedia": "会社ロゴ",
             "labelPageOrientation": "ページの向き",
             "labelPageSize": "ページフォーマット",
             "labelPaymentDueDate": "支払い期限",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "税務署",
             "labelType": "ドキュメントタイプ",
             "labelVatId": "VAT登録番号",
-            "messageSaveSuccess": "ドキュメント \"{name}\" は保存されました。",
-            "placeholderDisplayDeliveryCountries": "コミュニティ内配送に有効な国を検索して追加...",
+            "pageOrientationOptions": {
+                "landscape": "ランドスケープ",
+                "portrait": "ポートレート"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "リーガル",
+                "letter": "レター"
+            },
+            "placeholderBankBic": "BIC を入力してください...",
+            "placeholderBankIban": "IBANを入力してください...",
+            "placeholderBankName": "銀行名を入力...",
+            "placeholderCompanyCity": "市区町村を入力...",
+            "placeholderCompanyCountry": "国を選択してください...",
+            "placeholderCompanyEmail": "Eメールアドレスを入力してください",
+            "placeholderCompanyName": "会社名を入力...",
+            "placeholderCompanyPhone": "電話番号を入力...",
+            "placeholderCompanyStreet": "番地を入力...",
+            "placeholderCompanyUrl": "ウェブサイトを入力...",
+            "placeholderCompanyZipcode": "郵便番号を入力...",
+            "placeholderExecutiveDirector": "ビジネスエグゼクティブを入力してください...",
+            "placeholderFileNamePrefix": "プレフィックスを入力...",
+            "placeholderFileNameSuffix": "サフィックスを入力...",
+            "placeholderFileTypes": "ファイル形式の選択...",
+            "placeholderItemsPerPage": "1 ページあたりのアイテム数を入力...",
             "placeholderName": "名前を入力...",
+            "placeholderPageOrientation": "ページの向きを選択...",
+            "placeholderPageSize": "ページ形式を選択...",
+            "placeholderPaymentDueDate": "支払い期日を入力...",
+            "placeholderPlaceOfFulfillment": "お届け場所を入力してください...",
+            "placeholderPlaceOfJurisdiction": "管轄地を入力...",
+            "placeholderSalesChannel": "販売チャネルを選択...",
+            "placeholderTaxNumber": "税番号を入力...",
+            "placeholderTaxOffice": "税務署に入る...",
+            "placeholderType": "文書タイプを選択...",
+            "placeholderVatId": "VAT-ID を入力してください...",
             "textHeadline": "新しい文書"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "割り当て",
             "columnName": "技術名",
             "columnType": "タイプ",
-            "columnUsedIn": "割り当て先",
             "contextMenuEdit": "編集",
             "global": "グローバル",
             "messageDeleteSuccess": "ドキュメント \"{name}\" は削除されました。",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "拒否",
+                "give-consent": "同意を与える",
                 "save-preferences": "環境設定を保存",
                 "share-all-data": "すべてシェア",
                 "share-nothing": "何も共有しない"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/en/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "詳細については、 {data-use-details} と {privacy-policy}をご覧ください。",
-                "privacy-policy": {
-                    "label": "プライバシーポリシー",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "ストアとユーザーのデータを共有することで、アドミニストレーションがどのように使用されているかを理解し、日常業務をより簡単にするための改善策を開発するのに役立ちます。",
-            "opt-out-info": "設定とプロフィール設定からいつでもオプトアウトできます。",
+            "opt-out-info": {
+                "profile": "プロフィール — プライバシー設定",
+                "settings": "設定 — プライバシー",
+                "snippet": "設定はいつでも変更できます。 {settings}でストアデータ設定を管理し、 {profile} で個人データ設定を管理します。"
+            },
             "promises": {
                 "gdpr-compliant": "GDPR に準拠",
                 "no-third-party": "第三者とデータが共有されることはありません",
@@ -9899,6 +10059,12 @@
                     "order": "注文",
                     "store": "データを保存する"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "ここ",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "Shopware 内の <strong>診断データ</strong> とは、プラットフォームのシステムヘルス、エラー、およびパフォーマンスメトリックに関連する情報を指します。これには、システムログ、エラーメッセージ、サーバーの応答時間、その他の技術指標などの詳細が含まれます。このデータを分析することで、一般的な問題や脆弱性を迅速に特定、対処、修正プログラムを展開し、プラットフォームの整合性を維持することができます。",
                     "order": "Shopware 内の <strong>注文データ</strong> は、プラットフォーム上で行われた顧客注文に関する詳細情報を指します。これには、注文された商品、数量、価格、原産地、支払い方法、出荷などの詳細が含まれます。このデータを分析して、機能の強化やお客様のビジネスの成功に役立つ新しいサービスの開発に役立つ傾向やパターンを理解します。個人を特定できるような個人データを顧客から収集することはありません。",
@@ -9912,6 +10078,12 @@
                 "description": "アドミニストレーションの使い勝手とパフォーマンスを向上させるため、アドミニストレーションとのやりとりには {data} を使用しています。",
                 "emphasizes": {
                     "data": "データ"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "プライバシーポリシー",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Shopware内の使用状況データ</strong> は、管理者ユーザーおよびストアフロント訪問者が当社のプラットフォームをどのように利用しているかに関する情報に関するものです。これには、さまざまなShopware管理モジュールとのやり取り、閲覧ページ、訪問時間、クリックパス、プラットフォームおよびストアフロント内でのユーザーアクションなどの詳細が含まれます。利用状況データを評価することで、プラットフォーム内で頻繁に訪問される領域や避けている領域を特定し、機能の採用状況を測定できます。これにより、レイアウト、デザイン、機能の改善につながる可能性があります。"
@@ -10351,48 +10523,6 @@
         "toggleItem": "アイテム \"{name}「を切り替え",
         "toggleTreeItem": "ツリーアイテム \"{name}「を切り替える"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "同意",
-        "checkListDataSharing": {
-            "gdprCompliant": "私たちはGDPRに準拠しています",
-            "helpText": {
-                "shareDataHelpText": "<strong>「共有」</strong> とは、受領者自身の目的のためのデータ開示を指します。当社は、サービスプロバイダーにデータを開示する場合があります。"
-            },
-            "personalData": "個人データは収集しません",
-            "securelyProcessed": "データは安全に処理され、保存されます",
-            "thirdParty": "当社は、お客様のデータを第三者自身の目的で第三者と共有することはありません。",
-            "title": "次のことを保証します。"
-        },
-        "collectionInformation": {
-            "diagnosticData": "診断データ",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Shopware内の診断データ</strong> とは、プラットフォームのシステムヘルス、エラー、パフォーマンスメトリックに関連する情報を指します。これには、システムログ、エラーメッセージ、サーバーの応答時間、その他の技術指標などの詳細が含まれます。このデータを分析することで、一般的な問題や脆弱性を迅速に特定、対処、修正プログラムを展開し、プラットフォームの整合性を維持することができます。",
-                "orderDataHelp": "<strong>Shopware内の注文データ</strong> は、プラットフォーム上で行われた顧客の注文に関する詳細情報を指します。これには、注文された製品、数量、価格、原産地、支払い方法、出荷などの詳細が含まれ、このデータを分析して傾向やパターンを把握し、機能の強化やビジネスの成功に役立つ新しいサービスの開発に役立ちます。特定の個人を特定できるような個人データを顧客から収集することはありません。",
-                "storeDataHelp": "<strong>Shopware内のストアデータ</strong> は、オンラインストアフロントに関連するすべての情報に関係します。商品、リスト、価格、画像、説明など、ショップの設定に関するメタデータ (テーマやプラグインなど) など。管理ユーザーやストアフロント訪問者を特定できるような個人データは収集しません。集約された店舗データを使用して、新たな市場動向などの洞察を機械学習により提供できるため、それに応じて商品提供やマーケティング戦略を調整できます。",
-                "usageDataHelp": "<strong>Shopware内の使用データ</strong> は、管理者ユーザーとストアフロント訪問者が当社のプラットフォームをどのように操作するかに関する情報に関するものです。これには、さまざまなShopware管理モジュールとのやり取り、閲覧したページ、訪問時間、クリックパス、プラットフォームやストアフロント内でのユーザーアクションなどの詳細が含まれます。使用状況データを評価することで、プラットフォーム内で頻繁に訪れるエリアや避けているエリアを特定して機能の採用状況を測定し、レイアウト、デザイン、機能の改善につながる可能性があります。管理者やストアフロントの訪問者を特定できるような個人データは収集しません。"
-            },
-            "orderData": "注文データ",
-            "storeData": "データを保存する",
-            "usageData": "使用データ"
-        },
-        "confirmAuthorization": "「同意」をクリックすると、会社を代表して本契約を締結する権限があることを確認したことになります。",
-        "declineDataCollection": "現時点ではできません",
-        "fullDetailsDescription": "本契約の詳細は {link}をご覧ください。 {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "データ共有はいつでもオプトアウトできます。あなたのデータを私たちと共有して、私たちと一緒に電子商取引の未来を形作ってください！",
-        "headline": "eコマースの未来を形作る",
-        "improvingDescription": "当社は、お客様に提供するサービスを常に改善しています。次のステップとして、機械学習 (パターン認識など) などの技術を使用してお客様のデータを分析し、製品の開発と改善を行っています。また、お客様のデータは、ビジネスの成功を促進するために設計されたデータ主導型サービスの開発にも使用されます。",
-        "improvingDescriptionNotAccepted": "当社は、お客様に提供するサービスを常に改善しています。次のステップとして、機械学習 (パターン認識など) などの技術を使用してお客様のデータを分析し、製品の開発と改善を行いたいと考えています。また、お客様のデータは、ビジネスの成功を促進するために設計されたデータ主導型サービスの開発にも使用されます。",
-        "privacyPolicy": "shopware.com/en/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "{link}でデータ共有を許可することで、いつでも契約を締結し、サービスの絶え間ない進化に貢献し、そこから利益を得ることができます。",
-        "settings": {
-            "deactivateDataCollection": "データ共有を無効にする",
-            "sharingInformation": "あなたは私たちとデータを共有しています"
-        },
-        "thankYouMessage": "{thanksForParticipation} {link}でデータ共有を無効にすることで、いつでも本契約からオプトアウトして、継続的なサービスの開発への貢献や恩恵を受けることをやめることができます。",
-        "thanksForParticipation": "ご参加いただきありがとうございます！",
-        "togglePath": "設定"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "ユーザー権限"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "ロックユニフォームスケール",
+        "unlock-uniform-scale": "ユニフォームスケールのロックを解除"
+    },
     "sw-wizard": {
         "backButton": "戻る",
-        "closeButton": "閉じる",
         "finishButton": "完了",
         "nextButton": "次"
     }

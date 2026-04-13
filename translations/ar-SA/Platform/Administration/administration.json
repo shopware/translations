@@ -317,6 +317,7 @@
             "newsletter_update": "تم تحديث الاشتراك في النشرة",
             "product_export_log": "تم تنفيذ تصدير المنتج",
             "review_form_send": "تم إرسال نموذج المراجعة",
+            "revocation_request_sent": "تم إرسال نموذج طلب الإلغاء.",
             "state_enter_order_delivery_state_cancelled": "تم إلغاء حالة إدخال الشحنة",
             "state_enter_order_delivery_state_open": "حالة دخول الشحنة مفتوحة",
             "state_enter_order_delivery_state_returned": "تم إرجاع حالة إدخال الشحنة",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "إختر ملف",
             "caption": "اسحب الملف هنا للتحميل",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "يحتوي الملف المحدد \"{name}\" على ملحق ملف غير مدعوم. يرجى استخدام أحد ملحقات الملفات التالية: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "الملف المحدد \"{name}\" أكبر من أن يتم تحميله. يجب ألا يتجاوز حجم الملف {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "لم يتم العثور على مستندات",
                 "title": "تحرير مجمّع - نجاح"
             },
-            "warningText": "يرجى الانتظار حتى يكتمل التحرير المجمع. قد يستغرق هذا بعض الوقت. إذا أغلقت علامة تبويب المتصفح أو ألغيت العملية قبل الأوان، فلن يتم تطبيق جميع التغييرات. يمكنك تشغيل التحرير المجمع مرة أخرى في أي وقت."
+            "warningText": "يرجى الانتظار حتى يكتمل التحرير المجمع. قد يستغرق هذا بعض الوقت. إذا أغلقت علامة تبويب المتصفح أو ألغيت العملية قبل الأوان، فلن يتم تطبيق جميع التغييرات. يمكنك تشغيل التحرير المجمع مرة أخرى في أي وقت.",
+            "warningTextDocumentDeletion": "المستندات هي جزء من الطلب وقد تكون ذات صلة للأغراض الضريبية. قد يؤثر حذفها على إمكانية تتبع سجلاتك المحاسبية. يرجى التأكد من أن الحذف مسموح به قانونًا."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "المستندات",
+                "deleteDocuments": {
+                    "helpText": "باستخدام هذا الخيار، سيتم حذف جميع أنواع المستندات المحددة.",
+                    "label": "حذف: المستندات"
+                },
                 "downloadDocuments": {
                     "helpText": "باستخدام هذا الخيار، يتم تقديم أحدث المستندات المتاحة للتنزيل. يتم دمج مستندات متعددة في نفس الملف. التنزيل متاح بعد اكتمال التغييرات المتعددة.",
                     "label": "تنزيل: المستندات"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "صفحات النشرة الإخبارية",
                     "privacyPage": "صفحات الخصوصية",
                     "revocationPage": "إشعارات الإبطال",
+                    "revocationRequestPage": "نموذج طلب الإلغاء",
                     "shippingPaymentInfoPage": "معلومات الدفع والشحن",
                     "tosPage": "صفحات TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "العنوان",
                         "type": "نوع النموذج",
                         "typeContact": "اتصل بنا",
-                        "typeNewsletter": "النشرة الإخبارية"
+                        "typeNewsletter": "النشرة الإخبارية",
+                        "typeRevocationRequest": "الإبطال"
                     },
                     "placeholder": {
                         "type": "حدد نوع النموذج..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "الإجراء",
+                        "comment": "تعليق",
+                        "contractNumber": "رقم العقد (رقم الطلب، رقم الاشتراك، ... ) *    ",
                         "email": "عنوان البريد الإلكتروني*",
                         "firstName": "الاسم الأول*",
                         "lastName": "الاسم الأخير*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "طلاء لوريم إيبسوم الملون والنخبة السادحة في العصر الحديث والمسمى بالإيرمود والإيرموند تيمبور غير المرغوب فيه ولكن العمل والملون ماغنا أليكويام إيرات، يستخدم ديما فوليبتوا. في ألبوم فيرو إيوس وآخرون أكسيكام وآخرون جوستو ديو دولوريس وآخرون.",
+                        "contractNumber": "SW123456789",
                         "email": "جون {'@'} doe.com",
                         "firstName": "فلان",
                         "lastName": "الفلاني",
@@ -3638,6 +3653,36 @@
         "noCriteria": "رقم {criteriaName}",
         "placeholder": "الكل"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "قناة التصدير",
+                        "placeholder": "حدد قنوات التصدير…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "قناة التصدير"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "قناة التصدير",
+                        "placeholder": "حدد قنوات التصدير…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "قناة التصدير"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "يضيف أعمدة وفلاتر قنوات التصدير إلى قوائم الطلبات والعملاء.",
+            "mainMenuItemGeneral": "تتبع قناة التصدير"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "الإضافة \"{name}\" غير متوافقة مع إصدار Shopware هذا",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "النوع",
                 "labelRecipient": "مستلم",
                 "labelReplyTo": "عنوان الرد",
+                "labelRevocationRequestFormMail": "المستفسر",
                 "labelSenderName": "اسم المرسل",
                 "labelSubject": "الموضوع",
                 "placeholderDescription": "أدخل الوصف...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "أدخل اسم القاعدة...",
                 "placeholderPriority": "أدخل أولوية القاعدة...",
                 "placeholderType": "حدد نوع القاعدة...",
+                "productStatesConditionWarning": "تم إيقاف شرط «العنصر بحالة المنتج» وستتم إزالته في v6.8. يرجى استخدام «العنصر مع نوع المنتج» بدلاً من ذلك.",
                 "tabDetail": "جنرال لواء",
                 "tabRule": "الحالة"
             },
@@ -4484,6 +4531,8 @@
             "returned": "تم إرجاعه",
             "returnedPartially": "تم إرجاعها جزئيًا",
             "reviewForm": "مراجعة المنتج",
+            "revocationRequestCustomer": "تم إرسال طلب الإلغاء",
+            "revocationRequestMerchant": "تم استلام طلب الإلغاء",
             "send": "أرسل",
             "sent": "تم إرسالها",
             "shipped": "تم شحنها",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "كاريت (^)",
             "categoriesLabel": "الفئات",
             "closeProfileLabel": "إغلاق ملف التعريف",
-            "closeViolation": "إغلاق",
             "commasLabel": "فاصلة (،)",
             "configuratorSettingLabel": "إعدادات التكوين المتغيرة",
             "copyOfLabel": "نسخة من:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "الاستيراد"
             },
             "updateEntitiesLabel": "تحديث البيانات الحالية",
-            "violationMessage": "ملف التعريف الخاص بك غير صالح حتى الآن. تحتاج إلى إضافة تعيينات إلى الحقول المطلوبة الموضحة أدناه لحفظ ملف التعريف:"
+            "violationModal": {
+                "duplicateMappings": "لديك <strong>تعيينات مكررة</strong> في الحقول التالية. يرجى إزالة التكرارات لحفظ ملف التعريف:",
+                "missingRequiredFields": "تحتاج إلى إضافة تعيينات إلى الحقول <strong>المطلوبة</strong> الموضحة أدناه لحفظ ملف التعريف:",
+                "title": "ملف التعريف الخاص بك غير صالح حتى الآن"
+            }
         },
         "progress": {
             "startExportLabel": "ابدأ التصدير",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "حفظ في الوسائط"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "نقل الكائن",
-                "rotate-tooltip": "تدوير الكائن",
-                "scale-tooltip": "كائن المقياس"
-            },
-            "saveChanges": "حفظ التغييرات",
-            "titleModal": "محرر النموذج"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "إلى الخلف"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "نقل الكائن",
+            "rotate-tooltip": "تدوير الكائن",
+            "scale-tooltip": "كائن المقياس"
+        },
+        "open-model-editor-tooltip": "افتح محرر النموذج",
+        "properties": {
+            "transformation": {
+                "label": "التحول",
+                "position": {
+                    "label": "موضع"
+                },
+                "rotation": {
+                    "label": "الدوران"
+                },
+                "scale": {
+                    "label": "مقياس"
+                }
+            }
+        },
+        "titleModal": "محرر النموذج"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "لإنشاء مذكرة ائتمان، قم بإضافة عنصر ائتمان أولاً.",
-                    "storno": "لا يمكن إنشاء فاتورة إلغاء بدون فاتورة."
+                    "storno": "لا يمكن إنشاء فاتورة إلغاء بدون فاتورة.",
+                    "zugferd_cancellation_invoice": "لا يمكن إنشاء فاتورة إلغاء ZugFerd بدون فاتورة.",
+                    "zugferd_credit_note": "لإنشاء مذكرة ائتمان ZugFerd، يلزم تقديم فاتورة وعنصر ائتمان واحد على الأقل.",
+                    "zugferd_embedded_cancellation_invoice": "لا يمكن إنشاء فاتورة إلغاء ZugFerd مضمنة بدون فاتورة.",
+                    "zugferd_embedded_credit_note": "لإنشاء مذكرة ائتمان ZugFerd مضمنة، يلزم تقديم فاتورة وعنصر ائتمان واحد على الأقل."
                 },
                 "primaryAction": "إنشاء مستند",
+                "showZugferd": "عرض متغيرات ZugFerd",
                 "title": "إنشاء مستند"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "المستندات",
+            "confirmDeleteText": "هذه الوثيقة جزء من طلب وقد تكون ذات صلة بالأغراض الضريبية. قد يؤثر حذفها على إمكانية تتبع سجلاتك المحاسبية. يرجى التأكد من أن الحذف مسموح به قانونًا. لا يمكن التراجع عن هذا الإجراء.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "تم تخصيص المستند رقم {number} بالفعل."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "تحميل مستند مخصص",
             "labelCancel": "إغلاق",
             "labelCreate": "قم بإنشاء",
+            "labelCreateDownload": "إنشاء وتنزيل",
             "labelCreateDownloadPdf": "إنشاء ملف PDF وتنزيله",
             "labelCreateSend": "إنشاء وإرسال",
             "labelDeliveryDate": "تاريخ التسليم",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "فلتر",
             "titleSidebarItemFilterAffiliateCode": "كود الشراكة",
             "titleSidebarItemFilterCampaignCode": "رمز الحملة",
-            "titleSidebarItemRefresh": "قم بتحديث"
+            "titleSidebarItemRefresh": "قم بتحديث",
+            "tooltipCustomerComment": "معلومات إضافية: {comment}",
+            "tooltipInternalComment": "تعليق داخلي: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "اسم",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "هنا يمكنك تحديد اختياريًا من ثلاث إلى خمس كلمات رئيسية يجب العثور على منتجك بموجبها.",
             "helpTextMetaDescription": "باستخدام الوصف التعريفي، تؤكد لعملائك أنهم في المكان المناسب في متجرك. يمكنك إنشاء الحوافز وبناء الثقة والدعوة إلى العمل. يجب أن تقتصر على 155 حرفًا كحد أقصى. تسمح برامج التسوق بحد أقصى يبلغ 255 حرفًا.",
             "helpTextMetaTitle": "العنوان التعريفي هو أهم عنصر لتحسين محركات البحث ويجب أن يكون فريدًا لكل صفحة. يجب أن تقتصر على طول نفسك بحد أقصى 56 حرفًا. يجب وضع كلمتك الرئيسية بشكل مثالي في المقدمة.",
+            "helpTextOpenGraphDescription": "يتم استخدام وصف Open Graph عند مشاركة المنتج على وسائل التواصل الاجتماعي. في حالة تركها فارغة، سيتم استخدام الوصف التعريفي كإجراء احتياطي.",
+            "helpTextOpenGraphTitle": "يتم استخدام عنوان Open Graph عند مشاركة المنتج على وسائل التواصل الاجتماعي. في حالة تركه فارغًا، سيتم استخدام عنوان التعريف كبديل.",
             "labelCanonicalProduct": "متغير لعنوان URL الأساسي",
             "labelCanonicalUrlMode": "استخدم عنوان URL الأساسي الوحيد لجميع المتغيرات",
             "labelKeywords": "كلمات تحسين محركات البحث",
             "labelMetaDescription": "وصف التعريف",
             "labelMetaTitle": "عنوان التعريف",
+            "labelOpenGraphDescription": "وصف OG",
+            "labelOpenGraphImage": "صورة OG",
+            "labelOpenGraphTitle": "عنوان OG",
             "placeholderCanonicalProduct": "حدد البديل...",
             "placeholderKeywords": "أدخل كلمة رئيسية واحدة أو أكثر...",
             "placeholderMetaDescription": "أدخل الوصف التعريفي...",
-            "placeholderMetaTitle": "أدخل عنوان التعريف..."
+            "placeholderMetaTitle": "أدخل عنوان التعريف...",
+            "placeholderOpenGraphDescription": "أدخل وصف الرسم البياني المفتوح...",
+            "placeholderOpenGraphTitle": "أدخل عنوان الرسم البياني المفتوح...",
+            "titleOpenGraph": "افتح الرسم البياني"
         },
         "settingsForm": {
             "isCloseoutHelpText": "تم رفض الطلبات المتأخرة.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "الشروط"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "كود الشراكة",
+            "affiliateCodePlaceholder": "أدخل رمز الإحالة…",
+            "campaignCodeLabel": "رمز الحملة",
+            "campaignCodePlaceholder": "أدخل رمز الحملة…",
+            "cardTitle": "رموز التتبع",
+            "description": "يمكنك تكوين رموز الشركات التابعة والحملة التي سيتم تضمينها في عناوين URL للمنتجات في خلاصات هذه القناة. تحدد هذه الرموز الطلبات والعملاء المحالين من قناة Agentic Commerce هذه."
+        },
         "detail": {
             "activateDisable": "يرجى تعيين موضوع قبل تنشيط قناة المبيعات وحفظها.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "إعادة الضبط إلى الوضع الافتراضي",
+                "errorLoadingTemplate": "تعذّر تحميل القالب الافتراضي.",
+                "integration": {
+                    "feedUrlLabel": "عنوان URL للتصدير",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "اتصال OpenAI",
+                            "introduction": {
+                                "description": "تقوم قناة المبيعات هذه بإنشاء موجز منتجات JSONL حتى تظهر منتجاتك في نتائج بحث ChatGPT. للقيام بذلك، يجب عليك التقدم كتاجر ومشاركة عنوان URL للخلاصة مع OpenAI. يتم شرح كل شيء آخر في الدليل خطوة بخطوة أدناه.",
+                                "title": "كيفية: الإعداد والاتصال"
+                            },
+                            "stepByStep": "<li>تقدم بطلبك كتاجر على <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchants</a></li><li>انسخ عنوان URL للتصدير (أدناه) وشاركه مع OpenAI وفقًا لمستندات <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Product Feeds</a></li><li>تأكد من أن عنوان URL للتصدير متاح للجمهور</li>"
+                        }
+                    },
+                    "stepByStepTitle": "خطوة بخطوة"
+                },
+                "openAiSettingsTitle": "افتح إعدادات الذكاء الاصطناعي",
+                "resetTemplateSuccess": "تمت إعادة تعيين القالب إلى الوضع الافتراضي. يرجى الحفظ للحفاظ على التغييرات.",
+                "tabIntegration": "الاندماج",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "بيناي (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "تحليلات جوجل",
                 "description": "بمساعدة Google Analytics، يمكنك جمع بيانات متجرك وتحليلها. من أجل الاستفادة من هذه الوظيفة، يعد حساب Google ضروريًا. إذا كنت لا تملك حساب Google Analytics بعد، فقد ترغب في الاشتراك هنا: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. بعد الاشتراك بنجاح، ستتلقى معرف التتبع، والذي يجب ملؤه أدناه لتنشيط التكامل.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "العملاء المحالين",
+                    "dateRanges": {
+                        "14Days": "آخر 14 يومًا",
+                        "180Days": "آخر 180 يومًا",
+                        "24Hours": "آخر 24 ساعة",
+                        "30Days": "آخر 30 يومًا",
+                        "7Days": "اخر 7 ايام",
+                        "yesterday": "يوم أمس"
+                    },
+                    "numbers": "عد",
+                    "orderCardHeadline": "الطلبات المُحالة",
+                    "summary": "الملخص",
+                    "totalTurnover": "معدل الدوران",
+                    "turnoverCardHeadline": "المبيعات المشار إليها"
+                },
+                "tabInsights": "الإحصائيات"
             },
             "products": {
                 "buttonAddProducts": "إضافة منتجات {productCount} | إضافة منتج {productCount} | إضافة منتجات {productCount}",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "يوجد بالفعل مستند آخر من نفس النوع في قناة المبيعات هذه.",
             "disabledSalesChannelSelect": "اختر نوع المستند أولاً.",
             "disabledTypeSelect": "لا يمكن تغيير نوع المستندات العامة.",
+            "displayTitle": "شاشة العرض:",
             "helpTextDisplayAdditionalNoteDelivery": "مؤهل فقط للدول الأعضاء في الاتحاد الأوروبي، راجع أيضًا «الإعدادات > البلدان».",
-            "helpTextDisplayCompanyAddress": "يعرض عنوان الشركة أسفل العنوان على الجانب الأيمن من المستند.",
-            "helpTextDisplayDeliveryCountries": "يعرض إشارة «التسليم داخل المجتمع» على مستندات الفواتير للبلدان المحددة.",
             "helpTextDisplayDocumentInCustomerAccount": "يتم عرض المستند ضمن «الطلبات» في حساب العميل المعني. لاحظ أنه يتم عرض المستندات التي تم إرسالها بالفعل إلى العميل فقط في حساب العميل.",
-            "helpTextDisplayReturnAddress": "يعرض عنوان الشركة كعنوان إرجاع أعلى عنوان العميل في مجموعة العناوين.",
-            "helpTextPaymentDueDate": "على سبيل المثال: +30 يومًا، +4 أسابيع، +1 أسبوع يومين",
             "labelBankBic": "BIC",
             "labelBankIban": "إيبان",
             "labelBankName": "مصرف",
             "labelCompanyCity": "المدينة",
             "labelCompanyCountry": "البلد",
             "labelCompanyEmail": "عنوان البريد الإلكتروني",
+            "labelCompanyLogo": "شعار الشركة",
             "labelCompanyName": "اسم",
             "labelCompanyPhone": "رقم هاتف",
             "labelCompanyStreet": "عنوان الشارع",
             "labelCompanyUrl": "الموقع الإلكتروني",
             "labelCompanyZipcode": "الرمز البريدي",
-            "labelDeliveryCountries": "الدول الأعضاء",
             "labelDisplayAdditionalNoteDelivery": "عرض ملصق «التسليم داخل المجتمع»",
             "labelDisplayCompanyAddress": "عرض عنوان الشركة",
             "labelDisplayCustomerVatId": "عرض معرف ضريبة القيمة المضافة للعميل",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "تنسيقات الملفات",
             "labelItemsPerPage": "العناصر لكل صفحة",
             "labelName": "الاسم الفني",
-            "labelOptionMedia": "شعار الشركة",
             "labelPageOrientation": "اتجاه الصفحة",
             "labelPageSize": "شكل صفحة",
             "labelPaymentDueDate": "تاريخ استحقاق الدفع",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "مكتب الضرائب",
             "labelType": "نوع المستند",
             "labelVatId": "رقم ضريبية القيمة المضافة.",
-            "messageSaveSuccess": "تم حفظ المستند \"{name}\".",
-            "placeholderDisplayDeliveryCountries": "ابحث وأضف البلدان الصالحة للتسليم داخل المجتمع...",
+            "pageOrientationOptions": {
+                "landscape": "المناظر الطبيعية",
+                "portrait": "بورتريت"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "قانوني",
+                "letter": "رسالة"
+            },
+            "placeholderBankBic": "أدخل BIC...",
+            "placeholderBankIban": "أدخل رقم IBAN...",
+            "placeholderBankName": "أدخل اسم البنك...",
+            "placeholderCompanyCity": "أدخل المدينة...",
+            "placeholderCompanyCountry": "حدد بلدًا...",
+            "placeholderCompanyEmail": "أدخل عنوان البريد الإلكتروني...",
+            "placeholderCompanyName": "أدخل اسم الشركة...",
+            "placeholderCompanyPhone": "أدخل رقم الهاتف...",
+            "placeholderCompanyStreet": "أدخل الشارع...",
+            "placeholderCompanyUrl": "أدخل موقع الويب...",
+            "placeholderCompanyZipcode": "أدخل الرمز البريدي...",
+            "placeholderExecutiveDirector": "أدخل مدير الأعمال...",
+            "placeholderFileNamePrefix": "أدخل بادئة...",
+            "placeholderFileNameSuffix": "أدخل لاحقة...",
+            "placeholderFileTypes": "حدد تنسيقات الملفات...",
+            "placeholderItemsPerPage": "أدخل عدد العناصر لكل صفحة...",
             "placeholderName": "أدخل الاسم...",
+            "placeholderPageOrientation": "حدد اتجاه الصفحة...",
+            "placeholderPageSize": "حدد تنسيق صفحة...",
+            "placeholderPaymentDueDate": "أدخل تاريخ استحقاق الدفع...",
+            "placeholderPlaceOfFulfillment": "أدخل مكان الإنجاز...",
+            "placeholderPlaceOfJurisdiction": "أدخل مكان الاختصاص...",
+            "placeholderSalesChannel": "حدد قناة مبيعات...",
+            "placeholderTaxNumber": "أدخل الرقم الضريبي...",
+            "placeholderTaxOffice": "أدخل مكتب الضرائب...",
+            "placeholderType": "حدد نوع المستند...",
+            "placeholderVatId": "أدخل معرف ضريبة القيمة المضافة...",
             "textHeadline": "مستند جديد"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "التعيين",
             "columnName": "الاسم الفني",
             "columnType": "النوع",
-            "columnUsedIn": "تم تعيينه لـ",
             "contextMenuEdit": "تحرير",
             "global": "عالمي",
             "messageDeleteSuccess": "تم حذف المستند \"{name}\".",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "انخفاض",
+                "give-consent": "منح الموافقة",
                 "save-preferences": "حفظ التفضيلات",
                 "share-all-data": "شارك الكل",
                 "share-nothing": "لا تشارك شيئًا"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/en/تفاصيل استخدام البيانات",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "للحصول على التفاصيل الكاملة، راجع {data-use-details} و {privacy-policy}الخاص بنا.",
-                "privacy-policy": {
-                    "label": "سياسة الخصوصية",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "من خلال مشاركة بيانات المتجر والمستخدم، فإنك تساعدنا على فهم كيفية استخدام الإدارة وتطوير التحسينات التي تجعل عملك اليومي أسهل.",
-            "opt-out-info": "يمكنك إلغاء الاشتراك في أي وقت عبر الإعدادات وإعدادات الملف الشخصي.",
+            "opt-out-info": {
+                "profile": "ملف التعريف الخاص بك - تفضيلات الخصوصية",
+                "settings": "الإعدادات - الخصوصية",
+                "snippet": "يمكنك تغيير تفضيلاتك في أي وقت: إدارة إعدادات بيانات المتجر ضمن {settings}، وإعدادات البيانات الشخصية ضمن {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "متوافق مع GDPR",
                 "no-third-party": "لا تتم مشاركة أي بيانات مع أطراف ثالثة",
@@ -9899,6 +10059,12 @@
                     "order": "أوامر",
                     "store": "بيانات المتجر"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "هنا",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>تشير البيانات التشخيصية</strong> داخل Shopware إلى المعلومات المتعلقة بصحة النظام والأخطاء ومقاييس الأداء للمنصة. يتضمن ذلك تفاصيل مثل سجلات النظام ورسائل الخطأ وأوقات استجابة الخادم والمؤشرات الفنية الأخرى. يساعدنا تحليل هذه البيانات على تحديد ومعالجة ونشر الإصلاحات للمشكلات الشائعة أو نقاط الضعف بسرعة، مع الحفاظ على سلامة النظام الأساسي.",
                     "order": "<strong>تشير بيانات الطلب</strong> داخل Shopware إلى المعلومات التفصيلية حول طلبات العملاء المقدمة على المنصة. يتضمن ذلك تفاصيل مثل المنتجات المطلوبة والكميات والأسعار والمنشأ وطرق الدفع والشحن وما إلى ذلك. نحن نحلل هذه البيانات لفهم الاتجاهات والأنماط التي تساعدنا على تحسين الميزات وكذلك تطوير خدمات جديدة مصممة لتحسين نجاح عملك. نحن لا نجمع البيانات الشخصية من عملائك التي يمكن استخدامها لتحديد شخص واحد.",
@@ -9912,6 +10078,12 @@
                 "description": "نحن نستخدم {data} حول كيفية تفاعلك مع الإدارة لتحسين قابليتها للاستخدام والأداء.",
                 "emphasizes": {
                     "data": "البيانات"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "سياسة الخصوصية",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>بيانات الاستخدام</strong> داخل Shopware تتعلق بالمعلومات المتعلقة بكيفية تفاعل المستخدمين الإداريين وزوار واجهة المتجر مع منصتنا. يتضمن ذلك تفاصيل مثل التفاعلات مع وحدات إدارة Shopware المختلفة، والصفحات التي تمت مشاهدتها، ومدة الزيارات، ومسارات النقر، وإجراءات المستخدم داخل النظام الأساسي وواجهة المتجر. من خلال تقييم بيانات الاستخدام، يمكننا تحديد مناطق المنصة التي تتم زيارتها بشكل متكرر أو تجنبها لقياس اعتماد الميزات، مما يؤدي إلى تحسينات محتملة في التخطيط والتصميم والوظائف."
@@ -10351,48 +10523,6 @@
         "toggleItem": "تبديل العنصر \"{name}»",
         "toggleTreeItem": "تبديل عنصر الشجرة \"{name}»"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "أوافق",
-        "checkListDataSharing": {
-            "gdprCompliant": "نحن متوافقون مع اللائحة العامة لحماية البيانات",
-            "helpText": {
-                "shareDataHelpText": "يشير <strong>«Share»</strong> إلى الكشف عن البيانات للأغراض الخاصة للطرف المتلقي؛ قد نكشف البيانات لمقدمي الخدمة لدينا."
-            },
-            "personalData": "نحن لا نجمع البيانات الشخصية",
-            "securelyProcessed": "تتم معالجة بياناتك وتخزينها بشكل آمن",
-            "thirdParty": "نحن لا نشارك بياناتك مع أطراف ثالثة لأغراضهم الخاصة",
-            "title": "يمكننا أن نؤكد لك ما يلي:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "بيانات التشخيص",
-            "helpText": {
-                "diagnosticDataHelp": "تشير بيانات التشخيص <strong></strong> داخل Shopware إلى المعلومات المتعلقة بصحة النظام والأخطاء ومقاييس الأداء للمنصة. يتضمن ذلك تفاصيل مثل سجلات النظام ورسائل الخطأ وأوقات استجابة الخادم والمؤشرات الفنية الأخرى. يساعدنا تحليل هذه البيانات على تحديد ومعالجة ونشر الإصلاحات للمشكلات الشائعة أو نقاط الضعف بسرعة، مع الحفاظ على سلامة النظام الأساسي.",
-                "orderDataHelp": "<strong>تشير بيانات الطلب</strong> داخل Shopware إلى المعلومات التفصيلية حول طلبات العملاء الموضوعة على المنصة. يتضمن ذلك تفاصيل مثل المنتجات المطلوبة والكميات والأسعار والمنشأ وطرق الدفع والشحن وما إلى ذلك، ونحن نحلل هذه البيانات لفهم الاتجاهات والأنماط التي تساعدنا على تحسين الميزات بالإضافة إلى تطوير خدمات جديدة مصممة لتحسين نجاح عملك. نحن لا نجمع البيانات الشخصية من عملائك التي يمكن استخدامها لتحديد شخص واحد.",
-                "storeDataHelp": "<strong>بيانات المتجر</strong> داخل Shopware تتعلق بجميع المعلومات المتعلقة بواجهة متجرك عبر الإنترنت. مثل المنتجات والقوائم والأسعار والصور والأوصاف وما إلى ذلك والبيانات الوصفية حول إعداد متجرك، مثل السمات والمكونات الإضافية. نحن لا نجمع البيانات الشخصية التي يمكن استخدامها لتحديد مستخدم مسؤول أو زائر واجهة المتجر. باستخدام بيانات المتجر المجمعة، يمكننا تقديم رؤى من خلال التعلم الآلي مثل اتجاهات السوق الناشئة، مما يسمح لك بتعديل عروض المنتجات أو استراتيجيات التسويق وفقًا لذلك.",
-                "usageDataHelp": "<strong>بيانات الاستخدام</strong> داخل Shopware تتعلق بالمعلومات المتعلقة بكيفية تفاعل المستخدمين الإداريين وزوار واجهة المتجر مع منصتنا. يتضمن ذلك تفاصيل مثل التفاعلات مع وحدات إدارة Shopware المختلفة والصفحات التي تمت مشاهدتها ومدة الزيارات ومسارات النقر وإجراءات المستخدم داخل النظام الأساسي وواجهة المتجر. من خلال تقييم بيانات الاستخدام، يمكننا تحديد مناطق النظام الأساسي التي يتم زيارتها بشكل متكرر أو تجنبها لقياس اعتماد الميزات، مما يؤدي إلى تحسينات محتملة في التخطيط والتصميم والوظائف. نحن لا نجمع البيانات الشخصية التي يمكن استخدامها لتحديد المشرف أو زوار واجهة المتجر."
-            },
-            "orderData": "بيانات الطلبية",
-            "storeData": "تخزين البيانات",
-            "usageData": "مشاركة البيانات"
-        },
-        "confirmAuthorization": "بالنقر فوق «أوافق»، فإنك تؤكد أنك مفوّض بالدخول في هذه الاتفاقية نيابة عن شركتك.",
-        "declineDataCollection": "ليس في الوقت الحالي",
-        "fullDetailsDescription": "يمكن العثور على التفاصيل الكاملة لهذه الاتفاقية على {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "يمكنك دائمًا إلغاء الاشتراك في مشاركة البيانات في أي وقت. انضم إلينا في تشكيل مستقبل التجارة الإلكترونية من خلال مشاركة بياناتك معنا!",
-        "headline": "تشكيل مستقبل التجارة الإلكترونية",
-        "improvingDescription": "نحن نعمل باستمرار على تحسين الخدمات التي نقدمها لك. لاتخاذ الخطوة التالية، نقوم بتحليل بياناتك باستخدام تقنيات مثل التعلم الآلي (مثل التعرف على الأنماط) لتطوير منتجنا وتحسينه. سيتم استخدام بياناتك أيضًا لتطوير خدمات تعتمد على البيانات مصممة لتعزيز نجاح عملك.",
-        "improvingDescriptionNotAccepted": "نحن نعمل باستمرار على تحسين الخدمات التي نقدمها لك. لاتخاذ الخطوة التالية، نود تحليل بياناتك باستخدام تقنيات مثل التعلم الآلي (مثل التعرف على الأنماط) لتطوير منتجنا وتحسينه. سيتم استخدام بياناتك أيضًا لتطوير خدمات تعتمد على البيانات مصممة لتعزيز نجاح عملك.",
-        "privacyPolicy": "shopware.com/en/تفاصيل استخدام البيانات",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "يمكنك في أي وقت الدخول في الاتفاقية وبالتالي المساهمة في التطور المستمر لخدماتنا والاستفادة منه، من خلال السماح بمشاركة البيانات في {link}الخاص بك",
-        "settings": {
-            "deactivateDataCollection": "تعطيل مشاركة البيانات",
-            "sharingInformation": "أنت تشارك البيانات معنا"
-        },
-        "thankYouMessage": "{thanksForParticipation} يمكنك إلغاء الاشتراك في هذه الاتفاقية في أي وقت وبالتالي التوقف عن المساهمة والاستفادة من التطوير المستمر لخدماتنا عن طريق تعطيل مشاركة البيانات في {link}الخاص بك",
-        "thanksForParticipation": "شكرا لمشاركتك!",
-        "togglePath": "إعدادات"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "المستخدمون والأذونات"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "مقياس لوك الموحد",
+        "unlock-uniform-scale": "افتح المقياس الموحد"
+    },
     "sw-wizard": {
         "backButton": "إلى الخلف",
-        "closeButton": "إغلاق",
         "finishButton": "إنهاء",
         "nextButton": "التالي"
     }

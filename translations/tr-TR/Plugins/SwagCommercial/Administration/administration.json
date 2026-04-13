@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Abonelik durumu duraklatıyor"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Bireysel Fiyatlandırma",
             "b2b_components_role": "Rol | Roller",
             "b2b_components_shopping_list": "Alışveriş Listeleri",
             "b2b_employee": "Çalışan | Çalışanlar",
+            "bundle": "Paket | Paketler",
+            "bundle_item": "Paket Öğesi | Paket Öğeleri",
             "export_assistant": "İhracat asistanı",
-            "individual_pricing": "Bireysel Fiyatlandırma",
             "quote": "Alıntı | Alıntılar",
             "quote_line_item": "Teklif satırı öğesi | Teklif satırı öğeleri",
             "search_assistant": "AI Yardımcı Pilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Öğe paket öğesidir",
+                "lineItemOfBundleRule": "Seçilen paketin öğesi",
                 "subscriptionCartRule": "Abonelik Sepeti",
                 "subscriptionIntervalRule": "Abonelik aralığı",
                 "subscriptionPlanRule": "Abonelik planı"
             },
             "group": {
                 "subscription": "Abonelik"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Paket"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Bundles planını denediğiniz için teşekkürler. Geri bildiriminizi duymak isteriz.",
+                "link": "Geri bildirim ver"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Özel alanlar"
+            },
+            "general": {
+                "title": "Genel Bilgi"
+            },
+            "items": {
+                "actionOpenProductDetails": "Ürün ayrıntılarını aç",
+                "buttonAddBundleItems": "Ürün ekle",
+                "columnName": "İsim",
+                "columnPosition": "Pozisyon",
+                "columnPrice": "Fiyat",
+                "emptyStateDescription": "Pakete en az iki ürün ekleyin.",
+                "emptyStateTitle": "Henüz ürün eklenmedi",
+                "title": "Ürünler ({count})",
+                "tooltipBundleItemCustomizedProduct": "Özel Ürün şablonu atandı",
+                "tooltipBundleItemHasVariants": "Ürünün varyantları var",
+                "tooltipBundleItemInactive": "Etkin değil",
+                "tooltipBundleItemIncompatibleVisibilities": "Paketin Satış Kanallarına atanmamış: {salesChannels}",
+                "tooltipBundleItemIssues": "Sorunlar:",
+                "tooltipBundleItemOutOfStockCloseout": "Stoklar tükendi (Tasfiye satışı)",
+                "tooltipBundleItemOutOfStockTemporary": "Bu ürün şu anda stokta yok. Tüm ürünler tekrar stokta olduğunda paket tekrar satın alınabilir hale gelecektir.",
+                "tooltipBundleItemOutOfStockTitle": "Stoklar tükendi",
+                "tooltipRefreshData": "Verileri yenileme"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Yayın tarihi",
+                    "placeholder": "Çıkış tarihini girin..."
+                },
+                "title": "Etiketleme"
+            },
+            "media": {
+                "subtitle": "Paketin medya galerisine dosya ekleyin.",
+                "title": "Medya"
+            },
+            "messageMinBundleItemsRequired": "Paketi oluşturmak için en az iki ürün ekleyin.",
+            "messageNoChanges": "Kaydedilecek değişiklik yok",
+            "messageSaveError": "Paket kaydedilemedi",
+            "messageSaveSuccess": "Paket başarıyla kaydedildi",
+            "price": {
+                "addDiscount": "İndirim ekle",
+                "currencyDependingPrices": "Fiyatlara bağlı para birimi",
+                "discount": "İndirim",
+                "discountRules": "İndirim kuralları",
+                "discountTitle": "İndirim",
+                "discountType": "Türü",
+                "discountTypeAbsolute": "Mutlak",
+                "discountTypePercentage": "Yüzde",
+                "discountValue": "Değer",
+                "discountValuePlaceholder": "Değer katın...",
+                "doNotCombineWith": "ile birleştirmeyin",
+                "maxValuePlaceholder": "Sınırsız",
+                "maximumDiscountValue": "Maksimum indirim değeri",
+                "openAdvancedPricesView": "Gelişmiş fiyatlar görünümünü aç",
+                "preventCombination": "Diğer promosyonlarla kombinasyonu önleyin",
+                "preventCombinationHelpText": "Etkinleştirildiğinde, bu indirim diğer promosyonlarla birleştirilemez",
+                "promotionsPlaceholder": "Promosyonlar ekle...",
+                "rulesPlaceholder": "Kural ekle...",
+                "subtotalBased": "1 ürüne göre ara toplam | {count} ürüne dayalı ara toplam",
+                "title": "Gösterim fiyatları",
+                "total": "Toplam",
+                "totalBased": "Toplam 1 ürüne göre | Toplam {count} ürüne göre"
+            },
+            "tabGeneral": "General",
+            "tabLayout": "Düzen",
+            "tabSeo": "SEO",
+            "textHeadline": "Yeni paket",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Bu, paketin bu kanallarda görünmesini önler. Lütfen aşağıdaki ürünlerin görünürlüğünü kontrol edin:",
+                    "notAssignedTo": "atanmamış",
+                    "title": "Bazı ürünler seçilen tüm Satış Kanallarına atanmamıştır"
+                },
+                "title": "Görünürlük ve yapı"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktif",
+                "placeholder": "Bir durum seç..."
+            },
+            "availabilityFilter": {
+                "label": "Kullanılabilirlik",
+                "placeholder": "Kullanılabilirliği seçin..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Dahil olan ürünler",
+                "placeholder": "Dahil olan ürünleri seçin..."
+            },
+            "categoriesFilter": {
+                "label": "Kategoriler",
+                "placeholder": "Kategorileri seç..."
+            },
+            "fromPlaceholder": "Başlangıç değerini girin...",
+            "imagesFilter": {
+                "label": "Görüntüler",
+                "placeholder": "Görüntü durumunu seç...",
+                "textHasCriteria": "Atanan en az bir ürün resmi",
+                "textNoCriteria": "Ürün görseli atanmadı"
+            },
+            "priceFilter": {
+                "label": "Fiyat"
+            },
+            "productNumberFilter": {
+                "label": "Ürün numarası",
+                "placeholder": "Bir ürün numarası girin..."
+            },
+            "releaseDateFilter": {
+                "label": "Yayın tarihi"
+            },
+            "salesChannelsFilter": {
+                "label": "Satış Kanalları",
+                "placeholder": "Satış Kanallarını Seç..."
+            },
+            "salesFilter": {
+                "label": "Satış"
+            },
+            "tagsFilter": {
+                "label": "Etiketler",
+                "placeholder": "Etiketleri seç..."
+            },
+            "toPlaceholder": "Bitiş değerini girin..."
+        },
+        "general": {
+            "description": "Paketler",
+            "headlineBundles": "Paketler",
+            "mainMenuItemGeneral": "Paketler",
+            "placeholderSearchBar": "Paketleri ara...",
+            "title": "Paketler"
+        },
+        "generalForm": {
+            "highlightHelpText": "Vurgulanan paketler, tüm paket listelerinde parlak renkli bir etiket ve “İpucu” kelimesiyle işaretlenmiştir. <a href=\"{themeUrl}\">tema</a> ayarlarında “Bildirim” seçeneğini değiştirerek etiketin rengini ayarlayabilirsiniz. İlgili <a href=\"{snippetUrl}\">metin snippet'i</a> düzenleyerek etiketin metnini de değiştirebilirsiniz.",
+            "labelDescription": "Açıklama",
+            "labelMarkAsTopseller": "Vurgu paketini",
+            "labelName": "İsim",
+            "labelProductNumber": "Ürün numarası",
+            "placeholderDescription": "Paket açıklamasını girin...",
+            "placeholderName": "Paket adını girin...",
+            "placeholderProductNumber": "Ürün numarasını girin..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Bir paket en az iki ürün gerektirir.",
+            "notEnoughProductsTitle": "Yeterli ürün yok",
+            "restrictions": "Bir veya daha fazla ürünün bu paketin kullanılabilirliğini etkileyen kısıtlamaları vardır. Ayrıntılar için uyarı simgelerine bakın.",
+            "restrictionsTitle": "Bazı ürünlerin kısıtlamaları vardır"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Eşleşen ürün bulunamadı",
+            "noProductsMatchingBundleSalesChannels": "Paketin seçilen Satış Kanallarıyla eşleşen etkin ürün yok.",
+            "noProductsMatchingTermAndFilter": "Arama terimini veya filtrelerini ayarlayın.",
+            "placeholderSearch": "Ürün ara...",
+            "showIncluded": "Sadece seçili göster ({count})",
+            "textWhySomeItemsMissing": "Neden bazı ürünler eksik?",
+            "title": "Ürün ekle",
+            "tooltipVariant": "Varyant",
+            "tooltipWhySomeItemsMissing": "Şu anda, paketler yalnızca fiziksel ürünler ve tek varyantlarla çalışır. <br /><br /> Ürünlerin listede görünmesi için paketin seçilen Satış Kanallarına atanmalıdır."
+        },
+        "list": {
+            "available": "Mevcut",
+            "buttonAddBundle": "Paket ekle",
+            "columnActive": "Aktif",
+            "columnAvailable": "Kullanılabilirlik",
+            "columnBundleItemCount": "Ürün Sayısı",
+            "columnCreatedAt": "Oluşturulan",
+            "columnName": "İsim",
+            "columnProductNumber": "Ürün numarası",
+            "columnSales": "Satış",
+            "columnTotalPrice": "Toplam Fiyat",
+            "columnUpdatedAt": "Güncelleme",
+            "emptyStateDescription": "Paketler ortalama sipariş değerinizi artırabilir ve müşterileri ilgili ürünleri satın almaya teşvik edebilir.",
+            "emptyStateTitle": "Satışları artırmak için paketler ekleyin",
+            "messageSaveSuccess": "Paket \"{name}\" kaydedildi.",
+            "titleSidebarItemRefresh": "Yenile",
+            "unavailable": "Kullanılamıyor"
+        },
+        "priceModal": {
+            "currency": "Para birimi",
+            "price": "Değer",
+            "title": "Gelişmiş fiyatlar"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Ürün ekle",
+            "description": "Pakete hangi ürünlerin eklenebileceğini görmek için önce bir Satış Kanalı seçin. Bunu daha sonra Görünürlük ve yapı kartında ayarlayabilirsiniz.",
+            "title": "Satış Kanalı gerekli"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Görüntü oluştur",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Paket açıklaması"
+                },
+                "bundleHeading": {
+                    "label": "Paket adı"
+                },
+                "bundleItems": {
+                    "label": "Paket öğeleri"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Resim galerisi ve paket satın alma kutusu"
+                },
+                "recommendedBundles": {
+                    "label": "Önerilen paketler"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Varsayılan düzen - Ürün paketi sayfası",
+                "setAsDefaultBundleDetail": "Varsayılan ürün paketi sayfası olarak ayarla"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Paket sayfası"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Görüntü oluştur",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Bu öğenin ürün verileri, bu düzenle ilişkili ürün tarafından otomatik olarak yüklenir. İçerik sadece örnek bir önizleme gösterir."
+                },
+                "label": "Paket satın alma kutusu"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Bu öğenin ürün verileri, bu düzenle ilişkili ürün tarafından otomatik olarak yüklenir. İçerik sadece örnek bir önizleme gösterir."
+                },
+                "label": "Paket açıklaması",
+                "preview": {
+                    "descriptionTab": "Açıklama",
+                    "title": "Paket"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Ürün ayrıntıları sayfasını açmak yerine paket öğelerini doğrudan sepete eklemeye izin verir.",
+                        "labelTitle": "Paketteki ürün sayısını görüntülemek için {count} öğesini kullanın."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Bu öğenin ürün verileri, bu düzenle ilişkili ürün tarafından otomatik olarak yüklenir. İçerik sadece örnek bir önizleme gösterir."
+                    },
+                    "label": {
+                        "boxSettings": "Ürün kutusu ayarları",
+                        "cta": "Paket öğelerini doğrudan sepete eklemek için CTA'yı göster",
+                        "minWidth": "Minimum genişlik",
+                        "title": "Başlık"
+                    }
+                },
+                "label": "Dahil Ürünler"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Bu öğenin paket verileri, bu mizanpajla ilişkili paket tarafından otomatik olarak yüklenir. İçerik sadece örnek bir önizleme gösterir."
+                },
+                "label": "Paket adı"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Etkinleştirildiğinde, başlangıçta yalnızca bir paket alt kümesi gösterilir. Kullanıcılar daha fazlasını göstermek için listeyi genişletebilir.",
+                        "maxVisibleBundles": "“Daha fazla göster” işlevinin arkasına gizlenene kadar kaç paket gösterileceğini kontrol eder.",
+                        "productBoxSettings": "Ürün kutusu ayarları",
+                        "productDetailElement": "Bu öğenin ürün verileri, bu düzenle ilişkili ürün tarafından otomatik olarak yüklenir. İçerik sadece örnek bir önizleme gösterir.",
+                        "showCTAInfo": "Ürün ayrıntıları sayfasını açmak yerine paket öğelerini doğrudan sepete eklemeye izin verir.",
+                        "sliderSettings": "Slider ayarları"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Başlangıçta gösterilen paketlerin sayısını sınırlayın",
+                        "maxVisibleBundles": "Başlangıçta gösterilen paketler",
+                        "minWidth": "Minimum genişlik",
+                        "recommendedCombinationsTitle": "Önerilen kombinasyonlar",
+                        "showBundleName": "Paket adını göster",
+                        "showCTA": "Paket öğelerini doğrudan sepete eklemek için CTA'yı göster",
+                        "showCurrentProduct": "Şu anda görüntülenen ürünü pakette ilk olarak göster",
+                        "title": "Başlık"
+                    },
+                    "placeholder": {
+                        "minWidth": "Minimum genişlik girin...",
+                        "title": "Önerilen kombinasyonlar"
+                    }
+                },
+                "label": "Önerilen kombinasyonlar",
+                "preview": {
+                    "label": {
+                        "title": "Önerilen kombinasyonlar"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Görüntü oluştur",
             "contentText": "Yapay Zeka Oluşturulan görüntü yardımıyla düzeninizi özelleştirmek için kendi ruh hali resimlerinizi oluşturun.",
             "header": "AI Yardımcı Pilot"
+        },
+        "tags": {
+            "bundle": "Paket"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organizasyon Birimi Adresleri",
                             "pending_order": "Bekleyen Sipariş Yönetimi",
                             "quote": "Teklif yönetimi",
-                            "role": "Rol yönetimi"
+                            "role": "Rol yönetimi",
+                            "subscription": "Abonelik siparişi verin"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Gönderim adresini sil",
                                     "update": "Gönderim adresini düzenle"
                                 },
+                                "subscription": {
+                                    "read": "Atanmış kuruluş birimindeki tüm sipariş aboneliklerini görüntüleyin"
+                                },
                                 "update": "Organizasyon birimini düzenle"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Rolleri silebilir",
                                 "edit": "Rolleri düzenleyebilir",
                                 "read": "Rolleri görüntüleyebilir"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Tüm sipariş aboneliklerini görüntüleyin"
+                                }
                             }
                         },
                         "switchAllLabel": "Tüm izinler"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rol Yönetimi"
             },
+            "bundle": {
+                "label": "Paketler"
+            },
             "custom_price": {
                 "label": "Ürün Müşteri Fiyatı"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Paketlere ürün ekle",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Anladım",
+                "description": "Bir paket en az iki ürün gerektirdiğinden, bu ürün aşağıdaki paketlerden kaldırılamadı:",
+                "hint": "Bu ürünü kaldırmak için önce bu paketlere başka bir ürün ekleyin.",
+                "title": "Ürün tüm paketlerden kaldırılamadı"
+            },
+            "bundleCardSubtitle": "Bu ürünü içeren tüm paketler",
+            "bundleCardTitle": "Paketler ({count})",
+            "buttonAddBundle": "Paketlere ürün ekle",
+            "buttonAddBundleLanguageWarning": "Paket eklemek yalnızca sistem varsayılan dilinde mümkündür.",
+            "buttonCreateBundle": "Paket oluştur",
+            "buttonManageBundles": "Paketleri yönet",
+            "columnActive": "Aktif",
+            "columnAvailability": "Kullanılabilirlik",
+            "columnBundleItemCount": "Ürün Sayısı",
+            "columnCreatedAt": "Oluşturulan",
+            "columnName": "İsim",
+            "columnProductNumber": "Ürün numarası",
+            "columnSales": "Satış",
+            "columnShowBundleOnItemPdp": "Detay sayfasında göster",
+            "columnUpdatedAt": "Güncelleme",
+            "emptyStateDescription": "Paketler ortalama sipariş değerini artırabilir ve müşterileri ilgili ürünleri satın almaya teşvik edebilir. CMS düzeni bir paket öğesi içeriyorsa, paketler ürün ayrıntı sayfasında görünür.",
+            "emptyStateDescriptionCreateFirst": "Paketler ortalama sipariş değerini artırabilir ve müşterileri ilgili ürünleri satın almaya teşvik edebilir. CMS düzeni bir paket öğesi içeriyorsa, paketler ürün ayrıntı sayfasında görünür. Bu ürünü eklemek için bir paket oluşturun.",
+            "emptyStateNoBundlesFound": "Eşleşen paket bulunamadı",
+            "emptyStateNoBundlesFoundDescription": "Arama terimini veya filtrelerini ayarlayın.",
+            "emptyStateTitle": "Satışları artırmak için paketlere ürün ekleyin",
+            "hideOnProductDetailPage": "Ürün detay sayfasında gizle",
+            "messageSaveSuccess": "Paket \"{name}\" kaydedildi.",
+            "openBundlesDetail": "Paket ayrıntılarını aç",
+            "placeholderSearch": "Paketleri ara...",
+            "refreshDataTooltip": "Verileri yenileme",
+            "showOnProductDetailPage": "Ürün detay sayfasında göster",
+            "showOnlyIncluded": "Sadece seçili göster",
+            "tooltipBundleHasRestrictions": "Bir veya daha fazla ürünün bu paketin kullanılabilirliğini etkileyen kısıtlamaları vardır. Daha fazla bilgi için paket ayrıntılarını ziyaret edin.",
+            "tooltipBundleInactive": "Etkin değil",
+            "tooltipBundleIssues": "Sorunlar:",
+            "tooltipBundleMismatchedSalesChannels": "Ürünün Satış Kanallarına atanmamış: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Bu ürün kaldırılamaz çünkü paketler en az iki ürün gerektirir."
+        },
         "card": {
             "textHeadline": "Stok ve Teslim Edilebilirlik",
             "textLinkModal": "Stokları depolara ve depo gruplarına göre görün",
             "textProductWarehouseModalDisabled": "Daha fazla stok ayrıntısını açmadan önce değişikliklerinizi kaydedin.",
             "textTooltipMultiSelect": "Stoğunuzu birden fazla depoda ayrı ayrı yönetmek için depo grupları atayın."
+        },
+        "detail": {
+            "tabBundle": "Paketler"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Kapat",
@@ -1986,6 +2359,9 @@
             "tabStock": "Stok",
             "textHeadline": "Depo ve depo gruplarına göre stok",
             "textInlineEdit": "Stok düzenle"
+        },
+        "type": {
+            "grouped_bundle": "Paket"
         },
         "variants-overview": {
             "inlineText": "Ayrıntıları görün"
@@ -2542,6 +2918,16 @@
             "emptyText": "Boş sahne"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Paket ürün detay sayfası"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Tekliflerdeki siparişlere promosyon kodlarına izin ver"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Dostça Captcha",
+                "friendlyCaptchaApiKey": "Dostu Captcha API anahtarı",
                 "friendlyCaptchaDescription": "İş kanıtı mekanizmalarına ve gelişmiş risk sinyallerine dayanan Friendly Captcha, web sitelerinizi ve çevrimiçi hizmetlerinizi spam ve botlardan güvenli bir şekilde korumak için temelde yeni bir yaklaşım kullanır.",
+                "friendlyCaptchaRegion": "API bölgesi",
+                "friendlyCaptchaRegionEu": "AB (Avrupa Birliği)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Tüm captcha isteklerini yalnızca Avrupa sunucuları üzerinden yönlendirmek için “AB” yi seçin. Bu, GDPR uyumluluğu için geçerli olabilir.",
                 "friendlyCaptchaSecretKey": "Dostu Captcha gizli anahtarı",
-                "friendlyCaptchaSiteKey": "Dostu Captcha site anahtarı"
+                "friendlyCaptchaSiteKey": "Dostu Captcha site anahtarı",
+                "friendlyCaptchaV1DeprecationNotice": "Sürüm 1 eski bir sürümdür ve gelecekteki bir sürümde kaldırılacaktır. Geliştirilmiş güvenlik ve daha temiz bir widget deneyimi için Sürüm 2'ye yükseltmenizi öneririz.",
+                "friendlyCaptchaVersion": "Dostu Captcha sürümü",
+                "friendlyCaptchaVersionV1": "Sürüm 1 (eski)",
+                "friendlyCaptchaVersionV2": "Sürüm 2 (yeni)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "İptal",
         "retry": "Yeniden Dene"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Düzgün ölçeği kilitle",
-        "unlock-uniform-scale": "Düzgün ölçeğin kilidini açın"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Müşterileriniz, kuruluş birimlerinin harcamalarını daha iyi kontrol etmek için bütçe sınırlarını tanımlayabilir ve yönetebilir.",
         "budgetManagementName": "Bütçeler",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Sipariş Onayı",
                     "ORGANIZATION_UNITS": "Organizasyon Birimleri",
                     "QUICK_ORDER": "Hızlı Siparişler",
-                    "QUOTE_MANAGEMENT": "Teklif Yönetimi"
+                    "QUOTE_MANAGEMENT": "Teklif Yönetimi",
+                    "SHOPPING_LISTS": "Alışveriş Listeleri"
                 },
                 "template": "{name}için {dependency} gereklidir"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "İsim",
             "columnOrderQuantity": "Sipariş miktarı",
             "columnReturnQuantity": "İade miktarı",
+            "includesShippingCosts": "Nakliye masrafları dahil",
             "messageErrorNoItemHasQuantity": "İade oluşturmak için en az 1 satır öğenin miktarı 0'dan fazla olmalıdır",
             "messagePreventAddItem": "Bu ürün zaten iadenin bir parçasıdır veya durumu İptal Edildi, İade Edildi veya Kısmen İade Edildi.",
             "placeholderComment": "Yorum girin...",

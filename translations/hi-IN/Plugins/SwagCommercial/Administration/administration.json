@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "सदस्यता छोड़ने की स्थिति रोकी गई"
         },
         "entities": {
+            "b2b_components_individual_pricing": "व्यक्तिगत मूल्य निर्धारण",
             "b2b_components_role": "भूमिका | भूमिकाएं",
             "b2b_components_shopping_list": "शॉपिंग सूचियां",
             "b2b_employee": "कर्मचारी | कर्मचारी",
+            "bundle": "बंडल | बंडल",
+            "bundle_item": "बंडल आइटम | बंडल आइटम",
             "export_assistant": "सहायक निर्यात करें",
-            "individual_pricing": "व्यक्तिगत मूल्य निर्धारण",
             "quote": "उद्धरण | कोट्स",
             "quote_line_item": "कोट लाइन आइटम | कोट लाइन आइटम",
             "search_assistant": "एआई कोपिलॉट",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "आइटम बंडल आइटम है",
+                "lineItemOfBundleRule": "चयनित बंडल का आइटम",
                 "subscriptionCartRule": "सब्सक्रिप्शन कार्ट",
                 "subscriptionIntervalRule": "सब्सक्रिप्शन अंतराल",
                 "subscriptionPlanRule": "सब्सक्रिप्शन प्लान"
             },
             "group": {
                 "subscription": "सब्सक्रिप्शन"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "बंडल"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "बंडल्स ब्लूप्रिंट आज़माने के लिए धन्यवाद। हमें आपका फ़ीडबैक सुनना अच्छा लगेगा।",
+                "link": "फीडबैक दें"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "मनपसंद फ़ील्ड्स"
+            },
+            "general": {
+                "title": "सामान्य जानकारी"
+            },
+            "items": {
+                "actionOpenProductDetails": "प्रॉडक्ट की जानकारी खोलें",
+                "buttonAddBundleItems": "उत्पाद जोड़ें",
+                "columnName": "नाम",
+                "columnPosition": "स्थिति",
+                "columnPrice": "मूल्य",
+                "emptyStateDescription": "बंडल में कम से कम दो उत्पाद जोड़ें।",
+                "emptyStateTitle": "अभी तक कोई उत्पाद नहीं जोड़ा गया",
+                "title": "उत्पाद ({count})",
+                "tooltipBundleItemCustomizedProduct": "कस्टम उत्पाद टेम्पलेट असाइन किया गया",
+                "tooltipBundleItemHasVariants": "प्रोडक्ट के वेरिएंट हैं",
+                "tooltipBundleItemInactive": "निष्क्रिय",
+                "tooltipBundleItemIncompatibleVisibilities": "बंडल के सेल्स चैनल को असाइन नहीं किया गया: {salesChannels}",
+                "tooltipBundleItemIssues": "समस्याएँ:",
+                "tooltipBundleItemOutOfStockCloseout": "आउट ऑफ स्टॉक (क्लीयरेंस सेल)",
+                "tooltipBundleItemOutOfStockTemporary": "यह उत्पाद अभी स्टॉक से बाहर है। सभी उत्पादों के स्टॉक में वापस आने के बाद बंडल फिर से खरीदने योग्य हो जाएगा।",
+                "tooltipBundleItemOutOfStockTitle": "आउट ऑफ स्टॉक",
+                "tooltipRefreshData": "डेटा रिफ्रेश करें"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "रिलीज की तारीख",
+                    "placeholder": "रिलीज तारीख़ भरें..."
+                },
+                "title": "लेबलिंग"
+            },
+            "media": {
+                "subtitle": "बंडल की मीडिया गैलरी में फ़ाइलें जोड़ें।",
+                "title": "मीडिया"
+            },
+            "messageMinBundleItemsRequired": "बंडल बनाने के लिए कम से कम दो उत्पाद जोड़ें।",
+            "messageNoChanges": "सहेजने के लिए कोई बदलाव नहीं",
+            "messageSaveError": "बंडल सहेजने में विफल",
+            "messageSaveSuccess": "बंडल सफलतापूर्वक सहेजा गया",
+            "price": {
+                "addDiscount": "छूट जोड़ें",
+                "currencyDependingPrices": "कीमतों के आधार पर मुद्रा",
+                "discount": "डिस्काउंट",
+                "discountRules": "छूट के नियम",
+                "discountTitle": "डिस्काउंट",
+                "discountType": "टाइप करें",
+                "discountTypeAbsolute": "निरपेक्ष",
+                "discountTypePercentage": "प्रतिशत",
+                "discountValue": "मूल्य",
+                "discountValuePlaceholder": "मान जोड़ें...",
+                "doNotCombineWith": "साथ गठबंधन मत करो",
+                "maxValuePlaceholder": "अनलिमिटेड",
+                "maximumDiscountValue": "अधिकतम छूट मूल्य",
+                "openAdvancedPricesView": "उन्नत मूल्य दृश्य खोलें",
+                "preventCombination": "अन्य प्रचारों के साथ संयोजन को रोकें",
+                "preventCombinationHelpText": "सक्षम होने पर, इस छूट को अन्य प्रचारों के साथ नहीं जोड़ा जा सकता है",
+                "promotionsPlaceholder": "प्रचार जोड़ें...",
+                "rulesPlaceholder": "नियम जोड़ें...",
+                "subtotalBased": "1 उत्पाद पर आधारित सबटोटल | {count} उत्पादों पर आधारित सबटोटल",
+                "title": "प्रदर्शन की कीमतें",
+                "total": "कुल",
+                "totalBased": "कुल 1 उत्पाद पर आधारित | कुल {count} उत्पादों पर आधारित"
+            },
+            "tabGeneral": "साधारण",
+            "tabLayout": "ख़ाका",
+            "tabSeo": "एसईओ",
+            "textHeadline": "नया बंडल",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "यह बंडल को उन चैनलों में दिखाई देने से रोकता है। कृपया इन प्रॉडक्ट की विज़िबिलिटी की जांच करें:",
+                    "notAssignedTo": "को असाइन नहीं किया गया",
+                    "title": "कुछ उत्पाद सभी चयनित बिक्री चैनलों को असाइन नहीं किए गए हैं"
+                },
+                "title": "दृश्यता और संरचना"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "सक्रिय",
+                "placeholder": "एक स्थिति चुनें..."
+            },
+            "availabilityFilter": {
+                "label": "उपलब्धता",
+                "placeholder": "उपलब्धता चुनें..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "शामिल उत्पाद",
+                "placeholder": "शामिल उत्पादों का चयन करें..."
+            },
+            "categoriesFilter": {
+                "label": "श्रेणियाँ",
+                "placeholder": "श्रेणियाँ चुनें..."
+            },
+            "fromPlaceholder": "प्रारंभ मान दर्ज करें...",
+            "imagesFilter": {
+                "label": "छवियाँ",
+                "placeholder": "छवि स्थिति चुनें...",
+                "textHasCriteria": "कम से कम एक उत्पाद छवि सौंपा",
+                "textNoCriteria": "कोई उत्पाद छवि असाइन नहीं की गई"
+            },
+            "priceFilter": {
+                "label": "मूल्य"
+            },
+            "productNumberFilter": {
+                "label": "उत्पाद संख्या",
+                "placeholder": "उत्पाद क्रमांक दर्ज करें..."
+            },
+            "releaseDateFilter": {
+                "label": "रिलीज की तारीख"
+            },
+            "salesChannelsFilter": {
+                "label": "बिक्री चैनल",
+                "placeholder": "विक्रय चैनल चुनें..."
+            },
+            "salesFilter": {
+                "label": "विक्रय"
+            },
+            "tagsFilter": {
+                "label": "टैग",
+                "placeholder": "टैग चुनें..."
+            },
+            "toPlaceholder": "अंत मूल्य भरें..."
+        },
+        "general": {
+            "description": "गट्ठों",
+            "headlineBundles": "गट्ठों",
+            "mainMenuItemGeneral": "गट्ठों",
+            "placeholderSearchBar": "बंडल खोजें...",
+            "title": "गट्ठों"
+        },
+        "generalForm": {
+            "highlightHelpText": "हाइलाइट किए गए बंडलों को चमकीले रंग के लेबल और सभी बंडल लिस्टिंग में “टिप” शब्द के साथ चिह्नित किया जाता है। आप <a href=\"{themeUrl}\">थीम</a> सेटिंग में “नोटिस” विकल्प को बदलकर लेबल का रंग समायोजित कर सकते हैं। आप संबंधित <a href=\"{snippetUrl}\">टेक्स्ट स्निपेट</a> को संपादित करके भी लेबल के टेक्स्ट को बदल सकते हैं।",
+            "labelDescription": "विवरण",
+            "labelMarkAsTopseller": "बंडल को हाइलाइट करें",
+            "labelName": "नाम",
+            "labelProductNumber": "उत्पाद संख्या",
+            "placeholderDescription": "बंडल विवरण दर्ज करें...",
+            "placeholderName": "बंडल नाम दर्ज करें...",
+            "placeholderProductNumber": "उत्पाद क्रमांक दर्ज करें..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "एक बंडल के लिए कम से कम दो उत्पादों की आवश्यकता होती है।",
+            "notEnoughProductsTitle": "पर्याप्त उत्पाद नहीं",
+            "restrictions": "एक या अधिक उत्पादों में प्रतिबंध हैं जो इस बंडल की उपलब्धता को प्रभावित करते हैं। विवरण के लिए चेतावनी चिह्न देखें।",
+            "restrictionsTitle": "कुछ उत्पादों पर प्रतिबंध हैं"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "कोई मिलान उत्पाद नहीं मिला",
+            "noProductsMatchingBundleSalesChannels": "ऐसे कोई सक्रिय उत्पाद नहीं हैं जो बंडल के चयनित सेल्स चैनल से मेल खाते हों।",
+            "noProductsMatchingTermAndFilter": "खोज शब्द या फ़िल्टर को समायोजित करें।",
+            "placeholderSearch": "खोज उत्पादों...",
+            "showIncluded": "केवल चयनित दिखाएं ({count})",
+            "textWhySomeItemsMissing": "कुछ उत्पाद क्यों गायब हैं?",
+            "title": "उत्पाद जोड़ें",
+            "tooltipVariant": "वेरिएन्ट",
+            "tooltipWhySomeItemsMissing": "अभी, बंडल केवल भौतिक उत्पादों और एकल प्रकारों के साथ काम करते हैं। <br /><br /> उत्पादों को सूची में प्रदर्शित होने के लिए बंडल के चयनित बिक्री चैनलों को असाइन किया जाना चाहिए।"
+        },
+        "list": {
+            "available": "उपलब्ध",
+            "buttonAddBundle": "बंडल जोड़ें",
+            "columnActive": "सक्रिय",
+            "columnAvailable": "उपलब्धता",
+            "columnBundleItemCount": "उत्पादों की संख्या",
+            "columnCreatedAt": "पर बनाया गया",
+            "columnName": "नाम",
+            "columnProductNumber": "उत्पाद संख्या",
+            "columnSales": "विक्रय",
+            "columnTotalPrice": "कुल कीमत",
+            "columnUpdatedAt": "अपडेट किया गया",
+            "emptyStateDescription": "बंडल आपके औसत ऑर्डर मूल्य को बढ़ा सकते हैं और ग्राहकों को संबंधित उत्पाद खरीदने के लिए प्रोत्साहित कर सकते हैं।",
+            "emptyStateTitle": "बिक्री बढ़ाने के लिए बंडल जोड़ें",
+            "messageSaveSuccess": "बंडल \"{name}\" सहेजा गया है।",
+            "titleSidebarItemRefresh": "ताज़ा करें",
+            "unavailable": "अनुपलब्ध"
+        },
+        "priceModal": {
+            "currency": "मुद्रा",
+            "price": "मूल्य",
+            "title": "उन्नत कीमतें"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "उत्पाद जोड़ें",
+            "description": "यह देखने के लिए कि बंडल में कौन से उत्पाद जोड़े जा सकते हैं, पहले सेल्स चैनल चुनें। आप इसे बाद में विजिबिलिटी और स्ट्रक्चर कार्ड में एडजस्ट कर सकते हैं।",
+            "title": "सेल्स चैनल आवश्यक है"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "इमेज जेनरेट करें",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "बंडल का वर्णन"
+                },
+                "bundleHeading": {
+                    "label": "बंडल का नाम"
+                },
+                "bundleItems": {
+                    "label": "बंडल आइटम"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "इमेज गैलरी और बंडल बाय बॉक्स"
+                },
+                "recommendedBundles": {
+                    "label": "अनुशंसित बंडल"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "डिफ़ॉल्ट लेआउट - उत्पाद बंडल पेज",
+                "setAsDefaultBundleDetail": "उत्पाद बंडल पेज डिफ़ॉल्ट के रूप में सेट करें"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "बंडल पेज"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "इमेज जेनरेट करें",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "इस तत्व का उत्पाद डेटा स्वचालित रूप से इस लेआउट से जुड़े उत्पाद द्वारा लोड किया जाता है। सामग्री सिर्फ एक नमूना पूर्वावलोकन दिखाती है।"
+                },
+                "label": "बंडल बाय बॉक्स"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "इस तत्व का उत्पाद डेटा स्वचालित रूप से इस लेआउट से जुड़े उत्पाद द्वारा लोड किया जाता है। सामग्री सिर्फ एक नमूना पूर्वावलोकन दिखाती है।"
+                },
+                "label": "बंडल का वर्णन",
+                "preview": {
+                    "descriptionTab": "विवरण",
+                    "title": "बंडल"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "उत्पाद विवरण पृष्ठ खोलने के बजाय बंडल आइटम को सीधे कार्ट में जोड़ने की अनुमति देता है।",
+                        "labelTitle": "बंडल में उत्पादों की संख्या प्रदर्शित करने के लिए {count} का उपयोग करें।"
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "इस तत्व का उत्पाद डेटा स्वचालित रूप से इस लेआउट से जुड़े उत्पाद द्वारा लोड किया जाता है। सामग्री सिर्फ एक नमूना पूर्वावलोकन दिखाती है।"
+                    },
+                    "label": {
+                        "boxSettings": "उत्पाद बॉक्स सेटिंग्स",
+                        "cta": "बंडल आइटम को सीधे कार्ट में जोड़ने के लिए CTA दिखाएं",
+                        "minWidth": "न्यूनतम चौड़ाई",
+                        "title": "शीर्षक"
+                    }
+                },
+                "label": "शामिल उत्पाद"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "इस तत्व का बंडल डेटा स्वचालित रूप से इस लेआउट से जुड़े बंडल द्वारा लोड किया जाता है। सामग्री सिर्फ नमूना पूर्वावलोकन दिखाती है।"
+                },
+                "label": "बंडल का नाम"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "सक्षम होने पर, प्रारंभ में बंडलों का केवल एक सबसेट दिखाया जाता है। अधिक दिखाने के लिए उपयोगकर्ता सूची का विस्तार कर सकते हैं।",
+                        "maxVisibleBundles": "नियंत्रित करता है कि कितने बंडल तब तक दिखाए जाएंगे जब तक वे “अधिक दिखाएं” कार्यक्षमता के पीछे छिपे नहीं हो जाते।",
+                        "productBoxSettings": "उत्पाद बॉक्स सेटिंग्स",
+                        "productDetailElement": "इस तत्व का उत्पाद डेटा स्वचालित रूप से इस लेआउट से जुड़े उत्पाद द्वारा लोड किया जाता है। सामग्री सिर्फ एक नमूना पूर्वावलोकन दिखाती है।",
+                        "showCTAInfo": "उत्पाद विवरण पृष्ठ खोलने के बजाय बंडल आइटम को सीधे कार्ट में जोड़ने की अनुमति देता है।",
+                        "sliderSettings": "स्लाइडर सेटिंग्स"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "प्रारंभ में दिखाए गए बंडलों की संख्या सीमित करें",
+                        "maxVisibleBundles": "शुरू में दिखाए गए बंडल",
+                        "minWidth": "न्यूनतम चौड़ाई",
+                        "recommendedCombinationsTitle": "अनुशंसित संयोजन",
+                        "showBundleName": "बंडल का नाम दिखाएं",
+                        "showCTA": "बंडल आइटम को सीधे कार्ट में जोड़ने के लिए CTA दिखाएं",
+                        "showCurrentProduct": "वर्तमान में देखे गए उत्पाद को पहले बंडल में दिखाएं",
+                        "title": "शीर्षक"
+                    },
+                    "placeholder": {
+                        "minWidth": "न्यूनतम चौड़ाई भरें...",
+                        "title": "अनुशंसित संयोजन"
+                    }
+                },
+                "label": "अनुशंसित संयोजन",
+                "preview": {
+                    "label": {
+                        "title": "अनुशंसित संयोजन"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "इमेज जेनरेट करें",
             "contentText": "AI जेनरेटेड इमेज की मदद से अपने लेआउट को कस्टमाइज़ करने के लिए अपनी खुद की मूड इमेज बनाएं।",
             "header": "एआई कोपिलॉट"
+        },
+        "tags": {
+            "bundle": "बंडल"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "संगठन इकाई के पते",
                             "pending_order": "लंबित ऑर्डर प्रबंधन",
                             "quote": "उद्धरण प्रबंधन",
-                            "role": "भूमिका प्रबंधन"
+                            "role": "भूमिका प्रबंधन",
+                            "subscription": "सदस्यता ऑर्डर करें"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "शिपिंग पता डिलीट करें",
                                     "update": "शिपिंग पता संपादित करें"
                                 },
+                                "subscription": {
+                                    "read": "असाइन की गई संगठन इकाई से सभी ऑर्डर सदस्यताएं देखें"
+                                },
                                 "update": "संगठन इकाई संपादित करें"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "भूमिकाओं को हटा सकते हैं",
                                 "edit": "भूमिकाएँ संपादित कर सकते हैं",
                                 "read": "भूमिकाएं देख सकते हैं"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "सभी ऑर्डर सदस्यताएं देखें"
+                                }
                             }
                         },
                         "switchAllLabel": "सभी अनुमतियां"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "भूमिका प्रबंधन"
             },
+            "bundle": {
+                "label": "गट्ठों"
+            },
             "custom_price": {
                 "label": "उत्पाद ग्राहक मूल्य"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "बंडलों में उत्पाद जोड़ें",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "समझ गया",
+                "description": "इस उत्पाद को निम्नलिखित बंडलों से हटाया नहीं जा सका क्योंकि एक बंडल के लिए कम से कम दो उत्पादों की आवश्यकता होती है:",
+                "hint": "इस उत्पाद को निकालने के लिए, पहले इन बंडलों में कोई अन्य उत्पाद जोड़ें।",
+                "title": "प्रोडक्ट को सभी बंडलों से हटाया नहीं जा सका"
+            },
+            "bundleCardSubtitle": "इस उत्पाद वाले सभी बंडल",
+            "bundleCardTitle": "बंडल ({count})",
+            "buttonAddBundle": "बंडलों में उत्पाद जोड़ें",
+            "buttonAddBundleLanguageWarning": "बंडल जोड़ना केवल सिस्टम डिफ़ॉल्ट भाषा में ही संभव है।",
+            "buttonCreateBundle": "बंडल बनाएं",
+            "buttonManageBundles": "बंडलों को प्रबंधित करें",
+            "columnActive": "सक्रिय",
+            "columnAvailability": "उपलब्धता",
+            "columnBundleItemCount": "उत्पादों की संख्या",
+            "columnCreatedAt": "पर बनाया गया",
+            "columnName": "नाम",
+            "columnProductNumber": "उत्पाद संख्या",
+            "columnSales": "विक्रय",
+            "columnShowBundleOnItemPdp": "विवरण पृष्ठ पर दिखाएं",
+            "columnUpdatedAt": "अपडेट किया गया",
+            "emptyStateDescription": "बंडल औसत ऑर्डर मूल्य बढ़ा सकते हैं और ग्राहकों को संबंधित उत्पाद खरीदने के लिए प्रोत्साहित कर सकते हैं। यदि CMS लेआउट में बंडल तत्व शामिल है, तो बंडल उत्पाद विवरण पृष्ठ पर दिखाई देते हैं।",
+            "emptyStateDescriptionCreateFirst": "बंडल औसत ऑर्डर मूल्य बढ़ा सकते हैं और ग्राहकों को संबंधित उत्पाद खरीदने के लिए प्रोत्साहित कर सकते हैं। यदि CMS लेआउट में बंडल तत्व शामिल है, तो बंडल उत्पाद विवरण पृष्ठ पर दिखाई देते हैं। इस उत्पाद को जोड़ने के लिए एक बंडल बनाएं।",
+            "emptyStateNoBundlesFound": "कोई मेल खाने वाला बंडल नहीं मिला",
+            "emptyStateNoBundlesFoundDescription": "खोज शब्द या फ़िल्टर को समायोजित करें।",
+            "emptyStateTitle": "बिक्री को बढ़ावा देने के लिए बंडलों में उत्पाद जोड़ें",
+            "hideOnProductDetailPage": "उत्पाद विवरण पृष्ठ पर छिपाएँ",
+            "messageSaveSuccess": "बंडल \"{name}\" सहेजा गया है।",
+            "openBundlesDetail": "बंडल विवरण खोलें",
+            "placeholderSearch": "बंडल खोजें...",
+            "refreshDataTooltip": "डेटा रिफ्रेश करें",
+            "showOnProductDetailPage": "उत्पाद विवरण पृष्ठ पर दिखाएं",
+            "showOnlyIncluded": "केवल चयनित दिखाएँ",
+            "tooltipBundleHasRestrictions": "एक या अधिक उत्पादों में प्रतिबंध हैं जो इस बंडल की उपलब्धता को प्रभावित करते हैं। अधिक जानकारी के लिए बंडल विवरण पर जाएं।",
+            "tooltipBundleInactive": "निष्क्रिय",
+            "tooltipBundleIssues": "समस्याएँ:",
+            "tooltipBundleMismatchedSalesChannels": "उत्पाद के बिक्री चैनलों को असाइन नहीं किया गया: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "इस उत्पाद को हटाया नहीं जा सकता क्योंकि बंडलों के लिए कम से कम दो उत्पादों की आवश्यकता होती है।"
+        },
         "card": {
             "textHeadline": "स्टॉक और डिलिवरेबिलिटी",
             "textLinkModal": "वेयरहाउस और वेयरहाउस समूहों द्वारा स्टॉक देखें",
             "textProductWarehouseModalDisabled": "इससे पहले कि आप और स्टॉक विवरण खोल सकें, अपने परिवर्तनों को सहेजें।",
             "textTooltipMultiSelect": "कई वेयरहाउस में व्यक्तिगत रूप से अपने स्टॉक का प्रबंधन करने के लिए वेयरहाउस समूहों को असाइन करें।"
+        },
+        "detail": {
+            "tabBundle": "गट्ठों"
         },
         "modal-warehouse-group": {
             "buttonCancel": "बंद करें",
@@ -1986,6 +2359,9 @@
             "tabStock": "स्टॉक",
             "textHeadline": "वेयरहाउस और वेयरहाउस समूहों द्वारा स्टॉक",
             "textInlineEdit": "स्टॉक संपादित करें"
+        },
+        "type": {
+            "grouped_bundle": "बंडल"
         },
         "variants-overview": {
             "inlineText": "विवरण देखें"
@@ -2542,6 +2918,16 @@
             "emptyText": "खाली दृश्य"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "बंडल उत्पाद विवरण पृष्ठ"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "प्रमोशन कोड को कोट्स से ऑर्डर करने की अनुमति दें"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "फ्रेंडली कैप्चा",
+                "friendlyCaptchaApiKey": "अनुकूल कैप्चा API कुंजी",
                 "friendlyCaptchaDescription": "प्रूफ-ऑफ-वर्क मैकेनिज्म और एडवांस रिस्क सिग्नल के आधार पर, Friendly Captcha स्पैम और बॉट्स से आपकी वेबसाइटों और ऑनलाइन सेवाओं की सुरक्षित रूप से रक्षा करने के लिए एक मौलिक रूप से नया तरीका अपनाता है।",
+                "friendlyCaptchaRegion": "API क्षेत्र",
+                "friendlyCaptchaRegionEu": "EU (यूरोपियन यूनियन)",
+                "friendlyCaptchaRegionGlobal": "ग्लोबल",
+                "friendlyCaptchaRegionHelpText": "सभी कैप्चा अनुरोधों को विशेष रूप से यूरोपीय सर्वरों के माध्यम से रूट करने के लिए “EU” चुनें। यह GDPR अनुपालन के लिए प्रासंगिक हो सकता है।",
                 "friendlyCaptchaSecretKey": "मित्रवत कैप्चा गुप्त कुंजी",
-                "friendlyCaptchaSiteKey": "अनुकूल कैप्चा साइट कुंजी"
+                "friendlyCaptchaSiteKey": "अनुकूल कैप्चा साइट कुंजी",
+                "friendlyCaptchaV1DeprecationNotice": "वर्शन 1 लीगेसी है और इसे भविष्य में रिलीज़ होने पर हटा दिया जाएगा। हम बेहतर सुरक्षा और स्वच्छ विजेट अनुभव के लिए संस्करण 2 में अपग्रेड करने की सलाह देते हैं।",
+                "friendlyCaptchaVersion": "दोस्ताना कैप्चा संस्करण",
+                "friendlyCaptchaVersionV1": "संस्करण 1 (विरासत)",
+                "friendlyCaptchaVersionV2": "संस्करण 2 (नया)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "रद्द करें",
         "retry": "पुनः प्रयास करें"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "यूनिफ़ॉर्म स्केल लॉक करें",
-        "unlock-uniform-scale": "यूनिफ़ॉर्म स्केल अनलॉक करें"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "आपके ग्राहक अपनी संगठन इकाइयों के खर्च को बेहतर ढंग से नियंत्रित करने के लिए बजट सीमाओं को परिभाषित और प्रबंधित कर सकते हैं।",
         "budgetManagementName": "बजट",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "ऑर्डर की स्वीकृति",
                     "ORGANIZATION_UNITS": "संगठन इकाइयां",
                     "QUICK_ORDER": "क्विक ऑर्डर्स",
-                    "QUOTE_MANAGEMENT": "उद्धरण प्रबंधन"
+                    "QUOTE_MANAGEMENT": "उद्धरण प्रबंधन",
+                    "SHOPPING_LISTS": "शॉपिंग सूचियां"
                 },
                 "template": "{name}के लिए {dependency} आवश्यक है"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "नाम",
             "columnOrderQuantity": "आदेश मात्रा",
             "columnReturnQuantity": "वापसी की मात्रा",
+            "includesShippingCosts": "जिसमें शिपिंग लागत भी शामिल है",
             "messageErrorNoItemHasQuantity": "रिटर्न बनाने के लिए कम से कम 1 लाइन आइटम की मात्रा 0 से अधिक होनी चाहिए",
             "messagePreventAddItem": "यह आइटम पहले से ही रिटर्न का हिस्सा है या इसकी स्थिति रद्द कर दी गई है, वापस की गई है, या आंशिक रूप से वापस की गई है।",
             "placeholderComment": "टिप्पणी दर्ज करें...",

@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Abonnement etterlater status på pause"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuell prissetting",
             "b2b_components_role": "Rolle | Roller",
             "b2b_components_shopping_list": "Handlelister",
             "b2b_employee": "Ansatte | Ansatte",
+            "bundle": "Bundle | Pakker",
+            "bundle_item": "Pakkevare | Pakkeelementer",
             "export_assistant": "Eksportassistent",
-            "individual_pricing": "Individuell prissetting",
             "quote": "Sitat | Sitater",
             "quote_line_item": "Tilbudslinjeelement | Tilbudslinjeelementer",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Varen er bunkevare",
+                "lineItemOfBundleRule": "Vare av valgt pakke",
                 "subscriptionCartRule": "Abonnementskurv",
                 "subscriptionIntervalRule": "Abonnementsintervall",
                 "subscriptionPlanRule": "Abonnementsplan"
             },
             "group": {
                 "subscription": "Abonnement"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Bunt"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Takk for at du prøvde ut Bundles-planen. Vi vil gjerne høre tilbakemeldingene dine.",
+                "link": "Gi tilbakemelding"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Egendefinerte felt"
+            },
+            "general": {
+                "title": "Generell informasjon"
+            },
+            "items": {
+                "actionOpenProductDetails": "Åpne produktdetaljer",
+                "buttonAddBundleItems": "Legg til produkter",
+                "columnName": "Navn",
+                "columnPosition": "Posisjon",
+                "columnPrice": "Pris",
+                "emptyStateDescription": "Legg til minst to produkter i pakken.",
+                "emptyStateTitle": "Ingen produkter lagt til ennå",
+                "title": "Produkter ({count})",
+                "tooltipBundleItemCustomizedProduct": "Tilordnet egendefinert produktmal",
+                "tooltipBundleItemHasVariants": "Produktet har varianter",
+                "tooltipBundleItemInactive": "Inaktiv",
+                "tooltipBundleItemIncompatibleVisibilities": "Ikke tilordnet til pakkens salgskanaler: {salesChannels}",
+                "tooltipBundleItemIssues": "Problemer:",
+                "tooltipBundleItemOutOfStockCloseout": "Ikke på lager (Utsalg)",
+                "tooltipBundleItemOutOfStockTemporary": "Dette produktet er for øyeblikket utsolgt. Pakken vil bli kjøpbar igjen når alle produktene er tilbake på lager.",
+                "tooltipBundleItemOutOfStockTitle": "Ikke på lager",
+                "tooltipRefreshData": "Oppdater data"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Utgivelsesdato",
+                    "placeholder": "Angi utgivelsesdato..."
+                },
+                "title": "Merking"
+            },
+            "media": {
+                "subtitle": "Legg til filer i pakkens mediegalleri.",
+                "title": "Medier"
+            },
+            "messageMinBundleItemsRequired": "Legg til minst to produkter for å lage pakken.",
+            "messageNoChanges": "Ingen endringer å lagre",
+            "messageSaveError": "Kan ikke lagre pakken",
+            "messageSaveSuccess": "Pakken ble lagret med hell",
+            "price": {
+                "addDiscount": "Legg til rabatt",
+                "currencyDependingPrices": "Valuta avhengig av priser",
+                "discount": "Rabatt",
+                "discountRules": "Rabattregler",
+                "discountTitle": "Rabatt",
+                "discountType": "Type",
+                "discountTypeAbsolute": "absolutte",
+                "discountTypePercentage": "Prosent",
+                "discountValue": "Verdi",
+                "discountValuePlaceholder": "Legg til verdi...",
+                "doNotCombineWith": "Ikke kombiner med",
+                "maxValuePlaceholder": "Ubegrenset",
+                "maximumDiscountValue": "Maksimal rabattverdi",
+                "openAdvancedPricesView": "Vis avanserte priser",
+                "preventCombination": "Forhindre kombinasjon med andre kampanjer",
+                "preventCombinationHelpText": "Når den er aktivert, kan denne rabatten ikke kombineres med andre kampanjer",
+                "promotionsPlaceholder": "Legg til kampanjer...",
+                "rulesPlaceholder": "Legg til regler...",
+                "subtotalBased": "Delsum basert på 1 produkt | Delsum basert på {count} produkter",
+                "title": "Vis priser",
+                "total": "Totalt",
+                "totalBased": "Totalt basert på 1 produkt | Totalt basert på {count} produkter"
+            },
+            "tabGeneral": "Generell",
+            "tabLayout": "Oppsett",
+            "tabSeo": "SEO",
+            "textHeadline": "Ny pakke",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Dette forhindrer at bunten blir synlig i disse kanalene. Vennligst sjekk synligheten for følgende produkter:",
+                    "notAssignedTo": "ikke tildelt",
+                    "title": "Noen produkter er ikke tilordnet alle valgte salgskanaler"
+                },
+                "title": "Synlighet og struktur"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktiv",
+                "placeholder": "Velg en status..."
+            },
+            "availabilityFilter": {
+                "label": "Tilgjengelighet",
+                "placeholder": "Velg tilgjengelighet..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Inkluderte produkter",
+                "placeholder": "Velg inkluderte produkter..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorier",
+                "placeholder": "Velg kategorier..."
+            },
+            "fromPlaceholder": "Skriv inn startverdi...",
+            "imagesFilter": {
+                "label": "Bilder",
+                "placeholder": "Velg bildestatus...",
+                "textHasCriteria": "Minst ett produktbilde tilordnet",
+                "textNoCriteria": "Ingen produktbilder tilordnet"
+            },
+            "priceFilter": {
+                "label": "Pris"
+            },
+            "productNumberFilter": {
+                "label": "Produktnummer",
+                "placeholder": "Skriv inn et produktnummer..."
+            },
+            "releaseDateFilter": {
+                "label": "Utgivelsesdato"
+            },
+            "salesChannelsFilter": {
+                "label": "Salgskanaler",
+                "placeholder": "Velg salgskanaler..."
+            },
+            "salesFilter": {
+                "label": "Salg"
+            },
+            "tagsFilter": {
+                "label": "Merker",
+                "placeholder": "Velg tagger..."
+            },
+            "toPlaceholder": "Skriv inn sluttverdi..."
+        },
+        "general": {
+            "description": "pakker",
+            "headlineBundles": "pakker",
+            "mainMenuItemGeneral": "pakker",
+            "placeholderSearchBar": "Søk etter pakker...",
+            "title": "pakker"
+        },
+        "generalForm": {
+            "highlightHelpText": "Uthevede bunter er merket med en fargerike etikett og ordet «Tips» i alle pakkelister. Du kan justere etikettens farge ved å endre alternativet «Merknad» i <a href=\"{themeUrl}\">temaer</a> innstillinger. Du kan også endre etikettens tekst ved å redigere det tilsvarende <a href=\"{snippetUrl}\">tekstutdraget</a>.",
+            "labelDescription": "Beskrivelse",
+            "labelMarkAsTopseller": "Fremhevingspakke",
+            "labelName": "Navn",
+            "labelProductNumber": "Produktnummer",
+            "placeholderDescription": "Skriv inn pakkebeskrivelse...",
+            "placeholderName": "Skriv inn pakkenavn...",
+            "placeholderProductNumber": "Skriv inn produktnummer..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "En pakke krever minst to produkter.",
+            "notEnoughProductsTitle": "Ikke nok produkter",
+            "restrictions": "Ett eller flere produkter har begrensninger som påvirker tilgjengeligheten til denne pakken. Se advarselsikonene for detaljer.",
+            "restrictionsTitle": "Noen produkter har begrensninger"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Finner ingen matchende produkter",
+            "noProductsMatchingBundleSalesChannels": "Det er ingen aktive produkter som samsvarer med pakkens valgte salgskanaler.",
+            "noProductsMatchingTermAndFilter": "Juster søkeordet eller filtrene.",
+            "placeholderSearch": "Søk etter produkter...",
+            "showIncluded": "Vis bare valgt ({count})",
+            "textWhySomeItemsMissing": "Hvorfor mangler noen produkter?",
+            "title": "Legg til produkter",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Akkurat nå fungerer bunter bare med fysiske produkter og enkeltvarianter. <br /><br /> Produkter må tilordnes pakkens valgte salgskanaler for å vises i listen."
+        },
+        "list": {
+            "available": "Tilgjengelig",
+            "buttonAddBundle": "Legg til pakke",
+            "columnActive": "Aktiv",
+            "columnAvailable": "Tilgjengelighet",
+            "columnBundleItemCount": "Antall produkter",
+            "columnCreatedAt": "Opprettet på",
+            "columnName": "Navn",
+            "columnProductNumber": "Produktnummer",
+            "columnSales": "Salg",
+            "columnTotalPrice": "Totalpris",
+            "columnUpdatedAt": "Oppdatert på",
+            "emptyStateDescription": "Pakker kan øke gjennomsnittlig bestillingsverdi og oppmuntre kunder til å kjøpe relaterte produkter.",
+            "emptyStateTitle": "Legg til pakker for å øke salget",
+            "messageSaveSuccess": "Pakken \"{name}\" er lagret.",
+            "titleSidebarItemRefresh": "Oppdater",
+            "unavailable": "Utilgjengelig"
+        },
+        "priceModal": {
+            "currency": "Valuta",
+            "price": "Verdi",
+            "title": "Avanserte priser"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Legg til produkter",
+            "description": "Velg en salgskanal først for å se hvilke produkter som kan legges til pakken. Du kan justere dette senere i Synlighet og struktur-kortet.",
+            "title": "Salgskanal kreves"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generer bilde",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Pakkebeskrivelse"
+                },
+                "bundleHeading": {
+                    "label": "Pakkenavn"
+                },
+                "bundleItems": {
+                    "label": "Pakkeelementer"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Bildegalleri og pakkekjøpsboks"
+                },
+                "recommendedBundles": {
+                    "label": "Anbefalte bunter"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Standardoppsett - Produktpakkeside",
+                "setAsDefaultBundleDetail": "Angi som standard produktpakkeside"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Pakkeside"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generer bilde",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Produktdataene til dette elementet lastes automatisk inn av produktet som er knyttet til denne layouten. Innholdet viser bare en prøveforhåndsvisning."
+                },
+                "label": "Pakkekjøpsboks"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Produktdataene til dette elementet lastes automatisk inn av produktet som er knyttet til denne layouten. Innholdet viser bare en prøveforhåndsvisning."
+                },
+                "label": "Pakkebeskrivelse",
+                "preview": {
+                    "descriptionTab": "Beskrivelse",
+                    "title": "Bunt"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Tillater å legge til bunkevarer direkte i handlekurven i stedet for å åpne produktdetaljsiden.",
+                        "labelTitle": "Bruk {count} for å vise antall produkter i pakken."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Produktdataene til dette elementet lastes automatisk inn av produktet som er knyttet til denne layouten. Innholdet viser bare en prøveforhåndsvisning."
+                    },
+                    "label": {
+                        "boxSettings": "Innstillinger for produktboks",
+                        "cta": "Vis CTA for å legge til pakkevarer direkte i handlekurven",
+                        "minWidth": "Minimal bredde",
+                        "title": "Tittel"
+                    }
+                },
+                "label": "Inkluderte produkter"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dette elementets buntdata lastes automatisk inn av bunten som er knyttet til dette oppsettet. Innholdet viser bare en forhåndsvisning."
+                },
+                "label": "Pakkenavn"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Når aktivert, vises bare et delsett av bunter først. Brukere kan utvide listen for å vise mer.",
+                        "maxVisibleBundles": "Styrer hvor mange bunter som skal vises til de blir skjult bak en «Vis mer» -funksjonalitet.",
+                        "productBoxSettings": "Innstillinger for produktboks",
+                        "productDetailElement": "Produktdataene til dette elementet lastes automatisk inn av produktet som er knyttet til denne layouten. Innholdet viser bare en prøveforhåndsvisning.",
+                        "showCTAInfo": "Tillater å legge til bunkevarer direkte i handlekurven i stedet for å åpne produktdetaljsiden.",
+                        "sliderSettings": "Slider innstillinger"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Begrens antall opprinnelig viste bunter",
+                        "maxVisibleBundles": "Pakker vist i utgangspunktet",
+                        "minWidth": "Minimal bredde",
+                        "recommendedCombinationsTitle": "Anbefalte kombinasjoner",
+                        "showBundleName": "Vis pakkenavn",
+                        "showCTA": "Vis CTA for å legge til pakkevarer direkte i handlekurven",
+                        "showCurrentProduct": "Vis produktet som er vist først i pakken",
+                        "title": "Tittel"
+                    },
+                    "placeholder": {
+                        "minWidth": "Skriv inn minimal bredde...",
+                        "title": "Anbefalte kombinasjoner"
+                    }
+                },
+                "label": "Anbefalte kombinasjoner",
+                "preview": {
+                    "label": {
+                        "title": "Anbefalte kombinasjoner"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generer bilde",
             "contentText": "Lag dine egne stemningsbilder for å tilpasse oppsettet ditt ved hjelp av AI-generert bilde.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Bunt"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organisasjonsenhetsadresser",
                             "pending_order": "Administrering av ventende ordre",
                             "quote": "Tilbudshåndtering",
-                            "role": "Rolleadministrasjon"
+                            "role": "Rolleadministrasjon",
+                            "subscription": "Bestill abonnement"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Slett leveringsadresse",
                                     "update": "Rediger leveringsadresse"
                                 },
+                                "subscription": {
+                                    "read": "Vis alle bestillingsabonnementer fra tilordnet organisasjonsenhet"
+                                },
                                 "update": "Rediger organisasjonsenhet"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Kan slette roller",
                                 "edit": "Kan redigere roller",
                                 "read": "Kan se roller"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Vis alle bestillingsabonnementer"
+                                }
                             }
                         },
                         "switchAllLabel": "Alle tillatelser"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rolleadministrasjon"
             },
+            "bundle": {
+                "label": "pakker"
+            },
             "custom_price": {
                 "label": "Produktkundepris"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Legg til produkt i pakker",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Fikk det",
+                "description": "Dette produktet kunne ikke fjernes fra følgende pakker fordi en pakke krever minst to produkter:",
+                "hint": "For å fjerne dette produktet, legg til et annet produkt i disse buntene først.",
+                "title": "Produktet kunne ikke fjernes fra alle pakker"
+            },
+            "bundleCardSubtitle": "Alle pakker som inneholder dette produktet",
+            "bundleCardTitle": "Pakker ({count})",
+            "buttonAddBundle": "Legg til produkt i pakker",
+            "buttonAddBundleLanguageWarning": "Å legge til pakker er bare mulig på systemets standardspråk.",
+            "buttonCreateBundle": "Opprett pakke",
+            "buttonManageBundles": "Administrer pakker",
+            "columnActive": "Aktiv",
+            "columnAvailability": "Tilgjengelighet",
+            "columnBundleItemCount": "Antall produkter",
+            "columnCreatedAt": "Opprettet på",
+            "columnName": "Navn",
+            "columnProductNumber": "Produktnummer",
+            "columnSales": "Salg",
+            "columnShowBundleOnItemPdp": "Vis på detaljsiden",
+            "columnUpdatedAt": "Oppdatert på",
+            "emptyStateDescription": "Pakker kan øke gjennomsnittlig ordreverdi og oppmuntre kunder til å kjøpe relaterte produkter. Pakker vises på produktdetaljsiden hvis CMS-oppsettet inneholder et buntelement.",
+            "emptyStateDescriptionCreateFirst": "Pakker kan øke gjennomsnittlig ordreverdi og oppmuntre kunder til å kjøpe relaterte produkter. Pakker vises på produktdetaljsiden hvis CMS-oppsettet inneholder et buntelement. Lag en pakke for å legge til dette produktet.",
+            "emptyStateNoBundlesFound": "Ingen matchende pakker funnet",
+            "emptyStateNoBundlesFoundDescription": "Juster søkeordet eller filtrene.",
+            "emptyStateTitle": "Legg til produkt i pakker for å øke salget",
+            "hideOnProductDetailPage": "Skjul på produktdetaljsiden",
+            "messageSaveSuccess": "Pakken \"{name}\" er lagret.",
+            "openBundlesDetail": "Åpne pakkedetaljer",
+            "placeholderSearch": "Søk etter pakker...",
+            "refreshDataTooltip": "Oppdater data",
+            "showOnProductDetailPage": "Vis på produktdetaljsiden",
+            "showOnlyIncluded": "Vis bare valgt",
+            "tooltipBundleHasRestrictions": "Ett eller flere produkter har begrensninger som påvirker tilgjengeligheten til denne pakken. Besøk pakkedetaljene for mer informasjon.",
+            "tooltipBundleInactive": "Inaktiv",
+            "tooltipBundleIssues": "Problemer:",
+            "tooltipBundleMismatchedSalesChannels": "Ikke tilordnet produktets salgskanaler: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Dette produktet kan ikke fjernes fordi bunter krever minst to produkter."
+        },
         "card": {
             "textHeadline": "Lager og leverbarhet",
             "textLinkModal": "Se lager etter lager og lagergrupper",
             "textProductWarehouseModalDisabled": "Lagre endringene dine før du kan åpne ytterligere lagerdetaljer.",
             "textTooltipMultiSelect": "Tilordne lagergrupper for å administrere lageret individuelt på tvers av flere lagre."
+        },
+        "detail": {
+            "tabBundle": "pakker"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Lukk",
@@ -1986,6 +2359,9 @@
             "tabStock": "Lager",
             "textHeadline": "Lager etter lager og lagergrupper",
             "textInlineEdit": "Rediger lager"
+        },
+        "type": {
+            "grouped_bundle": "Bunt"
         },
         "variants-overview": {
             "inlineText": "Se detaljer"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tom scene"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Produktdetaljside for pakkeprodukter"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Tillat kampanjekoder til bestillinger fra tilbud"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Vennlig Captcha",
+                "friendlyCaptchaApiKey": "Vennlig Captcha API-nøkkel",
                 "friendlyCaptchaDescription": "Basert på proof-of-work-mekanismer og avanserte risikosignaler, bruker Friendly Captcha en grunnleggende ny tilnærming for å beskytte nettsteder og elektroniske tjenester sikkert mot spam og roboter.",
+                "friendlyCaptchaRegion": "API-regionen",
+                "friendlyCaptchaRegionEu": "EU (Den europeiske union)",
+                "friendlyCaptchaRegionGlobal": "globalt",
+                "friendlyCaptchaRegionHelpText": "Velg «EU» for å rute alle captcha-forespørsler utelukkende gjennom europeiske servere. Dette kan være relevant for GDPR-overholdelse.",
                 "friendlyCaptchaSecretKey": "Vennlig Captcha hemmelig nøkkel",
-                "friendlyCaptchaSiteKey": "Vennlig Captcha-nettstedsnøkkel"
+                "friendlyCaptchaSiteKey": "Vennlig Captcha-nettstedsnøkkel",
+                "friendlyCaptchaV1DeprecationNotice": "Versjon 1 er eldre og vil bli fjernet i en fremtidig utgivelse. Vi anbefaler å oppgradere til versjon 2 for forbedret sikkerhet og en renere widgetopplevelse.",
+                "friendlyCaptchaVersion": "Vennlig Captcha-versjon",
+                "friendlyCaptchaVersionV1": "Versjon 1 (eldre)",
+                "friendlyCaptchaVersionV2": "Versjon 2 (ny)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Avbryte",
         "retry": "Prøv på nytt"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Lås enhetlig skala",
-        "unlock-uniform-scale": "Lås opp ensartet skala"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Kundene dine kan definere og administrere budsjettgrenser for bedre å kontrollere organisasjonsenhetenes utgifter.",
         "budgetManagementName": "Budsjetter",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Bestillingsgodkjenning",
                     "ORGANIZATION_UNITS": "Organisasjonsenheter",
                     "QUICK_ORDER": "Raske bestillinger",
-                    "QUOTE_MANAGEMENT": "Tilbudshåndtering"
+                    "QUOTE_MANAGEMENT": "Tilbudshåndtering",
+                    "SHOPPING_LISTS": "Handlelister"
                 },
                 "template": "{dependency} er påkrevd for {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Navn",
             "columnOrderQuantity": "Bestillingsantall",
             "columnReturnQuantity": "Returantall",
+            "includesShippingCosts": "Inkludert fraktkostnader",
             "messageErrorNoItemHasQuantity": "Bør ha minst 1 linjeelement har et antall mer enn 0 for å opprette en retur",
             "messagePreventAddItem": "Denne varen er allerede en del av returen, eller statusen er Kansellert, Returnert eller Returnert delvis.",
             "placeholderComment": "Skriv inn kommentar...",

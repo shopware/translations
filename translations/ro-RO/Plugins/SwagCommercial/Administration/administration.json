@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Abonamentul lasă starea întreruptă"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Prețuri individuale",
             "b2b_components_role": "Rol | Roluri",
             "b2b_components_shopping_list": "Liste de cumparaturi",
             "b2b_employee": "Angajat | Angajați",
+            "bundle": "Pachet | Pachete",
+            "bundle_item": "Obiect pachet | Articole pachet",
             "export_assistant": "Asistent export",
-            "individual_pricing": "Prețuri individuale",
             "quote": "Citat | Citate",
             "quote_line_item": "Articol de linie de cotație | Elemente din linia de cotație",
             "search_assistant": "Copilot AI",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Elementul este un articol pachet",
+                "lineItemOfBundleRule": "Articol din pachetul selectat",
                 "subscriptionCartRule": "Coș de abonament",
                 "subscriptionIntervalRule": "Intervalul abonamentului",
                 "subscriptionPlanRule": "Plan de abonament"
             },
             "group": {
                 "subscription": "Abonament"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Pachet"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Vă mulțumim că ați încercat planul Bundles. Ne-ar plăcea să auzim feedback-ul dvs.",
+                "link": "Oferiți feedback"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Câmpuri personalizate"
+            },
+            "general": {
+                "title": "Informații generale"
+            },
+            "items": {
+                "actionOpenProductDetails": "Deschide detaliile produsului",
+                "buttonAddBundleItems": "Adauga produse",
+                "columnName": "Nume",
+                "columnPosition": "Poziție",
+                "columnPrice": "Preț",
+                "emptyStateDescription": "Adăugați cel puțin două produse la pachet.",
+                "emptyStateTitle": "Niciun produs adăugat încă",
+                "title": "Produse ({count})",
+                "tooltipBundleItemCustomizedProduct": "Șablon produs personalizat atribuit",
+                "tooltipBundleItemHasVariants": "Produsul are variante",
+                "tooltipBundleItemInactive": "Inactiv",
+                "tooltipBundleItemIncompatibleVisibilities": "Nu este atribuit canalelor de vânzări ale pachetului: {salesChannels}",
+                "tooltipBundleItemIssues": "Probleme:",
+                "tooltipBundleItemOutOfStockCloseout": "Stoc epuizat (vânzare lichidare)",
+                "tooltipBundleItemOutOfStockTemporary": "Acest produs este momentan epuizat. Pachetul va deveni din nou achiziționabil odată ce toate produsele sunt din nou în stoc.",
+                "tooltipBundleItemOutOfStockTitle": "Stoc epuizat",
+                "tooltipRefreshData": "Reîmprospătați datele"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Data lansării",
+                    "placeholder": "Introduceţi data lansării..."
+                },
+                "title": "Etichetarea"
+            },
+            "media": {
+                "subtitle": "Adăugați fișiere în galeria media a pachetului.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Adăugați cel puțin două produse pentru a crea pachetul.",
+            "messageNoChanges": "Nu există modificări de salvat",
+            "messageSaveError": "Salvarea pachetului nu a reușit",
+            "messageSaveSuccess": "Pachetul a fost salvat cu succes",
+            "price": {
+                "addDiscount": "Adaugă reducere",
+                "currencyDependingPrices": "Valută în funcție de prețuri",
+                "discount": "Reducere",
+                "discountRules": "Reguli de reducere",
+                "discountTitle": "Reducere",
+                "discountType": "Tip",
+                "discountTypeAbsolute": "Absolute",
+                "discountTypePercentage": "Procent",
+                "discountValue": "Valoare",
+                "discountValuePlaceholder": "Adăugați valoare...",
+                "doNotCombineWith": "Nu combinați cu",
+                "maxValuePlaceholder": "Nelimitat",
+                "maximumDiscountValue": "Valoarea maximă a reducerilor",
+                "openAdvancedPricesView": "Deschideți vizualizarea prețurilor avansate",
+                "preventCombination": "Împiedicați combinarea cu alte promoții",
+                "preventCombinationHelpText": "Când este activată, această reducere nu poate fi combinată cu alte promoții",
+                "promotionsPlaceholder": "Adăugați promoții...",
+                "rulesPlaceholder": "Adăugați reguli...",
+                "subtotalBased": "Subtotal bazat pe 1 produs | Subtotal bazat pe {count} produse",
+                "title": "Preţuri afişate",
+                "total": "Total",
+                "totalBased": "Total bazat pe 1 produs | Total bazat pe {count} produse"
+            },
+            "tabGeneral": "General",
+            "tabLayout": "Aspect",
+            "tabSeo": "SEO",
+            "textHeadline": "Pachet nou",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Acest lucru împiedică pachetul să fie vizibil în acele canale. Vă rugăm să verificați vizibilitatea pentru următoarele produse:",
+                    "notAssignedTo": "nu este atribuit",
+                    "title": "Unele produse nu sunt atribuite tuturor canalelor de vânzare selectate"
+                },
+                "title": "Vizibilitate și structură"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Activ",
+                "placeholder": "Selectaţi o stare..."
+            },
+            "availabilityFilter": {
+                "label": "Disponibilitate",
+                "placeholder": "Selectați disponibilitate..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Produse incluse",
+                "placeholder": "Selectați produsele incluse..."
+            },
+            "categoriesFilter": {
+                "label": "Categorii",
+                "placeholder": "Selectează categoriile..."
+            },
+            "fromPlaceholder": "Introduceți valoarea de pornire...",
+            "imagesFilter": {
+                "label": "Imagini",
+                "placeholder": "Selectați starea imaginii...",
+                "textHasCriteria": "Cel puțin o imagine de produs atribuită",
+                "textNoCriteria": "Nu sunt atribuite imagini ale produsului"
+            },
+            "priceFilter": {
+                "label": "Preț"
+            },
+            "productNumberFilter": {
+                "label": "Numărul produsului",
+                "placeholder": "Introduceți un număr de produs..."
+            },
+            "releaseDateFilter": {
+                "label": "Data lansării"
+            },
+            "salesChannelsFilter": {
+                "label": "Canale de vânzări",
+                "placeholder": "Selectaţi Canale de vânzări..."
+            },
+            "salesFilter": {
+                "label": "Vânzare"
+            },
+            "tagsFilter": {
+                "label": "Etichetele",
+                "placeholder": "Selectați etichete..."
+            },
+            "toPlaceholder": "Introduceți valoarea finală..."
+        },
+        "general": {
+            "description": "Grupări",
+            "headlineBundles": "Grupări",
+            "mainMenuItemGeneral": "Grupări",
+            "placeholderSearchBar": "Căutați pachete...",
+            "title": "Grupări"
+        },
+        "generalForm": {
+            "highlightHelpText": "Pachetele evidențiate sunt marcate cu o etichetă viu colorată și cuvântul „Sfat” în toate listările de pachete. Puteți ajusta culoarea etichetei modificând opțiunea „Notificare” în setările <a href=\"{themeUrl}\">themes</a> . De asemenea, puteți modifica textul etichetei editând fragmentul de text <a href=\"{snippetUrl}\">corespunzător</a>.",
+            "labelDescription": "Descriere",
+            "labelMarkAsTopseller": "Evidențiați pachetul",
+            "labelName": "Nume",
+            "labelProductNumber": "Numărul produsului",
+            "placeholderDescription": "Introduceţi descrierea pachetului...",
+            "placeholderName": "Introduceți numele pachetului...",
+            "placeholderProductNumber": "Introduceți numărul produsului..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Un pachet necesită cel puțin două produse.",
+            "notEnoughProductsTitle": "Nu sunt suficiente produse",
+            "restrictions": "Unul sau mai multe produse au restricții care afectează disponibilitatea acestui pachet. Consultați pictogramele de avertizare pentru detalii.",
+            "restrictionsTitle": "Unele produse au restricții"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Nu s-au găsit produse potrivite",
+            "noProductsMatchingBundleSalesChannels": "Nu există produse active care să se potrivească cu Canalele de vânzări selectate ale pachetului.",
+            "noProductsMatchingTermAndFilter": "Ajustați termenul de căutare sau filtrele.",
+            "placeholderSearch": "Caută produse...",
+            "showIncluded": "Afișează doar selecția ({count})",
+            "textWhySomeItemsMissing": "De ce lipsesc unele produse?",
+            "title": "Adauga produse",
+            "tooltipVariant": "Varianta",
+            "tooltipWhySomeItemsMissing": "În acest moment, pachetele funcționează numai cu produse fizice și variante unice. <br /><br /> Produsele trebuie să fie atribuite Canalelor de vânzări selectate ale pachetului pentru a apărea în listă."
+        },
+        "list": {
+            "available": "Disponibil",
+            "buttonAddBundle": "Adăugați pachet",
+            "columnActive": "Activ",
+            "columnAvailable": "Disponibilitate",
+            "columnBundleItemCount": "Nr. de produse",
+            "columnCreatedAt": "Creat la",
+            "columnName": "Nume",
+            "columnProductNumber": "Numărul produsului",
+            "columnSales": "Vânzare",
+            "columnTotalPrice": "Preț total",
+            "columnUpdatedAt": "Actualizat la",
+            "emptyStateDescription": "Pachetele pot crește valoarea medie a comenzii și pot încuraja clienții să cumpere produse conexe.",
+            "emptyStateTitle": "Adăugați pachete pentru a crește vânzările",
+            "messageSaveSuccess": "Pachetul \"{name}\" a fost salvat.",
+            "titleSidebarItemRefresh": "Actualizare",
+            "unavailable": "Indisponibil"
+        },
+        "priceModal": {
+            "currency": "Valuta",
+            "price": "Valoare",
+            "title": "Prețuri avansate"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Adauga produse",
+            "description": "Selectați mai întâi un canal de vânzări pentru a vedea ce produse pot fi adăugate la pachet. Puteți ajusta acest lucru mai târziu în cardul Vizibilitate și structură.",
+            "title": "Canalul de vânzări necesar"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generați imagine",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Descrierea pachetului"
+                },
+                "bundleHeading": {
+                    "label": "Numele pachetului"
+                },
+                "bundleItems": {
+                    "label": "Articole pachet"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galerie de imagini și cutie de cumpărare a pachetului"
+                },
+                "recommendedBundles": {
+                    "label": "Pachete recomandate"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Aspect implicit - Pagina pachetului de produse",
+                "setAsDefaultBundleDetail": "Setați ca pagină implicită a pachetului de produse"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Pagina pachetului"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generați imagine",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Datele produsului acestui element sunt încărcate automat de produsul asociat cu acest aspect. Conținutul afișează doar o examinare eșantion."
+                },
+                "label": "Cutie de cumpărare pachet"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Datele produsului acestui element sunt încărcate automat de produsul asociat cu acest aspect. Conținutul afișează doar o examinare eșantion."
+                },
+                "label": "Descrierea pachetului",
+                "preview": {
+                    "descriptionTab": "Descriere",
+                    "title": "Pachet"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Permite adăugarea articolelor din pachet direct în coș în loc să deschideți pagina cu detalii despre produs.",
+                        "labelTitle": "Utilizați {count} pentru a afișa numărul de produse din pachet."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Datele produsului acestui element sunt încărcate automat de produsul asociat cu acest aspect. Conținutul afișează doar o examinare eșantion."
+                    },
+                    "label": {
+                        "boxSettings": "Setările casetei de produse",
+                        "cta": "Afișați CTA pentru a adăuga articole din pachet direct în coș",
+                        "minWidth": "Lățimea minimă",
+                        "title": "Titlu"
+                    }
+                },
+                "label": "Produse incluse"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Datele pachetului acestui element sunt încărcate automat de pachetul asociat cu acest aspect. Conținutul arată doar o previzualizare de probă."
+                },
+                "label": "Numele pachetului"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Când este activată, doar un subset de pachete este afișat inițial. Utilizatorii pot extinde lista pentru a afișa mai multe.",
+                        "maxVisibleBundles": "Controlează câte pachete vor fi afișate până când vor fi ascunse în spatele unei funcționalități „Afișează mai multe”.",
+                        "productBoxSettings": "Setările casetei de produse",
+                        "productDetailElement": "Datele produsului acestui element sunt încărcate automat de produsul asociat cu acest aspect. Conținutul afișează doar o examinare eșantion.",
+                        "showCTAInfo": "Permite adăugarea articolelor din pachet direct în coș în loc să deschideți pagina cu detalii despre produs.",
+                        "sliderSettings": "Setări glisor"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Limitați numărul de pachete afișate inițial",
+                        "maxVisibleBundles": "Pachetele afișate inițial",
+                        "minWidth": "Lățimea minimă",
+                        "recommendedCombinationsTitle": "Combinații recomandate",
+                        "showBundleName": "Afișați numele pachetului",
+                        "showCTA": "Afișați CTA pentru a adăuga articole din pachet direct în coș",
+                        "showCurrentProduct": "Afișați produsul vizualizat în prezent primul în pachet",
+                        "title": "Titlu"
+                    },
+                    "placeholder": {
+                        "minWidth": "Introduceţi lăţimea minimă...",
+                        "title": "Combinații recomandate"
+                    }
+                },
+                "label": "Combinații recomandate",
+                "preview": {
+                    "label": {
+                        "title": "Combinații recomandate"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generați imagine",
             "contentText": "Creați-vă propriile imagini de dispoziție pentru a vă personaliza aspectul cu ajutorul imaginii generate de AI.",
             "header": "Copilot AI"
+        },
+        "tags": {
+            "bundle": "Pachet"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adresele unității organizației",
                             "pending_order": "Gestionarea comenzilor în așteptare",
                             "quote": "Managementul cotațiilor",
-                            "role": "Gestionarea rolurilor"
+                            "role": "Gestionarea rolurilor",
+                            "subscription": "Comandă abonament"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Ștergeți adresa de expediere",
                                     "update": "Editați adresa de expediere"
                                 },
+                                "subscription": {
+                                    "read": "Vizualizați toate abonamentele de comandă din unitatea organizațională atribuită"
+                                },
                                 "update": "Editați unitatea de organizație"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Poate șterge rolurile",
                                 "edit": "Poate edita roluri",
                                 "read": "Poate vizualiza roluri"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Vizualizați toate abonamentele la comandă"
+                                }
                             }
                         },
                         "switchAllLabel": "Toate permisiunile"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Managementul rolurilor"
             },
+            "bundle": {
+                "label": "Grupări"
+            },
             "custom_price": {
                 "label": "Prețul clientului produsului"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Adaugă produs la pachete",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Am înţeles",
+                "description": "Acest produs nu a putut fi eliminat din următoarele pachete, deoarece un pachet necesită cel puțin două produse:",
+                "hint": "Pentru a elimina acest produs, adăugați mai întâi un alt produs la aceste pachete.",
+                "title": "Produsul nu a putut fi eliminat din toate pachetele"
+            },
+            "bundleCardSubtitle": "Toate pachetele care conțin acest produs",
+            "bundleCardTitle": "Pachete ({count})",
+            "buttonAddBundle": "Adaugă produs la pachete",
+            "buttonAddBundleLanguageWarning": "Adăugarea pachetelor este posibilă numai în limba implicită a sistemului.",
+            "buttonCreateBundle": "Creați pachet",
+            "buttonManageBundles": "Gestionați pachetele",
+            "columnActive": "Activ",
+            "columnAvailability": "Disponibilitate",
+            "columnBundleItemCount": "Nr. de produse",
+            "columnCreatedAt": "Creat la",
+            "columnName": "Nume",
+            "columnProductNumber": "Numărul produsului",
+            "columnSales": "Vânzare",
+            "columnShowBundleOnItemPdp": "Afișați pe pagina de detalii",
+            "columnUpdatedAt": "Actualizat la",
+            "emptyStateDescription": "Pachetele pot crește valoarea medie a comenzii și pot încuraja clienții să cumpere produse conexe. Pachetele apar pe pagina cu detalii despre produs dacă aspectul CMS include un element pachet.",
+            "emptyStateDescriptionCreateFirst": "Pachetele pot crește valoarea medie a comenzii și pot încuraja clienții să cumpere produse conexe. Pachetele apar pe pagina cu detalii despre produs dacă aspectul CMS include un element pachet. Creați un pachet pentru a adăuga acest produs.",
+            "emptyStateNoBundlesFound": "Nu au fost găsite pachete potrivite",
+            "emptyStateNoBundlesFoundDescription": "Ajustați termenul de căutare sau filtrele.",
+            "emptyStateTitle": "Adăugați produse la pachete pentru a crește vânzările",
+            "hideOnProductDetailPage": "Ascundeți pe pagina cu detalii despre produs",
+            "messageSaveSuccess": "Pachetul \"{name}\" a fost salvat.",
+            "openBundlesDetail": "Deschide detaliile pachetului",
+            "placeholderSearch": "Căutați pachete...",
+            "refreshDataTooltip": "Reîmprospătați datele",
+            "showOnProductDetailPage": "Afișați pe pagina cu detalii despre produs",
+            "showOnlyIncluded": "Afișează doar selecția",
+            "tooltipBundleHasRestrictions": "Unul sau mai multe produse au restricții care afectează disponibilitatea acestui pachet. Vizitați detaliile pachetului pentru mai multe informații.",
+            "tooltipBundleInactive": "Inactiv",
+            "tooltipBundleIssues": "Probleme:",
+            "tooltipBundleMismatchedSalesChannels": "Nu este atribuit canalelor de vânzare ale produsului: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Acest produs nu poate fi eliminat deoarece pachetele necesită cel puțin două produse."
+        },
         "card": {
             "textHeadline": "Stoc și livrabilitate",
             "textLinkModal": "Vizualizați stocul pe depozite și grupuri de depozite",
             "textProductWarehouseModalDisabled": "Salvați modificările înainte de a putea deschide mai multe detalii despre stoc.",
             "textTooltipMultiSelect": "Alocați grupuri de depozite pentru a vă gestiona stocul individual în mai multe depozite."
+        },
+        "detail": {
+            "tabBundle": "Grupări"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Închide",
@@ -1986,6 +2359,9 @@
             "tabStock": "Stoc",
             "textHeadline": "Stoc pe depozite și grupuri de depozite",
             "textInlineEdit": "Editează stoc"
+        },
+        "type": {
+            "grouped_bundle": "Pachet"
         },
         "variants-overview": {
             "inlineText": "Vezi detalii"
@@ -2542,6 +2918,16 @@
             "emptyText": "Scena goală"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Pagina detaliilor produsului pachet"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Permiteți codurile promoționale comenzilor din cotații"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha prietenos",
+                "friendlyCaptchaApiKey": "Cheie API Captcha prietenoasă",
                 "friendlyCaptchaDescription": "Bazat pe mecanisme de proof-of-work și semnale avansate de risc, Friendly Captcha folosește o abordare fundamental nouă pentru a vă apăra în siguranță site-urile web și serviciile online de spam și roboți.",
+                "friendlyCaptchaRegion": "Regiunea API",
+                "friendlyCaptchaRegionEu": "UE (Uniunea Europeană)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Selectați „UE” pentru a direcționa toate solicitările captcha exclusiv prin serverele europene. Acest lucru poate fi relevant pentru conformitatea cu GDPR.",
                 "friendlyCaptchaSecretKey": "Cheie secretă captcha prietenoasă",
-                "friendlyCaptchaSiteKey": "Cheie prietenoasă a site-ului Captcha"
+                "friendlyCaptchaSiteKey": "Cheie prietenoasă a site-ului Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Versiunea 1 este moștenită și va fi eliminată într-o versiune viitoare. Vă recomandăm să faceți upgrade la versiunea 2 pentru o securitate îmbunătățită și o experiență de widget mai curată.",
+                "friendlyCaptchaVersion": "Versiune prietenoasă Captcha",
+                "friendlyCaptchaVersionV1": "Versiunea 1 (moștenire)",
+                "friendlyCaptchaVersionV2": "Versiunea 2 (nouă)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Anulare",
         "retry": "Reîncercați"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Blocați scala uniformă",
-        "unlock-uniform-scale": "Deblocați scala uniformă"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Clienții dvs. pot defini și gestiona limitele bugetare pentru a controla mai bine cheltuielile unităților organizației lor.",
         "budgetManagementName": "Bugete",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Aprobarea comenzii",
                     "ORGANIZATION_UNITS": "Unități de organizare",
                     "QUICK_ORDER": "Comenzi rapide",
-                    "QUOTE_MANAGEMENT": "Managementul cotațiilor"
+                    "QUOTE_MANAGEMENT": "Managementul cotațiilor",
+                    "SHOPPING_LISTS": "Liste de cumparaturi"
                 },
                 "template": "{dependency} este necesar pentru {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nume",
             "columnOrderQuantity": "Cantitate comandă",
             "columnReturnQuantity": "Cantitate returnată",
+            "includesShippingCosts": "Inclusiv costurile de expediere",
             "messageErrorNoItemHasQuantity": "Ar trebui să aibă cel puțin 1 rând articol are o cantitate mai mare de 0 pentru a crea o returnare",
             "messagePreventAddItem": "Acest articol face deja parte din returnare sau starea sa este Anulat, Returnat sau Returnat parțial.",
             "placeholderComment": "Introdu comentariu...",

@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Pretplata ostavlja status pauziranim"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individualne cijene",
             "b2b_components_role": "Uloga | Uloge",
             "b2b_components_shopping_list": "Popisi za kupovinu",
             "b2b_employee": "Zaposleni | Zaposleni",
+            "bundle": "Paket | Paketi",
+            "bundle_item": "Artikal paketa | Predmeti u paketu",
             "export_assistant": "Pomoćnik za izvoz",
-            "individual_pricing": "Individualne cijene",
             "quote": "Citat | Citati",
             "quote_line_item": "Stavka linije citata | Stavke linije ponude",
             "search_assistant": "AI kopilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Stavka je stavka u paketu",
+                "lineItemOfBundleRule": "Artikal odabranog paketa",
                 "subscriptionCartRule": "Košara za pretplatu",
                 "subscriptionIntervalRule": "Interval pretplate",
                 "subscriptionPlanRule": "Plan pretplate"
             },
             "group": {
                 "subscription": "Pretplata"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Paket"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Hvala što ste isprobali nacrt Bundles. Voljeli bismo čuti vaše povratne informacije.",
+                "link": "Dajte povratnu informaciju"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Prilagođena polja"
+            },
+            "general": {
+                "title": "Opšte informacije"
+            },
+            "items": {
+                "actionOpenProductDetails": "Otvorite detalje o proizvodu",
+                "buttonAddBundleItems": "Dodavanje proizvoda",
+                "columnName": "Ime",
+                "columnPosition": "Pozicija",
+                "columnPrice": "Cijena",
+                "emptyStateDescription": "Dodajte najmanje dva proizvoda u paket.",
+                "emptyStateTitle": "Još nema dodanih proizvoda",
+                "title": "Proizvodi ({count})",
+                "tooltipBundleItemCustomizedProduct": "Dodjeljen prilagođeni predložak proizvoda",
+                "tooltipBundleItemHasVariants": "Proizvod ima varijante",
+                "tooltipBundleItemInactive": "Neaktivan",
+                "tooltipBundleItemIncompatibleVisibilities": "Nije dodijeljeno prodajnim kanalima paketa: {salesChannels}",
+                "tooltipBundleItemIssues": "Pitanja:",
+                "tooltipBundleItemOutOfStockCloseout": "Nema na zalihi (Rasprodaja)",
+                "tooltipBundleItemOutOfStockTemporary": "Ovaj proizvod trenutno nema na zalihi. Paket će se ponovo kupiti nakon što se svi proizvodi vrate na lageru.",
+                "tooltipBundleItemOutOfStockTitle": "Nema na zalihi",
+                "tooltipRefreshData": "Osvježi podatke"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Datum izdavanja",
+                    "placeholder": "Unesite datum izdavanja..."
+                },
+                "title": "Etiketiranje"
+            },
+            "media": {
+                "subtitle": "Dodajte datoteke u medijsku galeriju paketa.",
+                "title": "Mediji"
+            },
+            "messageMinBundleItemsRequired": "Dodajte najmanje dva proizvoda da biste stvorili paket.",
+            "messageNoChanges": "Nema promjena za spremanje",
+            "messageSaveError": "Nije uspjelo sačuvati paket",
+            "messageSaveSuccess": "Paket je uspješno spreman",
+            "price": {
+                "addDiscount": "Dodaj popust",
+                "currencyDependingPrices": "Valuta ovisno o cijenama",
+                "discount": "Popust",
+                "discountRules": "Pravila popusta",
+                "discountTitle": "Popust",
+                "discountType": "Vrsta",
+                "discountTypeAbsolute": "Apsolutna",
+                "discountTypePercentage": "Postotak",
+                "discountValue": "Vrijednost",
+                "discountValuePlaceholder": "Dodati vrijednost...",
+                "doNotCombineWith": "Nemojte se kombinirati s",
+                "maxValuePlaceholder": "neograničen",
+                "maximumDiscountValue": "Maksimalna vrijednost popusta",
+                "openAdvancedPricesView": "Otvori prikaz naprednih cijena",
+                "preventCombination": "Spriječiti kombinaciju s drugim promocijama",
+                "preventCombinationHelpText": "Kada je omogućen, ovaj popust se ne može kombinirati s drugim promocijama",
+                "promotionsPlaceholder": "Dodaj promocije...",
+                "rulesPlaceholder": "Dodaj pravila...",
+                "subtotalBased": "Međusuma zasnovana na 1 proizvodu | Međusuma zasnovana na {count} proizvodima",
+                "title": "Prikaži cijene",
+                "total": "Ukupno",
+                "totalBased": "Ukupno na temelju 1 proizvoda | Ukupno na temelju {count} proizvoda"
+            },
+            "tabGeneral": "Opšte",
+            "tabLayout": "Izgled",
+            "tabSeo": "SEO",
+            "textHeadline": "Novi paket",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "To sprečava da snop bude vidljiv u tim kanalima. Molimo provjerite vidljivost sljedećih proizvoda:",
+                    "notAssignedTo": "nije dodijeljeno",
+                    "title": "Neki proizvodi nisu dodijeljeni svim odabranim prodajnim kanalima"
+                },
+                "title": "Vidljivost i struktura"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktivan",
+                "placeholder": "Odaberite status..."
+            },
+            "availabilityFilter": {
+                "label": "Dostupnost",
+                "placeholder": "Odaberite dostupnost..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Uključeni proizvodi",
+                "placeholder": "Odaberite uključene proizvode..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorije",
+                "placeholder": "Odaberite kategorije..."
+            },
+            "fromPlaceholder": "Unesite početnu vrijednost...",
+            "imagesFilter": {
+                "label": "Slike",
+                "placeholder": "Odaberite status slike...",
+                "textHasCriteria": "Barem jedna slika proizvoda dodijeljena",
+                "textNoCriteria": "Nijedna slika proizvoda nije dodijeljena"
+            },
+            "priceFilter": {
+                "label": "Cijena"
+            },
+            "productNumberFilter": {
+                "label": "Broj proizvoda",
+                "placeholder": "Unesite broj proizvoda..."
+            },
+            "releaseDateFilter": {
+                "label": "Datum izdavanja"
+            },
+            "salesChannelsFilter": {
+                "label": "Prodajni Kanali",
+                "placeholder": "Odaberite prodajni kanal..."
+            },
+            "salesFilter": {
+                "label": "Prodaja"
+            },
+            "tagsFilter": {
+                "label": "Oznake",
+                "placeholder": "Odaberi oznake..."
+            },
+            "toPlaceholder": "Unesite krajnju vrijednost..."
+        },
+        "general": {
+            "description": "Paketi",
+            "headlineBundles": "Paketi",
+            "mainMenuItemGeneral": "Paketi",
+            "placeholderSearchBar": "Pretraživanje paketa...",
+            "title": "Paketi"
+        },
+        "generalForm": {
+            "highlightHelpText": "Istaknuti paketi označeni su etiketom jarkih boja i riječju “Savjet” na svim popisima paketa. Možete prilagoditi boju naljepnice promjenom opcije “Obavijest” u postavkama <a href=\"{themeUrl}\">teme</a> . Tekst oznake možete promijeniti i uređivanjem odgovarajućeg isječka teksta <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Opis",
+            "labelMarkAsTopseller": "Označite paket",
+            "labelName": "Ime",
+            "labelProductNumber": "Broj proizvoda",
+            "placeholderDescription": "Unesite opis paketa...",
+            "placeholderName": "Unesite naziv paketa...",
+            "placeholderProductNumber": "Unesite broj proizvoda..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Paket zahtijeva najmanje dva proizvoda.",
+            "notEnoughProductsTitle": "Nema dovoljno proizvoda",
+            "restrictions": "Jedan ili više proizvoda ima ograničenja koja utječu na dostupnost ovog paketa. Pogledajte ikone upozorenja za detalje.",
+            "restrictionsTitle": "Neki proizvodi imaju ograničenja"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Nema pronađenih odgovarajućih proizvoda",
+            "noProductsMatchingBundleSalesChannels": "Nema aktivnih proizvoda koji odgovaraju odabranim prodajnim kanalima paketa.",
+            "noProductsMatchingTermAndFilter": "Prilagodite pojam za pretraživanje ili filtere.",
+            "placeholderSearch": "Pretraga proizvoda...",
+            "showIncluded": "Prikaži samo odabrano ({count})",
+            "textWhySomeItemsMissing": "Zašto neki proizvodi nedostaju?",
+            "title": "Dodavanje proizvoda",
+            "tooltipVariant": "Varijanta",
+            "tooltipWhySomeItemsMissing": "Trenutno paketi rade samo s fizičkim proizvodima i pojedinačnim varijantama. <br /><br /> Proizvodi moraju biti dodijeljeni odabranim prodajnim kanalima paketa da bi se pojavili na listi."
+        },
+        "list": {
+            "available": "Dostupan",
+            "buttonAddBundle": "Dodaj paket",
+            "columnActive": "Aktivan",
+            "columnAvailable": "Dostupnost",
+            "columnBundleItemCount": "Broj proizvoda",
+            "columnCreatedAt": "Kreirano u",
+            "columnName": "Ime",
+            "columnProductNumber": "Broj proizvoda",
+            "columnSales": "Prodaja",
+            "columnTotalPrice": "Ukupna cijena",
+            "columnUpdatedAt": "Ažurirano u",
+            "emptyStateDescription": "Paketi mogu povećati vašu prosječnu vrijednost narudžbe i potaknuti kupce na kupovinu srodnih proizvoda.",
+            "emptyStateTitle": "Dodajte pakete za povećanje prodaje",
+            "messageSaveSuccess": "Paket \"{name}\" je sačuvan.",
+            "titleSidebarItemRefresh": "Osvježi",
+            "unavailable": "Nedostupan"
+        },
+        "priceModal": {
+            "currency": "Valuta",
+            "price": "Vrijednost",
+            "title": "Napredne cijene"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Dodavanje proizvoda",
+            "description": "Prvo odaberite prodajni kanal da biste vidjeli koji se proizvodi mogu dodati u paket. To možete prilagoditi kasnije na kartici Vidljivost i struktura.",
+            "title": "Potreban je prodajni kanal"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generiraj sliku",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Opis paketa"
+                },
+                "bundleHeading": {
+                    "label": "Naziv paketa"
+                },
+                "bundleItems": {
+                    "label": "Predmeti u paketu"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galerija slika i kutija za kupovinu paketa"
+                },
+                "recommendedBundles": {
+                    "label": "Preporučeni paketi"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Zadani izgled - Stranica paketa proizvoda",
+                "setAsDefaultBundleDetail": "Postavite kao zadanu stranicu paketa proizvoda"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Stranica paketa"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generiraj sliku",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Proizvod koji je povezan s ovim izgledom automatski učitava podatke o proizvodu ovog elementa. Sadržaj prikazuje samo pregled uzorka."
+                },
+                "label": "Kutija za kupovinu paketa"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Proizvod koji je povezan s ovim izgledom automatski učitava podatke o proizvodu ovog elementa. Sadržaj prikazuje samo pregled uzorka."
+                },
+                "label": "Opis paketa",
+                "preview": {
+                    "descriptionTab": "Opis",
+                    "title": "Paket"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Omogućuje dodavanje paketa stavki direktno u košaricu umjesto otvaranja stranice s detaljima proizvoda.",
+                        "labelTitle": "Koristite {count} da biste prikazali broj proizvoda u paketu."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Proizvod koji je povezan s ovim izgledom automatski učitava podatke o proizvodu ovog elementa. Sadržaj prikazuje samo pregled uzorka."
+                    },
+                    "label": {
+                        "boxSettings": "Postavke kutije proizvoda",
+                        "cta": "Prikaži CTA da biste dodali artikle paketa direktno u košaricu",
+                        "minWidth": "Minimalna širina",
+                        "title": "Titula"
+                    }
+                },
+                "label": "Uključeni proizvodi"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Podaci paketa ovog elementa automatski se učitavaju paketom povezanim s ovim izgledom. Sadržaj samo prikazuje uzorak pregleda."
+                },
+                "label": "Naziv paketa"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Kada je omogućeno, u početku se prikazuje samo podskup paketa. Korisnici mogu proširiti popis kako bi prikazali više.",
+                        "maxVisibleBundles": "Kontrolira koliko će paketa biti prikazano dok se ne sakriju iza funkcije “Prikaži više”.",
+                        "productBoxSettings": "Postavke kutije proizvoda",
+                        "productDetailElement": "Proizvod koji je povezan s ovim izgledom automatski učitava podatke o proizvodu ovog elementa. Sadržaj prikazuje samo pregled uzorka.",
+                        "showCTAInfo": "Omogućuje dodavanje paketa stavki direktno u košaricu umjesto otvaranja stranice s detaljima proizvoda.",
+                        "sliderSettings": "Postavke klizača"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Ograničite broj prvobitno prikazanih paketa",
+                        "maxVisibleBundles": "Paketi prikazani u početku",
+                        "minWidth": "Minimalna širina",
+                        "recommendedCombinationsTitle": "Preporučene kombinacije",
+                        "showBundleName": "Prikaži ime paketa",
+                        "showCTA": "Prikaži CTA da biste dodali artikle paketa direktno u košaricu",
+                        "showCurrentProduct": "Pokažite trenutno gledani proizvod prvo u paketu",
+                        "title": "Titula"
+                    },
+                    "placeholder": {
+                        "minWidth": "Unesite minimalnu širinu...",
+                        "title": "Preporučene kombinacije"
+                    }
+                },
+                "label": "Preporučene kombinacije",
+                "preview": {
+                    "label": {
+                        "title": "Preporučene kombinacije"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generiraj sliku",
             "contentText": "Kreirajte vlastite slike raspoloženja kako biste prilagodili svoj izgled uz pomoć slike generirane AI.",
             "header": "AI kopilot"
+        },
+        "tags": {
+            "bundle": "Paket"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adrese jedinice organizacije",
                             "pending_order": "Upravljanje narudžbama na čekanju",
                             "quote": "Upravljanje ponudom",
-                            "role": "Upravljanje ulogama"
+                            "role": "Upravljanje ulogama",
+                            "subscription": "Naručite pretplatu"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Izbriši adresu za dostavu",
                                     "update": "Uređivanje adrese za dostavu"
                                 },
+                                "subscription": {
+                                    "read": "Prikaz svih pretplata na narudžbe iz dodijeljene jedinice organizacije"
+                                },
                                 "update": "Uredi organizacijsku jedinicu"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Može izbrisati uloge",
                                 "edit": "Može uređivati uloge",
                                 "read": "Može pregledati uloge"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Pogledajte sve pretplate na narudžbe"
+                                }
                             }
                         },
                         "switchAllLabel": "Sve dozvole"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Upravljanje ulogama"
             },
+            "bundle": {
+                "label": "Paketi"
+            },
             "custom_price": {
                 "label": "Cijena proizvoda za kupca"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Dodaj proizvod u pakete",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Shvatio sam",
+                "description": "Ovaj proizvod se ne može ukloniti iz sljedećih paketa jer paket zahtijeva najmanje dva proizvoda:",
+                "hint": "Da biste uklonili ovaj proizvod, prvo dodajte još jedan proizvod u ove pakete.",
+                "title": "Proizvod se ne može ukloniti iz svih paketa"
+            },
+            "bundleCardSubtitle": "Svi paketi koji sadrže ovaj proizvod",
+            "bundleCardTitle": "Paketi ({count})",
+            "buttonAddBundle": "Dodaj proizvod u pakete",
+            "buttonAddBundleLanguageWarning": "Dodavanje paketa moguće je samo na zadanom jeziku sustava.",
+            "buttonCreateBundle": "Napravite paket",
+            "buttonManageBundles": "Upravljanje paketima",
+            "columnActive": "Aktivan",
+            "columnAvailability": "Dostupnost",
+            "columnBundleItemCount": "Broj proizvoda",
+            "columnCreatedAt": "Kreirano u",
+            "columnName": "Ime",
+            "columnProductNumber": "Broj proizvoda",
+            "columnSales": "Prodaja",
+            "columnShowBundleOnItemPdp": "Prikaži na stranici s detaljima",
+            "columnUpdatedAt": "Ažurirano u",
+            "emptyStateDescription": "Paketi mogu povećati prosječnu vrijednost narudžbe i potaknuti kupce na kupovinu povezanih proizvoda. Paketi se pojavljuju na stranici s detaljima proizvoda ako CMS izgled uključuje element paketa.",
+            "emptyStateDescriptionCreateFirst": "Paketi mogu povećati prosječnu vrijednost narudžbe i potaknuti kupce na kupovinu povezanih proizvoda. Paketi se pojavljuju na stranici s detaljima proizvoda ako CMS izgled uključuje element paketa. Napravite paket za dodavanje ovog proizvoda.",
+            "emptyStateNoBundlesFound": "Nisu pronađeni odgovarajući paketi",
+            "emptyStateNoBundlesFoundDescription": "Prilagodite pojam za pretraživanje ili filtere.",
+            "emptyStateTitle": "Dodajte proizvod u pakete kako biste povećali prodaju",
+            "hideOnProductDetailPage": "Sakrij se na stranici s detaljima o proizvodu",
+            "messageSaveSuccess": "Paket \"{name}\" je sačuvan.",
+            "openBundlesDetail": "Otvorite detalje paketa",
+            "placeholderSearch": "Pretraživanje paketa...",
+            "refreshDataTooltip": "Osvježi podatke",
+            "showOnProductDetailPage": "Prikaži na stranici s detaljima o proizvodu",
+            "showOnlyIncluded": "Pokaži samo odabrano",
+            "tooltipBundleHasRestrictions": "Jedan ili više proizvoda ima ograničenja koja utječu na dostupnost ovog paketa. Posjetite detalje paketa za više informacija.",
+            "tooltipBundleInactive": "Neaktivan",
+            "tooltipBundleIssues": "Pitanja:",
+            "tooltipBundleMismatchedSalesChannels": "Nije dodijeljeno prodajnim kanalima proizvoda: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Ovaj proizvod se ne može ukloniti jer paketi zahtijevaju najmanje dva proizvoda."
+        },
         "card": {
             "textHeadline": "Zalihe i isporuka",
             "textLinkModal": "Pogledajte zalihe po skladištima i grupama skladišta",
             "textProductWarehouseModalDisabled": "Spremite svoje promjene prije nego što otvorite dodatne detalje o zalihama.",
             "textTooltipMultiSelect": "Dodijelite grupe skladišta za upravljanje zalihama pojedinačno u više skladišta."
+        },
+        "detail": {
+            "tabBundle": "Paketi"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Zatvori",
@@ -1986,6 +2359,9 @@
             "tabStock": "Zaliha",
             "textHeadline": "Zalihe po skladištima i skladišnim grupama",
             "textInlineEdit": "Uredi zalihe"
+        },
+        "type": {
+            "grouped_bundle": "Paket"
         },
         "variants-overview": {
             "inlineText": "Pogledajte pojedinosti"
@@ -2542,6 +2918,16 @@
             "emptyText": "Prazna scena"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Stranica s detaljima proizvoda u paketu"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Dopustite promotivne kodove narudžbama iz ponuda"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Prijateljski Captcha",
+                "friendlyCaptchaApiKey": "Prijateljski Captcha API ključ",
                 "friendlyCaptchaDescription": "Na temelju mehanizama dokaza rada i naprednih signala rizika, Friendly Captcha koristi fundamentalno novi pristup za sigurnu odbranu vaših web stranica i mrežnih usluga od neželjene pošte i botova.",
+                "friendlyCaptchaRegion": "API regija",
+                "friendlyCaptchaRegionEu": "EU (Evropska unija)",
+                "friendlyCaptchaRegionGlobal": "Globalno",
+                "friendlyCaptchaRegionHelpText": "Odaberite “EU” da biste usmjerili sve zahtjeve za captcha isključivo preko evropskih poslužitelja. Ovo može biti relevantno za usklađenost sa GDPR-om.",
                 "friendlyCaptchaSecretKey": "Prijateljski tajni ključ Captcha",
-                "friendlyCaptchaSiteKey": "Prijateljski ključ stranice Captcha"
+                "friendlyCaptchaSiteKey": "Prijateljski ključ stranice Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Verzija 1 je naslijeđena i bit će uklonjena u budućem izdanju. Preporučujemo nadogradnju na verziju 2 za poboljšanu sigurnost i čistije iskustvo widgeta.",
+                "friendlyCaptchaVersion": "Prijateljska verzija Captcha",
+                "friendlyCaptchaVersionV1": "Verzija 1 (naslijeđeno)",
+                "friendlyCaptchaVersionV2": "Verzija 2 (novo)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Poništi",
         "retry": "Ponovno pokušajte"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Zaključajte uniformnu ljestvicu",
-        "unlock-uniform-scale": "Otključajte jednoobraznu ljestvicu"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Vaši kupci mogu definirati i upravljati ograničenjima budžeta kako bi bolje kontrolirali potrošnju svojih organizacijskih jedinica.",
         "budgetManagementName": "budžeta",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Odobrenje narudžbe",
                     "ORGANIZATION_UNITS": "Organizacijske jedinice",
                     "QUICK_ORDER": "Brze narudžbe",
-                    "QUOTE_MANAGEMENT": "Upravljanje ponudom"
+                    "QUOTE_MANAGEMENT": "Upravljanje ponudom",
+                    "SHOPPING_LISTS": "Popisi za kupovinu"
                 },
                 "template": "{dependency} je potreban za {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Ime",
             "columnOrderQuantity": "Količina narudžbe",
             "columnReturnQuantity": "Povratna količina",
+            "includesShippingCosts": "Uključujući troškove dostave",
             "messageErrorNoItemHasQuantity": "Trebao bi imati najmanje 1 redak stavke ima količinu veću od 0 da biste stvorili povrat",
             "messagePreventAddItem": "Ova stavka je već dio povratka ili je njen status poništen, vraćen ili djelomično vraćen.",
             "placeholderComment": "Unesite komentar...",

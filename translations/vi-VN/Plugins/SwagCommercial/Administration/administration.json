@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Đăng ký để trạng thái tạm dừng"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Giá cá nhân",
             "b2b_components_role": "Vai trò | Vai trò",
             "b2b_components_shopping_list": "Danh sách mua sắm",
             "b2b_employee": "Nhân viên | Nhân viên",
+            "bundle": "Gói | Gói",
+            "bundle_item": "Mặt hàng gói | Các mặt hàng gói",
             "export_assistant": "Trợ lý xuất khẩu",
-            "individual_pricing": "Giá cá nhân",
             "quote": "Trích dẫn | Trích dẫn",
             "quote_line_item": "Mục dòng báo giá | Các mục dòng báo giá",
             "search_assistant": "Phi công phụ AI",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Mặt hàng là mặt hàng gói",
+                "lineItemOfBundleRule": "Mục của gói đã chọn",
                 "subscriptionCartRule": "Giỏ hàng đăng ký",
                 "subscriptionIntervalRule": "Khoảng thời gian đăng ký",
                 "subscriptionPlanRule": "Gói đăng ký"
             },
             "group": {
                 "subscription": "Đăng ký"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Gói"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Cảm ơn bạn đã thử bản thiết kế của Bundles. Chúng tôi rất muốn nghe phản hồi của bạn.",
+                "link": "Đưa ra phản hồi"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Trường tùy chỉnh"
+            },
+            "general": {
+                "title": "Thông tin chung"
+            },
+            "items": {
+                "actionOpenProductDetails": "Mở chi tiết sản phẩm",
+                "buttonAddBundleItems": "Thêm sản phẩm",
+                "columnName": "Tên",
+                "columnPosition": "Vị trí",
+                "columnPrice": "Giá",
+                "emptyStateDescription": "Thêm ít nhất hai sản phẩm vào gói.",
+                "emptyStateTitle": "Chưa có sản phẩm nào được thêm",
+                "title": "Sản phẩm ({count})",
+                "tooltipBundleItemCustomizedProduct": "Mẫu sản phẩm tùy chỉnh được gán",
+                "tooltipBundleItemHasVariants": "Sản phẩm có các biến thể",
+                "tooltipBundleItemInactive": "Không hoạt động",
+                "tooltipBundleItemIncompatibleVisibilities": "Không được chỉ định cho Kênh bán hàng của gói: {salesChannels}",
+                "tooltipBundleItemIssues": "Các vấn đề:",
+                "tooltipBundleItemOutOfStockCloseout": "Hết hàng (Giảm giá)",
+                "tooltipBundleItemOutOfStockTemporary": "Sản phẩm này hiện đang hết hàng. Gói sẽ có thể mua lại sau khi tất cả các sản phẩm đã có hàng trở lại.",
+                "tooltipBundleItemOutOfStockTitle": "Hết hàng",
+                "tooltipRefreshData": "Làm mới dữ liệu"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Ngày phát hành",
+                    "placeholder": "Nhập ngày phát hành..."
+                },
+                "title": "Nhãn"
+            },
+            "media": {
+                "subtitle": "Thêm tệp vào thư viện phương tiện của gói.",
+                "title": "Phương tiện truyền thông"
+            },
+            "messageMinBundleItemsRequired": "Thêm ít nhất hai sản phẩm để tạo gói.",
+            "messageNoChanges": "Không có thay đổi để lưu",
+            "messageSaveError": "Không thể lưu gói",
+            "messageSaveSuccess": "Gói đã lưu thành công",
+            "price": {
+                "addDiscount": "Thêm giảm giá",
+                "currencyDependingPrices": "Tiền tệ tùy theo giá",
+                "discount": "Giảm giá",
+                "discountRules": "Quy tắc giảm giá",
+                "discountTitle": "Giảm giá",
+                "discountType": "Loại",
+                "discountTypeAbsolute": "Tuyệt đối",
+                "discountTypePercentage": "Tỷ lệ phần trăm",
+                "discountValue": "Giá trị",
+                "discountValuePlaceholder": "Thêm giá trị...",
+                "doNotCombineWith": "Không kết hợp với",
+                "maxValuePlaceholder": "Không giới hạn",
+                "maximumDiscountValue": "Giá trị chiết khấu tối đa",
+                "openAdvancedPricesView": "Mở dạng xem giá nâng cao",
+                "preventCombination": "Ngăn chặn kết hợp với các chương trình khuyến mãi khác",
+                "preventCombinationHelpText": "Khi được kích hoạt, chiết khấu này không thể được kết hợp với các chương trình khuyến mãi khác",
+                "promotionsPlaceholder": "Thêm chương trình khuyến mãi...",
+                "rulesPlaceholder": "Thêm quy tắc...",
+                "subtotalBased": "Tổng phụ dựa trên 1 sản phẩm | Tổng phụ dựa trên {count} sản phẩm",
+                "title": "Giá hiển thị",
+                "total": "Tổng",
+                "totalBased": "Tổng số dựa trên 1 sản phẩm | Tổng số dựa trên {count} sản phẩm"
+            },
+            "tabGeneral": "Chung",
+            "tabLayout": "Bố cục",
+            "tabSeo": "SEO",
+            "textHeadline": "Gói mới",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Điều này ngăn không cho gói hiển thị trong các kênh đó. Vui lòng kiểm tra khả năng hiển thị cho các sản phẩm sau:",
+                    "notAssignedTo": "không được gán cho",
+                    "title": "Một số sản phẩm không được gán cho tất cả các kênh bán hàng đã chọn"
+                },
+                "title": "Khả năng hiển thị & cấu trúc"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Đang hoạt động",
+                "placeholder": "Chọn một trạng thái..."
+            },
+            "availabilityFilter": {
+                "label": "Tính khả dụng",
+                "placeholder": "Chọn tính khả dụng..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Sản phẩm bao gồm",
+                "placeholder": "Chọn sản phẩm đi kèm..."
+            },
+            "categoriesFilter": {
+                "label": "Danh mục",
+                "placeholder": "Chọn danh mục..."
+            },
+            "fromPlaceholder": "Nhập giá trị bắt đầu...",
+            "imagesFilter": {
+                "label": "Hình ảnh",
+                "placeholder": "Chọn trạng thái hình ảnh...",
+                "textHasCriteria": "Ít nhất một hình ảnh sản phẩm được gán",
+                "textNoCriteria": "Không được gán ảnh sản phẩm"
+            },
+            "priceFilter": {
+                "label": "Giá"
+            },
+            "productNumberFilter": {
+                "label": "Số sản phẩm",
+                "placeholder": "Nhập số sản phẩm..."
+            },
+            "releaseDateFilter": {
+                "label": "Ngày phát hành"
+            },
+            "salesChannelsFilter": {
+                "label": "Kênh bán hàng",
+                "placeholder": "Chọn kênh bán hàng..."
+            },
+            "salesFilter": {
+                "label": "Bán hàng"
+            },
+            "tagsFilter": {
+                "label": "Thẻ",
+                "placeholder": "Chọn thẻ..."
+            },
+            "toPlaceholder": "Nhập giá trị cuối..."
+        },
+        "general": {
+            "description": "Bó",
+            "headlineBundles": "Bó",
+            "mainMenuItemGeneral": "Bó",
+            "placeholderSearchBar": "Tìm kiếm các gói...",
+            "title": "Bó"
+        },
+        "generalForm": {
+            "highlightHelpText": "Các gói được đánh dấu bằng nhãn màu sắc rực rỡ và từ “Mẹo” trong tất cả các danh sách gói. Bạn có thể điều chỉnh màu sắc của nhãn bằng cách thay đổi tùy chọn “Thông báo” trong cài đặt <a href=\"{themeUrl}\">chủ đề</a> . Bạn cũng có thể thay đổi văn bản của nhãn bằng cách chỉnh sửa đoạn văn bản <a href=\"{snippetUrl}\">tương ứng</a>.",
+            "labelDescription": "Mô tả",
+            "labelMarkAsTopseller": "Gói nổi bật",
+            "labelName": "Tên",
+            "labelProductNumber": "Số sản phẩm",
+            "placeholderDescription": "Nhập mô tả gói...",
+            "placeholderName": "Nhập tên gói...",
+            "placeholderProductNumber": "Nhập số sản phẩm..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Một gói yêu cầu ít nhất hai sản phẩm.",
+            "notEnoughProductsTitle": "Không đủ sản phẩm",
+            "restrictions": "Một hoặc nhiều sản phẩm có những hạn chế ảnh hưởng đến tính khả dụng của gói này. Xem các biểu tượng cảnh báo để biết chi tiết.",
+            "restrictionsTitle": "Một số sản phẩm có hạn chế"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Không tìm thấy sản phẩm phù hợp",
+            "noProductsMatchingBundleSalesChannels": "Không có sản phẩm hoạt động nào phù hợp với Kênh bán hàng đã chọn của gói.",
+            "noProductsMatchingTermAndFilter": "Điều chỉnh cụm từ tìm kiếm hoặc bộ lọc.",
+            "placeholderSearch": "Tìm sản phẩm...",
+            "showIncluded": "Chỉ hiển thị đã chọn ({count})",
+            "textWhySomeItemsMissing": "Tại sao một số sản phẩm bị thiếu?",
+            "title": "Thêm sản phẩm",
+            "tooltipVariant": "Biến thể",
+            "tooltipWhySomeItemsMissing": "Hiện tại, các gói chỉ hoạt động với các sản phẩm vật lý và các biến thể đơn lẻ. <br /><br /> Sản phẩm phải được chỉ định cho các Kênh bán hàng đã chọn của gói để xuất hiện trong danh sách."
+        },
+        "list": {
+            "available": "Có sẵn",
+            "buttonAddBundle": "Thêm gói",
+            "columnActive": "Đang hoạt động",
+            "columnAvailable": "Tính khả dụng",
+            "columnBundleItemCount": "Số lượng sản phẩm",
+            "columnCreatedAt": "Được tạo vào lúc",
+            "columnName": "Tên",
+            "columnProductNumber": "Số sản phẩm",
+            "columnSales": "Bán hàng",
+            "columnTotalPrice": "Tổng giá",
+            "columnUpdatedAt": "Đã cập nhật lúc",
+            "emptyStateDescription": "Các gói có thể tăng giá trị đơn hàng trung bình của bạn và khuyến khích khách hàng mua các sản phẩm liên quan.",
+            "emptyStateTitle": "Thêm gói để tăng doanh số",
+            "messageSaveSuccess": "Bundle \"{name}\" đã được lưu.",
+            "titleSidebarItemRefresh": "Làm mới",
+            "unavailable": "Không có"
+        },
+        "priceModal": {
+            "currency": "Tiền tệ",
+            "price": "Giá trị",
+            "title": "Giá nâng cao"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Thêm sản phẩm",
+            "description": "Chọn Kênh bán hàng trước để xem sản phẩm nào có thể được thêm vào gói. Bạn có thể điều chỉnh điều này sau này trong thẻ Visibility & structure.",
+            "title": "Yêu cầu kênh bán hàng"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Tạo hình ảnh",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Mô tả gói"
+                },
+                "bundleHeading": {
+                    "label": "Tên gói"
+                },
+                "bundleItems": {
+                    "label": "Gói các mặt hàng"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Thư viện hình ảnh và hộp mua gói"
+                },
+                "recommendedBundles": {
+                    "label": "Các gói được đề xuất"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Bố cục mặc định - Trang gói sản phẩm",
+                "setAsDefaultBundleDetail": "Đặt làm trang gói sản phẩm mặc định"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Trang Bundle"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Tạo hình ảnh",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dữ liệu sản phẩm của phần tử này được tự động tải bởi sản phẩm được liên kết với bố trí này. Nội dung chỉ hiển thị một bản xem trước mẫu."
+                },
+                "label": "Hộp mua gói"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dữ liệu sản phẩm của phần tử này được tự động tải bởi sản phẩm được liên kết với bố trí này. Nội dung chỉ hiển thị một bản xem trước mẫu."
+                },
+                "label": "Mô tả gói",
+                "preview": {
+                    "descriptionTab": "Mô tả",
+                    "title": "Gói"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Cho phép thêm các mặt hàng gói trực tiếp vào giỏ hàng thay vì mở trang chi tiết sản phẩm.",
+                        "labelTitle": "Sử dụng {count} để hiển thị số lượng sản phẩm trong gói."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Dữ liệu sản phẩm của phần tử này được tự động tải bởi sản phẩm được liên kết với bố trí này. Nội dung chỉ hiển thị một bản xem trước mẫu."
+                    },
+                    "label": {
+                        "boxSettings": "Cài đặt hộp sản phẩm",
+                        "cta": "Hiển thị CTA để thêm các mặt hàng gói trực tiếp vào giỏ hàng",
+                        "minWidth": "Chiều rộng tối thiểu",
+                        "title": "Tiêu đề"
+                    }
+                },
+                "label": "Sản phẩm bao gồm"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dữ liệu gói của phần tử này được tự động tải bởi gói được liên kết với bố cục này. Nội dung chỉ hiển thị một bản xem trước mẫu."
+                },
+                "label": "Tên gói"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Khi được bật, chỉ một tập hợp con của các gói được hiển thị ban đầu. Người dùng có thể mở rộng danh sách để hiển thị thêm.",
+                        "maxVisibleBundles": "Kiểm soát số lượng gói sẽ được hiển thị cho đến khi chúng bị ẩn đằng sau chức năng “Hiển thị thêm”.",
+                        "productBoxSettings": "Cài đặt hộp sản phẩm",
+                        "productDetailElement": "Dữ liệu sản phẩm của phần tử này được tự động tải bởi sản phẩm được liên kết với bố trí này. Nội dung chỉ hiển thị một bản xem trước mẫu.",
+                        "showCTAInfo": "Cho phép thêm các mặt hàng gói trực tiếp vào giỏ hàng thay vì mở trang chi tiết sản phẩm.",
+                        "sliderSettings": "Cài đặt thanh trượt"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Giới hạn số lượng gói được hiển thị ban đầu",
+                        "maxVisibleBundles": "Các gói được hiển thị ban đầu",
+                        "minWidth": "Chiều rộng tối thiểu",
+                        "recommendedCombinationsTitle": "Kết hợp được đề xuất",
+                        "showBundleName": "Hiển thị tên gói",
+                        "showCTA": "Hiển thị CTA để thêm các mặt hàng gói trực tiếp vào giỏ hàng",
+                        "showCurrentProduct": "Hiển thị sản phẩm hiện đang xem đầu tiên trong gói",
+                        "title": "Tiêu đề"
+                    },
+                    "placeholder": {
+                        "minWidth": "Nhập độ rộng tối thiểu...",
+                        "title": "Kết hợp được đề xuất"
+                    }
+                },
+                "label": "Kết hợp được đề xuất",
+                "preview": {
+                    "label": {
+                        "title": "Kết hợp được đề xuất"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Tạo hình ảnh",
             "contentText": "Tạo hình ảnh tâm trạng của riêng bạn để tùy chỉnh bố cục của bạn với sự trợ giúp của hình ảnh được tạo bởi AI.",
             "header": "Phi công phụ AI"
+        },
+        "tags": {
+            "bundle": "Gói"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Địa chỉ đơn vị tổ chức",
                             "pending_order": "Quản lý đơn hàng đang chờ xử lý",
                             "quote": "Quản lý báo giá",
-                            "role": "Quản lý vai trò"
+                            "role": "Quản lý vai trò",
+                            "subscription": "Đặt hàng đăng ký"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Xóa địa chỉ giao hàng",
                                     "update": "Chỉnh sửa địa chỉ giao hàng"
                                 },
+                                "subscription": {
+                                    "read": "Xem tất cả các đăng ký đơn đặt hàng từ đơn vị tổ chức được chỉ định"
+                                },
                                 "update": "Chỉnh sửa đơn vị tổ chức"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Có thể xóa vai trò",
                                 "edit": "Có thể chỉnh sửa vai trò",
                                 "read": "Có thể xem vai trò"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Xem tất cả các đăng ký đặt hàng"
+                                }
                             }
                         },
                         "switchAllLabel": "Tất cả các quyền"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Quản lý vai trò"
             },
+            "bundle": {
+                "label": "Bó"
+            },
             "custom_price": {
                 "label": "Giá khách hàng sản phẩm"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Thêm sản phẩm vào gói",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Đã hiểu rồi",
+                "description": "Không thể loại bỏ sản phẩm này khỏi các gói sau vì một gói yêu cầu ít nhất hai sản phẩm:",
+                "hint": "Để loại bỏ sản phẩm này, trước tiên hãy thêm một sản phẩm khác vào các gói này.",
+                "title": "Không thể xóa sản phẩm khỏi tất cả các gói"
+            },
+            "bundleCardSubtitle": "Tất cả các gói chứa sản phẩm này",
+            "bundleCardTitle": "Gói ({count})",
+            "buttonAddBundle": "Thêm sản phẩm vào gói",
+            "buttonAddBundleLanguageWarning": "Thêm gói chỉ có thể trong ngôn ngữ mặc định của hệ thống.",
+            "buttonCreateBundle": "Tạo gói",
+            "buttonManageBundles": "Quản lý gói",
+            "columnActive": "Đang hoạt động",
+            "columnAvailability": "Tính khả dụng",
+            "columnBundleItemCount": "Số lượng sản phẩm",
+            "columnCreatedAt": "Được tạo vào lúc",
+            "columnName": "Tên",
+            "columnProductNumber": "Số sản phẩm",
+            "columnSales": "Bán hàng",
+            "columnShowBundleOnItemPdp": "Hiển thị trên trang chi tiết",
+            "columnUpdatedAt": "Đã cập nhật lúc",
+            "emptyStateDescription": "Các gói có thể làm tăng giá trị đơn hàng trung bình và khuyến khích khách hàng mua các sản phẩm liên quan. Các gói xuất hiện trên trang chi tiết sản phẩm nếu bố cục CMS bao gồm một phần tử gói.",
+            "emptyStateDescriptionCreateFirst": "Các gói có thể làm tăng giá trị đơn hàng trung bình và khuyến khích khách hàng mua các sản phẩm liên quan. Các gói xuất hiện trên trang chi tiết sản phẩm nếu bố cục CMS bao gồm một phần tử gói. Tạo một gói để thêm sản phẩm này.",
+            "emptyStateNoBundlesFound": "Không tìm thấy gói phù hợp",
+            "emptyStateNoBundlesFoundDescription": "Điều chỉnh cụm từ tìm kiếm hoặc bộ lọc.",
+            "emptyStateTitle": "Thêm sản phẩm vào gói để tăng doanh số",
+            "hideOnProductDetailPage": "Ẩn trên trang chi tiết sản phẩm",
+            "messageSaveSuccess": "Bundle \"{name}\" đã được lưu.",
+            "openBundlesDetail": "Mở chi tiết gói",
+            "placeholderSearch": "Tìm kiếm các gói...",
+            "refreshDataTooltip": "Làm mới dữ liệu",
+            "showOnProductDetailPage": "Hiển thị trên trang chi tiết sản phẩm",
+            "showOnlyIncluded": "Chỉ hiển thị đã chọn",
+            "tooltipBundleHasRestrictions": "Một hoặc nhiều sản phẩm có những hạn chế ảnh hưởng đến tính khả dụng của gói này. Truy cập chi tiết gói để biết thêm thông tin.",
+            "tooltipBundleInactive": "Không hoạt động",
+            "tooltipBundleIssues": "Các vấn đề:",
+            "tooltipBundleMismatchedSalesChannels": "Không được gán cho Kênh bán hàng của Sản phẩm: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Sản phẩm này không thể được gỡ bỏ vì các gói yêu cầu ít nhất hai sản phẩm."
+        },
         "card": {
             "textHeadline": "Cổ phiếu & Khả năng giao hàng",
             "textLinkModal": "Xem kho theo kho và nhóm kho",
             "textProductWarehouseModalDisabled": "Lưu các thay đổi của bạn trước khi bạn có thể mở thêm chi tiết cổ phiếu.",
             "textTooltipMultiSelect": "Chỉ định các nhóm kho để quản lý hàng tồn kho của bạn riêng lẻ trên nhiều kho."
+        },
+        "detail": {
+            "tabBundle": "Bó"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Đóng",
@@ -1986,6 +2359,9 @@
             "tabStock": "Số lượng",
             "textHeadline": "Hàng tồn kho theo nhóm kho và kho",
             "textInlineEdit": "Chỉnh sửa cổ phiếu"
+        },
+        "type": {
+            "grouped_bundle": "Gói"
         },
         "variants-overview": {
             "inlineText": "Xem chi tiết"
@@ -2542,6 +2918,16 @@
             "emptyText": "Cảnh trống"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Trang chi tiết sản phẩm gói"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Cho phép mã khuyến mãi cho đơn đặt hàng từ báo giá"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha thân thiện",
+                "friendlyCaptchaApiKey": "Khóa API Captcha thân thiện",
                 "friendlyCaptchaDescription": "Dựa trên cơ chế chứng minh công việc và các tín hiệu rủi ro tiên tiến, Friendly Captcha sử dụng một cách tiếp cận cơ bản mới để bảo vệ an toàn các trang web và dịch vụ trực tuyến của bạn khỏi spam và bot.",
+                "friendlyCaptchaRegion": "Khu vực API",
+                "friendlyCaptchaRegionEu": "EU (Liên minh châu Âu)",
+                "friendlyCaptchaRegionGlobal": "Toàn cầu",
+                "friendlyCaptchaRegionHelpText": "Chọn “EU” để định tuyến tất cả các yêu cầu captcha độc quyền thông qua các máy chủ châu Âu. Điều này có thể liên quan đến việc tuân thủ GDPR.",
                 "friendlyCaptchaSecretKey": "Khóa bí mật Captcha thân thiện",
-                "friendlyCaptchaSiteKey": "Khóa trang web Captcha thân thiện"
+                "friendlyCaptchaSiteKey": "Khóa trang web Captcha thân thiện",
+                "friendlyCaptchaV1DeprecationNotice": "Phiên bản 1 là di sản và sẽ bị xóa trong một bản phát hành trong tương lai. Chúng tôi khuyên bạn nên nâng cấp lên phiên bản 2 để cải thiện bảo mật và trải nghiệm tiện ích sạch hơn.",
+                "friendlyCaptchaVersion": "Phiên bản Captcha thân thiện",
+                "friendlyCaptchaVersionV1": "Phiên bản 1 (di sản)",
+                "friendlyCaptchaVersionV2": "Phiên bản 2 (mới)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Hủy",
         "retry": "Thử lại"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Khóa cân đồng phục",
-        "unlock-uniform-scale": "Mở khóa cân đồng phục"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Khách hàng của bạn có thể xác định và quản lý giới hạn ngân sách để kiểm soát tốt hơn chi tiêu của đơn vị tổ chức của họ.",
         "budgetManagementName": "Ngân sách",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Phê duyệt đơn hàng",
                     "ORGANIZATION_UNITS": "Đơn vị tổ chức",
                     "QUICK_ORDER": "Đơn hàng nhanh",
-                    "QUOTE_MANAGEMENT": "Quản lý báo giá"
+                    "QUOTE_MANAGEMENT": "Quản lý báo giá",
+                    "SHOPPING_LISTS": "Danh sách mua sắm"
                 },
                 "template": "{dependency} là bắt buộc cho {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Tên",
             "columnOrderQuantity": "Số lượng đặt hàng",
             "columnReturnQuantity": "Số lượng trả lại",
+            "includesShippingCosts": "Bao gồm chi phí vận chuyển",
             "messageErrorNoItemHasQuantity": "Phải có ít nhất 1 dòng mục có số lượng lớn hơn 0 để tạo trả lại",
             "messagePreventAddItem": "Mặt hàng này đã là một phần của việc trả lại hoặc trạng thái của nó là Hủy, Trả lại hoặc Trả lại một phần.",
             "placeholderComment": "Nhập bình luận...",

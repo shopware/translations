@@ -317,6 +317,7 @@
             "newsletter_update": "Haber bültenine kaydolma güncellendi",
             "product_export_log": "Ürün dışa aktarma gerçekleştirildi",
             "review_form_send": "İnceleme formu gönderildi",
+            "revocation_request_sent": "İptal talep formu gönderildi.",
             "state_enter_order_delivery_state_cancelled": "Gönderim durumu iptal edildi",
             "state_enter_order_delivery_state_open": "Gönderi durumu açık olarak giriyor",
             "state_enter_order_delivery_state_returned": "Gönderi durumu döndürülür",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Dosya seç",
             "caption": "Yüklemek için bir dosyayı buraya sürükleyin",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Seçilen dosya \"{name}\" desteklenmeyen bir dosya uzantısına sahiptir. Lütfen aşağıdaki dosya uzantılarından birini kullanın: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Seçilen \"{name}\" dosyası yüklenemeyecek kadar büyük. Dosya boyutu geçmemelidir {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Belge bulunamadı",
                 "title": "Toplu düzenleme - Başarı"
             },
-            "warningText": "Lütfen toplu düzenlemenin tamamlanmasını bekleyin. Bu biraz zaman alabilir. Tarayıcı sekmesini kapatır veya işlemi erken iptal ederseniz, tüm değişiklikler uygulanmaz. Toplu düzenlemeyi istediğiniz zaman yeniden çalıştırabilirsiniz."
+            "warningText": "Lütfen toplu düzenlemenin tamamlanmasını bekleyin. Bu biraz zaman alabilir. Tarayıcı sekmesini kapatır veya işlemi erken iptal ederseniz, tüm değişiklikler uygulanmaz. Toplu düzenlemeyi istediğiniz zaman yeniden çalıştırabilirsiniz.",
+            "warningTextDocumentDeletion": "Belgeler bir siparişin bir parçasıdır ve vergi amaçlarıyla ilgili olabilir. Bunları silmek, muhasebe kayıtlarınızın izlenebilirliğini etkileyebilir. Lütfen silmeye yasal olarak izin verildiğinden emin olun."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Belgeler",
+                "deleteDocuments": {
+                    "helpText": "Bu seçenekle, seçilen tüm belge türleri silinecektir.",
+                    "label": "Sil: Belgeler"
+                },
                 "downloadDocuments": {
                     "helpText": "Bu seçenekle, mevcut en yeni belgeler indirilebilir. Birden çok belge aynı dosyada birleştirilir. İndirme, çoklu değişiklik tamamlandıktan sonra kullanılabilir.",
                     "label": "İndir: Belgeler"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Bülten sayfaları",
                     "privacyPage": "Gizlilik sayfaları",
                     "revocationPage": "İptal bildirimleri",
+                    "revocationRequestPage": "İptal istek formu",
                     "shippingPaymentInfoPage": "Ödeme ve gönderim bilgileri",
                     "tosPage": "TOS sayfaları"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Başlık",
                         "type": "Form türü",
                         "typeContact": "İletişim",
-                        "typeNewsletter": "Bülten"
+                        "typeNewsletter": "Bülten",
+                        "typeRevocationRequest": "İptal"
                     },
                     "placeholder": {
                         "type": "Bir form türü seçin..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Eylem",
+                        "comment": "Yorum",
+                        "contractNumber": "Sözleşme numarası (sipariş numarası, abonelik numarası, ... ) *    ",
                         "email": "E-posta adresi*",
                         "firstName": "İlk Adı*",
                         "lastName": "Soyadı*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed dian nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diak voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Hayır {criteriaName}",
         "placeholder": "Tümü"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kanal dışa aktarma",
+                        "placeholder": "Dışa aktarma kanallarını seçin…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kanal dışa aktarma"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kanal dışa aktarma",
+                        "placeholder": "Dışa aktarma kanallarını seçin…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kanal dışa aktarma"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Sipariş ve müşteri listelerine dışa aktarma kanalı sütunları ve filtreleri ekler.",
+            "mainMenuItemGeneral": "Dışa Aktar Kanal Takibi"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "“{name}\" uzantısı bu Shopware sürümüyle uyumlu değil",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Türü",
                 "labelRecipient": "Alıcı",
                 "labelReplyTo": "Adresi yanıtla",
+                "labelRevocationRequestFormMail": "Sorgulayıcı",
                 "labelSenderName": "Gönderen adı",
                 "labelSubject": "Konu",
                 "placeholderDescription": "Açıklamayı girin...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Kural adını girin...",
                 "placeholderPriority": "Kural önceliğini girin...",
                 "placeholderType": "Kural türünü seçin...",
+                "productStatesConditionWarning": "“Ürün durumu olan öğe” koşulu kullanımdan kaldırılmıştır ve v6.8'de kaldırılacaktır. Lütfen bunun yerine “Ürün türüne sahip ürün” seçeneğini kullanın.",
                 "tabDetail": "General",
                 "tabRule": "Koşul"
             },
@@ -4484,6 +4531,8 @@
             "returned": "İade",
             "returnedPartially": "Kısmen iade edildi",
             "reviewForm": "Ürün incelemesi",
+            "revocationRequestCustomer": "İptal isteği gönderildi",
+            "revocationRequestMerchant": "İptal talebi alındı",
             "send": "Gönder",
             "sent": "Gönderildi",
             "shipped": "Sevk",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Caret (^)",
             "categoriesLabel": "Kategoriler",
             "closeProfileLabel": "Profili kapat",
-            "closeViolation": "Kapat",
             "commasLabel": "Virgül (,)",
             "configuratorSettingLabel": "Varyant yapılandırma ayarları",
             "copyOfLabel": "Kopyası:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "İçe Aktar"
             },
             "updateEntitiesLabel": "Mevcut verileri güncelle",
-            "violationMessage": "Profiliniz henüz geçerli değil. Profili kaydetmek için aşağıda gösterilen gerekli alanlara eşlemeler eklemeniz gerekir:"
+            "violationModal": {
+                "duplicateMappings": "Aşağıdaki alanlarda <strong>yinelenen eşlemeleriniz</strong> var. Profili kaydetmek için lütfen kopyaları kaldırın:",
+                "missingRequiredFields": "Profili kaydetmek için aşağıda gösterilen <strong>zorunlu alanlarına</strong> eşlemeleri eklemeniz gerekir:",
+                "title": "Profiliniz henüz geçerli değil"
+            }
         },
         "progress": {
             "startExportLabel": "Dışa Aktar",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Medyaya kaydet"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Nesneyi Taşı",
-                "rotate-tooltip": "Nesneyi Döndür",
-                "scale-tooltip": "Nesneyi Ölçekle"
-            },
-            "saveChanges": "Değişiklikleri kaydetmek",
-            "titleModal": "Model Editörü"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Geri"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Nesneyi Taşı",
+            "rotate-tooltip": "Nesneyi Döndür",
+            "scale-tooltip": "Nesneyi Ölçekle"
+        },
+        "open-model-editor-tooltip": "Model Düzenleyiciyi Aç",
+        "properties": {
+            "transformation": {
+                "label": "Dönüşüm",
+                "position": {
+                    "label": "Pozisyon"
+                },
+                "rotation": {
+                    "label": "Döndürme"
+                },
+                "scale": {
+                    "label": "Ölçek"
+                }
+            }
+        },
+        "titleModal": "Model Editörü"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Kredi notu oluşturmak için önce bir kredi kalemi ekleyin.",
-                    "storno": "Fatura olmadan iptal faturası oluşturulamaz."
+                    "storno": "Fatura olmadan iptal faturası oluşturulamaz.",
+                    "zugferd_cancellation_invoice": "ZugFerd iptal faturası fatura olmadan oluşturulamaz.",
+                    "zugferd_credit_note": "ZugFerd kredi notu oluşturmak için bir fatura ve en az bir kredi kalemi gereklidir.",
+                    "zugferd_embedded_cancellation_invoice": "Gömülü bir ZugFerd iptal faturası fatura olmadan oluşturulamaz.",
+                    "zugferd_embedded_credit_note": "Gömülü bir ZugFerd kredi notu oluşturmak için bir fatura ve en az bir kredi kalemi gereklidir."
                 },
                 "primaryAction": "Belge oluştur",
+                "showZugferd": "ZugFerd varyantlarını göster",
                 "title": "Belge oluştur"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Belgeler",
+            "confirmDeleteText": "Bu belge bir siparişin parçasıdır ve vergi amaçlarıyla ilgili olabilir. Silmek, muhasebe kayıtlarınızın izlenebilirliğini etkileyebilir. Lütfen silmeye yasal olarak izin verildiğinden emin olun. Bu işlem geri alınamaz.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Belge numarası {number} zaten tahsis edilmiştir."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Özel belge yükle",
             "labelCancel": "Kapat",
             "labelCreate": "Oluştur",
+            "labelCreateDownload": "Oluştur ve indir",
             "labelCreateDownloadPdf": "PDF oluşturma ve indirme",
             "labelCreateSend": "Oluştur ve gönder",
             "labelDeliveryDate": "Teslim tarihi",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtre",
             "titleSidebarItemFilterAffiliateCode": "Satış Ortaklığı kodu",
             "titleSidebarItemFilterCampaignCode": "Kampanya kodu",
-            "titleSidebarItemRefresh": "Yenile"
+            "titleSidebarItemRefresh": "Yenile",
+            "tooltipCustomerComment": "Ek bilgi: {comment}",
+            "tooltipInternalComment": "İç yorum: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "İsim",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Burada isteğe bağlı olarak ürününüzün bulunması gereken üç ila beş anahtar kelime tanımlayabilirsiniz.",
             "helpTextMetaDescription": "Meta açıklama ile müşterilerinize mağazanızda doğru yerde olduklarını onaylarsınız. Teşvikler yaratırsınız, güven oluşturursunuz ve bir eyleme davet edersiniz. Kendinizi maksimum 155 karakterle sınırlamalısınız. Shopware maksimum 255 karakter uzunluğuna izin verir.",
             "helpTextMetaTitle": "Meta başlığı en önemli SEO öğesidir ve her sayfa için benzersiz olmalıdır. Kendinizi maksimum 56 karakterle sınırlamalısınız. Anahtar kelimeniz ideal olarak en öne yerleştirilmelidir.",
+            "helpTextOpenGraphDescription": "Açık Grafik açıklaması, ürünü sosyal medyada paylaşırken kullanılır. Boş bırakılırsa, meta açıklama yedek olarak kullanılacaktır.",
+            "helpTextOpenGraphTitle": "Ürünü sosyal medyada paylaşırken Open Graph başlığı kullanılır. Boş bırakılırsa, meta başlık yedek olarak kullanılacaktır.",
             "labelCanonicalProduct": "Standart URL için varyant",
             "labelCanonicalUrlMode": "Tüm varyantlar için tek standart URL kullan",
             "labelKeywords": "SEO anahtar kelimeleri",
             "labelMetaDescription": "Meta açıklaması",
             "labelMetaTitle": "Meta başlığı",
+            "labelOpenGraphDescription": "OG açıklama",
+            "labelOpenGraphImage": "OG görüntüsü",
+            "labelOpenGraphTitle": "OG başlığı",
             "placeholderCanonicalProduct": "Bir varyant seçin...",
             "placeholderKeywords": "Bir veya daha fazla anahtar kelime girin...",
             "placeholderMetaDescription": "Meta açıklamasını girin...",
-            "placeholderMetaTitle": "Meta başlığı girin..."
+            "placeholderMetaTitle": "Meta başlığı girin...",
+            "placeholderOpenGraphDescription": "Açık Grafik açıklamasını girin...",
+            "placeholderOpenGraphTitle": "Open Graph başlığını girin...",
+            "titleOpenGraph": "Açık Grafik"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Bakanlar reddedildi.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Koşullar"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Satış Ortaklığı kodu",
+            "affiliateCodePlaceholder": "Ortaklık kodunu girin…",
+            "campaignCodeLabel": "Kampanya kodu",
+            "campaignCodePlaceholder": "Kampanya kodunu girin…",
+            "cardTitle": "İzleme kodları",
+            "description": "Bu kanalın feed'lerinin ürün URL'lerine gömülü olacak bağlı kuruluş ve kampanya kodlarını yapılandırın. Bu kodlar, bu Agentic Commerce kanalından yönlendirilen siparişleri ve müşterileri tanımlar."
+        },
         "detail": {
             "activateDisable": "Satış Kanalı'nı etkinleştirmeden ve kaydetmeden önce lütfen bir tema atayın.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Varsayılana sıfırla",
+                "errorLoadingTemplate": "Varsayılan şablon yüklenemedi.",
+                "integration": {
+                    "feedUrlLabel": "URL'yi dışa aktarma",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI bağlantısı",
+                            "introduction": {
+                                "description": "Bu Satış Kanalı, ürünlerinizin ChatGPT arama sonuçlarında görünebilmesi için bir JSONL ürün beslemesi oluşturur. Bunu yapmak için satıcı olarak başvurmanız ve feed URL'sini OpenAI ile paylaşmanız gerekir. Diğer her şey aşağıdaki adım adım kılavuzda açıklanmaktadır.",
+                                "title": "Nasıl Yapılır: Kurulum ve bağlantı"
+                            },
+                            "stepByStep": "<li> <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/</a></li><li>Dışa aktarma URL'sini (aşağıda) kopyalayın ve <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Ürün beslemeleri dokümanlarına göre OpenAI ile paylaşın</a></li><li>Dışa aktarma URL'sinin herkese açık olduğundan emin olun.</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Adım adım"
+                },
+                "openAiSettingsTitle": "OpenAI ayarları",
+                "resetTemplateSuccess": "Şablon varsayılan olarak sıfırlandı. Değişiklikleri korumak için lütfen kaydedin.",
+                "tabIntegration": "Entegrasyon",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "Açık AI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Google Analytics'in yardımıyla mağazanızın verilerini toplayabilir ve analiz edebilirsiniz. Bu işlevden yararlanmak için bir Google Hesabı gereklidir. Henüz bir Google Analytics hesabınız yoksa, buradan kaydolmak isteyebilirsiniz: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Başarıyla kaydolduktan sonra bir izleme kimliği alacaksınız, entegrasyonu etkinleştirmek için aşağıda doldurulacak olan.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Tavsiye edilen müşteriler",
+                    "dateRanges": {
+                        "14Days": "Son 14 gün",
+                        "180Days": "Son 180 gün",
+                        "24Hours": "Son 24 saat",
+                        "30Days": "Son 30 gün",
+                        "7Days": "Son 7 gün",
+                        "yesterday": "Dün"
+                    },
+                    "numbers": "Kont",
+                    "orderCardHeadline": "Yönlendirilen siparişler",
+                    "summary": "Özet",
+                    "totalTurnover": "Ciro",
+                    "turnoverCardHeadline": "Yönlendirilen ciro"
+                },
+                "tabInsights": "İstatistik"
             },
             "products": {
                 "buttonAddProducts": "{productCount} ürün ekle | {productCount} Ürün ekle | {productCount} Ürün ekle",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Bu Satış Kanalı'nda aynı türde başka bir belge zaten var.",
             "disabledSalesChannelSelect": "Önce bir belge türü seçin.",
             "disabledTypeSelect": "Genel belgelerin türü değiştirilemez.",
+            "displayTitle": "Ekranı:",
             "helpTextDisplayAdditionalNoteDelivery": "Yalnızca AB üye ülkeleri için uygundur, ayrıca bkz. “Ayarlar > Ülkeler”.",
-            "helpTextDisplayCompanyAddress": "Belgenin sağ tarafındaki başlığın altında şirket adresini görüntüler.",
-            "helpTextDisplayDeliveryCountries": "Seçili ülkeler için fatura belgelerinde “topluluğun içi teslimatı” göstergesini görüntüler.",
             "helpTextDisplayDocumentInCustomerAccount": "Belge, ilgili müşteri hesabındaki “Siparişler” altında görüntülenir. Yalnızca müşteriye gönderilen belgelerin müşteri hesabında görüntülendiğini unutmayın.",
-            "helpTextDisplayReturnAddress": "Şirket adresini adres bloğunda müşteri adresinin üstünde iade adresi olarak görüntüler.",
-            "helpTextPaymentDueDate": "Örneğin: +30 gün, +4 hafta, +1 hafta 2 gün",
             "labelBankBic": "BİC",
             "labelBankIban": "İBAN",
             "labelBankName": "Banka",
             "labelCompanyCity": "Kent",
             "labelCompanyCountry": "Ülke",
             "labelCompanyEmail": "E-posta adresi",
+            "labelCompanyLogo": "Şirket logosu",
             "labelCompanyName": "İsim",
             "labelCompanyPhone": "Telefon numarası",
             "labelCompanyStreet": "Sokak",
             "labelCompanyUrl": "Web Sitesi",
             "labelCompanyZipcode": "Posta kodu",
-            "labelDeliveryCountries": "Üye ülkeler",
             "labelDisplayAdditionalNoteDelivery": "“Topluluk içi teslimat” etiketini göster",
             "labelDisplayCompanyAddress": "Şirket adresini göster",
             "labelDisplayCustomerVatId": "Müşteri KDV Kimliğini Görüntüle",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Dosya biçimleri",
             "labelItemsPerPage": "Sayfa başına öğe",
             "labelName": "Teknik adı",
-            "labelOptionMedia": "Şirket logosu",
             "labelPageOrientation": "Sayfa yönlendirmesi",
             "labelPageSize": "Sayfa formatı",
             "labelPaymentDueDate": "Ödeme son tarihi",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Vergi Dairesi",
             "labelType": "Belge türü",
             "labelVatId": "KDV Kayıt No.",
-            "messageSaveSuccess": "Belge \"{name}\" kaydedildi.",
-            "placeholderDisplayDeliveryCountries": "Topluluk içi teslimat için geçerli olan ülkeleri arayın ve ekleyin...",
+            "pageOrientationOptions": {
+                "landscape": "Manzara",
+                "portrait": "Portre"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Yasal",
+                "letter": "Mektup"
+            },
+            "placeholderBankBic": "BIC girin...",
+            "placeholderBankIban": "IBAN'ı girin...",
+            "placeholderBankName": "Banka adını girin...",
+            "placeholderCompanyCity": "Şehri girin...",
+            "placeholderCompanyCountry": "Bir ülke seçin...",
+            "placeholderCompanyEmail": "E-posta adresini girin...",
+            "placeholderCompanyName": "Şirket adını girin...",
+            "placeholderCompanyPhone": "Telefon numarasını girin...",
+            "placeholderCompanyStreet": "Sokağa girin...",
+            "placeholderCompanyUrl": "Web sitesine girin...",
+            "placeholderCompanyZipcode": "Posta kodunu girin...",
+            "placeholderExecutiveDirector": "İş yöneticisine girin...",
+            "placeholderFileNamePrefix": "Önek girin...",
+            "placeholderFileNameSuffix": "Soneki girin...",
+            "placeholderFileTypes": "Dosya formatlarını seçin...",
+            "placeholderItemsPerPage": "Sayfa başına öğe sayısını girin...",
             "placeholderName": "İsim girin...",
+            "placeholderPageOrientation": "Bir sayfa yönü seçin...",
+            "placeholderPageSize": "Bir sayfa biçimi seçin...",
+            "placeholderPaymentDueDate": "Ödeme son tarihini girin...",
+            "placeholderPlaceOfFulfillment": "Yerine getirme yerini girin...",
+            "placeholderPlaceOfJurisdiction": "Yargı yerini girin...",
+            "placeholderSalesChannel": "Bir satış kanalı seçin...",
+            "placeholderTaxNumber": "Vergi numarasını girin...",
+            "placeholderTaxOffice": "Vergi dairesine girin...",
+            "placeholderType": "Belge türü seçin...",
+            "placeholderVatId": "KDV kimliğini girin...",
             "textHeadline": "Yeni belge"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Atama",
             "columnName": "Teknik adı",
             "columnType": "Türü",
-            "columnUsedIn": "Atanan",
             "contextMenuEdit": "Düzenle",
             "global": "Global",
             "messageDeleteSuccess": "Belge \"{name}\" silindi.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Reddet",
+                "give-consent": "Onay Verin",
                 "save-preferences": "Tercihleri kaydet",
                 "share-all-data": "Tümünü paylaş",
                 "share-nothing": "Hiçbir şey paylaşma"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/tr/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Tüm ayrıntılar için bkz. {data-use-details} ve {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Gizlilik Politikası",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Mağaza ve kullanıcı verilerini paylaşarak, Yönetimin nasıl kullanıldığını anlamamıza ve günlük işlerinizi kolaylaştıracak iyileştirmeler geliştirmemize yardımcı olursunuz.",
-            "opt-out-info": "İstediğiniz zaman ayarlar ve Profil ayarları aracılığıyla devre dışı bırakabilirsiniz.",
+            "opt-out-info": {
+                "profile": "Profiliniz - Gizlilik Tercihleri",
+                "settings": "Ayarlar — Gizlilik",
+                "snippet": "Tercihlerinizi istediğiniz zaman değiştirebilirsiniz: Mağaza Verileri ayarlarını {settings}altında ve Kişisel Veri ayarlarını {profile} altında yönetin."
+            },
             "promises": {
                 "gdpr-compliant": "GDPR uyumlu",
                 "no-third-party": "Hiçbir veri üçüncü taraflarla paylaşılmaz",
@@ -9899,6 +10059,12 @@
                     "order": "emirleri",
                     "store": "veri depolamak"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "burada",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Tanılama verileri</strong> Shopware'deki sistem durumu, hataları ve platformun performans ölçümleriyle ilgili bilgileri ifade eder. Bu, sistem günlükleri, hata mesajları, sunucu yanıt süreleri ve diğer teknik göstergeler gibi ayrıntıları içerir. Bu verileri analiz etmek, platformun bütünlüğünü koruyarak yaygın sorunlar veya güvenlik açıklarına yönelik düzeltmeleri hızlı bir şekilde tanımlamamıza, ele almamıza ve dağıtmamıza yardımcı olur.",
                     "order": "<strong>Shopware içindeki</strong> sipariş verileri, platforma verilen müşteri siparişleri hakkında ayrıntılı bilgileri ifade eder. Bu, sipariş edilen ürünler, miktarlar, fiyatlar, menşe, ödeme yöntemleri, sevkiyat vb. Gibi özellikleri içerir. Bu verileri, özellikleri geliştirmemize yardımcı olan eğilimleri ve kalıpları anlamak ve iş başarınızı artırmak için tasarlanmış yeni hizmetler geliştirmemize yardımcı olmak için analiz ediyoruz. Müşterilerinizden tek bir kişiyi tanımlamak için kullanılabilecek kişisel verileri toplamıyoruz.",
@@ -9912,6 +10078,12 @@
                 "description": "Kullanılabilirliği ve performansını artırmak için Yönetim ile nasıl etkileşim kurduğunuz hakkında {data} 'ı kullanıyoruz.",
                 "emphasizes": {
                     "data": "veri"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Gizlilik Politikası",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Shopware'deki</strong> kullanım verileri, yönetici kullanıcılarının ve vitrin ziyaretçilerinin platformumuzla nasıl etkileşime girdiği ile ilgili bilgilerle ilgilidir. Bu, farklı Shopware yönetici modülleri ile etkileşimler, görüntülenen sayfalar, ziyaretlerin süresi, tıklama yolları ve platform ve vitrin içindeki kullanıcı eylemleri gibi ayrıntıları içerir. Kullanım verilerini değerlendirerek, platformun sık ziyaret edilen veya özelliklerin benimsenmesini ölçmek için kaçınılan alanlarını belirleyebiliriz, bu da düzen, tasarım ve işlevsellikte potansiyel iyileştirmelere yol açabiliriz."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Öğeyi değiştir \"{name}\"",
         "toggleTreeItem": "Ağaç öğesini aç/kapat \"{name}\""
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Katılıyorum",
-        "checkListDataSharing": {
-            "gdprCompliant": "GDPR uyumluyuz",
-            "helpText": {
-                "shareDataHelpText": "<strong>“Paylaş”</strong> , alıcı tarafın kendi amaçları için verilerin ifşa edilmesini ifade eder; verileri hizmet sağlayıcılarımıza ifşa edebiliriz."
-            },
-            "personalData": "Kişisel verileri toplamıyoruz",
-            "securelyProcessed": "Verileriniz güvenli bir şekilde işlenir ve saklanır",
-            "thirdParty": "Verilerinizi üçüncü taraflarla kendi amaçları doğrultusunda paylaşmıyoruz",
-            "title": "Sizi temin edebiliriz:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Teşhis verileri",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Tanılama verileri</strong> Shopware'deki sistem durumu, hataları ve platformun performans ölçümleriyle ilgili bilgileri ifade eder. Bu, sistem günlükleri, hata mesajları, sunucu yanıt süreleri ve diğer teknik göstergeler gibi ayrıntıları içerir. Bu verileri analiz etmek, platformun bütünlüğünü koruyarak yaygın sorunlar veya güvenlik açıklarına yönelik düzeltmeleri hızlı bir şekilde tanımlamamıza, ele almamıza ve dağıtmamıza yardımcı olur.",
-                "orderDataHelp": "<strong>Shopware içindeki</strong> sipariş verileri, platforma verilen müşteri siparişleri hakkında ayrıntılı bilgileri ifade eder. Bu, sipariş edilen ürünler, miktarlar, fiyatlar, menşei, ödeme yöntemleri, sevkiyat vb. özellikleri içerir. Bu verileri, özellikleri geliştirmemize yardımcı olan eğilimleri ve kalıpları anlamak ve iş başarınızı artırmak için tasarlanmış yeni hizmetler geliştirmemize yardımcı olmak için analiz ediyoruz. Müşterilerinizden tek bir kişiyi tanımlamak için kullanılabilecek kişisel verileri toplamıyoruz.",
-                "storeDataHelp": "<strong>Mağaza verileri</strong> Shopware'deki çevrimiçi mağazanızla ilgili tüm bilgilerle ilgilidir. Ürünler, listeler, fiyatlar, resimler, açıklamalar vb. ve temalar ve eklentiler gibi mağazanızın kurulumuyla ilgili meta veriler gibi. Yönetici kullanıcısını veya vitrin ziyaretçisini tanımlamak için kullanılabilecek kişisel verileri toplamıyoruz. Toplu mağaza verilerini kullanarak, gelişmekte olan pazar eğilimleri gibi makine öğrenimi yoluyla içgörüler sağlayarak ürün tekliflerini veya pazarlama stratejilerini buna göre ayarlamanıza olanak tanıyabiliriz.",
-                "usageDataHelp": "<strong>Shopware'deki</strong> kullanım verileri, yönetici kullanıcılarının ve vitrin ziyaretçilerinin platformumuzla nasıl etkileşime girdiği ile ilgili bilgilerle ilgilidir. Bu, farklı Shopware yönetici modülleri ile etkileşimler, görüntülenen sayfalar, ziyaretlerin süresi, tıklama yolları ve platform ve vitrin içindeki kullanıcı eylemleri gibi ayrıntıları içerir. Kullanım verilerini değerlendirerek, platformun sık ziyaret edilen veya özelliklerin benimsenmesini ölçmek için kaçınılan alanlarını belirleyebiliriz ve bu da düzen, tasarım ve işlevsellikte potansiyel iyileştirmelere yol açabiliriz. Bir yöneticiyi veya vitrin ziyaretçilerini tanımlamak için kullanılabilecek kişisel verileri toplamıyoruz."
-            },
-            "orderData": "Sipariş verileri",
-            "storeData": "Verileri sakla",
-            "usageData": "Veri paylaşımı"
-        },
-        "confirmAuthorization": "“Kabul Et” i tıklayarak, şirketiniz adına bu sözleşmeye girmeye yetkili olduğunuzu onaylarsınız.",
-        "declineDataCollection": "Şu anda değil",
-        "fullDetailsDescription": "Bu anlaşmanın tüm detayları {link}adresinde bulunabilir. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "İstediğiniz zaman veri paylaşımını devre dışı bırakabilirsiniz. Verilerinizi bizimle paylaşarak e-ticaretin geleceğini şekillendirmek için bize katılın!",
-        "headline": "E-ticaretin geleceğini şekillendirmek",
-        "improvingDescription": "Size sunduğumuz hizmetleri sürekli geliştiriyoruz. Bir sonraki adımı atmak için, ürünümüzü geliştirmek ve geliştirmek için makine öğrenimi (örn. örüntü tanıma) gibi teknikleri kullanarak verilerinizi analiz ediyoruz. Verileriniz, iş başarınızı artırmak için tasarlanmış veri odaklı hizmetler geliştirmek için de kullanılacaktır..",
-        "improvingDescriptionNotAccepted": "Size sunduğumuz hizmetleri sürekli geliştiriyoruz. Bir sonraki adımı atmak için, ürünümüzü geliştirmek ve geliştirmek için makine öğrenimi (örn. örüntü tanıma) gibi teknikleri kullanarak verilerinizi analiz etmek istiyoruz. Verileriniz, iş başarınızı artırmak için tasarlanmış veri odaklı hizmetler geliştirmek için de kullanılacaktır..",
-        "privacyPolicy": "shopware.com/tr/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "İstediğiniz zaman sözleşmeye girebilir ve böylece {link}'nizde veri paylaşımına izin vererek hizmetlerimizin sürekli gelişimine katkıda bulunabilir ve bundan yararlanabilirsiniz.",
-        "settings": {
-            "deactivateDataCollection": "Veri paylaşımını devre dışı bırak",
-            "sharingInformation": "Bizimle veri paylaşıyorsunuz"
-        },
-        "thankYouMessage": "{thanksForParticipation} İstediğiniz zaman bu sözleşmeyi devre dışı bırakabilir ve böylece {link}'nizdeki veri paylaşımını devre dışı bırakarak hizmetlerimizin devam eden gelişimine katkıda bulunmayı ve bundan yararlanmayı bırakabilirsiniz.",
-        "thanksForParticipation": "Katılımınız için teşekkür ederiz!",
-        "togglePath": "Ayarlar"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Kullanıcılar & izinler"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Düzgün ölçeği kilitle",
+        "unlock-uniform-scale": "Düzgün ölçeğin kilidini açın"
+    },
     "sw-wizard": {
         "backButton": "Geri",
-        "closeButton": "Kapat",
         "finishButton": "Bitirmek",
         "nextButton": "Sonraki"
     }

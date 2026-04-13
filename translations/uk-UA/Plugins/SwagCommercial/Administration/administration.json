@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Підписка залишає статус призупиненим"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Індивідуальне ціноутворення",
             "b2b_components_role": "Роль | Ролі",
             "b2b_components_shopping_list": "Списки покупок",
             "b2b_employee": "Співробітник | Співробітники",
+            "bundle": "Пакет | Пакети",
+            "bundle_item": "Пакет предметів | Пакетні предмети",
             "export_assistant": "Помічник експорту",
-            "individual_pricing": "Індивідуальне ціноутворення",
             "quote": "Цитата | Цитати",
             "quote_line_item": "Рядок цитати | Елементи рядка цитати",
             "search_assistant": "AI Копілот",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Предмет - це пакувальний предмет",
+                "lineItemOfBundleRule": "Елемент обраного пакета",
                 "subscriptionCartRule": "Кошик підписки",
                 "subscriptionIntervalRule": "Інтервал підписки",
                 "subscriptionPlanRule": "План передплати"
             },
             "group": {
                 "subscription": "Підписка"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "пучок"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Дякуємо, що спробували план пакетів. Ми хотіли б почути ваш відгук.",
+                "link": "Залишити відгук"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Настроювані поля"
+            },
+            "general": {
+                "title": "Загальні відомості"
+            },
+            "items": {
+                "actionOpenProductDetails": "Відкрити деталі товару",
+                "buttonAddBundleItems": "Додати продукти",
+                "columnName": "Назва",
+                "columnPosition": "Позиція",
+                "columnPrice": "Ціна",
+                "emptyStateDescription": "Додайте в комплект не менше двох продуктів.",
+                "emptyStateTitle": "Жодних товарів ще не додано",
+                "title": "Продукти ({count})",
+                "tooltipBundleItemCustomizedProduct": "Призначений спеціальний шаблон продукту",
+                "tooltipBundleItemHasVariants": "Продукт має варіанти",
+                "tooltipBundleItemInactive": "Неактивний",
+                "tooltipBundleItemIncompatibleVisibilities": "Не призначено до каналів продажів пакета: {salesChannels}",
+                "tooltipBundleItemIssues": "Випуски:",
+                "tooltipBundleItemOutOfStockCloseout": "Немає в наявності (Розпродаж)",
+                "tooltipBundleItemOutOfStockTemporary": "Наразі цього продукту немає на складі. Пакет знову стане доступним для придбання, як тільки всі товари знову з'являться на складі.",
+                "tooltipBundleItemOutOfStockTitle": "Немає в наявності",
+                "tooltipRefreshData": "Оновити дані"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Дата випуску",
+                    "placeholder": "Введіть дату випуску..."
+                },
+                "title": "Маркування"
+            },
+            "media": {
+                "subtitle": "Додайте файли до медіагалереї пакета.",
+                "title": "Медіа"
+            },
+            "messageMinBundleItemsRequired": "Додайте принаймні два продукти, щоб створити комплект.",
+            "messageNoChanges": "Немає змін для збереження",
+            "messageSaveError": "Не вдалося зберегти комплект",
+            "messageSaveSuccess": "Успішно збережено пакет",
+            "price": {
+                "addDiscount": "Додати знижку",
+                "currencyDependingPrices": "Валюта в залежності від цін",
+                "discount": "Знижка",
+                "discountRules": "Правила знижки",
+                "discountTitle": "Знижка",
+                "discountType": "Тип",
+                "discountTypeAbsolute": "Абсолютна",
+                "discountTypePercentage": "Відсоток",
+                "discountValue": "Значення",
+                "discountValuePlaceholder": "Додати цінність...",
+                "doNotCombineWith": "Не поєднувати з",
+                "maxValuePlaceholder": "Необмежена",
+                "maximumDiscountValue": "Максимальне значення знижки",
+                "openAdvancedPricesView": "Відкрити перегляд додаткових цін",
+                "preventCombination": "Запобігання комбінації з іншими акціями",
+                "preventCombinationHelpText": "Якщо увімкнено, цю знижку не можна поєднувати з іншими акціями",
+                "promotionsPlaceholder": "Додати акції...",
+                "rulesPlaceholder": "Додати правила...",
+                "subtotalBased": "Проміжний підсумок на основі 1 товару | Проміжний підсумок на основі товарів {count}",
+                "title": "Показувати ціни",
+                "total": "Всього",
+                "totalBased": "Всього на основі 1 товару | Всього на основі товарів {count}"
+            },
+            "tabGeneral": "Загальний",
+            "tabLayout": "Макет",
+            "tabSeo": "SEO",
+            "textHeadline": "Новий пакет",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Це запобігає видимості пучка в цих каналах. Будь ласка, перевірте видимість для наступних продуктів:",
+                    "notAssignedTo": "не призначається",
+                    "title": "Деякі продукти призначаються не всім вибраним каналам продажу"
+                },
+                "title": "Видимість і структура"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Активний",
+                "placeholder": "Виберіть стан..."
+            },
+            "availabilityFilter": {
+                "label": "Доступність",
+                "placeholder": "Виберіть доступність..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Включені продукти",
+                "placeholder": "Виберіть включені продукти..."
+            },
+            "categoriesFilter": {
+                "label": "Категорії",
+                "placeholder": "Виберіть категорії..."
+            },
+            "fromPlaceholder": "Введіть початкове значення...",
+            "imagesFilter": {
+                "label": "Зображення",
+                "placeholder": "Виберіть статус зображення...",
+                "textHasCriteria": "Принаймні одному зображенню продукту, призначеному",
+                "textNoCriteria": "Зображення продукту не призначено"
+            },
+            "priceFilter": {
+                "label": "Ціна"
+            },
+            "productNumberFilter": {
+                "label": "Номер товару",
+                "placeholder": "Введіть номер товару..."
+            },
+            "releaseDateFilter": {
+                "label": "Дата випуску"
+            },
+            "salesChannelsFilter": {
+                "label": "Канали продажів",
+                "placeholder": "Виберіть Канали продажів..."
+            },
+            "salesFilter": {
+                "label": "Продажі"
+            },
+            "tagsFilter": {
+                "label": "Мітки",
+                "placeholder": "Вибрати мітки..."
+            },
+            "toPlaceholder": "Введіть кінцеве значення..."
+        },
+        "general": {
+            "description": "Пучки",
+            "headlineBundles": "Пучки",
+            "mainMenuItemGeneral": "Пучки",
+            "placeholderSearchBar": "Пошук пакетів...",
+            "title": "Пучки"
+        },
+        "generalForm": {
+            "highlightHelpText": "Виділені пачки позначені яскравою кольоровою етикеткою та словом «Підказка» у всіх списках пакетів. Ви можете налаштувати колір етикетки, змінивши параметр «Повідомлення» у налаштуваннях <a href=\"{themeUrl}\">теми</a> . Ви також можете змінити текст мітки, відредагувавши відповідний фрагмент тексту <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Опис",
+            "labelMarkAsTopseller": "Виділіть пучок",
+            "labelName": "Назва",
+            "labelProductNumber": "Номер товару",
+            "placeholderDescription": "Введіть опис пакета...",
+            "placeholderName": "Введіть назву пакета...",
+            "placeholderProductNumber": "Введіть номер продукту..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "На комплект потрібно не менше двох виробів.",
+            "notEnoughProductsTitle": "Недостатньо продуктів",
+            "restrictions": "Один або кілька продуктів мають обмеження, які впливають на доступність цього пакета. Подробиці див. у піктограмах попередження.",
+            "restrictionsTitle": "Деякі продукти мають обмеження"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Відповідних продуктів не знайдено",
+            "noProductsMatchingBundleSalesChannels": "Немає активних продуктів, які відповідають вибраним каналам продажу пакету.",
+            "noProductsMatchingTermAndFilter": "Налаштуйте пошуковий термін або фільтри.",
+            "placeholderSearch": "Пошук продуктів...",
+            "showIncluded": "Показати тільки вибрані ({count})",
+            "textWhySomeItemsMissing": "Чому відсутні деякі продукти?",
+            "title": "Додати продукти",
+            "tooltipVariant": "Варіант",
+            "tooltipWhySomeItemsMissing": "Наразі пакети працюють лише з фізичними продуктами та окремими варіантами. <br /><br /> Продукти повинні бути призначені для вибраних каналів продажів пакету, щоб відображатися у списку."
+        },
+        "list": {
+            "available": "Доступний",
+            "buttonAddBundle": "Додати пакет",
+            "columnActive": "Активний",
+            "columnAvailable": "Доступність",
+            "columnBundleItemCount": "Кількість продуктів",
+            "columnCreatedAt": "Створено на",
+            "columnName": "Назва",
+            "columnProductNumber": "Номер товару",
+            "columnSales": "Продажі",
+            "columnTotalPrice": "Загальна ціна",
+            "columnUpdatedAt": "Оновлено на",
+            "emptyStateDescription": "Пакети можуть збільшити середню вартість замовлення та спонукати клієнтів купувати супутні товари.",
+            "emptyStateTitle": "Додайте пакети, щоб збільшити продажі",
+            "messageSaveSuccess": "Пакет \"{name}\" збережено.",
+            "titleSidebarItemRefresh": "Оновити",
+            "unavailable": "Недоступний"
+        },
+        "priceModal": {
+            "currency": "валюта",
+            "price": "Значення",
+            "title": "Розширені ціни"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Додати продукти",
+            "description": "Спочатку виберіть канал продажів, щоб побачити, які продукти можна додати до пакету. Ви можете налаштувати це пізніше на картці «Видимість та структура».",
+            "title": "Необхідний канал продажу"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Створити зображення",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Опис комплекту"
+                },
+                "bundleHeading": {
+                    "label": "Назва пакета"
+                },
+                "bundleItems": {
+                    "label": "Пакетні предмети"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Галерея зображень та коробка для купівлі пакета"
+                },
+                "recommendedBundles": {
+                    "label": "Рекомендовані пакети"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Макет за замовчуванням - Сторінка пакета продуктів",
+                "setAsDefaultBundleDetail": "Встановити як сторінку пакета продуктів за замовчуванням"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Сторінка пакета"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Створити зображення",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Дані про продукт цього елемента автоматично завантажуються продуктом, пов'язаним з цим макетом. Вміст просто показує зразок попереднього перегляду."
+                },
+                "label": "Коробка для купівлі пакета"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Дані про продукт цього елемента автоматично завантажуються продуктом, пов'язаним з цим макетом. Вміст просто показує зразок попереднього перегляду."
+                },
+                "label": "Опис комплекту",
+                "preview": {
+                    "descriptionTab": "Опис",
+                    "title": "пучок"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Дозволяє додавати пакетні товари безпосередньо в кошик замість того, щоб відкривати сторінку деталей товару.",
+                        "labelTitle": "Використовуйте {count} , щоб відобразити кількість продуктів у комплекті."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Дані про продукт цього елемента автоматично завантажуються продуктом, пов'язаним з цим макетом. Вміст просто показує зразок попереднього перегляду."
+                    },
+                    "label": {
+                        "boxSettings": "Налаштування коробки продукту",
+                        "cta": "Покажіть CTA, щоб додати товари пакету безпосередньо в кошик",
+                        "minWidth": "Мінімальна ширина",
+                        "title": "Назва"
+                    }
+                },
+                "label": "Включені продукти"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Дані пакета цього елемента автоматично завантажуються пакетом, пов'язаним з цим макетом. Вміст просто показує зразок попереднього перегляду."
+                },
+                "label": "Назва пакета"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Якщо увімкнено, спочатку відображається лише підмножина пакетів. Користувачі можуть розширити список, щоб показати більше.",
+                        "maxVisibleBundles": "Керує кількістю пакетів, які будуть показані, поки вони не будуть приховані за функцією «Показати більше».",
+                        "productBoxSettings": "Налаштування коробки продукту",
+                        "productDetailElement": "Дані про продукт цього елемента автоматично завантажуються продуктом, пов'язаним з цим макетом. Вміст просто показує зразок попереднього перегляду.",
+                        "showCTAInfo": "Дозволяє додавати пакетні товари безпосередньо в кошик замість того, щоб відкривати сторінку деталей товару.",
+                        "sliderSettings": "Налаштування слайдера"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Обмеження кількості спочатку показаних пакетів",
+                        "maxVisibleBundles": "Збірки, показані спочатку",
+                        "minWidth": "Мінімальна ширина",
+                        "recommendedCombinationsTitle": "Рекомендовані комбінації",
+                        "showBundleName": "Показати назву пакета",
+                        "showCTA": "Покажіть CTA, щоб додати товари пакету безпосередньо в кошик",
+                        "showCurrentProduct": "Показувати переглянутий товар першим у комплекті",
+                        "title": "Назва"
+                    },
+                    "placeholder": {
+                        "minWidth": "Введіть мінімальну ширину...",
+                        "title": "Рекомендовані комбінації"
+                    }
+                },
+                "label": "Рекомендовані комбінації",
+                "preview": {
+                    "label": {
+                        "title": "Рекомендовані комбінації"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Створити зображення",
             "contentText": "Створюйте власні зображення настрою, щоб налаштувати макет за допомогою зображення, створеного штучним інтелектом.",
             "header": "AI Копілот"
+        },
+        "tags": {
+            "bundle": "пучок"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Адреси підрозділів організації",
                             "pending_order": "Управління відкладеними замовленнями",
                             "quote": "Управління котируваннями",
-                            "role": "Керування ролями"
+                            "role": "Керування ролями",
+                            "subscription": "Замовити підписку"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Видалити адресу доставки",
                                     "update": "Редагувати адресу доставки"
                                 },
+                                "subscription": {
+                                    "read": "Переглянути всі підписки на замовлення від призначеного організаційного підрозділу"
+                                },
                                 "update": "Редагувати організаційний підрозділ"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Може видаляти ролі",
                                 "edit": "Може редагувати ролі",
                                 "read": "Може переглядати ролі"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Переглянути всі підписки на замовлення"
+                                }
                             }
                         },
                         "switchAllLabel": "Всі дозволи"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Управління ролями"
             },
+            "bundle": {
+                "label": "Пучки"
+            },
             "custom_price": {
                 "label": "Ціна товару Клієнта"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Додати товар до пакетів",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Зрозумів",
+                "description": "Цей продукт не можна вилучити з наступних пакетів, оскільки для пакета потрібні щонайменше два продукти:",
+                "hint": "Щоб видалити цей продукт, спочатку додайте інший продукт до цих пакетів.",
+                "title": "Продукт не вдалося видалити з усіх пакетів"
+            },
+            "bundleCardSubtitle": "Всі пакети, що містять цей продукт",
+            "bundleCardTitle": "Пакети ({count})",
+            "buttonAddBundle": "Додати товар до пакетів",
+            "buttonAddBundleLanguageWarning": "Додавання пакетів можливо лише мовою за замовчуванням системи.",
+            "buttonCreateBundle": "Створити пучок",
+            "buttonManageBundles": "Керування пакетами",
+            "columnActive": "Активний",
+            "columnAvailability": "Доступність",
+            "columnBundleItemCount": "Кількість продуктів",
+            "columnCreatedAt": "Створено на",
+            "columnName": "Назва",
+            "columnProductNumber": "Номер товару",
+            "columnSales": "Продажі",
+            "columnShowBundleOnItemPdp": "Показати на сторінці подробиць",
+            "columnUpdatedAt": "Оновлено на",
+            "emptyStateDescription": "Пакети можуть збільшити середню вартість замовлення та спонукати клієнтів купувати супутні товари. Пакети відображаються на сторінці деталей продукту, якщо макет CMS включає елемент пакета.",
+            "emptyStateDescriptionCreateFirst": "Пакети можуть збільшити середню вартість замовлення та спонукати клієнтів купувати супутні товари. Пакети відображаються на сторінці деталей продукту, якщо макет CMS включає елемент пакета. Створіть пакет, щоб додати цей продукт.",
+            "emptyStateNoBundlesFound": "Не знайдено відповідних пакетів",
+            "emptyStateNoBundlesFoundDescription": "Налаштуйте пошуковий термін або фільтри.",
+            "emptyStateTitle": "Додайте товар до пакетів, щоб збільшити продажі",
+            "hideOnProductDetailPage": "Приховати на сторінці деталей продукту",
+            "messageSaveSuccess": "Пакет \"{name}\" збережено.",
+            "openBundlesDetail": "Відкрити деталі пакета",
+            "placeholderSearch": "Пошук пакетів...",
+            "refreshDataTooltip": "Оновити дані",
+            "showOnProductDetailPage": "Показати на сторінці детальної інформації про товар",
+            "showOnlyIncluded": "Показувати тільки вибрані",
+            "tooltipBundleHasRestrictions": "Один або кілька продуктів мають обмеження, які впливають на доступність цього пакета. Відвідайте деталі пакету для отримання додаткової інформації.",
+            "tooltipBundleInactive": "Неактивний",
+            "tooltipBundleIssues": "Випуски:",
+            "tooltipBundleMismatchedSalesChannels": "Не присвоєно каналам продажів продукту: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Цей продукт не можна видалити, оскільки для пакетів потрібні щонайменше два продукти."
+        },
         "card": {
             "textHeadline": "Склад та доставка",
             "textLinkModal": "Переглянути запаси за складами та складськими групами",
             "textProductWarehouseModalDisabled": "Збережіть свої зміни, перш ніж ви зможете відкрити додаткові відомості про запас.",
             "textTooltipMultiSelect": "Призначте групи складів, щоб керувати своїми запасами окремо на кількох складах."
+        },
+        "detail": {
+            "tabBundle": "Пучки"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Закрити",
@@ -1986,6 +2359,9 @@
             "tabStock": "Stock",
             "textHeadline": "Склад за складами та складськими групами",
             "textInlineEdit": "Редагувати запас"
+        },
+        "type": {
+            "grouped_bundle": "пучок"
         },
         "variants-overview": {
             "inlineText": "Див. детальніше"
@@ -2542,6 +2918,16 @@
             "emptyText": "Порожня сцена"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Сторінка докладної інформації про пакет товару"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Дозволити промокоди до замовлень з котирувань"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Дружня капча",
+                "friendlyCaptchaApiKey": "Дружній ключ API Captcha",
                 "friendlyCaptchaDescription": "Заснований на механізмах підтвердження роботи та розширених сигналах ризику, Friendly Captcha використовує принципово новий підхід для надійного захисту ваших веб-сайтів та онлайн-сервісів від спаму та ботів.",
+                "friendlyCaptchaRegion": "Регіон API",
+                "friendlyCaptchaRegionEu": "ЄС (Європейський Союз)",
+                "friendlyCaptchaRegionGlobal": "Глобальний",
+                "friendlyCaptchaRegionHelpText": "Виберіть «EU», щоб маршрутизувати всі запити captcha виключно через європейські сервери. Це може бути актуальним для дотримання GDPR.",
                 "friendlyCaptchaSecretKey": "Дружній секретний ключ Captcha",
-                "friendlyCaptchaSiteKey": "Дружній ключ сайту Captcha"
+                "friendlyCaptchaSiteKey": "Дружній ключ сайту Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Версія 1 є застарілою і буде видалена в майбутньому випуску. Ми рекомендуємо оновити до версії 2 для покращення безпеки та більш чистого досвіду віджетів.",
+                "friendlyCaptchaVersion": "Дружня версія капчі",
+                "friendlyCaptchaVersionV1": "Версія 1 (застаріла)",
+                "friendlyCaptchaVersionV2": "Версія 2 (нова)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Скасувати",
         "retry": "Повторити спробу"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Замок рівномірної шкали",
-        "unlock-uniform-scale": "Розблокувати рівномірну шкалу"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Ваші клієнти можуть визначати та керувати бюджетними обмеженнями, щоб краще контролювати витрати своїх організаційних підрозділів.",
         "budgetManagementName": "Бюджети",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Затвердження замовлення",
                     "ORGANIZATION_UNITS": "Організаційні підрозділи",
                     "QUICK_ORDER": "Швидкі замовлення",
-                    "QUOTE_MANAGEMENT": "Управління цитатами"
+                    "QUOTE_MANAGEMENT": "Управління цитатами",
+                    "SHOPPING_LISTS": "Списки покупок"
                 },
                 "template": "{dependency} обов'язковий для {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Назва",
             "columnOrderQuantity": "Кількість замовлення",
             "columnReturnQuantity": "Повернута кількість",
+            "includesShippingCosts": "Включаючи витрати на доставку",
             "messageErrorNoItemHasQuantity": "Повинен мати принаймні 1 рядок, елемент має кількість більше 0, щоб створити повернення",
             "messagePreventAddItem": "Цей елемент вже є частиною повернення або його статус Скасовано, Повернено або Повернено частково.",
             "placeholderComment": "Введіть коментар...",

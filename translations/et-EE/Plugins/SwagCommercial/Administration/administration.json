@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Tellimus jätab staatuse peatatuks"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuaalne hind",
             "b2b_components_role": "Roll | Rollid",
             "b2b_components_shopping_list": "Ostunimekirjad",
             "b2b_employee": "Töötaja | Töötajad",
+            "bundle": "Komplekt | Komplektid",
+            "bundle_item": "Komplekti toode | Komplekti esemed",
             "export_assistant": "Ekspordiassistent",
-            "individual_pricing": "Individuaalne hind",
             "quote": "Tsitaat | Tsitaadid",
             "quote_line_item": "Tsitaadi rea üksus | Pakkumisrea üksused",
             "search_assistant": "Tehisintellekti kopiloot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Üksus on komplekt",
+                "lineItemOfBundleRule": "Valitud komplekti üksus",
                 "subscriptionCartRule": "Tellimusostukorv",
                 "subscriptionIntervalRule": "Tellimisintervall",
                 "subscriptionPlanRule": "Tellimisplaan"
             },
             "group": {
                 "subscription": "Tellimus"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "komplekt"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Täname, et proovisite Bundlesi plaani. Meile meeldiks kuulda teie tagasisidet.",
+                "link": "Andke tagasisidet"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Kohandatud väljad"
+            },
+            "general": {
+                "title": "Üldine teave"
+            },
+            "items": {
+                "actionOpenProductDetails": "Avage toote üksikasjad",
+                "buttonAddBundleItems": "Lisage tooteid",
+                "columnName": "Nimi",
+                "columnPosition": "Asukoht",
+                "columnPrice": "Hind",
+                "emptyStateDescription": "Lisage kimbusse vähemalt kaks toodet.",
+                "emptyStateTitle": "Ühtegi toodet pole veel lisatud",
+                "title": "Tooted ({count})",
+                "tooltipBundleItemCustomizedProduct": "Kohandatud toote mall on määratud",
+                "tooltipBundleItemHasVariants": "Tootel on variandid",
+                "tooltipBundleItemInactive": "Mitteaktiivne",
+                "tooltipBundleItemIncompatibleVisibilities": "Ei ole määratud komplekti müügikanalitesse: {salesChannels}",
+                "tooltipBundleItemIssues": "Probleemid:",
+                "tooltipBundleItemOutOfStockCloseout": "Laos otsas (müügihind)",
+                "tooltipBundleItemOutOfStockTemporary": "See toode on praegu laos otsas. Kui kõik tooted on uuesti laos, muutub komplekt uuesti ostetavaks.",
+                "tooltipBundleItemOutOfStockTitle": "Laost otsas",
+                "tooltipRefreshData": "Andmete värskendamine"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Väljalaske kuupäev",
+                    "placeholder": "Sisestage väljaandmise kuupäev..."
+                },
+                "title": "Märgistamine"
+            },
+            "media": {
+                "subtitle": "Lisage failid komplekti meediumigaleriisse.",
+                "title": "Meedia"
+            },
+            "messageMinBundleItemsRequired": "Komplekti loomiseks lisage vähemalt kaks toodet.",
+            "messageNoChanges": "Salvestamiseks muudatusi pole",
+            "messageSaveError": "Komplekti salvestamine ebaõnnestus",
+            "messageSaveSuccess": "Komplekt salvestatud edukalt",
+            "price": {
+                "addDiscount": "Lisa allahindlus",
+                "currencyDependingPrices": "Valuuta sõltuvalt hindadest",
+                "discount": "Soodustus",
+                "discountRules": "Soodusreeglid",
+                "discountTitle": "Soodustus",
+                "discountType": "Tüüp",
+                "discountTypeAbsolute": "Absoluutne",
+                "discountTypePercentage": "Protsent",
+                "discountValue": "Väärtus",
+                "discountValuePlaceholder": "Lisaväärtus...",
+                "doNotCombineWith": "Ärge kombineerige",
+                "maxValuePlaceholder": "Piiramatu",
+                "maximumDiscountValue": "Maksimaalne allahindlusväärtus",
+                "openAdvancedPricesView": "Avage täpsemate hindade vaade",
+                "preventCombination": "Vältige kombineerimist teiste kampaaniatega",
+                "preventCombinationHelpText": "Kui see on lubatud, ei saa seda allahindlust kombineerida teiste kampaaniatega",
+                "promotionsPlaceholder": "Lisage kampaaniad...",
+                "rulesPlaceholder": "Lisa reeglid...",
+                "subtotalBased": "Vahesumma 1 toote põhjal | Vahesumma {count} toodetel",
+                "title": "Kuva hinnad",
+                "total": "Kokku",
+                "totalBased": "Kokku 1 toote põhjal | Kokku põhineb {count} tootel"
+            },
+            "tabGeneral": "Üldine",
+            "tabLayout": "Paigutus",
+            "tabSeo": "SEO",
+            "textHeadline": "Uus kimp",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "See hoiab ära kimbu nähtavuse nendes kanalites. Palun kontrollige järgmiste toodete nähtavust:",
+                    "notAssignedTo": "ei ole määratud",
+                    "title": "Mõned tooted ei ole määratud kõigile valitud müügikanalitele"
+                },
+                "title": "Nähtavus ja struktuur"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktiivne",
+                "placeholder": "Valige olek..."
+            },
+            "availabilityFilter": {
+                "label": "Saadavus",
+                "placeholder": "Valige saadavus..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Kaasatud tooted",
+                "placeholder": "Valige kaasasolevad tooted..."
+            },
+            "categoriesFilter": {
+                "label": "Kategooriad",
+                "placeholder": "Valige kategooriad..."
+            },
+            "fromPlaceholder": "Sisestage algväärtus...",
+            "imagesFilter": {
+                "label": "Pildid",
+                "placeholder": "Valige pildi olek...",
+                "textHasCriteria": "Vähemalt üks toote pilt on määratud",
+                "textNoCriteria": "Toote pilte pole määratud"
+            },
+            "priceFilter": {
+                "label": "Hind"
+            },
+            "productNumberFilter": {
+                "label": "Toote number",
+                "placeholder": "Sisestage toote number..."
+            },
+            "releaseDateFilter": {
+                "label": "Väljalaske kuupäev"
+            },
+            "salesChannelsFilter": {
+                "label": "Müügikanalid",
+                "placeholder": "Valige müügikanalid..."
+            },
+            "salesFilter": {
+                "label": "Müük"
+            },
+            "tagsFilter": {
+                "label": "Sildid",
+                "placeholder": "Valige sildid..."
+            },
+            "toPlaceholder": "Sisestage lõppväärtus..."
+        },
+        "general": {
+            "description": "Kimbud",
+            "headlineBundles": "Kimbud",
+            "mainMenuItemGeneral": "Kimbud",
+            "placeholderSearchBar": "Otsi komplekte...",
+            "title": "Kimbud"
+        },
+        "generalForm": {
+            "highlightHelpText": "Esiletõstetud kimbud on kõigis kimpude loendites tähistatud erksavärvilise sildi ja sõnaga „Näpunäide”. Sildi värvi saate reguleerida, muutes <a href=\"{themeUrl}\">teemade</a> seadetes valikut „Märkus”. Samuti saate muuta sildi teksti, redigeerides vastavat <a href=\"{snippetUrl}\">tekstilõiku</a>.",
+            "labelDescription": "Kirjeldus",
+            "labelMarkAsTopseller": "Tõstke esile komplekt",
+            "labelName": "Nimi",
+            "labelProductNumber": "Toote number",
+            "placeholderDescription": "Sisestage komplekti kirjeldus...",
+            "placeholderName": "Sisestage komplekti nimi...",
+            "placeholderProductNumber": "Sisestage toote number..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Kimp nõuab vähemalt kahte toodet.",
+            "notEnoughProductsTitle": "Ei ole piisavalt tooteid",
+            "restrictions": "Ühel või mitmel tootel on piirangud, mis mõjutavad selle komplekti kättesaadavust. Üksikasju leiate hoiatusikoonidest.",
+            "restrictionsTitle": "Mõnel tootel on piirangud"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Sobivaid tooteid ei leitud",
+            "noProductsMatchingBundleSalesChannels": "Puuduvad aktiivsed tooted, mis vastaksid komplekti valitud müügikanalitele.",
+            "noProductsMatchingTermAndFilter": "Reguleerige otsinguterminit või filtreid.",
+            "placeholderSearch": "Otsi tooteid...",
+            "showIncluded": "Näita ainult valitud ({count})",
+            "textWhySomeItemsMissing": "Miks mõned tooted puuduvad?",
+            "title": "Lisage tooteid",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Praegu töötavad kimbud ainult füüsiliste toodete ja üksikute variantidega. <br /><br /> Tooted tuleb loendis kuvamiseks määrata komplekti valitud müügikanalitele."
+        },
+        "list": {
+            "available": "Saadaval",
+            "buttonAddBundle": "Lisa kimp",
+            "columnActive": "Aktiivne",
+            "columnAvailable": "Saadavus",
+            "columnBundleItemCount": "Toodete arv",
+            "columnCreatedAt": "Loodud aadressil",
+            "columnName": "Nimi",
+            "columnProductNumber": "Toote number",
+            "columnSales": "Müük",
+            "columnTotalPrice": "Koguhind",
+            "columnUpdatedAt": "Uuendatud aadressil",
+            "emptyStateDescription": "Komplektid võivad suurendada teie keskmist tellimuse väärtust ja julgustada kliente ostma seotud tooteid.",
+            "emptyStateTitle": "Müügi suurendamiseks lisage komplektid",
+            "messageSaveSuccess": "Komplekti \"{name}\" on salvestatud.",
+            "titleSidebarItemRefresh": "Värskenda",
+            "unavailable": "Ei ole kättesaadav"
+        },
+        "priceModal": {
+            "currency": "Valuuta",
+            "price": "Väärtus",
+            "title": "Täiustatud hinnad"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Lisage tooteid",
+            "description": "Valige kõigepealt müügikanal, et näha, milliseid tooteid saab komplekti lisada. Seda saate hiljem kohandada kaardil Nähtavus ja struktuur.",
+            "title": "Nõutav müügikanal"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Looge pilt",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Komplekti kirjeldus"
+                },
+                "bundleHeading": {
+                    "label": "Komplekti nimi"
+                },
+                "bundleItems": {
+                    "label": "Komplekti esemed"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Pildigalerii ja komplektide ostukast"
+                },
+                "recommendedBundles": {
+                    "label": "Soovitatavad kimbud"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Vaikimisi paigutus - tootekomplekti leht",
+                "setAsDefaultBundleDetail": "Määrake tootekomplekti lehekülje vaikimisi"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Komplekti leht"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Looge pilt",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Selle paigutusega seotud toode laadib automaatselt selle elemendi tooteandmed. Sisu näitab lihtsalt näidise eelvaadet."
+                },
+                "label": "Komplekti ostukast"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Selle paigutusega seotud toode laadib automaatselt selle elemendi tooteandmed. Sisu näitab lihtsalt näidise eelvaadet."
+                },
+                "label": "Komplekti kirjeldus",
+                "preview": {
+                    "descriptionTab": "Kirjeldus",
+                    "title": "komplekt"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Võimaldab toote üksikasjade lehe avamise asemel lisada komplekti esemeid otse ostukorvi.",
+                        "labelTitle": "Kasutage {count} , et kuvada komplektis olevate toodete arvu."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Selle paigutusega seotud toode laadib automaatselt selle elemendi tooteandmed. Sisu näitab lihtsalt näidise eelvaadet."
+                    },
+                    "label": {
+                        "boxSettings": "Toote kasti seaded",
+                        "cta": "Näita CTA, et lisada komplektikaubad otse ostukorvi",
+                        "minWidth": "Minimaalne laius",
+                        "title": "Pealkiri"
+                    }
+                },
+                "label": "Kaasatud tooted"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Selle elemendi komplekti andmed laaditakse automaatselt selle paigutusega seotud komplekti abil. Sisu näitab lihtsalt näidise eelvaadet."
+                },
+                "label": "Komplekti nimi"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Kui see on lubatud, kuvatakse esialgu ainult kimpude alamhulk. Kasutajad saavad loendit laiendada, et näidata rohkem.",
+                        "maxVisibleBundles": "Kontrollib, kui palju kimpe kuvatakse, kuni need peidetakse funktsiooni „Näita rohkem” taha.",
+                        "productBoxSettings": "Toote kasti seaded",
+                        "productDetailElement": "Selle paigutusega seotud toode laadib automaatselt selle elemendi tooteandmed. Sisu näitab lihtsalt näidise eelvaadet.",
+                        "showCTAInfo": "Võimaldab toote üksikasjade lehe avamise asemel lisada komplekti esemeid otse ostukorvi.",
+                        "sliderSettings": "Liuguri seaded"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Algselt näidatud kimpude piirarv",
+                        "maxVisibleBundles": "Esialgu näidatud kimbud",
+                        "minWidth": "Minimaalne laius",
+                        "recommendedCombinationsTitle": "Soovitatavad kombinatsioonid",
+                        "showBundleName": "Näita komplekti nime",
+                        "showCTA": "Näita CTA, et lisada komplektikaubad otse ostukorvi",
+                        "showCurrentProduct": "Näita hetkel vaadatud toodet esimesena komplektis",
+                        "title": "Pealkiri"
+                    },
+                    "placeholder": {
+                        "minWidth": "Sisestage minimaalne laius...",
+                        "title": "Soovitatavad kombinatsioonid"
+                    }
+                },
+                "label": "Soovitatavad kombinatsioonid",
+                "preview": {
+                    "label": {
+                        "title": "Soovitatavad kombinatsioonid"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Looge pilt",
             "contentText": "Tehisintellekti loodud piltide abil saate oma paigutuse kohandamiseks luua oma meeleolupilte.",
             "header": "Tehisintellekti kopiloot"
+        },
+        "tags": {
+            "bundle": "komplekt"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organisatsiooni üksuse aadressid",
                             "pending_order": "Ootellimuste haldamine",
                             "quote": "Hinnapakkumise haldamine",
-                            "role": "Rollijuhtimine"
+                            "role": "Rollijuhtimine",
+                            "subscription": "Telli tellimus"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Kustuta saatmisaadress",
                                     "update": "Muuda saatmisaadressi"
                                 },
+                                "subscription": {
+                                    "read": "Vaadake kõiki määratud organisatsiooniüksuse tellimuste tellimusi"
+                                },
                                 "update": "Organisatsiooni üksuse redigeerimine"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Võib kustutada rollid",
                                 "edit": "Oskab rolle redigeerida",
                                 "read": "Oskab vaadata rolle"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Vaata kõiki tellimuste tellimusi"
+                                }
                             }
                         },
                         "switchAllLabel": "Kõik õigused"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rollijuhtimine"
             },
+            "bundle": {
+                "label": "Kimbud"
+            },
             "custom_price": {
                 "label": "Toote kliendi hind"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Lisage toode komplektidesse",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Sain aru",
+                "description": "Seda toodet ei saanud järgmistest kimpudest eemaldada, kuna komplekti jaoks on vaja vähemalt kahte toodet:",
+                "hint": "Selle toote eemaldamiseks lisage kõigepealt nendesse kimpudesse teine toode.",
+                "title": "Toodet ei saanud kõigist kimpudest eemaldada"
+            },
+            "bundleCardSubtitle": "Kõik seda toodet sisaldavad kimbud",
+            "bundleCardTitle": "Kimbud ({count})",
+            "buttonAddBundle": "Lisage toode komplektidesse",
+            "buttonAddBundleLanguageWarning": "Kimpude lisamine on võimalik ainult süsteemi vaikekeeles.",
+            "buttonCreateBundle": "Loo komplekt",
+            "buttonManageBundles": "Halda komplekte",
+            "columnActive": "Aktiivne",
+            "columnAvailability": "Saadavus",
+            "columnBundleItemCount": "Toodete arv",
+            "columnCreatedAt": "Loodud aadressil",
+            "columnName": "Nimi",
+            "columnProductNumber": "Toote number",
+            "columnSales": "Müük",
+            "columnShowBundleOnItemPdp": "Näita detailide lehel",
+            "columnUpdatedAt": "Uuendatud aadressil",
+            "emptyStateDescription": "Komplektid võivad suurendada tellimuse keskmist väärtust ja julgustada kliente ostma seotud tooteid. Komplektid kuvatakse toote üksikasjade lehel, kui CMS-i paigutus sisaldab komplekti elementi.",
+            "emptyStateDescriptionCreateFirst": "Komplektid võivad suurendada tellimuse keskmist väärtust ja julgustada kliente ostma seotud tooteid. Komplektid kuvatakse toote üksikasjade lehel, kui CMS-i paigutus sisaldab komplekti elementi. Selle toote lisamiseks looge komplekt.",
+            "emptyStateNoBundlesFound": "Sobivaid kimpe ei leitud",
+            "emptyStateNoBundlesFoundDescription": "Reguleerige otsinguterminit või filtreid.",
+            "emptyStateTitle": "Müügi suurendamiseks lisage toode komplektidesse",
+            "hideOnProductDetailPage": "Peida toote üksikasjade lehel",
+            "messageSaveSuccess": "Komplekti \"{name}\" on salvestatud.",
+            "openBundlesDetail": "Ava komplekti üksikasjad",
+            "placeholderSearch": "Otsi komplekte...",
+            "refreshDataTooltip": "Andmete värskendamine",
+            "showOnProductDetailPage": "Näita toote üksikasjade lehel",
+            "showOnlyIncluded": "Näita ainult valitud",
+            "tooltipBundleHasRestrictions": "Ühel või mitmel tootel on piirangud, mis mõjutavad selle komplekti kättesaadavust. Lisateabe saamiseks külastage komplekti üksikasju.",
+            "tooltipBundleInactive": "Mitteaktiivne",
+            "tooltipBundleIssues": "Probleemid:",
+            "tooltipBundleMismatchedSalesChannels": "Toote müügikanalitele pole määratud: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Seda toodet ei saa eemaldada, kuna kimbud vajavad vähemalt kahte toodet."
+        },
         "card": {
             "textHeadline": "Laos ja kohaletoimetatavus",
             "textLinkModal": "Vaadake laoseid ladude ja laorühmade kaupa",
             "textProductWarehouseModalDisabled": "Salvestage oma muudatused enne täiendavate varude üksikasjade avamist.",
             "textTooltipMultiSelect": "Määrake laorühmad, et hallata oma varu eraldi mitmes laos."
+        },
+        "detail": {
+            "tabBundle": "Kimbud"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Sulge",
@@ -1986,6 +2359,9 @@
             "tabStock": "Varud",
             "textHeadline": "Varud lao- ja laorühmade kaupa",
             "textInlineEdit": "Muuda aktsiat"
+        },
+        "type": {
+            "grouped_bundle": "komplekt"
         },
         "variants-overview": {
             "inlineText": "Vaata üksikasju"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tühi stseen"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Komplekti toote üksikasjade leht"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Luba hinnapakkumiste tellimustele sooduskoode"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Sõbralik Captcha",
+                "friendlyCaptchaApiKey": "Sõbralik Captcha API võti",
                 "friendlyCaptchaDescription": "Töötõendusmehhanismide ja täiustatud riskisignaalide põhjal kasutab Friendly Captcha põhimõtteliselt uut lähenemisviisi oma veebisaitide ja veebiteenuste turvaliseks kaitsmiseks rämpsposti ja robotite eest.",
+                "friendlyCaptchaRegion": "API piirkond",
+                "friendlyCaptchaRegionEu": "EL (Euroopa Liit)",
+                "friendlyCaptchaRegionGlobal": "Globaalne",
+                "friendlyCaptchaRegionHelpText": "Valige „EL”, et suunata kõik captcha taotlused ainult Euroopa serverite kaudu. See võib olla oluline GDPR-i järgimise seisukohast.",
                 "friendlyCaptchaSecretKey": "Sõbralik Captcha salajane võti",
-                "friendlyCaptchaSiteKey": "Sõbralik Captcha saidi võti"
+                "friendlyCaptchaSiteKey": "Sõbralik Captcha saidi võti",
+                "friendlyCaptchaV1DeprecationNotice": "Versioon 1 on pärand ja eemaldatakse tulevases väljaandes. Parema turvalisuse ja puhtamaks vidinakogemuseks soovitame üle minna versioonile 2.",
+                "friendlyCaptchaVersion": "Sõbralik Captcha versioon",
+                "friendlyCaptchaVersionV1": "Versioon 1 (pärand)",
+                "friendlyCaptchaVersionV2": "Versioon 2 (uus)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Tühista",
         "retry": "Proovige uuesti"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Lukusta ühtlane skaala",
-        "unlock-uniform-scale": "Avage ühtlane skaala"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Teie kliendid saavad määratleda ja hallata eelarvepiiranguid, et paremini kontrollida oma organisatsiooniüksuste kulutusi.",
         "budgetManagementName": "Eelarved",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Tellimuse kinnitamine",
                     "ORGANIZATION_UNITS": "Organisatsiooniüksused",
                     "QUICK_ORDER": "Kiired tellimused",
-                    "QUOTE_MANAGEMENT": "Hinnapakkumiste haldamine"
+                    "QUOTE_MANAGEMENT": "Hinnapakkumiste haldamine",
+                    "SHOPPING_LISTS": "Ostunimekirjad"
                 },
                 "template": "{dependency} on vajalik {name}jaoks"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nimi",
             "columnOrderQuantity": "Tellimuse kogus",
             "columnReturnQuantity": "Tagastuskogus",
+            "includesShippingCosts": "Sealhulgas saatmiskulud",
             "messageErrorNoItemHasQuantity": "Tagastuse loomiseks peaks olema vähemalt 1 rea üksuse kogus üle 0",
             "messagePreventAddItem": "See toode on juba osa tagastamisest või selle olek on tühistatud, tagastatud või osaliselt tagastatud.",
             "placeholderComment": "Sisesta kommentaar...",

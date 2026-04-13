@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "الاشتراك يترك الحالة متوقفة مؤقتًا"
         },
         "entities": {
+            "b2b_components_individual_pricing": "التسعير الفردي",
             "b2b_components_role": "الدور | الأدوار",
             "b2b_components_shopping_list": "قوائم التسوق",
             "b2b_employee": "موظف | موظفون",
+            "bundle": "الباقة | الباقات",
+            "bundle_item": "عنصر الحزمة | عناصر الحزمة",
             "export_assistant": "مساعد التصدير",
-            "individual_pricing": "التسعير الفردي",
             "quote": "اقتباس | اقتباسات",
             "quote_line_item": "بند الاقتباس | بنود سطر الاقتباس",
             "search_assistant": "مساعد الذكاء الاصطناعي",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "المنتج عبارة عن حزمة",
+                "lineItemOfBundleRule": "عنصر من الحزمة المختارة",
                 "subscriptionCartRule": "عربة الاشتراك",
                 "subscriptionIntervalRule": "فترة الاشتراك",
                 "subscriptionPlanRule": "خطة الاشتراك"
             },
             "group": {
                 "subscription": "الإشتراك"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "حزمة"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "شكرًا لتجربة مخطط الحزم. نحن نحب أن نسمع تعليقاتك.",
+                "link": "إعطاء ملاحظات"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "حقول مخصصة"
+            },
+            "general": {
+                "title": "معلومات عامة"
+            },
+            "items": {
+                "actionOpenProductDetails": "افتح تفاصيل المنتج",
+                "buttonAddBundleItems": "إضافة منتجات",
+                "columnName": "اسم",
+                "columnPosition": "موضع",
+                "columnPrice": "السعر",
+                "emptyStateDescription": "أضف منتجين على الأقل إلى الحزمة.",
+                "emptyStateTitle": "لم تتم إضافة أي منتجات حتى الآن",
+                "title": "منتجات ({count})",
+                "tooltipBundleItemCustomizedProduct": "تم تعيين قالب منتج مخصص",
+                "tooltipBundleItemHasVariants": "يحتوي المنتج على متغيرات",
+                "tooltipBundleItemInactive": "غير نشطة",
+                "tooltipBundleItemIncompatibleVisibilities": "غير مخصص لقنوات مبيعات الحزمة: {salesChannels}",
+                "tooltipBundleItemIssues": "القضايا:",
+                "tooltipBundleItemOutOfStockCloseout": "نفد المخزون (بيع التخليص)",
+                "tooltipBundleItemOutOfStockTemporary": "هذا المنتج غير متوفر حاليًا. ستصبح الحزمة قابلة للشراء مرة أخرى بمجرد عودة جميع المنتجات إلى المخزون.",
+                "tooltipBundleItemOutOfStockTitle": "نفد المخزون",
+                "tooltipRefreshData": "تحديث البيانات"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "تاريخ الإصدار",
+                    "placeholder": "أدخل تاريخ الإصدار..."
+                },
+                "title": "وضع العلامات"
+            },
+            "media": {
+                "subtitle": "أضف ملفات إلى معرض الوسائط الخاص بالحزمة.",
+                "title": "وسائل الإعلام"
+            },
+            "messageMinBundleItemsRequired": "أضف منتجين على الأقل لإنشاء الحزمة.",
+            "messageNoChanges": "لا توجد تغييرات للحفظ",
+            "messageSaveError": "فشلت عملية حفظ الحزمة",
+            "messageSaveSuccess": "تم حفظ الحزمة بنجاح",
+            "price": {
+                "addDiscount": "إضافة خصم",
+                "currencyDependingPrices": "تعتمد العملة على الأسعار",
+                "discount": "خصم",
+                "discountRules": "قواعد الخصم",
+                "discountTitle": "خصم",
+                "discountType": "النوع",
+                "discountTypeAbsolute": "مطلق",
+                "discountTypePercentage": "النسبة المئوية",
+                "discountValue": "القيمة",
+                "discountValuePlaceholder": "إضافة قيمة...",
+                "doNotCombineWith": "لا تتحد مع",
+                "maxValuePlaceholder": "غير محدود",
+                "maximumDiscountValue": "الحد الأقصى لقيمة الخصم",
+                "openAdvancedPricesView": "افتح عرض الأسعار المتقدمة",
+                "preventCombination": "منع الدمج مع العروض الترويجية الأخرى",
+                "preventCombinationHelpText": "عند التمكين، لا يمكن دمج هذا الخصم مع العروض الترويجية الأخرى",
+                "promotionsPlaceholder": "إضافة عروض ترويجية...",
+                "rulesPlaceholder": "إضافة قواعد...",
+                "subtotalBased": "المجموع الفرعي على أساس منتج واحد | المجموع الفرعي بناءً على منتجات {count}",
+                "title": "عرض الأسعار",
+                "total": "الإجمالي",
+                "totalBased": "الإجمالي بناءً على منتج واحد | الإجمالي بناءً على {count} من المنتجات"
+            },
+            "tabGeneral": "جنرال لواء",
+            "tabLayout": "التخطيط",
+            "tabSeo": "سيو",
+            "textHeadline": "حزمة جديدة",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "هذا يمنع الحزمة من الظهور في تلك القنوات. يرجى التحقق من رؤية المنتجات التالية:",
+                    "notAssignedTo": "لم يتم تعيينه لـ",
+                    "title": "لم يتم تخصيص بعض المنتجات لجميع قنوات المبيعات المحددة"
+                },
+                "title": "الرؤية والهيكل"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "نشطة",
+                "placeholder": "حدد الحالة..."
+            },
+            "availabilityFilter": {
+                "label": "التوافر",
+                "placeholder": "حدد التوفر..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "المنتجات المضمّنة",
+                "placeholder": "حدد المنتجات المضمنة..."
+            },
+            "categoriesFilter": {
+                "label": "الفئات",
+                "placeholder": "حدد الفئات..."
+            },
+            "fromPlaceholder": "أدخل قيمة البداية...",
+            "imagesFilter": {
+                "label": "صور",
+                "placeholder": "حدد حالة الصورة...",
+                "textHasCriteria": "تم تعيين صورة منتج واحدة على الأقل",
+                "textNoCriteria": "لم يتم تعيين صور للمنتج"
+            },
+            "priceFilter": {
+                "label": "السعر"
+            },
+            "productNumberFilter": {
+                "label": "رقم المنتج",
+                "placeholder": "أدخل رقم المنتج..."
+            },
+            "releaseDateFilter": {
+                "label": "تاريخ الإصدار"
+            },
+            "salesChannelsFilter": {
+                "label": "قنوات المبيعات",
+                "placeholder": "حدد قنوات المبيعات..."
+            },
+            "salesFilter": {
+                "label": "المبيعات"
+            },
+            "tagsFilter": {
+                "label": "العلامات",
+                "placeholder": "حدد العلامات..."
+            },
+            "toPlaceholder": "أدخل القيمة النهائية..."
+        },
+        "general": {
+            "description": "حزم",
+            "headlineBundles": "حزم",
+            "mainMenuItemGeneral": "حزم",
+            "placeholderSearchBar": "حزم البحث...",
+            "title": "حزم"
+        },
+        "generalForm": {
+            "highlightHelpText": "يتم تمييز الحزم المميزة بعلامة ذات ألوان زاهية وكلمة «نصيحة» في جميع قوائم الحزم. يمكنك ضبط لون التسمية عن طريق تغيير خيار «ملاحظة» في إعدادات <a href=\"{themeUrl}\">themes</a> . يمكنك أيضًا تغيير نص التسمية عن طريق تحرير مقتطف النص <a href=\"{snippetUrl}\">المقابل</a>.",
+            "labelDescription": "وصف",
+            "labelMarkAsTopseller": "حزمة هايلايت",
+            "labelName": "اسم",
+            "labelProductNumber": "رقم المنتج",
+            "placeholderDescription": "أدخل وصف الحزمة...",
+            "placeholderName": "أدخل اسم الحزمة...",
+            "placeholderProductNumber": "أدخل رقم المنتج..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "تتطلب الحزمة منتجين على الأقل.",
+            "notEnoughProductsTitle": "لا توجد منتجات كافية",
+            "restrictions": "يحتوي منتج واحد أو أكثر على قيود تؤثر على توفر هذه الحزمة. راجع رموز التحذير للحصول على التفاصيل.",
+            "restrictionsTitle": "بعض المنتجات لها قيود"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "لم يتم العثور على منتجات مطابقة",
+            "noProductsMatchingBundleSalesChannels": "لا توجد منتجات نشطة تتطابق مع قنوات المبيعات المحددة للحزمة.",
+            "noProductsMatchingTermAndFilter": "اضبط مصطلح البحث أو عوامل التصفية.",
+            "placeholderSearch": "ابحث عن المنتجات...",
+            "showIncluded": "أظهر العرض المحدد فقط ({count})",
+            "textWhySomeItemsMissing": "لماذا بعض المنتجات مفقودة؟",
+            "title": "إضافة منتجات",
+            "tooltipVariant": "متغير",
+            "tooltipWhySomeItemsMissing": "في الوقت الحالي، تعمل الحزم فقط مع المنتجات المادية والمتغيرات الفردية. <br /><br /> يجب تخصيص المنتجات لقنوات المبيعات المحددة للحزمة لتظهر في القائمة."
+        },
+        "list": {
+            "available": "متاح",
+            "buttonAddBundle": "إضافة حزمة",
+            "columnActive": "نشطة",
+            "columnAvailable": "التوافر",
+            "columnBundleItemCount": "عدد المنتجات",
+            "columnCreatedAt": "تم إنشاؤها في",
+            "columnName": "اسم",
+            "columnProductNumber": "رقم المنتج",
+            "columnSales": "المبيعات",
+            "columnTotalPrice": "السعر الإجمالي",
+            "columnUpdatedAt": "تم تحديثه في",
+            "emptyStateDescription": "يمكن للحزم زيادة متوسط قيمة الطلب وتشجيع العملاء على شراء المنتجات ذات الصلة.",
+            "emptyStateTitle": "إضافة حزم لزيادة المبيعات",
+            "messageSaveSuccess": "تم حفظ الحزمة \"{name}\".",
+            "titleSidebarItemRefresh": "قم بتحديث",
+            "unavailable": "غير متوفره"
+        },
+        "priceModal": {
+            "currency": "العملة",
+            "price": "القيمة",
+            "title": "أسعار متقدمة"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "إضافة منتجات",
+            "description": "حدد قناة المبيعات أولاً لمعرفة المنتجات التي يمكن إضافتها إلى الحزمة. يمكنك تعديل ذلك لاحقًا في بطاقة الرؤية والبنية.",
+            "title": "قناة المبيعات مطلوبة"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "توليد صورة",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "وصف الحزمة"
+                },
+                "bundleHeading": {
+                    "label": "اسم الحزمة"
+                },
+                "bundleItems": {
+                    "label": "عناصر الحزمة"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "معرض الصور وصندوق شراء الحزمة"
+                },
+                "recommendedBundles": {
+                    "label": "الباقات الموصى بها"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "التخطيط الافتراضي - صفحة حزمة المنتج",
+                "setAsDefaultBundleDetail": "تعيين صفحة افتراضية لحزمة المنتج"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "صفحة الحزمة"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "توليد صورة",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "يتم تحميل بيانات منتج هذا العنصر تلقائيًا بواسطة المنتج المرتبط بهذا التخطيط. يعرض المحتوى فقط عينة معاينة."
+                },
+                "label": "صندوق شراء الحزمة"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "يتم تحميل بيانات منتج هذا العنصر تلقائيًا بواسطة المنتج المرتبط بهذا التخطيط. يعرض المحتوى فقط عينة معاينة."
+                },
+                "label": "وصف الحزمة",
+                "preview": {
+                    "descriptionTab": "وصف",
+                    "title": "حزمة"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "يسمح بإضافة عناصر الحزمة مباشرة إلى عربة التسوق بدلاً من فتح صفحة تفاصيل المنتج.",
+                        "labelTitle": "استخدم {count} لعرض عدد المنتجات في الحزمة."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "يتم تحميل بيانات منتج هذا العنصر تلقائيًا بواسطة المنتج المرتبط بهذا التخطيط. يعرض المحتوى فقط عينة معاينة."
+                    },
+                    "label": {
+                        "boxSettings": "إعدادات صندوق المنتج",
+                        "cta": "اعرض CTA لإضافة عناصر الحزمة مباشرة إلى عربة التسوق",
+                        "minWidth": "الحد الأدنى للعرض",
+                        "title": "العنوان"
+                    }
+                },
+                "label": "المنتجات المضمّنة"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "يتم تحميل بيانات حزمة هذا العنصر تلقائيًا بواسطة الحزمة المرتبطة بهذا التخطيط. يعرض المحتوى فقط معاينة نموذجية."
+                },
+                "label": "اسم الحزمة"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "عند التمكين، يتم عرض مجموعة فرعية فقط من الحزم في البداية. يمكن للمستخدمين توسيع القائمة لعرض المزيد.",
+                        "maxVisibleBundles": "يتحكم في عدد الحزم التي سيتم عرضها حتى يتم إخفاؤها خلف وظيفة «إظهار المزيد».",
+                        "productBoxSettings": "إعدادات صندوق المنتج",
+                        "productDetailElement": "يتم تحميل بيانات منتج هذا العنصر تلقائيًا بواسطة المنتج المرتبط بهذا التخطيط. يعرض المحتوى فقط عينة معاينة.",
+                        "showCTAInfo": "يسمح بإضافة عناصر الحزمة مباشرة إلى عربة التسوق بدلاً من فتح صفحة تفاصيل المنتج.",
+                        "sliderSettings": "إعدادات شريط التمرير"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "الحد من عدد الحزم المعروضة في البداية",
+                        "maxVisibleBundles": "الحزم المعروضة في البداية",
+                        "minWidth": "الحد الأدنى للعرض",
+                        "recommendedCombinationsTitle": "المجموعات الموصى بها",
+                        "showBundleName": "عرض اسم الحزمة",
+                        "showCTA": "اعرض CTA لإضافة عناصر الحزمة مباشرة إلى عربة التسوق",
+                        "showCurrentProduct": "اعرض المنتج المعروض حاليًا أولاً في الحزمة",
+                        "title": "العنوان"
+                    },
+                    "placeholder": {
+                        "minWidth": "أدخل الحد الأدنى للعرض...",
+                        "title": "المجموعات الموصى بها"
+                    }
+                },
+                "label": "المجموعات الموصى بها",
+                "preview": {
+                    "label": {
+                        "title": "المجموعات الموصى بها"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "توليد صورة",
             "contentText": "قم بإنشاء صور الحالة المزاجية الخاصة بك لتخصيص التخطيط الخاص بك بمساعدة الصورة المولدة بالذكاء الاصطناعي.",
             "header": "مساعد الذكاء الاصطناعي"
+        },
+        "tags": {
+            "bundle": "حزمة"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "عناوين الوحدة التنظيمية",
                             "pending_order": "إدارة الطلبات المعلقة",
                             "quote": "إدارة الاقتباس",
-                            "role": "إدارة الأدوار"
+                            "role": "إدارة الأدوار",
+                            "subscription": "اطلب الاشتراك"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "حذف عنوان الشحن",
                                     "update": "تحرير عنوان الشحن"
                                 },
+                                "subscription": {
+                                    "read": "عرض جميع اشتراكات الطلبات من وحدة المؤسسة المعينة"
+                                },
                                 "update": "تحرير وحدة المؤسسة"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "يمكن حذف الأدوار",
                                 "edit": "يمكن تحرير الأدوار",
                                 "read": "يمكن عرض الأدوار"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "عرض جميع اشتراكات الطلبات"
+                                }
                             }
                         },
                         "switchAllLabel": "جميع الأذونات"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "إدارة الأدوار"
             },
+            "bundle": {
+                "label": "حزم"
+            },
             "custom_price": {
                 "label": "سعر المنتج للعميل"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "إضافة منتج إلى الباقات",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "حصلت عليه",
+                "description": "لا يمكن إزالة هذا المنتج من الحزم التالية لأن الحزمة تتطلب منتجين على الأقل:",
+                "hint": "لإزالة هذا المنتج، قم بإضافة منتج آخر إلى هذه الحزم أولاً.",
+                "title": "لا يمكن إزالة المنتج من جميع الحزم"
+            },
+            "bundleCardSubtitle": "جميع الباقات التي تحتوي على هذا المنتج",
+            "bundleCardTitle": "الباقات ({count})",
+            "buttonAddBundle": "إضافة منتج إلى الباقات",
+            "buttonAddBundleLanguageWarning": "لا يمكن إضافة الحزم إلا باللغة الافتراضية للنظام.",
+            "buttonCreateBundle": "إنشاء حزمة",
+            "buttonManageBundles": "إدارة الحزم",
+            "columnActive": "نشطة",
+            "columnAvailability": "التوافر",
+            "columnBundleItemCount": "عدد المنتجات",
+            "columnCreatedAt": "تم إنشاؤها في",
+            "columnName": "اسم",
+            "columnProductNumber": "رقم المنتج",
+            "columnSales": "المبيعات",
+            "columnShowBundleOnItemPdp": "اعرض على صفحة التفاصيل",
+            "columnUpdatedAt": "تم تحديثه في",
+            "emptyStateDescription": "يمكن للحزم زيادة متوسط قيمة الطلب وتشجيع العملاء على شراء المنتجات ذات الصلة. تظهر الحزم في صفحة تفاصيل المنتج إذا كان تخطيط CMS يتضمن عنصر حزمة.",
+            "emptyStateDescriptionCreateFirst": "يمكن للحزم زيادة متوسط قيمة الطلب وتشجيع العملاء على شراء المنتجات ذات الصلة. تظهر الحزم في صفحة تفاصيل المنتج إذا كان تخطيط CMS يتضمن عنصر حزمة. قم بإنشاء حزمة لإضافة هذا المنتج.",
+            "emptyStateNoBundlesFound": "لم يتم العثور على حزم مطابقة",
+            "emptyStateNoBundlesFoundDescription": "اضبط مصطلح البحث أو عوامل التصفية.",
+            "emptyStateTitle": "أضف منتجًا إلى الحزم لزيادة المبيعات",
+            "hideOnProductDetailPage": "اختبئ في صفحة تفاصيل المنتج",
+            "messageSaveSuccess": "تم حفظ الحزمة \"{name}\".",
+            "openBundlesDetail": "تفاصيل الباقة المفتوحة",
+            "placeholderSearch": "حزم البحث...",
+            "refreshDataTooltip": "تحديث البيانات",
+            "showOnProductDetailPage": "اعرض على صفحة تفاصيل المنتج",
+            "showOnlyIncluded": "تم اختيار العرض فقط",
+            "tooltipBundleHasRestrictions": "يحتوي منتج واحد أو أكثر على قيود تؤثر على توفر هذه الحزمة. قم بزيارة تفاصيل الحزمة لمزيد من المعلومات.",
+            "tooltipBundleInactive": "غير نشطة",
+            "tooltipBundleIssues": "القضايا:",
+            "tooltipBundleMismatchedSalesChannels": "غير مخصص لقنوات مبيعات المنتج: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "لا يمكن إزالة هذا المنتج لأن الحزم تتطلب منتجين على الأقل."
+        },
         "card": {
             "textHeadline": "المخزون وقابلية التسليم",
             "textLinkModal": "شاهد المخزون حسب المستودعات ومجموعات المستودعات",
             "textProductWarehouseModalDisabled": "احفظ التغييرات قبل أن تتمكن من فتح المزيد من تفاصيل الأسهم.",
             "textTooltipMultiSelect": "قم بتعيين مجموعات المستودعات لإدارة مخزونك بشكل فردي عبر مستودعات متعددة."
+        },
+        "detail": {
+            "tabBundle": "حزم"
         },
         "modal-warehouse-group": {
             "buttonCancel": "إغلاق",
@@ -1986,6 +2359,9 @@
             "tabStock": "مخزون",
             "textHeadline": "المخزون حسب مجموعات المستودعات والمستودعات",
             "textInlineEdit": "تحرير الأسهم"
+        },
+        "type": {
+            "grouped_bundle": "حزمة"
         },
         "variants-overview": {
             "inlineText": "راجع التفاصيل"
@@ -2542,6 +2918,16 @@
             "emptyText": "مشهد فارغ"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "صفحة تفاصيل منتج الحزمة"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "السماح برموز الترويج للطلبات من عروض الأسعار"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "كلمة التحقق الودية",
+                "friendlyCaptchaApiKey": "مفتاح واجهة برمجة تطبيقات Captcha سهل الاستخدام",
                 "friendlyCaptchaDescription": "استنادًا إلى آليات إثبات العمل وإشارات المخاطر المتقدمة، تستخدم Friendly Captcha نهجًا جديدًا بشكل أساسي للدفاع بأمان عن مواقع الويب الخاصة بك والخدمات عبر الإنترنت من البريد العشوائي وبرامج الروبوت.",
+                "friendlyCaptchaRegion": "منطقة API",
+                "friendlyCaptchaRegionEu": "الاتحاد الأوروبي (الاتحاد الأوروبي)",
+                "friendlyCaptchaRegionGlobal": "عالمي",
+                "friendlyCaptchaRegionHelpText": "حدد «الاتحاد الأوروبي» لتوجيه جميع طلبات captcha حصريًا من خلال الخوادم الأوروبية. يمكن أن يكون هذا مناسبًا للامتثال للائحة العامة لحماية البيانات.",
                 "friendlyCaptchaSecretKey": "مفتاح Captcha السري الودود",
-                "friendlyCaptchaSiteKey": "مفتاح موقع Captcha الودي"
+                "friendlyCaptchaSiteKey": "مفتاح موقع Captcha الودي",
+                "friendlyCaptchaV1DeprecationNotice": "الإصدار 1 قديم وستتم إزالته في إصدار مستقبلي. نوصي بالترقية إلى الإصدار 2 لتحسين الأمان وتجربة عنصر واجهة مستخدم أنظف.",
+                "friendlyCaptchaVersion": "نسخة كابتشا ودية",
+                "friendlyCaptchaVersionV1": "الإصدار 1 (قديم)",
+                "friendlyCaptchaVersionV2": "الإصدار 2 (جديد)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "إلغاء",
         "retry": "أعد المحاولة"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "مقياس لوك الموحد",
-        "unlock-uniform-scale": "افتح المقياس الموحد"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "يمكن لعملائك تحديد حدود الميزانية وإدارتها للتحكم بشكل أفضل في إنفاق وحدات المؤسسة الخاصة بهم.",
         "budgetManagementName": "الميزانيات",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "الموافقة على الطلبية",
                     "ORGANIZATION_UNITS": "الوحدات التنظيمية",
                     "QUICK_ORDER": "الطلبات السريعة",
-                    "QUOTE_MANAGEMENT": "إدارة الاقتباس"
+                    "QUOTE_MANAGEMENT": "إدارة الاقتباس",
+                    "SHOPPING_LISTS": "قوائم التسوق"
                 },
                 "template": "{dependency} مطلوب لـ {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "اسم",
             "columnOrderQuantity": "كمية الطلب",
             "columnReturnQuantity": "كمية الإرجاع",
+            "includesShippingCosts": "بما في ذلك تكاليف الشحن",
             "messageErrorNoItemHasQuantity": "يجب أن يحتوي عنصر سطر واحد على الأقل على كمية تزيد عن 0 لإنشاء إرجاع",
             "messagePreventAddItem": "هذا العنصر هو بالفعل جزء من الإرجاع أو تم إلغاء حالته أو إرجاعه أو إرجاعه جزئيًا.",
             "placeholderComment": "إدخال تعليق...",

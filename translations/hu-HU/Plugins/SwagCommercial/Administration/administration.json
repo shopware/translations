@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Az előfizetés szünetelteti az állapotot"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Egyéni árképzés",
             "b2b_components_role": "Szerep | Szerepek",
             "b2b_components_shopping_list": "Bevásárlólisták",
             "b2b_employee": "Alkalmazott | Munkavállalók",
+            "bundle": "Csomag | Csomagok",
+            "bundle_item": "Csomag tétel | Csomagtételek",
             "export_assistant": "Exportasszisztens",
-            "individual_pricing": "Egyéni árképzés",
             "quote": "Idézet | Idézetek",
             "quote_line_item": "Idézetsor tétel | Idézetsor tételei",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Az elem egy csomag elem",
+                "lineItemOfBundleRule": "A kiválasztott csomag tétele",
                 "subscriptionCartRule": "Előfizetési kosár",
                 "subscriptionIntervalRule": "Előfizetési intervallum",
                 "subscriptionPlanRule": "Előfizetési csomag"
             },
             "group": {
                 "subscription": "Előfizetés"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Csomag"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Köszönjük, hogy kipróbálta a Bundles tervrajzot. Szeretnénk meghallgatni visszajelzését.",
+                "link": "Visszajelzés küldése"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Egyéni mezők"
+            },
+            "general": {
+                "title": "Általános információk"
+            },
+            "items": {
+                "actionOpenProductDetails": "Nyissa meg a termék részleteit",
+                "buttonAddBundleItems": "Termékek hozzáadása",
+                "columnName": "Név",
+                "columnPosition": "Pozíció",
+                "columnPrice": "Ár",
+                "emptyStateDescription": "Adjon hozzá legalább két terméket a csomaghoz.",
+                "emptyStateTitle": "Még nincs hozzáadott termék",
+                "title": "Termékek ({count})",
+                "tooltipBundleItemCustomizedProduct": "Egyéni terméksablon hozzárendelve",
+                "tooltipBundleItemHasVariants": "A termék változatokkal rendelkezik",
+                "tooltipBundleItemInactive": "Inaktív",
+                "tooltipBundleItemIncompatibleVisibilities": "Nincs hozzárendelve a csomag értékesítési csatornáihoz: {salesChannels}",
+                "tooltipBundleItemIssues": "Problémák:",
+                "tooltipBundleItemOutOfStockCloseout": "Nincs raktáron (Értékesítés)",
+                "tooltipBundleItemOutOfStockTemporary": "Ez a termék jelenleg nincs raktáron. A csomag ismét megvásárolhatóvá válik, ha az összes termék újra raktáron van.",
+                "tooltipBundleItemOutOfStockTitle": "Nincs raktáron",
+                "tooltipRefreshData": "Adatok frissítése"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Megjelenés dátuma",
+                    "placeholder": "Adja meg a kiadás dátumát..."
+                },
+                "title": "Címkék"
+            },
+            "media": {
+                "subtitle": "Fájlok hozzáadása a csomag médiagalériájához.",
+                "title": "Média"
+            },
+            "messageMinBundleItemsRequired": "Adjon hozzá legalább két terméket a csomag létrehozásához.",
+            "messageNoChanges": "Nincs mentendő módosítás",
+            "messageSaveError": "Nem sikerült menteni a csomagot",
+            "messageSaveSuccess": "A csomag sikeresen mentve",
+            "price": {
+                "addDiscount": "Kedvezmény hozzáadása",
+                "currencyDependingPrices": "Pénznem az áraktól függően",
+                "discount": "Kedvezmény",
+                "discountRules": "Kedvezményszabályok",
+                "discountTitle": "Kedvezmény",
+                "discountType": "Típus",
+                "discountTypeAbsolute": "Abszolút",
+                "discountTypePercentage": "Százalék",
+                "discountValue": "Érték",
+                "discountValuePlaceholder": "Hozzáadott érték...",
+                "doNotCombineWith": "Nem kombinálható",
+                "maxValuePlaceholder": "Korlátlan",
+                "maximumDiscountValue": "Legnagyobb kedvezmény érték",
+                "openAdvancedPricesView": "Nyílt speciális árak nézet",
+                "preventCombination": "Más promóciókkal való kombináció megakadályozása",
+                "preventCombinationHelpText": "Ha engedélyezve van, ez a kedvezmény nem kombinálható más promóciókkal",
+                "promotionsPlaceholder": "Promóciók hozzáadása...",
+                "rulesPlaceholder": "Szabályok hozzáadása...",
+                "subtotalBased": "Részösszeg 1 termék alapján | Részösszeg {count} termék alapján",
+                "title": "Árak megjelenítése",
+                "total": "Összesen",
+                "totalBased": "Összesen 1 termék alapján | Összesen {count} termék alapján"
+            },
+            "tabGeneral": "Általános",
+            "tabLayout": "Layout",
+            "tabSeo": "SEO",
+            "textHeadline": "Új csomag",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Ez megakadályozza, hogy a köteg látható legyen ezeken a csatornákon. Kérjük, ellenőrizze a következő termékek láthatóságát:",
+                    "notAssignedTo": "nincs hozzárendelve",
+                    "title": "Egyes termékek nincsenek hozzárendelve az összes kiválasztott értékesítési csatornához"
+                },
+                "title": "Láthatóság és szerkezet"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktív",
+                "placeholder": "Állapot kiválasztása..."
+            },
+            "availabilityFilter": {
+                "label": "elérhetőség",
+                "placeholder": "Válassza ki a rendelkezésre állást..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Tartalmazott termékek",
+                "placeholder": "Válassza ki a mellékelt termékeket..."
+            },
+            "categoriesFilter": {
+                "label": "kategóriák",
+                "placeholder": "Kategóriák kiválasztása..."
+            },
+            "fromPlaceholder": "Adja meg a kezdő értéket...",
+            "imagesFilter": {
+                "label": "Képek",
+                "placeholder": "Válassza ki a kép állapotát...",
+                "textHasCriteria": "Legalább egy termékkép hozzárendelve",
+                "textNoCriteria": "Nincs termékkép hozzárendelve"
+            },
+            "priceFilter": {
+                "label": "Ár"
+            },
+            "productNumberFilter": {
+                "label": "Termékszám",
+                "placeholder": "Adjon meg egy termékszámot..."
+            },
+            "releaseDateFilter": {
+                "label": "Megjelenés dátuma"
+            },
+            "salesChannelsFilter": {
+                "label": "Értékesítési csatornák",
+                "placeholder": "Értékesítési csatornák kiválasztása..."
+            },
+            "salesFilter": {
+                "label": "Értékesítés"
+            },
+            "tagsFilter": {
+                "label": "Címkék",
+                "placeholder": "Címkék kiválasztása..."
+            },
+            "toPlaceholder": "Adja meg a végértéket..."
+        },
+        "general": {
+            "description": "Csomagok",
+            "headlineBundles": "Csomagok",
+            "mainMenuItemGeneral": "Csomagok",
+            "placeholderSearchBar": "Keressen csomagokat...",
+            "title": "Csomagok"
+        },
+        "generalForm": {
+            "highlightHelpText": "A kiemelt kötegeket élénk színű címke és a „Tipp” szó jelöli az összes csomaglistán. A címke színét a <a href=\"{themeUrl}\">téma</a> beállításaiban módosíthatja az „Értesítés” opciót. A címke szövegét a megfelelő <a href=\"{snippetUrl}\">szövegrészlet</a> szerkesztésével is módosíthatja.",
+            "labelDescription": "Leírás",
+            "labelMarkAsTopseller": "Jelölje ki a csomagot",
+            "labelName": "Név",
+            "labelProductNumber": "Termékszám",
+            "placeholderDescription": "Adja meg a csomag leírását...",
+            "placeholderName": "Adja meg a csomag nevét...",
+            "placeholderProductNumber": "Adja meg a termék számát..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Egy csomag legalább két terméket igényel.",
+            "notEnoughProductsTitle": "Nincs elég termék",
+            "restrictions": "Egy vagy több termék korlátozásokkal rendelkezik, amelyek befolyásolják a csomag elérhetőségét. A részletekért lásd a figyelmeztető ikonokat.",
+            "restrictionsTitle": "Egyes termékeknek korlátozásai vannak"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Nem található megfelelő termék",
+            "noProductsMatchingBundleSalesChannels": "Nincsenek olyan aktív termékek, amelyek megfelelnek a csomag kiválasztott értékesítési csatornáinak.",
+            "noProductsMatchingTermAndFilter": "Állítsa be a keresési kifejezést vagy a szűrőket.",
+            "placeholderSearch": "Termékek keresése...",
+            "showIncluded": "Csak a kijelölt megjelenítése ({count})",
+            "textWhySomeItemsMissing": "Miért hiányzik néhány termék?",
+            "title": "Termékek hozzáadása",
+            "tooltipVariant": "Változat",
+            "tooltipWhySomeItemsMissing": "Jelenleg a csomagok csak fizikai termékekkel és egyedi változatokkal működnek. <br /><br /> A termékeket hozzá kell rendelni a csomag kiválasztott Értékesítési csatornáihoz, hogy megjelenjenek a listában."
+        },
+        "list": {
+            "available": "Elérhető",
+            "buttonAddBundle": "Csomag hozzáadása",
+            "columnActive": "Aktív",
+            "columnAvailable": "elérhetőség",
+            "columnBundleItemCount": "Termékek száma",
+            "columnCreatedAt": "Létrehozva:",
+            "columnName": "Név",
+            "columnProductNumber": "Termékszám",
+            "columnSales": "Értékesítés",
+            "columnTotalPrice": "Teljes ár",
+            "columnUpdatedAt": "Frissítve:",
+            "emptyStateDescription": "A csomagok növelhetik az átlagos rendelési értéket, és ösztönözhetik az ügyfeleket a kapcsolódó termékek vásárlására.",
+            "emptyStateTitle": "Csomagok hozzáadása az értékesítés növelése érdekében",
+            "messageSaveSuccess": "A \"{name}\" csomag mentve lett.",
+            "titleSidebarItemRefresh": "Frissítés",
+            "unavailable": "Nem érhető el"
+        },
+        "priceModal": {
+            "currency": "Pénznem",
+            "price": "Érték",
+            "title": "Haladó árak"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Termékek hozzáadása",
+            "description": "Először válasszon ki egy értékesítési csatornát, hogy megnézze, mely termékeket lehet hozzáadni a csomaghoz. Ezt később módosíthatja a Láthatóság és szerkezet kártyán.",
+            "title": "Értékesítési csatorna szükséges"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Kép létrehozása",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Csomag leírása"
+                },
+                "bundleHeading": {
+                    "label": "Csomag neve"
+                },
+                "bundleItems": {
+                    "label": "Csomag elemek"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Képgaléria és csomag vásárlási doboz"
+                },
+                "recommendedBundles": {
+                    "label": "Ajánlott csomagok"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Alapértelmezett elrendezés - Termékcsomag oldal",
+                "setAsDefaultBundleDetail": "Állítsa be a termékcsomag oldal alapértelmezettként"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Csomag oldal"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Kép létrehozása",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Ennek az elemnek a termékadatait a rendszer automatikusan betölti az elrendezéshez társított termék. A tartalom csak egy minta előnézetét jeleníti meg."
+                },
+                "label": "Csomag vásárlási doboz"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Ennek az elemnek a termékadatait a rendszer automatikusan betölti az elrendezéshez társított termék. A tartalom csak egy minta előnézetét jeleníti meg."
+                },
+                "label": "Csomag leírása",
+                "preview": {
+                    "descriptionTab": "Leírás",
+                    "title": "Csomag"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Lehetővé teszi a csomagtételek közvetlenül a kosárba történő hozzáadását a termék részleteinek oldalának megnyitása helyett.",
+                        "labelTitle": "Használja a {count} lehetőséget a csomagban lévő termékek számának megjelenítéséhez."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Ennek az elemnek a termékadatait a rendszer automatikusan betölti az elrendezéshez társított termék. A tartalom csak egy minta előnézetét jeleníti meg."
+                    },
+                    "label": {
+                        "boxSettings": "Termékdoboz beállításai",
+                        "cta": "A CTA megjelenítése a csomagtételek közvetlenül a kosárba történő hozzáadásához",
+                        "minWidth": "Minimális szélesség",
+                        "title": "Cím"
+                    }
+                },
+                "label": "Tartalmazott termékek"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Ennek az elemnek a csomagadatait automatikusan betölti az ehhez az elrendezéshez társított csomag. A tartalom csak egy minta előnézetet mutat."
+                },
+                "label": "Csomag neve"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Ha engedélyezve van, kezdetben csak a kötegek egy részhalmaza jelenik meg. A felhasználók bővíthetik a listát, hogy többet jelenjenek meg.",
+                        "maxVisibleBundles": "Azt szabályozza, hogy hány csomag jelenik meg mindaddig, amíg el nem rejtőzik a „Tovább megjelenítése” funkció mögött.",
+                        "productBoxSettings": "Termékdoboz beállításai",
+                        "productDetailElement": "Ennek az elemnek a termékadatait a rendszer automatikusan betölti az elrendezéshez társított termék. A tartalom csak egy minta előnézetét jeleníti meg.",
+                        "showCTAInfo": "Lehetővé teszi a csomagtételek közvetlenül a kosárba történő hozzáadását a termék részleteinek oldalának megnyitása helyett.",
+                        "sliderSettings": "Csúszka beállítások"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Az eredetileg megjelenített kötegek korlátozásának száma",
+                        "maxVisibleBundles": "Kezdetben megjelenített csomagok",
+                        "minWidth": "Minimális szélesség",
+                        "recommendedCombinationsTitle": "Ajánlott kombinációk",
+                        "showBundleName": "A csomag nevének megjelenítése",
+                        "showCTA": "A CTA megjelenítése a csomagtételek közvetlenül a kosárba történő hozzáadásához",
+                        "showCurrentProduct": "Mutasd meg először az aktuálisan megtekintett terméket csomagban",
+                        "title": "Cím"
+                    },
+                    "placeholder": {
+                        "minWidth": "Adja meg a minimális szélességet...",
+                        "title": "Ajánlott kombinációk"
+                    }
+                },
+                "label": "Ajánlott kombinációk",
+                "preview": {
+                    "label": {
+                        "title": "Ajánlott kombinációk"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Kép létrehozása",
             "contentText": "Készítsen saját hangulatképeket az elrendezés testreszabásához az AI által generált kép segítségével.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Csomag"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Szervezeti egység címei",
                             "pending_order": "Függőben lévő megrendelések kezel",
                             "quote": "Árajánlatkezelés",
-                            "role": "Szerepkör kezelése"
+                            "role": "Szerepkör kezelése",
+                            "subscription": "Előfizetés megrendelése"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Szállítási cím törlése",
                                     "update": "Szállítási cím szerkesztése"
                                 },
+                                "subscription": {
+                                    "read": "A hozzárendelt szervezeti egység összes rendelési előfizetésének megtekintése"
+                                },
                                 "update": "Szervezeti egység szerkesztése"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Törölheti a szerepeket",
                                 "edit": "Szerepeket szerkeszthet",
                                 "read": "Megtekintheti a szerepeket"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Az összes rendelési előfizetés megtekintése"
+                                }
                             }
                         },
                         "switchAllLabel": "Minden engedély"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Szerepmenedzsment"
             },
+            "bundle": {
+                "label": "Csomagok"
+            },
             "custom_price": {
                 "label": "Termék vásárlói ár"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Termék hozzáadása a csomagokhoz",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Megértettem",
+                "description": "Ez a termék nem távolítható el a következő csomagokból, mert egy csomaghoz legalább két termék szükséges:",
+                "hint": "A termék eltávolításához először adjon hozzá egy másik terméket ezekhez a csomagokhoz.",
+                "title": "A termék nem távolítható el minden csomagból"
+            },
+            "bundleCardSubtitle": "A terméket tartalmazó összes csomag",
+            "bundleCardTitle": "Csomagok ({count})",
+            "buttonAddBundle": "Termék hozzáadása a csomagokhoz",
+            "buttonAddBundleLanguageWarning": "Csomagok hozzáadása csak a rendszer alapértelmezett nyelvén lehetséges.",
+            "buttonCreateBundle": "Csomag létrehozása",
+            "buttonManageBundles": "Csomagok kezelése",
+            "columnActive": "Aktív",
+            "columnAvailability": "elérhetőség",
+            "columnBundleItemCount": "Termékek száma",
+            "columnCreatedAt": "Létrehozva:",
+            "columnName": "Név",
+            "columnProductNumber": "Termékszám",
+            "columnSales": "Értékesítés",
+            "columnShowBundleOnItemPdp": "Mutasd a részletes oldalon",
+            "columnUpdatedAt": "Frissítve:",
+            "emptyStateDescription": "A csomagok növelhetik az átlagos rendelési értéket, és ösztönözhetik az ügyfeleket a kapcsolódó termékek vásárlására. A csomagok akkor jelennek meg a termékrészletek oldalán, ha a CMS-elrendezés tartalmaz egy csomag elemet.",
+            "emptyStateDescriptionCreateFirst": "A csomagok növelhetik az átlagos rendelési értéket, és ösztönözhetik az ügyfeleket a kapcsolódó termékek vásárlására. A csomagok akkor jelennek meg a termékrészletek oldalán, ha a CMS-elrendezés tartalmaz egy csomag elemet. Hozzon létre egy csomagot a termék hozzáadásához.",
+            "emptyStateNoBundlesFound": "Nem található megfelelő csomag",
+            "emptyStateNoBundlesFoundDescription": "Állítsa be a keresési kifejezést vagy a szűrőket.",
+            "emptyStateTitle": "Termék hozzáadása a csomagokhoz az értékesítés növelése érdekében",
+            "hideOnProductDetailPage": "Elrejtés a termék részleteinek oldalán",
+            "messageSaveSuccess": "A \"{name}\" csomag mentve lett.",
+            "openBundlesDetail": "Nyissa meg a csomag részleteit",
+            "placeholderSearch": "Keressen csomagokat...",
+            "refreshDataTooltip": "Adatok frissítése",
+            "showOnProductDetailPage": "Megjelenítés a termék részleteinek oldalán",
+            "showOnlyIncluded": "Csak a kijelölt megjelenítése",
+            "tooltipBundleHasRestrictions": "Egy vagy több termék korlátozásokkal rendelkezik, amelyek befolyásolják a csomag elérhetőségét. További információkért látogasson el a csomag részleteibe.",
+            "tooltipBundleInactive": "Inaktív",
+            "tooltipBundleIssues": "Problémák:",
+            "tooltipBundleMismatchedSalesChannels": "Nincs hozzárendelve a Termék értékesítési csatornáihoz: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Ez a termék nem távolítható el, mert a kötegekhez legalább két termék szükséges."
+        },
         "card": {
             "textHeadline": "Készlet és szállíthatóság",
             "textLinkModal": "Készlet megtekintése raktárak és raktárcsoportok szerint",
             "textProductWarehouseModalDisabled": "Mentse el a módosításokat, mielőtt további készletrészleteket nyithat meg.",
             "textTooltipMultiSelect": "Raktárcsoportok rendelése a készlet külön-külön történő kezeléséhez több raktárban."
+        },
+        "detail": {
+            "tabBundle": "Csomagok"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Zárja",
@@ -1986,6 +2359,9 @@
             "tabStock": "Készlet",
             "textHeadline": "Készlet raktár- és raktárcsoportok szerint",
             "textInlineEdit": "Készlet szerkesztése"
+        },
+        "type": {
+            "grouped_bundle": "Csomag"
         },
         "variants-overview": {
             "inlineText": "Részletek megtekintése"
@@ -2542,6 +2918,16 @@
             "emptyText": "Üres jelenet"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Csomag termék részleteinek oldala"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Promóciós kódok engedélyezése az árajánlatokból származó meg"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Barátságos Captcha",
+                "friendlyCaptchaApiKey": "Barátságos Captcha API kulcs",
                 "friendlyCaptchaDescription": "A munka bizonyítási mechanizmusain és a fejlett kockázati jelzéseken alapuló Friendly Captcha alapvetően új megközelítést alkalmaz webhelyeinek és online szolgáltatásainak biztonságos védelmére a spamtől és a botoktól.",
+                "friendlyCaptchaRegion": "API régió",
+                "friendlyCaptchaRegionEu": "EU (Európai Unió)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Válassza az „EU” lehetőséget, hogy az összes captcha kérést kizárólag európai szervereken keresztül továbbítsa. Ez releváns lehet a GDPR megfelelés szempontjából.",
                 "friendlyCaptchaSecretKey": "Barátságos Captcha titkos kulcs",
-                "friendlyCaptchaSiteKey": "Barátságos Captcha webhelykulcs"
+                "friendlyCaptchaSiteKey": "Barátságos Captcha webhelykulcs",
+                "friendlyCaptchaV1DeprecationNotice": "Az 1. verzió régi, és a jövőbeli kiadásban eltávolításra kerül. Javasoljuk, hogy frissítse a 2-es verzióra a jobb biztonság és a tisztább widget élmény érdekében.",
+                "friendlyCaptchaVersion": "Barátságos Captcha verzió",
+                "friendlyCaptchaVersionV1": "1. verzió (örökség)",
+                "friendlyCaptchaVersionV2": "2. verzió (új)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Mégse",
         "retry": "Újra próbálkozás"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Egységes skála zárolása",
-        "unlock-uniform-scale": "Egységes skála feloldása"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Ügyfelei meghatározhatják és kezelhetik a költségvetési korlátokat, hogy jobban ellenőrizhessék szervezeti egységeik kiadásait.",
         "budgetManagementName": "A költségvetések",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Megrendelés jóváhagyása",
                     "ORGANIZATION_UNITS": "Szervezeti egységek",
                     "QUICK_ORDER": "Gyors megrendelések",
-                    "QUOTE_MANAGEMENT": "Árajánlatkezelés"
+                    "QUOTE_MANAGEMENT": "Árajánlatkezelés",
+                    "SHOPPING_LISTS": "Bevásárlólisták"
                 },
                 "template": "{dependency} szükséges a {name}-hoz"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Név",
             "columnOrderQuantity": "Rendelési mennyiség",
             "columnReturnQuantity": "Visszatérési mennyiség",
+            "includesShippingCosts": "Beleértve a szállítási költségeket",
             "messageErrorNoItemHasQuantity": "Legalább 1 soros elemnek kell lennie, amelynek mennyisége meghaladja a 0-at a visszatérés létrehozásához",
             "messagePreventAddItem": "Ez az elem már része a visszaküldésnek, vagy állapota törölve, visszaküldött vagy részben visszaküldött.",
             "placeholderComment": "Megjegyzés...",

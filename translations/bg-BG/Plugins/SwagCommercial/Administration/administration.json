@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Абонаментът оставя състоянието на пауза"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Индивидуални цени",
             "b2b_components_role": "Роля | Роли",
             "b2b_components_shopping_list": "Списъци за пазаруване",
             "b2b_employee": "Служител | Служители",
+            "bundle": "Пакет | Пакети",
+            "bundle_item": "Пакет артикул | Пакетни артикули",
             "export_assistant": "Асистент за износ",
-            "individual_pricing": "Индивидуални цени",
             "quote": "Цитат | Цитати",
             "quote_line_item": "Артикул от линията за оферти | Елементи от линията",
             "search_assistant": "AI Копилот",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Елементът е пакет",
+                "lineItemOfBundleRule": "Елемент от избрания пакет",
                 "subscriptionCartRule": "Абонаментна количка",
                 "subscriptionIntervalRule": "Абонаментен интервал",
                 "subscriptionPlanRule": "Абонаментен план"
             },
             "group": {
                 "subscription": "Абонамент"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Пакет"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Благодаря, че изпробвахте плана на Bundles. Ще се радваме да чуем вашите отзиви.",
+                "link": "Дайте обратна връзка"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Полета по избор"
+            },
+            "general": {
+                "title": "Обща информация"
+            },
+            "items": {
+                "actionOpenProductDetails": "Отворете подробности за продукта",
+                "buttonAddBundleItems": "Добавяне на продукти",
+                "columnName": "Име",
+                "columnPosition": "Позиция",
+                "columnPrice": "Цена",
+                "emptyStateDescription": "Добавете поне два продукта към пакета.",
+                "emptyStateTitle": "Все още няма добавени продукти",
+                "title": "Продукти ({count})",
+                "tooltipBundleItemCustomizedProduct": "Присвоен персонализиран шаблон за продукт",
+                "tooltipBundleItemHasVariants": "Продуктът има варианти",
+                "tooltipBundleItemInactive": "Неактивни",
+                "tooltipBundleItemIncompatibleVisibilities": "Не е присвоен към каналите за продажба на пакета: {salesChannels}",
+                "tooltipBundleItemIssues": "Проблеми:",
+                "tooltipBundleItemOutOfStockCloseout": "Няма наличност (Разпродажба)",
+                "tooltipBundleItemOutOfStockTemporary": "Понастоящем този продукт не е на склад. Пакетът ще стане закупуем отново, след като всички продукти са отново на склад.",
+                "tooltipBundleItemOutOfStockTitle": "Няма наличност",
+                "tooltipRefreshData": "Обновяване на данни"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Дата на издаване",
+                    "placeholder": "Въведете датата на издаване..."
+                },
+                "title": "Етикетиране"
+            },
+            "media": {
+                "subtitle": "Добавете файлове към медийната галерия на пакета.",
+                "title": "Медии"
+            },
+            "messageMinBundleItemsRequired": "Добавете поне два продукта, за да създадете пакета.",
+            "messageNoChanges": "Няма промени за запазване",
+            "messageSaveError": "Неуспешно запазване на пакета",
+            "messageSaveSuccess": "Пакетът е запазен успешно",
+            "price": {
+                "addDiscount": "Добави отстъпка",
+                "currencyDependingPrices": "Валутата в зависимост от цените",
+                "discount": "Отстъпка",
+                "discountRules": "Правила за отстъпки",
+                "discountTitle": "Отстъпка",
+                "discountType": "Тип",
+                "discountTypeAbsolute": "Абсолютно",
+                "discountTypePercentage": "Процент",
+                "discountValue": "Стойност",
+                "discountValuePlaceholder": "Добавете стойност...",
+                "doNotCombineWith": "Не комбинирайте с",
+                "maxValuePlaceholder": "Неограничен",
+                "maximumDiscountValue": "Максимална отстъпка",
+                "openAdvancedPricesView": "Отворете изглед за напреднали цени",
+                "preventCombination": "Предотвратяване на комбинация с други",
+                "preventCombinationHelpText": "Когато е активирана, тази отстъпка не може да се комбинира с други промоции",
+                "promotionsPlaceholder": "Добавете промоции...",
+                "rulesPlaceholder": "Добавяне на правила...",
+                "subtotalBased": "Междинна сума на базата на 1 продукт | Междинна сума въз основа на продукти от {count}",
+                "title": "Цени на показване",
+                "total": "Общо",
+                "totalBased": "Общо на базата на 1 продукт | Общо на базата на {count} продукти"
+            },
+            "tabGeneral": "Общи",
+            "tabLayout": "Разпределение",
+            "tabSeo": "SEO",
+            "textHeadline": "Нов пакет",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Това предотвратява видимостта на пакета в тези канали. Моля, проверете видимостта на следните продукти:",
+                    "notAssignedTo": "не е възложен на",
+                    "title": "Някои продукти не са присвоени към всички избрани канали за продажба"
+                },
+                "title": "Видимост и структура"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Активен",
+                "placeholder": "Изберете състояние..."
+            },
+            "availabilityFilter": {
+                "label": "Наличност",
+                "placeholder": "Изберете наличност..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Включени продукти",
+                "placeholder": "Изберете включени продукти..."
+            },
+            "categoriesFilter": {
+                "label": "Категории",
+                "placeholder": "Изберете категории..."
+            },
+            "fromPlaceholder": "Въведете начална стойност...",
+            "imagesFilter": {
+                "label": "Изображения",
+                "placeholder": "Изберете състоянието на изображението...",
+                "textHasCriteria": "Поне едно изображение на продукта",
+                "textNoCriteria": "Няма зададени изображения на продукти"
+            },
+            "priceFilter": {
+                "label": "Цена"
+            },
+            "productNumberFilter": {
+                "label": "Номер на продукта",
+                "placeholder": "Въведете номер на продукта..."
+            },
+            "releaseDateFilter": {
+                "label": "Дата на издаване"
+            },
+            "salesChannelsFilter": {
+                "label": "Канали за продажба",
+                "placeholder": "Изберете канали за продажби..."
+            },
+            "salesFilter": {
+                "label": "Продажби"
+            },
+            "tagsFilter": {
+                "label": "Тагове",
+                "placeholder": "Изберете тагове..."
+            },
+            "toPlaceholder": "Въведете крайната стойност..."
+        },
+        "general": {
+            "description": "Пакети",
+            "headlineBundles": "Пакети",
+            "mainMenuItemGeneral": "Пакети",
+            "placeholderSearchBar": "Търсене на пакети...",
+            "title": "Пакети"
+        },
+        "generalForm": {
+            "highlightHelpText": "Маркираните пакети са маркирани с ярко оцветен етикет и думата „Съвет“ във всички списъци с пакети. Можете да регулирате цвета на етикета, като промените опцията „Известие“ в настройките <a href=\"{themeUrl}\">теми</a> . Можете също така да промените текста на етикета, като редактирате съответния фрагмент <a href=\"{snippetUrl}\">текст</a>.",
+            "labelDescription": "Описание",
+            "labelMarkAsTopseller": "Маркирайте пакета",
+            "labelName": "Име",
+            "labelProductNumber": "Номер на продукта",
+            "placeholderDescription": "Въведете описание на пакета...",
+            "placeholderName": "Въведете името на пакета...",
+            "placeholderProductNumber": "Въведете номер на продукта..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Един пакет изисква поне два продукта.",
+            "notEnoughProductsTitle": "Няма достатъчно продукти",
+            "restrictions": "Един или повече продукти имат ограничения, които засягат наличността на този пакет. Вижте иконите за предупреждение за подробности.",
+            "restrictionsTitle": "Някои продукти имат ограничения"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Не са намерени съвпадащи продукти",
+            "noProductsMatchingBundleSalesChannels": "Няма активни продукти, които да съответстват на избраните канали за продажба от пакета.",
+            "noProductsMatchingTermAndFilter": "Регулирайте думата за търсене или филтрите.",
+            "placeholderSearch": "Търсене на продукти...",
+            "showIncluded": "Покажи само избраните ({count})",
+            "textWhySomeItemsMissing": "Защо някои продукти липсват?",
+            "title": "Добавяне на продукти",
+            "tooltipVariant": "Вариант",
+            "tooltipWhySomeItemsMissing": "В момента пакетите работят само с физически продукти и единични варианти. <br /><br /> Продуктите трябва да бъдат присвоени към избраните канали за продажба от пакета, за да се появят в списъка."
+        },
+        "list": {
+            "available": "Налични",
+            "buttonAddBundle": "Добавяне на пакет",
+            "columnActive": "Активен",
+            "columnAvailable": "Наличност",
+            "columnBundleItemCount": "Брой продукти",
+            "columnCreatedAt": "Създаден на",
+            "columnName": "Име",
+            "columnProductNumber": "Номер на продукта",
+            "columnSales": "Продажби",
+            "columnTotalPrice": "Обща цена",
+            "columnUpdatedAt": "Актуализиран на",
+            "emptyStateDescription": "Пакетите могат да увеличат средната стойност на поръчката ви и да насърчат клиентите да купуват свързани продукти.",
+            "emptyStateTitle": "Добавете пакети, за да увеличите продажбите",
+            "messageSaveSuccess": "Пакетът \"{name}\" е запазен.",
+            "titleSidebarItemRefresh": "Обновяване",
+            "unavailable": "Не е наличен"
+        },
+        "priceModal": {
+            "currency": "Валута",
+            "price": "Стойност",
+            "title": "Напреднали цени"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Добавяне на продукти",
+            "description": "Първо изберете канал за продажби, за да видите кои продукти могат да бъдат добавени към пакета. Можете да коригирате това по-късно в картата Видимост и структура.",
+            "title": "Изисква се канал за продажби"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Генериране на изображение",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Описание на пакета"
+                },
+                "bundleHeading": {
+                    "label": "Име на пакета"
+                },
+                "bundleItems": {
+                    "label": "Пакетни артикули"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Галерия с изображения и кутия за закупуване на пакет"
+                },
+                "recommendedBundles": {
+                    "label": "Препоръчителни пакети"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Оформление по подразбиране - Страница с пакети продукти",
+                "setAsDefaultBundleDetail": "Задайте като страница с пакети продукти по подразбиране"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Страница на пакета"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Генериране на изображение",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Продуктовите данни на този елемент се зареждат автоматично от продукта, свързан с това оформление. Съдържанието просто показва примерен преглед."
+                },
+                "label": "Кутия за закупуване на пакет"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Продуктовите данни на този елемент се зареждат автоматично от продукта, свързан с това оформление. Съдържанието просто показва примерен преглед."
+                },
+                "label": "Описание на пакета",
+                "preview": {
+                    "descriptionTab": "Описание",
+                    "title": "Пакет"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Позволява да добавяте пакетни артикули директно в количката, вместо да отваряте страницата с подробности за продукта.",
+                        "labelTitle": "Използвайте {count} , за да покажете броя на продуктите в пакета."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Продуктовите данни на този елемент се зареждат автоматично от продукта, свързан с това оформление. Съдържанието просто показва примерен преглед."
+                    },
+                    "label": {
+                        "boxSettings": "Настройки на кутията на продукта",
+                        "cta": "Покажи CTA, за да добавите пакетни артикули директно в количката",
+                        "minWidth": "Минимална ширина",
+                        "title": "Заглавие"
+                    }
+                },
+                "label": "Включени продукти"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Данните за пакета на този елемент се зареждат автоматично от пакета, свързан с това оформление. Съдържанието просто показва примерен преглед."
+                },
+                "label": "Име на пакета"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Когато е активирано, първоначално се показва само подмножество от пакети. Потребителите могат да разширят списъка, за да покажат повече.",
+                        "maxVisibleBundles": "Контролира колко пакета ще бъдат показани, докато не бъдат скрити зад функционалност „Покажи повече“.",
+                        "productBoxSettings": "Настройки на кутията на продукта",
+                        "productDetailElement": "Продуктовите данни на този елемент се зареждат автоматично от продукта, свързан с това оформление. Съдържанието просто показва примерен преглед.",
+                        "showCTAInfo": "Позволява да добавяте пакетни артикули директно в количката, вместо да отваряте страницата с подробности за продукта.",
+                        "sliderSettings": "Плъзгащи настройки"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Ограничете броя на първоначално показаните пакети",
+                        "maxVisibleBundles": "Първоначално показани пакети",
+                        "minWidth": "Минимална ширина",
+                        "recommendedCombinationsTitle": "Препоръчителни комбинации",
+                        "showBundleName": "Показване на името на пакета",
+                        "showCTA": "Покажи CTA, за да добавите пакетни артикули директно в количката",
+                        "showCurrentProduct": "Покажете първо разглеждания продукт в пакет",
+                        "title": "Заглавие"
+                    },
+                    "placeholder": {
+                        "minWidth": "Въведете минимална ширина...",
+                        "title": "Препоръчителни комбинации"
+                    }
+                },
+                "label": "Препоръчителни комбинации",
+                "preview": {
+                    "label": {
+                        "title": "Препоръчителни комбинации"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Генериране на изображение",
             "contentText": "Създайте свои собствени изображения за настроение, за да персонализирате оформлението си с помощта на изображението, генерирано от AI.",
             "header": "AI Копилот"
+        },
+        "tags": {
+            "bundle": "Пакет"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Адреси на организационните единици",
                             "pending_order": "Управление на чакащи поръчки",
                             "quote": "Управление на оферти",
-                            "role": "Управление на роли"
+                            "role": "Управление на роли",
+                            "subscription": "Поръчайте абонамент"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Изтриване на адреса за доставка",
                                     "update": "Редактирайте адреса за доставка"
                                 },
+                                "subscription": {
+                                    "read": "Преглед на всички абонаменти за поръчки от зададената организация"
+                                },
                                 "update": "Редактиране на организационната единица"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Може да изтрие роли",
                                 "edit": "Може да редактира роли",
                                 "read": "Може да преглежда роли"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Вижте всички абонаменти за поръчки"
+                                }
                             }
                         },
                         "switchAllLabel": "Всички разрешения"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Управление на ролите"
             },
+            "bundle": {
+                "label": "Пакети"
+            },
             "custom_price": {
                 "label": "Цена на продукта Клиент"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Добавяне на продукт към пакетите",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Разбрах го",
+                "description": "Този продукт не може да бъде премахнат от следните пакети, тъй като пакетът изисква поне два продукта:",
+                "hint": "За да премахнете този продукт, първо добавете друг продукт към тези пакети.",
+                "title": "Продуктът не може да бъде премахнат от всички пакети"
+            },
+            "bundleCardSubtitle": "Всички пакети, съдържащи този продукт",
+            "bundleCardTitle": "Пакети ({count})",
+            "buttonAddBundle": "Добавяне на продукт към пакетите",
+            "buttonAddBundleLanguageWarning": "Добавянето на пакети е възможно само на езика по подразбиране на системата.",
+            "buttonCreateBundle": "Създаване на пакет",
+            "buttonManageBundles": "Управление на пакети",
+            "columnActive": "Активен",
+            "columnAvailability": "Наличност",
+            "columnBundleItemCount": "Брой продукти",
+            "columnCreatedAt": "Създаден на",
+            "columnName": "Име",
+            "columnProductNumber": "Номер на продукта",
+            "columnSales": "Продажби",
+            "columnShowBundleOnItemPdp": "Покажи на страницата с подробности",
+            "columnUpdatedAt": "Актуализиран на",
+            "emptyStateDescription": "Пакетите могат да увеличат средната стойност на поръчката и да насърчат клиентите да купуват свързани продукти. Пакетите се появяват на страницата с подробности за продукта, ако оформлението на CMS включва елемент на пакета.",
+            "emptyStateDescriptionCreateFirst": "Пакетите могат да увеличат средната стойност на поръчката и да насърчат клиентите да купуват свързани продукти. Пакетите се появяват на страницата с подробности за продукта, ако оформлението на CMS включва елемент на пакета. Създайте пакет, за да добавите този продукт.",
+            "emptyStateNoBundlesFound": "Не са намерени съвпадащи пакети",
+            "emptyStateNoBundlesFoundDescription": "Регулирайте думата за търсене или филтрите.",
+            "emptyStateTitle": "Добавете продукт към пакетите, за да увеличите продажбите",
+            "hideOnProductDetailPage": "Скриване на страницата с подробности за продукта",
+            "messageSaveSuccess": "Пакетът \"{name}\" е запазен.",
+            "openBundlesDetail": "Отворете подробности за пакета",
+            "placeholderSearch": "Търсене на пакети...",
+            "refreshDataTooltip": "Обновяване на данни",
+            "showOnProductDetailPage": "Покажи на страницата с подробности за продукта",
+            "showOnlyIncluded": "Покажи само избраните",
+            "tooltipBundleHasRestrictions": "Един или повече продукти имат ограничения, които засягат наличността на този пакет. Посетете подробностите за пакета за повече информация.",
+            "tooltipBundleInactive": "Неактивни",
+            "tooltipBundleIssues": "Проблеми:",
+            "tooltipBundleMismatchedSalesChannels": "Не е причислен към каналите за продажба на продукта: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Този продукт не може да бъде премахнат, тъй като пакетите изискват поне два продукта."
+        },
         "card": {
             "textHeadline": "Наличност и доставка",
             "textLinkModal": "Вижте наличността по складове и складови групи",
             "textProductWarehouseModalDisabled": "Запазете промените си, преди да можете да отворите допълнителни подробности за склада.",
             "textTooltipMultiSelect": "Задайте складови групи, за да управлявате вашите запаси поотделно в множество складове."
+        },
+        "detail": {
+            "tabBundle": "Пакети"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Затвори",
@@ -1986,6 +2359,9 @@
             "tabStock": "Насток",
             "textHeadline": "Наличност по складови и складови групи",
             "textInlineEdit": "Редактиране на склад"
+        },
+        "type": {
+            "grouped_bundle": "Пакет"
         },
         "variants-overview": {
             "inlineText": "Вижте подробностите"
@@ -2542,6 +2918,16 @@
             "emptyText": "Празна сцена"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Страница с подробности за пакета"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Разрешаване на промоционални кодове за поръчки от оферти"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Приятелски капча",
+                "friendlyCaptchaApiKey": "Приятелски Captcha API ключ",
                 "friendlyCaptchaDescription": "Въз основа на механизми за доказване на работата и усъвършенствани сигнали за риск, Friendly Captcha използва фундаментално нов подход за сигурна защита на вашите уебсайтове и онлайн услуги от спам и ботове.",
+                "friendlyCaptchaRegion": "API регион",
+                "friendlyCaptchaRegionEu": "ЕС (Европейски съюз)",
+                "friendlyCaptchaRegionGlobal": "Глобален",
+                "friendlyCaptchaRegionHelpText": "Изберете „EU“, за да насочите всички заявки за captcha изключително през европейски сървъри. Това може да бъде от значение за спазването на GDPR.",
                 "friendlyCaptchaSecretKey": "Приятелски тайен ключ Captcha",
-                "friendlyCaptchaSiteKey": "Приятелски ключ за сайта на Captcha"
+                "friendlyCaptchaSiteKey": "Приятелски ключ за сайта на Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Версия 1 е наследена и ще бъде премахната в бъдещо издание. Препоръчваме да надстроите до версия 2 за подобрена сигурност и по-чисто изживяване на джаджите.",
+                "friendlyCaptchaVersion": "Приятелска версия на Captcha",
+                "friendlyCaptchaVersionV1": "Версия 1 (наследство)",
+                "friendlyCaptchaVersionV2": "Версия 2 (нова)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Отмени",
         "retry": "Опитайте отново"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Заключете еднаква скала",
-        "unlock-uniform-scale": "Отключете еднаква скала"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Вашите клиенти могат да определят и управляват бюджетните ограничения, за да контролират по-добре разходите на организационните си единици.",
         "budgetManagementName": "Бюджети",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Одобрение на поръчката",
                     "ORGANIZATION_UNITS": "Организационни единици",
                     "QUICK_ORDER": "Бързи поръчки",
-                    "QUOTE_MANAGEMENT": "Управление на оферти"
+                    "QUOTE_MANAGEMENT": "Управление на оферти",
+                    "SHOPPING_LISTS": "Списъци за пазаруване"
                 },
                 "template": "{dependency} е необходим за {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Име",
             "columnOrderQuantity": "Количество на поръчката",
             "columnReturnQuantity": "Връщане на количеството",
+            "includesShippingCosts": "Включително разходите за доставка",
             "messageErrorNoItemHasQuantity": "Трябва да има поне 1 ред елемент, който има количество повече от 0, за да създадете връщане",
             "messagePreventAddItem": "Този артикул вече е част от връщането или състоянието му е отменено, върнато или върнато частично.",
             "placeholderComment": "Въведете коментар...",

@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Բաժանորդագրությունը դադարեցնում է կարգավիճակը"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Անհատական գնագոյացում",
             "b2b_components_role": "Դեր | Դերեր",
             "b2b_components_shopping_list": "Գնումների ցուցակներ",
             "b2b_employee": "Աշխատակից | Աշխատակիցներ",
+            "bundle": "Փաթեթ | Փաթեթներ",
+            "bundle_item": "Փաթեթային իրեր | Փաթեթային իրեր",
             "export_assistant": "Արտահանման օգնական",
-            "individual_pricing": "Անհատական գնագոյացում",
             "quote": "Մեջբերում | Մեջբերումներ",
             "quote_line_item": "Մեջբերման գծի կետ | Մեջբերումների գծի իրեր",
             "search_assistant": "AI Կոպիլոտ",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Նյութը փաթեթային նյութ է",
+                "lineItemOfBundleRule": "Ընտրված փաթեթի կետը",
                 "subscriptionCartRule": "բաժանորդագրության զամբյուղ",
                 "subscriptionIntervalRule": "Բաժանորդագրության ընդմիջ",
                 "subscriptionPlanRule": "Բաժանորդագրության պլան"
             },
             "group": {
                 "subscription": "բաժանորդագրություն"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Փաթեթ"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Շնորհակալություն փաթեթների նախագիծը փորձելու համար: Մենք կցանկանայինք լսել ձեր կարծիքը:",
+                "link": "Թողնել կարծիք"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Պատվերով դաշտերը"
+            },
+            "general": {
+                "title": "Ընդհանուր տեղեկություններ"
+            },
+            "items": {
+                "actionOpenProductDetails": "Բացեք ապրանքի մանրամասները",
+                "buttonAddBundleItems": "Ավելացնել ապրանքներ",
+                "columnName": "Անուն",
+                "columnPosition": "Դիրք",
+                "columnPrice": "Գին",
+                "emptyStateDescription": "Փաթեթին ավելացրեք առնվազն երկու ապրանք:",
+                "emptyStateTitle": "Ապրանքներ դեռ չեն ավելացվել",
+                "title": "Ապրանքներ ({count})",
+                "tooltipBundleItemCustomizedProduct": "Պատվերով ապրանքի ձևանմուշ նշանակված",
+                "tooltipBundleItemHasVariants": "Ապրանքն ունի տարբերակներ",
+                "tooltipBundleItemInactive": "Ոչ ակտիվ",
+                "tooltipBundleItemIncompatibleVisibilities": "Չէ նշանակված փաթեթի վաճառքի ալիքներին. {salesChannels}",
+                "tooltipBundleItemIssues": "Հարցեր:",
+                "tooltipBundleItemOutOfStockCloseout": "Չկա պահեստում (Մաքսազերծման վաճառք)",
+                "tooltipBundleItemOutOfStockTemporary": "Այս ապրանքը ներկայումս պահեստում չկա: Փաթեթը կրկին գնելի կդառնա, երբ բոլոր ապրանքները նորից պահեստում լինեն:",
+                "tooltipBundleItemOutOfStockTitle": "Չկա պահեստում",
+                "tooltipRefreshData": "Թարմացնել տվյալները"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Թողարկման ամսաթիվ",
+                    "placeholder": "Մուտքագրեք թողարկման ամսաթիվը..."
+                },
+                "title": "Պիտակավորում"
+            },
+            "media": {
+                "subtitle": "Ավելացնել ֆայլեր փաթեթի մեդիա պատկերասրահում:",
+                "title": "Մեդիա"
+            },
+            "messageMinBundleItemsRequired": "Փաթեթը ստեղծելու համար ավելացրեք առնվազն երկու արտադրանք:",
+            "messageNoChanges": "Փրկելու փոփոխություններ չկան",
+            "messageSaveError": "Փաթեթը փրկել չհաջողվեց",
+            "messageSaveSuccess": "Փաթեթը հաջողությամբ պահպանվել է",
+            "price": {
+                "addDiscount": "Ավելացնել զեղչ",
+                "currencyDependingPrices": "Արտարժույթը կախված գներից",
+                "discount": "Զեղչ",
+                "discountRules": "Զեղչի կանոններ",
+                "discountTitle": "Զեղչ",
+                "discountType": "Տեսակ",
+                "discountTypeAbsolute": "Բացարձակ",
+                "discountTypePercentage": "Տոկոս",
+                "discountValue": "Արժեք",
+                "discountValuePlaceholder": "Ավելացնել արժեք...",
+                "doNotCombineWith": "Չհամադրել հետևյալին",
+                "maxValuePlaceholder": "Անսահմանափակ",
+                "maximumDiscountValue": "Առավելագույն զեղչային արժեքը",
+                "openAdvancedPricesView": "Բաց առաջադեմ գները դիտել",
+                "preventCombination": "Կանխել համակցությունը այլ խթանումների հետ",
+                "preventCombinationHelpText": "Երբ միացված է, այս զեղչը չի կարող համատեղվել այլ ակցիաների հետ",
+                "promotionsPlaceholder": "Ավելացնել ակցիաներ...",
+                "rulesPlaceholder": "Ավելացնել կանոններ...",
+                "subtotalBased": "Ենթընդոտալ հիմնված 1 ապրանքի վրա | Ենթահամալ՝ հիմնված {count} ապրանքների վրա",
+                "title": "Ցուցադրման գները",
+                "total": "Ընդհանուր",
+                "totalBased": "Ընդամենը 1 ապրանքի հիման վրա | Ընդամենը հիմնված է {count} ապրանքների վրա"
+            },
+            "tabGeneral": "Գեներալ",
+            "tabLayout": "դասավորությունը",
+            "tabSeo": "SEO",
+            "textHeadline": "Նոր փաթեթ",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Սա կանխում է փաթեթը տեսանելի լինել այդ ալիքներում: Խնդրում ենք ստուգել հետևյալ ապրանքների տեսանելիությունը.",
+                    "notAssignedTo": "նշանակված չէ",
+                    "title": "Որոշ ապրանքներ չեն նշանակվում բոլոր ընտրված Վաճառքի ալիքներին"
+                },
+                "title": "Տեսանելիություն և կառուցվածք"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Ակտիվ",
+                "placeholder": "Ընտրեք կարգավիճակ..."
+            },
+            "availabilityFilter": {
+                "label": "Հասանելիություն",
+                "placeholder": "Ընտրեք մատչելիությունը..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Ներառված ապրանքներ",
+                "placeholder": "Ընտրեք ներառված ապրանքներ..."
+            },
+            "categoriesFilter": {
+                "label": "Անվանակարգեր",
+                "placeholder": "Ընտրեք կատեգորիաներ..."
+            },
+            "fromPlaceholder": "Մուտքագրեք մեկնարկային արժեք...",
+            "imagesFilter": {
+                "label": "Նկարներ",
+                "placeholder": "Ընտրեք պատկերի կարգավիճակը...",
+                "textHasCriteria": "Առնվազն մեկ ապրանքի պատկեր է հատկացված",
+                "textNoCriteria": "Ապրանքի պատկեր հատկացված չէ"
+            },
+            "priceFilter": {
+                "label": "Գին"
+            },
+            "productNumberFilter": {
+                "label": "Ապրանքի համարը",
+                "placeholder": "Մուտքագրեք ապրանքի համարը..."
+            },
+            "releaseDateFilter": {
+                "label": "Թողարկման ամսաթիվ"
+            },
+            "salesChannelsFilter": {
+                "label": "Վաճառքի ալիքներ",
+                "placeholder": "Ընտրել Վաճառքի ալիքներ..."
+            },
+            "salesFilter": {
+                "label": "Զեղչեր"
+            },
+            "tagsFilter": {
+                "label": "Պիտակներ",
+                "placeholder": "Ընտրեք պիտակները..."
+            },
+            "toPlaceholder": "Մուտքագրեք վերջնական արժեքը..."
+        },
+        "general": {
+            "description": "Փաթեթներ",
+            "headlineBundles": "Փաթեթներ",
+            "mainMenuItemGeneral": "Փաթեթներ",
+            "placeholderSearchBar": "Փաթեթների որոնում...",
+            "title": "Փաթեթներ"
+        },
+        "generalForm": {
+            "highlightHelpText": "Բոլոր փաթեթների ցանկերում ընդգծված փաթեթները նշվում են վառ գույնի պիտակով և “Հուշում” բառով: Դուք կարող եք կարգավորել պիտակի գույնը՝ փոխելով “Ծանուցում” տարբերակը <a href=\"{themeUrl}\">թեմաների</a> կարգավորումներում: Կարող եք նաև փոխել պիտակի տեքստը՝ խմբագրելով համապատասխան <a href=\"{snippetUrl}\">տեքստի հատվածը</a>:",
+            "labelDescription": "Նկարագրություն",
+            "labelMarkAsTopseller": "Ընդգծեք փաթեթը",
+            "labelName": "Անուն",
+            "labelProductNumber": "Ապրանքի համարը",
+            "placeholderDescription": "Մուտքագրեք փաթեթի նկարագիրը...",
+            "placeholderName": "Մուտքագրեք փաթեթի անունը...",
+            "placeholderProductNumber": "Մուտքագրեք ապրանքի համարը..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Փաթեթը պահանջում է առնվազն երկու ապրանք:",
+            "notEnoughProductsTitle": "Բավարար ապրանքներ չեն",
+            "restrictions": "Մեկ կամ մի քանի ապրանքներ ունեն սահմանափակումներ, որոնք ազդում են այս փաթեթի առկայության վրա: Մանրամասների համար տե՛ս նախազգուշացման պատկերակները:",
+            "restrictionsTitle": "Որոշ ապրանքներ ունեն սահմանափակումներ"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Համապատասխան ապրանքներ չեն գտնվել",
+            "noProductsMatchingBundleSalesChannels": "Չկան ակտիվ ապրանքներ, որոնք համապատասխանում են փաթեթի ընտրված Վաճառքի ալիքներին:",
+            "noProductsMatchingTermAndFilter": "Կարգավորեք որոնման տերմինը կամ ֆիլտրերը:",
+            "placeholderSearch": "Որոնել արտադրանք...",
+            "showIncluded": "Միայն ընտրված ցուցադրությունը ({count})",
+            "textWhySomeItemsMissing": "Ինչու են որոշ ապրանքներ բացակայում:",
+            "title": "Ավելացնել ապրանքներ",
+            "tooltipVariant": "Տարբերակ",
+            "tooltipWhySomeItemsMissing": "Հենց հիմա փաթեթները աշխատում են միայն ֆիզիկական արտադրանքի և մեկ տարբերակների հետ: <br /><br /> Ապրանքները պետք է նշանակվեն փաթեթի ընտրված Վաճառքի ալիքներին, որպեսզի հայտնվեն ցուցակում:"
+        },
+        "list": {
+            "available": "Հասանելի",
+            "buttonAddBundle": "Ավելացնել փաթեթ",
+            "columnActive": "Ակտիվ",
+            "columnAvailable": "Հասանելիություն",
+            "columnBundleItemCount": "Ապրանքների քանակը",
+            "columnCreatedAt": "Ստեղծված է՝",
+            "columnName": "Անուն",
+            "columnProductNumber": "Ապրանքի համարը",
+            "columnSales": "Զեղչեր",
+            "columnTotalPrice": "Ընդհանուր գինը",
+            "columnUpdatedAt": "Թարմացվել է՝",
+            "emptyStateDescription": "Փաթեթները կարող են բարձրացնել ձեր միջին պատվերի արժեքը և խրախուսել հաճախորդներին ձեռք բերել հարակից ապրանքներ:",
+            "emptyStateTitle": "Ավելացրեք փաթեթներ ՝ վաճառքը խթանելու համար",
+            "messageSaveSuccess": "“{name}” փաթեթը պահպանվել է։",
+            "titleSidebarItemRefresh": "Թարմացնել",
+            "unavailable": "Անհասանելի"
+        },
+        "priceModal": {
+            "currency": "Արտարժույթ",
+            "price": "Արժեք",
+            "title": "Ընդլայնված գներ"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Ավելացնել ապրանքներ",
+            "description": "Նախ ընտրեք վաճառքի ալիք ՝ տեսնելու, թե որ ապրանքները կարող են ավելացվել փաթեթին: Դուք կարող եք հարմարեցնել դա ավելի ուշ Տեսանելիության և կառուցվածքի քարտում:",
+            "title": "Պահանջվում է վաճառքի ալիք"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Ստեղծեք պատկեր",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Փաթեթի նկարագրությունը"
+                },
+                "bundleHeading": {
+                    "label": "Փաթեթի անվանումը"
+                },
+                "bundleItems": {
+                    "label": "Փաթեթային իրեր"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Պատկերների պատկերասրահ և փաթեթի գնման տուփ"
+                },
+                "recommendedBundles": {
+                    "label": "Առաջարկվող փաթեթներ"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Լռելյայն դասավորություն - Ապրանքի փաթեթի էջ",
+                "setAsDefaultBundleDetail": "Սահմանել որպես ապրանքի փաթեթի էջի լռելյայն"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Փաթեթի էջ"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Ստեղծեք պատկեր",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Այս էլեմենտի արտադրանքի տվյալները ավտոմատ կերպով բեռնվում են այս մակետի հետ կապված արտադրանքի կողմից: Բովանդակությունը պարզապես ցույց է տալիս նմուշի նախադիտում."
+                },
+                "label": "Փաթեթի գնման տուփ"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Այս էլեմենտի արտադրանքի տվյալները ավտոմատ կերպով բեռնվում են այս մակետի հետ կապված արտադրանքի կողմից: Բովանդակությունը պարզապես ցույց է տալիս նմուշի նախադիտում."
+                },
+                "label": "Փաթեթի նկարագրությունը",
+                "preview": {
+                    "descriptionTab": "Նկարագրություն",
+                    "title": "Փաթեթ"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Թույլ է տալիս ավելացնել փաթեթային իրերը ուղղակիորեն զամբյուղի մեջ ապրանքի մանրամասների էջը բացելու փոխարեն:",
+                        "labelTitle": "Փաթեթում ապրանքների քանակը ցուցադրելու համար օգտագործեք {count} -ը:"
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Այս էլեմենտի արտադրանքի տվյալները ավտոմատ կերպով բեռնվում են այս մակետի հետ կապված արտադրանքի կողմից: Բովանդակությունը պարզապես ցույց է տալիս նմուշի նախադիտում."
+                    },
+                    "label": {
+                        "boxSettings": "Ապրանքի տուփի կարգավորումները",
+                        "cta": "Ցույց տվեք CTA- ն փաթեթային իրերը անմիջապես զամբյուղի մեջ ավելացնելու համար",
+                        "minWidth": "Նվազագույն լայնություն",
+                        "title": "Վերնագիր"
+                    }
+                },
+                "label": "Ներառված ապրանքներ"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Այս տարրի փաթեթի տվյալները ավտոմատ կերպով բեռնվում են այս դասավորության հետ կապված փաթեթով: Բովանդակությունը պարզապես ցույց է տալիս նմուշի նախադիտում:"
+                },
+                "label": "Փաթեթի անվանումը"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Երբ միացված է, ի սկզբանե ցուցադրվում է փաթեթների միայն ենթաբազմություն: Օգտագործողները կարող են ընդլայնել ցուցակը ՝ ավելին ցույց տալու համար:",
+                        "maxVisibleBundles": "Վերահսկում է, թե քանի փաթեթներ կցուցադրվի, մինչեւ նրանք ստանում թաքնված ետեւում մի “Ցույց տալ ավելի” ֆունկցիոնալությունը.",
+                        "productBoxSettings": "Ապրանքի տուփի կարգավորումները",
+                        "productDetailElement": "Այս էլեմենտի արտադրանքի տվյալները ավտոմատ կերպով բեռնվում են այս մակետի հետ կապված արտադրանքի կողմից: Բովանդակությունը պարզապես ցույց է տալիս նմուշի նախադիտում.",
+                        "showCTAInfo": "Թույլ է տալիս ավելացնել փաթեթային իրերը ուղղակիորեն զամբյուղի մեջ ապրանքի մանրամասների էջը բացելու փոխարեն:",
+                        "sliderSettings": "Սլայդերի կարգավորումներ"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Սկզբում ցուցադրված փաթեթների սահմանափակ քանակը",
+                        "maxVisibleBundles": "Սկզբում ցուցադրված փաթեթները",
+                        "minWidth": "Նվազագույն լայնություն",
+                        "recommendedCombinationsTitle": "Առաջարկվող համադրություններ",
+                        "showBundleName": "Ցույց տալ փաթեթի անունը",
+                        "showCTA": "Ցույց տվեք CTA- ն փաթեթային իրերը անմիջապես զամբյուղի մեջ ավելացնելու համար",
+                        "showCurrentProduct": "Առաջինը փաթեթում ցուցադրեք ներկայումս դիտվող ապրանքը",
+                        "title": "Վերնագիր"
+                    },
+                    "placeholder": {
+                        "minWidth": "Մուտքագրեք նվազագույն լայնությունը...",
+                        "title": "Առաջարկվող համադրություններ"
+                    }
+                },
+                "label": "Առաջարկվող համադրություններ",
+                "preview": {
+                    "label": {
+                        "title": "Առաջարկվող համադրություններ"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Ստեղծեք պատկեր",
             "contentText": "Ստեղծեք ձեր սեփական տրամադրության պատկերները ՝ ձեր դասավորությունը հարմարեցնելու համար AI Generated պատկերի օգնությամբ:",
             "header": "AI Կոպիլոտ"
+        },
+        "tags": {
+            "bundle": "Փաթեթ"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Կազմակերպության ստորաբաժանման հասցեներ",
                             "pending_order": "Սպասվող պատվերների կառավարում",
                             "quote": "Մեջբերումների կառավարում",
-                            "role": "Դերի կառավարում"
+                            "role": "Դերի կառավարում",
+                            "subscription": "Պատվերի բաժանորդագրություն"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Ջնջել առաքման հասցեն",
                                     "update": "Խմբագրել առաքման հասցեն"
                                 },
+                                "subscription": {
+                                    "read": "Դիտեք պատվերի բոլոր բաժանորդագրությունները նշանակված կազմակերպության ստորաբաժանումից"
+                                },
                                 "update": "Խմբագրել կազմակերպության միավորը"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Կարող է ջնջել դերերը",
                                 "edit": "Կարող է խմբագրել դերերը",
                                 "read": "Կարող է դիտել դերերը"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Դիտեք պատվերի բոլոր բաժանորդագրությունները"
+                                }
                             }
                         },
                         "switchAllLabel": "Բոլոր թույլտվությունները"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Դերի կառավարում"
             },
+            "bundle": {
+                "label": "Փաթեթներ"
+            },
             "custom_price": {
                 "label": "Ապրանքի հաճախորդի գինը"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Ապրանք ավելացնել փաթեթներին",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Հասկացա",
+                "description": "Այս ապրանքը չի կարող հեռացվել հետևյալ փաթեթներից, քանի որ փաթեթը պահանջում է առնվազն երկու ապրանք.",
+                "hint": "Այս ապրանքը հեռացնելու համար նախ այս փաթեթներին ավելացրեք մեկ այլ ապրանք:",
+                "title": "Ապրանքը չի կարող հեռացվել բոլոր փաթեթներից"
+            },
+            "bundleCardSubtitle": "Այս ապրանքը պարունակող բոլոր փաթեթները",
+            "bundleCardTitle": "Փաթեթներ ({count})",
+            "buttonAddBundle": "Ապրանք ավելացնել փաթեթներին",
+            "buttonAddBundleLanguageWarning": "Փաթեթներ ավելացնելը հնարավոր է միայն համակարգի կանխադրված լեզվով:",
+            "buttonCreateBundle": "Ստեղծեք փաթեթ",
+            "buttonManageBundles": "Կառավարեք փաթեթները",
+            "columnActive": "Ակտիվ",
+            "columnAvailability": "Հասանելիություն",
+            "columnBundleItemCount": "Ապրանքների քանակը",
+            "columnCreatedAt": "Ստեղծված է՝",
+            "columnName": "Անուն",
+            "columnProductNumber": "Ապրանքի համարը",
+            "columnSales": "Զեղչեր",
+            "columnShowBundleOnItemPdp": "Ցույց տալ մանրամասն էջում",
+            "columnUpdatedAt": "Թարմացվել է՝",
+            "emptyStateDescription": "Փաթեթները կարող են բարձրացնել միջին պատվերի արժեքը և խրախուսել հաճախորդներին ձեռք բերել հարակից ապրանքներ: Փաթեթները հայտնվում են ապրանքի մանրամասն էջում, եթե CMS դասավորությունը ներառում է փաթեթ տարր:",
+            "emptyStateDescriptionCreateFirst": "Փաթեթները կարող են բարձրացնել միջին պատվերի արժեքը և խրախուսել հաճախորդներին ձեռք բերել հարակից ապրանքներ: Փաթեթները հայտնվում են ապրանքի մանրամասն էջում, եթե CMS դասավորությունը ներառում է փաթեթ տարր: Ստեղծեք փաթեթ այս ապրանքը ավելացնելու համար:",
+            "emptyStateNoBundlesFound": "Համապատասխան փաթեթներ չեն հայտնաբերվել",
+            "emptyStateNoBundlesFoundDescription": "Կարգավորեք որոնման տերմինը կամ ֆիլտրերը:",
+            "emptyStateTitle": "Ապրանք ավելացրեք փաթեթներին ՝ վաճառքը խթանելու համար",
+            "hideOnProductDetailPage": "Թաքցնել ապրանքի մանրամասների էջում",
+            "messageSaveSuccess": "“{name}” փաթեթը պահպանվել է։",
+            "openBundlesDetail": "Բացեք փաթեթի մանրամասները",
+            "placeholderSearch": "Փաթեթների որոնում...",
+            "refreshDataTooltip": "Թարմացնել տվյալները",
+            "showOnProductDetailPage": "Ցույց տալ ապրանքի մանրամասների էջում",
+            "showOnlyIncluded": "Միայն ընտրված ցուցադրեք",
+            "tooltipBundleHasRestrictions": "Մեկ կամ մի քանի ապրանքներ ունեն սահմանափակումներ, որոնք ազդում են այս փաթեթի առկայության վրա: Լրացուցիչ տեղեկությունների համար այցելեք փաթեթի մանրամասները:",
+            "tooltipBundleInactive": "Ոչ ակտիվ",
+            "tooltipBundleIssues": "Հարցեր:",
+            "tooltipBundleMismatchedSalesChannels": "Ապրանքի վաճառքի ուղիներին չի վերագրվում. {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Այս ապրանքը չի կարող հեռացվել, քանի որ փաթեթները պահանջում են առնվազն երկու ապրանք:"
+        },
         "card": {
             "textHeadline": "Պահեստային և առաքելիություն",
             "textLinkModal": "Տեսեք բաժնետոմսերը ըստ պահեստների և պահեստային խմբերի",
             "textProductWarehouseModalDisabled": "Պահպանեք ձեր փոփոխությունները, նախքան դուք կարող եք բացել հետագա բաժնետոմսերի մանրամասները:",
             "textTooltipMultiSelect": "Հանձնարարեք պահեստային խմբեր՝ ձեր պաշարները անհատապես կառավարելու բազմաթիվ պահեստներում:"
+        },
+        "detail": {
+            "tabBundle": "Փաթեթներ"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Փակել",
@@ -1986,6 +2359,9 @@
             "tabStock": "Պահեստ",
             "textHeadline": "Պահեստ՝ ըստ պահեստային և պահեստային խմբերի",
             "textInlineEdit": "Խմբագրել ֆոնդը"
+        },
+        "type": {
+            "grouped_bundle": "Փաթեթ"
         },
         "variants-overview": {
             "inlineText": "Տեսնել մանրամասներ"
@@ -2542,6 +2918,16 @@
             "emptyText": "Դատարկ տեսարան"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Ապրանքի փաթեթի մանրամասների էջ"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Թույլատրեք առաջխաղացման կոդերը գնանշումներից պատվերներին"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Ընկերական Captcha",
+                "friendlyCaptchaApiKey": "Ընկերական Captcha API բանալին",
                 "friendlyCaptchaDescription": "Հիմնվելով աշխատանքի ապացույցի մեխանիզմների և առաջադեմ ռիսկի ազդանշանների վրա՝ Friendly Captcha- ն օգտագործում է սկզբունքորեն նոր մոտեցում ՝ ձեր կայքերը և առցանց ծառայությունները սպամից և բոտերից ապահով պաշտպանելու համար:",
+                "friendlyCaptchaRegion": "API տարածաշրջան",
+                "friendlyCaptchaRegionEu": "ԵՄ (Եվրամիություն)",
+                "friendlyCaptchaRegionGlobal": "Ընդհանուր",
+                "friendlyCaptchaRegionHelpText": "Ընտրեք “ԵՄ” բոլոր captcha հարցումները բացառապես եվրոպական սերվերների միջոցով երթուղու համար: Սա կարող է համապատասխան լինել GDPR- ի համապատասխանության համար:",
                 "friendlyCaptchaSecretKey": "Ընկերական Captcha գաղտնի բանալի",
-                "friendlyCaptchaSiteKey": "Ընկերական Captcha կայքի բանալին"
+                "friendlyCaptchaSiteKey": "Ընկերական Captcha կայքի բանալին",
+                "friendlyCaptchaV1DeprecationNotice": "Տարբերակ 1-ը ժառանգություն է և կհեռացվի ապագա թողարկումում։ Մենք խորհուրդ ենք տալիս արդիականացնել Version 2 բարելավված անվտանգության և ավելի մաքուր վիջեթի փորձի համար:",
+                "friendlyCaptchaVersion": "Ընկերական Captcha տարբերակ",
+                "friendlyCaptchaVersionV1": "Տարբերակ 1 (ժառանգություն)",
+                "friendlyCaptchaVersionV2": "Տարբերակ 2 (նոր)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Չեղարկել",
         "retry": "Նորից փորձել"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Կողպեք միասնական սանդղակ",
-        "unlock-uniform-scale": "Բացեք միասնական սանդղակը"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Ձեր հաճախորդները կարող են սահմանել և կառավարել բյուջեի սահմանաչափերը՝ ավելի լավ վերահսկելու իրենց կազմակերպության ստորաբաժանումների ծախսերը:",
         "budgetManagementName": "Բյուջեները",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Պատվերի հաստատում",
                     "ORGANIZATION_UNITS": "Կազմակերպության ստորաբաժանումներ",
                     "QUICK_ORDER": "Արագ պատվերներ",
-                    "QUOTE_MANAGEMENT": "Մեջբերումների կառավարում"
+                    "QUOTE_MANAGEMENT": "Մեջբերումների կառավարում",
+                    "SHOPPING_LISTS": "Գնումների ցուցակներ"
                 },
                 "template": "{dependency} -ը պահանջվում է {name}-ի համար"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Անուն",
             "columnOrderQuantity": "Պատվերի քանակը",
             "columnReturnQuantity": "Վերադարձի քանակը",
+            "includesShippingCosts": "Ներառյալ առաքման ծախսերը",
             "messageErrorNoItemHasQuantity": "Պետք է ունենա առնվազն 1 տող տարրը ունի 0-ից ավելի քանակություն վերադարձի ստեղծման համար",
             "messagePreventAddItem": "Այս տարրն արդեն վերադարձի մի մասն է կամ դրա կարգավիճակը Չեղյալ է, Վերադարձվել կամ Վերադարձվել է մասամբ:",
             "placeholderComment": "Մուտքագրեք մեկնաբանություն...",

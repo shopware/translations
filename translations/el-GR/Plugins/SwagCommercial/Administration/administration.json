@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Η συνδρομή αφήνει την κατάσταση σε παύση"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Ατομική τιμολόγηση",
             "b2b_components_role": "Ρόλος | Ρόλοι",
             "b2b_components_shopping_list": "Λίστες αγορών",
             "b2b_employee": "Υπάλληλος | Υπάλληλοι",
+            "bundle": "Πακέτο | Πακέτα",
+            "bundle_item": "Στοιχείο πακέτου | Στοιχεία πακέτου",
             "export_assistant": "Βοηθός εξαγωγής",
-            "individual_pricing": "Ατομική τιμολόγηση",
             "quote": "Απόσπασμα | Αποσπάσματα",
             "quote_line_item": "Στοιχείο γραμμής προσφοράς | Στοιχεία γραμμής προσφοράς",
             "search_assistant": "AI Αντιπλοίτης",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Το στοιχείο είναι στοιχείο δέσμης",
+                "lineItemOfBundleRule": "Στοιχείο επιλεγμένης δέσμης",
                 "subscriptionCartRule": "Καλάθι Συνδρομής",
                 "subscriptionIntervalRule": "Διάρκεια συνδρομής",
                 "subscriptionPlanRule": "Σχέδιο συνδρομής"
             },
             "group": {
                 "subscription": "Συνδρομή"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Δέσμη"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Ευχαριστούμε που δοκιμάσατε το σχέδιο Bundles. Θα θέλαμε να ακούσουμε τα σχόλιά σας.",
+                "link": "Δώστε ανατροφοδότηση"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Τα προσαρμοσμένα πεδία"
+            },
+            "general": {
+                "title": "ΓΕΝΙΚΕΣ ΠΛΗΡΟΦΟΡΙΕΣ"
+            },
+            "items": {
+                "actionOpenProductDetails": "Ανοίξτε τις λεπτομέρειες του προϊόντος",
+                "buttonAddBundleItems": "Προσθήκη προϊόντων",
+                "columnName": "Ονομασία",
+                "columnPosition": "Θέση",
+                "columnPrice": "Τιμή",
+                "emptyStateDescription": "Προσθέστε τουλάχιστον δύο προϊόντα στη δέσμη.",
+                "emptyStateTitle": "Δεν έχουν προστεθεί ακόμα προϊόντα",
+                "title": "Προϊόντα ({count})",
+                "tooltipBundleItemCustomizedProduct": "Προσαρμοσμένο πρότυπο προϊόντος εκχωρήθηκε",
+                "tooltipBundleItemHasVariants": "Το προϊόν έχει παραλλαγές",
+                "tooltipBundleItemInactive": "Ανενεργός",
+                "tooltipBundleItemIncompatibleVisibilities": "Δεν έχει εκχωρηθεί στα κανάλια πωλήσεων του πακέτου: {salesChannels}",
+                "tooltipBundleItemIssues": "Θέματα:",
+                "tooltipBundleItemOutOfStockCloseout": "Μη διαθέσιμο (Εκκαθάριση)",
+                "tooltipBundleItemOutOfStockTemporary": "Αυτό το προϊόν είναι προς το παρόν εκτός αποθέματος. Το πακέτο θα γίνει ξανά αγοράσιμο μόλις όλα τα προϊόντα είναι ξανά διαθέσιμα.",
+                "tooltipBundleItemOutOfStockTitle": "Μη Διαθέσιμο",
+                "tooltipRefreshData": "Ανανέωση δεδομένων"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Ημερομηνία κυκλοφορίας",
+                    "placeholder": "Εισάγετε ημερομηνία κυκλοφορίας..."
+                },
+                "title": "Επισήμανση"
+            },
+            "media": {
+                "subtitle": "Προσθέστε αρχεία στη συλλογή πολυμέσων του πακέτου.",
+                "title": "Μέσα"
+            },
+            "messageMinBundleItemsRequired": "Προσθέστε τουλάχιστον δύο προϊόντα για να δημιουργήσετε τη δέσμη.",
+            "messageNoChanges": "Δεν υπάρχουν αλλαγές για αποθήκευση",
+            "messageSaveError": "Αποτυχία αποθήκευσης πακέτου",
+            "messageSaveSuccess": "Το πακέτο αποθηκεύτηκε με επιτυχία",
+            "price": {
+                "addDiscount": "Προσθήκη έκπτωσης",
+                "currencyDependingPrices": "Νόμισμα ανάλογα με τις τιμές",
+                "discount": "Έκπτωση",
+                "discountRules": "Κανόνες έκπτωσης",
+                "discountTitle": "Έκπτωση",
+                "discountType": "Τύπος",
+                "discountTypeAbsolute": "Απόλυτο",
+                "discountTypePercentage": "Ποσοστό",
+                "discountValue": "Αξία",
+                "discountValuePlaceholder": "Προσθήκη αξίας...",
+                "doNotCombineWith": "Μην συνδυάζετε με",
+                "maxValuePlaceholder": "Απεριόριστα",
+                "maximumDiscountValue": "Μέγιστη τιμή έκπτωσης",
+                "openAdvancedPricesView": "Ανοιχτή προβολή προηγμένων τιμών",
+                "preventCombination": "Αποτρέψτε το συνδυασμό με άλλες προσφορές",
+                "preventCombinationHelpText": "Όταν είναι ενεργοποιημένη, αυτή η έκπτωση δεν μπορεί να συνδυαστεί με άλλες προσφορές",
+                "promotionsPlaceholder": "Προσθήκη προσφορών...",
+                "rulesPlaceholder": "Προσθήκη κανόνων...",
+                "subtotalBased": "Υποσύνολο με βάση 1 προϊόν | Υποσύνολο με βάση {count} προϊόντα",
+                "title": "Εμφάνιση τιμών",
+                "total": "Σύνολο",
+                "totalBased": "Σύνολο με βάση 1 προϊόν | Σύνολο με βάση {count} προϊόντα"
+            },
+            "tabGeneral": "στρατηγός",
+            "tabLayout": "Διάταξη",
+            "tabSeo": "SEO",
+            "textHeadline": "Νέα δέσμη",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Αυτό εμποδίζει τη δέσμη να είναι ορατή σε αυτά τα κανάλια. Ελέγξτε την ορατότητα για τα ακόλουθα προϊόντα:",
+                    "notAssignedTo": "δεν έχει ανατεθεί σε",
+                    "title": "Ορισμένα προϊόντα δεν αντιστοιχίζονται σε όλα τα επιλεγμένα κανάλια πωλήσεων"
+                },
+                "title": "Ορατότητα & δομή"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Ενεργός",
+                "placeholder": "Επιλέξτε μια κατάσταση..."
+            },
+            "availabilityFilter": {
+                "label": "διαθεσιμότητα",
+                "placeholder": "Επιλέξτε διαθεσιμότητα..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Περιλαμβανόμενα προϊόντα",
+                "placeholder": "Επιλέξτε προϊόντα που περιλαμβάνονται..."
+            },
+            "categoriesFilter": {
+                "label": "Κατηγορίες",
+                "placeholder": "Επιλογή κατηγοριών..."
+            },
+            "fromPlaceholder": "Εισάγετε την τιμή έναρξης...",
+            "imagesFilter": {
+                "label": "Εικόνες",
+                "placeholder": "Επιλογή κατάστασης εικόνας...",
+                "textHasCriteria": "Τουλάχιστον μία εικόνα προϊόντος που έχει εκχωρηθεί",
+                "textNoCriteria": "Δεν έχουν εκχωρηθεί εικόνες προϊόντος"
+            },
+            "priceFilter": {
+                "label": "Τιμή"
+            },
+            "productNumberFilter": {
+                "label": "Αριθμός προϊόντος",
+                "placeholder": "Εισαγάγετε έναν αριθμό προϊόντος..."
+            },
+            "releaseDateFilter": {
+                "label": "Ημερομηνία κυκλοφορίας"
+            },
+            "salesChannelsFilter": {
+                "label": "Κανάλια Πωλήσεων",
+                "placeholder": "Επιλέξτε Κανάλια Πωλήσεων..."
+            },
+            "salesFilter": {
+                "label": "Πωλήσεις"
+            },
+            "tagsFilter": {
+                "label": "Ετικέτες",
+                "placeholder": "Επιλογή ετικετών..."
+            },
+            "toPlaceholder": "Εισάγετε τελική τιμή..."
+        },
+        "general": {
+            "description": "Δέσμες",
+            "headlineBundles": "Δέσμες",
+            "mainMenuItemGeneral": "Δέσμες",
+            "placeholderSearchBar": "Αναζήτηση πακέτων...",
+            "title": "Δέσμες"
+        },
+        "generalForm": {
+            "highlightHelpText": "Οι επισημασμένες δέσμες επισημαίνονται με μια έντονα χρωματισμένη ετικέτα και τη λέξη «Συμβουλή» σε όλες τις λίστες πακέτων. Μπορείτε να προσαρμόσετε το χρώμα της ετικέτας αλλάζοντας την επιλογή «Ειδοποίηση» στις ρυθμίσεις <a href=\"{themeUrl}\">θεμάτων</a> . Μπορείτε επίσης να αλλάξετε το κείμενο της ετικέτας επεξεργάζοντας το αντίστοιχο απόσπασμα κειμένου <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Περιγραφή",
+            "labelMarkAsTopseller": "Επισημάνετε τη δέσμη",
+            "labelName": "Ονομασία",
+            "labelProductNumber": "Αριθμός προϊόντος",
+            "placeholderDescription": "Εισαγάγετε περιγραφή δέσμης...",
+            "placeholderName": "Εισαγάγετε όνομα δέσμης...",
+            "placeholderProductNumber": "Εισάγετε τον αριθμό προϊόντος..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Μια δέσμη απαιτεί τουλάχιστον δύο προϊόντα.",
+            "notEnoughProductsTitle": "Δεν υπάρχουν αρκετά προϊόντα",
+            "restrictions": "Ένα ή περισσότερα προϊόντα έχουν περιορισμούς που επηρεάζουν τη διαθεσιμότητα αυτού του πακέτου. Δείτε τα εικονίδια προειδοποίησης για λεπτομέρειες.",
+            "restrictionsTitle": "Ορισμένα προϊόντα έχουν περιορισμούς"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Δεν βρέθηκαν προϊόντα που ταιριάζουν",
+            "noProductsMatchingBundleSalesChannels": "Δεν υπάρχουν ενεργά προϊόντα που να ταιριάζουν με τα επιλεγμένα κανάλια πωλήσεων του πακέτου.",
+            "noProductsMatchingTermAndFilter": "Προσαρμόστε τον όρο αναζήτησης ή τα φίλτρα.",
+            "placeholderSearch": "Αναζήτηση προϊόντων...",
+            "showIncluded": "Εμφάνιση μόνο επιλεγμένων ({count})",
+            "textWhySomeItemsMissing": "Γιατί λείπουν κάποια προϊόντα;",
+            "title": "Προσθήκη προϊόντων",
+            "tooltipVariant": "Παραλλαγή",
+            "tooltipWhySomeItemsMissing": "Αυτή τη στιγμή, τα πακέτα λειτουργούν μόνο με φυσικά προϊόντα και μεμονωμένες παραλλαγές. <br /><br /> Τα προϊόντα πρέπει να αντιστοιχιστούν στα επιλεγμένα κανάλια πωλήσεων του πακέτου για να εμφανίζονται στη λίστα."
+        },
+        "list": {
+            "available": "Διαθέσιμο",
+            "buttonAddBundle": "Προσθήκη δέσμης",
+            "columnActive": "Ενεργός",
+            "columnAvailable": "διαθεσιμότητα",
+            "columnBundleItemCount": "Αριθμός προϊόντων",
+            "columnCreatedAt": "Δημιουργήθηκε στο",
+            "columnName": "Ονομασία",
+            "columnProductNumber": "Αριθμός προϊόντος",
+            "columnSales": "Πωλήσεις",
+            "columnTotalPrice": "Συνολική τιμή",
+            "columnUpdatedAt": "Ενημερώθηκε στο",
+            "emptyStateDescription": "Τα πακέτα μπορούν να αυξήσουν τη μέση αξία της παραγγελίας σας και να ενθαρρύνουν τους πελάτες να αγοράσουν σχετικά προϊόντα.",
+            "emptyStateTitle": "Προσθέστε πακέτα για να αυξήσετε τις πωλήσεις",
+            "messageSaveSuccess": "Το πακέτο \"{name}\" έχει αποθηκευτεί.",
+            "titleSidebarItemRefresh": "Ανανέωση",
+            "unavailable": "Μη Διαθέσιμος"
+        },
+        "priceModal": {
+            "currency": "Νόμισμα",
+            "price": "Αξία",
+            "title": "Προχωρημένες τιμές"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Προσθήκη προϊόντων",
+            "description": "Επιλέξτε πρώτα ένα κανάλι πωλήσεων για να δείτε ποια προϊόντα μπορούν να προστεθούν στη δέσμη. Μπορείτε να το προσαρμόσετε αργότερα στην κάρτα Ορατότητα και δομή.",
+            "title": "Απαιτείται κανάλι πωλήσεων"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Δημιουργία εικόνας",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Περιγραφή πακέτου"
+                },
+                "bundleHeading": {
+                    "label": "Όνομα πακέτου"
+                },
+                "bundleItems": {
+                    "label": "Στοιχεία δέσμης"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Συλλογή εικόνων και κουτί αγοράς πακέτων"
+                },
+                "recommendedBundles": {
+                    "label": "Προτεινόμενα πακέτα"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Προεπιλεγμένη διάταξη - Σελίδα δέσμης προϊόντων",
+                "setAsDefaultBundleDetail": "Ορίστε ως προεπιλεγμένη σελίδα πακέτου προϊόντων"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Σελίδα πακέτου"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Δημιουργία εικόνας",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Τα δεδομένα προϊόντος αυτού του στοιχείου φορτώνονται αυτόματα από το προϊόν που σχετίζεται με αυτή τη διάταξη. Το περιεχόμενο δείχνει μόνο μια προεπισκόπηση δείγματος."
+                },
+                "label": "Κουτί αγοράς πακέτων"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Τα δεδομένα προϊόντος αυτού του στοιχείου φορτώνονται αυτόματα από το προϊόν που σχετίζεται με αυτή τη διάταξη. Το περιεχόμενο δείχνει μόνο μια προεπισκόπηση δείγματος."
+                },
+                "label": "Περιγραφή πακέτου",
+                "preview": {
+                    "descriptionTab": "Περιγραφή",
+                    "title": "Δέσμη"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Επιτρέπει την προσθήκη αντικειμένων δέσμης απευθείας στο καλάθι αντί να ανοίξετε τη σελίδα λεπτομερειών προϊόντος.",
+                        "labelTitle": "Χρησιμοποιήστε το {count} για να εμφανίσετε τον αριθμό των προϊόντων στη δέσμη."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Τα δεδομένα προϊόντος αυτού του στοιχείου φορτώνονται αυτόματα από το προϊόν που σχετίζεται με αυτή τη διάταξη. Το περιεχόμενο δείχνει μόνο μια προεπισκόπηση δείγματος."
+                    },
+                    "label": {
+                        "boxSettings": "Ρυθμίσεις κουτιού προϊόντων",
+                        "cta": "Εμφάνιση CTA για να προσθέσετε είδη πακέτου απευθείας στο καλάθι",
+                        "minWidth": "Ελάχιστο πλάτος",
+                        "title": "Τίτλος"
+                    }
+                },
+                "label": "Περιλαμβανόμενα Προϊόντα"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Τα δεδομένα δέσμης αυτού του στοιχείου φορτώνονται αυτόματα από τη δέσμη που σχετίζεται με αυτήν τη διάταξη. Το περιεχόμενο εμφανίζει απλώς μια προεπισκόπηση δείγματος."
+                },
+                "label": "Όνομα πακέτου"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Όταν είναι ενεργοποιημένη, εμφανίζεται αρχικά μόνο ένα υποσύνολο πακέτων. Οι χρήστες μπορούν να επεκτείνουν τη λίστα για να εμφανίσουν περισσότερα.",
+                        "maxVisibleBundles": "Ελέγχει πόσα πακέτα θα εμφανίζονται μέχρι να κρυφτούν πίσω από μια λειτουργία «Εμφάνιση περισσότερων».",
+                        "productBoxSettings": "Ρυθμίσεις κουτιού προϊόντων",
+                        "productDetailElement": "Τα δεδομένα προϊόντος αυτού του στοιχείου φορτώνονται αυτόματα από το προϊόν που σχετίζεται με αυτή τη διάταξη. Το περιεχόμενο δείχνει μόνο μια προεπισκόπηση δείγματος.",
+                        "showCTAInfo": "Επιτρέπει την προσθήκη αντικειμένων δέσμης απευθείας στο καλάθι αντί να ανοίξετε τη σελίδα λεπτομερειών προϊόντος.",
+                        "sliderSettings": "Ρυθμίσεις ρυθμιστικού"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Περιορίστε τον αριθμό των αρχικά εμφανιζόμενων πακέτων",
+                        "maxVisibleBundles": "Τα πακέτα που εμφανίζονται αρχικά",
+                        "minWidth": "Ελάχιστο πλάτος",
+                        "recommendedCombinationsTitle": "Συνιστώμενοι συνδυασμοί",
+                        "showBundleName": "Εμφάνιση ονόματος δέσμης",
+                        "showCTA": "Εμφάνιση CTA για να προσθέσετε είδη πακέτου απευθείας στο καλάθι",
+                        "showCurrentProduct": "Εμφάνιση του προϊόντος που έχετε δει αυτή τη στιγμή πρώτη στη δέσμη",
+                        "title": "Τίτλος"
+                    },
+                    "placeholder": {
+                        "minWidth": "Εισάγετε ελάχιστο πλάτος...",
+                        "title": "Συνιστώμενοι συνδυασμοί"
+                    }
+                },
+                "label": "Συνιστώμενοι συνδυασμοί",
+                "preview": {
+                    "label": {
+                        "title": "Συνιστώμενοι συνδυασμοί"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Δημιουργία εικόνας",
             "contentText": "Δημιουργήστε τις δικές σας εικόνες διάθεσης για να προσαρμόσετε τη διάταξή σας με τη βοήθεια της εικόνας που δημιουργείται από AI.",
             "header": "AI Αντιπλοίτης"
+        },
+        "tags": {
+            "bundle": "Δέσμη"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Διευθύνσεις Μονάδας Οργανισμού",
                             "pending_order": "Διαχείριση παραγγελιών σε εκκρεμότητα",
                             "quote": "Διαχείριση προσφορών",
-                            "role": "Διαχείριση ρόλων"
+                            "role": "Διαχείριση ρόλων",
+                            "subscription": "Παραγγελία συνδρομής"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Διαγραφή διεύθυνσης αποστολής",
                                     "update": "Επεξεργασία διεύθυνσης αποστολής"
                                 },
+                                "subscription": {
+                                    "read": "Προβολή όλων των συνδρομών παραγγελιών από την εκχωρημένη μονάδα οργανισμού"
+                                },
                                 "update": "Επεξεργασία μονάδας οργάνωσης"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Μπορεί να διαγράψει ρόλους",
                                 "edit": "Μπορεί να επεξεργαστεί ρόλους",
                                 "read": "Δυνατότητα προβολής ρόλων"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Δείτε όλες τις συνδρομές παραγγελιών"
+                                }
                             }
                         },
                         "switchAllLabel": "Όλα τα δικαιώματα"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Διαχείριση Ρόλων"
             },
+            "bundle": {
+                "label": "Δέσμες"
+            },
             "custom_price": {
                 "label": "Τιμή Πελάτη Προϊόντος"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Προσθήκη προϊόντος σε πακέτα",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Το κατάλαβα",
+                "description": "Δεν ήταν δυνατή η κατάργηση αυτού του προϊόντος από τις ακόλουθες δέσμες, επειδή μια δέσμη απαιτεί τουλάχιστον δύο προϊόντα:",
+                "hint": "Για να καταργήσετε αυτό το προϊόν, προσθέστε πρώτα ένα άλλο προϊόν σε αυτά τα πακέτα.",
+                "title": "Δεν ήταν δυνατή η κατάργηση του προϊόντος από όλα τα πακέτα"
+            },
+            "bundleCardSubtitle": "Όλα τα πακέτα που περιέχουν αυτό το προϊόν",
+            "bundleCardTitle": "Πακέτα ({count})",
+            "buttonAddBundle": "Προσθήκη προϊόντος σε πακέτα",
+            "buttonAddBundleLanguageWarning": "Η προσθήκη πακέτων είναι δυνατή μόνο στην προεπιλεγμένη γλώσσα του συστήματος.",
+            "buttonCreateBundle": "Δημιουργία δέσμης",
+            "buttonManageBundles": "Διαχείριση πακέτων",
+            "columnActive": "Ενεργός",
+            "columnAvailability": "διαθεσιμότητα",
+            "columnBundleItemCount": "Αριθμός προϊόντων",
+            "columnCreatedAt": "Δημιουργήθηκε στο",
+            "columnName": "Ονομασία",
+            "columnProductNumber": "Αριθμός προϊόντος",
+            "columnSales": "Πωλήσεις",
+            "columnShowBundleOnItemPdp": "Εμφάνιση στη σελίδα λεπτομερειών",
+            "columnUpdatedAt": "Ενημερώθηκε στο",
+            "emptyStateDescription": "Τα πακέτα μπορούν να αυξήσουν τη μέση αξία παραγγελίας και να ενθαρρύνουν τους πελάτες να αγοράσουν σχετικά προϊόντα. Τα πακέτα εμφανίζονται στη σελίδα λεπτομερειών προϊόντος εάν η διάταξη CMS περιλαμβάνει ένα στοιχείο δέσμης.",
+            "emptyStateDescriptionCreateFirst": "Τα πακέτα μπορούν να αυξήσουν τη μέση αξία παραγγελίας και να ενθαρρύνουν τους πελάτες να αγοράσουν σχετικά προϊόντα. Τα πακέτα εμφανίζονται στη σελίδα λεπτομερειών προϊόντος εάν η διάταξη CMS περιλαμβάνει ένα στοιχείο δέσμης. Δημιουργήστε μια δέσμη για να προσθέσετε αυτό το προϊόν.",
+            "emptyStateNoBundlesFound": "Δεν βρέθηκαν αντίστοιχα πακέτα",
+            "emptyStateNoBundlesFoundDescription": "Προσαρμόστε τον όρο αναζήτησης ή τα φίλτρα.",
+            "emptyStateTitle": "Προσθέστε προϊόν σε πακέτα για να αυξήσετε τις πωλήσεις",
+            "hideOnProductDetailPage": "Απόκρυψη στη σελίδα λεπτομερειών προϊόντος",
+            "messageSaveSuccess": "Το πακέτο \"{name}\" έχει αποθηκευτεί.",
+            "openBundlesDetail": "Ανοίξτε τις λεπτομέρειες του πακέτου",
+            "placeholderSearch": "Αναζήτηση πακέτων...",
+            "refreshDataTooltip": "Ανανέωση δεδομένων",
+            "showOnProductDetailPage": "Εμφάνιση στη σελίδα λεπτομερειών προϊόντος",
+            "showOnlyIncluded": "Εμφάνιση μόνο επιλεγμένων",
+            "tooltipBundleHasRestrictions": "Ένα ή περισσότερα προϊόντα έχουν περιορισμούς που επηρεάζουν τη διαθεσιμότητα αυτού του πακέτου. Επισκεφθείτε τις λεπτομέρειες του πακέτου για περισσότερες πληροφορίες.",
+            "tooltipBundleInactive": "Ανενεργός",
+            "tooltipBundleIssues": "Θέματα:",
+            "tooltipBundleMismatchedSalesChannels": "Δεν έχει αντιστοιχιστεί στα κανάλια πωλήσεων του προϊόντος: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Αυτό το προϊόν δεν μπορεί να αφαιρεθεί επειδή τα πακέτα απαιτούν τουλάχιστον δύο προϊόντα."
+        },
         "card": {
             "textHeadline": "Απόθεμα & Παραδοσιμότητα",
             "textLinkModal": "Δείτε το απόθεμα ανά αποθήκες και ομάδες αποθήκης",
             "textProductWarehouseModalDisabled": "Αποθηκεύστε τις αλλαγές σας προτού μπορέσετε να ανοίξετε περαιτέρω λεπτομέρειες αποθεμάτων.",
             "textTooltipMultiSelect": "Εκχωρήστε ομάδες αποθήκης για να διαχειριστείτε το απόθεμά σας ξεχωριστά σε πολλές αποθήκες."
+        },
+        "detail": {
+            "tabBundle": "Δέσμες"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Κλείσιμο",
@@ -1986,6 +2359,9 @@
             "tabStock": "Απόθεμα",
             "textHeadline": "Απόθεμα ανά ομάδα αποθήκης και αποθήκης",
             "textInlineEdit": "Επεξεργασία αποθέματος"
+        },
+        "type": {
+            "grouped_bundle": "Δέσμη"
         },
         "variants-overview": {
             "inlineText": "Δείτε λεπτομέρειες"
@@ -2542,6 +2918,16 @@
             "emptyText": "Κενή σκηνή"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Σελίδα λεπτομερειών προϊόντος πακέτου"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Επιτρέψτε τους κωδικούς προσφοράς σε παραγγελίες από προσφορές"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Φιλικό Captcha",
+                "friendlyCaptchaApiKey": "Φιλικό κλειδί API Captcha",
                 "friendlyCaptchaDescription": "Με βάση μηχανισμούς απόδειξης εργασίας και προηγμένα σήματα κινδύνου, το Friendly Captcha χρησιμοποιεί μια θεμελιωδώς νέα προσέγγιση για την ασφαλή υπεράσπιση των ιστότοπων και των διαδικτυακών υπηρεσιών σας από ανεπιθύμητα μηνύματα και bots.",
+                "friendlyCaptchaRegion": "Περιοχή API",
+                "friendlyCaptchaRegionEu": "ΕΕ (Ευρωπαϊκή Ένωση)",
+                "friendlyCaptchaRegionGlobal": "Παγκόσμια",
+                "friendlyCaptchaRegionHelpText": "Επιλέξτε «ΕΕ» για να δρομολογήσετε όλα τα αιτήματα captcha αποκλειστικά μέσω ευρωπαϊκών διακομιστών. Αυτό μπορεί να είναι σχετικό με τη συμμόρφωση με το GDPR.",
                 "friendlyCaptchaSecretKey": "Φιλικό μυστικό κλειδί Captcha",
-                "friendlyCaptchaSiteKey": "Φιλικό κλειδί ιστότοπου Captcha"
+                "friendlyCaptchaSiteKey": "Φιλικό κλειδί ιστότοπου Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Η έκδοση 1 είναι παλαιού τύπου και θα καταργηθεί σε μελλοντική έκδοση. Συνιστούμε την αναβάθμιση στην έκδοση 2 για βελτιωμένη ασφάλεια και καθαρότερη εμπειρία widget.",
+                "friendlyCaptchaVersion": "Φιλική έκδοση Captcha",
+                "friendlyCaptchaVersionV1": "Έκδοση 1 (παλαιός)",
+                "friendlyCaptchaVersionV2": "Έκδοση 2 (νέα)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Ακύρωση",
         "retry": "Επανάληψη"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Ομοιόμορφη κλίμακα κλειδώματος",
-        "unlock-uniform-scale": "Ξεκλειδώστε ομοιόμορφη κλίμακα"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Οι πελάτες σας μπορούν να ορίσουν και να διαχειριστούν όρια προϋπολογισμού για να ελέγχουν καλύτερα τις δαπάνες των μονάδων του οργανισμού τους.",
         "budgetManagementName": "Προϋπολογισμοί",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Έγκριση παραγγελίας",
                     "ORGANIZATION_UNITS": "Μονάδες Οργάνωσης",
                     "QUICK_ORDER": "Γρήγορες παραγγελίες",
-                    "QUOTE_MANAGEMENT": "Διαχείριση Προσφορών"
+                    "QUOTE_MANAGEMENT": "Διαχείριση Προσφορών",
+                    "SHOPPING_LISTS": "Λίστες αγορών"
                 },
                 "template": "Το {dependency} απαιτείται για το {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Ονομασία",
             "columnOrderQuantity": "Ποσότητα παραγγελίας",
             "columnReturnQuantity": "Ποσότητα επιστροφής",
+            "includesShippingCosts": "Συμπεριλαμβανομένων των εξόδων αποστολής",
             "messageErrorNoItemHasQuantity": "Πρέπει να έχει τουλάχιστον 1 στοιχείο γραμμής έχει ποσότητα μεγαλύτερη από 0 για να δημιουργήσετε μια επιστροφή",
             "messagePreventAddItem": "Αυτό το αντικείμενο είναι ήδη μέρος της επιστροφής ή η κατάστασή του είναι Ακυρώθηκε, Επιστρέφεται ή Επιστρέφεται μερικώς.",
             "placeholderComment": "Εισάγετε σχόλιο...",

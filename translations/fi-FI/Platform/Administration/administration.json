@@ -317,6 +317,7 @@
             "newsletter_update": "Uutiskirjeen rekisteröinti päivitetty",
             "product_export_log": "Tuotteen vienti toteutettu",
             "review_form_send": "Tarkistuslomake lähetetty",
+            "revocation_request_sent": "Peruutuspyyntölomake on lähetetty.",
             "state_enter_order_delivery_state_cancelled": "Lähetys tulee tila peruutettu",
             "state_enter_order_delivery_state_open": "Lähetys siirtyy tilan avoimeksi",
             "state_enter_order_delivery_state_returned": "Lähetys siirtyy tila palautettu",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Valitse tiedosto",
             "caption": "Lataa tiedosto vetämällä tänne",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Valitulla tiedostolla \"{name}\" on tiedostopääte, jota ei tueta. Käytä jotakin seuraavista tiedostopäätteistä: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Valittu tiedosto \"{name}\" on liian suuri ladattavaksi. Tiedoston koko ei saa olla suurempi kuin {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Asiakirjoja ei löytynyt",
                 "title": "Bulk edit - Menestys"
             },
-            "warningText": "Odota, että irtotavarana muokkaus on valmis. Tämä voi kestää jonkin aikaa. Jos suljet selaimen välilehden tai peruutat prosessin ennenaikaisesti, kaikkia muutoksia ei sovelleta. Voit suorittaa joukkomuokkauksen uudelleen milloin tahansa."
+            "warningText": "Odota, että irtotavarana muokkaus on valmis. Tämä voi kestää jonkin aikaa. Jos suljet selaimen välilehden tai peruutat prosessin ennenaikaisesti, kaikkia muutoksia ei sovelleta. Voit suorittaa joukkomuokkauksen uudelleen milloin tahansa.",
+            "warningTextDocumentDeletion": "Asiakirjat ovat osa tilausta ja voivat olla merkityksellisiä verotuksessa. Niiden poistaminen voi vaikuttaa kirjanpidon jäljitettävyyteen. Varmista, että poistaminen on laillisesti sallittua."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "asiakirjat",
+                "deleteDocuments": {
+                    "helpText": "Tällä vaihtoehdolla kaikki valitut asiakirjatyypit poistetaan.",
+                    "label": "Poista: Asiakirjat"
+                },
                 "downloadDocuments": {
                     "helpText": "Tällä vaihtoehdolla uusimmat saatavilla olevat asiakirjat tarjotaan ladattavaksi. Useita asiakirjoja yhdistetään samaan tiedostoon. Lataus on käytettävissä, kun moninkertainen muutos on suoritettu loppuun.",
                     "label": "Lataa: Asiakirjat"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Uutiskirjeen sivut",
                     "privacyPage": "Tietosuoja-sivut",
                     "revocationPage": "Peruutusilmoitukset",
+                    "revocationRequestPage": "Peruutuspyyntölomake",
                     "shippingPaymentInfoPage": "Maksu- ja toimitustiedot",
                     "tosPage": "TOS-sivut"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Nimike",
                         "type": "Lomakkeen tyyppi",
                         "typeContact": "Ota yhteyttä",
-                        "typeNewsletter": "Uutiskirje"
+                        "typeNewsletter": "Uutiskirje",
+                        "typeRevocationRequest": "Peruuttaminen"
                     },
                     "placeholder": {
                         "type": "Valitse lomakkeen tyyppi..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Toiminta",
+                        "comment": "kommentti",
+                        "contractNumber": "Sopimuksen numero (tilausnumero, tilausnumero, ... ) *    ",
                         "email": "Sähköpostiosoite*",
                         "firstName": "Etunimi*",
                         "lastName": "Sukunimi*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Klo vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Nro {criteriaName}",
         "placeholder": "Kaikki"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Vientikanava",
+                        "placeholder": "Valitse vientikanavat…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Vientikanava"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Vientikanava",
+                        "placeholder": "Valitse vientikanavat…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Vientikanava"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Lisää vientikanavan sarakkeita ja suodattimia tilaus- ja asiakasluetteloihin.",
+            "mainMenuItemGeneral": "Vientikanavan seuranta"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Laajennus \"{name}\" ei ole yhteensopiva tämän Shopware-version kanssa",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Tyyppi",
                 "labelRecipient": "Vastaanottaja",
                 "labelReplyTo": "Reply-osoitteeseen",
+                "labelRevocationRequestFormMail": "Tiedustelija",
                 "labelSenderName": "Lähettäjän nimi",
                 "labelSubject": "Kohde",
                 "placeholderDescription": "Kirjoita kuvaus...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Anna säännön nimi...",
                 "placeholderPriority": "Anna säännön prioriteetti...",
                 "placeholderType": "Valitse säännön tyyppi...",
+                "productStatesConditionWarning": "Ehto ”Tuote, jossa on tuotetila” on vanhentunut, ja se poistetaan versiosta 6.8. Käytä sen sijaan ”Tuote tuotetyypillä”.",
                 "tabDetail": "Kenraali",
                 "tabRule": "Kunto"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Palautettu",
             "returnedPartially": "Palautettu osittain",
             "reviewForm": "Tuotteen tarkastelu",
+            "revocationRequestCustomer": "Peruutuspyyntö lähetetty",
+            "revocationRequestMerchant": "Peruutuspyyntö vastaanotettu",
             "send": "Lähetä",
             "sent": "Lähetetty",
             "shipped": "Toimitettu",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Karetti (^)",
             "categoriesLabel": "Luokat",
             "closeProfileLabel": "Sulje profiili",
-            "closeViolation": "Sulje",
             "commasLabel": "Pilkku (,)",
             "configuratorSettingLabel": "Vaihtoehtoinen kokoonpano asetukset",
             "copyOfLabel": "Kopio:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Tuo"
             },
             "updateEntitiesLabel": "Päivitä olemassa olevat tiedot",
-            "violationMessage": "Profiilisi ei ole vielä voimassa. Sinun on lisättävä yhdistämismäärityksiä alla oleviin pakollisiin kenttiin profiilin tallentamiseksi:"
+            "violationModal": {
+                "duplicateMappings": "Sinulla on <strong>päällekkäisiä kartoituksia</strong> seuraavissa kentissä. Poista kaksoiskappaleet tallentaaksesi profiilin:",
+                "missingRequiredFields": "Profiilin tallentamiseksi sinun on lisättävä kartoitukset <strong>pakollisiin kenttiin</strong> alla näkyviin:",
+                "title": "Profiilisi ei ole vielä kelvollinen"
+            }
         },
         "progress": {
             "startExportLabel": "Aloita vienti",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Tallenna mediaan"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Objektin siirtäminen",
-                "rotate-tooltip": "Kierrä objektia",
-                "scale-tooltip": "Skaalausobjekti"
-            },
-            "saveChanges": "Tallenna muutokset",
-            "titleModal": "Mallieditori"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Takaisin"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Objektin siirtäminen",
+            "rotate-tooltip": "Kierrä objektia",
+            "scale-tooltip": "Skaalausobjekti"
+        },
+        "open-model-editor-tooltip": "Avaa mallieditori",
+        "properties": {
+            "transformation": {
+                "label": "Transformaatio",
+                "position": {
+                    "label": "Sijainti"
+                },
+                "rotation": {
+                    "label": "Kierto"
+                },
+                "scale": {
+                    "label": "asteikko"
+                }
+            }
+        },
+        "titleModal": "Mallieditori"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Hyvityslaskun luominen, lisää ensin luottoerä.",
-                    "storno": "Peruutuslaskua ei voi luoda ilman laskua."
+                    "storno": "Peruutuslaskua ei voi luoda ilman laskua.",
+                    "zugferd_cancellation_invoice": "ZugFerd-peruutuslaskua ei voi luoda ilman laskua.",
+                    "zugferd_credit_note": "ZugFerd-hyvityslaskun luomiseen tarvitaan lasku ja vähintään yksi hyvityserä.",
+                    "zugferd_embedded_cancellation_invoice": "Sulautettua ZugFerd-peruutuslaskua ei voi luoda ilman laskua.",
+                    "zugferd_embedded_credit_note": "Sulautetun ZugFerd-hyvityslaskun luomiseen tarvitaan lasku ja vähintään yksi hyvityserä."
                 },
                 "primaryAction": "Luo asiakirja",
+                "showZugferd": "Näytä ZugFerd mallit",
                 "title": "Luo asiakirja"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "asiakirjat",
+            "confirmDeleteText": "Tämä asiakirja on osa tilausta ja voi olla merkityksellinen verotuksessa. Sen poistaminen voi vaikuttaa kirjanpidon jäljitettävyyteen. Varmista, että poistaminen on laillisesti sallittua. Tätä toimintoa ei voi peruuttaa.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Asiakirjan numero {number} on jo varattu."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Lataa mukautettu asiakirja",
             "labelCancel": "Sulje",
             "labelCreate": "Luo",
+            "labelCreateDownload": "Luo ja lataa",
             "labelCreateDownloadPdf": "Luo ja lataa PDF",
             "labelCreateSend": "Luo ja lähetä",
             "labelDeliveryDate": "Toimituspäivä",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "suodatin",
             "titleSidebarItemFilterAffiliateCode": "Affiliate-koodi",
             "titleSidebarItemFilterCampaignCode": "Kampanjan koodi",
-            "titleSidebarItemRefresh": "Päivitä"
+            "titleSidebarItemRefresh": "Päivitä",
+            "tooltipCustomerComment": "Lisätietoja: {comment}",
+            "tooltipInternalComment": "Sisäinen kommentti: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Nimi",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Tässä voit määrittää valinnaisesti kolmesta viiteen avainsanaa, joiden alta tuotteesi pitäisi löytyä.",
             "helpTextMetaDescription": "Metakuvauksen avulla vahvistat asiakkaillesi, että he ovat oikeassa paikassa kaupassasi. Luot kannustimia, rakennat luottamusta ja kutsut toimintaan. Sinun tulisi rajoittaa itsesi enintään 155 merkkiin. Shopware mahdollistaa maksimipituus 255 merkkiä.",
             "helpTextMetaTitle": "Meta-otsikko on tärkein SEO-elementti, ja sen pitäisi olla yksilöllinen jokaiselle sivulle. Sinun pitäisi rajoittaa itsesi pituuteen enintään 56 merkkiin. Avainsanasi olisi mieluiten sijoitettava aivan etuosaan.",
+            "helpTextOpenGraphDescription": "Avoimen graafin kuvausta käytetään, kun jaat tuotetta sosiaalisessa mediassa. Jos se jätetään tyhjäksi, metakuvausta käytetään varakuvana.",
+            "helpTextOpenGraphTitle": "Open Graph -otsikkoa käytetään, kun jaat tuotetta sosiaalisessa mediassa. Jos se jätetään tyhjäksi, meta-otsikkoa käytetään varautumisena.",
             "labelCanonicalProduct": "Kanonisen URL-osoitteen variantti",
             "labelCanonicalUrlMode": "Käytä yhtä kanonista URL-osoitetta kaikissa muunnelmissa",
             "labelKeywords": "SEO-avainsanat",
             "labelMetaDescription": "Meta kuvaus",
             "labelMetaTitle": "Meta otsikko",
+            "labelOpenGraphDescription": "OG kuvaus",
+            "labelOpenGraphImage": "OG-kuva",
+            "labelOpenGraphTitle": "OG-otsikko",
             "placeholderCanonicalProduct": "Valitse variantti...",
             "placeholderKeywords": "Kirjoita yksi tai useampi avainsana...",
             "placeholderMetaDescription": "Kirjoita metakuvaus...",
-            "placeholderMetaTitle": "Kirjoita meta title..."
+            "placeholderMetaTitle": "Kirjoita meta title...",
+            "placeholderOpenGraphDescription": "Kirjoita Open Graph -kuvaus...",
+            "placeholderOpenGraphTitle": "Kirjoita Open Graph -otsikko...",
+            "titleOpenGraph": "Avaa kaavio"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Backorderit kiistivät.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Ehdot"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Affiliate-koodi",
+            "affiliateCodePlaceholder": "Anna kumppanikoodi…",
+            "campaignCodeLabel": "Kampanjan koodi",
+            "campaignCodePlaceholder": "Anna kampanjakoodi…",
+            "cardTitle": "Seurantakoodit",
+            "description": "Määritä kumppanikoodit ja kampanjakoodit, jotka upotetaan tämän kanavan syötteiden tuotteiden URL-osoitteisiin. Nämä koodit tunnistavat tilaukset ja asiakkaat, jotka on ohjattu tältä Agentic Commerce -kanavalta."
+        },
         "detail": {
             "activateDisable": "Määritä teema ennen myyntikanavan aktivointia ja tallentamista.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Palauta oletusarvoiseksi",
+                "errorLoadingTemplate": "Oletusmallia ei voitu ladata.",
+                "integration": {
+                    "feedUrlLabel": "Vie URL-osoite",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI-yhteys",
+                            "introduction": {
+                                "description": "Tämä myyntikanava luo JSONL-tuotesyötteen, jotta tuotteesi voivat näkyä ChatGPT-hakutuloksissa. Tätä varten sinun on haettava kauppiaana ja jaettava syötteen URL-osoite OpenAI: n kanssa. Kaikki muu selitetään alla olevassa vaiheittaisessa oppaassa.",
+                                "title": "Ohjeet: Asennus ja yhteys"
+                            },
+                            "stepByStep": "<li>Hae kauppiaaksi osoitteessa <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/</a></li><li>Kopioi viennin URL-osoite (alla) ja jaa se OpenAI: n kanssa <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Tuotesyötteiden dokumenttien mukaisesti</a></li><li>Varmista, että viennin URL-osoite on julkisesti saatavilla</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Askel askeleelta"
+                },
+                "openAiSettingsTitle": "OpenAI-asetukset",
+                "resetTemplateSuccess": "Malli on palautettu oletusarvoon. Tallenna säilyttääksesi muutokset.",
+                "tabIntegration": "integraatio",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "avoin AI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Google Analyticsin avulla voit kerätä ja analysoida kauppasi tietoja. Tämän toiminnon käyttämiseksi tarvitaan Google-tili. Jos et vielä omista Google Analytics -tiliä, voit rekisteröityä täällä: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Kun olet rekisteröitynyt onnistuneesti, saat seurantatunnuksen, joka on täytettävä alla integroinnin aktivoimiseksi.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Suositellut asiakkaat",
+                    "dateRanges": {
+                        "14Days": "Viimeiset 14 päivää",
+                        "180Days": "Viimeiset 180 päivää",
+                        "24Hours": "Viimeiset 24 tuntia",
+                        "30Days": "Viimeiset 30 päivää",
+                        "7Days": "Viimeiset 7 päivää",
+                        "yesterday": "Eilen"
+                    },
+                    "numbers": "Kreivi",
+                    "orderCardHeadline": "Suositellut tilaukset",
+                    "summary": "Yhteenveto",
+                    "totalTurnover": "Liikevaihto",
+                    "turnoverCardHeadline": "Viitattu liikevaihto"
+                },
+                "tabInsights": "Tilastot"
             },
             "products": {
                 "buttonAddProducts": "Lisää {productCount} tuotetta | Lisää {productCount} tuote | Lisää {productCount} tuotteita",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Tässä myyntikanavassa on jo toinen samantyyppinen asiakirja.",
             "disabledSalesChannelSelect": "Valitse ensin asiakirjatyyppi.",
             "disabledTypeSelect": "Yleisten asiakirjojen tyyppiä ei voi muuttaa.",
+            "displayTitle": "Näyttö:",
             "helpTextDisplayAdditionalNoteDelivery": "Soveltuu vain EU:n jäsenvaltioille, katso myös ”Asetukset > Maat”.",
-            "helpTextDisplayCompanyAddress": "Näyttää yrityksen osoitteen asiakirjan oikeassa reunassa olevan otsikon alapuolella.",
-            "helpTextDisplayDeliveryCountries": "Näyttää ilmaisun ”yhteisön sisäisestä toimituksesta” valittujen maiden laskuasiakirjoissa.",
             "helpTextDisplayDocumentInCustomerAccount": "Asiakirja näkyy kohdassa ”Tilaukset” vastaavan asiakastilin. Huomaa, että vain asiakkaalle lähetetyt asiakirjat näkyvät asiakastilillä.",
-            "helpTextDisplayReturnAddress": "Näyttää yrityksen osoitteen palautusosoitteena asiakasosoitteen yläpuolella osoitelohkossa.",
-            "helpTextPaymentDueDate": "Esim.: +30 päivää, +4 viikkoa, +1 viikko 2 päivää",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAANI",
             "labelBankName": "Pankki",
             "labelCompanyCity": "Kaupunki",
             "labelCompanyCountry": "Maa",
             "labelCompanyEmail": "Sähköpostiosoite",
+            "labelCompanyLogo": "Yrityksen logo",
             "labelCompanyName": "Nimi",
             "labelCompanyPhone": "Puhelinnumero",
             "labelCompanyStreet": "katu",
             "labelCompanyUrl": "Sivusto",
             "labelCompanyZipcode": "Postinumero",
-            "labelDeliveryCountries": "Jäsenmaat",
             "labelDisplayAdditionalNoteDelivery": "Näytä ”Yhteisön sisäinen toimitus” -etiketti",
             "labelDisplayCompanyAddress": "Näytä yrityksen osoite",
             "labelDisplayCustomerVatId": "Näytä asiakkaan ALV-tunnus",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Tiedostomuodot",
             "labelItemsPerPage": "Kohteita per sivu",
             "labelName": "Tekninen nimi",
-            "labelOptionMedia": "Yrityksen logo",
             "labelPageOrientation": "Sivun suunta",
             "labelPageSize": "Sivun muoto",
             "labelPaymentDueDate": "Maksun eräpäivä",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Verotoimisto",
             "labelType": "Asiakirjan tyyppi",
             "labelVatId": "ALV-Reg.Ei.",
-            "messageSaveSuccess": "Asiakirja \"{name}\" on tallennettu.",
-            "placeholderDisplayDeliveryCountries": "Hae ja lisää maita, jotka ovat voimassa yhteisön sisäiseen toimitukseen...",
+            "pageOrientationOptions": {
+                "landscape": "Maisema",
+                "portrait": "Muotokuva"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Oikeudellinen",
+                "letter": "Kirje"
+            },
+            "placeholderBankBic": "Syötä BIC...",
+            "placeholderBankIban": "Anna IBAN...",
+            "placeholderBankName": "Anna pankin nimi...",
+            "placeholderCompanyCity": "Anna kaupunki...",
+            "placeholderCompanyCountry": "Valitse maa...",
+            "placeholderCompanyEmail": "Kirjoita sähköpostiosoite...",
+            "placeholderCompanyName": "Anna yrityksen nimi...",
+            "placeholderCompanyPhone": "Anna puhelinnumero...",
+            "placeholderCompanyStreet": "Syötä street...",
+            "placeholderCompanyUrl": "Siirry verkkosivustoon...",
+            "placeholderCompanyZipcode": "Syötä postinumero...",
+            "placeholderExecutiveDirector": "Syötä yritysjohtaja...",
+            "placeholderFileNamePrefix": "Kirjoita etuliite...",
+            "placeholderFileNameSuffix": "Kirjoita pääte...",
+            "placeholderFileTypes": "Valitse tiedostomuodot...",
+            "placeholderItemsPerPage": "Syötä kohteiden määrä sivua kohden...",
             "placeholderName": "Kirjoita nimi...",
+            "placeholderPageOrientation": "Valitse sivun suunta...",
+            "placeholderPageSize": "Valitse sivumuoto...",
+            "placeholderPaymentDueDate": "Anna maksun eräpäivä...",
+            "placeholderPlaceOfFulfillment": "Anna täyttymispaikka...",
+            "placeholderPlaceOfJurisdiction": "Merkitse lainkäyttöpaikka...",
+            "placeholderSalesChannel": "Valitse myyntikanava...",
+            "placeholderTaxNumber": "Anna verotunnus...",
+            "placeholderTaxOffice": "Siirry verovirastoon...",
+            "placeholderType": "Valitse asiakirjatyyppi...",
+            "placeholderVatId": "Anna ALV-tunnus...",
             "textHeadline": "Uusi asiakirja"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Tehtävä",
             "columnName": "Tekninen nimi",
             "columnType": "Tyyppi",
-            "columnUsedIn": "Määritetty",
             "contextMenuEdit": "Edit",
             "global": "Globaali",
             "messageDeleteSuccess": "Asiakirja \"{name}\" on poistettu.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Lasku",
+                "give-consent": "Anna suostumus",
                 "save-preferences": "Tallenna asetukset",
                 "share-all-data": "Jaa kaikki",
                 "share-nothing": "Älä jaa mitään"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/fi/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Katso lisätietoja kohdasta {data-use-details} ja {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Tietosuojakäytäntö",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Jakamalla myymälä- ja käyttäjätietoja autat meitä ymmärtämään, miten hallintoa käytetään, ja kehittämään parannuksia, jotka helpottavat päivittäistä työtäsi.",
-            "opt-out-info": "Voit kieltäytyä milloin tahansa asetusten ja profiiliasetusten kautta.",
+            "opt-out-info": {
+                "profile": "Profiilisi — Tietosuoja-asetukset",
+                "settings": "Asetukset — Yksityisyys",
+                "snippet": "Voit muuttaa asetuksiasi milloin tahansa: Hallitse Store Data -asetuksia kohdassa {settings}ja Henkilökohtaisten tietojen asetuksia kohdassa {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "GDPR-yhteensopiva",
                 "no-third-party": "Tietoja ei jaeta kolmansille osapuolille",
@@ -9899,6 +10059,12 @@
                     "order": "käskyjä",
                     "store": "tallenna tiedot"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "tässä",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Vianmääritystiedot</strong> Shopwaressa viittaavat järjestelmän kuntoon, virheisiin ja alustan suorituskykymittareihin liittyviin tietoihin. Tämä sisältää tietoja, kuten järjestelmälokeja, virheilmoituksia, palvelimen vasteaikoja ja muita teknisiä indikaattoreita. Näiden tietojen analysointi auttaa meitä tunnistamaan, korjaamaan ja ottamaan käyttöön korjauksia yleisiin ongelmiin tai haavoittuvuuksiin nopeasti ja ylläpitämään alustan eheyttä.",
                     "order": "<strong>Shopwaren tilaustiedot</strong> viittaavat yksityiskohtaisiin tietoihin alustalla tehdyistä asiakastilauksista. Tämä sisältää erityispiirteet, kuten tilatut tuotteet, määrät, hinnat, alkuperä, maksutavat, lähetys jne. Analysoimme näitä tietoja ymmärtääksemme trendejä ja malleja, jotka auttavat meitä parantamaan ominaisuuksia sekä kehittämään uusia palveluita, jotka on suunniteltu parantamaan yrityksesi menestystä. Emme kerää asiakkailtasi henkilötietoja, joita voidaan käyttää yksittäisen henkilön tunnistamiseen.",
@@ -9912,6 +10078,12 @@
                 "description": "Käytämme {data} -sovellusta siitä, miten olet vuorovaikutuksessa hallinnon kanssa parantaaksemme sen käytettävyyttä ja suorituskykyä.",
                 "emphasizes": {
                     "data": "tiedot"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Tietosuojakäytäntö",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Käyttötiedot</strong> Shopwaressa koskevat tietoja, jotka liittyvät siihen, miten järjestelmänvalvojat ja myymälän kävijät ovat vuorovaikutuksessa alustamme kanssa. Tämä sisältää yksityiskohtia, kuten vuorovaikutus eri Shopwaren järjestelmänvalvojan moduulien kanssa, katsotut sivut, käyntien kesto, napsautuspolut ja käyttäjän toimet alustalla ja myymälässä. Arvioimalla käyttötietoja voimme tunnistaa alustan alueet, joita käydään usein tai joita vältetään ominaisuuksien käyttöönoton mittaamiseksi, mikä johtaa mahdollisiin parannuksiin ulkoasussa, suunnittelussa ja toiminnallisuudessa."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Vaihda kohde \"{name}”",
         "toggleTreeItem": "Vaihda puukohta \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Samaa mieltä",
-        "checkListDataSharing": {
-            "gdprCompliant": "Olemme GDPR-yhteensopivia",
-            "helpText": {
-                "shareDataHelpText": "<strong>”Jaa”</strong> tarkoittaa tietojen luovuttamista vastaanottavan osapuolen omiin tarkoituksiin; voimme luovuttaa tietoja palveluntarjoajillemme."
-            },
-            "personalData": "Emme kerää henkilötietoja",
-            "securelyProcessed": "Tietojasi käsitellään ja tallennetaan turvallisesti",
-            "thirdParty": "Emme jaa tietojasi kolmansille osapuolille heidän omiin tarkoituksiin",
-            "title": "Voimme vakuuttaa teille, että:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostiikkatiedot",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Vianmääritystiedot</strong> Shopwaressa viittaavat järjestelmän kuntoon, virheisiin ja alustan suorituskykymittareihin liittyviin tietoihin. Tämä sisältää tietoja, kuten järjestelmälokeja, virheilmoituksia, palvelimen vasteaikoja ja muita teknisiä indikaattoreita. Näiden tietojen analysointi auttaa meitä tunnistamaan, korjaamaan ja ottamaan käyttöön yleisiä ongelmia tai haavoittuvuuksia nopeasti ja ylläpitämään alustan eheyttä.",
-                "orderDataHelp": "<strong>Shopwaren tilaustiedot</strong> viittaavat yksityiskohtaisiin tietoihin alustalla tehdyistä asiakastilauksista. Tämä sisältää yksityiskohtia, kuten tilatut tuotteet, määrät, hinnat, alkuperä, maksutavat, lähetys jne. Analysoimme näitä tietoja ymmärtääksemme trendejä ja malleja, jotka auttavat meitä parantamaan ominaisuuksia sekä kehittämään uusia palveluita, jotka parantavat yrityksesi menestystä. Emme kerää asiakkailtasi henkilötietoja, joita voidaan käyttää yksittäisen henkilön tunnistamiseen.",
-                "storeDataHelp": "<strong>Shopwaren tallennustiedot</strong> koskevat kaikkia verkkokauppaasi liittyviä tietoja. Esimerkiksi tuotteet, ilmoitukset, hinnat, kuvat, kuvaukset jne. sekä kauppasi asetuksia koskevat metatiedot, kuten teemat ja laajennukset. Emme kerää henkilötietoja, joita voidaan käyttää järjestelmänvalvojan käyttäjän tai myymälän kävijän tunnistamiseen. Yhdistettyjen myymälätietojen avulla voimme tarjota koneoppimisen avulla oivalluksia, kuten kehittyvien markkinoiden trendeistä, jolloin voit mukauttaa tuotetarjontaa tai markkinointistrategioita vastaavasti.",
-                "usageDataHelp": "<strong>Käyttötiedot</strong> Shopwaressa koskevat tietoja, jotka liittyvät siihen, miten järjestelmänvalvojan käyttäjät ja myymälän kävijät ovat vuorovaikutuksessa alustamme kanssa. Tämä sisältää yksityiskohtia, kuten vuorovaikutus eri Shopwaren järjestelmänvalvojan moduulien kanssa, katsotut sivut, käyntien kesto, napsautuspolut ja käyttäjän toimet alustalla ja myymälässä. Arvioimalla käyttötietoja voimme tunnistaa alustan alueet, joita käydään usein tai joita vältetään, ominaisuuksien käyttöönoton mittaamiseksi, mikä johtaa mahdollisiin parannuksiin ulkoasussa, suunnittelussa ja toiminnallisuudessa. Emme kerää henkilötietoja, joita voidaan käyttää järjestelmänvalvojan tai myymälän kävijöiden tunnistamiseen."
-            },
-            "orderData": "Tilaustiedot",
-            "storeData": "Tallenna tiedot",
-            "usageData": "Tietojen jakaminen"
-        },
-        "confirmAuthorization": "Napsauttamalla ”Hyväksyn” vahvistat, että sinulla on valtuudet tehdä tämä sopimus yrityksesi puolesta.",
-        "declineDataCollection": "Ei tällä hetkellä",
-        "fullDetailsDescription": "Täydelliset tiedot tästä sopimuksesta löytyvät osoitteesta {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Voit aina kieltäytyä tietojen jakamisesta milloin tahansa. Liity meihin muokkaamaan verkkokaupan tulevaisuutta jakamalla tietosi kanssamme!",
-        "headline": "Sähköisen kaupankäynnin tulevaisuuden muokkaaminen",
-        "improvingDescription": "Parannamme jatkuvasti sinulle tarjoamiamme palveluita. Seuraavan vaiheen saavuttamiseksi analysoimme tietojasi käyttämällä tekniikoita, kuten koneoppimista (esim. kuvioiden tunnistusta) kehittääksemme ja parantaaksemme tuotteitamme. Tietojasi käytetään myös datapohjaisten palvelujen kehittämiseen, jotka on suunniteltu parantamaan yrityksesi menestystä.",
-        "improvingDescriptionNotAccepted": "Parannamme jatkuvasti sinulle tarjoamiamme palveluita. Seuraavan askeleen ottamiseksi haluaisimme analysoida tietojasi käyttämällä tekniikoita, kuten koneoppimista (esim. kuvioiden tunnistusta) kehittääksemme ja parantaaksemme tuotteitamme. Tietojasi käytetään myös datapohjaisten palvelujen kehittämiseen, jotka on suunniteltu parantamaan yrityksesi menestystä.",
-        "privacyPolicy": "shopware.com/fi/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Voit milloin tahansa solmia sopimuksen ja siten osallistua palveluidemme jatkuvaan kehitykseen ja hyötyä siitä sallimalla tietojen jakamisen {link}-sovelluksessasi",
-        "settings": {
-            "deactivateDataCollection": "Poista tietojen jakaminen käytöstä",
-            "sharingInformation": "Jaat tietoja kanssamme"
-        },
-        "thankYouMessage": "{thanksForParticipation} Voit kieltäytyä tästä sopimuksesta milloin tahansa ja siten lopettaa osallistumisen palveluidemme jatkuvaan kehitykseen ja hyödyn siitä poistamalla tietojen jakamisen käytöstä {link}-palvelussa",
-        "thanksForParticipation": "Kiitos osallistumisestasi!",
-        "togglePath": "Asetukset"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Käyttäjät ja käyttöoikeudet"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Lukitse yhtenäinen asteikko",
+        "unlock-uniform-scale": "Avaa yhtenäinen asteikko"
+    },
     "sw-wizard": {
         "backButton": "Takaisin",
-        "closeButton": "Sulje",
         "finishButton": "Viimeistele",
         "nextButton": "Seuraava"
     }

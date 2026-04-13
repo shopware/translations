@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "API-klahvil ei ole õiget pikkust ({length}/40 tähemärki)."
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "Migratsiooniassistent"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "Rännet ei õnnestunud katkestada.",
@@ -29,20 +36,24 @@
         },
         "general": {
             "descriptionTextModule": "Moodul andmete migreerimiseks",
+            "disabledMessages": {
+                "disabled": "Selles keskkonnas on ränne keelatud.",
+                "loading": "Ränne on praegu käimas.",
+                "noData": "Migratsiooni kohta andmed puuduvad.",
+                "noPermission": "Teil ei ole migreerimise teostamiseks vajalikke õigusi.",
+                "noSelectedData": "Ühtegi üksust ei ole migreerimiseks valitud.",
+                "resettingChecksum": "Kontrollsummad on praegu lähtestamisel.",
+                "truncatingMigration": "Migratsiooniandmeid kärbitakse praegu.",
+                "unfilledPremapping": "Enne jätkamist täitke kõik vajalikud kaardistused."
+            },
             "mainMenuItemGeneral": "Migratsiooniassistent",
             "tabDataSelector": "Andmete valik",
             "tabHistory": "ajalugu",
             "tabMain": "Üldine"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "Migreerimisandmete kustutamisel eemaldatakse logikirjed, meediumifailide kirjed, ajutised migreerimisandmete kirjed ja migreerimiskäive, mis siis ei ole migreerimisajaloos enam saadaval.",
-                "contentHint": "Kas soovite tõesti andmeid kustutada?",
-                "title": "Migreerimisandmete kustutamine"
-            },
             "connectionName": "Ühenduse nimi",
             "contextMenu": {
-                "clearLogs": "Migreerimisandmete kustutamine",
                 "details": "Näita üksikasju",
                 "downloadLogs": "Logi allalaadimine"
             },
@@ -59,18 +70,16 @@
                 "logDownload": "laadige alla logifail.",
                 "noErrorsOccurred": "Vigu pole toimunud.",
                 "noProgressData": "See käivitamine viidi läbi pistikprogrammi eelmises versioonis ja selle andmed on kustutatud.",
-                "runStatus": "Migratsiooni staatus:",
                 "status": {
                     "aborted": "Aborteeritud",
                     "finished": "Lõpetatud",
                     "running": "Jooksmine"
                 },
-                "timestamp": "Algusaeg:",
                 "title": "Migratsiooni üksikasjad"
             },
+            "gateway": "Värav",
             "importDateTime": "Algusaeg",
-            "noData": "Rändeid ei leitud.",
-            "profileAndGateway": "Profiil ja värav",
+            "profile": "Profiil",
             "selectedData": "Andmed",
             "shopDomain": "Poe domeen",
             "shopSystem": "Kaupluse süsteem",
@@ -78,28 +87,9 @@
         },
         "index": {
             "abortButton": "Tühista",
-            "assistantCard": {
-                "connection": {
-                    "content": "Migratsiooniassistent aitab luua ühenduse teie poesüsteemi ja Shopware 6 vahel andmete edastamiseks ja migreerimiseks.",
-                    "link": "Abi ja dokumentatsioon",
-                    "title": "Ühenduse seadistamine"
-                },
-                "dataSelection": {
-                    "content": "Valige andmed, mida soovite migreerida. Võimalik on lisada ka pistikprogrammi andmeid, kui pistikprogramm on juba saadaval Shopware 6 jaoks. Kontrollige oma Shopware kontol pistikprogrammi saadavust.",
-                    "title": "Määrake migreerimiseks vajalikud andmed"
-                },
-                "finish": "Valmis!",
-                "headline": "Kuidas ränne toimib",
-                "migrationOverview": {
-                    "content": "1. Automaatne protsess kontrollib valitud andmete puuduvate ülesannete olemasolu. Valmistuge automaatse protsessi lõpuleviimiseks, lisades käsitsi ülesandeid.\n2. Teie poe andmed loetakse ja määratakse.\n3. Kõik valitud ja õigesti määratud andmed edastatakse Shopware 6-sse.\n4. Meediumiüksused laaditakse alla.",
-                    "title": "Migratsioonietapid"
-                },
-                "title": "Teave"
-            },
             "backToOverviewButton": "Tagasi ülevaate juurde",
             "confirmAbortDialog": {
-                "cancelPause": "Paus",
-                "cancelRunning": "Jätka",
+                "cancel": "Jätkake",
                 "confirm": "Peatage ränne",
                 "content": "Ränne ei ole täielikult lõppenud. Juba migreeritud andmed võivad olla kasutuskõlbmatud. Kui lõpetate kohe, peate migreerimisprotsessi täielikult uuesti käivitama.",
                 "hint": "Kas soovite rännet peatada?",
@@ -107,169 +97,175 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "Jah, ma tahaksin jätkata",
-                    "info": "Erinevate vaikevaluutadega migreerimine võib põhjustada andmekirjete rikutamist ja põhjustada ettearvamatuid kõrvaltoimeid.",
-                    "question": "Kas olete kindel, et soovite migratsiooni käivitada erinevate vaikevaluutadega?",
                     "text": "Lähtesüsteemi [{sourceSystemCurrency}] ja sihtsüsteemi [{targetSystemCurrency}] vaikevaluutad ei ühti. Andmeid saab migreerida, kuid neid ei teisendata automaatselt.",
                     "title": "Tunnustatud erinevad vaikeväärutad"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "Jah, ma tahaksin jätkata",
-                    "info": "Erinevate vaikekeeltega migreerimine võib põhjustada rikutud andmekirjeid ja põhjustada ettearvamatuid kõrvaltoimeid.",
-                    "question": "Kas olete kindel, et soovite migreerimist käivitada erinevate vaikekeeltega?",
                     "text": "Lähtesüsteemi [{sourceSystemLanguage}] ja sihtsüsteemi [{targetSystemLanguage}] vaikeeled ei ühti. Andmeid saab migreerida, kuid neid ei määrata automaatselt.",
                     "title": "Erinevad vaikeeled on tuvastatud"
                 }
             },
             "continueButton": "Jätka",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "{parentEntity} emaüksuse {entity} lapselüksust, millel on id \"{parentSourceId}\", ei õnnestunud teisendada.",
-                    "title": "{entity} lapselüksust ei saanud teisendada"
+            "error-resolution": {
+                "codes": {
+                    "SWAG_MIGRATION_CONVERT_ASSOCIATION_MISSING": "Seotud üksus puudub",
+                    "SWAG_MIGRATION_CONVERT_CHILD_ENTITY_FAILED": "Lapselüksuse teisendamine ebaõnnestus",
+                    "SWAG_MIGRATION_CONVERT_DOCUMENT_TYPE_UNSUPPORTED": "Dokumentüübi teisendamine ei toetata",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_ALREADY_EXISTS": "Üksus on juba olemas",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_FAILED": "Üksuse teisendamine ebaõnnestus",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_UNKNOWN": "Sõltuv üksus teadmata",
+                    "SWAG_MIGRATION_CONVERT_FIELD_REASSIGNED": "Üksuse väli määratakse automaatselt ümber",
+                    "SWAG_MIGRATION_CONVERT_LANGUAGE_PACK_DEACTIVATED": "Keelepakett on deaktiveeritud",
+                    "SWAG_MIGRATION_CONVERT_MAIN_VARIANT_RELATION_FAILED": "Põhivariandi seose teisendamine ebaõnnestus",
+                    "SWAG_MIGRATION_CONVERT_OBJECT_TYPE_UNSUPPORTED": "Objekti tüüp toetamata",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_CALCULATION_TYPE_UNSUPPORTED": "Saatmise arvutuse tüüp ei toetata",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_PRICE_UNSUPPORTED": "Kohaletoimetamise hinna tüüp toetamata",
+                    "SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE": "Lähteandmed puudulikud",
+                    "SWAG_MIGRATION_CONVERT_UNSERIALIZED_DATA_INVALID": "Seeriata andmed on kehtetud",
+                    "SWAG_MIGRATION_FETCH_DATASET_MISSING": "Andmekogum olemile puudub",
+                    "SWAG_MIGRATION_FETCH_ENTITY_COUNT_FAILED": "Lähtesüsteemist ei õnnestunud olemite arvu lugeda",
+                    "SWAG_MIGRATION_FETCH_PROCESSOR_MISSING": "Üksuse protsessor puudub",
+                    "SWAG_MIGRATION_MEDIA_DEFAULT_FOLDER_UNSUPPORTED": "Meediumi vaikekausta ei toetata",
+                    "SWAG_MIGRATION_MEDIA_FILE_MISSING": "Meediumifail puudub",
+                    "SWAG_MIGRATION_MEDIA_MIME_TYPE_UNKNOWN": "Meedia MIME-tüüp teadmata",
+                    "SWAG_MIGRATION_MEDIA_TEMPORARY_FILE_FAILED": "Meediumi ajutise faili loomine ebaõnnestus",
+                    "SWAG_MIGRATION_RUN_ABORTED": "Migratsioon katkestati automaatselt",
+                    "SWAG_MIGRATION_RUN_EXCEPTION": "Migratsioonierand toimus",
+                    "SWAG_MIGRATION_RUN_MESSAGE_QUEUE_EXCEPTION": "Tekkis sõnumijärjekorra erand",
+                    "SWAG_MIGRATION_VALIDATION_ASSOCIATION_INVALID": "Üksuse seos on kehtetu",
+                    "SWAG_MIGRATION_VALIDATION_EXCEPTION": "Toimus valideerimiserand",
+                    "SWAG_MIGRATION_VALIDATION_OPTIONAL_FIELD_VALUE_INVALID": "Valikulisel väljal on vale väärtus",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_MISSING": "Nõutav väli puudub",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_VALUE_INVALID": "Nõutav väljal on vale väärtus",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_TRANSLATION_INVALID": "Nõutav tõlge on kehtetu",
+                    "SWAG_MIGRATION_WRITE_EXCEPTION": "Kirjutamiserand tekkis",
+                    "SWAG_MIGRATION_WRITE_THEME_COMPILING_FAILED": "Teema koostamine ebaõnnestus",
+                    "unknown": "Tundmatu viga"
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "Olemust {entity} , millel on lähtekood \"{sourceId}\", ei õnnestunud teisendada.",
-                    "title": "Üksust {entity} ei saanud teisendada"
+                "descriptionTitle": "Välja kirjeldus",
+                "errors": {
+                    "continueMigrationFailed": "Rände jätkamine ebaõnnestus.",
+                    "downloadLogsFailed": "Logifaili allalaadimine ebaõnnestus.",
+                    "fetchExampleFailed": "Näidisandmete allalaadimine ebaõnnestus.",
+                    "fetchExistingFixesFailed": "Olemasolevate paranduste allalaadimine ebaõnnestus.",
+                    "fetchFilterDataFailed": "Filtriandmete allalaadimine ebaõnnestus.",
+                    "fetchLogsFailed": "Logiandmete allalaadimine ebaõnnestus.",
+                    "fetchRunFailed": "Migratsiooni käivitamise andmete allalaadimine ebaõnnestus.",
+                    "fieldValueNotSet": "Välja väärtus pole määratud.",
+                    "invalidFieldValueFormat": "Vale väljaväärtuse vorming.",
+                    "noEntityIdsFound": "Valitud logikirjetest ei leitud kehtivaid olemite ID-sid.",
+                    "noLogsSelected": "Lahendamiseks valige vähemalt üks logikirje.",
+                    "resetResolutionFailed": "Vea lahenduse lähtestamine ebaõnnestus.",
+                    "submitResolutionFailed": "Vealahenduse esitamine ebaõnnestus.",
+                    "validationFailed": "Valideerimine ebaõnnestus."
                 },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "{entity} faili, millel on uri \"{uri}\" ja meediumiid \"{sourceId}\", ei saa alla laadida/kopeerida.",
-                    "title": "Faili {entity} ei saa alla laadida/kopeerida"
+                "modals": {
+                    "details": {
+                        "convertedDataLabel": "Teisendatud andmed",
+                        "sourceDataLabel": "Lähteandmed",
+                        "title": "Detailid: {entityName}"
+                    },
+                    "error": {
+                        "left": {
+                            "details": "Näita üksikasju",
+                            "reset": "Lähtesta",
+                            "select-all": "Vali kõik ({count})",
+                            "status": {
+                                "resolved": "Lahendatud",
+                                "unresolved": "Lahendamata"
+                            }
+                        },
+                        "right": {
+                            "apply": "Rakenda muudatusi",
+                            "banner": {
+                                "content": "Palun looge vähemalt üks valik, mida valida vastavas halduspiirkonnas.",
+                                "link": "Lisage valik",
+                                "title": "Valikut pole saadaval"
+                            },
+                            "title": "Redigeeri: {count} Üksused",
+                            "unhandledBanner": {
+                                "content": "Välja tüüpi ei õnnestunud määrata. Palun parandage töötlemata lähteandmeid. Väärtus peab olema õiges vormingus.",
+                                "title": "Tundmatu väljatüüp"
+                            },
+                            "unresolvableBanner": {
+                                "content": "Lisateabe saamiseks kontrollige logifaili.",
+                                "title": "Seda viga ei saa praegu migratsiooniassistendi kaudu lahendada"
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "Staatus"
+                            }
+                        },
+                        "title": "Parandage viga: {code}, {entityName}, {fieldName}"
+                    }
                 },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "Oleme {entity} , mille allika ID \"{sourceId}\" on juba olemas ja seda ei saa kirjutada.",
-                    "title": "{entity} üksus on juba olemas"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "Oleme {entity} , mille allika ID on \"{sourceId}\", sai välja \"{emptyField}\" asendatud väärtusega \"{replacementField}”.",
-                    "title": "Üksusel {entity} on välja, mis määrati ümber"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "Oleme {requiredForEntity} , millel on allika id \"{requiredForSourceId}\", ei leia sõltuvat {entity} olemit lähteID-ga \"{sourceId}”.",
-                    "title": "Ei leia {entity}"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "Sõnumijärjekorra töötlemisel tekkis erand.",
-                    "title": "Sõnumijärjekorra erand"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "Migratsioon katkestati automaatselt, kuna tekkis liiga palju järjestikuseid erandeid.",
-                    "title": "Migratsioon katkestati automaatselt"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "Toimus erand"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "Üksuse {entity} koguarvu ei õnnestunud lugeda. Veenduge, et tabel \"{table}\" oleks teie lähtesüsteemis olemas ja valikuline tingimus \"{condition}\" on kehtiv. Eranditeade: {exceptionMessage}",
-                    "title": "Ei suutnud lugeda olemite arvu"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "Profiili \"{profileName}\" ja olemuse \"{entity}\" andmekogumit ei leitud. Id \"{sourceId}\" olemust ei õnnestunud töödelda.",
-                    "title": "Andmekogumit ei leitud"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "Silu-väljund"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "Dokumenti, millel on allika ID \"{sourceId}\", ei õnnestunud teisendada, kuna dokumendi tüüp \"{type}\" ei ole toetatud.",
-                    "title": "Dokumendi tüüp ei ole toetatud"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "Üksuse {entity}  e-posti aadress lähtekoodiga \"{sourceId}\" on vale: {email}",
-                    "title": "Vale e-posti aadress"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "Profiili \"{profileName}„, lüüsi\"{gatewayName}\"ja olemuse\"{entity}\"protsessorit ei leitud.",
-                    "title": "Protsessorit ei leitud"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "{missingEntity} allika ID-ga \"{sourceId}\" ei leia, kuid see on vajalik {requiredFor}jaoks.",
-                    "title": "Seotud {entity} ei leitud"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "Lähtefaili ei saanud kopeerida. Fail: {path}",
-                    "title": "Lähtefaili ei leitud"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "Meediumit ei saa alla laadida. Mõjutatud fail: {uri}",
-                    "title": "Meediumit ei saa alla laadida"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "{entity} olemil, millel on lähteid \"{sourceId}\", pole väljale \"{emptyField}” vajalikke andmeid",
-                    "title": "Üksusel {entity} on tühi vajalik väli"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "{entity} olemit lähtekoodiga \"{sourceId}\" ei saanud teisendada, kuna \"{unserializedEntity}\" olemile on kehtetud serialiseerimata objektiandmed ja töötlemata andmed on: {serializedData}",
-                    "title": "Valed seeriata andmed"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "Lapse \"{entity}\" emaüksust ei leitud.",
-                    "title": "Emaüksust ei leitud"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "Numbrivahemiküksust allika ID-ga \"{sourceId}\" ei saanud teisendada toetamata tüübi tõttu: {type}.",
-                    "title": "Toetamata numbrivahemiku tüüp"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "{entity} objekti tüübi „{objectType}„allikatüübiga „{sourceId}„ei saanud teisendada.",
-                    "title": "Toetamata objekti tüüp"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "Toetamata arvutustüübi tõttu ei õnnestunud teisendada lähtekoodiga \"{sourceId}\" tarnimismeetodi üksust: {type}.",
-                    "title": "Toetamata saatmise arvutuse tüüp"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "Toetamata tegurhinna arvutamise tõttu ei saanud saatmisviisi „{shippingMethodId}” allika ID \"{sourceId}\" tarnehinna üksust teisendada.",
-                    "title": "Toetamata saatmisteguri hinna arvutamine"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "Teemat, millel on id \"{sourceId}\", ei õnnestunud koostada.",
-                    "title": "Teema koostamise viga"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "Oleme \"{entity}\" failikirjutajat ei leitud.",
-                    "title": "Failikirjutajat ei leitud"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "On tekkinud kirjutamiserand"
-                },
-                "authorizationError": {
-                    "information": "Autoriseerimisviga. Teie juurdepääsuandmed ei ole õiged. Palun kontrollige seda ja proovige uuesti."
-                },
-                "canNotConnectToServer": "Serveriga ühendus puudub. Kontrollige ühenduses probleeme.",
-                "customerExists": {
-                    "information": "Klient e-posti aadressiga \"{mail}\" on juba olemas. Seda kasutajat ei saa selle e-kirjaga oma andmebaasi lisada."
-                },
-                "gatewayNotFound": {
-                    "information": "Gateway \"{notFoundGateway}\" ei leitud."
-                },
-                "gatewayRead": {
-                    "information": "Ei õnnestunud lugeda väravat \"{unreadableGateway}”."
-                },
-                "localeNotFound": {
-                    "information": "Kohaliku sisestuskoodi \"{notFoundCode}\" ei leitud."
-                },
-                "mediaProcessConnectionError": "Meediumiandmete kopeerimisel tekkis ühenduse tõrge. Palun kontrollige ühendust.",
-                "migrationContextPropertyMissing": {
-                    "information": "Nõutavat atribuuti \"{notFoundProperty}\" migratsioonikonteksti jaoks ei leitud."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "Migratsiooni töökoormuse jaoks nõutavat atribuuti \"{notFoundProperty}\" ei leitud."
-                },
-                "noFileSystemPermissions": {
-                    "information": "Failisüsteemi õigusi failide või kataloogide loomiseks või kirjutamiseks puuduvad. Palun kontrollige oma õigusi."
-                },
-                "profileNotFound": {
-                    "information": "Migratsiooniprofiili \"{notFoundProfile}\" ei leitud."
-                },
-                "undefinedIndex": {
-                    "detail": "Tundmatut indeksit ei leitud.",
-                    "information": "Indeksi \"{unidentifiedIndex}\" ei leitud. Palun kontrollige oma andmeid.",
-                    "title": "Tundmatu indeks"
-                },
-                "unknownError": "Tundmatu viga. Lisateabe saamiseks saate vaadata oma andmebaasi logimistabelit."
+                "step": {
+                    "card": {
+                        "filter": {
+                            "code": {
+                                "label": "Vea nimi",
+                                "placeholder": "Valige tõrke nimi"
+                            },
+                            "entity": {
+                                "label": "Üksuse",
+                                "placeholder": "Valige üksus"
+                            },
+                            "field": {
+                                "label": "Väli",
+                                "placeholder": "Valige väli"
+                            },
+                            "reset": "Lähtesta filtrid",
+                            "status": {
+                                "label": "Vea olek",
+                                "options": {
+                                    "resolved": "Lahendatud",
+                                    "unresolved": "Lahendamata"
+                                },
+                                "placeholder": "Vea oleku valimine"
+                            },
+                            "title": "Filtrid | Filtrid ({count}) | Filtrid ({count})"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "Kood",
+                                "count": "Fikseeritud/Kokku",
+                                "entity": "Üksuse",
+                                "field": "Väli",
+                                "gatewayName": "Värav",
+                                "name": "Nimi",
+                                "profileName": "Profiil"
+                            },
+                            "empty-state": {
+                                "description": "Valitud filtritele vastavaid logisid ei leitud.",
+                                "headline": "Ei leitud midagi"
+                            }
+                        },
+                        "tabs": {
+                            "errors": "Vead ({count})",
+                            "infos": "Info ({count})",
+                            "warnings": "Hoiatused ({count})"
+                        },
+                        "title": "Parandatavad vead"
+                    },
+                    "continue-modal": {
+                        "text-fixable": "Seal on {count} parandatavate vigade rühmi, mis on endiselt lahendamata. Palun parandage need vead enne järelvigade vältimist jätkamist.",
+                        "text-unfixable": "Seal on {count} parandamatuid vigu, mis on endiselt lahendamata. Kui jätkate ülejäänud vigu lahendamata, võivad ilmneda järelvead.",
+                        "title": "Jätka"
+                    },
+                    "header": {
+                        "banner": {
+                            "content": "Seal on {count} vigu või hoiatusi, mida sellel ekraanil ei saa lahendada. Uurimiseks laadige alla logifail ja vaadake üksikasjalikud veateated üle. Võimalik, et selle aluseks olevad probleemid tuleb lahendada lähtesüsteemis. Kui see on lahendatud, jätkamiseks käivitage migratsioon uuesti.",
+                            "title": "Mõningaid vigu ei saa selle vaate kaudu parandada"
+                        },
+                        "continue": "Jätka",
+                        "continueTooltip": "Enne jätkamist parandage kõik parandatavad vead.",
+                        "description": "Vaadake üle ja lahendage importimise ajal tekkinud migreerimisvead. Lahendage andmeprobleemid otse selles vaates või laadige üksikasjaliku teabe saamiseks alla logifail. Jätkake, kui kõik parandatavad vead on lahendatud. Võite selle vaate jätta ja selle juurde hiljem tagasi tulla",
+                        "documentation": "Dokumentatsioon",
+                        "download": "Laadige alla logifail",
+                        "title": "Vea lahendamine"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "Viga",
@@ -282,6 +278,7 @@
                 "documentationLinkText": "Sõnumijärjekorra dokumentatsioon",
                 "flowChart": {
                     "cleanup": "Puhastamine",
+                    "errorResolution": "Vea lahendamine",
                     "fetchData": "Lugemine",
                     "finish": "Valmis",
                     "indexing": "Indekseerimine",
@@ -292,7 +289,6 @@
                 "notice": "Näpunäide: See protsess töötab sõnumijärjekorras. Kui teie pood on õigesti konfigureeritud, ei pea te sellel lehel jääma.",
                 "result": {
                     "historyHint": "Seda teavet saate migratsiooniajaloos igal ajal vaadata. Võimalik, et hiljem lisatakse rohkem logisõnumeid, kuna meediumi allalaadimine töötab endiselt taustal.",
-                    "logSummary": "Logipäevik",
                     "title": "Migratsiooniassistent on valmis"
                 },
                 "status": {
@@ -305,6 +301,11 @@
                         "caption": "Ajutised andmed eemaldatakse. Ränne on peaaegu lõppenud.",
                         "long": "Ränne puhastatakse",
                         "short": "Puhastamine"
+                    },
+                    "error-resolution": {
+                        "caption": "Migreerimine peatatakse, kuni kõik vead on lahendatud.",
+                        "long": "Vead on võimalik lahendada",
+                        "short": "Vea lahendamine"
                     },
                     "fetching": {
                         "caption": "Uusi ülesandeid töödeldakse.",
@@ -322,6 +323,7 @@
                         "long": "Meediat edastatakse",
                         "short": "Meediumiülekanne"
                     },
+                    "unknown": "Tundmatu",
                     "writing": {
                         "caption": "Sõltuvalt poe suurusest võib see võtta paar hetke.",
                         "long": "Andmed kirjutatakse Shopware 6-s",
@@ -348,16 +350,10 @@
                     "transaction_state": "Tehingu seisundid",
                     "user": "Administraatori kasutaja"
                 },
-                "loadingCaption": "Olemasolevaid andmeid on kontrollitud.",
-                "loadingTitle": "Andmete kontroll töötab",
                 "newAssignmentTitle": "Uued ülesanded",
                 "placeholder": "Palun vali",
                 "previousTitle": "eelmine",
-                "unfilledAlert": "Oleme avastanud, et on olemas andmeid, mis nõuavad käsitsi määramist.",
-                "unfilledCaption": "Jätkata saab alles pärast käsitsi ülesande täitmist.",
-                "unfilledTitle": "Andmete kontroll on lõpule viidud",
-                "validCaption": "Andmed on jätkamiseks valmis",
-                "validTitle": "Andmete kontroll on lõppenud"
+                "unfilledAlert": "Oleme avastanud, et on olemas andmeid, mis nõuavad käsitsi määramist."
             },
             "savePremapping": {
                 "message": "Premapping on salvestatud.",
@@ -451,7 +447,8 @@
                     "name": "Nimi",
                     "total": "Andmekogumid"
                 },
-                "noData": "Rändamiseks ei leitud midagi."
+                "noData": "Rändamiseks ei leitud midagi.",
+                "noDataSubline": "Kontrollige oma ühendust või proovige mõnda muud profiili."
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Loo uus ühendus",
@@ -467,14 +464,15 @@
                 "connectionCheck": "Ühenduse kontroll:",
                 "gateway": "Värav:",
                 "lastMigration": "Viimane migratsioon:",
+                "link": "Abi ja dokumentatsioon",
                 "noConnection": "Ühendus puudub",
+                "noConnectionCheckDoneYet": "Ühenduse kontrolli pole veel tehtud",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Ei ole ühendatud",
                 "profile": "Süsteemi profiil:",
-                "refreshTooltip": "Kontrollige ühendust lähtesüsteemiga",
+                "refreshButton": "Värskenda ühendust",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Tühista",
-                    "confirmButtonText": "Jah, kustutage",
                     "content": "Pärast seda ei ole aktiivset ühendust. Ühenduse taastamiseks sisestage uuesti juurdepääsuandmed.",
                     "contentHint": "Kas soovite praegused juurdepääsuandmed kustutada?",
                     "title": "Juurdepääsuandmete kustutamine"
@@ -490,17 +488,35 @@
                     "abortButtonText": "Tühista",
                     "confirmButtonText": "Lõpeta kohe",
                     "content": "Suurepärane! Lõpetame nüüd teie migreerimise ja puhastame ajutised failid ja kasutamata andmed. <strong>Pange tähele:</strong> Migratsiooni lõpuleviimine on terminaalne. Praeguse ühenduse kaudu ei saa te enam andmeid migreerida.",
-                    "contentHint": "Kas soovite nüüd rände lõpule viia?",
                     "errorNotification": {
                         "message": "Ränne on praegu käimas.",
                         "title": "Migratsiooni lõpuleviimisel ilmnes viga"
                     },
                     "header": "Kas olete oma poe andmete migreerimise lõpetanud?",
                     "title": "Rände lõpuleviimine"
+                },
+                "updateBanner": {
+                    "isResettingChecksums": {
+                        "message": "Kontrollsummad lähtestatakse. See võib võtta paar minutit.",
+                        "title": "Kontrollsummade lähtestamine"
+                    },
+                    "isTruncatingMigration": {
+                        "message": "Migratsiooniandmeid kärbitakse. See võib võtta paar minutit.",
+                        "title": "Migratsiooniandmete kärpimine"
+                    }
                 }
             },
             "shopwareMajorVersionText": "Oleme märganud, et teie lähtesüsteemi {sourceSystem} versioon ei vasta teie sihtsüsteemi {targetSystem} versioonile. Enne migreerimise alustamist kasutage mõlema süsteemi jaoks sama peamist versiooni.",
-            "title": "Üldine"
+            "title": "Üldine",
+            "warningModal": {
+                "cancelButton": "Mine tagasi",
+                "confirmButton": "Jätka igatahes",
+                "message": {
+                    "currency": "Erinevate vaikevaluutadega migreerimine võib põhjustada andmekirjete rikutamist ja põhjustada ettearvamatuid kõrvaltoimeid.",
+                    "language": "Erinevate vaikekeeltega migreerimine võib põhjustada rikutud andmekirjeid ja põhjustada ettearvamatuid kõrvaltoimeid."
+                },
+                "title": "Andmete mittevastavus tuvastatud"
+            }
         },
         "wizard": {
             "buttonAbort": "Tühista",
@@ -519,7 +535,6 @@
                     "connectionLabel": "Ühenduse nimi",
                     "connectionPlaceholder": "Sisesta nimi",
                     "connectionTooltip": "Sisestage ühenduse jaoks ainulaadne nimi.",
-                    "contentInformation": "Migratsiooni läbiviimiseks on vaja järgmist teavet.",
                     "gatewayLabel": "Värav",
                     "gatewayPlaceholder": "Valige värav",
                     "gatewayTooltip": "Süsteemide vahelise ühenduse tüüp.",
@@ -538,7 +553,6 @@
                 "connectionSelect": {
                     "connectionLabel": "Ühenduse nimi",
                     "connectionPlaceholder": "Valige ühendus",
-                    "contentInformation": "Andmete värskendamiseks valige loendist olemasolev ühendus.",
                     "title": "Migratsioon - ühenduse muutmine"
                 },
                 "credentials": {
@@ -548,9 +562,9 @@
                         "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "Kui teil on ühenduse loomisega probleeme, võib-olla tasub kontrollida serverisse praegu installitud curl-versiooni ja seda värskendada.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "Andmebaasiühendusel pole õigeid atribuute ja neid ei saa seadistada.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "Andmebaasiühendust ei õnnestunud luua.",
+                        "SWAG_MIGRATION__DUPLICATE_SOURCE_CONNECTION": "Ühendus sama lähtesüsteemiga on juba olemas. Palun kasutage mõnda muud ühendust.",
                         "SWAG_MIGRATION__GATEWAY_READ": "Serveriga ühenduse loomist ei õnnestunud. Palun kontrollige antud poe domeeni.",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "Kui teil on ühenduse loomisega probleeme, võib-olla tasub kontrollida serverisse praegu installitud curl-versiooni ja seda värskendada.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "Teie volitused on valed. Kontrollige neid ja proovige uuesti.",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "Lähtesüsteemiga ühenduse juurdepääsuandmeid ei eksisteeri või on valed. Kontrollige neid ja proovige uuesti.",
                         "SWAG_MIGRATION__IS_RUNNING": "Ränne on praegu käimas. Seetõttu ei saa mandaate redigeerida enne, kui migreerimine on lõpule jõudnud.",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "Nõutavat pistikprogrammi „Migration Connector” pole Shopware 5-sse installitud. Palun installige tasuta pistikprogramm ja proovige uuesti.",
@@ -568,13 +582,22 @@
                             "apiUserLabel": "Kasutajanimi (API kasutaja)",
                             "apiUserPlaceholder": "Sisesta kasutajanimi",
                             "apiUserTooltip": "Teie Shopware 5 taustaprogrammi kasutajanimi.",
-                            "contentInformation": "Shopware 5 ja Shopware 6 vahelise ühenduse loomiseks vajate kehtivaid API mandaate. Teie API mandaadid leiate oma Shopware 5 taustast jaotises „Kasutaja administreerimine”. API juurdepääs tuleb seal aktiveerida ja salvestamisega kinnitada.",
                             "endpointLabel": "Poe domeen",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Minu pood kasutab turvalist ühendust (SSL)"
+                            "endpointSSLLabel": "Minu pood kasutab turvalist ühendust (SSL)",
+                            "pluginLinkText": "Lisateave pistikprogrammi kohta",
+                            "pluginName": "Migratsioonipistik",
+                            "steps": {
+                                "step1": "Installige ja aktiveerige pistikprogramm {pluginName} oma Shopware 5 taustast jaotises Plugin Manager > Laiendused > Migratsioonitööriistad.",
+                                "step2": "Minge oma Shopware 5 taustaprogrammis kasutajate administreerimine.",
+                                "step3": "Valige kasutaja, keda soovite ühenduse jaoks kasutada.",
+                                "step4": "Aktiveerige API-le juurdepääs ja salvestage.",
+                                "step5": "Veenduge, et kasutajal oleks roll local_admin.",
+                                "step6": "Ühenduse loomiseks sisestage siia API mandaadid."
+                            },
+                            "title": "Ühendage oma Shopware 5 pood"
                         },
                         "local": {
-                            "contentInformation": "Teie Shopware 5 andmebaasiga ühenduse loomiseks vajame endiselt juurdepääsuandmeid.",
                             "dbHostLabel": "Võõrustaja",
                             "dbHostPlaceholder": "Sisestage host",
                             "dbNameLabel": "Andmebaasi nimi",
@@ -596,10 +619,21 @@
                             "apiUserLabel": "Juurdepääsuvõtme ID",
                             "apiUserPlaceholder": "Sisestage juurdepääsuvõtme ID",
                             "apiUserTooltip": "Juurdepääs oma integratsiooni võtme ID-le.",
-                            "contentInformation": "Oma allika ja sihtkoha Shopware 6 eksemplari vahelise ühenduse loomiseks vajate kehtivaid API mandaate. Saate need siis, kui loote oma lähtesüsteemi integratsiooni.",
                             "endpointLabel": "Poe domeen",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Minu pood kasutab turvalist ühendust (SSL)"
+                            "endpointSSLLabel": "Minu pood kasutab turvalist ühendust (SSL)",
+                            "integrationLink": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+                            "integrationLinkText": "Lisateave integratsioonide kohta",
+                            "pluginLink": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+                            "pluginLinkText": "Lisateave Migratsiooniassistendi laienduse kohta",
+                            "pluginName": "Migratsiooniassistent",
+                            "steps": {
+                                "step1": "Installige ja aktiveerige lähtesüsteemis laiend {pluginName}.",
+                                "step2": "Looge lähtesüsteemis integreerimine, kasutades Seaded > Süsteem > Integratsioonid.",
+                                "step3": "Looge juurdepääsuvõtme ID ja salajane juurdepääsuvõti.",
+                                "step4": "Ühenduse loomiseks sisestage siia juurdepääsuvõtmed ja poe domeen."
+                            },
+                            "title": "Ühendage oma Shopware 6 pood"
                         }
                     },
                     "statusTitle": "Ühenduse kontroll",
@@ -615,29 +649,6 @@
                     "contentHeadline": "Liigutame mõned asjad",
                     "contentInformation": "Üheskoos ühendame teie poesüsteemi Shopware 6-ga. Seejärel aitab Migratsiooniassistent teil andmeid samm-sammult migreerida.",
                     "title": "Migratsiooniassistent"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "Nõutav pistikprogramm „Migration Connector” on tasuta ja selle leiate oma Shopware 5 taustast jaotisest Plugin Manager > Laiendused > Migratsioonitööriistad. Jätkamiseks installige ja aktiveerige pistikprogramm.",
-                        "contentTitle": "Nõutav pistikprogramm",
-                        "pluginLink": "Lisateave pistikprogrammi kohta"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "Nõuded",
-                        "integration": {
-                            "description": "Looge lähtesüsteemis integreerimine, kasutades Seaded > Süsteem > Integratsioonid. Järgmises etapis vajate genereeritud juurdepääsuvõtme ID-d ja salajast juurdepääsuvõtit.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "Lisateave integratsioonide kohta",
-                            "title": "Integratsioon"
-                        },
-                        "plugin": {
-                            "description": "Installige lähtesüsteemi laiend Migratsiooni Assistant.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "Lisateave Migratsiooniassistendi laienduse kohta",
-                            "title": "Pikendamine"
-                        }
-                    },
-                    "title": "Migratsioon - ühenduse ettevalmistamine"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "Varem saadaval:",

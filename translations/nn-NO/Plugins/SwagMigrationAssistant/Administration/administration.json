@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "API-nøkkelen har ikke riktig lengde ({length}/40 tegn)."
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "Overføringsassistent"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "Kan ikke avbryte overføringen.",
@@ -29,20 +36,24 @@
         },
         "general": {
             "descriptionTextModule": "Modul for å overføre data",
+            "disabledMessages": {
+                "disabled": "Migrasjon er deaktivert i dette miljøet.",
+                "loading": "Migrasjon pågår for tiden.",
+                "noData": "Det er ingen data tilgjengelig for migrering.",
+                "noPermission": "Du har ikke de nødvendige tillatelsene for å utføre en overføring.",
+                "noSelectedData": "Ingen elementer er valgt for overføring.",
+                "resettingChecksum": "Kontrollsummer tilbakestilles for øyeblikket.",
+                "truncatingMigration": "Overføringsdata blir for øyeblikket avkortet.",
+                "unfilledPremapping": "Fullfør alle nødvendige tilordninger før du fortsetter."
+            },
             "mainMenuItemGeneral": "Overføringsassistent",
             "tabDataSelector": "Valg av data",
             "tabHistory": "Historie",
             "tabMain": "Generell"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "Hvis du sletter overføringsdata, fjernes loggoppføringer, mediefiloppføringer, midlertidige overføringsdataposter og overføringskjøringen, som da ikke lenger vil være tilgjengelige i overføringshistorikken.",
-                "contentHint": "Vil du virkelig slette dataene?",
-                "title": "Slett overføringsdata"
-            },
             "connectionName": "Navn på tilkobling",
             "contextMenu": {
-                "clearLogs": "Slett overføringsdata",
                 "details": "Vis detaljer",
                 "downloadLogs": "Last ned logg"
             },
@@ -59,18 +70,16 @@
                 "logDownload": "last ned loggfilen.",
                 "noErrorsOccurred": "Ingen feil har oppstått.",
                 "noProgressData": "Denne kjøringen ble utført i en tidligere versjon av pluginet, og dataene er slettet.",
-                "runStatus": "Overføringsstatus:",
                 "status": {
                     "aborted": "Avbrutt",
                     "finished": "Ferdig",
                     "running": "Kjører"
                 },
-                "timestamp": "Tid:",
                 "title": "Detaljer om overføring"
             },
+            "gateway": "Portalen",
             "importDateTime": "Starttid",
-            "noData": "Ingen migreringer funnet.",
-            "profileAndGateway": "Profil og gateway",
+            "profile": "Profil",
             "selectedData": "Data",
             "shopDomain": "Shop domene",
             "shopSystem": "Shop system",
@@ -78,28 +87,9 @@
         },
         "index": {
             "abortButton": "Avbryte",
-            "assistantCard": {
-                "connection": {
-                    "content": "Overføringsassistenten hjelper deg med å opprette en forbindelse mellom butikksystemet og Shopware 6 for å overføre og overføre dataene dine.",
-                    "link": "Hjelp og dokumentasjon",
-                    "title": "Konfigurere en tilkobling"
-                },
-                "dataSelection": {
-                    "content": "Velg dataene du vil overføre. Det er mulig å inkludere plugin data også, bør plugin allerede være tilgjengelig for Shopware 6. Se etter tilgjengelighet for plugin i Shopware-kontoen din.",
-                    "title": "Angi data for overføring"
-                },
-                "finish": "Ferdig!",
-                "headline": "Hvordan migreringen fungerer",
-                "migrationOverview": {
-                    "content": "1. En automatisk prosess kontrollerer de valgte dataene for manglende tildelinger. Forbered deg på å fullføre den automatiske prosessen ved å legge til manuelle oppgaver.\n2. Butikkens data leses og tildeles.\n3. Alle valgte og riktig tildelte data blir overført til Shopware 6.\n4. Medieelementer lastes ned.",
-                    "title": "Trinn for migrering"
-                },
-                "title": "Informasjon"
-            },
             "backToOverviewButton": "Tilbake til oversikten",
             "confirmAbortDialog": {
-                "cancelPause": "Pause",
-                "cancelRunning": "Fortsett",
+                "cancel": "Fortsett",
                 "confirm": "Stopp migrering",
                 "content": "Migreringen er ikke fullstendig fullført. Allerede migrerte data kan være ubrukelige. Hvis du avslutter nå, må du fullstendig kjøre overføringsprosessen på nytt.",
                 "hint": "Vil du stoppe migreringen?",
@@ -107,169 +97,175 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "Ja, jeg vil gjerne fortsette",
-                    "info": "En migrering med forskjellige standardvalutaer kan føre til ødelagte dataposter og forårsake uforutsigbare bivirkninger.",
-                    "question": "Er du sikker på at dataene skal migreres i standardvalutaen [{targetSystemCurrency}]?",
                     "text": "Valutaen for dataene som skal migreres, samsvarer ikke med standardvalutaen [{targetSystemCurrency}]. Data med [{sourceSystemCurrency}] kan stadig migreres, men de konverteres ikke automatisk. Du kan justere prisene manuelt etterpå.",
                     "title": "Migrering har anerkjent en annen valuta"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "Ja, jeg vil gjerne fortsette",
-                    "info": "En migrering med forskjellige standardspråk kan føre til ødelagte dataposter og forårsake uforutsigbare bivirkninger.",
-                    "question": "Er du sikker på at dataene skal migreres på standardspråket [{targetSystemLanguage}]?",
                     "text": "Språket for dataene som skal migreres, samsvarer ikke med standardspråket [{targetSystemLanguage}]. Data med [{sourceSystemLanguage}] kan stadig migreres, men de konverteres ikke automatisk. Du kan justere oversettelsene manuelt etterpå.",
                     "title": "Migrering har gjenkjent et annet språk"
                 }
             },
             "continueButton": "Fortsett",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "Den {entity} underordnede enhed fra den {parentEntity} overordnede enhed med id \"{parentSourceId}\" kunne ikke konverteres.",
-                    "title": "{entity} underordnede enheten kan ikke konverteres"
+            "error-resolution": {
+                "codes": {
+                    "SWAG_MIGRATION_CONVERT_ASSOCIATION_MISSING": "Tilknyttet enhet mangler",
+                    "SWAG_MIGRATION_CONVERT_CHILD_ENTITY_FAILED": "Konvertering av underordnede enheter mislyktes",
+                    "SWAG_MIGRATION_CONVERT_DOCUMENT_TYPE_UNSUPPORTED": "Konvertering av dokumenttype støttes ikke",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_ALREADY_EXISTS": "Enhet eksisterer allerede",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_FAILED": "Enhetskonvertering mislyktes",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_UNKNOWN": "Avhengig enhet ukjent",
+                    "SWAG_MIGRATION_CONVERT_FIELD_REASSIGNED": "Entitetsfelt tilordnet automatisk",
+                    "SWAG_MIGRATION_CONVERT_LANGUAGE_PACK_DEACTIVATED": "Språkpakke deaktivert",
+                    "SWAG_MIGRATION_CONVERT_MAIN_VARIANT_RELATION_FAILED": "Konvertering av hovedvariantrelasjoner mislyktes",
+                    "SWAG_MIGRATION_CONVERT_OBJECT_TYPE_UNSUPPORTED": "Objekttype støttes ikke",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_CALCULATION_TYPE_UNSUPPORTED": "Fraktberegningstype støttes ikke",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_PRICE_UNSUPPORTED": "Fraktpristype støttes ikke",
+                    "SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE": "Kildedata ufullstendige",
+                    "SWAG_MIGRATION_CONVERT_UNSERIALIZED_DATA_INVALID": "Userialiserte data er ugyldige",
+                    "SWAG_MIGRATION_FETCH_DATASET_MISSING": "Datasett for enhet mangler",
+                    "SWAG_MIGRATION_FETCH_ENTITY_COUNT_FAILED": "Kan ikke lese antall enheter fra kildesystemet",
+                    "SWAG_MIGRATION_FETCH_PROCESSOR_MISSING": "Prosessor for enhet mangler",
+                    "SWAG_MIGRATION_MEDIA_DEFAULT_FOLDER_UNSUPPORTED": "Standardmappe for media støttes ikke",
+                    "SWAG_MIGRATION_MEDIA_FILE_MISSING": "Mediefil mangler",
+                    "SWAG_MIGRATION_MEDIA_MIME_TYPE_UNKNOWN": "Medie-MIME-type ukjent",
+                    "SWAG_MIGRATION_MEDIA_TEMPORARY_FILE_FAILED": "Opprettelse av midlertidig mediefiler mislyktes",
+                    "SWAG_MIGRATION_RUN_ABORTED": "Migrering avbrutt automatisk",
+                    "SWAG_MIGRATION_RUN_EXCEPTION": "Overføringsunntak oppstod",
+                    "SWAG_MIGRATION_RUN_MESSAGE_QUEUE_EXCEPTION": "Unntaket i meldingskø oppstod",
+                    "SWAG_MIGRATION_VALIDATION_ASSOCIATION_INVALID": "Enhetstilknytning er ugyldig",
+                    "SWAG_MIGRATION_VALIDATION_EXCEPTION": "Valideringsunntak oppstod",
+                    "SWAG_MIGRATION_VALIDATION_OPTIONAL_FIELD_VALUE_INVALID": "Valgfritt felt har en ugyldig verdi",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_MISSING": "Obligatorisk felt mangler",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_VALUE_INVALID": "Obligatorisk felt har en ugyldig verdi",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_TRANSLATION_INVALID": "Nødvendig oversettelse er ugyldig",
+                    "SWAG_MIGRATION_WRITE_EXCEPTION": "Skriveunntak oppstod",
+                    "SWAG_MIGRATION_WRITE_THEME_COMPILING_FAILED": "Tema kompilering mislyktes",
+                    "unknown": "Ukjent feil"
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "{entity} -enheten med kilde-ID \"{sourceId}\" kunne ikke konverteres.",
-                    "title": "{entity} -enheten kunne ikke konverteres"
+                "descriptionTitle": "Feltbeskrivelse",
+                "errors": {
+                    "continueMigrationFailed": "Mislyktes fortsatt migrering.",
+                    "downloadLogsFailed": "Kan ikke laste ned loggfilen.",
+                    "fetchExampleFailed": "Mislyktes å hente eksempeldata.",
+                    "fetchExistingFixesFailed": "Mislyktes å hente eksisterende reparasjoner.",
+                    "fetchFilterDataFailed": "Mislyktes å hente filterdata.",
+                    "fetchLogsFailed": "Mislyktes å hente loggdata.",
+                    "fetchRunFailed": "Mislyktes å hente data om overføringskjøring.",
+                    "fieldValueNotSet": "Feltverdien er ikke angitt.",
+                    "invalidFieldValueFormat": "Ugyldig feltverdiformat.",
+                    "noEntityIdsFound": "Ingen gyldige enhets-ID-er funnet i de valgte loggoppføringene.",
+                    "noLogsSelected": "Velg minst én loggoppføring for å løse.",
+                    "resetResolutionFailed": "Mislyktes tilbakestilling av feiloppløsning.",
+                    "submitResolutionFailed": "Mislyktes å sende feilløsning.",
+                    "validationFailed": "Validering mislyktes."
                 },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "{entity} -filen med uri \"{uri}\" og medie-id \"{sourceId}\" kan ikke lastes ned/kopieres.",
-                    "title": "{entity} -filen kan ikke lastes ned/kopieres"
+                "modals": {
+                    "details": {
+                        "convertedDataLabel": "Konverterte data",
+                        "sourceDataLabel": "Kildedata",
+                        "title": "Detaljer: {entityName}"
+                    },
+                    "error": {
+                        "left": {
+                            "details": "Vis detaljer",
+                            "reset": "Tilbakestille",
+                            "select-all": "Velg alle ({count})",
+                            "status": {
+                                "resolved": "Løst",
+                                "unresolved": "Uavklart"
+                            }
+                        },
+                        "right": {
+                            "apply": "Ta i bruk endringer",
+                            "banner": {
+                                "content": "Vennligst opprett minst ett alternativ for å velge i det tilsvarende administrasjonsområdet.",
+                                "link": "Legg til et alternativ",
+                                "title": "Ingen alternativ tilgjengelig"
+                            },
+                            "title": "Rediger: {count} Items",
+                            "unhandledBanner": {
+                                "content": "Felttypen kunne ikke bestemmes. Vennligst korriger råkildedataene. Verdien må være i riktig format.",
+                                "title": "Ukjent felttype"
+                            },
+                            "unresolvableBanner": {
+                                "content": "Vennligst sjekk loggfilen for mer informasjon.",
+                                "title": "Denne feilen kan for øyeblikket ikke løses via Migreringsassistenten"
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "Status"
+                            }
+                        },
+                        "title": "Løs feil: {code}, {entityName}, {fieldName}"
+                    }
                 },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "{entity} -enheten med kilde-id \"{sourceId}\" eksisterer allerede og kan ikke skrives.",
-                    "title": "{entity} -enheten eksisterer allerede"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "{entity} -enheten med kilde-id \"{sourceId}\" fikk feltet \"{emptyField}\" erstattet med \"{replacementField}».",
-                    "title": "Enheten {entity} har et felt som ble tildelt på nytt"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "{requiredForEntity} -enheten med kilde-id \"{requiredForSourceId}\" kan ikke finne den avhengige {entity} -enheten med kilde-id \"{sourceId}».",
-                    "title": "Finner ikke {entity}"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "Et unntak oppstod under behandlingen av meldingskøen.",
-                    "title": "Unntak for meldingskø"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "Overføringen ble avbrutt automatisk, fordi det skjedde for mange påfølgende unntak.",
-                    "title": "Migrering avbrutt automatisk"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "Det oppstod et unntak"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "Totalt antall for enhet {entity} kunne ikke leses. Kontroller at tabellen \"{table}\" finnes i kildesystemet ditt, og at den valgfrie betingelsen \"{condition}\" er gyldig. Unntak melding: {exceptionMessage}",
-                    "title": "Kunne ikke lese enhetstall"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "DataSet for profil \"{profileName}\" og enhet \"{entity}\" ikke funnet. Entitet med id \"{sourceId}\" kunne ikke behandles.",
-                    "title": "DataSet ble ikke funnet"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "Debug-Output"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "Dokumentet med kilde-IDen \"{sourceId}\" kunne ikke konverteres, fordi dokumenttypen \"{type}\" ikke understøttes.",
-                    "title": "Dokumenttype støttes ikke"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "E-postadressen til enheten {entity}  med kilde-ID \"{sourceId}\" er ugyldig: {email}",
-                    "title": "Ugyldig e-postadresse"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "Prosessor for profil{profileName}«, gateway\"{gatewayName}\"og enhet\"{entity}\"ikke funnet.",
-                    "title": "Finner ikke prosessor"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "{missingEntity} med kilde-ID \"{sourceId}\" kan ikke bli funnet, men kreves for {requiredFor}.",
-                    "title": "Finner ikke tilknyttet {entity}"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "Kildefilen kunne ikke kopieres. Fil: {path}",
-                    "title": "Finner ikke kildefilen"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "Kan ikke laste ned medier. Berørt fil: {uri}",
-                    "title": "Kan ikke laste ned medier"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "{entity} -enheten med kilde-id \"{sourceId}\" har ikke de nødvendige dataene for feltet \"{emptyField}»",
-                    "title": "{entity} -enheten har et tomt nødvendig felt"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "{entity} -enheten med kilde-id \"{sourceId}\" kunne ikke konverteres på grunn av ugyldige userialiserte objektdata for enheten \"{unserializedEntity}\" og rådataene er: {serializedData}",
-                    "title": "Ugyldige userialiserte data"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "Finner ikke overordnet enhet for \"{entity}\" underordnet objekt.",
-                    "title": "Finner ikke overordnet enhet"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "NummerRange-entitet med kilde-ID \"{sourceId}\" kan ikke konverteres på grunn av type som ikke støttes: {type}.",
-                    "title": "Typen for nummerområde som ikke støttes"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "{entity} av objekttype \"{objectType}\" med kilde-Id \"{sourceId}\" kan ikke konverteres.",
-                    "title": "Objekttype støttes ikke"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "Forsendelsesmetodeenheten med kilde-ID{sourceId}«kan ikke konverteres på grunn av beregningstype som ikke støttes: {type}.",
-                    "title": "Typen for frakt som ikke støttes"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "Fraktprisenheten med kilde-ID «{sourceId}» for fraktmetode «{shippingMethodId}» kan ikke konverteres på grunn av faktor prisberegning som ikke støttes.",
-                    "title": "Prisberegning for fraktfaktor som ikke støttes"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "Temaet med id \"{sourceId}\" kunne ikke kompileres.",
-                    "title": "Tema kompilering feil"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "Finner ikke filskriver for \"{entity}\" enhet.",
-                    "title": "Finner ikke filskriver"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "Det har oppstått et skriveunntak"
-                },
-                "authorizationError": {
-                    "information": "Autorisasjonsfeil. Tilgangsdataene dine er ikke riktige. Kontroller det, og prøv på nytt."
-                },
-                "canNotConnectToServer": "Ingen tilkobling til tjeneren. Kontroller tilkoblingen for problemer.",
-                "customerExists": {
-                    "information": "Kunden med e-post \"{mail}\" eksisterer allerede. Du kan ikke legge til denne brukeren med denne e-posten i databasen."
-                },
-                "gatewayNotFound": {
-                    "information": "Gateway \"{notFoundGateway}\" ikke funnet."
-                },
-                "gatewayRead": {
-                    "information": "Kunne ikke lese gateway \"{unreadableGateway}»."
-                },
-                "localeNotFound": {
-                    "information": "Finner ikke kode for nasjonal innstilling \"{notFoundCode}\"."
-                },
-                "mediaProcessConnectionError": "Det oppstod en tilkoblingsfeil under kopiering av mediedata. Kontroller tilkoblingen.",
-                "migrationContextPropertyMissing": {
-                    "information": "Obligatorisk egenskap \"{notFoundProperty}\" for overføringskontekst ikke funnet."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "Obligatorisk egenskap \"{notFoundProperty}\" for migreringsarbeidsbelastning ikke funnet."
-                },
-                "noFileSystemPermissions": {
-                    "information": "Ingen filsystemtillatelser til å opprette eller skrive filer eller kataloger. Kontroller tillatelsene dine."
-                },
-                "profileNotFound": {
-                    "information": "Finner ikke migreringsprofil{notFoundProfile}."
-                },
-                "undefinedIndex": {
-                    "detail": "Finner ikke uidentifisert indeks.",
-                    "information": "Finner ikke indeksen \"{unidentifiedIndex}\". Vennligst sjekk dataene dine.",
-                    "title": "Uidentifisert indeks"
-                },
-                "unknownError": "Ukjent feil. Du kan se i loggingstabellen i databasen for mer informasjon."
+                "step": {
+                    "card": {
+                        "filter": {
+                            "code": {
+                                "label": "Feilnavn",
+                                "placeholder": "Velg et feilnavn"
+                            },
+                            "entity": {
+                                "label": "Enhet",
+                                "placeholder": "Velg en enhet"
+                            },
+                            "field": {
+                                "label": "Feltet",
+                                "placeholder": "Velg et felt"
+                            },
+                            "reset": "Tilbakestill filtre",
+                            "status": {
+                                "label": "Feilstatus",
+                                "options": {
+                                    "resolved": "Løst",
+                                    "unresolved": "Uavklart"
+                                },
+                                "placeholder": "Velg en feilstatus"
+                            },
+                            "title": "Filtre | Filtre ({count}) | Filtre ({count})"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "Kode",
+                                "count": "Fast/Totalt",
+                                "entity": "Enhet",
+                                "field": "Feltet",
+                                "gatewayName": "Portalen",
+                                "name": "Navn",
+                                "profileName": "Profil"
+                            },
+                            "empty-state": {
+                                "description": "Ingen logger som samsvarer med de valgte filtrene ble funnet.",
+                                "headline": "Ingenting funnet"
+                            }
+                        },
+                        "tabs": {
+                            "errors": "Feil ({count})",
+                            "infos": "Informasjon ({count})",
+                            "warnings": "Advarsler ({count})"
+                        },
+                        "title": "Fikserbare feil"
+                    },
+                    "continue-modal": {
+                        "text-fixable": "Det er {count} grupper med fikserbare feil som fremdeles er uløste. Rett disse feilene før du fortsetter for å unngå oppfølgingsfeil.",
+                        "text-unfixable": "Det er {count} ufikserbare feil som fremdeles er uløste. Hvis du fortsetter uten å løse de gjenværende feilene, kan oppfølgingsfeil vises.",
+                        "title": "Fortsett"
+                    },
+                    "header": {
+                        "banner": {
+                            "content": "Det er {count} -feil eller advarsler som ikke kan løses fra dette skjermbildet. For å undersøke, last ned loggfilen og se gjennom de detaljerte feilmeldingene. De underliggende problemene må kanskje løses i kildesystemet. Når det er løst, kjører du migreringen på nytt for å fortsette.",
+                            "title": "Noen feil kan ikke repareres via denne visningen"
+                        },
+                        "continue": "Fortsett",
+                        "continueTooltip": "Løs alle feilene som kan løses før du fortsetter.",
+                        "description": "Gjennomgå og løse overføringsfeil som oppstod under importen. Løs dataproblemer direkte i denne visningen, eller last ned loggfilen for detaljert informasjon. Fortsett når alle fikserbare feil er løst. Du kan forlate denne visningen og komme tilbake til den senere",
+                        "documentation": "dokumentasjon",
+                        "download": "Last ned loggfil",
+                        "title": "Feiloppløsning"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "Feil",
@@ -282,6 +278,7 @@
                 "documentationLinkText": "Dokumentasjon for meldingskø",
                 "flowChart": {
                     "cleanup": "Opprydding",
+                    "errorResolution": "Feiloppløsning",
                     "fetchData": "Lesing",
                     "finish": "Ferdig",
                     "indexing": "Indeksering",
@@ -292,7 +289,6 @@
                 "notice": "Tips: Denne prosessen kjører i meldingskøen. Du trenger ikke å være på denne siden hvis butikken din er riktig konfigurert.",
                 "result": {
                     "historyHint": "Du kan se denne informasjonen når som helst i overføringshistorikken. Det er mulig at flere loggmeldinger vil bli lagt til på et senere tidspunkt fordi medienedlastingen fortsatt kjører i bakgrunnen.",
-                    "logSummary": "Loggbok",
                     "title": "Migreringsassistenten er ferdig"
                 },
                 "status": {
@@ -305,6 +301,11 @@
                         "caption": "Midlertidige data blir fjernet. Migrasjonen er nesten fullført.",
                         "long": "Migrasjonen ryddes opp",
                         "short": "Opprydding"
+                    },
+                    "error-resolution": {
+                        "caption": "Overføringen er satt på pause til alle feilene er løst.",
+                        "long": "Feil kan løses",
+                        "short": "Feiloppløsning"
                     },
                     "fetching": {
                         "caption": "De nye oppgavene behandles.",
@@ -322,6 +323,7 @@
                         "long": "Mediene blir overført",
                         "short": "Medieoverføring"
                     },
+                    "unknown": "Ukjent",
                     "writing": {
                         "caption": "Avhengig av butikkens størrelse kan det ta noen øyeblikk.",
                         "long": "Dataene blir skrevet i Shopware 6",
@@ -348,16 +350,10 @@
                     "transaction_state": "Transaksjonstilstander",
                     "user": "Administrasjon bruker"
                 },
-                "loadingCaption": "De eksisterende dataene er sjekket.",
-                "loadingTitle": "Datakjekken kjører",
                 "newAssignmentTitle": "Nye oppdrag",
                 "placeholder": "Vennligst velg",
                 "previousTitle": "Forrige",
-                "unfilledAlert": "Vi har oppdaget at det finnes data som krever manuell tildeling.",
-                "unfilledCaption": "Du kan bare fortsette etter at den manuelle tilordningen er fullført.",
-                "unfilledTitle": "Datakontrollen er fullført",
-                "validCaption": "Dataene er klare til å fortsette",
-                "validTitle": "Datakontrollen er fullført"
+                "unfilledAlert": "Vi har oppdaget at det finnes data som krever manuell tildeling."
             },
             "savePremapping": {
                 "message": "Forhåndsordning er lagret.",
@@ -451,7 +447,8 @@
                     "name": "Navn",
                     "total": "Datasett"
                 },
-                "noData": "Ingenting funnet å migrere."
+                "noData": "Ingenting funnet å migrere.",
+                "noDataSubline": "Sjekk tilkoblingen din eller prøv en annen profil."
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Opprett ny tilkobling",
@@ -467,14 +464,15 @@
                 "connectionCheck": "Connection sjekk:",
                 "gateway": "Gateway:",
                 "lastMigration": "Siste migrering:",
+                "link": "Hjelp og dokumentasjon",
                 "noConnection": "Ingen tilkobling",
+                "noConnectionCheckDoneYet": "Ingen tilkoblingskontroll utført ennå",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Ikke tilkoblet",
                 "profile": "Systemprofil:",
-                "refreshTooltip": "Kontroller tilkoblingen til kildesystemet",
+                "refreshButton": "Oppdater tilkobling",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Avbryte",
-                    "confirmButtonText": "Ja, slett",
                     "content": "Det vil ikke være noen aktiv forbindelse etter dette. Skriv inn tilgangsdataene dine på nytt for å gjenopprette tilkoblingen.",
                     "contentHint": "Vil du slette gjeldende tilgangsdata?",
                     "title": "Slett tilgangsdata"
@@ -490,17 +488,35 @@
                     "abortButtonText": "Avbryte",
                     "confirmButtonText": "Avslutt nå",
                     "content": "Flott! La oss nå fullføre overføringen og rydde opp i midlertidige filer og ubrukte data. <strong>Vær oppmerksom på:</strong> Fullføring av overføringen er terminal. Du vil ikke kunne overføre flere data via den aktuelle forbindelse.",
-                    "contentHint": "Vil du fullføre migreringen nå?",
                     "errorNotification": {
                         "message": "En overføring pågår for øyeblikket.",
                         "title": "Det oppstod en feil under fullføring av overføringen"
                     },
                     "header": "Er du ferdig med å overføre butikkdataene dine?",
                     "title": "Avslutt migreringen"
+                },
+                "updateBanner": {
+                    "isResettingChecksums": {
+                        "message": "Kontrollsummene tilbakestilles. Dette kan ta noen minutter.",
+                        "title": "Tilbakestille kontrollsummer"
+                    },
+                    "isTruncatingMigration": {
+                        "message": "Overføringsdataene blir avkortet. Dette kan ta noen minutter.",
+                        "title": "Avkorting av overføringsdata"
+                    }
                 }
             },
             "shopwareMajorVersionText": "Vi har lagt merke til at kildesystemet {sourceSystem} -versjonen ikke samsvarer med målsystemet {targetSystem} -versjonen. Sørg for å bruke samme hovedversjon for begge systemene før du starter overføringen.",
-            "title": "Generell"
+            "title": "Generell",
+            "warningModal": {
+                "cancelButton": "Gå tilbake",
+                "confirmButton": "Fortsett uansett",
+                "message": {
+                    "currency": "En migrering med forskjellige standardvalutaer kan føre til ødelagte dataposter og forårsake uforutsigbare bivirkninger.",
+                    "language": "En migrering med forskjellige standardspråk kan føre til ødelagte dataposter og forårsake uforutsigbare bivirkninger."
+                },
+                "title": "Datafvikelse oppdaget"
+            }
         },
         "wizard": {
             "buttonAbort": "Avbryte",
@@ -519,7 +535,6 @@
                     "connectionLabel": "Navn på tilkobling",
                     "connectionPlaceholder": "Skriv inn navn",
                     "connectionTooltip": "Skriv inn et unikt navn for tilkoblingen.",
-                    "contentInformation": "Følgende informasjon er nødvendig for å utføre overføringen.",
                     "gatewayLabel": "Portalen",
                     "gatewayPlaceholder": "Velg gateway",
                     "gatewayTooltip": "Typen av forbindelse mellom systemene.",
@@ -538,7 +553,6 @@
                 "connectionSelect": {
                     "connectionLabel": "Navn på tilkobling",
                     "connectionPlaceholder": "Velg en tilkobling",
-                    "contentInformation": "Velg en eksisterende tilkobling fra listen for å oppdatere dataene.",
                     "title": "Migrering — Endre tilkoblingen"
                 },
                 "credentials": {
@@ -548,9 +562,9 @@
                         "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "Hvis du har problemer med å koble til, kan det være verdt å sjekke den installerte curl-versjonen på serveren din og oppdatere den.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "Databaseforbindelse har ikke de riktige attributtene, og de kan ikke angis.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "Databasetilkobling kunne ikke opprettes.",
+                        "SWAG_MIGRATION__DUPLICATE_SOURCE_CONNECTION": "En forbindelse til det samme kildesystemet eksisterer allerede. Vennligst bruk en annen forbindelse.",
                         "SWAG_MIGRATION__GATEWAY_READ": "Kunne ikke oprette forbindelse til serveren. Vennligst sjekk det oppgitte butikkdomenet.",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "Hvis du har problemer med å koble til, kan det være verdt å sjekke den installerte curl-versjonen på serveren din og oppdatere den.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "Påloggingsinformasjonen din er feil. Vennligst sjekk dem og prøv igjen.",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "Tilgangsdataene for tilkoblingen til kildesystemet eksisterer ikke eller er feil. Vennligst sjekk dem og prøv igjen.",
                         "SWAG_MIGRATION__IS_RUNNING": "En overføring pågår for øyeblikket. Du kan derfor ikke redigere legitimasjonen før overføringen er fullført.",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "Den nødvendige plugin «Migration Connector» er ikke installert i Shopware 5. Installer den gratis plugin og prøv på nytt.",
@@ -568,13 +582,22 @@
                             "apiUserLabel": "Brukernavn (API-bruker)",
                             "apiUserPlaceholder": "Skriv inn brukernavn",
                             "apiUserTooltip": "Brukernavn for din Shopware 5-serverdel.",
-                            "contentInformation": "Du trenger gyldig API-legitimasjon for å opprette en forbindelse mellom Shopware 5 og Shopware 6. API-legitimasjonen din finner du i Shopware 5-serverdelen under «Brukeradministrasjon». API-tilgang må aktiveres der og bekreftes ved lagring.",
                             "endpointLabel": "Shop domene",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Butikken min bruker en sikker tilkobling (SSL)"
+                            "endpointSSLLabel": "Butikken min bruker en sikker tilkobling (SSL)",
+                            "pluginLinkText": "Mer informasjon om plugin",
+                            "pluginName": "Migreringskontakt",
+                            "steps": {
+                                "step1": "Installer og aktiver plugin {pluginName} fra Shopware 5-backend under Plugin Manager > Utvidelser > Migreringsverktøy.",
+                                "step2": "Gå til Brukeradministrasjon i Shopware 5-backend.",
+                                "step3": "Velg brukeren du vil bruke for tilkoblingen.",
+                                "step4": "Aktiver API-tilgang og lagre.",
+                                "step5": "Forsikre deg om at brukeren har rollen local_admin.",
+                                "step6": "Skriv inn API-legitimasjonen her for å opprette tilkoblingen."
+                            },
+                            "title": "Koble til Shopware 5-butikken din"
                         },
                         "local": {
-                            "contentInformation": "Vi trenger fortsatt tilgangsdata for å koble til Shopware 5-databasen din.",
                             "dbHostLabel": "Vert",
                             "dbHostPlaceholder": "Skriv inn vert",
                             "dbNameLabel": "Navn på database",
@@ -596,10 +619,21 @@
                             "apiUserLabel": "Tilgangsnøkkel ID",
                             "apiUserPlaceholder": "Angi tilgangsnøkkel-ID",
                             "apiUserTooltip": "Få tilgang til nøkkel-ID for integrasjonen.",
-                            "contentInformation": "Du trenger gyldig API-legitimasjon for å opprette en forbindelse mellom kilde- og målforekomsten for Shopware 6. Du får disse, når du opretter en integration i dit kildesystem.",
                             "endpointLabel": "Shop domene",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Butikken min bruker en sikker tilkobling (SSL)"
+                            "endpointSSLLabel": "Butikken min bruker en sikker tilkobling (SSL)",
+                            "integrationLink": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+                            "integrationLinkText": "Mer om integrasjoner",
+                            "pluginLink": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+                            "pluginLinkText": "Mer om Migration Assistant-utvidelsen",
+                            "pluginName": "Overføringsassistent",
+                            "steps": {
+                                "step1": "Installer og aktiver utvidelsen {pluginName} på kildesystemet.",
+                                "step2": "Opprett en integrasjon i kildesystemet via Innstillinger > System > Integrasjoner.",
+                                "step3": "Generer en tilgangsnøkkel-ID og hemmelig tilgangsnøkkel.",
+                                "step4": "Skriv inn tilgangsnøklene og butikkdomenet her for å opprette forbindelsen."
+                            },
+                            "title": "Koble til Shopware 6-butikken"
                         }
                     },
                     "statusTitle": "Kontrollér for tilkobling",
@@ -615,29 +649,6 @@
                     "contentHeadline": "La oss flytte noen ting",
                     "contentInformation": "Sammen vil vi koble ditt butikksystem til Shopware 6. Etterpå vil migreringsassistenten hjelpe deg med å overføre dataene dine trinnvis.",
                     "title": "Overføringsassistent"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "Den nødvendige plugin «Migration Connector» er gratis og finnes i Shopware 5-serverdelen under Plugin Manager > Utvidelser > Migreringsverktøy. Vennligst installer og aktiver pluginet for å fortsette.",
-                        "contentTitle": "Plugin kreves",
-                        "pluginLink": "Mer information om plugin"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "Krav",
-                        "integration": {
-                            "description": "Opprett en integrasjon i kildesystemet via Innstillinger > System > Integrasjoner. Du trenger den genererte tilgangsnøkkel-ID-en og den hemmelige tilgangsnøkkelen i neste trinn.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "Mer om integrasjoner",
-                            "title": "integrasjon"
-                        },
-                        "plugin": {
-                            "description": "Installer Migration Assistant-utvidelsen i kildesystemet.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "Mer om Migration Assistant-utvidelsen",
-                            "title": "Utvidelse"
-                        }
-                    },
-                    "title": "Migrasjon - Tilkobling"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "Tidligere tilgjengelig:",

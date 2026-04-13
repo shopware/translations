@@ -317,6 +317,7 @@
             "newsletter_update": "Pendaftaran buletin diperbarui",
             "product_export_log": "Ekspor produk dijalankan",
             "review_form_send": "Formulir ulasan dikirim",
+            "revocation_request_sent": "Formulir permintaan pencabutan telah dikirim.",
             "state_enter_order_delivery_state_cancelled": "Status pengiriman masuk dibatalkan",
             "state_enter_order_delivery_state_open": "Pengiriman memasuki status terbuka",
             "state_enter_order_delivery_state_returned": "Pengiriman memasuki status dikembalikan",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Pilih berkas",
             "caption": "Seret berkas untuk diunggah",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "File yang dipilih \"{name}\" memiliki ekstensi file yang tidak didukung. Silakan gunakan salah satu ekstensi file berikut: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Berkas yang terpilih \"{name}\" terlalu besar untuk di upload. Ukuran berkas tidak boleh melebihi {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Tidak ada dokumen yang ditemukan",
                 "title": "Pengeditan massal - Sukses"
             },
-            "warningText": "Mohon tunggu hingga pengeditan massal selesai. Ini mungkin memakan waktu lama. Jika Anda menutup tab browser atau membatalkan proses sebelum waktunya, tidak semua perubahan akan diterapkan. Anda dapat menjalankan edit massal lagi kapan saja."
+            "warningText": "Mohon tunggu hingga pengeditan massal selesai. Ini mungkin memakan waktu lama. Jika Anda menutup tab browser atau membatalkan proses sebelum waktunya, tidak semua perubahan akan diterapkan. Anda dapat menjalankan edit massal lagi kapan saja.",
+            "warningTextDocumentDeletion": "Dokumen adalah bagian dari pesanan dan mungkin relevan untuk tujuan pajak. Menghapusnya dapat memengaruhi keterlacakan catatan akuntansi Anda. Harap pastikan bahwa penghapusan diizinkan secara hukum."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Dokumen",
+                "deleteDocuments": {
+                    "helpText": "Dengan opsi ini, semua jenis dokumen yang dipilih akan dihapus.",
+                    "label": "Hapus: Dokumen"
+                },
                 "downloadDocuments": {
                     "helpText": "Dengan opsi ini, dokumen terbaru yang tersedia ditawarkan untuk diunduh. Beberapa dokumen digabungkan ke dalam file yang sama. Unduhan tersedia setelah beberapa perubahan selesai.",
                     "label": "Unduh: Dokumen"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Halaman buletin",
                     "privacyPage": "Halaman privasi",
                     "revocationPage": "Pemberitahuan pencabutan",
+                    "revocationRequestPage": "Formulir permintaan pencabutan",
                     "shippingPaymentInfoPage": "Informasi pembayaran dan pengiriman",
                     "tosPage": "Halaman TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Judul",
                         "type": "Jenis formulir",
                         "typeContact": "Kontak",
-                        "typeNewsletter": "Newsletter/buletin"
+                        "typeNewsletter": "Newsletter/buletin",
+                        "typeRevocationRequest": "Pencabutan"
                     },
                     "placeholder": {
                         "type": "Pilih jenis formulir..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Tindakan",
+                        "comment": "Komentar",
+                        "contractNumber": "Nomor kontrak (nomor pesanan, nomor berlangganan, ... ) *    ",
                         "email": "Alamat email*",
                         "firstName": "Nama depan*",
                         "lastName": "Nama belakang",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} lakukan.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Tidak {criteriaName}",
         "placeholder": "Semua"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Saluran ekspor",
+                        "placeholder": "Pilih saluran ekspor…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Saluran ekspor"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Saluran ekspor",
+                        "placeholder": "Pilih saluran ekspor…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Saluran ekspor"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Menambahkan kolom saluran ekspor dan filter ke daftar pesanan dan pelanggan.",
+            "mainMenuItemGeneral": "Pelacakan Saluran Ekspor"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Ekstensi \"{name}\" tidak kompatibel dengan versi Shopware ini",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Jenis",
                 "labelRecipient": "Penerima",
                 "labelReplyTo": "Alamat balasan-ke",
+                "labelRevocationRequestFormMail": "Penanyakan",
                 "labelSenderName": "Nama pengirim",
                 "labelSubject": "Subyek",
                 "placeholderDescription": "Masukkan deskripsi...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Masukkan nama aturan...",
                 "placeholderPriority": "Masukkan prioritas aturan...",
                 "placeholderType": "Pilih jenis aturan...",
+                "productStatesConditionWarning": "Kondisi “Item dengan status produk” tidak digunakan lagi dan akan dihapus di v6.8. Silakan gunakan “Item dengan jenis produk” sebagai gantinya.",
                 "tabDetail": "Umum",
                 "tabRule": "Syarat"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Kembali",
             "returnedPartially": "Kembali sebagian",
             "reviewForm": "Ulasan produk",
+            "revocationRequestCustomer": "Permintaan pencabutan dikirim",
+            "revocationRequestMerchant": "Permintaan pencabutan diterima",
             "send": "Kirim",
             "sent": "Kirim",
             "shipped": "Dikirim",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Karet (^)",
             "categoriesLabel": "Kategori",
             "closeProfileLabel": "Tutup profil",
-            "closeViolation": "Tutup",
             "commasLabel": "Koma (,)",
             "configuratorSettingLabel": "Pengaturan konfigurasi varian",
             "copyOfLabel": "Salin dari:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Impor"
             },
             "updateEntitiesLabel": "Perbarui data yang ada",
-            "violationMessage": "Profil Anda belum valid. Anda perlu menambahkan pemetaan ke bidang wajib yang ditunjukkan di bawah ini untuk menyimpan profil:"
+            "violationModal": {
+                "duplicateMappings": "Anda memiliki <strong>pemetaan duplikat</strong> di bidang berikut. Harap hapus duplikat untuk menyimpan profil:",
+                "missingRequiredFields": "Anda perlu menambahkan pemetaan ke kolom wajib <strong></strong> yang ditunjukkan di bawah ini untuk menyimpan profil:",
+                "title": "Profil Anda belum valid"
+            }
         },
         "progress": {
             "startExportLabel": "Mulai ekspor",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Simpan di media"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Pindahkan Objek",
-                "rotate-tooltip": "Putar Objek",
-                "scale-tooltip": "Objek Skala"
-            },
-            "saveChanges": "Simpan perubahan",
-            "titleModal": "Editor Model"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Kembali"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Pindahkan Objek",
+            "rotate-tooltip": "Putar Objek",
+            "scale-tooltip": "Objek Skala"
+        },
+        "open-model-editor-tooltip": "Buka Editor Model",
+        "properties": {
+            "transformation": {
+                "label": "Transformasi",
+                "position": {
+                    "label": "Posisi"
+                },
+                "rotation": {
+                    "label": "Rotasi"
+                },
+                "scale": {
+                    "label": "Skala"
+                }
+            }
+        },
+        "titleModal": "Editor Model"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Untuk membuat catatan kredit, tambahkan item kredit terlebih dahulu.",
-                    "storno": "Faktur pembatalan tidak dapat dibuat tanpa faktur."
+                    "storno": "Faktur pembatalan tidak dapat dibuat tanpa faktur.",
+                    "zugferd_cancellation_invoice": "Faktur pembatalan ZugFerd tidak dapat dibuat tanpa faktur.",
+                    "zugferd_credit_note": "Untuk membuat catatan kredit ZugFerd, diperlukan faktur dan setidaknya satu item kredit.",
+                    "zugferd_embedded_cancellation_invoice": "Faktur pembatalan ZugFerd yang disematkan tidak dapat dibuat tanpa faktur.",
+                    "zugferd_embedded_credit_note": "Untuk membuat catatan kredit ZugFerd yang disematkan, diperlukan faktur dan setidaknya satu item kredit."
                 },
                 "primaryAction": "Buat dokumen",
+                "showZugferd": "Tampilkan varian ZugFerd",
                 "title": "Buat dokumen"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Dokumen",
+            "confirmDeleteText": "Dokumen ini adalah bagian dari pesanan dan mungkin relevan untuk tujuan pajak. Menghapusnya dapat memengaruhi keterlacakan catatan akuntansi Anda. Harap pastikan bahwa penghapusan diizinkan secara hukum. Tindakan ini tidak dapat dibatalkan.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Nomor dokumen {number} telah dialokasikan."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Unggah dokumen khusus",
             "labelCancel": "Tutup",
             "labelCreate": "Buat",
+            "labelCreateDownload": "Buat dan unduh",
             "labelCreateDownloadPdf": "Buat dan unduh PDF",
             "labelCreateSend": "Buat dan kirim",
             "labelDeliveryDate": "Tanggal pengiriman",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Saring",
             "titleSidebarItemFilterAffiliateCode": "Kode afiliasi",
             "titleSidebarItemFilterCampaignCode": "Kode kampanye",
-            "titleSidebarItemRefresh": "Segarkan"
+            "titleSidebarItemRefresh": "Segarkan",
+            "tooltipCustomerComment": "Informasi tambahan: {comment}",
+            "tooltipInternalComment": "Komentar internal: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Nama",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Di sini Anda dapat menentukan opsional tiga sampai lima kata kunci di mana produk Anda harus ditemukan.",
             "helpTextMetaDescription": "Dengan deskripsi meta, Anda mengkonfirmasi kepada pelanggan Anda bahwa mereka berada di tempat yang tepat di toko Anda. Anda menciptakan insentif, membangun kepercayaan, dan mengundang tindakan. Anda harus membatasi diri Anda hingga maksimal 155 karakter. Shopware memungkinkan panjang maksimum 255 karakter.",
             "helpTextMetaTitle": "Judul meta adalah elemen SEO yang paling penting dan harus unik untuk setiap halaman. Anda harus membatasi diri Anda panjangnya hingga maksimal 56 karakter. Kata kunci Anda idealnya harus ditempatkan di bagian paling depan.",
+            "helpTextOpenGraphDescription": "Deskripsi Open Graph digunakan saat berbagi produk di media sosial. Jika dibiarkan kosong, deskripsi meta akan digunakan sebagai fallback.",
+            "helpTextOpenGraphTitle": "Judul Open Graph digunakan saat berbagi produk di media sosial. Jika dibiarkan kosong, judul meta akan digunakan sebagai fallback.",
             "labelCanonicalProduct": "Variant para URL canonical",
             "labelCanonicalUrlMode": "Gunakan URL kanonik tunggal untuk semua varian",
             "labelKeywords": "Kata kunci SEO",
             "labelMetaDescription": "Deskripsi meta",
             "labelMetaTitle": "Judul meta",
+            "labelOpenGraphDescription": "OG deskripsi",
+            "labelOpenGraphImage": "Gambar OG",
+            "labelOpenGraphTitle": "Judul OG",
             "placeholderCanonicalProduct": "Pilih varian...",
             "placeholderKeywords": "Masukkan satu atau lebih kata kunci...",
             "placeholderMetaDescription": "Masukkan deskripsi meta...",
-            "placeholderMetaTitle": "Masukkan judul meta..."
+            "placeholderMetaTitle": "Masukkan judul meta...",
+            "placeholderOpenGraphDescription": "Masukkan deskripsi Open Graph...",
+            "placeholderOpenGraphTitle": "Masukkan judul Open Graph...",
+            "titleOpenGraph": "Buka Grafik"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Backorders ditolak.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Kondisi"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Kode Afiliasi",
+            "affiliateCodePlaceholder": "Masukkan kode afiliasi…",
+            "campaignCodeLabel": "Kode kampanye",
+            "campaignCodePlaceholder": "Masukkan kode kampanye…",
+            "cardTitle": "Kode pelacakan",
+            "description": "Konfigurasikan kode afiliasi dan kampanye yang akan disematkan di URL produk feed saluran ini. Kode-kode ini mengidentifikasi pesanan dan pelanggan yang dirujuk dari saluran Agentic Commerce ini."
+        },
         "detail": {
             "activateDisable": "Harap tetapkan tema sebelum mengaktifkan dan menyimpan Sales Channel.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Atur ulang ke default",
+                "errorLoadingTemplate": "Tidak dapat memuat template default.",
+                "integration": {
+                    "feedUrlLabel": "Ekspor URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Koneksi OpenAI",
+                            "introduction": {
+                                "description": "Saluran Penjualan ini menghasilkan umpan produk JSONL sehingga produk Anda dapat muncul di hasil pencarian ChatGPT. Untuk melakukan ini, Anda harus mendaftar sebagai pedagang dan membagikan URL umpan dengan OpenAI. Segala sesuatu yang lain dijelaskan dalam panduan langkah demi langkah di bawah ini.",
+                                "title": "Cara: Mengatur dan mengkoneksi"
+                            },
+                            "stepByStep": "<li>Mendaftar sebagai pedagang di <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchant</a></li><li>Salin URL ekspor (di bawah) dan bagikan dengan OpenAI sesuai dengan <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">dokumen umpan produk</a></li><li>Pastikan URL ekspor dapat diakses publik</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Langkah demi langkah"
+                },
+                "openAiSettingsTitle": "Pengaturan OpenAI",
+                "resetTemplateSuccess": "Template telah diatur ulang ke default. Harap simpan untuk menyimpan perubahan.",
+                "tabIntegration": "Integrasi",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Dengan bantuan Google Analytics Anda dapat mengumpulkan dan menganalisis data toko Anda. Untuk memanfaatkan fungsi ini, Akun Google diperlukan. Jika Anda belum memiliki akun Google Analytics, Anda mungkin ingin mendaftar di sini: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Setelah berhasil mendaftar, Anda akan menerima ID pelacakan, yang harus diisi di bawah ini untuk mengaktifkan integrasi.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Pelanggan yang dirujuk",
+                    "dateRanges": {
+                        "14Days": "14 hari terakhir",
+                        "180Days": "180 hari terakhir",
+                        "24Hours": "24 jam terakhir",
+                        "30Days": "30 hari terakhir",
+                        "7Days": "7 hari terakhir",
+                        "yesterday": "Kemarin"
+                    },
+                    "numbers": "Hitung",
+                    "orderCardHeadline": "Pesanan yang dirujuk",
+                    "summary": "Ringkasan",
+                    "totalTurnover": "Pergantian",
+                    "turnoverCardHeadline": "Omset yang dirujuk"
+                },
+                "tabInsights": "Statistik"
             },
             "products": {
                 "buttonAddProducts": "Tambahkan {productCount} produk | Tambahkan {productCount} produk | Tambahkan {productCount} produk",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Sudah ada dokumen lain dari jenis yang sama di Sales Channel ini.",
             "disabledSalesChannelSelect": "Pilih jenis dokumen terlebih dahulu.",
             "disabledTypeSelect": "Jenis dokumen global tidak dapat diubah.",
+            "displayTitle": "Tampilan:",
             "helpTextDisplayAdditionalNoteDelivery": "Hanya memenuhi syarat untuk negara-negara anggota UE, lihat juga “Pengaturan> Negara”.",
-            "helpTextDisplayCompanyAddress": "Menampilkan alamat perusahaan di bawah header di sisi kanan dokumen.",
-            "helpTextDisplayDeliveryCountries": "Menampilkan indikasi “pengiriman komunitas intra” pada dokumen faktur untuk negara tertentu.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokumen ditampilkan di bawah “Pesanan” di akun pelanggan masing-masing. Perhatikan bahwa hanya dokumen yang telah benar-benar dikirim ke pelanggan ditampilkan di akun pelanggan.",
-            "helpTextDisplayReturnAddress": "Menampilkan alamat perusahaan sebagai alamat pengirim di atas alamat pelanggan di blok alamat.",
-            "helpTextPaymentDueDate": "Misalnya: +30 hari, +4 minggu, +1 minggu 2 hari",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Bank",
             "labelCompanyCity": "Kota",
             "labelCompanyCountry": "Negara",
             "labelCompanyEmail": "Alamat email",
+            "labelCompanyLogo": "Logo perusahaan",
             "labelCompanyName": "Nama",
             "labelCompanyPhone": "Nomor telepon",
             "labelCompanyStreet": "Jalan",
             "labelCompanyUrl": "Website",
             "labelCompanyZipcode": "Kode pos",
-            "labelDeliveryCountries": "Negara-negara anggota",
             "labelDisplayAdditionalNoteDelivery": "Tampilkan label “Pengiriman Intra-komunitas”",
             "labelDisplayCompanyAddress": "Tampilan alamat perusahaan",
             "labelDisplayCustomerVatId": "Menampilkan VAT-ID pelanggan",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Format berkas",
             "labelItemsPerPage": "Item per halaman",
             "labelName": "Nama teknis",
-            "labelOptionMedia": "Logo perusahaan",
             "labelPageOrientation": "Orientasi halaman",
             "labelPageSize": "Format halaman",
             "labelPaymentDueDate": "Tanggal jatuh tempo pembayaran",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Kantor Pajak",
             "labelType": "Jenis dokumen",
             "labelVatId": "PPN Reg.No.",
-            "messageSaveSuccess": "Dokumen\"{name}\"telah disimpan.",
-            "placeholderDisplayDeliveryCountries": "Cari dan tambahkan negara yang berlaku untuk pengiriman Intra-komunitas...",
+            "pageOrientationOptions": {
+                "landscape": "Lanskap",
+                "portrait": "Potret"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Legal",
+                "letter": "Surat"
+            },
+            "placeholderBankBic": "Masukkan BIC...",
+            "placeholderBankIban": "Masukkan IBAN...",
+            "placeholderBankName": "Masukkan nama bank...",
+            "placeholderCompanyCity": "Masukkan kota...",
+            "placeholderCompanyCountry": "Pilih negara...",
+            "placeholderCompanyEmail": "Masukkan alamat surel...",
+            "placeholderCompanyName": "Masukkan nama perusahaan...",
+            "placeholderCompanyPhone": "Masukkan nomor telepon...",
+            "placeholderCompanyStreet": "Masuk ke jalan...",
+            "placeholderCompanyUrl": "Masuk ke situs web...",
+            "placeholderCompanyZipcode": "Masukkan kode pos...",
+            "placeholderExecutiveDirector": "Masuk ke eksekutif bisnis...",
+            "placeholderFileNamePrefix": "Masukkan awalan...",
+            "placeholderFileNameSuffix": "Masukkan akhiran...",
+            "placeholderFileTypes": "Pilih format file...",
+            "placeholderItemsPerPage": "Masukkan jumlah item per halaman...",
             "placeholderName": "Masukkan nama...",
+            "placeholderPageOrientation": "Pilih orientasi halaman...",
+            "placeholderPageSize": "Pilih format halaman...",
+            "placeholderPaymentDueDate": "Masukkan tanggal jatuh tempo pembayaran...",
+            "placeholderPlaceOfFulfillment": "Masukkan tempat pemenuhan...",
+            "placeholderPlaceOfJurisdiction": "Masukkan tempat yurisdiksi...",
+            "placeholderSalesChannel": "Pilih saluran penjualan...",
+            "placeholderTaxNumber": "Masukkan nomor pajak...",
+            "placeholderTaxOffice": "Masuk ke kantor pajak...",
+            "placeholderType": "Pilih jenis dokumen...",
+            "placeholderVatId": "Masukkan VAT-ID...",
             "textHeadline": "Dokumen baru"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Tigas",
             "columnName": "Nama teknis",
             "columnType": "Jenis",
-            "columnUsedIn": "Ditetapkan untuk",
             "contextMenuEdit": "Edit/sunting",
             "global": "Global",
             "messageDeleteSuccess": "Dokumen\"{name}\"telah dihapus.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Tolak",
+                "give-consent": "Berikan Persetujuan",
                 "save-preferences": "Simpan preferensi",
                 "share-all-data": "Bagikan semua",
                 "share-nothing": "Tidak berbagi apapun"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/id/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Untuk detail selengkapnya, lihat {data-use-details} dan {privacy-policy}kami.",
-                "privacy-policy": {
-                    "label": "Kebijakan Privasi",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Dengan berbagi data toko dan pengguna, Anda membantu kami memahami bagaimana Administrasi digunakan dan mengembangkan peningkatan yang membuat pekerjaan sehari-hari Anda lebih mudah.",
-            "opt-out-info": "Anda dapat memilih keluar kapan saja melalui pengaturan, dan pengaturan Profil.",
+            "opt-out-info": {
+                "profile": "Profil Anda — Preferensi Privasi",
+                "settings": "Pengaturan - Privasi",
+                "snippet": "Anda dapat mengubah preferensi kapan saja: kelola pengaturan Data Toko di bawah {settings}, dan pengaturan Data Pribadi di bawah {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Sesuai dengan GDPR",
                 "no-third-party": "Tidak ada data yang dibagikan dengan pihak ketiga",
@@ -9899,6 +10059,12 @@
                     "order": "memesan",
                     "store": "menyimpan data"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "di sini",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Data diagnostik</strong> dalam Shopware mengacu pada informasi yang terkait dengan kesehatan sistem, kesalahan, dan metrik kinerja platform. Ini termasuk detail seperti log sistem, pesan kesalahan, waktu respons server, dan indikator teknis lainnya. Menganalisis data ini membantu kami mengidentifikasi, mengatasi, dan menerapkan perbaikan untuk masalah umum atau kerentanan dengan cepat, menjaga integritas platform.",
                     "order": "<strong>Data pesanan</strong> dalam Shopware mengacu pada informasi terperinci tentang pesanan pelanggan yang ditempatkan di platform. Ini termasuk spesifikasi seperti produk yang dipesan, jumlah, harga, asal, metode pembayaran, pengiriman, dll. Kami menganalisis data ini untuk memahami tren dan pola yang membantu kami meningkatkan fitur serta mengembangkan layanan baru yang dirancang untuk meningkatkan kesuksesan bisnis Anda. Kami tidak mengumpulkan data pribadi dari pelanggan Anda yang dapat digunakan untuk mengidentifikasi satu orang.",
@@ -9912,6 +10078,12 @@
                 "description": "Kami menggunakan {data} tentang bagaimana Anda berinteraksi dengan Administrasi untuk meningkatkan kegunaan dan kinerjanya.",
                 "emphasizes": {
                     "data": "data"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Kebijakan Privasi",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Data penggunaan</strong> dalam Shopware berkaitan dengan informasi yang terkait dengan bagaimana pengguna admin dan pengunjung etalase berinteraksi dengan platform kami. Ini termasuk detail seperti interaksi dengan modul admin Shopware yang berbeda, halaman yang dilihat, durasi kunjungan, jalur klik, dan tindakan pengguna dalam platform dan etalase. Dengan mengevaluasi data penggunaan, kami dapat mengidentifikasi area platform yang sering dikunjungi atau dihindari untuk mengukur adopsi fitur, yang mengarah pada peningkatan potensial dalam tata letak, desain, dan fungsionalitas."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Alihkan item \"{name}”",
         "toggleTreeItem": "Alihkan item pohon \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Setuju",
-        "checkListDataSharing": {
-            "gdprCompliant": "Kami mematuhi GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>“Bagikan”</strong> mengacu pada pengungkapan data untuk tujuan pihak penerima sendiri; kami dapat mengungkapkan data kepada penyedia layanan kami."
-            },
-            "personalData": "Kami tidak mengumpulkan data pribadi",
-            "securelyProcessed": "Data Anda diproses dan disimpan dengan aman",
-            "thirdParty": "Kami tidak membagikan data Anda dengan pihak ketiga untuk tujuan mereka sendiri",
-            "title": "Kami dapat meyakinkan Anda bahwa:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Data diagnostik",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Data diagnostik</strong> dalam Shopware mengacu pada informasi yang terkait dengan kesehatan sistem, kesalahan, dan metrik kinerja platform. Ini termasuk detail seperti log sistem, pesan kesalahan, waktu respons server, dan indikator teknis lainnya. Menganalisis data ini membantu kami mengidentifikasi, mengatasi, dan menerapkan perbaikan untuk masalah umum atau kerentanan dengan cepat, menjaga integritas platform.",
-                "orderDataHelp": "<strong>Data pesanan</strong> dalam Shopware mengacu pada informasi terperinci tentang pesanan pelanggan yang ditempatkan di platform. Ini termasuk spesifikasi seperti produk yang dipesan, jumlah, harga, asal, metode pembayaran, pengiriman, dll. Kami menganalisis data ini untuk memahami tren dan pola yang membantu kami meningkatkan fitur serta mengembangkan layanan baru yang dirancang untuk meningkatkan kesuksesan bisnis Anda. Kami tidak mengumpulkan data pribadi dari pelanggan Anda yang dapat digunakan untuk mengidentifikasi satu orang.",
-                "storeDataHelp": "<strong>Menyimpan data</strong> dalam Shopware berkaitan dengan semua informasi yang terkait dengan etalase online Anda. Seperti produk, daftar, harga, gambar, deskripsi, dll. dan metadata tentang pengaturan toko Anda, seperti tema dan plugin. Kami tidak mengumpulkan data pribadi yang dapat digunakan untuk mengidentifikasi pengguna admin atau pengunjung etalase. Dengan menggunakan data toko agregat, kami dapat memberikan wawasan melalui pembelajaran mesin seperti tren pasar yang sedang berkembang, memungkinkan Anda menyesuaikan penawaran produk atau strategi pemasaran yang sesuai.",
-                "usageDataHelp": "<strong>Data penggunaan</strong> dalam Shopware berkaitan dengan informasi yang terkait dengan bagaimana pengguna admin dan pengunjung etalase berinteraksi dengan platform kami. Ini termasuk detail seperti interaksi dengan modul admin Shopware yang berbeda, halaman yang dilihat, durasi kunjungan, jalur klik, dan tindakan pengguna dalam platform dan etalase. Dengan mengevaluasi data penggunaan, kami dapat mengidentifikasi area platform yang sering dikunjungi atau dihindari untuk mengukur adopsi fitur, yang mengarah pada peningkatan potensial dalam tata letak, desain, dan fungsionalitas. Kami tidak mengumpulkan data pribadi yang dapat digunakan untuk mengidentifikasi admin atau pengunjung etalase."
-            },
-            "orderData": "Data pesanan",
-            "storeData": "Simpan data",
-            "usageData": "Berbagi data"
-        },
-        "confirmAuthorization": "Dengan mengklik “Setuju”, Anda mengonfirmasi bahwa Anda berwenang untuk masuk ke dalam perjanjian ini atas nama perusahaan Anda.",
-        "declineDataCollection": "Tidak saat ini",
-        "fullDetailsDescription": "Rincian lengkap dari perjanjian ini dapat ditemukan di {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Anda selalu dapat memilih keluar dari berbagi data kapan saja. Bergabunglah dengan kami dalam membentuk masa depan e-commerce dengan berbagi data Anda dengan kami!",
-        "headline": "Membentuk masa depan e-commerce",
-        "improvingDescription": "Kami terus meningkatkan layanan yang kami berikan kepada Anda. Untuk mengambil langkah selanjutnya, kami menganalisis data Anda menggunakan teknik seperti pembelajaran mesin (misalnya pengenalan pola) untuk mengembangkan dan meningkatkan produk kami. Data Anda juga akan digunakan untuk mengembangkan layanan berbasis data yang dirancang untuk meningkatkan kesuksesan bisnis Anda.",
-        "improvingDescriptionNotAccepted": "Kami terus meningkatkan layanan yang kami berikan kepada Anda. Untuk mengambil langkah selanjutnya, kami ingin menganalisis data Anda menggunakan teknik seperti pembelajaran mesin (misalnya pengenalan pola) untuk mengembangkan dan meningkatkan produk kami. Data Anda juga akan digunakan untuk mengembangkan layanan berbasis data yang dirancang untuk meningkatkan kesuksesan bisnis Anda.",
-        "privacyPolicy": "shopware.com/id/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Anda dapat setiap saat menandatangani perjanjian dan dengan demikian berkontribusi dan mendapatkan keuntungan dari evolusi konstan layanan kami, dengan mengizinkan berbagi data di {link}Anda",
-        "settings": {
-            "deactivateDataCollection": "Nonaktifkan berbagi data",
-            "sharingInformation": "Anda berbagi data dengan kami"
-        },
-        "thankYouMessage": "{thanksForParticipation} Anda dapat memilih keluar dari perjanjian ini kapan saja dan dengan demikian berhenti berkontribusi dan mendapatkan manfaat dari pengembangan berkelanjutan layanan kami dengan menonaktifkan berbagi data di {link}Anda",
-        "thanksForParticipation": "Terima kasih atas partisipasi Anda!",
-        "togglePath": "Pengaturan"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Pengguna & izin"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Kunci skala seragam",
+        "unlock-uniform-scale": "Buka skala seragam"
+    },
     "sw-wizard": {
         "backButton": "Kembali",
-        "closeButton": "Tutup",
         "finishButton": "Selesai",
         "nextButton": "Berikutnya"
     }

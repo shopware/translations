@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Predplatné ponecháva stav pozastavený"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuálne ceny",
             "b2b_components_role": "Úloha | Role",
             "b2b_components_shopping_list": "Nákupné zoznamy",
             "b2b_employee": "Zamestnanec | Zamestnanci",
+            "bundle": "Balík | Balíky",
+            "bundle_item": "Balíková položka | Balíkové položky",
             "export_assistant": "Exportný asistent",
-            "individual_pricing": "Individuálne ceny",
             "quote": "Citácia | Citácie",
             "quote_line_item": "Položka riadku ponuky | Položky riadku ponuky",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Položka je balíková položka",
+                "lineItemOfBundleRule": "Položka vybraného balíka",
                 "subscriptionCartRule": "Predplatný košík",
                 "subscriptionIntervalRule": "Interval predplatného",
                 "subscriptionPlanRule": "Predplatný plán"
             },
             "group": {
                 "subscription": "Predplatné"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Balík"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Ďakujeme, že ste vyskúšali plán Bundles. Radi by sme počuli vašu spätnú väzbu.",
+                "link": "Poskytnite pripomienky"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Vlastné polia"
+            },
+            "general": {
+                "title": "Všeobecné informácie"
+            },
+            "items": {
+                "actionOpenProductDetails": "Otvoriť podrobnosti o produkte",
+                "buttonAddBundleItems": "Pridanie produktov",
+                "columnName": "Meno",
+                "columnPosition": "Pozícia",
+                "columnPrice": "Cena",
+                "emptyStateDescription": "Do zväzku pridajte najmenej dva produkty.",
+                "emptyStateTitle": "Zatiaľ nie sú pridané žiadne produkty",
+                "title": "Produkty ({count})",
+                "tooltipBundleItemCustomizedProduct": "Priradená vlastná šablóna produktu",
+                "tooltipBundleItemHasVariants": "Produkt má varianty",
+                "tooltipBundleItemInactive": "Neaktívne",
+                "tooltipBundleItemIncompatibleVisibilities": "Nie je priradený k predajným kanálom balíka: {salesChannels}",
+                "tooltipBundleItemIssues": "Problémy:",
+                "tooltipBundleItemOutOfStockCloseout": "Vypredané na sklade (výpredaj)",
+                "tooltipBundleItemOutOfStockTemporary": "Tento produkt je momentálne vypredaný. Balík bude opäť nakupovateľný, keď budú všetky produkty opäť na sklade.",
+                "tooltipBundleItemOutOfStockTitle": "Vypredané",
+                "tooltipRefreshData": "Obnoviť dáta"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Dátum vydania",
+                    "placeholder": "Zadajte dátum vydania..."
+                },
+                "title": "Označovanie"
+            },
+            "media": {
+                "subtitle": "Pridajte súbory do galérie médií balíka.",
+                "title": "Médiá"
+            },
+            "messageMinBundleItemsRequired": "Pridajte aspoň dva produkty na vytvorenie balíka.",
+            "messageNoChanges": "Žiadne zmeny na uloženie",
+            "messageSaveError": "Nepodarilo sa uložiť balíček",
+            "messageSaveSuccess": "Balík bol úspešne uložený",
+            "price": {
+                "addDiscount": "Pridať zľavu",
+                "currencyDependingPrices": "Mena v závislosti od cien",
+                "discount": "Zľava",
+                "discountRules": "Pravidlá zľavy",
+                "discountTitle": "Zľava",
+                "discountType": "Typ",
+                "discountTypeAbsolute": "Absolútne",
+                "discountTypePercentage": "Percentuálny",
+                "discountValue": "Hodnota",
+                "discountValuePlaceholder": "Pridajte hodnotu...",
+                "doNotCombineWith": "Nekombinujte s",
+                "maxValuePlaceholder": "Neobmedzený",
+                "maximumDiscountValue": "Maximálna diskontná hodnota",
+                "openAdvancedPricesView": "Otvoriť zobrazenie pokročilých cien",
+                "preventCombination": "Zabrániť kombinácii s inými propagačnými akciami",
+                "preventCombinationHelpText": "Ak je povolená, táto zľava nemôže byť kombinovaná s inými propagačnými akciami",
+                "promotionsPlaceholder": "Pridajte propagačné akcie...",
+                "rulesPlaceholder": "Pridať pravidlá...",
+                "subtotalBased": "Medzisúčet založený na 1 produkte | Medzisúčet založený na {count} produktoch",
+                "title": "Zobrazenie cien",
+                "total": "Celkom",
+                "totalBased": "Celkom na základe 1 produktu | Celkom na základe {count} produktov"
+            },
+            "tabGeneral": "generál",
+            "tabLayout": "Usporiadanie",
+            "tabSeo": "SEO",
+            "textHeadline": "Nový balík",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Tým sa zabráni tomu, aby bol zväzok viditeľný v týchto kanáloch. Skontrolujte viditeľnosť nasledujúcich produktov:",
+                    "notAssignedTo": "nie je priradený",
+                    "title": "Niektoré produkty nie sú priradené ku všetkým vybraným predajným kanálom"
+                },
+                "title": "Viditeľnosť a štruktúra"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktívny",
+                "placeholder": "Vyberte stav..."
+            },
+            "availabilityFilter": {
+                "label": "Dostupnosť",
+                "placeholder": "Vyberte dostupnosť..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Zahrnuté produkty",
+                "placeholder": "Vyberte zahrnuté produkty..."
+            },
+            "categoriesFilter": {
+                "label": "Kategórie",
+                "placeholder": "Vybrať kategórie..."
+            },
+            "fromPlaceholder": "Zadajte počiatočnú hodnotu...",
+            "imagesFilter": {
+                "label": "Obrázky",
+                "placeholder": "Vyberte stav obrázka...",
+                "textHasCriteria": "Aspoň jeden obrázok produktu priradený",
+                "textNoCriteria": "Nie sú priradené žiadne obrázky produktu"
+            },
+            "priceFilter": {
+                "label": "Cena"
+            },
+            "productNumberFilter": {
+                "label": "Číslo produktu",
+                "placeholder": "Zadajte číslo produktu..."
+            },
+            "releaseDateFilter": {
+                "label": "Dátum vydania"
+            },
+            "salesChannelsFilter": {
+                "label": "Predajné kanály",
+                "placeholder": "Vyberte Predajné kanály..."
+            },
+            "salesFilter": {
+                "label": "Predaj"
+            },
+            "tagsFilter": {
+                "label": "Štítky",
+                "placeholder": "Vybrať tagy..."
+            },
+            "toPlaceholder": "Zadajte koncovú hodnotu..."
+        },
+        "general": {
+            "description": "Balíky",
+            "headlineBundles": "Balíky",
+            "mainMenuItemGeneral": "Balíky",
+            "placeholderSearchBar": "Vyhľadávanie balíkov...",
+            "title": "Balíky"
+        },
+        "generalForm": {
+            "highlightHelpText": "Zvýraznené zväzky sú vo všetkých zoznamoch balíkov označené pestrofarebným štítkom a slovom „Tip“. Farba štítku môžete upraviť zmenou možnosti „Upozornenie“ v nastaveniach <a href=\"{themeUrl}\">témy</a> . Text štítku môžete zmeniť aj úpravou príslušného textového úryvku <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Opis",
+            "labelMarkAsTopseller": "Zvýraznite balík",
+            "labelName": "Meno",
+            "labelProductNumber": "Číslo produktu",
+            "placeholderDescription": "Zadajte popis balíka...",
+            "placeholderName": "Zadajte názov balíka...",
+            "placeholderProductNumber": "Zadajte číslo produktu..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Balík vyžaduje najmenej dva produkty.",
+            "notEnoughProductsTitle": "Nedostatok produktov",
+            "restrictions": "Jeden alebo viac produktov má obmedzenia, ktoré ovplyvňujú dostupnosť tohto balíka. Podrobnosti nájdete na ikonách varovania.",
+            "restrictionsTitle": "Niektoré produkty majú obmedzenia"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Neboli nájdené žiadne zodpovedajúce produkty",
+            "noProductsMatchingBundleSalesChannels": "Neexistujú žiadne aktívne produkty, ktoré by zodpovedali vybraným predajným kanálom balíka.",
+            "noProductsMatchingTermAndFilter": "Upravte hľadaný výraz alebo filtre.",
+            "placeholderSearch": "Vyhľadávanie produktov...",
+            "showIncluded": "Zobraziť iba vybrané ({count})",
+            "textWhySomeItemsMissing": "Prečo niektoré produkty chýbajú?",
+            "title": "Pridanie produktov",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Práve teraz balíky fungujú iba s fyzickými produktmi a jednotlivými variantmi. <br /><br /> Produkty musia byť priradené k vybraným predajným kanálom balíka, aby sa zobrazili v zozname."
+        },
+        "list": {
+            "available": "Dostupné",
+            "buttonAddBundle": "Pridať balík",
+            "columnActive": "Aktívny",
+            "columnAvailable": "Dostupnosť",
+            "columnBundleItemCount": "Počet výrobkov",
+            "columnCreatedAt": "Vytvorené v",
+            "columnName": "Meno",
+            "columnProductNumber": "Číslo produktu",
+            "columnSales": "Predaj",
+            "columnTotalPrice": "Celková cena",
+            "columnUpdatedAt": "Aktualizované na",
+            "emptyStateDescription": "Balíky môžu zvýšiť vašu priemernú hodnotu objednávky a povzbudiť zákazníkov k nákupu súvisiacich produktov.",
+            "emptyStateTitle": "Pridajte balíčky na zvýšenie predaja",
+            "messageSaveSuccess": "Balíček \"{name}\" bol uložený.",
+            "titleSidebarItemRefresh": "Obnoviť",
+            "unavailable": "Nedostupný"
+        },
+        "priceModal": {
+            "currency": "Mena",
+            "price": "Hodnota",
+            "title": "Pokročilé ceny"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Pridanie produktov",
+            "description": "Najprv vyberte predajný kanál, aby ste zistili, ktoré produkty je možné pridať do balíka. Môžete to upraviť neskôr na karte Viditeľnosť a štruktúra.",
+            "title": "Vyžaduje sa predajný kanál"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Vytvoriť obrázok",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Popis balíčka"
+                },
+                "bundleHeading": {
+                    "label": "Názov zväzku"
+                },
+                "bundleItems": {
+                    "label": "Balíkové položky"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galéria obrázkov a balík na nákup"
+                },
+                "recommendedBundles": {
+                    "label": "Odporúčané zväzky"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Predvolené rozloženie - Stránka balíka produktov",
+                "setAsDefaultBundleDetail": "Nastaviť ako predvolenú stránku balíka produktov"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Stránka zväzku"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Vytvoriť obrázok",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Produktové údaje tohto prvku sa automaticky načítajú výrobkom priradeným k tomuto rozloženiu. Obsah len zobrazuje ukážku ukážky."
+                },
+                "label": "Balíček na nákup"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Produktové údaje tohto prvku sa automaticky načítajú výrobkom priradeným k tomuto rozloženiu. Obsah len zobrazuje ukážku ukážky."
+                },
+                "label": "Popis balíčka",
+                "preview": {
+                    "descriptionTab": "Opis",
+                    "title": "Balík"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Umožňuje pridávať balíkové položky priamo do košíka namiesto otvárania stránky s podrobnosťami o produkte.",
+                        "labelTitle": "Použite {count} na zobrazenie počtu produktov v balíku."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Produktové údaje tohto prvku sa automaticky načítajú výrobkom priradeným k tomuto rozloženiu. Obsah len zobrazuje ukážku ukážky."
+                    },
+                    "label": {
+                        "boxSettings": "Nastavenia poľa produktu",
+                        "cta": "Zobraziť CTA pre pridanie balíčkových položiek priamo do košíka",
+                        "minWidth": "Minimálna šírka",
+                        "title": "Názov"
+                    }
+                },
+                "label": "Zahrnuté produkty"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Údaje balíka tohto prvku sa automaticky načítajú balíkom priradeným k tomuto rozloženiu. Obsah zobrazuje iba ukážku ukážky."
+                },
+                "label": "Názov zväzku"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Ak je povolená, spočiatku sa zobrazí iba podskupina balíkov. Používatelia môžu rozšíriť zoznam, aby zobrazili viac.",
+                        "maxVisibleBundles": "Ovláda, koľko balíkov sa bude zobrazovať, kým sa neskryjú za funkciou „Zobraziť viac“.",
+                        "productBoxSettings": "Nastavenia poľa produktu",
+                        "productDetailElement": "Produktové údaje tohto prvku sa automaticky načítajú výrobkom priradeným k tomuto rozloženiu. Obsah len zobrazuje ukážku ukážky.",
+                        "showCTAInfo": "Umožňuje pridávať balíkové položky priamo do košíka namiesto otvárania stránky s podrobnosťami o produkte.",
+                        "sliderSettings": "Nastavenia posúvača"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Limitný počet pôvodne zobrazených zväzkov",
+                        "maxVisibleBundles": "Balíky zobrazené pôvodne",
+                        "minWidth": "Minimálna šírka",
+                        "recommendedCombinationsTitle": "Odporúčané kombinácie",
+                        "showBundleName": "Zobraziť názov balíka",
+                        "showCTA": "Zobraziť CTA pre pridanie balíčkových položiek priamo do košíka",
+                        "showCurrentProduct": "Zobraziť aktuálne zobrazený produkt ako prvý v balíku",
+                        "title": "Názov"
+                    },
+                    "placeholder": {
+                        "minWidth": "Zadajte minimálnu šírku...",
+                        "title": "Odporúčané kombinácie"
+                    }
+                },
+                "label": "Odporúčané kombinácie",
+                "preview": {
+                    "label": {
+                        "title": "Odporúčané kombinácie"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Vytvoriť obrázok",
             "contentText": "Vytvorte si vlastné obrázky nálady a prispôsobte si svoje rozloženie pomocou obrázka generovaného AI.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Balík"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adresy organizačných jednotiek",
                             "pending_order": "Čakajúca správa objednávok",
                             "quote": "Správa cenových ponúk",
-                            "role": "Riadenie rolí"
+                            "role": "Riadenie rolí",
+                            "subscription": "Objednať predplatné"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Odstrániť doručovaciu adresu",
                                     "update": "Upraviť prepravnú adresu"
                                 },
+                                "subscription": {
+                                    "read": "Zobrazenie všetkých predplatných objednávok z priradenej organizačnej jednotky"
+                                },
                                 "update": "Upraviť organizačnú jednotku"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Môže odstrániť role",
                                 "edit": "Dokáže upravovať roly",
                                 "read": "Dokáže zobraziť roly"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Zobraziť všetky predplatné objednávok"
+                                }
                             }
                         },
                         "switchAllLabel": "Všetky povolenia"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Riadenie rolí"
             },
+            "bundle": {
+                "label": "Balíky"
+            },
             "custom_price": {
                 "label": "Zákaznícka cena produktu"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Pridať produkt do balíčkov",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Dostal som to",
+                "description": "Tento produkt nebolo možné odstrániť z nasledujúcich balíkov, pretože balík vyžaduje aspoň dva produkty:",
+                "hint": "Ak chcete tento produkt odstrániť, najskôr pridajte do týchto balíkov ďalší produkt.",
+                "title": "Produkt sa nepodarilo odstrániť zo všetkých balíčkov"
+            },
+            "bundleCardSubtitle": "Všetky zväzky obsahujúce tento produkt",
+            "bundleCardTitle": "Balíky ({count})",
+            "buttonAddBundle": "Pridať produkt do balíčkov",
+            "buttonAddBundleLanguageWarning": "Pridávanie balíkov je možné iba v predvolenom jazyku systému.",
+            "buttonCreateBundle": "Vytvoriť balík",
+            "buttonManageBundles": "Správa balíkov",
+            "columnActive": "Aktívny",
+            "columnAvailability": "Dostupnosť",
+            "columnBundleItemCount": "Počet výrobkov",
+            "columnCreatedAt": "Vytvorené v",
+            "columnName": "Meno",
+            "columnProductNumber": "Číslo produktu",
+            "columnSales": "Predaj",
+            "columnShowBundleOnItemPdp": "Zobraziť na stránke s podrobnosťami",
+            "columnUpdatedAt": "Aktualizované na",
+            "emptyStateDescription": "Balíky môžu zvýšiť priemernú hodnotu objednávky a povzbudiť zákazníkov k nákupu súvisiacich produktov. Balíky sa zobrazia na stránke s podrobnosťami o produkte, ak rozloženie CMS obsahuje prvok balíka.",
+            "emptyStateDescriptionCreateFirst": "Balíky môžu zvýšiť priemernú hodnotu objednávky a povzbudiť zákazníkov k nákupu súvisiacich produktov. Balíky sa zobrazia na stránke s podrobnosťami o produkte, ak rozloženie CMS obsahuje prvok balíka. Vytvorte balík na pridanie tohto produktu.",
+            "emptyStateNoBundlesFound": "Nenašli sa žiadne zodpovedajúce balíčky",
+            "emptyStateNoBundlesFoundDescription": "Upravte hľadaný výraz alebo filtre.",
+            "emptyStateTitle": "Pridajte produkt do balíkov, aby ste zvýšili predaj",
+            "hideOnProductDetailPage": "Skryť na stránke s podrobnosťami o produkte",
+            "messageSaveSuccess": "Balíček \"{name}\" bol uložený.",
+            "openBundlesDetail": "Otvoriť podrobnosti o balíku",
+            "placeholderSearch": "Vyhľadávanie balíkov...",
+            "refreshDataTooltip": "Obnoviť dáta",
+            "showOnProductDetailPage": "Zobraziť na stránke s podrobnosťami o produkte",
+            "showOnlyIncluded": "Zobraziť iba vybrané",
+            "tooltipBundleHasRestrictions": "Jeden alebo viac produktov má obmedzenia, ktoré ovplyvňujú dostupnosť tohto balíka. Viac informácií nájdete v podrobnostiach balíka.",
+            "tooltipBundleInactive": "Neaktívne",
+            "tooltipBundleIssues": "Problémy:",
+            "tooltipBundleMismatchedSalesChannels": "Nie je priradený k predajným kanálom produktu: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Tento produkt nie je možné odstrániť, pretože balíky vyžadujú aspoň dva produkty."
+        },
         "card": {
             "textHeadline": "Sklad a dodávateľnosť",
             "textLinkModal": "Zobraziť zásoby podľa skladov a skladových skupín",
             "textProductWarehouseModalDisabled": "Uložte svoje zmeny skôr, ako budete môcť otvoriť ďalšie podrobnosti o skladoch.",
             "textTooltipMultiSelect": "Priraďte skladové skupiny na individuálnu správu zásob vo viacerých skladoch."
+        },
+        "detail": {
+            "tabBundle": "Balíky"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Zavrieť",
@@ -1986,6 +2359,9 @@
             "tabStock": "Sklad",
             "textHeadline": "Sklad podľa skladových a skladových skupín",
             "textInlineEdit": "Upraviť zásoby"
+        },
+        "type": {
+            "grouped_bundle": "Balík"
         },
         "variants-overview": {
             "inlineText": "Pozrite si podrobnosti"
@@ -2542,6 +2918,16 @@
             "emptyText": "Prázdna scéna"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Stránka s podrobnosťami o balíku"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Povoliť propagačné kódy pre objednávky z cenových ponúk"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Priateľský Captcha",
+                "friendlyCaptchaApiKey": "Priateľský kľúč Captcha API",
                 "friendlyCaptchaDescription": "Na základe mechanizmov dôkazu práce a pokročilých rizikových signálov využíva Friendly Captcha zásadne nový prístup k bezpečnej ochrane vašich webových stránok a online služieb pred spamom a robotmi.",
+                "friendlyCaptchaRegion": "Oblasť API",
+                "friendlyCaptchaRegionEu": "EÚ (Európska únia)",
+                "friendlyCaptchaRegionGlobal": "Globálne",
+                "friendlyCaptchaRegionHelpText": "Vyberte položku „EU“, aby ste všetky žiadosti o captcha smerovali výlučne cez európske servery. To môže byť relevantné pre dodržiavanie GDPR.",
                 "friendlyCaptchaSecretKey": "Priateľský tajný kľúč Captcha",
-                "friendlyCaptchaSiteKey": "Priateľský kľúč stránky Captcha"
+                "friendlyCaptchaSiteKey": "Priateľský kľúč stránky Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Verzia 1 je staršia a bude odstránená v budúcom vydaní. Odporúčame inovovať na verziu 2 pre lepšie zabezpečenie a čistejší zážitok z miniaplikácií.",
+                "friendlyCaptchaVersion": "Friendly Captcha verzia",
+                "friendlyCaptchaVersionV1": "Verzia 1 (stará)",
+                "friendlyCaptchaVersionV2": "Verzia 2 (nová)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Zrušiť",
         "retry": "Opakovať"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Uzamknite jednotnú stupnicu",
-        "unlock-uniform-scale": "Odomknite jednotnú mierku"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Vaši zákazníci môžu definovať a spravovať rozpočtové limity, aby lepšie kontrolovali výdavky svojich organizačných jednotiek.",
         "budgetManagementName": "Rozpočty",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Schválenie objednávky",
                     "ORGANIZATION_UNITS": "Organizačné jednotky",
                     "QUICK_ORDER": "Rýchle objednávky",
-                    "QUOTE_MANAGEMENT": "Správa cenových ponúk"
+                    "QUOTE_MANAGEMENT": "Správa cenových ponúk",
+                    "SHOPPING_LISTS": "Nákupné zoznamy"
                 },
                 "template": "{dependency} je potrebný pre {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Meno",
             "columnOrderQuantity": "Objednať množstvo",
             "columnReturnQuantity": "Vrátenie množstva",
+            "includesShippingCosts": "Vrátane nákladov na dopravu",
             "messageErrorNoItemHasQuantity": "Mal by mať aspoň 1 riadok položka má množstvo viac ako 0 na vytvorenie návratu",
             "messagePreventAddItem": "Táto položka je už súčasťou vrátenia alebo jej stav je zrušený, vrátený alebo čiastočne vrátený.",
             "placeholderComment": "Zadajte komentár...",

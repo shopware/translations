@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Inskrywing laat die status gestop"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuele pryse",
             "b2b_components_role": "Rol | Rolle",
             "b2b_components_shopping_list": "Inkopielyste",
             "b2b_employee": "Werknemer | Werknemers",
+            "bundle": "Bundel | Bundels",
+            "bundle_item": "Bundelitem | Bundelitems",
             "export_assistant": "Uitvoerassistent",
-            "individual_pricing": "Individuele pryse",
             "quote": "Aanhaling | Aanhalings",
             "quote_line_item": "Aanhalingslynitem | Kwotaal lynitems",
             "search_assistant": "AI-kopilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Item is bundelitem",
+                "lineItemOfBundleRule": "Item van geselekteerde bundel",
                 "subscriptionCartRule": "Inskrywingmandjie",
                 "subscriptionIntervalRule": "Inskrywinginterval",
                 "subscriptionPlanRule": "Inskrywingplan"
             },
             "group": {
                 "subscription": "Inskrywing"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Bundel"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Dankie dat u die Bundles -bloudruk probeer het. Ons sal graag jou terugvoer hoor.",
+                "link": "Gee terugvoer"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Pasgemaakte velde"
+            },
+            "general": {
+                "title": "Algemene inligting"
+            },
+            "items": {
+                "actionOpenProductDetails": "Maak produkbesonderhede oop",
+                "buttonAddBundleItems": "Voeg produkte by",
+                "columnName": "Naam",
+                "columnPosition": "Posisie",
+                "columnPrice": "Prys",
+                "emptyStateDescription": "Voeg ten minste twee produkte by die bundel.",
+                "emptyStateTitle": "Nog geen produkte bygevoeg nie",
+                "title": "Produkte ({count})",
+                "tooltipBundleItemCustomizedProduct": "Pasgemaakte produk sjabloon toegeken",
+                "tooltipBundleItemHasVariants": "Produk het variante",
+                "tooltipBundleItemInactive": "Onaktief",
+                "tooltipBundleItemIncompatibleVisibilities": "Nie toegeken aan die bundel se verkoopskanale nie: {salesChannels}",
+                "tooltipBundleItemIssues": "Kwessies:",
+                "tooltipBundleItemOutOfStockCloseout": "Uit voorraad (opruimingsverkoop)",
+                "tooltipBundleItemOutOfStockTemporary": "Hierdie produk is tans uit voorraad. Die bundel sal weer koopbaar word sodra alle produkte weer in voorraad is.",
+                "tooltipBundleItemOutOfStockTitle": "Uit voorraad",
+                "tooltipRefreshData": "Verfris data"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Vrystellingsdatum",
+                    "placeholder": "Voer vrystellingsdatum in..."
+                },
+                "title": "etikettering"
+            },
+            "media": {
+                "subtitle": "Voeg lêers by die bundel se mediagallery.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Voeg ten minste twee produkte by om die bundel te skep.",
+            "messageNoChanges": "Geen veranderinge om te stoor nie",
+            "messageSaveError": "Misluk om bundel te stoor nie",
+            "messageSaveSuccess": "Bundel suksesvol gestoor",
+            "price": {
+                "addDiscount": "Voeg afslag by",
+                "currencyDependingPrices": "Geldeenheid afhangende pryse",
+                "discount": "Afslag",
+                "discountRules": "Afslagreëls",
+                "discountTitle": "Afslag",
+                "discountType": "tipe",
+                "discountTypeAbsolute": "Absoluut",
+                "discountTypePercentage": "persentasie",
+                "discountValue": "Waarde",
+                "discountValuePlaceholder": "Voeg waarde by...",
+                "doNotCombineWith": "Moenie kombineer met",
+                "maxValuePlaceholder": "Onbeperkte",
+                "maximumDiscountValue": "Maksimum afslagwaarde",
+                "openAdvancedPricesView": "Maak gevorderde pryse aansig oop",
+                "preventCombination": "Voorkom kombinasie met ander promosies",
+                "preventCombinationHelpText": "As dit geaktiveer is, kan hierdie afslag nie met ander promosies gekombineer word nie",
+                "promotionsPlaceholder": "Voeg promosies by...",
+                "rulesPlaceholder": "Voeg reëls by...",
+                "subtotalBased": "Subtotaal gebaseer op 1 produk | Subtotaal gebaseer op {count} produkte",
+                "title": "Vertoon pryse",
+                "total": "Totaal",
+                "totalBased": "Totaal gebaseer op 1 produk | Totaal gebaseer op {count} produkte"
+            },
+            "tabGeneral": "algehele",
+            "tabLayout": "Uitleg",
+            "tabSeo": "SEO",
+            "textHeadline": "Nuwe bundel",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Dit verhoed dat die bundel in daardie kanale sigbaar is. Kontroleer asseblief die sigbaarheid vir die volgende produkte:",
+                    "notAssignedTo": "nie toegewys aan",
+                    "title": "Sommige produkte word nie aan alle geselekteerde verkoopskanale toegeken nie"
+                },
+                "title": "Sigbaarheid en struktuur"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktief",
+                "placeholder": "Kies 'n status..."
+            },
+            "availabilityFilter": {
+                "label": "Beskikbaarheid",
+                "placeholder": "Kies beskikbaarheid..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Ingesluit produkte",
+                "placeholder": "Kies ingesluite produkte..."
+            },
+            "categoriesFilter": {
+                "label": "kategorieë",
+                "placeholder": "Kies kategorieë..."
+            },
+            "fromPlaceholder": "Voer beginwaarde in...",
+            "imagesFilter": {
+                "label": "Beelde",
+                "placeholder": "Kies beeldstatus...",
+                "textHasCriteria": "Ten minste een produkbeeld toegeken",
+                "textNoCriteria": "Geen produkbeelde toegeken"
+            },
+            "priceFilter": {
+                "label": "Prys"
+            },
+            "productNumberFilter": {
+                "label": "Produknommer",
+                "placeholder": "Voer 'n produknommer in..."
+            },
+            "releaseDateFilter": {
+                "label": "Vrystellingsdatum"
+            },
+            "salesChannelsFilter": {
+                "label": "Verkoopskanale",
+                "placeholder": "Kies verkoopskanale..."
+            },
+            "salesFilter": {
+                "label": "Verkope"
+            },
+            "tagsFilter": {
+                "label": "Tags",
+                "placeholder": "Kies etikette..."
+            },
+            "toPlaceholder": "Voer eindwaarde in..."
+        },
+        "general": {
+            "description": "bondels",
+            "headlineBundles": "bondels",
+            "mainMenuItemGeneral": "bondels",
+            "placeholderSearchBar": "Soek bundels...",
+            "title": "bondels"
+        },
+        "generalForm": {
+            "highlightHelpText": "Uitgeligte bondels word in alle bundellyste gemerk met 'n helderkleurige etiket en die woord “Tip”. U kan die kleur van die etiket aanpas deur die opsie “Kennisgewing” in <a href=\"{themeUrl}\">temas</a> -instellings te verander. U kan ook die teks van die etiket verander deur die ooreenstemmende <a href=\"{snippetUrl}\">-tekssnit</a> te redigeer.",
+            "labelDescription": "Beskrywing",
+            "labelMarkAsTopseller": "Lig bundel uit",
+            "labelName": "Naam",
+            "labelProductNumber": "Produknommer",
+            "placeholderDescription": "Voer bundel beskrywing in...",
+            "placeholderName": "Voer die naam van die bundel in...",
+            "placeholderProductNumber": "Voer produknommer in..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "'N Bundel benodig ten minste twee produkte.",
+            "notEnoughProductsTitle": "Nie genoeg produkte nie",
+            "restrictions": "Een of meer produkte het beperkings wat die beskikbaarheid van hierdie bundel beïnvloed. Sien die waarskuwingsikoni vir besonderhede.",
+            "restrictionsTitle": "Sommige produkte het beperkings"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Geen ooreenstemmende produkte gevind",
+            "noProductsMatchingBundleSalesChannels": "Daar is geen aktiewe produkte wat ooreenstem met die bundel se geselekteerde verkoopskanale nie.",
+            "noProductsMatchingTermAndFilter": "Pas die soekterm of filters aan.",
+            "placeholderSearch": "Soek produkte...",
+            "showIncluded": "Vertoon slegs geselekteerde ({count})",
+            "textWhySomeItemsMissing": "Hoekom ontbreek sommige produkte?",
+            "title": "Voeg produkte by",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Op die oomblik werk bundels slegs met fisiese produkte en enkelvariante. <br /><br /> Produkte moet toegeken word aan die bundel se geselekteerde verkoopskanale om in die lys te verskyn."
+        },
+        "list": {
+            "available": "Beskikbaar",
+            "buttonAddBundle": "Voeg bundel by",
+            "columnActive": "Aktief",
+            "columnAvailable": "Beskikbaarheid",
+            "columnBundleItemCount": "Aantal produkte",
+            "columnCreatedAt": "Geskep by",
+            "columnName": "Naam",
+            "columnProductNumber": "Produknommer",
+            "columnSales": "Verkope",
+            "columnTotalPrice": "Totale prys",
+            "columnUpdatedAt": "Opgedateer by",
+            "emptyStateDescription": "Bundels kan u gemiddelde bestellingswaarde verhoog en kliënte aanmoedig om verwante produkte aan te koop.",
+            "emptyStateTitle": "Voeg bundels by om die verkope te verhoog",
+            "messageSaveSuccess": "Bundel \"{name}\" is gestoor.",
+            "titleSidebarItemRefresh": "Verfris",
+            "unavailable": "Onbeskikbaar"
+        },
+        "priceModal": {
+            "currency": "Geldeenheid",
+            "price": "Waarde",
+            "title": "Gevorderde pryse"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Voeg produkte by",
+            "description": "Kies eers 'n verkoopskanaal om te sien watter produkte by die bundel gevoeg kan word. U kan dit later in die Sigbaarheid en struktuurkaart aanpas.",
+            "title": "Verkoopskanaal benodig"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Genereer beeld",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Bundel beskrywing"
+                },
+                "bundleHeading": {
+                    "label": "Bundel naam"
+                },
+                "bundleItems": {
+                    "label": "Bundel items"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Beeldgalery en bundel koopboks"
+                },
+                "recommendedBundles": {
+                    "label": "Aanbevole bundels"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Standaard uitleg - Produk bundel bladsy",
+                "setAsDefaultBundleDetail": "Stel as standaard produkbundelbladsy"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Bundel bladsy"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Genereer beeld",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Hierdie element se produkdata word outomaties gelaai deur die produk wat met hierdie uitleg geassosieer word. Die inhoud toon net 'n voorbeeld voorskou."
+                },
+                "label": "Bundel koopboks"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Hierdie element se produkdata word outomaties gelaai deur die produk wat met hierdie uitleg geassosieer word. Die inhoud toon net 'n voorbeeld voorskou."
+                },
+                "label": "Bundel beskrywing",
+                "preview": {
+                    "descriptionTab": "Beskrywing",
+                    "title": "Bundel"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Laat dit toe om bondelitems direk by die mandjie te voeg in plaas daarvan om die produkbesonderhede bladsy oop te maak.",
+                        "labelTitle": "Gebruik {count} om die aantal produkte in die bundel te vertoon."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Hierdie element se produkdata word outomaties gelaai deur die produk wat met hierdie uitleg geassosieer word. Die inhoud toon net 'n voorbeeld voorskou."
+                    },
+                    "label": {
+                        "boxSettings": "Produkkasinstellings",
+                        "cta": "Wys CTA om bondelitems direk by die mandjie te voeg",
+                        "minWidth": "Minimum breedte",
+                        "title": "Titel"
+                    }
+                },
+                "label": "Ingesluite produkte"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Die bundel data van hierdie element word outomaties gelaai deur die bundel wat met hierdie uitleg geassosieer word. Die inhoud toon net 'n voorbeeld voorskou."
+                },
+                "label": "Bundel naam"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "As dit geaktiveer is, word aanvanklik slegs 'n subversameling bundels getoon. Gebruikers kan die lys uitbrei om meer te wys.",
+                        "maxVisibleBundles": "Beheer hoeveel bundels getoon sal word totdat dit agter 'n “Wys meer” -funksie weggesteek word.",
+                        "productBoxSettings": "Produkkasinstellings",
+                        "productDetailElement": "Hierdie element se produkdata word outomaties gelaai deur die produk wat met hierdie uitleg geassosieer word. Die inhoud toon net 'n voorbeeld voorskou.",
+                        "showCTAInfo": "Laat dit toe om bondelitems direk by die mandjie te voeg in plaas daarvan om die produkbesonderhede bladsy oop te maak.",
+                        "sliderSettings": "Skuifinstellings"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Beperk aantal bondels wat aanvanklik getoon word",
+                        "maxVisibleBundles": "Bundels wat aanvanklik getoon word",
+                        "minWidth": "Minimum breedte",
+                        "recommendedCombinationsTitle": "Aanbevole kombinasies",
+                        "showBundleName": "Wys bundel naam",
+                        "showCTA": "Wys CTA om bondelitems direk by die mandjie te voeg",
+                        "showCurrentProduct": "Wys die produk wat tans gekyk word eers in bundel",
+                        "title": "Titel"
+                    },
+                    "placeholder": {
+                        "minWidth": "Voer minimale breedte in...",
+                        "title": "Aanbevole kombinasies"
+                    }
+                },
+                "label": "Aanbevole kombinasies",
+                "preview": {
+                    "label": {
+                        "title": "Aanbevole kombinasies"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Genereer beeld",
             "contentText": "Skep jou eie gemoedbeelde om jou uitleg aan te pas met behulp van AI gegenereerde beelde.",
             "header": "AI-kopilot"
+        },
+        "tags": {
+            "bundle": "Bundel"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adresse vir organisasie-eenheid",
                             "pending_order": "Hangende bestellingsbestuur",
                             "quote": "Kwotasiebestuur",
-                            "role": "Rolbestuur"
+                            "role": "Rolbestuur",
+                            "subscription": "Bestel intekening"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Verwyder afleweringsadres",
                                     "update": "Wysig afleweringsadres"
                                 },
+                                "subscription": {
+                                    "read": "Bekyk alle bestelintekeninge van toegewysde organisasie-eenheid"
+                                },
                                 "update": "Wysig organisasie-eenheid"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Verwyder rolle",
                                 "edit": "Wysig rolle",
                                 "read": "Bekyk rolle"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Bekyk alle bestellingsintekeninge"
+                                }
                             }
                         },
                         "switchAllLabel": "Alle toestemmings"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rolbestuur"
             },
+            "bundle": {
+                "label": "bondels"
+            },
             "custom_price": {
                 "label": "Produk Kliënteprys"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Voeg produk by bundels",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Het dit",
+                "description": "Hierdie produk kon nie uit die volgende bundels verwyder word nie, want 'n bundel benodig ten minste twee produkte:",
+                "hint": "Om hierdie produk te verwyder, voeg eers 'n ander produk by hierdie bundels.",
+                "title": "Produk kon nie uit alle bundels verwyder word nie"
+            },
+            "bundleCardSubtitle": "Alle bundels wat hierdie produk bevat",
+            "bundleCardTitle": "Bondels ({count})",
+            "buttonAddBundle": "Voeg produk by bundels",
+            "buttonAddBundleLanguageWarning": "Die byvoeging van bundels is slegs moontlik in die stelselstandaard taal.",
+            "buttonCreateBundle": "Skep bundel",
+            "buttonManageBundles": "Bestuur bundels",
+            "columnActive": "Aktief",
+            "columnAvailability": "Beskikbaarheid",
+            "columnBundleItemCount": "Aantal produkte",
+            "columnCreatedAt": "Geskep by",
+            "columnName": "Naam",
+            "columnProductNumber": "Produknommer",
+            "columnSales": "Verkope",
+            "columnShowBundleOnItemPdp": "Wys op detail bladsy",
+            "columnUpdatedAt": "Opgedateer by",
+            "emptyStateDescription": "Bondels kan die gemiddelde bestellingswaarde verhoog en kliënte aanmoedig om verwante produkte aan te koop. Bondels verskyn op die produkbesonderhede bladsy as die CMS-uitleg 'n bondelement insluit.",
+            "emptyStateDescriptionCreateFirst": "Bondels kan die gemiddelde bestellingswaarde verhoog en kliënte aanmoedig om verwante produkte aan te koop. Bondels verskyn op die produkbesonderhede bladsy as die CMS-uitleg 'n bondelement insluit. Skep 'n bundel om hierdie produk by te voeg.",
+            "emptyStateNoBundlesFound": "Geen ooreenstemmende bundels gevind",
+            "emptyStateNoBundlesFoundDescription": "Pas die soekterm of filters aan.",
+            "emptyStateTitle": "Voeg produk by bundels om die verkope te verhoog",
+            "hideOnProductDetailPage": "Versteek op die produk besonderhede bladsy",
+            "messageSaveSuccess": "Bundel \"{name}\" is gestoor.",
+            "openBundlesDetail": "Maak bondelbesonderhede o",
+            "placeholderSearch": "Soek bundels...",
+            "refreshDataTooltip": "Verfris data",
+            "showOnProductDetailPage": "Wys op produkbesonderhede bladsy",
+            "showOnlyIncluded": "Vertoon slegs geselekteerde",
+            "tooltipBundleHasRestrictions": "Een of meer produkte het beperkings wat die beskikbaarheid van hierdie bundel beïnvloed. Besoek die bundel besonderhede vir meer inligting.",
+            "tooltipBundleInactive": "Onaktief",
+            "tooltipBundleIssues": "Kwessies:",
+            "tooltipBundleMismatchedSalesChannels": "Nie toegeken aan die produk se verkoopskanale nie: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Hierdie produk kan nie verwyder word nie, want bundels benodig ten minste twee produkte."
+        },
         "card": {
             "textHeadline": "Voorraad en aflewerbaarheid",
             "textLinkModal": "Sien voorraad en afleweringstyd op grond van pakhuise en pakhuisgroepe",
             "textProductWarehouseModalDisabled": "Stoor u veranderinge voordat u verdere voorraadbesonderhede kan oopmaak.",
             "textTooltipMultiSelect": "Ken pakhuisgroepe toe om u voorraad en afleweringstyd individueel oor verskeie pakhuise te bestuur"
+        },
+        "detail": {
+            "tabBundle": "bondels"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Sluit",
@@ -1986,6 +2359,9 @@
             "tabStock": "Voorraad",
             "textHeadline": "Voorraad- en afleweringstyd volgens pakhuis- en pakhuis",
             "textInlineEdit": "Wysig voorraad"
+        },
+        "type": {
+            "grouped_bundle": "Bundel"
         },
         "variants-overview": {
             "inlineText": "Sien besonderhede"
@@ -2542,6 +2918,16 @@
             "emptyText": "Leë toneel"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Bundel produk besonderhede bladsy"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Laat promosiekodes toe vir bestellings vanaf kwotasies"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Vriendelike Captcha",
+                "friendlyCaptchaApiKey": "Vriendelike Captcha API-sleutel",
                 "friendlyCaptchaDescription": "Gebaseer op werkmeganismes en gevorderde risikoseine, gebruik Friendly Captcha 'n fundamenteel nuwe benadering om u webwerwe en aanlyndienste veilig teen spam en bots te verdedig.",
+                "friendlyCaptchaRegion": "API streek",
+                "friendlyCaptchaRegionEu": "EU (Europese Unie)",
+                "friendlyCaptchaRegionGlobal": "Wêreldwyd",
+                "friendlyCaptchaRegionHelpText": "Kies “EU” om alle captcha -versoeke uitsluitlik deur Europese bedieners te lei. Dit kan relevant wees vir die nakoming van GDPR.",
                 "friendlyCaptchaSecretKey": "Vriendelike Captcha geheime sleutel",
-                "friendlyCaptchaSiteKey": "Vriendelike Captcha webwerfsleutel"
+                "friendlyCaptchaSiteKey": "Vriendelike Captcha webwerfsleutel",
+                "friendlyCaptchaV1DeprecationNotice": "Weergawe 1 is nalatenskap en sal in 'n toekomstige weergawe verwyder word. Ons beveel aan om na weergawe 2 op te gradeer vir verbeterde sekuriteit en 'n skoner widget-ervaring.",
+                "friendlyCaptchaVersion": "Vriendelike Captcha weergawe",
+                "friendlyCaptchaVersionV1": "Weergawe 1 (nalatenskap)",
+                "friendlyCaptchaVersionV2": "Weergawe 2 (nuut)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Kanselleer",
         "retry": "Probeer weer"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Sluit eenvormige skaal",
-        "unlock-uniform-scale": "Ontsluit eenvormige skaal"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Jou kliënte kan begrotingsbeperkings definieer en bestuur om hul organisasie-eenhede se besteding beter te beheer.",
         "budgetManagementName": "Begrotings",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Bestel goedkeuring",
                     "ORGANIZATION_UNITS": "Organisasie-eenhede",
                     "QUICK_ORDER": "Vinnige bestellings",
-                    "QUOTE_MANAGEMENT": "Kwotasiebestuur"
+                    "QUOTE_MANAGEMENT": "Kwotasiebestuur",
+                    "SHOPPING_LISTS": "Inkopielyste"
                 },
                 "template": "{dependency} is nodig vir {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Naam",
             "columnOrderQuantity": "Bestel hoeveelheid",
             "columnReturnQuantity": "Terugkeer hoeveelheid",
+            "includesShippingCosts": "Insluitend versendingskoste",
             "messageErrorNoItemHasQuantity": "Daar moet ten minste een reël-item wees met 'n hoeveelheid van meer as 0 om 'n opbrengs te skep.",
             "messagePreventAddItem": "Hierdie item is reeds deel van die terugkeer of die status daarvan is gedeeltelik gekanselleer, terugbesorg of terugbesorg.",
             "placeholderComment": "Voer kommentaar in...",

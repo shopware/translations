@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "구독 상태가 일시 중지됨"
         },
         "entities": {
+            "b2b_components_individual_pricing": "개별 가격",
             "b2b_components_role": "역할 | 역할",
             "b2b_components_shopping_list": "쇼핑 리스트",
             "b2b_employee": "직원 | 직원",
+            "bundle": "번들 | 번들",
+            "bundle_item": "번들 아이템 | 번들 아이템",
             "export_assistant": "수출 도우미",
-            "individual_pricing": "개별 가격",
             "quote": "견적 | 인용문",
             "quote_line_item": "견적 라인 항목 | 견적 라인 항목",
             "search_assistant": "AI 코파일럿",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "품목은 번들 품목입니다",
+                "lineItemOfBundleRule": "선택한 번들 아이템",
                 "subscriptionCartRule": "서브스크립션 카트",
                 "subscriptionIntervalRule": "서브스크립션 간격",
                 "subscriptionPlanRule": "서브스크립션 플랜"
             },
             "group": {
                 "subscription": "서브스크립션"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "번들"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "번들 블루프린트를 사용해 주셔서 감사합니다.여러분의 의견을 듣고 싶습니다.",
+                "link": "피드백 제공"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "사용자 정의 필드"
+            },
+            "general": {
+                "title": "일반 정보"
+            },
+            "items": {
+                "actionOpenProductDetails": "제품 세부 정보 열기",
+                "buttonAddBundleItems": "제품 추가",
+                "columnName": "이름",
+                "columnPosition": "직책",
+                "columnPrice": "가격",
+                "emptyStateDescription": "번들에 제품을 두 개 이상 추가합니다.",
+                "emptyStateTitle": "아직 추가된 제품이 없습니다.",
+                "title": "제품 ({count})",
+                "tooltipBundleItemCustomizedProduct": "맞춤형 제품 템플릿 할당",
+                "tooltipBundleItemHasVariants": "제품에 이형 상품이 있습니다.",
+                "tooltipBundleItemInactive": "비활성",
+                "tooltipBundleItemIncompatibleVisibilities": "번들 판매 채널에 할당되지 않음: {salesChannels}",
+                "tooltipBundleItemIssues": "문제:",
+                "tooltipBundleItemOutOfStockCloseout": "품절 (클리어런스 세일)",
+                "tooltipBundleItemOutOfStockTemporary": "이 제품은 현재 품절입니다.모든 제품의 재입고가 완료되면 번들을 다시 구매할 수 있습니다.",
+                "tooltipBundleItemOutOfStockTitle": "재고 없음",
+                "tooltipRefreshData": "데이터 새로 고침"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "출시 날짜",
+                    "placeholder": "출시 날짜 입력..."
+                },
+                "title": "라벨 부착"
+            },
+            "media": {
+                "subtitle": "번들의 미디어 갤러리에 파일을 추가합니다.",
+                "title": "미디어"
+            },
+            "messageMinBundleItemsRequired": "제품을 두 개 이상 추가하여 번들을 생성하십시오.",
+            "messageNoChanges": "저장할 변경 사항 없음",
+            "messageSaveError": "번들 저장 실패",
+            "messageSaveSuccess": "번들이 성공적으로 저장되었습니다.",
+            "price": {
+                "addDiscount": "할인 추가",
+                "currencyDependingPrices": "가격에 따른 통화",
+                "discount": "할인",
+                "discountRules": "할인 규정",
+                "discountTitle": "할인",
+                "discountType": "유형",
+                "discountTypeAbsolute": "절대",
+                "discountTypePercentage": "백분율",
+                "discountValue": "가치",
+                "discountValuePlaceholder": "가치 추가...",
+                "doNotCombineWith": "와 결합하지 마십시오.",
+                "maxValuePlaceholder": "무제한",
+                "maximumDiscountValue": "최대 할인 금액",
+                "openAdvancedPricesView": "고급 가격 보기 열기",
+                "preventCombination": "다른 프로모션과의 결합 방지",
+                "preventCombinationHelpText": "이 할인을 활성화하면 다른 프로모션과 함께 사용할 수 없습니다.",
+                "promotionsPlaceholder": "프로모션 추가...",
+                "rulesPlaceholder": "규칙 추가...",
+                "subtotalBased": "1개 제품을 기준으로 한 소계 | {count} 제품을 기준으로 한 소계",
+                "title": "표시 가격",
+                "total": "합계",
+                "totalBased": "총 1개 제품 기준 | 총 {count} 제품 기준"
+            },
+            "tabGeneral": "일반",
+            "tabLayout": "레이아웃",
+            "tabSeo": "서구",
+            "textHeadline": "새 번들",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "이렇게 하면 해당 채널에서 번들이 보이지 않습니다.다음 제품의 가시성을 확인하세요.",
+                    "notAssignedTo": "할당되지 않음",
+                    "title": "일부 제품은 선택한 모든 판매 채널에 할당되지 않습니다."
+                },
+                "title": "가시성 및 구조"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "활성",
+                "placeholder": "상태 선택..."
+            },
+            "availabilityFilter": {
+                "label": "가용성",
+                "placeholder": "이용 가능 여부 선택..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "포함된 제품",
+                "placeholder": "포함된 제품 선택..."
+            },
+            "categoriesFilter": {
+                "label": "카테고리",
+                "placeholder": "범주 선택..."
+            },
+            "fromPlaceholder": "시작 값 입력...",
+            "imagesFilter": {
+                "label": "이미지",
+                "placeholder": "이미지 상태 선택...",
+                "textHasCriteria": "하나 이상의 상품 이미지가 할당됨",
+                "textNoCriteria": "상품 이미지가 할당되지 않았습니다."
+            },
+            "priceFilter": {
+                "label": "가격"
+            },
+            "productNumberFilter": {
+                "label": "제품 번호",
+                "placeholder": "제품 번호 입력..."
+            },
+            "releaseDateFilter": {
+                "label": "출시 날짜"
+            },
+            "salesChannelsFilter": {
+                "label": "판매 채널",
+                "placeholder": "판매 채널 선택..."
+            },
+            "salesFilter": {
+                "label": "판매"
+            },
+            "tagsFilter": {
+                "label": "태그",
+                "placeholder": "태그 선택..."
+            },
+            "toPlaceholder": "끝 값 입력..."
+        },
+        "general": {
+            "description": "묶음",
+            "headlineBundles": "묶음",
+            "mainMenuItemGeneral": "묶음",
+            "placeholderSearchBar": "번들 검색...",
+            "title": "묶음"
+        },
+        "generalForm": {
+            "highlightHelpText": "강조 표시된 번들에는 밝은 색상의 라벨과 모든 번들 리스팅에서 “팁”이라는 단어가 표시됩니다. <a href=\"{themeUrl}\">테마</a> 설정에서 “알림” 옵션을 변경하여 라벨 색상을 조정할 수 있습니다.해당 <a href=\"{snippetUrl}\">텍스트 스니펫</a> 을 편집하여 라벨의 텍스트를 변경할 수도 있습니다.",
+            "labelDescription": "설명",
+            "labelMarkAsTopseller": "하이라이트 번들",
+            "labelName": "이름",
+            "labelProductNumber": "제품 번호",
+            "placeholderDescription": "번들 설명 입력...",
+            "placeholderName": "번들 이름 입력...",
+            "placeholderProductNumber": "제품 번호 입력..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "번들에는 최소 두 개의 제품이 필요합니다.",
+            "notEnoughProductsTitle": "제품이 충분하지 않음",
+            "restrictions": "하나 이상의 제품에는 이 번들의 가용성에 영향을 주는 제한 사항이 있습니다.자세한 내용은 경고 아이콘을 참조하십시오.",
+            "restrictionsTitle": "일부 제품에는 제한 사항이 있습니다"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "일치하는 제품을 찾을 수 없습니다.",
+            "noProductsMatchingBundleSalesChannels": "번들의 선택된 판매 채널과 일치하는 활성 제품이 없습니다.",
+            "noProductsMatchingTermAndFilter": "검색어 또는 필터를 조정합니다.",
+            "placeholderSearch": "제품 검색...",
+            "showIncluded": "선택한 항목만 표시 ({count})",
+            "textWhySomeItemsMissing": "일부 제품이 누락된 이유는 무엇입니까?",
+            "title": "제품 추가",
+            "tooltipVariant": "변형",
+            "tooltipWhySomeItemsMissing": "현재 번들은 실제 제품 및 단일 이형 상품에서만 작동합니다. <br /><br /> 제품을 번들의 선택된 판매 채널에 할당해야 목록에 표시됩니다."
+        },
+        "list": {
+            "available": "사용 가능",
+            "buttonAddBundle": "번들 추가",
+            "columnActive": "활성",
+            "columnAvailable": "가용성",
+            "columnBundleItemCount": "제품 개수",
+            "columnCreatedAt": "에 생성됨",
+            "columnName": "이름",
+            "columnProductNumber": "제품 번호",
+            "columnSales": "판매",
+            "columnTotalPrice": "총 가격",
+            "columnUpdatedAt": "에 업데이트됨",
+            "emptyStateDescription": "묶음은 평균 주문 금액을 높이고 고객이 관련 상품을 구매하도록 유도할 수 있습니다.",
+            "emptyStateTitle": "번들 추가를 통한 판매 증대",
+            "messageSaveSuccess": "번들 \"{name}“이 저장되었습니다.",
+            "titleSidebarItemRefresh": "새로 고침",
+            "unavailable": "사용 불가"
+        },
+        "priceModal": {
+            "currency": "통화",
+            "price": "가치",
+            "title": "고급 가격"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "제품 추가",
+            "description": "먼저 판매 채널을 선택하여 번들에 추가할 수 있는 제품을 확인하십시오.나중에 가시성 및 구조 카드에서 조정할 수 있습니다.",
+            "title": "판매 채널 필요"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "이미지 생성",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "번들 설명"
+                },
+                "bundleHeading": {
+                    "label": "번들 이름"
+                },
+                "bundleItems": {
+                    "label": "번들 아이템"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "이미지 갤러리 및 번들 바이 박스"
+                },
+                "recommendedBundles": {
+                    "label": "권장 번들"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "기본 레이아웃 - 제품 번들 페이지",
+                "setAsDefaultBundleDetail": "제품 번들 페이지 기본값으로 설정"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "번들 페이지"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "이미지 생성",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "이 요소의 제품 데이터는 이 레이아웃과 연관된 제품에 의해 자동으로 로드됩니다.콘텐츠에는 샘플 미리보기만 표시됩니다."
+                },
+                "label": "번들 바이 박스"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "이 요소의 제품 데이터는 이 레이아웃과 연관된 제품에 의해 자동으로 로드됩니다.콘텐츠에는 샘플 미리보기만 표시됩니다."
+                },
+                "label": "번들 설명",
+                "preview": {
+                    "descriptionTab": "설명",
+                    "title": "번들"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "제품 세부 정보 페이지를 열지 않고 번들 품목을 카트에 직접 추가할 수 있습니다.",
+                        "labelTitle": "{count} 를 사용하여 번들 내 제품 수를 표시합니다."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "이 요소의 제품 데이터는 이 레이아웃과 연관된 제품에 의해 자동으로 로드됩니다.콘텐츠에는 샘플 미리보기만 표시됩니다."
+                    },
+                    "label": {
+                        "boxSettings": "제품 박스 설정",
+                        "cta": "번들 아이템을 카트에 직접 추가하려면 CTA를 보여주세요.",
+                        "minWidth": "최소 너비",
+                        "title": "타이틀"
+                    }
+                },
+                "label": "포함된 제품"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "이 요소의 번들 데이터는 이 레이아웃과 연결된 번들에 의해 자동으로 로드됩니다.콘텐츠는 샘플 미리보기만 보여줍니다."
+                },
+                "label": "번들 이름"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "활성화하면 처음에는 번들의 일부만 표시됩니다.사용자는 목록을 확장하여 더 많이 표시할 수 있습니다.",
+                        "maxVisibleBundles": "“더 보기” 기능 뒤에 숨겨질 때까지 표시할 번들 수를 제어합니다.",
+                        "productBoxSettings": "제품 박스 설정",
+                        "productDetailElement": "이 요소의 제품 데이터는 이 레이아웃과 연관된 제품에 의해 자동으로 로드됩니다.콘텐츠에는 샘플 미리보기만 표시됩니다.",
+                        "showCTAInfo": "제품 세부 정보 페이지를 열지 않고 번들 품목을 카트에 직접 추가할 수 있습니다.",
+                        "sliderSettings": "슬라이더 설정"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "처음에 표시되는 번들 수 제한",
+                        "maxVisibleBundles": "처음에 표시된 번들",
+                        "minWidth": "최소 너비",
+                        "recommendedCombinationsTitle": "권장 조합",
+                        "showBundleName": "번들 이름 보기",
+                        "showCTA": "번들 아이템을 카트에 직접 추가하려면 CTA를 보여주세요.",
+                        "showCurrentProduct": "현재 보고 있는 제품을 묶음으로 먼저 표시합니다.",
+                        "title": "타이틀"
+                    },
+                    "placeholder": {
+                        "minWidth": "최소 폭 입력...",
+                        "title": "권장 조합"
+                    }
+                },
+                "label": "권장 조합",
+                "preview": {
+                    "label": {
+                        "title": "권장 조합"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "이미지 생성",
             "contentText": "AI 생성 이미지를 사용하여 자신만의 무드 이미지를 만들어 레이아웃을 사용자 정의할 수 있습니다.",
             "header": "AI 코파일럿"
+        },
+        "tags": {
+            "bundle": "번들"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "조직 단위 주소",
                             "pending_order": "보류 중인 주문 관리",
                             "quote": "견적 관리",
-                            "role": "역할 관리"
+                            "role": "역할 관리",
+                            "subscription": "구독 주문하기"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "배송 주소 삭제",
                                     "update": "배송 주소 편집"
                                 },
+                                "subscription": {
+                                    "read": "지정된 조직 단위의 모든 주문 구독 보기"
+                                },
                                 "update": "조직 단위 편집"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "역할 삭제 가능",
                                 "edit": "역할 편집 가능",
                                 "read": "역할 보기 가능"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "모든 주문 구독 보기"
+                                }
                             }
                         },
                         "switchAllLabel": "모든 권한"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "역할 관리"
             },
+            "bundle": {
+                "label": "묶음"
+            },
             "custom_price": {
                 "label": "제품 고객 가격"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "번들에 제품 추가",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "알겠어",
+                "description": "번들에는 최소 두 개 이상의 제품이 필요하므로 이 제품을 다음 번들에서 제거할 수 없습니다.",
+                "hint": "이 제품을 제거하려면 먼저 번들에 다른 제품을 추가하세요.",
+                "title": "모든 번들에서 제품을 제거할 수 없습니다."
+            },
+            "bundleCardSubtitle": "이 제품이 포함된 모든 번들",
+            "bundleCardTitle": "번들 ({count})",
+            "buttonAddBundle": "번들에 제품 추가",
+            "buttonAddBundleLanguageWarning": "번들 추가는 시스템 기본 언어로만 가능합니다.",
+            "buttonCreateBundle": "번들 생성",
+            "buttonManageBundles": "번들 관리",
+            "columnActive": "활성",
+            "columnAvailability": "가용성",
+            "columnBundleItemCount": "제품 개수",
+            "columnCreatedAt": "에 생성됨",
+            "columnName": "이름",
+            "columnProductNumber": "제품 번호",
+            "columnSales": "판매",
+            "columnShowBundleOnItemPdp": "세부 정보 페이지에 표시",
+            "columnUpdatedAt": "에 업데이트됨",
+            "emptyStateDescription": "묶음은 평균 주문 금액을 높이고 고객이 관련 상품을 구매하도록 유도할 수 있습니다.CMS 레이아웃에 번들 요소가 포함된 경우 제품 세부 정보 페이지에 번들이 표시됩니다.",
+            "emptyStateDescriptionCreateFirst": "묶음은 평균 주문 금액을 높이고 고객이 관련 상품을 구매하도록 유도할 수 있습니다.CMS 레이아웃에 번들 요소가 포함된 경우 제품 세부 정보 페이지에 번들이 표시됩니다.번들을 생성하여 이 제품을 추가하세요.",
+            "emptyStateNoBundlesFound": "일치하는 번들을 찾을 수 없습니다.",
+            "emptyStateNoBundlesFoundDescription": "검색어 또는 필터를 조정합니다.",
+            "emptyStateTitle": "번들에 제품을 추가하여 판매를 늘리세요",
+            "hideOnProductDetailPage": "제품 세부 정보 페이지에 숨기기",
+            "messageSaveSuccess": "번들 \"{name}“이 저장되었습니다.",
+            "openBundlesDetail": "오픈 번들 세부 정보",
+            "placeholderSearch": "번들 검색...",
+            "refreshDataTooltip": "데이터 새로 고침",
+            "showOnProductDetailPage": "제품 세부 정보 페이지에 표시",
+            "showOnlyIncluded": "선택한 항목만 보기",
+            "tooltipBundleHasRestrictions": "하나 이상의 제품에는 이 번들의 가용성에 영향을 주는 제한 사항이 있습니다.자세한 내용은 번들 세부 정보를 참조하십시오.",
+            "tooltipBundleInactive": "비활성",
+            "tooltipBundleIssues": "문제:",
+            "tooltipBundleMismatchedSalesChannels": "제품 판매 채널에 할당되지 않음: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "번들에는 최소 두 개 이상의 제품이 필요하므로 이 제품을 제거할 수 없습니다."
+        },
         "card": {
             "textHeadline": "재고 및 배송 가능성",
             "textLinkModal": "창고 및 창고 그룹별 재고 보기",
             "textProductWarehouseModalDisabled": "추가 재고 세부 정보를 열기 전에 변경 사항을 저장하십시오.",
             "textTooltipMultiSelect": "창고 그룹을 지정하여 여러 창고의 재고를 개별적으로 관리할 수 있습니다."
+        },
+        "detail": {
+            "tabBundle": "묶음"
         },
         "modal-warehouse-group": {
             "buttonCancel": "닫기",
@@ -1986,6 +2359,9 @@
             "tabStock": "재고",
             "textHeadline": "창고 및 창고 그룹별 재고",
             "textInlineEdit": "주식 편집"
+        },
+        "type": {
+            "grouped_bundle": "번들"
         },
         "variants-overview": {
             "inlineText": "자세한 내용 보기"
@@ -2542,6 +2918,16 @@
             "emptyText": "빈 장면"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "번들 상품 상세 페이지"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "견적 주문에 프로모션 코드 허용"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "프렌들리 캡차",
+                "friendlyCaptchaApiKey": "친숙한 캡차 API 키",
                 "friendlyCaptchaDescription": "Friendly Captcha는 작업 증명 메커니즘과 고급 위험 신호를 기반으로 하는 근본적으로 새로운 접근 방식을 사용하여 웹사이트와 온라인 서비스를 스팸과 봇으로부터 안전하게 보호합니다.",
+                "friendlyCaptchaRegion": "API 리전",
+                "friendlyCaptchaRegionEu": "EU (유럽 연합)",
+                "friendlyCaptchaRegionGlobal": "글로벌",
+                "friendlyCaptchaRegionHelpText": "유럽 서버를 통해서만 모든 captcha 요청을 라우팅하려면 “EU”를 선택합니다.이는 GDPR 준수와 관련이 있을 수 있습니다.",
                 "friendlyCaptchaSecretKey": "친숙한 캡차 시크릿 키",
-                "friendlyCaptchaSiteKey": "친숙한 Captcha 사이트 키"
+                "friendlyCaptchaSiteKey": "친숙한 Captcha 사이트 키",
+                "friendlyCaptchaV1DeprecationNotice": "버전 1은 레거시이며 향후 릴리스에서 제거될 예정입니다.보안을 개선하고 위젯 환경을 더 깔끔하게 하려면 버전 2로 업그레이드하는 것이 좋습니다.",
+                "friendlyCaptchaVersion": "친숙한 캡차 버전",
+                "friendlyCaptchaVersionV1": "버전 1 (레거시)",
+                "friendlyCaptchaVersionV2": "버전 2 (신규)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "취소",
         "retry": "재시도"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "로크 유니폼 스케일",
-        "unlock-uniform-scale": "유니폼 스케일 잠금 해제"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "고객은 예산 한도를 정의하고 관리하여 조직 단위의 지출을 보다 효과적으로 관리할 수 있습니다.",
         "budgetManagementName": "예산",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "주문 승인",
                     "ORGANIZATION_UNITS": "조직 단위",
                     "QUICK_ORDER": "빠른 주문",
-                    "QUOTE_MANAGEMENT": "견적 관리"
+                    "QUOTE_MANAGEMENT": "견적 관리",
+                    "SHOPPING_LISTS": "쇼핑 리스트"
                 },
                 "template": "{name}이용 시 {dependency} 필수"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "이름",
             "columnOrderQuantity": "주문 수량",
             "columnReturnQuantity": "반품 수량",
+            "includesShippingCosts": "배송비 포함",
             "messageErrorNoItemHasQuantity": "반품을 생성하려면 수량이 0보다 큰 품목이 1개 이상 있어야 합니다.",
             "messagePreventAddItem": "이 품목은 이미 반품에 포함되었거나 상태가 취소됨, 반품됨 또는 부분 반품됨으로 표시됩니다.",
             "placeholderComment": "댓글 입력...",

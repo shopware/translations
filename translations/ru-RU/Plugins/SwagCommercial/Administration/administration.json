@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Отмена статуса подписки приостановлена"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Индивидуальное ценообразование",
             "b2b_components_role": "Роль | Роли",
             "b2b_components_shopping_list": "Списки покупок",
             "b2b_employee": "Сотрудник | Сотрудники",
+            "bundle": "Комплект | Пакеты",
+            "bundle_item": "Предмет в комплекте | Предметы в комплекте",
             "export_assistant": "Ассистент экспорта",
-            "individual_pricing": "Индивидуальное ценообразование",
             "quote": "Цитата | Цитаты",
             "quote_line_item": "Элемент строки предложения | Элементы строки предложения",
             "search_assistant": "Второй пилот ИИ",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Предмет — это предмет в комплекте",
+                "lineItemOfBundleRule": "Предмет выбранного комплекта",
                 "subscriptionCartRule": "Корзина подписки",
                 "subscriptionIntervalRule": "Интервал подписки",
                 "subscriptionPlanRule": "План подписки"
             },
             "group": {
                 "subscription": "подписка"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Пакет"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Спасибо, что опробовали чертеж Bundles. Мы будем рады услышать ваши отзывы.",
+                "link": "Оставить отзыв"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Настраиваемые поля"
+            },
+            "general": {
+                "title": "Общая информация"
+            },
+            "items": {
+                "actionOpenProductDetails": "Открыть сведения о продукте",
+                "buttonAddBundleItems": "Добавить продукты",
+                "columnName": "Название",
+                "columnPosition": "Позиция",
+                "columnPrice": "Цена",
+                "emptyStateDescription": "Добавьте в комплект как минимум два продукта.",
+                "emptyStateTitle": "Пока не добавлено ни одного товара",
+                "title": "Продукты ({count})",
+                "tooltipBundleItemCustomizedProduct": "Назначен индивидуальный шаблон продукта",
+                "tooltipBundleItemHasVariants": "У продукта есть варианты",
+                "tooltipBundleItemInactive": "Неактивный",
+                "tooltipBundleItemIncompatibleVisibilities": "Не привязано к каналам продаж пакета: {salesChannels}",
+                "tooltipBundleItemIssues": "Проблемы:",
+                "tooltipBundleItemOutOfStockCloseout": "Нет в наличии (распродажа по распродаже)",
+                "tooltipBundleItemOutOfStockTemporary": "В настоящее время этого товара нет в наличии. Комплект снова можно будет приобрести, как только все товары появятся в наличии.",
+                "tooltipBundleItemOutOfStockTitle": "Нет в наличии",
+                "tooltipRefreshData": "Обновить данные"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Дата выпуска",
+                    "placeholder": "Введите дату выпуска..."
+                },
+                "title": "Маркировка"
+            },
+            "media": {
+                "subtitle": "Добавьте файлы в медиагалерею пакета.",
+                "title": "Медиа"
+            },
+            "messageMinBundleItemsRequired": "Добавьте как минимум два продукта, чтобы создать набор.",
+            "messageNoChanges": "Нет изменений для сохранения",
+            "messageSaveError": "Не удалось сохранить пакет",
+            "messageSaveSuccess": "Пакет успешно сохранен",
+            "price": {
+                "addDiscount": "Добавить скидку",
+                "currencyDependingPrices": "Валюта в зависимости от цен",
+                "discount": "Скидка",
+                "discountRules": "Правила скидок",
+                "discountTitle": "Скидка",
+                "discountType": "Тип",
+                "discountTypeAbsolute": "Абсолютный",
+                "discountTypePercentage": "Процентное соотношение",
+                "discountValue": "Значение",
+                "discountValuePlaceholder": "Добавить ценность...",
+                "doNotCombineWith": "Не комбинировать с",
+                "maxValuePlaceholder": "Неограниченно",
+                "maximumDiscountValue": "Максимальное значение скидки",
+                "openAdvancedPricesView": "Расширенный просмотр цен",
+                "preventCombination": "Предотвращение сочетания с другими акциями",
+                "preventCombinationHelpText": "Если эта скидка включена, ее нельзя комбинировать с другими акциями",
+                "promotionsPlaceholder": "Добавьте акции...",
+                "rulesPlaceholder": "Добавить правила...",
+                "subtotalBased": "Итого на основе 1 продукта | Промежуточный итог на основе товаров {count}",
+                "title": "Отображать цены",
+                "total": "Итого",
+                "totalBased": "Всего на основе 1 продукта | Всего на основе продуктов {count}"
+            },
+            "tabGeneral": "Генеральной",
+            "tabLayout": "Макет",
+            "tabSeo": "SEO",
+            "textHeadline": "Новый комплект",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Это предотвращает отображение пакета на этих каналах. Пожалуйста, проверьте видимость следующих продуктов:",
+                    "notAssignedTo": "не назначено",
+                    "title": "Некоторые продукты не привязаны ко всем выбранным каналам продаж"
+                },
+                "title": "Видимость и структура"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Активный",
+                "placeholder": "Выберите статус..."
+            },
+            "availabilityFilter": {
+                "label": "Доступность",
+                "placeholder": "Выберите доступность..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Включенные продукты",
+                "placeholder": "Выберите включенные продукты..."
+            },
+            "categoriesFilter": {
+                "label": "Категории",
+                "placeholder": "Выбрать категории..."
+            },
+            "fromPlaceholder": "Введите начальное значение...",
+            "imagesFilter": {
+                "label": "Изображения",
+                "placeholder": "Выберите статус изображения...",
+                "textHasCriteria": "Назначено хотя бы одно изображение продукта",
+                "textNoCriteria": "Изображения продуктов не назначены"
+            },
+            "priceFilter": {
+                "label": "Цена"
+            },
+            "productNumberFilter": {
+                "label": "Номер товара",
+                "placeholder": "Введите номер продукта..."
+            },
+            "releaseDateFilter": {
+                "label": "Дата выпуска"
+            },
+            "salesChannelsFilter": {
+                "label": "Каналы продаж",
+                "placeholder": "Выберите канал продаж..."
+            },
+            "salesFilter": {
+                "label": "Продажи"
+            },
+            "tagsFilter": {
+                "label": "Теги",
+                "placeholder": "Выберите теги..."
+            },
+            "toPlaceholder": "Введите конечное значение..."
+        },
+        "general": {
+            "description": "пакеты",
+            "headlineBundles": "пакеты",
+            "mainMenuItemGeneral": "пакеты",
+            "placeholderSearchBar": "Поиск пакетов...",
+            "title": "пакеты"
+        },
+        "generalForm": {
+            "highlightHelpText": "Выделенные пакеты отмечены яркой этикеткой и словом «Совет» во всех списках пакетов. Вы можете изменить цвет этикетки, изменив опцию «Уведомление» в настройках темы <a href=\"{themeUrl}\"></a> . Можно также изменить текст этикетки, отредактировав соответствующий фрагмент текста <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Описание",
+            "labelMarkAsTopseller": "Комплект «Основные моменты»",
+            "labelName": "Название",
+            "labelProductNumber": "Номер товара",
+            "placeholderDescription": "Введите описание пакета...",
+            "placeholderName": "Введите название пакета...",
+            "placeholderProductNumber": "Введите номер продукта..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "В комплект входят как минимум два продукта.",
+            "notEnoughProductsTitle": "Недостаточно продуктов",
+            "restrictions": "Один или несколько продуктов имеют ограничения, влияющие на доступность этого пакета. Подробную информацию см. на значках с предупреждениями.",
+            "restrictionsTitle": "Некоторые продукты имеют ограничения"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Совпадающие продукты не найдены",
+            "noProductsMatchingBundleSalesChannels": "Нет активных продуктов, соответствующих выбранным каналам продаж пакета.",
+            "noProductsMatchingTermAndFilter": "Настройте поисковый запрос или фильтры.",
+            "placeholderSearch": "Поиск товаров...",
+            "showIncluded": "Показывать только выбранное ({count})",
+            "textWhySomeItemsMissing": "Почему некоторые продукты отсутствуют?",
+            "title": "Добавить продукты",
+            "tooltipVariant": "Вариант",
+            "tooltipWhySomeItemsMissing": "В настоящее время пакеты работают только с физическими продуктами и отдельными вариантами. <br /><br /> Продукты должны быть привязаны к выбранным каналам продаж пакета, чтобы они появились в списке."
+        },
+        "list": {
+            "available": "Доступно",
+            "buttonAddBundle": "Добавить пакет",
+            "columnActive": "Активный",
+            "columnAvailable": "Доступность",
+            "columnBundleItemCount": "Количество продуктов",
+            "columnCreatedAt": "Создано в",
+            "columnName": "Название",
+            "columnProductNumber": "Номер товара",
+            "columnSales": "Продажи",
+            "columnTotalPrice": "Общая стоимость",
+            "columnUpdatedAt": "Обновлено в",
+            "emptyStateDescription": "Пакеты могут увеличить среднюю стоимость заказа и побудить клиентов покупать сопутствующие товары.",
+            "emptyStateTitle": "Добавляйте пакеты, чтобы увеличить продажи",
+            "messageSaveSuccess": "Пакет \"{name}\" сохранен.",
+            "titleSidebarItemRefresh": "Обновить",
+            "unavailable": "Недоступно"
+        },
+        "priceModal": {
+            "currency": "Валюта",
+            "price": "Значение",
+            "title": "Расширенные цены"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Добавить продукты",
+            "description": "Сначала выберите канал продаж, чтобы узнать, какие продукты можно добавить в комплект. Это можно изменить позже на карточке «Видимость и структура».",
+            "title": "Требуется канал продаж"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Сгенерировать изображение",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Описание пакета"
+                },
+                "bundleHeading": {
+                    "label": "Название пакета"
+                },
+                "bundleItems": {
+                    "label": "Комплектуйте предметы"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Галерея изображений и коробка для покупки комплекта"
+                },
+                "recommendedBundles": {
+                    "label": "Рекомендуемые пакеты"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Макет по умолчанию — страница комплекта продуктов",
+                "setAsDefaultBundleDetail": "Установлено в качестве страницы пакета продуктов по умолчанию"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Страница «Пакет»"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Сгенерировать изображение",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Данные продукта этого элемента автоматически загружаются продуктом, связанным с этим макетом. Содержимое просто показывает образец предварительного просмотра."
+                },
+                "label": "Пакет, купи коробку"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Данные продукта этого элемента автоматически загружаются продуктом, связанным с этим макетом. Содержимое просто показывает образец предварительного просмотра."
+                },
+                "label": "Описание пакета",
+                "preview": {
+                    "descriptionTab": "Описание",
+                    "title": "Пакет"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Позволяет добавлять товары в комплекте прямо в корзину, а не открывать страницу с описанием продукта.",
+                        "labelTitle": "Используйте {count} , чтобы отобразить количество продуктов в наборе."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Данные продукта этого элемента автоматически загружаются продуктом, связанным с этим макетом. Содержимое просто показывает образец предварительного просмотра."
+                    },
+                    "label": {
+                        "boxSettings": "Настройки коробки с товаром",
+                        "cta": "Покажите CTA, чтобы добавить товары из комплекта прямо в корзину",
+                        "minWidth": "Минимальная ширина",
+                        "title": "Заголовок"
+                    }
+                },
+                "label": "Включенные продукты"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Данные пакета этого элемента автоматически загружаются пакетом, связанным с этим макетом. Содержимое содержит только образец предварительного просмотра."
+                },
+                "label": "Название пакета"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Если этот параметр включен, первоначально отображается только часть пакетов. Пользователи могут расширить список, чтобы показать больше.",
+                        "maxVisibleBundles": "Определяет, сколько пакетов будет отображаться до тех пор, пока они не будут скрыты за функцией «Показать больше».",
+                        "productBoxSettings": "Настройки коробки с товаром",
+                        "productDetailElement": "Данные продукта этого элемента автоматически загружаются продуктом, связанным с этим макетом. Содержимое просто показывает образец предварительного просмотра.",
+                        "showCTAInfo": "Позволяет добавлять товары в комплекте прямо в корзину, а не открывать страницу с описанием продукта.",
+                        "sliderSettings": "Настройки слайдера"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Ограничьте количество первоначально показанных пакетов",
+                        "maxVisibleBundles": "Пакеты, показанные изначально",
+                        "minWidth": "Минимальная ширина",
+                        "recommendedCombinationsTitle": "Рекомендуемые комбинации",
+                        "showBundleName": "Показать название пакета",
+                        "showCTA": "Покажите CTA, чтобы добавить товары из комплекта прямо в корзину",
+                        "showCurrentProduct": "Показать просмотренный в данный момент продукт первым в комплекте",
+                        "title": "Заголовок"
+                    },
+                    "placeholder": {
+                        "minWidth": "Введите минимальную ширину...",
+                        "title": "Рекомендуемые комбинации"
+                    }
+                },
+                "label": "Рекомендуемые комбинации",
+                "preview": {
+                    "label": {
+                        "title": "Рекомендуемые комбинации"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Сгенерировать изображение",
             "contentText": "Создавайте собственные изображения настроения, чтобы настроить макет с помощью изображения, созданного искусственным интеллектом.",
             "header": "Второй пилот ИИ"
+        },
+        "tags": {
+            "bundle": "Пакет"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Адреса организационных подразделений",
                             "pending_order": "Управление отложенными ордерами",
                             "quote": "Управление котировками",
-                            "role": "Управление ролями"
+                            "role": "Управление ролями",
+                            "subscription": "Заказать подписку"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Удалить адрес доставки",
                                     "update": "Изменить адрес доставки"
                                 },
+                                "subscription": {
+                                    "read": "Просмотр всех подписок на заказы от назначенного организационного подразделения"
+                                },
                                 "update": "Изменить организационное подразделение"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Может удалять роли",
                                 "edit": "Может редактировать роли",
                                 "read": "Может просматривать роли"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Показать все подписки на заказы"
+                                }
                             }
                         },
                         "switchAllLabel": "Все разрешения"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Управление ролями"
             },
+            "bundle": {
+                "label": "пакеты"
+            },
             "custom_price": {
                 "label": "Цена продукта для клиентов"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Добавить продукт в пакеты",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Понял",
+                "description": "Этот продукт не удалось удалить из следующих наборов, так как для комплекта требуется как минимум два продукта:",
+                "hint": "Чтобы удалить этот продукт, сначала добавьте еще один продукт в эти наборы.",
+                "title": "Не удалось удалить продукт из всех наборов"
+            },
+            "bundleCardSubtitle": "Все пакеты, содержащие этот продукт",
+            "bundleCardTitle": "Комплекты ({count})",
+            "buttonAddBundle": "Добавить продукт в пакеты",
+            "buttonAddBundleLanguageWarning": "Добавление пакетов возможно только на системном языке по умолчанию.",
+            "buttonCreateBundle": "Создать пакет",
+            "buttonManageBundles": "Управление пакетами",
+            "columnActive": "Активный",
+            "columnAvailability": "Доступность",
+            "columnBundleItemCount": "Количество продуктов",
+            "columnCreatedAt": "Создано в",
+            "columnName": "Название",
+            "columnProductNumber": "Номер товара",
+            "columnSales": "Продажи",
+            "columnShowBundleOnItemPdp": "Показать на странице сведений",
+            "columnUpdatedAt": "Обновлено в",
+            "emptyStateDescription": "Пакеты могут увеличить среднюю стоимость заказа и побудить клиентов покупать сопутствующие товары. Пакеты отображаются на странице сведений о продукте, если макет CMS содержит элемент пакета.",
+            "emptyStateDescriptionCreateFirst": "Пакеты могут увеличить среднюю стоимость заказа и побудить клиентов покупать сопутствующие товары. Пакеты отображаются на странице сведений о продукте, если макет CMS содержит элемент пакета. Создайте пакет, чтобы добавить этот продукт.",
+            "emptyStateNoBundlesFound": "Подходящих пакетов не найдено",
+            "emptyStateNoBundlesFoundDescription": "Настройте поисковый запрос или фильтры.",
+            "emptyStateTitle": "Добавьте продукт в пакеты, чтобы увеличить продажи",
+            "hideOnProductDetailPage": "Скрыть на странице сведений о продукте",
+            "messageSaveSuccess": "Пакет \"{name}\" сохранен.",
+            "openBundlesDetail": "Открыть сведения о пакете",
+            "placeholderSearch": "Поиск пакетов...",
+            "refreshDataTooltip": "Обновить данные",
+            "showOnProductDetailPage": "Показать на странице сведений о продукте",
+            "showOnlyIncluded": "Показать только выбранное",
+            "tooltipBundleHasRestrictions": "Один или несколько продуктов имеют ограничения, влияющие на доступность этого пакета. Для получения дополнительной информации ознакомьтесь с описанием пакета.",
+            "tooltipBundleInactive": "Неактивный",
+            "tooltipBundleIssues": "Проблемы:",
+            "tooltipBundleMismatchedSalesChannels": "Не относится к каналам продаж продукта: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Этот продукт нельзя удалить, так как для комплектов требуется как минимум два продукта."
+        },
         "card": {
             "textHeadline": "Запасы и возможность доставки",
             "textLinkModal": "Просмотр запасов по складам и складским группам",
             "textProductWarehouseModalDisabled": "Сохраните изменения, прежде чем открывать дополнительные сведения об акциях.",
             "textTooltipMultiSelect": "Назначьте складские группы для индивидуального управления запасами на нескольких складах."
+        },
+        "detail": {
+            "tabBundle": "пакеты"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Закрыть",
@@ -1986,6 +2359,9 @@
             "tabStock": "Склад",
             "textHeadline": "Запасы по складам и складским группам",
             "textInlineEdit": "Редактирование акций"
+        },
+        "type": {
+            "grouped_bundle": "Пакет"
         },
         "variants-overview": {
             "inlineText": "См. подробности"
@@ -2542,6 +2918,16 @@
             "emptyText": "Пустая сцена"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Страница сведений о продукте Bundle"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Разрешить использование промокодов к заказам на основе котировок"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Дружественная капча",
+                "friendlyCaptchaApiKey": "Дружественный ключ API Captcha",
                 "friendlyCaptchaDescription": "Основанная на механизмах проверки работоспособности и продвинутых сигналах риска, Friendly Captcha использует принципиально новый подход к надежной защите ваших веб-сайтов и онлайн-сервисов от спама и ботов.",
+                "friendlyCaptchaRegion": "Регион API",
+                "friendlyCaptchaRegionEu": "ЕС (Европейский союз)",
+                "friendlyCaptchaRegionGlobal": "Глобально",
+                "friendlyCaptchaRegionHelpText": "Выберите «EU», чтобы направлять все запросы капчи исключительно через европейские серверы. Это может быть актуально для соответствия требованиям GDPR.",
                 "friendlyCaptchaSecretKey": "Дружественный секретный ключ Captcha",
-                "friendlyCaptchaSiteKey": "Удобный ключ сайта Captcha"
+                "friendlyCaptchaSiteKey": "Удобный ключ сайта Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "Версия 1 устарела и будет удалена в будущем выпуске. Мы рекомендуем перейти на версию 2 для повышения безопасности и удобства работы с виджетами.",
+                "friendlyCaptchaVersion": "Дружественная версия Captcha",
+                "friendlyCaptchaVersionV1": "Версия 1 (устаревшая версия)",
+                "friendlyCaptchaVersionV2": "Версия 2 (новая)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Отмена",
         "retry": "Повторить"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Заблокировать равномерную шкалу",
-        "unlock-uniform-scale": "Откройте равномерную шкалу"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Ваши клиенты могут устанавливать бюджетные ограничения и управлять ими, чтобы лучше контролировать расходы своих организационных подразделений.",
         "budgetManagementName": "Бюджеты",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Утверждение заказа",
                     "ORGANIZATION_UNITS": "Организационные подразделения",
                     "QUICK_ORDER": "Быстрые заказы",
-                    "QUOTE_MANAGEMENT": "Управление ценовыми предложениями"
+                    "QUOTE_MANAGEMENT": "Управление ценовыми предложениями",
+                    "SHOPPING_LISTS": "Списки покупок"
                 },
                 "template": "{dependency} необходимо для {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Название",
             "columnOrderQuantity": "Количество заказа",
             "columnReturnQuantity": "Количество возврата",
+            "includesShippingCosts": "Включая стоимость доставки",
             "messageErrorNoItemHasQuantity": "Для создания возврата необходимо наличие хотя бы одной строки товара в количестве, превышающем 0",
             "messagePreventAddItem": "Этот товар уже является частью возврата или имеет статус «Отменен», «Возвращен» или «Возвращен частично».",
             "placeholderComment": "Введите комментарий...",
