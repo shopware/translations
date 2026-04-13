@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Prenumerata palieka būseną pristabdytą"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuali kainodara",
             "b2b_components_role": "Vaidmuo | Vaidmenys",
             "b2b_components_shopping_list": "Pirkinių sąrašai",
             "b2b_employee": "Darbuotojas | Darbuotojai",
+            "bundle": "Rinkinys | Paketai",
+            "bundle_item": "Komplekto prekė | Komplekto prekės",
             "export_assistant": "Eksporto asistentas",
-            "individual_pricing": "Individuali kainodara",
             "quote": "Citata | Citatos",
             "quote_line_item": "Citatos eilutės elementas | Cituoti eilutės elementus",
             "search_assistant": "AI kopilotas",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Prekė yra paketo elementas",
+                "lineItemOfBundleRule": "Pasirinkto paketo elementas",
                 "subscriptionCartRule": "Prenumeratos krepšelis",
                 "subscriptionIntervalRule": "Prenumeratos intervalas",
                 "subscriptionPlanRule": "Prenumeratos planas"
             },
             "group": {
                 "subscription": "Prenumerata"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Rinkinys"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Dėkojame, kad išbandėte “Bundles” planą. Norėtume išgirsti jūsų atsiliepimus.",
+                "link": "Palikti atsiliepimą"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Papildomai laukai"
+            },
+            "general": {
+                "title": "Bendroji informacija"
+            },
+            "items": {
+                "actionOpenProductDetails": "Atidaryti informaciją apie produktą",
+                "buttonAddBundleItems": "Pridėti produktus",
+                "columnName": "Pavadinimas",
+                "columnPosition": "Padėtis",
+                "columnPrice": "Kaina",
+                "emptyStateDescription": "Į paketą pridėkite bent du produktus.",
+                "emptyStateTitle": "Produktų dar nepridėta",
+                "title": "Produktai ({count})",
+                "tooltipBundleItemCustomizedProduct": "Priskirtas pasirinktinio produkto šablonas",
+                "tooltipBundleItemHasVariants": "Produktas turi variantus",
+                "tooltipBundleItemInactive": "Neaktyvus",
+                "tooltipBundleItemIncompatibleVisibilities": "Nepriskirtas paketo pardavimo kanalams: {salesChannels}",
+                "tooltipBundleItemIssues": "Problemos:",
+                "tooltipBundleItemOutOfStockCloseout": "Išparduota (Išpardavimas)",
+                "tooltipBundleItemOutOfStockTemporary": "Šiuo metu šio produkto nėra sandėlyje. Paketas vėl bus perkamas, kai visi produktai bus vėl sandėlyje.",
+                "tooltipBundleItemOutOfStockTitle": "Išparduota",
+                "tooltipRefreshData": "Atnaujinkite duomenis"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Išleidimo data",
+                    "placeholder": "Įveskite išleidimo datą..."
+                },
+                "title": "Ženklinimas"
+            },
+            "media": {
+                "subtitle": "Pridėkite failus į rinkinio medijos galeriją.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Norėdami sukurti paketą, pridėkite bent du produktus.",
+            "messageNoChanges": "Jokių pakeitimų, kuriuos reikia išsaugoti",
+            "messageSaveError": "Nepavyko išsaugoti paketo",
+            "messageSaveSuccess": "Paketas sėkmingai išsaugotas",
+            "price": {
+                "addDiscount": "Pridėti nuolaidą",
+                "currencyDependingPrices": "Valiuta priklausomai nuo kainų",
+                "discount": "Nuolaida",
+                "discountRules": "Nuolaidų taisyklės",
+                "discountTitle": "Nuolaida",
+                "discountType": "Tipas",
+                "discountTypeAbsolute": "absoliuti",
+                "discountTypePercentage": "procentas",
+                "discountValue": "Vertė",
+                "discountValuePlaceholder": "Pridėtinė vertė...",
+                "doNotCombineWith": "Negalima derinti su",
+                "maxValuePlaceholder": "Neribotas",
+                "maximumDiscountValue": "Maksimali nuolaidos vertė",
+                "openAdvancedPricesView": "Atidarykite pažangių kainų vaizdą",
+                "preventCombination": "Neleisti kartu su kitomis akcijomis",
+                "preventCombinationHelpText": "Įjungus šią nuolaidą negalima derinti su kitomis akcijomis",
+                "promotionsPlaceholder": "Pridėti reklamas...",
+                "rulesPlaceholder": "Pridėti taisykles...",
+                "subtotalBased": "Tarpinė suma pagal 1 produktą | Tarpinė suma pagal {count} produktus",
+                "title": "Rodyti kainas",
+                "total": "Viso",
+                "totalBased": "Viso pagal 1 prekę | Viso pagal {count} prekes"
+            },
+            "tabGeneral": "Bendra",
+            "tabLayout": "Išdėstymas",
+            "tabSeo": "SEO",
+            "textHeadline": "Naujas paketas",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Tai neleidžia paketui būti matomam tuose kanaluose. Patikrinkite šių produktų matomumą:",
+                    "notAssignedTo": "nėra priskirtas",
+                    "title": "Kai kurie produktai nėra priskirti visiems pasirinktiems pardavimo kanalams"
+                },
+                "title": "Matomumas ir struktūra"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "aktyvus",
+                "placeholder": "Pasirinkite būseną..."
+            },
+            "availabilityFilter": {
+                "label": "prieinamumas",
+                "placeholder": "Pasirinkite prieinamumą..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Įtraukti produktai",
+                "placeholder": "Pasirinkite įtrauktus produktus..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorijos",
+                "placeholder": "Pasirinkite kategorijas..."
+            },
+            "fromPlaceholder": "Įveskite pradžios reikšmę...",
+            "imagesFilter": {
+                "label": "Paveikslėliai",
+                "placeholder": "Pasirinkite vaizdo būseną...",
+                "textHasCriteria": "Bent vienas produkto vaizdas priskirtas",
+                "textNoCriteria": "Nėra produktų vaizdų, priskirtų"
+            },
+            "priceFilter": {
+                "label": "Kaina"
+            },
+            "productNumberFilter": {
+                "label": "Produkto numeris",
+                "placeholder": "Įveskite produkto numerį..."
+            },
+            "releaseDateFilter": {
+                "label": "Išleidimo data"
+            },
+            "salesChannelsFilter": {
+                "label": "Pardavimo kanalai",
+                "placeholder": "Pasirinkite pardavimo kanalus..."
+            },
+            "salesFilter": {
+                "label": "Pardavimai"
+            },
+            "tagsFilter": {
+                "label": "Žymės",
+                "placeholder": "Pasirinkite žymas..."
+            },
+            "toPlaceholder": "Įveskite galinę vertę..."
+        },
+        "general": {
+            "description": "Ryšuliai",
+            "headlineBundles": "Ryšuliai",
+            "mainMenuItemGeneral": "Ryšuliai",
+            "placeholderSearchBar": "Ieškoti paketų...",
+            "title": "Ryšuliai"
+        },
+        "generalForm": {
+            "highlightHelpText": "Išryškinti ryšuliai visuose ryšulių sąrašuose pažymėti ryškiaspalve etikete ir žodžiu “Patarimas”. Etiketės spalvą galite koreguoti pakeisdami parinktį “Pranešimas” <a href=\"{themeUrl}\">temos</a> nustatymuose. Taip pat galite pakeisti etiketės tekstą redaguodami atitinkamą <a href=\"{snippetUrl}\">teksto fragmentą</a>.",
+            "labelDescription": "Aprašymas",
+            "labelMarkAsTopseller": "Pažymėkite paketą",
+            "labelName": "Pavadinimas",
+            "labelProductNumber": "Produkto numeris",
+            "placeholderDescription": "Įveskite paketo aprašymą...",
+            "placeholderName": "Įveskite paketo pavadinimą...",
+            "placeholderProductNumber": "Įveskite produkto numerį..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Paketui reikia mažiausiai dviejų produktų.",
+            "notEnoughProductsTitle": "Nepakanka produktų",
+            "restrictions": "Vienam ar keliems produktams taikomi apribojimai, kurie turi įtakos šio paketo prieinamumui. Išsamesnės informacijos ieškokite įspėjamųjų piktogramų.",
+            "restrictionsTitle": "Kai kuriems produktams taikomi apribojimai"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Nerasta atitinkančių produktų",
+            "noProductsMatchingBundleSalesChannels": "Nėra aktyvių produktų, atitinkančių paketo pasirinktus pardavimo kanalus.",
+            "noProductsMatchingTermAndFilter": "Sureguliuokite paieškos terminą ar filtrus.",
+            "placeholderSearch": "Ieškoti produktų...",
+            "showIncluded": "Rodyti tik pasirinktą ({count})",
+            "textWhySomeItemsMissing": "Kodėl trūksta kai kurių produktų?",
+            "title": "Pridėti produktus",
+            "tooltipVariant": "variantas",
+            "tooltipWhySomeItemsMissing": "Šiuo metu ryšuliai veikia tik su fiziniais produktais ir pavieniais variantais. <br /><br /> Produktai turi būti priskirti paketo pasirinktiems Pardavimo kanalams, kad jie būtų rodomi sąraše."
+        },
+        "list": {
+            "available": "Turimas",
+            "buttonAddBundle": "Pridėti paketą",
+            "columnActive": "aktyvus",
+            "columnAvailable": "prieinamumas",
+            "columnBundleItemCount": "Produktų skaičius",
+            "columnCreatedAt": "Sukurta",
+            "columnName": "Pavadinimas",
+            "columnProductNumber": "Produkto numeris",
+            "columnSales": "Pardavimai",
+            "columnTotalPrice": "Bendra kaina",
+            "columnUpdatedAt": "Atnaujinta",
+            "emptyStateDescription": "Paketai gali padidinti jūsų vidutinę užsakymo vertę ir paskatinti klientus įsigyti susijusių produktų.",
+            "emptyStateTitle": "Pridėkite paketus, kad padidintumėte pardavimus",
+            "messageSaveSuccess": "Rinkinys \"{name}\" buvo išsaugotas.",
+            "titleSidebarItemRefresh": "Atnaujinti",
+            "unavailable": "Nepasiekiamas"
+        },
+        "priceModal": {
+            "currency": "Valiuta",
+            "price": "Vertė",
+            "title": "Išplėstinės kainos"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Pridėti produktus",
+            "description": "Pirmiausia pasirinkite pardavimo kanalą, kad pamatytumėte, kuriuos produktus galima įtraukti į paketą. Vėliau tai galite koreguoti kortelėje Matomumas ir struktūra.",
+            "title": "Reikalingas pardavimo kanalas"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Sukurti vaizdą",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Paketo aprašymas"
+                },
+                "bundleHeading": {
+                    "label": "Paketo pavadinimas"
+                },
+                "bundleItems": {
+                    "label": "Komplektų elementai"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Vaizdų galerija ir paketo pirkimo dėžutė"
+                },
+                "recommendedBundles": {
+                    "label": "Rekomenduojami paketai"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Numatytasis išdėstymas - Produktų paketo puslapis",
+                "setAsDefaultBundleDetail": "Nustatyti kaip numatytąjį produktų paketo puslapį"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Paketo puslapis"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Sukurti vaizdą",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Šio elemento produkto duomenis automatiškai įkrauna produktas, susietas su šiuo išdėstymu. Turinyje tiesiog rodoma pavyzdžio peržiūra."
+                },
+                "label": "Paketo pirkimo dėžutė"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Šio elemento produkto duomenis automatiškai įkrauna produktas, susietas su šiuo išdėstymu. Turinyje tiesiog rodoma pavyzdžio peržiūra."
+                },
+                "label": "Paketo aprašymas",
+                "preview": {
+                    "descriptionTab": "Aprašymas",
+                    "title": "Rinkinys"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Leidžia pridėti ryšulių elementus tiesiai į krepšelį, o ne atidaryti produkto detalių puslapį.",
+                        "labelTitle": "Norėdami parodyti rinkinyje esančių produktų skaičių, naudokite {count}."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Šio elemento produkto duomenis automatiškai įkrauna produktas, susietas su šiuo išdėstymu. Turinyje tiesiog rodoma pavyzdžio peržiūra."
+                    },
+                    "label": {
+                        "boxSettings": "Produkto dėžutės nustatymai",
+                        "cta": "Rodyti CTA, kad pridėtumėte paketų elementus tiesiai į krepšelį",
+                        "minWidth": "Mažiausias plotis",
+                        "title": "Antraštė"
+                    }
+                },
+                "label": "Įtraukti produktai"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Šio elemento paketo duomenys automatiškai įkeliami su šiuo išdėstymu susietu paketu. Turinys rodo tik pavyzdinę peržiūrą."
+                },
+                "label": "Paketo pavadinimas"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Kai įjungta, iš pradžių rodomas tik paketų poaibis. Vartotojai gali išplėsti sąrašą, kad parodytų daugiau.",
+                        "maxVisibleBundles": "Kontroliuoja, kiek paketų bus rodoma, kol jie bus paslėpti už funkcijos “Rodyti daugiau”.",
+                        "productBoxSettings": "Produkto dėžutės nustatymai",
+                        "productDetailElement": "Šio elemento produkto duomenis automatiškai įkrauna produktas, susietas su šiuo išdėstymu. Turinyje tiesiog rodoma pavyzdžio peržiūra.",
+                        "showCTAInfo": "Leidžia pridėti ryšulių elementus tiesiai į krepšelį, o ne atidaryti produkto detalių puslapį.",
+                        "sliderSettings": "Slankiklio nustatymai"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Ribinis iš pradžių parodytų paketų skaičius",
+                        "maxVisibleBundles": "Iš pradžių rodomi paketai",
+                        "minWidth": "Mažiausias plotis",
+                        "recommendedCombinationsTitle": "Rekomenduojami deriniai",
+                        "showBundleName": "Rodyti rinkinio pavadinimą",
+                        "showCTA": "Rodyti CTA, kad pridėtumėte paketų elementus tiesiai į krepšelį",
+                        "showCurrentProduct": "Rodyti šiuo metu žiūrimą produktą pirmą kartą rinkinyje",
+                        "title": "Antraštė"
+                    },
+                    "placeholder": {
+                        "minWidth": "Įveskite minimalų plotį...",
+                        "title": "Rekomenduojami deriniai"
+                    }
+                },
+                "label": "Rekomenduojami deriniai",
+                "preview": {
+                    "label": {
+                        "title": "Rekomenduojami deriniai"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Sukurti vaizdą",
             "contentText": "Sukurkite savo nuotaikos vaizdus, kad pritaikytumėte savo maketą naudodamiesi AI Generated image.",
             "header": "AI kopilotas"
+        },
+        "tags": {
+            "bundle": "Rinkinys"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organizacijos padalinio adresai",
                             "pending_order": "Laukiamas užsakymų valdymas",
                             "quote": "Citatų valdymas",
-                            "role": "Vaidmenų valdymas"
+                            "role": "Vaidmenų valdymas",
+                            "subscription": "Užsisakykite prenumeratą"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Ištrinti siuntimo adresą",
                                     "update": "Redaguoti siuntimo adresą"
                                 },
+                                "subscription": {
+                                    "read": "Peržiūrėti visas užsakymų prenumeratas iš priskirto organizacijos padalinio"
+                                },
                                 "update": "Redaguoti organizacijos padalinį"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Gali ištrinti vaidmenis",
                                 "edit": "Gali redaguoti vaidmenis",
                                 "read": "Gali peržiūrėti vaidmenis"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Peržiūrėti visas užsakymų prenumeratas"
+                                }
                             }
                         },
                         "switchAllLabel": "Visi leidimai"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Vaidmenų valdymas"
             },
+            "bundle": {
+                "label": "Ryšuliai"
+            },
             "custom_price": {
                 "label": "Produkto kliento kaina"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Pridėti produktą į paketus",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Gavau",
+                "description": "Šio produkto nepavyko pašalinti iš šių paketų, nes paketui reikia bent dviejų produktų:",
+                "hint": "Norėdami pašalinti šį produktą, pirmiausia pridėkite kitą produktą prie šių paketų.",
+                "title": "Produkto nepavyko pašalinti iš visų paketų"
+            },
+            "bundleCardSubtitle": "Visi paketai, kurių sudėtyje yra šio produkto",
+            "bundleCardTitle": "Paketai ({count})",
+            "buttonAddBundle": "Pridėti produktą į paketus",
+            "buttonAddBundleLanguageWarning": "Pridėti paketus galima tik numatytąja sistemos kalba.",
+            "buttonCreateBundle": "Sukurkite paketą",
+            "buttonManageBundles": "Tvarkykite paketus",
+            "columnActive": "aktyvus",
+            "columnAvailability": "prieinamumas",
+            "columnBundleItemCount": "Produktų skaičius",
+            "columnCreatedAt": "Sukurta",
+            "columnName": "Pavadinimas",
+            "columnProductNumber": "Produkto numeris",
+            "columnSales": "Pardavimai",
+            "columnShowBundleOnItemPdp": "Rodyti išsamiame puslapyje",
+            "columnUpdatedAt": "Atnaujinta",
+            "emptyStateDescription": "Paketai gali padidinti vidutinę užsakymo vertę ir paskatinti klientus įsigyti susijusių produktų. Paketai rodomi produkto išsamios informacijos puslapyje, jei TVS išdėstymas apima ryšulio elementą.",
+            "emptyStateDescriptionCreateFirst": "Paketai gali padidinti vidutinę užsakymo vertę ir paskatinti klientus įsigyti susijusių produktų. Paketai rodomi produkto išsamios informacijos puslapyje, jei TVS išdėstymas apima ryšulio elementą. Sukurkite paketą, kad pridėtumėte šį produktą.",
+            "emptyStateNoBundlesFound": "Nerasta tinkamų paketų",
+            "emptyStateNoBundlesFoundDescription": "Sureguliuokite paieškos terminą ar filtrus.",
+            "emptyStateTitle": "Pridėkite produktą į paketus, kad padidintumėte pardavimus",
+            "hideOnProductDetailPage": "Slėpti produkto išsamios informacijos puslapyje",
+            "messageSaveSuccess": "Rinkinys \"{name}\" buvo išsaugotas.",
+            "openBundlesDetail": "Atidarykite paketo informaciją",
+            "placeholderSearch": "Ieškoti paketų...",
+            "refreshDataTooltip": "Atnaujinkite duomenis",
+            "showOnProductDetailPage": "Rodyti produkto išsamios informacijos puslapyje",
+            "showOnlyIncluded": "Rodyti tik pasirinktą",
+            "tooltipBundleHasRestrictions": "Vienam ar keliems produktams taikomi apribojimai, kurie turi įtakos šio paketo prieinamumui. Norėdami gauti daugiau informacijos, apsilankykite paketo išsamioje informacijoje.",
+            "tooltipBundleInactive": "Neaktyvus",
+            "tooltipBundleIssues": "Problemos:",
+            "tooltipBundleMismatchedSalesChannels": "Nepriskirta produkto pardavimo kanalams: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Šio produkto negalima pašalinti, nes ryšuliams reikia mažiausiai dviejų produktų."
+        },
         "card": {
             "textHeadline": "Atsargos ir pristatymo galimybės",
             "textLinkModal": "Žiūrėti atsargas pagal sandėlius ir sandėlių grupes",
             "textProductWarehouseModalDisabled": "Išsaugokite pakeitimus, kol galėsite atidaryti tolesnę atsargų informaciją.",
             "textTooltipMultiSelect": "Priskirkite sandėlių grupes, kad galėtumėte valdyti savo atsargas atskirai keliuose sandėliuose."
+        },
+        "detail": {
+            "tabBundle": "Ryšuliai"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Uždaryti",
@@ -1986,6 +2359,9 @@
             "tabStock": "Likutis",
             "textHeadline": "Atsargos pagal sandėlius ir sandėlių grupes",
             "textInlineEdit": "Redaguoti atsargas"
+        },
+        "type": {
+            "grouped_bundle": "Rinkinys"
         },
         "variants-overview": {
             "inlineText": "Peržiūrėkite išsamią informaciją"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tuščia scena"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Paketo produkto išsamios informacijos puslapis"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Leisti reklamos kodus užsakymams iš citatų"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Draugiškas Captcha",
+                "friendlyCaptchaApiKey": "Draugiškas “Captcha” API raktas",
                 "friendlyCaptchaDescription": "Remiantis “Proof-of-work” mechanizmais ir pažangiais rizikos signalais, “Friendly Captcha” naudoja iš esmės naują požiūrį, kad saugiai apgintų jūsų svetaines ir internetines paslaugas nuo šlamšto ir robotų.",
+                "friendlyCaptchaRegion": "API regionas",
+                "friendlyCaptchaRegionEu": "ES (Europos Sąjunga)",
+                "friendlyCaptchaRegionGlobal": "Globalus",
+                "friendlyCaptchaRegionHelpText": "Pasirinkite “EU”, kad nukreiptumėte visas captcha užklausas išskirtinai per Europos serverius. Tai gali būti aktualu BDAR atitikčiai.",
                 "friendlyCaptchaSecretKey": "Draugiškas “Captcha” slaptas raktas",
-                "friendlyCaptchaSiteKey": "Draugiškas “Captcha” svetainės raktas"
+                "friendlyCaptchaSiteKey": "Draugiškas “Captcha” svetainės raktas",
+                "friendlyCaptchaV1DeprecationNotice": "1 versija yra senesnė ir bus pašalinta ateityje. Rekomenduojame atnaujinti į 2 versiją, kad būtų užtikrintas geresnis saugumas ir švaresnė valdiklio patirtis.",
+                "friendlyCaptchaVersion": "Draugiška “Captcha” versija",
+                "friendlyCaptchaVersionV1": "1 versija (palikta)",
+                "friendlyCaptchaVersionV2": "2 versija (nauja)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Atšaukti",
         "retry": "Pabandykite dar kartą"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Užrakinkite vienodą skalę",
-        "unlock-uniform-scale": "Atrakinkite vienodą skalę"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Jūsų klientai gali apibrėžti ir valdyti biudžeto limitus, kad geriau kontroliuotų savo organizacijos padalinių išlaidas.",
         "budgetManagementName": "Biudžetai",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Užsakymo patvirtinimas",
                     "ORGANIZATION_UNITS": "Organizacijos padaliniai",
                     "QUICK_ORDER": "Greiti užsakymai",
-                    "QUOTE_MANAGEMENT": "Citatų valdymas"
+                    "QUOTE_MANAGEMENT": "Citatų valdymas",
+                    "SHOPPING_LISTS": "Pirkinių sąrašai"
                 },
                 "template": "{dependency} reikalingas {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Pavadinimas",
             "columnOrderQuantity": "Užsakymo kiekis",
             "columnReturnQuantity": "Grąžinimo kiekis",
+            "includesShippingCosts": "Įskaitant siuntimo išlaidas",
             "messageErrorNoItemHasQuantity": "Turėtų turėti bent 1 eilutės elementas turi kiekį daugiau nei 0 sukurti grąžą",
             "messagePreventAddItem": "Ši prekė jau yra grąžinimo dalis arba jos būsena yra Atšaukta, Grąžinta arba Grąžinta iš dalies.",
             "placeholderComment": "Įvesti komentarą...",

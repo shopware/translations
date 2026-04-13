@@ -317,6 +317,7 @@
             "newsletter_update": "Registre de Newsletter actualitzat",
             "product_export_log": "Exportació de producte executat",
             "review_form_send": "Formulari de revisió enviat",
+            "revocation_request_sent": "S'ha enviat el formulari de sol·licitud de revocació.",
             "state_enter_order_delivery_state_cancelled": "Enviament entra en estat cancel·lat",
             "state_enter_order_delivery_state_open": "L'enviament entra en estat obert",
             "state_enter_order_delivery_state_returned": "Enviament entra en estat retornat",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Trieu el fitxer",
             "caption": "Arrossegueu un fitxer aquí per pujar-lo",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "El fitxer seleccionat \"{name}\" té una extensió de fitxer no suportada. Si us plau utilitzeu una de les següents extensions de fitxer: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "El fitxer seleccionat \"{name}\" és massa gran per carregar. La mida del fitxer no ha de superar {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "No s'ha trobat cap document",
                 "title": "Edició a granel - Èxit"
             },
-            "warningText": "Espereu que es completi l'edició massiva. Això pot trigar un temps. Si tanqueu la pestanya del navegador o cancel·leu el procés prematurament, no s'aplicaran tots els canvis. Podeu tornar a executar l'edició massiva en qualsevol moment."
+            "warningText": "Espereu que es completi l'edició massiva. Això pot trigar un temps. Si tanqueu la pestanya del navegador o cancel·leu el procés prematurament, no s'aplicaran tots els canvis. Podeu tornar a executar l'edició massiva en qualsevol moment.",
+            "warningTextDocumentDeletion": "Els documents formen part d'una comanda i poden ser rellevants a efectes fiscals. L'eliminació dels mateixos pot afectar la traçabilitat dels seus registres comptables. Assegureu-vos que la supressió està legalment permesa."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Documents",
+                "deleteDocuments": {
+                    "helpText": "Amb aquesta opció, s'eliminaran tots els tipus de documents seleccionats.",
+                    "label": "Eliminar: Documents"
+                },
                 "downloadDocuments": {
                     "helpText": "Amb aquesta opció, s'ofereixen els documents més recents disponibles per a la seva descàrrega. Diversos documents es fusionen en un mateix fitxer. La descàrrega està disponible un cop completat el canvi múltiple.",
                     "label": "Descarregar: Documents"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Pàgines del butlletí",
                     "privacyPage": "Pàgines de privadesa",
                     "revocationPage": "Avisos de revocació",
+                    "revocationRequestPage": "Formulari de sol·licitud de revocació",
                     "shippingPaymentInfoPage": "Informació de pagament i enviament",
                     "tosPage": "Pàgines TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Títol",
                         "type": "Tipus de formulari",
                         "typeContact": "Contacte",
-                        "typeNewsletter": "Newsletter"
+                        "typeNewsletter": "Newsletter",
+                        "typeRevocationRequest": "Revocació"
                     },
                     "placeholder": {
                         "type": "Seleccioneu un tipus de formulari..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Acció",
+                        "comment": "Comentari",
+                        "contractNumber": "Número de contracte (número de comanda, número de subscripció, ... ) *    ",
                         "email": "Correu electrònic*",
                         "firstName": "Nom*",
                         "lastName": "Cognom*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. A vero eos et acusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "Joan",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "No {criteriaName}",
         "placeholder": "Tot"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Canal d'exportació",
+                        "placeholder": "Seleccionar canals d'exportació…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Canal d'exportació"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Canal d'exportació",
+                        "placeholder": "Seleccionar canals d'exportació…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Canal d'exportació"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Afegeix columnes de canal d'exportació i filtres a les llistes de comandes i clients.",
+            "mainMenuItemGeneral": "Seguiment del canal d'exportació"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "L'extensió \"{name}\" no és compatible amb aquesta versió de Shopware",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Tipus",
                 "labelRecipient": "Destinatari",
                 "labelReplyTo": "Adreça de resposta",
+                "labelRevocationRequestFormMail": "Inquisidor",
                 "labelSenderName": "Nom remitent",
                 "labelSubject": "Assumpte",
                 "placeholderDescription": "Introduir la descripció...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Introduïu nom de regla",
                 "placeholderPriority": "Introduïu prioritat de regla",
                 "placeholderType": "Selecciona el tipus de regla...",
+                "productStatesConditionWarning": "La condició “Element amb estat del producte” està obsoleta i s'eliminarà a la v6.8. Si us plau, utilitzeu “Article amb tipus de producte” en el seu lloc.",
                 "tabDetail": "General",
                 "tabRule": "Condició"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Retornat",
             "returnedPartially": "Retornat parcialment",
             "reviewForm": "Revisió del producte",
+            "revocationRequestCustomer": "Sol·licitud de revocació enviada",
+            "revocationRequestMerchant": "Sol·licitud de revocació rebuda",
             "send": "Enviar",
             "sent": "Enviat",
             "shipped": "Enviat",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Caret (^)",
             "categoriesLabel": "Categories",
             "closeProfileLabel": "Tancar perfil",
-            "closeViolation": "Tancar",
             "commasLabel": "Coma (,)",
             "configuratorSettingLabel": "Configuració de la variant",
             "copyOfLabel": "Còpia de:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Importació"
             },
             "updateEntitiesLabel": "Actualitzar les dades existents",
-            "violationMessage": "El teu perfil encara no és vàlid. Cal afegir mapatges als camps obligatoris que es mostren a continuació per desar el perfil:"
+            "violationModal": {
+                "duplicateMappings": "Teniu <strong>mapatges duplicats</strong> en els camps següents. Si us plau, elimina els duplicats per guardar el perfil:",
+                "missingRequiredFields": "Cal afegir mapatges als camps obligatoris <strong></strong> que es mostren a continuació per guardar el perfil:",
+                "title": "El teu perfil encara no és vàlid"
+            }
         },
         "progress": {
             "startExportLabel": "Iniciar l'exportació",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Guardar en mitjans"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Mou l'objecte",
-                "rotate-tooltip": "Girar l'objecte",
-                "scale-tooltip": "Objecte d'escala"
-            },
-            "saveChanges": "Desa els canvis",
-            "titleModal": "Editor de models"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Enrere"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Mou l'objecte",
+            "rotate-tooltip": "Girar l'objecte",
+            "scale-tooltip": "Objecte d'escala"
+        },
+        "open-model-editor-tooltip": "Obrir l'editor de models",
+        "properties": {
+            "transformation": {
+                "label": "Transformació",
+                "position": {
+                    "label": "Posició"
+                },
+                "rotation": {
+                    "label": "Rotació"
+                },
+                "scale": {
+                    "label": "Escala"
+                }
+            }
+        },
+        "titleModal": "Editor de models"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Per crear una nota de crèdit, afegiu primer un element de crèdit.",
-                    "storno": "No es pot crear una factura de cancel·lació sense factura."
+                    "storno": "No es pot crear una factura de cancel·lació sense factura.",
+                    "zugferd_cancellation_invoice": "No es pot crear una factura de cancel·lació de ZugFerd sense una factura.",
+                    "zugferd_credit_note": "Per crear una nota de crèdit ZugFerd, cal una factura i almenys un element de crèdit.",
+                    "zugferd_embedded_cancellation_invoice": "Una factura de cancel·lació ZugFerd incrustada no es pot crear sense una factura.",
+                    "zugferd_embedded_credit_note": "Per crear una nota de crèdit ZugFerd incrustada, cal una factura i almenys un element de crèdit."
                 },
                 "primaryAction": "Crear document",
+                "showZugferd": "Mostra les variants de ZugferD",
                 "title": "Crear document"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Documents",
+            "confirmDeleteText": "Aquest document forma part d'una ordre i pot ser rellevant a efectes fiscals. Suprimir-lo pot afectar la traçabilitat dels seus registres comptables. Assegureu-vos que la supressió està legalment permesa. Aquesta acció no es pot desfer.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "El document número {number} ja ha estat assignat."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Pujar document personalitzat",
             "labelCancel": "Tancar",
             "labelCreate": "Crear",
+            "labelCreateDownload": "Crear i descarregar",
             "labelCreateDownloadPdf": "Crear i descarregar PDF",
             "labelCreateSend": "Crear i enviar",
             "labelDeliveryDate": "Data de lliurament",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtre",
             "titleSidebarItemFilterAffiliateCode": "Codi d'afiliat",
             "titleSidebarItemFilterCampaignCode": "Codi de la campanya",
-            "titleSidebarItemRefresh": "Refrescar"
+            "titleSidebarItemRefresh": "Refrescar",
+            "tooltipCustomerComment": "Informació addicional: {comment}",
+            "tooltipInternalComment": "Comentari intern: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Nom",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Aquí podeu definir opcionalment de tres a cinc paraules clau sota les quals s'ha de trobar el vostre producte.",
             "helpTextMetaDescription": "Amb la meta descripció, confirmeu als vostres clients que es troben al lloc adequat de la vostra botiga. Crees incentius, creeu confiança i convideu a una acció. Hauríeu de limitar-vos a un màxim de 155 caràcters. Shopware permet una longitud màxima de 255 caràcters.",
             "helpTextMetaTitle": "El títol meta és l'element SEO més important i ha de ser únic per a cada pàgina. Hauríeu de limitar-vos en longitud a un màxim de 56 caràcters. La vostra paraula clau hauria de situar-se idealment a la part davantera.",
+            "helpTextOpenGraphDescription": "La descripció Open Graph s'utilitza quan es comparteix el producte a les xarxes socials. Si es deixa buit, la metadescripció s'utilitzarà com a retrocés.",
+            "helpTextOpenGraphTitle": "El títol Open Graph s'utilitza quan es comparteix el producte a les xarxes socials. Si es deixa buit, el títol meta s'utilitzarà com a retrocés.",
             "labelCanonicalProduct": "Variant per a URL canònica",
             "labelCanonicalUrlMode": "Utilitzeu un URL canònic únic per a totes les variants",
             "labelKeywords": "Paraules clau SEO",
             "labelMetaDescription": "Meta descripció",
             "labelMetaTitle": "Meta títol",
+            "labelOpenGraphDescription": "Descripció OG",
+            "labelOpenGraphImage": "Imatge OG",
+            "labelOpenGraphTitle": "Títol OG",
             "placeholderCanonicalProduct": "Seleccioneu una variant...",
             "placeholderKeywords": "Introduïu una o més paraules clau...",
             "placeholderMetaDescription": "Introduïu meta descripció...",
-            "placeholderMetaTitle": "Introduïu meta títol..."
+            "placeholderMetaTitle": "Introduïu meta títol...",
+            "placeholderOpenGraphDescription": "Introduïu la descripció Open Graph...",
+            "placeholderOpenGraphTitle": "Introduïu el títol Open Graph...",
+            "titleOpenGraph": "Gràfic obert"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Retrocomandes denegades.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Condicions"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Codi d'afiliat",
+            "affiliateCodePlaceholder": "Introdueix el codi d'afiliació…",
+            "campaignCodeLabel": "Codi de la campanya",
+            "campaignCodePlaceholder": "Introduïu el codi de la campanya…",
+            "cardTitle": "Codis de seguiment",
+            "description": "Configureu els codis d'afiliats i de campanya que s'incrustaran en els URL del producte dels feeds d'aquest canal. Aquests codis identifiquen comandes i clients referits des d'aquest canal Agentic Commerce."
+        },
         "detail": {
             "activateDisable": "Assigneu un tema abans d'activar i desar el Canal de vendes.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Restablir per defecte",
+                "errorLoadingTemplate": "No s'ha pogut carregar la plantilla predeterminada.",
+                "integration": {
+                    "feedUrlLabel": "Exporta URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Connexió OpenAI",
+                            "introduction": {
+                                "description": "Aquest Canal de vendes genera un feed de productes JSONL perquè els seus productes puguin aparèixer en els resultats de cerca de ChatGPT. Per fer-ho, has d'aplicar com a comerciant i compartir l'URL del feed amb OpenAI. Tota la resta s'explica a la guia pas a pas a continuació.",
+                                "title": "Com: Configuració i connexió"
+                            },
+                            "stepByStep": "<li>Sol·liciteu com a comerciant a <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/comerciants</a></li><li>Copieu l'URL d'exportació (a sota) i compartiu-la amb OpenAI segons el <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Product feeds docs</a></li><li>Assegureu-vos que la URL d'exportació sigui públicament accessible</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Pas a pas"
+                },
+                "openAiSettingsTitle": "Configuració OpenAI",
+                "resetTemplateSuccess": "S'ha restablit la plantilla per defecte. Si us plau, guardeu per mantenir els canvis.",
+                "tabIntegration": "Integració",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Amb l'ajuda de Google Analytics pots recopilar i analitzar les dades de la teva botiga. Per poder fer ús d'aquesta funció, és necessari un Compte de Google. Si encara no teniu un compte de Google Analytics, és possible que vulgueu registrar-vos aquí: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Després de registrar-se amb èxit, rebrà un ID de seguiment, que s'ha d'emplenar a continuació per activar la integració.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Clients referits",
+                    "dateRanges": {
+                        "14Days": "Últims 14 dies",
+                        "180Days": "Últims 180 dies",
+                        "24Hours": "Últimes 24 hores",
+                        "30Days": "Últims 30 dies",
+                        "7Days": "Últims 7 dies",
+                        "yesterday": "Ahir"
+                    },
+                    "numbers": "Recompte",
+                    "orderCardHeadline": "Ordres referides",
+                    "summary": "Resum",
+                    "totalTurnover": "Facturació",
+                    "turnoverCardHeadline": "Facturació referida"
+                },
+                "tabInsights": "Estadístiques"
             },
             "products": {
                 "buttonAddProducts": "Afegir {productCount} productes | Afegeix {productCount} producte | Afegeix {productCount} productes",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Ja hi ha un altre document del mateix tipus en aquest Canal de Venda.",
             "disabledSalesChannelSelect": "Trieu primer un tipus de document.",
             "disabledTypeSelect": "El tipus de documents globals no es pot canviar.",
+            "displayTitle": "Visualització:",
             "helpTextDisplayAdditionalNoteDelivery": "Només elegible per als estats membres de la UE, vegeu també “Configuració > Països”.",
-            "helpTextDisplayCompanyAddress": "Mostra l'adreça de l'empresa a sota de la capçalera de la part dreta del document.",
-            "helpTextDisplayDeliveryCountries": "Mostra la indicació de “lliurament intra comunitari” en els documents de la factura dels països seleccionats.",
             "helpTextDisplayDocumentInCustomerAccount": "El document es mostra a “Comandes” en el respectiu compte de client. Tingueu en compte que només es mostren al compte de client els documents que realment s'han enviat al client.",
-            "helpTextDisplayReturnAddress": "Mostra l'adreça de l'empresa com a adreça de devolució per sobre de l'adreça del client en el bloc d'adreces.",
-            "helpTextPaymentDueDate": "Per exemple: +30 dies, +4 setmanes, +1 setmana 2 dies",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Banc",
             "labelCompanyCity": "Ciutat",
             "labelCompanyCountry": "País",
             "labelCompanyEmail": "Correu electrònic",
+            "labelCompanyLogo": "Logotip de l'empresa",
             "labelCompanyName": "Nom",
             "labelCompanyPhone": "Número de telèfon",
             "labelCompanyStreet": "Carrer",
             "labelCompanyUrl": "Lloc web",
             "labelCompanyZipcode": "Codi Postal",
-            "labelDeliveryCountries": "Països membres",
             "labelDisplayAdditionalNoteDelivery": "Visualitza l'etiqueta “Lliurament intracomunitari”",
             "labelDisplayCompanyAddress": "Direcció de l'empresa de visualització",
             "labelDisplayCustomerVatId": "Mostra l'ID de l'IVA del client",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Formats d'arxius",
             "labelItemsPerPage": "Elements per pàgina",
             "labelName": "Nom tècnic",
-            "labelOptionMedia": "Logo de l'empresa",
             "labelPageOrientation": "Orientació de pàgina",
             "labelPageSize": "Format de pàgina",
             "labelPaymentDueDate": "Data de venciment del pagament",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Oficina d'impostos",
             "labelType": "Tipus de document",
             "labelVatId": "Reg.IVA núm.",
-            "messageSaveSuccess": "S'ha desat el document \"{name}\".",
-            "placeholderDisplayDeliveryCountries": "Cerca i afegeix països vàlids per al lliurament intracomunitari...",
+            "pageOrientationOptions": {
+                "landscape": "Paisatge",
+                "portrait": "Retrat"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Legal",
+                "letter": "Carta"
+            },
+            "placeholderBankBic": "Introduïu BIC...",
+            "placeholderBankIban": "Introduïu l'IBAN...",
+            "placeholderBankName": "Introduïu el nom del banc...",
+            "placeholderCompanyCity": "Introduïu la ciutat...",
+            "placeholderCompanyCountry": "Selecciona un país...",
+            "placeholderCompanyEmail": "Introduïu l'adreça electrònica...",
+            "placeholderCompanyName": "Introduïu el nom de l'empresa...",
+            "placeholderCompanyPhone": "Introduïu el número de telèfon...",
+            "placeholderCompanyStreet": "Entra al carrer...",
+            "placeholderCompanyUrl": "Entra a la pàgina web...",
+            "placeholderCompanyZipcode": "Introduïu el codi postal...",
+            "placeholderExecutiveDirector": "Entra a l'executiu empresarial...",
+            "placeholderFileNamePrefix": "Introduïu el prefix...",
+            "placeholderFileNameSuffix": "Introduïu el sufix...",
+            "placeholderFileTypes": "Seleccionar formats de fitxer...",
+            "placeholderItemsPerPage": "Introduïu nombre d'elements per pàgina...",
             "placeholderName": "Introduïu el nom...",
+            "placeholderPageOrientation": "Selecciona una orientació de pàgina...",
+            "placeholderPageSize": "Selecciona un format de pàgina...",
+            "placeholderPaymentDueDate": "Introdueix la data de venciment del pagament...",
+            "placeholderPlaceOfFulfillment": "Introduïu el lloc de compliment...",
+            "placeholderPlaceOfJurisdiction": "Introduïu el lloc de jurisdicció...",
+            "placeholderSalesChannel": "Seleccioneu un canal de venda...",
+            "placeholderTaxNumber": "Introduïu NIF...",
+            "placeholderTaxOffice": "Entra a l'oficina fiscal...",
+            "placeholderType": "Seleccioneu un tipus de document...",
+            "placeholderVatId": "Introduïu NIF...",
             "textHeadline": "Nou document"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Assignació",
             "columnName": "Nom tècnic",
             "columnType": "Tipus",
-            "columnUsedIn": "Assignat a",
             "contextMenuEdit": "Editar",
             "global": "Global",
             "messageDeleteSuccess": "El document \"{name}\" ha estat eliminat.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Declinació",
+                "give-consent": "Donar el consentiment",
                 "save-preferences": "Desa les preferències",
                 "share-all-data": "Comparteix tot",
                 "share-nothing": "No comparteix res"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/ca/dada-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Per a més detalls, vegeu {data-use-details} i el nostre {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Política de privacitat",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "En compartir dades de la botiga i dels usuaris, ens ajudes a entendre com s'utilitza l'Administració i desenvolupar millores que facilitin la teva feina diària més fàcil.",
-            "opt-out-info": "Pots donar-te de baixa en qualsevol moment a través de la configuració i la configuració del perfil.",
+            "opt-out-info": {
+                "profile": "El teu perfil — Preferències de privacitat",
+                "settings": "Configuració — Privacitat",
+                "snippet": "Podeu canviar les vostres preferències en qualsevol moment: administrar la configuració de les dades de la botiga a {settings}, i la configuració de Dades Personals sota {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Compatible amb RGPD",
                 "no-third-party": "No es comparteixen dades amb tercers",
@@ -9899,6 +10059,12 @@
                     "order": "ordres",
                     "store": "emmagatzemar dades"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "aquí",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Les dades diagnòstiques</strong> dins de Shopware es refereixen a la informació relacionada amb la salut del sistema, els errors, i les mètriques de rendiment de la plataforma. Això inclou detalls com ara registres del sistema, missatges d'error, temps de resposta del servidor i altres indicadors tècnics. L'anàlisi d'aquestes dades ens ajuda a identificar ràpidament, abordar i desplegar correccions de problemes o vulnerabilitats habituals, mantenint la integritat de la plataforma.",
                     "order": "<strong>Dades de comandes</strong> dins Shopware fa referència a la informació detallada sobre les comandes dels clients realitzades a la plataforma. Això inclou especificitats com ara productes ordenats, quantitats, preus, origen, mètodes de pagament, enviament, etc.. Analitzem aquestes dades per comprendre tendències i patrons que ens ajudin a potenciar funcionalitats així com desenvolupar nous serveis dissenyats per millorar el seu èxit empresarial. No recopilem dades personals dels seus clients que es puguin utilitzar per identificar una sola persona.",
@@ -9912,6 +10078,12 @@
                 "description": "Utilitzem {data} sobre com interactues amb l'Administració per millorar la seva usabilitat i rendiment.",
                 "emphasizes": {
                     "data": "dades"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Política de privacitat",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Les dades d'ús</strong> dins de Shopware pertanyen a la informació relacionada amb com interactuen els usuaris administradors i els visitants de la botiga amb la nostra plataforma. Això inclou detalls com interaccions amb diferents mòduls d'administració de Shopware, pàgines vistes, durada de les visites, camins de clics i accions dels usuaris dins de la plataforma i la botiga. Mitjançant l'avaluació de les dades d'ús, podem identificar àrees de la plataforma que es visiten freqüentment o s'eviten per mesurar l'adopció de característiques, cosa que condueix a millores potencials en el disseny, el disseny i la funcionalitat."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Canvia l'element \"{name}”",
         "toggleTreeItem": "Canvia l'element de l'arbre \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "D'acord",
-        "checkListDataSharing": {
-            "gdprCompliant": "Estem complint amb GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>“Compartir”</strong> es refereix a la divulgació de dades per a finalitats pròpies de la part receptora; podem revelar dades als nostres proveïdors de serveis."
-            },
-            "personalData": "No recopilem dades personals",
-            "securelyProcessed": "Les seves dades són processades i emmagatzemades de forma segura",
-            "thirdParty": "No compartim les teves dades amb tercers per a les seves pròpies finalitats",
-            "title": "Us podem assegurar que:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Dades diagnòstiques",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Dades diagnòstiques</strong> dins Shopware fa referència a la informació relacionada amb la salut del sistema, els errors i les mètriques de rendiment de la plataforma. Això inclou detalls com ara registres del sistema, missatges d'error, temps de resposta del servidor i altres indicadors tècnics. Analitzar aquestes dades ens ajuda a identificar, abordar i desplegar ràpidament correccions de problemes o vulnerabilitats habituals, mantenint la integritat de la plataforma.",
-                "orderDataHelp": "<strong>Dades de comandes</strong> dins Shopware fa referència a la informació detallada sobre les comandes dels clients realitzades a la plataforma. Això inclou especificitats com ara productes ordenats, quantitats, preus, origen, mètodes de pagament, enviament, etc. Analitzem aquestes dades per comprendre tendències i patrons que ens ajuden a millorar les característiques i desenvolupar nous serveis dissenyats per millorar l'èxit del seu negoci. No recopilem dades personals dels seus clients que es puguin utilitzar per identificar una sola persona.",
-                "storeDataHelp": "<strong>Les dades de l'emmagatzematge</strong> dins de Shopware corresponen a tota la informació relacionada amb la vostra botiga en línia. Com ara productes, llistats, preus, imatges, descripcions, etc. i metadades sobre la configuració de la vostra botiga, com ara temes i connectors. No recopilem dades personals que es puguin utilitzar per identificar un usuari administrador o un visitant de la botiga. Utilitzant dades agregades de la botiga, podem proporcionar informació mitjançant l'aprenentatge automàtic, com ara tendències emergents del mercat, permetent ajustar les ofertes de productes o les estratègies de màrqueting en conseqüència.",
-                "usageDataHelp": "<strong>Les dades d'ús</strong> dins de Shopware pertanyen a la informació relacionada amb com interactuen els usuaris administradors i els visitants de la botiga amb la nostra plataforma. Això inclou detalls com interaccions amb diferents mòduls d'administració de Shopware, pàgines vistes, durada de les visites, camins de clics i accions dels usuaris dins de la plataforma i la botiga. Mitjançant l'avaluació de les dades d'ús, podem identificar àrees de la plataforma que es visiten freqüentment o s'eviten per mesurar l'adopció de característiques, cosa que condueix a millores potencials en el disseny, el disseny i la funcionalitat. No recopilem dades personals que es puguin utilitzar per identificar un administrador o visitants de la botiga."
-            },
-            "orderData": "Dades de comanda",
-            "storeData": "Emmagatzemar dades",
-            "usageData": "Compartició de dades"
-        },
-        "confirmAuthorization": "En fer clic a “D'acord”, confirmeu que esteu autoritzats a subscriure aquest acord en nom de la vostra empresa.",
-        "declineDataCollection": "De moment no",
-        "fullDetailsDescription": "Els detalls complets d'aquest acord es poden consultar a {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Sempre pots deixar de compartir dades en qualsevol moment. Uneix-te a nosaltres en la configuració del futur del comerç electrònic compartint les teves dades amb nosaltres!",
-        "headline": "Formar el futur del comerç electrònic",
-        "improvingDescription": "Estem millorant constantment els serveis que us proporcionem. Per fer el següent pas, estem analitzant les vostres dades utilitzant tècniques com l'aprenentatge automàtic (per exemple, el reconeixement de patrons) per desenvolupar i millorar el nostre producte. Les teves dades també s'utilitzaran per desenvolupar serveis basats en dades dissenyats per millorar l'èxit del teu negoci.",
-        "improvingDescriptionNotAccepted": "Estem millorant constantment els serveis que us proporcionem. Per fer el següent pas, ens agradaria analitzar les seves dades utilitzant tècniques com l'aprenentatge automàtic (per exemple, el reconeixement de patrons) per desenvolupar i millorar el nostre producte. Les teves dades també s'utilitzaran per desenvolupar serveis basats en dades dissenyats per millorar l'èxit del teu negoci.",
-        "privacyPolicy": "shopware.com/ca/dada-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Vostè pot en qualsevol moment subscriure l'acord i així contribuir i treure profit de l'evolució constant dels nostres serveis, permetent compartir dades en el seu {link}",
-        "settings": {
-            "deactivateDataCollection": "Desactivar la compartició de dades",
-            "sharingInformation": "Vostè està compartint dades amb nosaltres"
-        },
-        "thankYouMessage": "{thanksForParticipation} Vostè pot renunciar a aquest acord en qualsevol moment i així deixar de contribuir i beneficiar-se del desenvolupament continu dels nostres serveis desactivant la compartició de dades en el seu {link}",
-        "thanksForParticipation": "Gràcies per la vostra participació!",
-        "togglePath": "Configuració"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Usuaris i permisos"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Bloquejar escala uniforme",
+        "unlock-uniform-scale": "Desbloquejar escala uniforme"
+    },
     "sw-wizard": {
         "backButton": "Enrere",
-        "closeButton": "Tancar",
         "finishButton": "Acabat",
         "nextButton": "Següent"
     }

@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "Kľúč API nemá správnu dĺžku ({length}/40 znakov)."
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "Asistent migrácie"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "Nepodarilo sa prerušiť migráciu.",
@@ -29,20 +36,24 @@
         },
         "general": {
             "descriptionTextModule": "Modul na migráciu údajov",
+            "disabledMessages": {
+                "disabled": "Migrácia je v tomto prostredí zakázaná.",
+                "loading": "V súčasnosti prebieha migrácia.",
+                "noData": "Nie sú k dispozícii žiadne údaje pre migráciu.",
+                "noPermission": "Nemáte požadované povolenia na vykonanie migrácie.",
+                "noSelectedData": "Na migráciu neboli vybrané žiadne položky.",
+                "resettingChecksum": "Kontrolné súčty sa momentálne resetujú.",
+                "truncatingMigration": "Údaje o migrácii sa v súčasnosti skracujú.",
+                "unfilledPremapping": "Pred pokračovaním dokončite všetky požadované mapovanie."
+            },
             "mainMenuItemGeneral": "Asistent migrácie",
             "tabDataSelector": "Výber údajov",
             "tabHistory": "História",
             "tabMain": "generál"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "Odstránením údajov migrácie sa odstránia položky denníka, položky mediálnych súborov, dočasné záznamy údajov o migrácii a spustenie migrácie, ktoré potom už nebudú dostupné v histórii migrácie.",
-                "contentHint": "Naozaj chcete vymazať údaje?",
-                "title": "Odstránenie údajov migrácie"
-            },
             "connectionName": "Názov pripojenia",
             "contextMenu": {
-                "clearLogs": "Odstránenie údajov migrácie",
                 "details": "Zobraziť podrobnosti",
                 "downloadLogs": "Stiahnutie denníka"
             },
@@ -59,18 +70,16 @@
                 "logDownload": "stiahnuť súbor denníka.",
                 "noErrorsOccurred": "Nevyskytli sa žiadne chyby.",
                 "noProgressData": "Toto spustenie bolo vykonané v predchádzajúcej verzii pluginu a jeho údaje boli odstránené.",
-                "runStatus": "Stav migrácie:",
                 "status": {
                     "aborted": "Prerušený",
                     "finished": "Dokončené",
                     "running": "Beh"
                 },
-                "timestamp": "Čas:",
                 "title": "Podrobnosti o migrácii"
             },
+            "gateway": "Brána",
             "importDateTime": "Čas začatia",
-            "noData": "Neboli nájdené žiadne migrácie.",
-            "profileAndGateway": "Profil a brána",
+            "profile": "Profil",
             "selectedData": "Dáta",
             "shopDomain": "Doména obchodu",
             "shopSystem": "Obchodný systém",
@@ -78,28 +87,9 @@
         },
         "index": {
             "abortButton": "Zrušiť",
-            "assistantCard": {
-                "connection": {
-                    "content": "Asistent migrácie vám pomôže vytvoriť prepojenie medzi systémom obchodu a Shopware 6 na prenos a migráciu vašich údajov.",
-                    "link": "Pomocník a dokumentácia",
-                    "title": "Nastavenie pripojenia"
-                },
-                "dataSelection": {
-                    "content": "Vyberte údaje, ktoré chcete migrovať. Je možné zahrnúť aj údaje o zásuvných modulov, ak je plugin už k dispozícii pre Shopware 6. Skontrolujte dostupnosť zásuvných modulov vo vašom Shopware účte.",
-                    "title": "Zadanie údajov na migráciu"
-                },
-                "finish": "Hotovo!",
-                "headline": "Ako migrácia funguje",
-                "migrationOverview": {
-                    "content": "1. Automatický proces kontroluje vybraté údaje pre chýbajúce úlohy. Pripravte sa na dokončenie automatického procesu pridaním manuálnych úloh.{linebreak}2. Údaje vášho obchodu sa čítajú a priraďujú.{linebreak}3. Všetky vybrané a správne priradené údaje sa prenesú do Shopware 6.{linebreak}4. Mediálne položky sú stiahnuté.",
-                    "title": "Kroky migrácie"
-                },
-                "title": "Informácie"
-            },
             "backToOverviewButton": "Späť na prehľad",
             "confirmAbortDialog": {
-                "cancelPause": "Pauza",
-                "cancelRunning": "Pokračovať",
+                "cancel": "Pokračujte",
                 "confirm": "Zastavenie migrácie",
                 "content": "Migrácia nie je úplne dokončená. Už migrované údaje môžu byť nepoužiteľné. Ak teraz ukončíte, budete musieť úplne znova spustiť proces migrácie.",
                 "hint": "Chcete zastaviť migráciu?",
@@ -107,169 +97,175 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "Áno, chcel by som pokračovať",
-                    "info": "Migrácia s rôznymi predvolenými menami môže viesť k poškodeniu dátových záznamov a spôsobiť nepredvídateľné vedľajšie účinky.",
-                    "question": "Ste si istí, že údaje by sa mali migrovať v štandardnej mene [{targetSystemCurrency}]?",
                     "text": "Mena údajov, ktoré sa majú migrovať, nezodpovedá štandardnej mene [{targetSystemCurrency}]. Údaje s [{sourceSystemCurrency}] sa stále môžu migrovať, ale nebudú automaticky konvertované. Ceny môžete upraviť manuálne potom.",
                     "title": "Migrácia uznala inú menu"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "Áno, chcel by som pokračovať",
-                    "info": "Migrácia s rôznymi predvolenými jazykmi môže viesť k poškodeniu dátových záznamov a spôsobiť nepredvídateľné vedľajšie účinky.",
-                    "question": "Ste si istí, že údaje by sa mali migrovať v štandardnom jazyku [{targetSystemLanguage}]?",
                     "text": "Jazyk údajov, ktoré sa majú migrovať, nezodpovedá štandardnému jazyku [{targetSystemLanguage}]. Údaje s [{sourceSystemLanguage}] sa stále môžu migrovať, ale nebudú automaticky konvertované. Preklady môžete upraviť manuálne potom.",
                     "title": "Migrácia uznala iný jazyk"
                 }
             },
             "continueButton": "Pokračovať",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "{entity} podriadená entita z {parentEntity} materskej entity s id \"{parentSourceId}“ sa nepodarilo skonvertovať.",
-                    "title": "{entity} podriadená entita sa nepodarilo skonvertovať"
+            "error-resolution": {
+                "codes": {
+                    "SWAG_MIGRATION_CONVERT_ASSOCIATION_MISSING": "Pridružená entita chýba",
+                    "SWAG_MIGRATION_CONVERT_CHILD_ENTITY_FAILED": "Konverzia detskej entity zlyhala",
+                    "SWAG_MIGRATION_CONVERT_DOCUMENT_TYPE_UNSUPPORTED": "Konverzia typu dokumentu nepodporovaná",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_ALREADY_EXISTS": "Entita už existuje",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_FAILED": "Konverzia entity zlyhala",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_UNKNOWN": "Závislá entita neznáma",
+                    "SWAG_MIGRATION_CONVERT_FIELD_REASSIGNED": "Pole entity automaticky preradené",
+                    "SWAG_MIGRATION_CONVERT_LANGUAGE_PACK_DEACTIVATED": "Jazykový balík je deaktivovaný",
+                    "SWAG_MIGRATION_CONVERT_MAIN_VARIANT_RELATION_FAILED": "Konverzia vzťahu hlavných variantov zlyhala",
+                    "SWAG_MIGRATION_CONVERT_OBJECT_TYPE_UNSUPPORTED": "Typ objektu nepodporovaný",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_CALCULATION_TYPE_UNSUPPORTED": "Typ výpočtu dopravy nepodporovaný",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_PRICE_UNSUPPORTED": "Typ ceny dopravy nepodporovaný",
+                    "SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE": "Zdrojové údaje neúplné",
+                    "SWAG_MIGRATION_CONVERT_UNSERIALIZED_DATA_INVALID": "Neserializované údaje sú neplatné",
+                    "SWAG_MIGRATION_FETCH_DATASET_MISSING": "Chýba súbor údajov pre entitu",
+                    "SWAG_MIGRATION_FETCH_ENTITY_COUNT_FAILED": "Nepodarilo sa čítať počet entit zo zdrojového systému",
+                    "SWAG_MIGRATION_FETCH_PROCESSOR_MISSING": "Chýba procesor pre entitu",
+                    "SWAG_MIGRATION_MEDIA_DEFAULT_FOLDER_UNSUPPORTED": "Predvolený priečinok médií nepodporovaný",
+                    "SWAG_MIGRATION_MEDIA_FILE_MISSING": "Chýba mediálny súbor",
+                    "SWAG_MIGRATION_MEDIA_MIME_TYPE_UNKNOWN": "Typ MIME médií neznámy",
+                    "SWAG_MIGRATION_MEDIA_TEMPORARY_FILE_FAILED": "Vytvorenie dočasného súboru médií zlyhalo",
+                    "SWAG_MIGRATION_RUN_ABORTED": "Migrácia bola automaticky prerušená",
+                    "SWAG_MIGRATION_RUN_EXCEPTION": "Vyskytla sa výnimka z migrácie",
+                    "SWAG_MIGRATION_RUN_MESSAGE_QUEUE_EXCEPTION": "Vyskytla sa výnimka z frontu správ",
+                    "SWAG_MIGRATION_VALIDATION_ASSOCIATION_INVALID": "Priradenie subjektov je neplatné",
+                    "SWAG_MIGRATION_VALIDATION_EXCEPTION": "Vyskytla sa výnimka z validácie",
+                    "SWAG_MIGRATION_VALIDATION_OPTIONAL_FIELD_VALUE_INVALID": "Voliteľné pole má neplatnú hodnotu",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_MISSING": "Vyžadované pole chýba",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_VALUE_INVALID": "Povinné pole má neplatnú hodnotu",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_TRANSLATION_INVALID": "Požadovaný preklad je neplatný",
+                    "SWAG_MIGRATION_WRITE_EXCEPTION": "Vyskytla sa výnimka zápisu",
+                    "SWAG_MIGRATION_WRITE_THEME_COMPILING_FAILED": "Kompilácia témy zlyhala",
+                    "unknown": "Neznáma chyba"
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "Entita {entity} so zdrojom id \"{sourceId}\" sa nepodarilo skonvertovať.",
-                    "title": "Útnosť {entity} sa nepodarilo previesť"
+                "descriptionTitle": "Popis poľa",
+                "errors": {
+                    "continueMigrationFailed": "Neúspešná pokračujúca migrácia.",
+                    "downloadLogsFailed": "Nepodarilo sa sťahovať súbor denníka.",
+                    "fetchExampleFailed": "Zlyhalo načítanie príkladových údajov.",
+                    "fetchExistingFixesFailed": "Zlyhalo načítanie existujúcich opráv.",
+                    "fetchFilterDataFailed": "Zlyhalo načítanie údajov filtra.",
+                    "fetchLogsFailed": "Zlyhalo načítanie údajov denníka.",
+                    "fetchRunFailed": "Zlyhalo načítanie údajov spustenia migrácie.",
+                    "fieldValueNotSet": "Hodnota poľa nie je nastavená.",
+                    "invalidFieldValueFormat": "Neplatný formát hodnoty poľa.",
+                    "noEntityIdsFound": "Vo vybratých záznamoch denníka sa nenašli žiadne platné ID entity.",
+                    "noLogsSelected": "Vyberte aspoň jeden záznam v denníku, ktorý chcete vyriešiť.",
+                    "resetResolutionFailed": "Zlyhalo resetovanie rozlíšenia chyby.",
+                    "submitResolutionFailed": "Nepodarilo sa odoslať vyriešenie chyby.",
+                    "validationFailed": "Validácia zlyhala."
                 },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "Súbor {entity} s URI \"{uri}\" a ID média \"{sourceId}\" nemožno stiahnuť/ skopírovať.",
-                    "title": "{entity} súbor nie je možné stiahnuť/ skopírovať"
+                "modals": {
+                    "details": {
+                        "convertedDataLabel": "Konvertované údaje",
+                        "sourceDataLabel": "Zdrojové údaje",
+                        "title": "Podrobnosti: {entityName}"
+                    },
+                    "error": {
+                        "left": {
+                            "details": "Zobraziť podrobnosti",
+                            "reset": "Obnoviť",
+                            "select-all": "Vybrať všetko ({count})",
+                            "status": {
+                                "resolved": "Vyriešené",
+                                "unresolved": "Nevyriešené"
+                            }
+                        },
+                        "right": {
+                            "apply": "Použiť zmeny",
+                            "banner": {
+                                "content": "Vytvorte aspoň jednu možnosť, ktorú chcete vybrať v príslušnej oblasti správy.",
+                                "link": "Pridať možnosť",
+                                "title": "Nie je k dispozícii žiadna možnosť"
+                            },
+                            "title": "Upraviť: {count} Položiky",
+                            "unhandledBanner": {
+                                "content": "Typ poľa sa nepodarilo určiť. Opravte nespracované zdrojové údaje. Hodnota musí byť v správnom formáte.",
+                                "title": "Neznámy typ poľa"
+                            },
+                            "unresolvableBanner": {
+                                "content": "Ďalšie informácie nájdete v protokolovom súbore.",
+                                "title": "Túto chybu momentálne nemožno vyriešiť pomocou pomocníka migrácie"
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "Stav"
+                            }
+                        },
+                        "title": "Opraviť chybu: {code}, {entityName}, {fieldName}"
+                    }
                 },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "Entita {entity} so zdrojom id \"{sourceId}“ už existuje a nedá sa zapísať.",
-                    "title": "Entita {entity} už existuje"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "Entita {entity} so zdrojovým id \"{sourceId}\" získala pole \"{emptyField}\" nahradené \"{replacementField}“.",
-                    "title": "Entita {entity} má pole, ktoré bolo priradené"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "Entita {requiredForEntity} so zdrojom id \"{requiredForSourceId}\" nemôže nájsť závislé {entity} entity so zdrojom id \"{sourceId}“.",
-                    "title": "Nie je možné nájsť {entity}"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "Pri spracovaní frontu správ sa vyskytla výnimka.",
-                    "title": "Výnimka z frontu správ"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "Migrácia bola automaticky ukončená, pretože došlo k príliš veľkému počtu po sebe nasledujúcich výnimiek.",
-                    "title": "Migrácia bola automaticky prerušená"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "Vyskytla sa výnimka"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "Celkový počet pre entitu {entity} sa nepodarilo prečítať. Uistite sa, že tabuľka \"{table}\" existuje vo vašom zdrojovom systéme a voliteľná podmienka \"{condition}\" je platná. Správa o výnimke: {exceptionMessage}",
-                    "title": "Nepodarilo sa čítať počet entity"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "DataSet pre profil \"{profileName}\" a entitu \"{entity}\" nebol nájdený. Subjekt s id \"{sourceId}“ sa nepodarilo spracovať.",
-                    "title": "DataSet nebol nájdený"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "Ladenie výstupu"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "Dokument so zdrojovým id \"{sourceId}\" sa nepodarilo skonvertovať, pretože typ dokumentu \"{type}\" nie je podporovaný.",
-                    "title": "Typ dokumentu nie je podporovaný"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "E-mailová adresa entity {entity}  so zdrojom id \"{sourceId}\" je neplatná: {email}",
-                    "title": "Neplatná e-mailová adresa"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "Procesor pre profil \"{profileName}„, bránu\"{gatewayName}\"a entitu\"{entity}\"nebol nájdený.",
-                    "title": "Procesor nebol nájdený"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "{missingEntity} so zdrojom id \"{sourceId}\" sa nedá nájsť, ale je potrebné pre {requiredFor}.",
-                    "title": "Priradené {entity} sa nenašlo"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "Zdrojový súbor sa nepodarilo skopírovať. Súbor: {path}",
-                    "title": "Zdrojový súbor nebol nájdený"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "Nie je možné prevziať médiá. Ovplyvnený súbor: {uri}",
-                    "title": "Nie je možné stiahnuť médiá"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "Entita {entity} so zdrojom id \"{sourceId}\" nemá potrebné údaje pre pole \"{emptyField}“",
-                    "title": "Entita {entity} má prázdne potrebné pole"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "Entita {entity} so zdrojom id \"{sourceId}\" sa nedá skonvertovať z dôvodu neplatných neserializovaných objektových údajov pre „{unserializedEntity}“ entity a nespracované údaje je: {serializedData}",
-                    "title": "Neplatné neserializované údaje"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "Materská entita pre dieťa \"{entity}“ sa nenašla.",
-                    "title": "Materská jednotka sa nenašla"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "Numberrange-entity so zdrojovým id \"{sourceId}\" sa nepodarilo skonvertovať z dôvodu nepodporovaného typu: {type}.",
-                    "title": "Nepodporovaný typ číselného rozsahu"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "{entity} typu objektu „{objectType}„so zdrojom id „{sourceId}„sa nedá previesť.",
-                    "title": "Nepodporovaný typ objektu"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "Entita metódy odosielania so zdrojom id \"{sourceId}“ sa nepodarilo skonvertovať z dôvodu nepodporovaného typu výpočtu: {type}.",
-                    "title": "Nepodporovaný typ výpočtu zásielky"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "Subjekt ceny za dopravu so zdrojom id \"{sourceId}\" metódy prepravy „{shippingMethodId}“ sa nemohol previesť z dôvodu nepodporovaného výpočtu ceny faktora.",
-                    "title": "Nepodporovaný výpočet ceny prepravného faktora"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "Téma s id \"{sourceId}\" sa nedá skompilovať.",
-                    "title": "Chyba pri zostavovaní témy"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "Spisovateľ súboru pre entitu \"{entity}\" nebol nájdený.",
-                    "title": "Pisovateľ súborov nebol nájdený"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "Vyskytla sa výnimka pre zápis"
-                },
-                "authorizationError": {
-                    "information": "Chyba autorizácie. Vaše prístupové údaje nie sú správne. Skontrolujte ho a skúste to znova."
-                },
-                "canNotConnectToServer": "Žiadne pripojenie k serveru. Skontrolujte problémy s pripojením.",
-                "customerExists": {
-                    "information": "Zákazník s e-mailom \"{mail}\" už existuje. Nemôžete pridať tohto používateľa s týmto e-mailom do databázy."
-                },
-                "gatewayNotFound": {
-                    "information": "Brána \"{notFoundGateway}\" nebola nájdená."
-                },
-                "gatewayRead": {
-                    "information": "Nepodarilo sa čítať bránu \"{unreadableGateway}“."
-                },
-                "localeNotFound": {
-                    "information": "Kód položky miestneho nastavenia \"{notFoundCode}\" nebol nájdený."
-                },
-                "mediaProcessConnectionError": "Pri kopírovaní údajov médií sa vyskytla chyba pripojenia. Prosím skontrolujte pripojenie.",
-                "migrationContextPropertyMissing": {
-                    "information": "Požadovaná vlastnosť \"{notFoundProperty}\" pre kontext migrácie sa nenašla."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "Požadovaná vlastnosť \"{notFoundProperty}\" pre migráciu sa nenašla."
-                },
-                "noFileSystemPermissions": {
-                    "information": "Žiadne povolenia systému súborov na vytváranie alebo zápis súborov alebo adresárov. Prosím skontrolujte svoje povolenia."
-                },
-                "profileNotFound": {
-                    "information": "Profil migrácie \"{notFoundProfile}\" nebol nájdený."
-                },
-                "undefinedIndex": {
-                    "detail": "Neidentifikovaný index sa nenašiel.",
-                    "information": "Index \"{unidentifiedIndex}\" nebol nájdený. Prosím skontrolujte svoje údaje.",
-                    "title": "Neidentifikovaný index"
-                },
-                "unknownError": "Neznáma chyba. Ďalšie informácie môžete skontrolovať tabuľku zapisovania do denníka databázy."
+                "step": {
+                    "card": {
+                        "filter": {
+                            "code": {
+                                "label": "Názov chyby",
+                                "placeholder": "Vyberte názov chyby"
+                            },
+                            "entity": {
+                                "label": "Subjekt",
+                                "placeholder": "Vyberte entitu"
+                            },
+                            "field": {
+                                "label": "Pole",
+                                "placeholder": "Vyberte pole"
+                            },
+                            "reset": "Obnoviť filtre",
+                            "status": {
+                                "label": "Stav chyby",
+                                "options": {
+                                    "resolved": "Vyriešené",
+                                    "unresolved": "Nevyriešené"
+                                },
+                                "placeholder": "Vyberte stav chyby"
+                            },
+                            "title": "Filtre | Filtre ({count}) | Filtre ({count})"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "Kód",
+                                "count": "Pevná/Celkom",
+                                "entity": "Subjekt",
+                                "field": "Pole",
+                                "gatewayName": "Brána",
+                                "name": "Meno",
+                                "profileName": "Profil"
+                            },
+                            "empty-state": {
+                                "description": "Neboli nájdené žiadne protokoly zodpovedajúce vybraným filtrom.",
+                                "headline": "Nič sa nenašlo"
+                            }
+                        },
+                        "tabs": {
+                            "errors": "Chyby ({count})",
+                            "infos": "Informácie ({count})",
+                            "warnings": "Upozornenia ({count})"
+                        },
+                        "title": "Opraviteľné chyby"
+                    },
+                    "continue-modal": {
+                        "text-fixable": "Existujú skupiny {count} opraviteľných chýb, ktoré sú stále nevyriešené. Pred pokračovaním opravte tieto chyby, aby ste sa vyhli následným chybám.",
+                        "text-unfixable": "Existujú {count} neopraviteľné chyby, ktoré sú stále nevyriešené. Ak budete pokračovať bez odstránenia zostávajúcich chýb, môžu sa objaviť následné chyby.",
+                        "title": "Pokračovať"
+                    },
+                    "header": {
+                        "banner": {
+                            "content": "Na tejto obrazovke sa vyskytujú chyby alebo upozornenia {count} , ktoré nie je možné vyriešiť. Ak chcete preskúmať, stiahnite si súbor denníka a skontrolujte podrobné chybové hlásenia. Základné problémy možno bude potrebné vyriešiť v zdrojovom systéme. Po vyriešení migráciu znova spustite, aby ste pokračovali.",
+                            "title": "Niektoré chyby nie je možné opraviť prostredníctvom tohto zobrazenia"
+                        },
+                        "continue": "Pokračovať",
+                        "continueTooltip": "Pred pokračovaním opravte všetky opraviteľné chyby.",
+                        "description": "Skontrolujte a vyriešte chyby migrácie, ktoré sa vyskytli počas importu. Opravte problémy s údajmi priamo v tomto zobrazení alebo si stiahnite súbor denníka pre podrobné informácie. Pokračujte po vyriešení všetkých opraviteľných chýb. Tento pohľad môžete opustiť a vrátiť sa k nemu neskôr",
+                        "documentation": "Dokumentácia",
+                        "download": "Stiahnite si súbor denníka",
+                        "title": "Rozlíšenie chýb"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "Chyba",
@@ -282,6 +278,7 @@
                 "documentationLinkText": "Dokumentácia frontu správ",
                 "flowChart": {
                     "cleanup": "Čistenie",
+                    "errorResolution": "Rozlíšenie chýb",
                     "fetchData": "Čítanie",
                     "finish": "Hotovo",
                     "indexing": "Indexovanie",
@@ -292,7 +289,6 @@
                 "notice": "Tip: Tento proces sa spustí vo fronte správ. Ak je váš obchod správne nakonfigurovaný, nemusíte zostať na tejto stránke.",
                 "result": {
                     "historyHint": "Tieto informácie môžete kedykoľvek zobraziť v histórii migrácie. Je možné, že neskôr sa pridá ďalšie protokolové správy, pretože sťahovanie médií stále beží na pozadí.",
-                    "logSummary": "Denník",
                     "title": "Asistent migrácie je hotový"
                 },
                 "status": {
@@ -305,6 +301,11 @@
                         "caption": "Dočasné údaje sa odstránia. Migrácia je takmer dokončená.",
                         "long": "Migrácia sa upratuje",
                         "short": "Čistenie"
+                    },
+                    "error-resolution": {
+                        "caption": "Migrácia sa pozastaví, kým sa nevyriešia všetky chyby.",
+                        "long": "Chyby sa dajú vyriešiť",
+                        "short": "Rozlíšenie chýb"
                     },
                     "fetching": {
                         "caption": "Nové úlohy sú spracované.",
@@ -322,6 +323,7 @@
                         "long": "Médiá sa prenášajú",
                         "short": "Prenos médií"
                     },
+                    "unknown": "Neznámy",
                     "writing": {
                         "caption": "V závislosti od veľkosti obchodu to môže trvať niekoľko okamihov.",
                         "long": "Údaje sa zapisujú v Shopware 6",
@@ -348,16 +350,10 @@
                     "transaction_state": "Štáty transakcie",
                     "user": "Administrácia užívateľ"
                 },
-                "loadingCaption": "Existujúce údaje boli skontrolované.",
-                "loadingTitle": "Kontrola údajov je spustená",
                 "newAssignmentTitle": "Nové úlohy",
                 "placeholder": "Prosím, vyberte",
                 "previousTitle": "Predchádzajúce",
-                "unfilledAlert": "Zistili sme, že existujú údaje, ktoré vyžadujú manuálne priradenie.",
-                "unfilledCaption": "Pokračovať môžete až po dokončení ručného priradenia.",
-                "unfilledTitle": "Kontrola údajov bola dokončená",
-                "validCaption": "Údaje sú pripravené na pokračovanie",
-                "validTitle": "Kontrola údajov je dokončená"
+                "unfilledAlert": "Zistili sme, že existujú údaje, ktoré vyžadujú manuálne priradenie."
             },
             "savePremapping": {
                 "message": "Premapovanie bolo uložené.",
@@ -451,7 +447,8 @@
                     "name": "Meno",
                     "total": "Súbory údajov"
                 },
-                "noData": "Nič sa nenašlo na migráciu."
+                "noData": "Nič sa nenašlo na migráciu.",
+                "noDataSubline": "Skontrolujte svoje pripojenie alebo vyskúšajte iný profil."
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Vytvoriť nové pripojenie",
@@ -467,14 +464,15 @@
                 "connectionCheck": "Kontrola pripojenia:",
                 "gateway": "Brána:",
                 "lastMigration": "Posledná migrácia:",
+                "link": "Pomoc a dokumentácia",
                 "noConnection": "Žiadne spojenie",
+                "noConnectionCheckDoneYet": "Zatiaľ nebola vykonaná žiadna kontrola pripojenia",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Nie je pripojený",
                 "profile": "Profil systému:",
-                "refreshTooltip": "Skontrolujte pripojenie k zdrojovému systému",
+                "refreshButton": "Obnoviť pripojenie",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Zrušiť",
-                    "confirmButtonText": "Áno, vymazať",
                     "content": "Po tomto nebude žiadne aktívne pripojenie. Opätovným zadaním prístupových údajov obnovte pripojenie.",
                     "contentHint": "Chcete odstrániť aktuálne prístupové údaje?",
                     "title": "Odstrániť prístupové údaje"
@@ -490,17 +488,35 @@
                     "abortButtonText": "Zrušiť",
                     "confirmButtonText": "Dokončiť teraz",
                     "content": "Skvelé! Poďme dokončiť migráciu a vyčistiť dočasné súbory a nepoužité údaje. <strong>Upozornenie:</strong> Finalizácia migrácie je terminálna. Nebudete môcť migrovať žiadne ďalšie údaje prostredníctvom aktuálneho pripojenia.",
-                    "contentHint": "Chcete dokončiť migráciu teraz?",
                     "errorNotification": {
                         "message": "V súčasnosti prebieha migrácia.",
                         "title": "Počas dokončovania migrácie sa vyskytla chyba"
                     },
                     "header": "Už ste dokončili migráciu údajov o obchode?",
                     "title": "Dokončiť migráciu"
+                },
+                "updateBanner": {
+                    "isResettingChecksums": {
+                        "message": "Kontrolné súčty sa resetujú. Môže to trvať niekoľko minút.",
+                        "title": "Obnovenie kontrolných súčtov"
+                    },
+                    "isTruncatingMigration": {
+                        "message": "Údaje o migrácii sa skracujú. Môže to trvať niekoľko minút.",
+                        "title": "Skrátenie údajov o migrácii"
+                    }
                 }
             },
             "shopwareMajorVersionText": "Všimli sme si, že verzia zdrojového systému {sourceSystem} sa nezhoduje s vašou verziou cieľového systému {targetSystem} . Pred spustením migrácie sa uistite, že používate rovnakú hlavnú verziu pre oba systémy.",
-            "title": "generál"
+            "title": "generál",
+            "warningModal": {
+                "cancelButton": "Vráť sa",
+                "confirmButton": "Pokračovať aj tak",
+                "message": {
+                    "currency": "Migrácia s rôznymi predvolenými menami môže viesť k poškodeniu dátových záznamov a spôsobiť nepredvídateľné vedľajšie účinky.",
+                    "language": "Migrácia s rôznymi predvolenými jazykmi môže viesť k poškodeniu dátových záznamov a spôsobiť nepredvídateľné vedľajšie účinky."
+                },
+                "title": "Zistený nesúlad údajov"
+            }
         },
         "wizard": {
             "buttonAbort": "Zrušiť",
@@ -519,7 +535,6 @@
                     "connectionLabel": "Názov pripojenia",
                     "connectionPlaceholder": "Zadajte meno",
                     "connectionTooltip": "Zadajte jedinečný názov pripojenia.",
-                    "contentInformation": "Na vykonanie migrácie sú potrebné nasledujúce informácie.",
                     "gatewayLabel": "Brána",
                     "gatewayPlaceholder": "Vybrať bránu",
                     "gatewayTooltip": "Typ spojenia medzi systémami.",
@@ -538,7 +553,6 @@
                 "connectionSelect": {
                     "connectionLabel": "Názov pripojenia",
                     "connectionPlaceholder": "Prosím, vyberte pripojenie",
-                    "contentInformation": "Vyberte existujúce pripojenie zo zoznamu na aktualizáciu údajov.",
                     "title": "Migrácia — zmena pripojenia"
                 },
                 "credentials": {
@@ -548,9 +562,9 @@
                         "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "Ak máte problémy s pripojením, možno stojí za to skontrolovať aktuálne nainštalovanú verziu curl na vašom serveri a aktualizovať ju.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "Databázové pripojenie nemá správne atribúty a nie je možné ich nastaviť.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "Pripojenie databázy sa nepodarilo vytvoriť.",
+                        "SWAG_MIGRATION__DUPLICATE_SOURCE_CONNECTION": "Pripojenie k rovnakému zdrojovému systému už existuje. Prosím, použite iné pripojenie.",
                         "SWAG_MIGRATION__GATEWAY_READ": "Nepodarilo sa pripojiť k serveru. Skontrolujte prosím danú doménu obchodu.",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "Ak máte problémy s pripojením, možno stojí za to skontrolovať aktuálne nainštalovanú verziu curl na vašom serveri a aktualizovať ju.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "Vaše poverenia sú nesprávne. Skontrolujte ich a skúste to znova.",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "Prístupové údaje pre pripojenie k zdrojovému systému neexistujú alebo sú nesprávne. Skontrolujte ich a skúste to znova.",
                         "SWAG_MIGRATION__IS_RUNNING": "V súčasnosti prebieha migrácia. Preto nie je možné upraviť poverenia, kým sa migrácia nedokončí.",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "Požadovaný plugin „Migration Connector“ nie je nainštalovaný v Shopware 5. Prosím nainštalujte bezplatný doplnok a skúste to znova.",
@@ -568,13 +582,22 @@
                             "apiUserLabel": "Užívateľské meno (používateľ API)",
                             "apiUserPlaceholder": "Zadajte používateľské meno",
                             "apiUserTooltip": "Užívateľské meno vášho Shopware 5 backend.",
-                            "contentInformation": "Na vytvorenie spojenia medzi Shopware 5 a Shopware 6 potrebujete platné prihlasovacie údaje API. Vaše prihlasovacie údaje API nájdete vo vašom backende Shopware 5 pod „Administrácia používateľov“. Prístup API sa tam musí aktivovať a potvrdiť uložením.",
                             "endpointLabel": "Doména obchodu",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Môj obchod používa zabezpečené pripojenie (SSL)"
+                            "endpointSSLLabel": "Môj obchod používa zabezpečené pripojenie (SSL)",
+                            "pluginLinkText": "Viac informácií o doplnku",
+                            "pluginName": "Migračný konektor",
+                            "steps": {
+                                "step1": "Nainštalujte a aktivujte doplnok {pluginName} z backendu Shopware 5 v časti Správca pluginov > Rozšírenia > Nástroje na migráciu.",
+                                "step2": "Prejdite na Správa používateľov v backende Shopware 5.",
+                                "step3": "Vyberte používateľa, ktorého chcete použiť pre pripojenie.",
+                                "step4": "Aktivujte prístup k rozhraniu API a uložte ho.",
+                                "step5": "Uistite sa, že používateľ má úlohu local_admin.",
+                                "step6": "Tu zadajte poverenia API, aby ste vytvorili pripojenie."
+                            },
+                            "title": "Pripojte svoj obchod Shopware 5"
                         },
                         "local": {
-                            "contentInformation": "Stále potrebujeme prístupové údaje na pripojenie k vašej databáze Shopware 5.",
                             "dbHostLabel": "Hostiteľ",
                             "dbHostPlaceholder": "Vstúpiť hostiteľa",
                             "dbNameLabel": "Názov databázy",
@@ -596,10 +619,21 @@
                             "apiUserLabel": "ID prístupového kľúča",
                             "apiUserPlaceholder": "Zadajte ID prístupového kľúča",
                             "apiUserTooltip": "Identifikácia prístupového kľúča vašej integrácie.",
-                            "contentInformation": "Potrebujete platné poverenia API nadviazať spojenie medzi zdrojom a cieľovou inštanciou Shopware 6. Získate tieto, keď vytvoríte integráciu vo vašom zdrojovom systéme.",
                             "endpointLabel": "Doména obchodu",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Môj obchod používa zabezpečené pripojenie (SSL)"
+                            "endpointSSLLabel": "Môj obchod používa zabezpečené pripojenie (SSL)",
+                            "integrationLink": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+                            "integrationLinkText": "Viac o integráciách",
+                            "pluginLink": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+                            "pluginLinkText": "Viac o rozšírení Migration Assistant",
+                            "pluginName": "Asistent migrácie",
+                            "steps": {
+                                "step1": "Nainštalujte a aktivujte rozšírenie {pluginName} v zdrojovom systéme.",
+                                "step2": "Vytvorte integráciu v zdrojovom systéme cez Nastavenia > Systém > Integrácie.",
+                                "step3": "Vytvorte ID prístupového kľúča a tajný prístupový kľúč.",
+                                "step4": "Zadajte prístupové kľúče a doménu obchodu, aby ste vytvorili spojenie."
+                            },
+                            "title": "Pripojte svoj obchod Shopware 6"
                         }
                     },
                     "statusTitle": "Kontrola pripojenia",
@@ -615,29 +649,6 @@
                     "contentHeadline": "Poďme presunúť nejaké veci",
                     "contentInformation": "Spoločne prepojíme váš obchodný systém so Shopware 6. Následne vám Asistent migrácie pomôže migrovať údaje krok za krokom.",
                     "title": "Asistent migrácie"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "Požadovaný plugin „Migration Connector“ je bezplatný a môžete ho nájsť vo vašom backende Shopware 5 pod Správcom doplnkov > Rozšírenia > Nástroje na migráciu. Ak chcete pokračovať, nainštalujte a aktivujte zásuvný modul.",
-                        "contentTitle": "Vyžaduje sa plugin",
-                        "pluginLink": "Viac informácií o doplnku"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "Požiadavky",
-                        "integration": {
-                            "description": "Vytvorte integráciu v zdrojovom systéme cez Nastavenia > Systém > Integrácie. V ďalšom kroku budete potrebovať vygenerované ID prístupového kľúča a tajný prístupový kľúč.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "Viac o integráciách",
-                            "title": "Integrácia"
-                        },
-                        "plugin": {
-                            "description": "Nainštalujte rozšírenie Migration Assistant do zdrojového systému.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "Ďalšie informácie o rozšírení Migration Assistant",
-                            "title": "Rozšírenie"
-                        }
-                    },
-                    "title": "Migrácia - Príprava pripojenia"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "Doteraz k dispozícii:",

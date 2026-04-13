@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Tilaus jättää tilan keskeytetyksi"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Yksilöllinen hinnoittelu",
             "b2b_components_role": "Rooli | Roolit",
             "b2b_components_shopping_list": "Ostoslistat",
             "b2b_employee": "Työntekijä | Työntekijät",
+            "bundle": "Paketti | Paketit",
+            "bundle_item": "Pakettikohde | Pakettituotteet",
             "export_assistant": "Vientiavustaja",
-            "individual_pricing": "Yksilöllinen hinnoittelu",
             "quote": "Lainaus | Lainaukset",
             "quote_line_item": "Tarjousrivikohde | Lainausrivikohteet",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Tuote on pakettikohde",
+                "lineItemOfBundleRule": "Valitun paketin kohde",
                 "subscriptionCartRule": "Tilausostoskori",
                 "subscriptionIntervalRule": "Tilausväli",
                 "subscriptionPlanRule": "Tilaussuunnitelma"
             },
             "group": {
                 "subscription": "Tilaus"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Nippu"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Kiitos, että kokeilit Bundles-suunnitelmaa. Haluaisimme kuulla palautteesi.",
+                "link": "Anna palautetta"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Omat kentät"
+            },
+            "general": {
+                "title": "Yleistä tietoa"
+            },
+            "items": {
+                "actionOpenProductDetails": "Avaa tuotetiedot",
+                "buttonAddBundleItems": "Lisää tuotteita",
+                "columnName": "Nimi",
+                "columnPosition": "Sijainti",
+                "columnPrice": "Hinta",
+                "emptyStateDescription": "Lisää vähintään kaksi tuotetta nippuun.",
+                "emptyStateTitle": "Tuotteita ei ole vielä lisätty",
+                "title": "Tuotteet ({count})",
+                "tooltipBundleItemCustomizedProduct": "Mukautettu tuotemalli määritetty",
+                "tooltipBundleItemHasVariants": "Tuotteella on muunnelmia",
+                "tooltipBundleItemInactive": "Passiivinen",
+                "tooltipBundleItemIncompatibleVisibilities": "Ei määritetty paketin myyntikanaviin: {salesChannels}",
+                "tooltipBundleItemIssues": "Ongelmat:",
+                "tooltipBundleItemOutOfStockCloseout": "Loppunut varastosta (Poistomyynti)",
+                "tooltipBundleItemOutOfStockTemporary": "Tätä tuotetta ei ole tällä hetkellä varastossa. Paketti on ostettavissa uudelleen, kun kaikki tuotteet ovat jälleen varastossa.",
+                "tooltipBundleItemOutOfStockTitle": "Loppunut varastosta",
+                "tooltipRefreshData": "Päivitä tiedot"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Julkaisupäivä",
+                    "placeholder": "Anna julkaisupäivä..."
+                },
+                "title": "Merkinnät"
+            },
+            "media": {
+                "subtitle": "Lisää tiedostoja paketin mediagalleriaan.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Lisää vähintään kaksi tuotetta nipun luomiseksi.",
+            "messageNoChanges": "Ei muutoksia tallennettavaksi",
+            "messageSaveError": "Paketin tallentaminen epäonnistui",
+            "messageSaveSuccess": "Paketti tallennettu onnistuneesti",
+            "price": {
+                "addDiscount": "Lisää alennus",
+                "currencyDependingPrices": "Valuutta riippuen hinnoista",
+                "discount": "Alennus",
+                "discountRules": "Alennussäännöt",
+                "discountTitle": "Alennus",
+                "discountType": "Tyyppi",
+                "discountTypeAbsolute": "Ehdoton",
+                "discountTypePercentage": "Prosentti",
+                "discountValue": "Arvo",
+                "discountValuePlaceholder": "Lisää arvoa...",
+                "doNotCombineWith": "Älä yhdistä",
+                "maxValuePlaceholder": "Rajoittamaton",
+                "maximumDiscountValue": "Suurin alennuksen arvo",
+                "openAdvancedPricesView": "Avaa kehittyneet hinnat -näkymä",
+                "preventCombination": "Estä yhdistelmä muiden tarjousten kanssa",
+                "preventCombinationHelpText": "Kun tämä alennus on käytössä, sitä ei voi yhdistää muihin tarjouksiin",
+                "promotionsPlaceholder": "Lisää tarjouksia...",
+                "rulesPlaceholder": "Lisää sääntöjä...",
+                "subtotalBased": "Välisumma perustuu 1 tuotteeseen | Välisumma perustuu {count} tuotteeseen",
+                "title": "Näytä hinnat",
+                "total": "Yhteensä",
+                "totalBased": "Yhteensä perustuu 1 tuotteeseen | Yhteensä perustuu {count} tuotteeseen"
+            },
+            "tabGeneral": "Kenraali",
+            "tabLayout": "Ulkoasu",
+            "tabSeo": "SEO",
+            "textHeadline": "Uusi nippu",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Tämä estää nipun näkymisen näissä kanavissa. Tarkista seuraavien tuotteiden näkyvyys:",
+                    "notAssignedTo": "ei ole osoitettu",
+                    "title": "Joitakin tuotteita ei ole määritetty kaikkiin valittuihin myyntikanaviin"
+                },
+                "title": "Näkyvyys ja rakenne"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktiivinen",
+                "placeholder": "Valitse tila..."
+            },
+            "availabilityFilter": {
+                "label": "saatavuus",
+                "placeholder": "Valitse saatavuus..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Mukana olevat tuotteet",
+                "placeholder": "Valitse mukana olevat tuotteet..."
+            },
+            "categoriesFilter": {
+                "label": "Luokat",
+                "placeholder": "Valitse luokat..."
+            },
+            "fromPlaceholder": "Kirjoita aloitusarvo...",
+            "imagesFilter": {
+                "label": "Kuvat",
+                "placeholder": "Valitse kuvan tila...",
+                "textHasCriteria": "Vähintään yksi tuotekuva määritetty",
+                "textNoCriteria": "Tuotekuvia ei ole määritetty"
+            },
+            "priceFilter": {
+                "label": "Hinta"
+            },
+            "productNumberFilter": {
+                "label": "Tuotenumero",
+                "placeholder": "Anna tuotenumero..."
+            },
+            "releaseDateFilter": {
+                "label": "Julkaisupäivä"
+            },
+            "salesChannelsFilter": {
+                "label": "Myyntikanavat",
+                "placeholder": "Valitse Myyntikanavat..."
+            },
+            "salesFilter": {
+                "label": "Myynti"
+            },
+            "tagsFilter": {
+                "label": "Tunnisteet",
+                "placeholder": "Valitse tunnisteita..."
+            },
+            "toPlaceholder": "Kirjoita loppuarvo..."
+        },
+        "general": {
+            "description": "Paketit",
+            "headlineBundles": "Paketit",
+            "mainMenuItemGeneral": "Paketit",
+            "placeholderSearchBar": "Etsi paketteja...",
+            "title": "Paketit"
+        },
+        "generalForm": {
+            "highlightHelpText": "Korostetut niput on merkitty kirkkaanvärisellä tarralla ja sanalla ”Vinkki” kaikissa pakettiluetteloissa. Voit säätää tarran väriä vaihtamalla vaihtoehtoa ”Huomautus” <a href=\"{themeUrl}\">-teemat</a> -asetuksissa. Voit myös muuttaa tunnisteen tekstiä muokkaamalla vastaavaa <a href=\"{snippetUrl}\">-tekstikatkelmaa</a>.",
+            "labelDescription": "Kuvaus",
+            "labelMarkAsTopseller": "Korosta nippu",
+            "labelName": "Nimi",
+            "labelProductNumber": "Tuotenumero",
+            "placeholderDescription": "Anna paketin kuvaus...",
+            "placeholderName": "Anna paketin nimi...",
+            "placeholderProductNumber": "Anna tuotenumero..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Nippu vaatii vähintään kaksi tuotetta.",
+            "notEnoughProductsTitle": "Ei tarpeeksi tuotteita",
+            "restrictions": "Yhdellä tai useammalla tuotteella on rajoituksia, jotka vaikuttavat tämän paketin saatavuuteen. Katso lisätietoja varoituskuvakkeista.",
+            "restrictionsTitle": "Joillakin tuotteilla on rajoituksia"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Vastaava tuote ei löytynyt",
+            "noProductsMatchingBundleSalesChannels": "Paketin valittuja myyntikanavia vastaavia aktiivisia tuotteita ei ole.",
+            "noProductsMatchingTermAndFilter": "Säädä hakutermiä tai suodattimia.",
+            "placeholderSearch": "Hae tuotteita...",
+            "showIncluded": "Näytä vain valitut ({count})",
+            "textWhySomeItemsMissing": "Miksi jotkut tuotteet puuttuvat?",
+            "title": "Lisää tuotteita",
+            "tooltipVariant": "Vaihtoehto",
+            "tooltipWhySomeItemsMissing": "Tällä hetkellä niput toimivat vain fyysisten tuotteiden ja yksittäisten varianttien kanssa. <br /><br /> Tuotteet on määritettävä paketin valittuihin myyntikanaviin, jotta ne näkyvät luettelossa."
+        },
+        "list": {
+            "available": "Saatavana",
+            "buttonAddBundle": "Lisää nippu",
+            "columnActive": "Aktiivinen",
+            "columnAvailable": "saatavuus",
+            "columnBundleItemCount": "Tuotteiden lukumäärä",
+            "columnCreatedAt": "Luotu osoitteessa",
+            "columnName": "Nimi",
+            "columnProductNumber": "Tuotenumero",
+            "columnSales": "Myynti",
+            "columnTotalPrice": "Kokonaishinta",
+            "columnUpdatedAt": "Päivitetty osoitteessa",
+            "emptyStateDescription": "Paketit voivat lisätä tilauksesi keskimääräistä arvoa ja kannustaa asiakkaita ostamaan niihin liittyviä tuotteita.",
+            "emptyStateTitle": "Lisää paketteja myynnin lisäämiseksi",
+            "messageSaveSuccess": "Paketti \"{name}\" on tallennettu.",
+            "titleSidebarItemRefresh": "Päivitä",
+            "unavailable": "ei ole käytettävissä"
+        },
+        "priceModal": {
+            "currency": "valuutta",
+            "price": "Arvo",
+            "title": "Kehittyneet hinnat"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Lisää tuotteita",
+            "description": "Valitse ensin myyntikanava nähdäksesi, mitkä tuotteet voidaan lisätä pakettiin. Voit säätää tätä myöhemmin Näkyvyys ja rakenne -kortilla.",
+            "title": "Myyntikanava vaaditaan"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Luo kuva",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Paketin kuvaus"
+                },
+                "bundleHeading": {
+                    "label": "Paketin nimi"
+                },
+                "bundleItems": {
+                    "label": "Pakettikohteet"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Kuvagalleria ja paketin ostolaatikko"
+                },
+                "recommendedBundles": {
+                    "label": "Suositellut niput"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Oletusasettelu - Tuotepakettisivu",
+                "setAsDefaultBundleDetail": "Aseta tuotepakettisivun oletusarvoiseksi"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Pakettisivu"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Luo kuva",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Tähän asetteluun liittyvä tuote lataa automaattisesti tämän elementin tuotetiedot. Sisältö näyttää vain näytteen esikatselun."
+                },
+                "label": "Paketin ostolaatikko"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Tähän asetteluun liittyvä tuote lataa automaattisesti tämän elementin tuotetiedot. Sisältö näyttää vain näytteen esikatselun."
+                },
+                "label": "Paketin kuvaus",
+                "preview": {
+                    "descriptionTab": "Kuvaus",
+                    "title": "Nippu"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Mahdollistaa pakettituotteiden lisäämisen suoraan ostoskoriin tuotetietosivun avaamisen sijaan.",
+                        "labelTitle": "Käytä {count} näyttääksesi paketin tuotteiden lukumäärän."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Tähän asetteluun liittyvä tuote lataa automaattisesti tämän elementin tuotetiedot. Sisältö näyttää vain näytteen esikatselun."
+                    },
+                    "label": {
+                        "boxSettings": "Tuotelaatikon asetukset",
+                        "cta": "Näytä CTA lisätäksesi pakettituotteet suoraan ostoskoriin",
+                        "minWidth": "Minimaalinen leveys",
+                        "title": "Nimike"
+                    }
+                },
+                "label": "Mukana olevat tuotteet"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Tähän asetteluun liittyvä nippu lataa automaattisesti tämän elementin nipputiedot. Sisältö näyttää vain esimerkin esikatselun."
+                },
+                "label": "Paketin nimi"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Kun tämä asetus on käytössä, vain nippujen osajoukko näytetään aluksi. Käyttäjät voivat laajentaa luetteloa näyttääkseen lisää.",
+                        "maxVisibleBundles": "Määrittää, kuinka monta nippua näytetään, kunnes ne piiloutuvat Näytä lisää -toiminnon taakse.",
+                        "productBoxSettings": "Tuotelaatikon asetukset",
+                        "productDetailElement": "Tähän asetteluun liittyvä tuote lataa automaattisesti tämän elementin tuotetiedot. Sisältö näyttää vain näytteen esikatselun.",
+                        "showCTAInfo": "Mahdollistaa pakettituotteiden lisäämisen suoraan ostoskoriin tuotetietosivun avaamisen sijaan.",
+                        "sliderSettings": "Liukusäätimen asetukset"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Rajoita alun perin näytettyjen nippujen lukumäärä",
+                        "maxVisibleBundles": "Alun perin näytetyt paketit",
+                        "minWidth": "Minimaalinen leveys",
+                        "recommendedCombinationsTitle": "Suositellut yhdistelmät",
+                        "showBundleName": "Näytä paketin nimi",
+                        "showCTA": "Näytä CTA lisätäksesi pakettituotteet suoraan ostoskoriin",
+                        "showCurrentProduct": "Näytä tällä hetkellä katsottu tuote ensimmäisenä paketissa",
+                        "title": "Nimike"
+                    },
+                    "placeholder": {
+                        "minWidth": "Kirjoita minimaalinen leveys...",
+                        "title": "Suositellut yhdistelmät"
+                    }
+                },
+                "label": "Suositellut yhdistelmät",
+                "preview": {
+                    "label": {
+                        "title": "Suositellut yhdistelmät"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Luo kuva",
             "contentText": "Luo omia tunnelmakuvia muokataksesi asetteluasi tekoälyllä luodun kuvan avulla.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Nippu"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organisaatioyksikön osoitteet",
                             "pending_order": "Odottavan tilauksen hallinta",
                             "quote": "Tarjousten hallinta",
-                            "role": "Roolinhallinta"
+                            "role": "Roolinhallinta",
+                            "subscription": "Tilaa tilaus"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Poista toimitusosoite",
                                     "update": "Toimitusosoitteen muokkaaminen"
                                 },
+                                "subscription": {
+                                    "read": "Näytä kaikki tilaustilaukset määritetystä organisaatioyksiköstä"
+                                },
                                 "update": "Muokkaa organisaatioyksikköä"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Voi poistaa rooleja",
                                 "edit": "Voi muokata rooleja",
                                 "read": "Voi tarkastella rooleja"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Näytä kaikki tilaustilaukset"
+                                }
                             }
                         },
                         "switchAllLabel": "Kaikki käyttöoikeudet"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Roolien hallinta"
             },
+            "bundle": {
+                "label": "Paketit"
+            },
             "custom_price": {
                 "label": "Tuotteen asiakashinta"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Lisää tuote nippuihin",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Sain sen",
+                "description": "Tätä tuotetta ei voitu poistaa seuraavista paketeista, koska paketti vaatii vähintään kaksi tuotetta:",
+                "hint": "Jos haluat poistaa tämän tuotteen, lisää ensin toinen tuote näihin nippuihin.",
+                "title": "Tuotetta ei voitu poistaa kaikista paketeista"
+            },
+            "bundleCardSubtitle": "Kaikki paketit, jotka sisältävät tätä tuotetta",
+            "bundleCardTitle": "Paketit ({count})",
+            "buttonAddBundle": "Lisää tuote nippuihin",
+            "buttonAddBundleLanguageWarning": "Pakettien lisääminen on mahdollista vain järjestelmän oletuskielellä.",
+            "buttonCreateBundle": "Luo nippu",
+            "buttonManageBundles": "Hallitse paketteja",
+            "columnActive": "Aktiivinen",
+            "columnAvailability": "saatavuus",
+            "columnBundleItemCount": "Tuotteiden lukumäärä",
+            "columnCreatedAt": "Luotu osoitteessa",
+            "columnName": "Nimi",
+            "columnProductNumber": "Tuotenumero",
+            "columnSales": "Myynti",
+            "columnShowBundleOnItemPdp": "Näytä tietosivulla",
+            "columnUpdatedAt": "Päivitetty osoitteessa",
+            "emptyStateDescription": "Paketit voivat lisätä tilauksen keskimääräistä arvoa ja kannustaa asiakkaita ostamaan niihin liittyviä tuotteita. Paketit näkyvät tuotetietosivulla, jos CMS-asettelu sisältää nippuelementin.",
+            "emptyStateDescriptionCreateFirst": "Paketit voivat lisätä tilauksen keskimääräistä arvoa ja kannustaa asiakkaita ostamaan niihin liittyviä tuotteita. Paketit näkyvät tuotetietosivulla, jos CMS-asettelu sisältää nippuelementin. Luo paketti lisätäksesi tämän tuotteen.",
+            "emptyStateNoBundlesFound": "Vastaavia paketteja ei löytynyt",
+            "emptyStateNoBundlesFoundDescription": "Säädä hakutermiä tai suodattimia.",
+            "emptyStateTitle": "Lisää tuote nippuihin myynnin lisäämiseksi",
+            "hideOnProductDetailPage": "Piilota tuotetietosivulla",
+            "messageSaveSuccess": "Paketti \"{name}\" on tallennettu.",
+            "openBundlesDetail": "Avaa paketin tiedot",
+            "placeholderSearch": "Etsi paketteja...",
+            "refreshDataTooltip": "Päivitä tiedot",
+            "showOnProductDetailPage": "Näytä tuotteen tietosivulla",
+            "showOnlyIncluded": "Näytä vain valitut",
+            "tooltipBundleHasRestrictions": "Yhdellä tai useammalla tuotteella on rajoituksia, jotka vaikuttavat tämän paketin saatavuuteen. Katso lisätietoja paketin tiedoista.",
+            "tooltipBundleInactive": "Passiivinen",
+            "tooltipBundleIssues": "Ongelmat:",
+            "tooltipBundleMismatchedSalesChannels": "Ei määritetty tuotteen myyntikanaviin: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Tätä tuotetta ei voi poistaa, koska niput vaativat vähintään kaksi tuotetta."
+        },
         "card": {
             "textHeadline": "Varasto ja toimitettavuus",
             "textLinkModal": "Katso varastot varastojen ja varastoryhmien mukaan",
             "textProductWarehouseModalDisabled": "Tallenna muutokset ennen kuin voit avata lisää varastotietoja.",
             "textTooltipMultiSelect": "Määritä varastoryhmät hallitaksesi varastoasi erikseen useissa varastoissa."
+        },
+        "detail": {
+            "tabBundle": "Paketit"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Sulje",
@@ -1986,6 +2359,9 @@
             "tabStock": "Varasto",
             "textHeadline": "Varasto varastoittain ja varastoryhmittäin",
             "textInlineEdit": "Muokkaa varastoa"
+        },
+        "type": {
+            "grouped_bundle": "Nippu"
         },
         "variants-overview": {
             "inlineText": "Katso tiedot"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tyhjä kohtaus"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Paketin tuotetietosivu"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Salli tarjouskoodit tilauksiin tarjouksista"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Ystävällinen Captcha",
+                "friendlyCaptchaApiKey": "Ystävällinen Captcha API-avain",
                 "friendlyCaptchaDescription": "Työtodistusmekanismeihin ja edistyneisiin riskisignaaleihin perustuva Friendly Captcha käyttää pohjimmiltaan uutta lähestymistapaa suojellakseen verkkosivustojasi ja verkkopalvelujasi turvallisesti roskapostilta ja boteilta.",
+                "friendlyCaptchaRegion": "API-alue",
+                "friendlyCaptchaRegionEu": "EU (Euroopan unioni)",
+                "friendlyCaptchaRegionGlobal": "Globaali",
+                "friendlyCaptchaRegionHelpText": "Valitse ”EU”, jos haluat reitittää kaikki captcha-pyynnöt yksinomaan eurooppalaisten palvelimien kautta. Tämä voi olla merkityksellistä GDPR-vaatimustenmukaisuuden kannalta.",
                 "friendlyCaptchaSecretKey": "Ystävällinen Captcha-salainen avain",
-                "friendlyCaptchaSiteKey": "Ystävällinen Captcha-sivuston avain"
+                "friendlyCaptchaSiteKey": "Ystävällinen Captcha-sivuston avain",
+                "friendlyCaptchaV1DeprecationNotice": "Versio 1 on vanha ja poistetaan tulevassa julkaisussa. Suosittelemme päivittämistä versioon 2 paremman turvallisuuden ja puhtaamman widget-kokemuksen saavuttamiseksi.",
+                "friendlyCaptchaVersion": "Ystävällinen Captcha-versio",
+                "friendlyCaptchaVersionV1": "Versio 1 (vanha)",
+                "friendlyCaptchaVersionV2": "Versio 2 (uusi)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Peruuta",
         "retry": "Yritä uudelleen"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Lukitse yhtenäinen asteikko",
-        "unlock-uniform-scale": "Avaa yhtenäinen asteikko"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Asiakkaasi voivat määrittää ja hallita budjettirajoja hallitakseen paremmin organisaatioyksiköiden menoja.",
         "budgetManagementName": "Budjetit",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Tilauksen hyväksyminen",
                     "ORGANIZATION_UNITS": "Organisaatioyksiköt",
                     "QUICK_ORDER": "Nopeat tilaukset",
-                    "QUOTE_MANAGEMENT": "Tarjousten hallinta"
+                    "QUOTE_MANAGEMENT": "Tarjousten hallinta",
+                    "SHOPPING_LISTS": "Ostoslistat"
                 },
                 "template": "{dependency} vaaditaan {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nimi",
             "columnOrderQuantity": "Tilauksen määrä",
             "columnReturnQuantity": "Palautusmäärä",
+            "includesShippingCosts": "Sisältää toimituskulut",
             "messageErrorNoItemHasQuantity": "Palautuksen luomiseksi pitäisi olla vähintään 1 rivi, jonka määrä on suurempi kuin 0",
             "messagePreventAddItem": "Tämä tuote on jo osa palautusta tai sen tila on Peruutettu, Palautettu tai Palautettu osittain.",
             "placeholderComment": "Kirjoita kommentti...",

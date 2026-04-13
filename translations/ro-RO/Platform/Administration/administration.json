@@ -317,6 +317,7 @@
             "newsletter_update": "Înregistrați-vă la buletinul informativ actualizat",
             "product_export_log": "Export produs executat",
             "review_form_send": "Formular de revizuire trimis",
+            "revocation_request_sent": "Formularul de cerere de revocare a fost trimis.",
             "state_enter_order_delivery_state_cancelled": "Expedierea intră în starea anulată",
             "state_enter_order_delivery_state_open": "Expedierea intră în stare deschisă",
             "state_enter_order_delivery_state_returned": "Transport intră în starea returnată",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Alegeți fișierul",
             "caption": "Glisați un fișier aici pentru a încărca",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Fișierul selectat \"{name}\" are o extensie de fișier neacceptată. Vă rugăm să utilizați una dintre următoarele extensii de fișiere: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Fișierul selectat „{name}” este prea mare pentru a fi încărcat. Dimensiunea fișierului nu trebuie să depășească {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Nu au fost găsite documente",
                 "title": "Editare în bloc - Succes"
             },
-            "warningText": "Așteptați finalizarea editării în bloc. Acest lucru poate dura ceva timp. Dacă închideți fila browserului sau anulați procesul prematur, nu vor fi aplicate toate modificările. Puteți rula din nou editarea în bloc în orice moment."
+            "warningText": "Așteptați finalizarea editării în bloc. Acest lucru poate dura ceva timp. Dacă închideți fila browserului sau anulați procesul prematur, nu vor fi aplicate toate modificările. Puteți rula din nou editarea în bloc în orice moment.",
+            "warningTextDocumentDeletion": "Documentele fac parte dintr-o comandă și pot fi relevante în scopuri fiscale. Ștergerea acestora poate afecta trasabilitatea înregistrărilor dvs. contabile. Vă rugăm să vă asigurați că ștergerea este permisă legal."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Documente",
+                "deleteDocuments": {
+                    "helpText": "Cu această opțiune, toate tipurile de documente selectate vor fi șterse.",
+                    "label": "Șterge: Documente"
+                },
                 "downloadDocuments": {
                     "helpText": "Cu această opțiune, cele mai recente documente disponibile sunt oferite pentru descărcare. Mai multe documente sunt îmbinate în același fișier. Descărcarea este disponibilă după finalizarea modificării multiple.",
                     "label": "Descărcare: Documente"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Pagini Newsletter",
                     "privacyPage": "Pagini de confidențialitate",
                     "revocationPage": "Notificări de revocare",
+                    "revocationRequestPage": "Formular de cerere de revocare",
                     "shippingPaymentInfoPage": "Informații despre plată și expediere",
                     "tosPage": "Pagini TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Titlu",
                         "type": "Tip formular",
                         "typeContact": "Contact",
-                        "typeNewsletter": "Newsletter"
+                        "typeNewsletter": "Newsletter",
+                        "typeRevocationRequest": "Revocare"
                     },
                     "placeholder": {
                         "type": "Selectaţi un tip de formular..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Acțiune",
+                        "comment": "Comentariu",
+                        "contractNumber": "Numărul contractului (numărul comenzii, numărul abonamentului, ... ) *    ",
                         "email": "Adresă de e-mail*",
                         "firstName": "Prenume*",
                         "lastName": "Numele de prenume*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. La vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} face.com",
                         "firstName": "Ion",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Nr. {criteriaName}",
         "placeholder": "Toate"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Canal de export",
+                        "placeholder": "Selectați canalele de export…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Canal de export"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Canal de export",
+                        "placeholder": "Selectați canalele de export…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Canal de export"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Adaugă coloane de canal de export și filtre la listele de comenzi și clienți.",
+            "mainMenuItemGeneral": "Urmărirea canalului de export"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Extensia „{name}” nu este compatibilă cu această versiune Shopware",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Tip",
                 "labelRecipient": "Beneficiar",
                 "labelReplyTo": "Adresă de răspuns",
+                "labelRevocationRequestFormMail": "Inquirer",
                 "labelSenderName": "Numele expeditorului",
                 "labelSubject": "Subiect",
                 "placeholderDescription": "Introduceți descrierea...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Introduceți numele regulii...",
                 "placeholderPriority": "Introduceți prioritatea regulii...",
                 "placeholderType": "Selectați tipul de regulă...",
+                "productStatesConditionWarning": "Condiția „Articol cu stare produs” este învechită și va fi eliminată în v6.8. Vă rugăm să utilizați în schimb „Articol cu tip de produs”.",
                 "tabDetail": "General",
                 "tabRule": "Stare"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Returnat",
             "returnedPartially": "Returnat parțial",
             "reviewForm": "Revizuirea produsului",
+            "revocationRequestCustomer": "Cerere de revocare trimisă",
+            "revocationRequestMerchant": "Cerere de revocare primită",
             "send": "Trimite",
             "sent": "Trimis",
             "shipped": "Expediat",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Caret (^)",
             "categoriesLabel": "Categorii",
             "closeProfileLabel": "Închide profilul",
-            "closeViolation": "Închide",
             "commasLabel": "virgulă (,)",
             "configuratorSettingLabel": "Setări de configurare pentru variante",
             "copyOfLabel": "Copie după:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Import"
             },
             "updateEntitiesLabel": "Actualizați datele existente",
-            "violationMessage": "Profilul dvs. nu este valabil, încă. Trebuie să adăugați mapări la câmpurile obligatorii prezentate mai jos pentru a salva profilul:"
+            "violationModal": {
+                "duplicateMappings": "Aveți <strong>mapări duplicate</strong> în următoarele câmpuri. Vă rugăm să eliminați duplicatele pentru a salva profilul:",
+                "missingRequiredFields": "Trebuie să adăugați mapări la câmpurile <strong>obligatorii</strong> prezentate mai jos pentru a salva profilul:",
+                "title": "Profilul dvs. nu este încă valid"
+            }
         },
         "progress": {
             "startExportLabel": "Începeți exportul",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Salvați în media"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Mutați obiectul",
-                "rotate-tooltip": "Rotiți obiectul",
-                "scale-tooltip": "Obiect de scară"
-            },
-            "saveChanges": "Salvează modificările",
-            "titleModal": "Editor de modele"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Înapoi"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Mutați obiectul",
+            "rotate-tooltip": "Rotiți obiectul",
+            "scale-tooltip": "Obiect de scară"
+        },
+        "open-model-editor-tooltip": "Deschideți editorul de modele",
+        "properties": {
+            "transformation": {
+                "label": "Transformare",
+                "position": {
+                    "label": "Poziție"
+                },
+                "rotation": {
+                    "label": "Rotație"
+                },
+                "scale": {
+                    "label": "Scara"
+                }
+            }
+        },
+        "titleModal": "Editor de modele"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Pentru a crea o notă de credit, adăugați mai întâi un element de credit.",
-                    "storno": "O factură de anulare nu poate fi creată fără factură."
+                    "storno": "O factură de anulare nu poate fi creată fără factură.",
+                    "zugferd_cancellation_invoice": "O factură de anulare ZugFerd nu poate fi creată fără factură.",
+                    "zugferd_credit_note": "Pentru a crea o notă de credit ZugFerd este necesară o factură și cel puțin un element de credit.",
+                    "zugferd_embedded_cancellation_invoice": "O factură de anulare încorporată ZugFerd nu poate fi creată fără factură.",
+                    "zugferd_embedded_credit_note": "Pentru a crea o notă de credit ZugFerd încorporată, este necesară o factură și cel puțin un element de credit."
                 },
                 "primaryAction": "Creare document",
+                "showZugferd": "Arată variantele ZugFerd",
                 "title": "Creare document"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Documente",
+            "confirmDeleteText": "Acest document face parte dintr-o comandă și poate fi relevant în scopuri fiscale. Ștergerea acestuia poate afecta trasabilitatea înregistrărilor dvs. contabile. Vă rugăm să vă asigurați că ștergerea este permisă legal. Această acțiune nu poate fi anulată.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Documentul numărul {number} a fost deja alocat."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Încărcarea documentului personalizat",
             "labelCancel": "Închide",
             "labelCreate": "Creează",
+            "labelCreateDownload": "Creați și descărcați",
             "labelCreateDownloadPdf": "Crearea și descărcarea PDF-ului",
             "labelCreateSend": "Creează și trimite",
             "labelDeliveryDate": "Data livrării",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtru",
             "titleSidebarItemFilterAffiliateCode": "Codul de afiliere",
             "titleSidebarItemFilterCampaignCode": "Codul campaniei",
-            "titleSidebarItemRefresh": "Actualizare"
+            "titleSidebarItemRefresh": "Actualizare",
+            "tooltipCustomerComment": "Informații suplimentare: {comment}",
+            "tooltipInternalComment": "Comentariu intern: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Nume",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Aici puteți defini opțional trei până la cinci cuvinte cheie sub care produsul dvs. ar trebui să fie găsit.",
             "helpTextMetaDescription": "Cu descrierea meta, confirmați clienților dvs. că se află în locul potrivit în magazinul dvs. Creați stimulente, creați încredere și invitați la o acțiune. Ar trebui să vă limitați la maximum 155 de caractere. Shopware permite o lungime maximă de 255 de caractere.",
             "helpTextMetaTitle": "Titlul meta este cel mai important element SEO și ar trebui să fie unic pentru fiecare pagină. Ar trebui să vă limitați în lungime la maximum 56 de caractere. Cuvântul dvs. cheie ar trebui să fie plasat în mod ideal chiar în față.",
+            "helpTextOpenGraphDescription": "Descrierea Open Graph este utilizată atunci când partajați produsul pe rețelele de socializare. Dacă este lăsată goală, meta descrierea va fi utilizată ca rezervă.",
+            "helpTextOpenGraphTitle": "Titlul Open Graph este utilizat atunci când partajați produsul pe rețelele de socializare. Dacă este lăsat gol, titlul meta va fi folosit ca rezervă.",
             "labelCanonicalProduct": "Varianta pentru adresa URL canonică",
             "labelCanonicalUrlMode": "Utilizați o singură adresă URL canonică pentru toate variantele",
             "labelKeywords": "Cuvinte cheie SEO",
             "labelMetaDescription": "Descriere meta",
             "labelMetaTitle": "Titlu meta",
+            "labelOpenGraphDescription": "Descriere OG",
+            "labelOpenGraphImage": "Imagine OG",
+            "labelOpenGraphTitle": "Titlu OG",
             "placeholderCanonicalProduct": "Selectaţi o variantă...",
             "placeholderKeywords": "Introduceți unul sau mai multe cuvinte cheie...",
             "placeholderMetaDescription": "Introduceți meta descriere...",
-            "placeholderMetaTitle": "Introduceţi meta title..."
+            "placeholderMetaTitle": "Introduceţi meta title...",
+            "placeholderOpenGraphDescription": "Introduceţi descrierea Open Graph...",
+            "placeholderOpenGraphTitle": "Introduceți titlul Open Graph...",
+            "titleOpenGraph": "Deschideți graficul"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Ordinele de rezervă refuzate.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Condiții"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Codul de afiliere",
+            "affiliateCodePlaceholder": "Introduceți codul afiliat…",
+            "campaignCodeLabel": "Codul campaniei",
+            "campaignCodePlaceholder": "Introduceți codul campaniei…",
+            "cardTitle": "Coduri de urmărire",
+            "description": "Configurați codurile de afiliere și de campanie care vor fi încorporate în adresele URL ale produselor din fluxurile acestui canal. Aceste coduri identifică comenzile și clienții recomandați de pe acest canal Agentic Commerce."
+        },
         "detail": {
             "activateDisable": "Vă rugăm să atribuiți o temă înainte de a activa și de a salva canalul de vânzări.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Resetați la implicit",
+                "errorLoadingTemplate": "Nu s-a putut încărca șablonul implicit.",
+                "integration": {
+                    "feedUrlLabel": "Export URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Conexiune OpenAI",
+                            "introduction": {
+                                "description": "Acest canal de vânzări generează un feed de produse JSONL, astfel încât produsele dvs. să poată apărea în rezultatele căutării ChatGPT. Pentru a face acest lucru, trebuie să aplicați ca comerciant și să partajați adresa URL a fluxului cu OpenAI. Orice altceva este explicat în ghidul pas cu pas de mai jos.",
+                                "title": "How to: Configurare și conectare"
+                            },
+                            "stepByStep": "<li>Aplicați ca comerciant la <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchant</a></li><li>Copiați adresa URL de export (de mai jos) și partajați-o cu OpenAI conform documentelor <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">fluxuri de produse</a></li><li>Asigurați-vă că adresa URL de export este accesibilă publicului</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Pas cu pas"
+                },
+                "openAiSettingsTitle": "Setări OpenAI",
+                "resetTemplateSuccess": "Șablonul a fost resetat la implicit. Vă rugăm să salvați pentru a păstra modificările.",
+                "tabIntegration": "Integrarea",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Cu ajutorul Google Analytics puteți colecta și analiza datele magazinului dvs. Pentru a utiliza această funcție, este necesar un Cont Google. Dacă nu dețineți încă un cont Google Analytics, vă recomandăm să vă înscrieți aici: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. După înregistrarea cu succes, veți primi un ID de urmărire, care va fi completat mai jos pentru a activa integrarea.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Clienți recomandați",
+                    "dateRanges": {
+                        "14Days": "Ultimele 14 zile",
+                        "180Days": "Ultimele 180 zile",
+                        "24Hours": "Ultimele 24 de ore",
+                        "30Days": "Ultimele 30 zile",
+                        "7Days": "Ultimele 7 zile",
+                        "yesterday": "Ieri"
+                    },
+                    "numbers": "Contele",
+                    "orderCardHeadline": "Comenzile recomandate",
+                    "summary": "Rezumat",
+                    "totalTurnover": "Cifra",
+                    "turnoverCardHeadline": "Cifra de afaceri menționată"
+                },
+                "tabInsights": "Statistici"
             },
             "products": {
                 "buttonAddProducts": "Adauga {productCount} produse | Adauga {productCount} produs | Adauga {productCount} produse",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Există deja un alt document de același tip în acest canal de vânzări.",
             "disabledSalesChannelSelect": "Alegeți mai întâi un tip de document.",
             "disabledTypeSelect": "Tipul de documente globale nu poate fi modificat.",
+            "displayTitle": "Afișare:",
             "helpTextDisplayAdditionalNoteDelivery": "Eligibil numai pentru statele membre ale UE, consultați și „Setări > Țări”.",
-            "helpTextDisplayCompanyAddress": "Afișează adresa companiei sub antetul din partea dreaptă a documentului.",
-            "helpTextDisplayDeliveryCountries": "Afișează indicația „livrare în comunitate” pe documentele de factură pentru țările selectate.",
             "helpTextDisplayDocumentInCustomerAccount": "Documentul este afișat sub „Comenzi” în contul de client respectiv. Rețineți că numai documentele care au fost efectiv trimise clientului sunt afișate în contul de client.",
-            "helpTextDisplayReturnAddress": "Afișează adresa companiei ca adresă de retur deasupra adresei clientului în blocul de adrese.",
-            "helpTextPaymentDueDate": "De exemplu: +30 zile, +4 săptămâni, +1 săptămână 2 zile",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "bancă",
             "labelCompanyCity": "Oraș",
             "labelCompanyCountry": "Țară",
             "labelCompanyEmail": "Adresă de e-mail",
+            "labelCompanyLogo": "Logo-ul companiei",
             "labelCompanyName": "Nume",
             "labelCompanyPhone": "Număr de telefon",
             "labelCompanyStreet": "Stradă",
             "labelCompanyUrl": "Website",
             "labelCompanyZipcode": "Cod poștal",
-            "labelDeliveryCountries": "Ţări membre",
             "labelDisplayAdditionalNoteDelivery": "Afișează eticheta „Livrare intracomunitară”",
             "labelDisplayCompanyAddress": "Afișează adresa companiei",
             "labelDisplayCustomerVatId": "Afișează codul TVA al clientului",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Formate de fișiere",
             "labelItemsPerPage": "Elemente pe pagină",
             "labelName": "Denumire tehnică",
-            "labelOptionMedia": "Logo-ul companiei",
             "labelPageOrientation": "Orientare pagină",
             "labelPageSize": "Formatul paginii",
             "labelPaymentDueDate": "Data scadenței plății",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Oficiul fiscal",
             "labelType": "Tip document",
             "labelVatId": "TVA Reg.Nr.",
-            "messageSaveSuccess": "Documentul „{name}” a fost salvat.",
-            "placeholderDisplayDeliveryCountries": "Căutați și adăugați țări valabile pentru livrarea intracomunitară...",
+            "pageOrientationOptions": {
+                "landscape": "Peisaj",
+                "portrait": "Portret"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Legal",
+                "letter": "Scrisoare"
+            },
+            "placeholderBankBic": "Introduceți BIC...",
+            "placeholderBankIban": "Introduceți IBAN...",
+            "placeholderBankName": "Introduceți numele băncii...",
+            "placeholderCompanyCity": "Intraţi în oraş...",
+            "placeholderCompanyCountry": "Selectați o țară...",
+            "placeholderCompanyEmail": "Introduceți adresa de e-mail...",
+            "placeholderCompanyName": "Introduceți numele companiei...",
+            "placeholderCompanyPhone": "Introdu numărul de telefon...",
+            "placeholderCompanyStreet": "Intraţi pe stradă...",
+            "placeholderCompanyUrl": "Introduceți site-ul web...",
+            "placeholderCompanyZipcode": "Introduceţi codul poştal...",
+            "placeholderExecutiveDirector": "Intră în executivul de afaceri...",
+            "placeholderFileNamePrefix": "Introduceți prefixul...",
+            "placeholderFileNameSuffix": "Introduceți sufixul...",
+            "placeholderFileTypes": "Selectați formate de fișiere...",
+            "placeholderItemsPerPage": "Introduceți numărul de articole pe pagină...",
             "placeholderName": "Introduceți numele...",
+            "placeholderPageOrientation": "Selectați o orientare a paginii...",
+            "placeholderPageSize": "Selectați un format de pagină...",
+            "placeholderPaymentDueDate": "Introduceți data scadenței plății...",
+            "placeholderPlaceOfFulfillment": "Introduceți locul împlinirii...",
+            "placeholderPlaceOfJurisdiction": "Introduceți locul de jurisdicție...",
+            "placeholderSalesChannel": "Selectați un canal de vânzări...",
+            "placeholderTaxNumber": "Introduceți numărul fiscal...",
+            "placeholderTaxOffice": "Intră în biroul fiscal...",
+            "placeholderType": "Selectați un tip de document...",
+            "placeholderVatId": "Introduceți ID-ul de TVA...",
             "textHeadline": "Document nou"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Misiune",
             "columnName": "Denumire tehnică",
             "columnType": "Tip",
-            "columnUsedIn": "Atribuit",
             "contextMenuEdit": "Editare",
             "global": "Global",
             "messageDeleteSuccess": "Documentul „{name}” a fost șters.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Refuz",
+                "give-consent": "Dă consimțământul",
                 "save-preferences": "Salvați preferințele",
                 "share-all-data": "Partajează toate",
                 "share-nothing": "Nu împărtășiți nimic"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/ro/detalii privind utilizarea datelor",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Pentru detalii complete, consultați {data-use-details} și {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Politica de confidențialitate",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Prin partajarea datelor din magazin și utilizator, ne ajutați să înțelegem modul în care este utilizată Administrația și să dezvoltăm îmbunătățiri care vă ușurează munca zilnică.",
-            "opt-out-info": "Puteți renunța oricând prin setări și Setări profil.",
+            "opt-out-info": {
+                "profile": "Profilul dvs. — Preferințe de confidențialitate",
+                "settings": "Setări — Confidențialitate",
+                "snippet": "Vă puteți modifica preferințele în orice moment: gestionați setările Date Store sub {settings}și setările Date personale sub {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Conform GDPR",
                 "no-third-party": "Nu sunt partajate date cu terți",
@@ -9899,6 +10059,12 @@
                     "order": "comenzi",
                     "store": "stochează date"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "aici",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Date de diagnosticare</strong> din Shopware se referă la informațiile legate de starea sistemului, erorile și valorile de performanță ale platformei. Aceasta include detalii precum jurnalele de sistem, mesajele de eroare, timpii de răspuns ai serverului și alți indicatori tehnici. Analiza acestor date ne ajută să identificăm rapid, să abordăm și să implementăm remedieri pentru probleme sau vulnerabilități comune, menținând integritatea platformei.",
                     "order": "<strong>Datele comenzii</strong> în cadrul Shopware se referă la informațiile detaliate despre comenzile clienților plasate pe platformă. Aceasta include specificații precum produsele comandate, cantitățile, prețurile, originea, metodele de plată, expedierea etc. Analizăm aceste date pentru a înțelege tendințele și modelele care ne ajută să îmbunătățim caracteristicile, precum și să dezvoltăm noi servicii concepute pentru a îmbunătăți succesul afacerii dvs. Nu colectăm date personale de la clienții dvs. care pot fi utilizate pentru a identifica o singură persoană.",
@@ -9912,6 +10078,12 @@
                 "description": "Folosim {data} despre modul în care interacționați cu Administrația pentru a îmbunătăți gradul de utilizare și performanța acesteia.",
                 "emphasizes": {
                     "data": "informație"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Politica de confidențialitate",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Datele de utilizare</strong> în cadrul Shopware se referă la informațiile legate de modul în care utilizatorii de administrare și vizitatorii magazinelor interacționează cu platforma noastră. Aceasta include detalii precum interacțiunile cu diferite module de administrare Shopware, paginile vizualizate, durata vizitelor, căile de clic și acțiunile utilizatorilor în cadrul platformei și vitrinei. Prin evaluarea datelor de utilizare, putem identifica zonele platformei care sunt vizitate frecvent sau evitate pentru a măsura adoptarea caracteristicilor, ceea ce duce la îmbunătățiri potențiale în aspect, design și funcționalitate."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Comutați elementul \"{name}”",
         "toggleTreeItem": "Comutați elementul arbore \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Sunt de acord",
-        "checkListDataSharing": {
-            "gdprCompliant": "Suntem conforme cu GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>„Partajare”</strong> se referă la dezvăluirea datelor în scopuri proprii ale părții destinatare; putem dezvălui date furnizorilor noștri de servicii."
-            },
-            "personalData": "Nu colectăm date cu caracter personal",
-            "securelyProcessed": "Datele dvs. sunt procesate și stocate în siguranță",
-            "thirdParty": "Nu partajăm datele dvs. cu terți în scopuri proprii",
-            "title": "Vă putem asigura că:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Date de diagnosticare",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Datele de diagnosticare</strong> din Shopware se referă la informațiile legate de starea sistemului, erorile și valorile de performanță ale platformei. Aceasta include detalii precum jurnalele de sistem, mesajele de eroare, timpii de răspuns ai serverului și alți indicatori tehnici. Analiza acestor date ne ajută să identificăm rapid, să abordăm și să implementăm remedieri pentru probleme sau vulnerabilități comune, menținând integritatea platformei.",
-                "orderDataHelp": "<strong>Datele comenzii</strong> din Shopware se referă la informațiile detaliate despre comenzile clienților plasate pe platformă. Acestea includ specificații precum produsele comandate, cantitățile, prețurile, originea, metodele de plată, expedierea etc. Analizăm aceste date pentru a înțelege tendințele și modelele care ne ajută să îmbunătățim caracteristicile, precum și să dezvoltăm noi servicii concepute pentru a vă îmbunătăți succesul afacerii. Nu colectăm date personale de la clienții dvs. care pot fi utilizate pentru a identifica o singură persoană.",
-                "storeDataHelp": "<strong>Stocarea datelor</strong> în Shopware se referă la toate informațiile legate de magazinul dvs. online. Cum ar fi produse, listări, prețuri, imagini, descrieri etc. și metadate despre configurarea magazinului dvs., cum ar fi teme și pluginuri. Nu colectăm date personale care pot fi utilizate pentru a identifica un utilizator administrator sau un vizitator al magazinului. Folosind date agregate din magazin, putem oferi informații prin învățarea automată, cum ar fi tendințele pieței emergente, permițându-vă să ajustați ofertele de produse sau strategiile de marketing în consecință.",
-                "usageDataHelp": "<strong>Datele de utilizare</strong> în cadrul Shopware se referă la informațiile legate de modul în care utilizatorii de administrare și vizitatorii magazinului interacționează cu platforma noastră. Aceasta include detalii precum interacțiunile cu diferite module de administrare Shopware, paginile vizualizate, durata vizitelor, căile de clic și acțiunile utilizatorilor în cadrul platformei și vitrinei. Prin evaluarea datelor de utilizare, putem identifica zonele platformei care sunt vizitate frecvent sau evitate pentru a măsura adoptarea caracteristicilor, ceea ce duce la îmbunătățiri potențiale în aspect, design și funcționalitate. Nu colectăm date personale care pot fi utilizate pentru a identifica un administrator sau vizitatorii magazinului."
-            },
-            "orderData": "Date de comandă",
-            "storeData": "Stocarea datelor",
-            "usageData": "Partajarea datelor"
-        },
-        "confirmAuthorization": "Făcând clic pe „Sunt de acord”, confirmați că sunteți autorizat să încheiați acest acord în numele companiei dvs.",
-        "declineDataCollection": "Nu în acest moment",
-        "fullDetailsDescription": "Detalii complete despre acest acord pot fi găsite la {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Puteți oricând să renunțați la partajarea datelor în orice moment. Alăturați-vă nouă în modelarea viitorului comerțului electronic, împărtășind datele dvs. cu noi!",
-        "headline": "Modelarea viitorului comerțului electronic",
-        "improvingDescription": "Îmbunătățim constant serviciile pe care vi le oferim. Pentru a face următorul pas, analizăm datele dvs. folosind tehnici precum învățarea automată (de exemplu, recunoașterea modelelor) pentru a dezvolta și îmbunătăți produsul nostru. Datele dvs. vor fi, de asemenea, utilizate pentru a dezvolta servicii bazate pe date concepute pentru a spori succesul afacerii dvs.",
-        "improvingDescriptionNotAccepted": "Îmbunătățim constant serviciile pe care vi le oferim. Pentru a face următorul pas, am dori să analizăm datele dvs. folosind tehnici precum învățarea automată (de exemplu, recunoașterea tiparelor) pentru a dezvolta și îmbunătăți produsul nostru. Datele dvs. vor fi, de asemenea, utilizate pentru a dezvolta servicii bazate pe date concepute pentru a spori succesul afacerii dvs.",
-        "privacyPolicy": "shopware.com/ro/detalii privind utilizarea datelor",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Puteți oricând să încheiați acordul și astfel să contribuiți și să profitați de evoluția constantă a serviciilor noastre, permițând partajarea datelor în {link}",
-        "settings": {
-            "deactivateDataCollection": "Dezactivați partajarea datelor",
-            "sharingInformation": "Împărtășiți date cu noi"
-        },
-        "thankYouMessage": "{thanksForParticipation} Puteți renunța la acest acord în orice moment și, astfel, puteți înceta să contribuiți și să beneficiați de dezvoltarea continuă a serviciilor noastre prin dezactivarea partajării datelor în {link}",
-        "thanksForParticipation": "Vă mulțumim pentru participare!",
-        "togglePath": "Setări"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Utilizatori și permisiuni"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Blocați scala uniformă",
+        "unlock-uniform-scale": "Deblocați scala uniformă"
+    },
     "sw-wizard": {
         "backButton": "Înapoi",
-        "closeButton": "Închide",
         "finishButton": "Finish",
         "nextButton": "Următorul"
     }

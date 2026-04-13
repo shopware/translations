@@ -317,6 +317,7 @@
             "newsletter_update": "Registrera dig för nyhetsbrevet uppdaterat",
             "product_export_log": "Produktexport utförd",
             "review_form_send": "Granskningsformulär skickat",
+            "revocation_request_sent": "Formuläret för begäran om återkallelse har skickats.",
             "state_enter_order_delivery_state_cancelled": "Försändelsen anger status annullerad",
             "state_enter_order_delivery_state_open": "Försändelsen anger status öppen",
             "state_enter_order_delivery_state_returned": "Försändelsen anger status som returnerad",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Välj fil",
             "caption": "Dra filer för att ladda upp här",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Den valda filen \"{name}\" har ett filtillägg som inte stöds. Använd ett av följande filtillägg: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Den valda filen \"{name}\" är för stor för att laddas upp. Maximal filstorlek är {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Inga dokument hittades",
                 "title": "Bulk redigering - Framgång"
             },
-            "warningText": "Vänta tills massredigeringen slutförs. Det här kan ta ett tag. Om du stänger webbläsarfliken eller avbryter processen för tidigt kommer inte alla ändringar att tillämpas. Du kan köra massredigeringen igen när som helst."
+            "warningText": "Vänta tills massredigeringen slutförs. Det här kan ta ett tag. Om du stänger webbläsarfliken eller avbryter processen för tidigt kommer inte alla ändringar att tillämpas. Du kan köra massredigeringen igen när som helst.",
+            "warningTextDocumentDeletion": "Dokument är en del av en beställning och kan vara relevanta för skattemässiga ändamål. Att radera dem kan påverka spårbarheten i dina bokföringsposter. Se till att radering är lagligt tillåtet."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Dokument",
+                "deleteDocuments": {
+                    "helpText": "Med det här alternativet raderas alla valda typer av dokument.",
+                    "label": "Ta bort: Dokument"
+                },
                 "downloadDocuments": {
                     "helpText": "Med det här alternativet erbjuds de senaste tillgängliga dokumenten för nedladdning. Flera dokument slås samman till samma fil. Nedladdningen är tillgänglig efter att flera ändringar har slutförts.",
                     "label": "Ladda ner: Dokument"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Sidor för nyhetsbrev",
                     "privacyPage": "Sekretess sidor",
                     "revocationPage": "Meddelanden om återkallelse",
+                    "revocationRequestPage": "Formulär för begäran om återkallelse",
                     "shippingPaymentInfoPage": "Betalnings- och leveransinformation",
                     "tosPage": "TOS sidor"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Titel",
                         "type": "Formulärtyp",
                         "typeContact": "Kontakt",
-                        "typeNewsletter": "Nyhetsbrev"
+                        "typeNewsletter": "Nyhetsbrev",
+                        "typeRevocationRequest": "Återkallande"
                     },
                     "placeholder": {
                         "type": "Välj en formulärtyp..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Kampanj",
+                        "comment": "Kommentar",
+                        "contractNumber": "Kontraktsnummer (ordernummer, prenumerationsnummer, ... ) *    ",
                         "email": "E-postadress*",
                         "firstName": "Förnamn*",
                         "lastName": "Efternamn*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} göra.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Nr {criteriaName}",
         "placeholder": "Alla"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Exportera kanal",
+                        "placeholder": "Välj exportkanaler…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Exportera kanal"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Exportera kanal",
+                        "placeholder": "Välj exportkanaler…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Exportera kanal"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Lägger till exportkanalkolumner och filter i order- och kundlistorna.",
+            "mainMenuItemGeneral": "Exportera kanalspårning"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Tillägget \"{name}\" är inte kompatibelt med denna Shopware-version",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Typ",
                 "labelRecipient": "mottagare",
                 "labelReplyTo": "Svara på adress",
+                "labelRevocationRequestFormMail": "Förfrågare",
                 "labelSenderName": "Avsändare",
                 "labelSubject": "Ämne",
                 "placeholderDescription": "Ange beskrivning...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Ange regelnamn...",
                 "placeholderPriority": "Ange regelprioritet...",
                 "placeholderType": "Välj regeltyp...",
+                "productStatesConditionWarning": "Villkoret ”Objekt med produktstatus” är föråldrat och kommer att tas bort i v6.8. Använd ”Objekt med produkttyp” istället.",
                 "tabDetail": "General",
                 "tabRule": "Villkor"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Återvände",
             "returnedPartially": "Återvände delvis",
             "reviewForm": "Produkt recension",
+            "revocationRequestCustomer": "Begäran om återkallande skickad",
+            "revocationRequestMerchant": "Begäran om återkallande mottagen",
             "send": "Skicka",
             "sent": "Skickat",
             "shipped": "Levereras",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Cirkumflex (^)",
             "categoriesLabel": "Kategorier",
             "closeProfileLabel": "Stäng profil",
-            "closeViolation": "Stäng",
             "commasLabel": "Komma (,)",
             "configuratorSettingLabel": "Variantkonfiguration",
             "copyOfLabel": "Kopia av:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Import"
             },
             "updateEntitiesLabel": "Uppdatera befintliga data",
-            "violationMessage": "Din profil är ännu inte giltig. Du måste lägga till mappningar i de obligatoriska fälten nedan för att spara profilen:"
+            "violationModal": {
+                "duplicateMappings": "Du har <strong>duplicerade mappningar</strong> i följande fält. Ta bort dubbletter för att spara profilen:",
+                "missingRequiredFields": "Du måste lägga till mappningar i <strong>obligatoriska fält</strong> som visas nedan för att spara profilen:",
+                "title": "Din profil är inte giltig än"
+            }
         },
         "progress": {
             "startExportLabel": "Starta export",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Spara i media"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Flytta objekt",
-                "rotate-tooltip": "Rotera objekt",
-                "scale-tooltip": "Skala objekt"
-            },
-            "saveChanges": "Spara ändringar",
-            "titleModal": "Modellredigerare"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Tillbaka"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Flytta objekt",
+            "rotate-tooltip": "Rotera objekt",
+            "scale-tooltip": "Skala objekt"
+        },
+        "open-model-editor-tooltip": "Öppna modellredigeraren",
+        "properties": {
+            "transformation": {
+                "label": "Transformation",
+                "position": {
+                    "label": "Position"
+                },
+                "rotation": {
+                    "label": "Rotation"
+                },
+                "scale": {
+                    "label": "Skala"
+                }
+            }
+        },
+        "titleModal": "Modellredigerare"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Om du vill skapa en kreditfaktura lägger du till en kreditpost först.",
-                    "storno": "En annulleringsfaktura kan inte skapas utan faktura."
+                    "storno": "En annulleringsfaktura kan inte skapas utan faktura.",
+                    "zugferd_cancellation_invoice": "En ZugFerd-avbeställningsfaktura kan inte skapas utan faktura.",
+                    "zugferd_credit_note": "För att skapa en ZugFerd-kreditnota krävs en faktura och minst en kreditpost.",
+                    "zugferd_embedded_cancellation_invoice": "En inbäddad ZugFerd-avbeställningsfaktura kan inte skapas utan faktura.",
+                    "zugferd_embedded_credit_note": "För att skapa en inbäddad ZugFerd-kreditnota krävs en faktura och minst en kreditpost."
                 },
                 "primaryAction": "Skapa dokument",
+                "showZugferd": "Visa ZugFerd varianter",
                 "title": "Skapa dokument"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Kvitton",
+            "confirmDeleteText": "Detta dokument är en del av en beställning och kan vara relevant för skattemässiga ändamål. Att radera det kan påverka spårbarheten i dina bokföringsregister. Se till att radering är lagligt tillåtet. Denna åtgärd kan inte ångras.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumentnummer {number} har redan tilldelats."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Ladda upp eget dokument",
             "labelCancel": "Stäng",
             "labelCreate": "Skapa kvitto",
+            "labelCreateDownload": "Skapa och ladda ner",
             "labelCreateDownloadPdf": "Skapa och ladda ned PDF",
             "labelCreateSend": "Skapa och skicka kvitto",
             "labelDeliveryDate": "Leveransdatum",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filter",
             "titleSidebarItemFilterAffiliateCode": "Affiliate-kod",
             "titleSidebarItemFilterCampaignCode": "Kampanjkod",
-            "titleSidebarItemRefresh": "Uppdatera"
+            "titleSidebarItemRefresh": "Uppdatera",
+            "tooltipCustomerComment": "Lassedieđut: {comment}",
+            "tooltipInternalComment": "Intern kommentar: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Namn",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Här kan du välja att definiera tre till fem nyckelord under vilka produkten ska hittas.",
             "helpTextMetaDescription": "Med metabeskrivningen bekräftar du för dina kunder att de är på rätt plats i din butik. Du skapar incitament, bygger förtroende och bjuder in till en handling. Du bör begränsa dig till högst 155 tecken. Shopware tillåter en maximal längd på 255 tecken.",
             "helpTextMetaTitle": "Metatiteln är det viktigaste SEO-elementet och ska vara unikt för varje sida. Du bör begränsa dig själv i längd till högst 56 tecken. Ditt sökord bör helst placeras längst fram.",
+            "helpTextOpenGraphDescription": "Open Graph-beskrivningen används när du delar produkten på sociala medier. Om den lämnas tom kommer metabeskrivningen att användas som en reservdel.",
+            "helpTextOpenGraphTitle": "Titeln Open Graph används när du delar produkten på sociala medier. Om den lämnas tom kommer metatiteln att användas som en fallback.",
             "labelCanonicalProduct": "Variant för kanonisk URL",
             "labelCanonicalUrlMode": "Använd en enda kanonisk URL för alla varianter",
             "labelKeywords": "Nyckelord",
             "labelMetaDescription": "Metabeskrivning",
             "labelMetaTitle": "Meta-Title",
+            "labelOpenGraphDescription": "OG beskrivning",
+            "labelOpenGraphImage": "OG-bild",
+            "labelOpenGraphTitle": "OG-titel",
             "placeholderCanonicalProduct": "Välj en variant...",
             "placeholderKeywords": "Skriv in ett eller flera nyckelord...",
             "placeholderMetaDescription": "Ange en Metabeskrivning...",
-            "placeholderMetaTitle": "Ange en Meta-Title..."
+            "placeholderMetaTitle": "Ange en Meta-Title...",
+            "placeholderOpenGraphDescription": "Ange beskrivning av Open Graph...",
+            "placeholderOpenGraphTitle": "Ange Open Graph-rubriken...",
+            "titleOpenGraph": "Öppna diagrammet"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Inga ytterligare beställningar är möjliga.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Villkor"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Affiliate-kod",
+            "affiliateCodePlaceholder": "Ange affiliate-kod…",
+            "campaignCodeLabel": "Kampanjkod",
+            "campaignCodePlaceholder": "Ange kampanjkod…",
+            "cardTitle": "Spårningskoder",
+            "description": "Konfigurera affiliate- och kampanjkoder som ska bäddas in i produktadresser för kanalens flöden. Dessa koder identifierar beställningar och kunder som hänvisas från denna Agentic Commerce-kanal."
+        },
         "detail": {
             "activateDisable": "Försäljningskanalen måste först sparas och därefter tilldelas ett tema innan den kan aktiveras.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Återställ till standard",
+                "errorLoadingTemplate": "Det gick inte att ladda standardmallen.",
+                "integration": {
+                    "feedUrlLabel": "Export-URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI-anslutning",
+                            "introduction": {
+                                "description": "Denna försäljningskanal genererar ett JSONL-produktflöde så att dina produkter kan visas i ChatGPT-sökresultaten. För att göra detta måste du ansöka som handlare och dela feed-URL med OpenAI. Allt annat förklaras i steg-för-steg-guiden nedan.",
+                                "title": "Så här: Konfiguration och anslutning"
+                            },
+                            "stepByStep": "<li>Ansök som handlare på <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchant</a></li><li>Kopiera exportwebbadressen (nedan) och dela den med OpenAI enligt <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Produktflödesdokument</a></li><li>Se till att exportwebbadressen är offentligt tillgänglig</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Steg för steg"
+                },
+                "openAiSettingsTitle": "OpenAI-inställningar",
+                "resetTemplateSuccess": "Mallen har återställts till standard. Spara för att behålla ändringarna.",
+                "tabIntegration": "Integration",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Med hjälp av Google Analytics kan du samla in och analysera din butiks data. För att kunna använda denna funktion krävs ett Google-konto. Om du ännu inte äger ett Google Analytics-konto, du kanske vill registrera dig här: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Efter att du registrerat dig får du ett spårnings-ID, som ska fyllas i nedan för att aktivera integrationen.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Hänvisade kunder",
+                    "dateRanges": {
+                        "14Days": "Senaste 14 dagarna",
+                        "180Days": "Senaste 180 dagarna",
+                        "24Hours": "Senaste 24 timmarna",
+                        "30Days": "Senaste 30 dagarna",
+                        "7Days": "Senaste 7 dagarna",
+                        "yesterday": "Igår"
+                    },
+                    "numbers": "Antal",
+                    "orderCardHeadline": "Hänvisade order",
+                    "summary": "Sammanfattning",
+                    "totalTurnover": "Omsättning",
+                    "turnoverCardHeadline": "Refererad omsättning"
+                },
+                "tabInsights": "Statistik"
             },
             "products": {
                 "buttonAddProducts": "Lägg till {productCount} produkter | Lägg till {productCount} produkt | Lägg till {productCount} produkter",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Det finns redan ett annat dokument av samma typ i den här försäljningskanalen.",
             "disabledSalesChannelSelect": "Välj först en dokumenttyp.",
             "disabledTypeSelect": "Dokumenttypen för globala dokument kan inte ändras.",
+            "displayTitle": "Display:",
             "helpTextDisplayAdditionalNoteDelivery": "Endast berättigade till EU-länder, se även ”Inställningar > Länder”.",
-            "helpTextDisplayCompanyAddress": "Visar företagsadressen under rubriken till höger om dokumentet.",
-            "helpTextDisplayDeliveryCountries": "Visar angivelse av ”leverans inom gemenskapen” på fakturadokument för utvalda länder.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokumentet visas under ”Beställningar” i respektive kundkonto. Observera att endast dokument som faktiskt har skickats till kunden visas i kundkontot.",
-            "helpTextDisplayReturnAddress": "Visar företagsadressen som returadress ovanför kundens adress i adressblocket.",
-            "helpTextPaymentDueDate": "T.ex.: +30 dagar, +4 veckor, +1 vecka 2 dagar",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Banken",
             "labelCompanyCity": "Stad",
             "labelCompanyCountry": "Land",
             "labelCompanyEmail": "E-postadress",
+            "labelCompanyLogo": "Företagslogotyp",
             "labelCompanyName": "Namn",
             "labelCompanyPhone": "Telefonnummer",
             "labelCompanyStreet": "Gata",
             "labelCompanyUrl": "Webbplats",
             "labelCompanyZipcode": "Postnummer",
-            "labelDeliveryCountries": "Medlemsländer",
             "labelDisplayAdditionalNoteDelivery": "Visa etiketten ”Leverans inom gemenskapen”",
             "labelDisplayCompanyAddress": "Visa företagsadress",
             "labelDisplayCustomerVatId": "Visa kundens moms-ID",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Filformat",
             "labelItemsPerPage": "Positioner per sida",
             "labelName": "Namn",
-            "labelOptionMedia": "Företagslogotype",
             "labelPageOrientation": "Sidorientering",
             "labelPageSize": "Sidformat",
             "labelPaymentDueDate": "Förfallodatum för betalning",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Skattekontor",
             "labelType": "Dokumenttyp",
             "labelVatId": "Moms Reg.nr.",
-            "messageSaveSuccess": "Dokumentet \"{name}\" sparades framgångsrikt.",
-            "placeholderDisplayDeliveryCountries": "Sök och lägg till länder som är giltiga för leverans inom gemenskapen...",
+            "pageOrientationOptions": {
+                "landscape": "Landskap",
+                "portrait": "Porträtt"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Rättslig",
+                "letter": "Brev"
+            },
+            "placeholderBankBic": "Ange BIC...",
+            "placeholderBankIban": "Ange IBAN...",
+            "placeholderBankName": "Ange banknamn...",
+            "placeholderCompanyCity": "Ange ort...",
+            "placeholderCompanyCountry": "Välj ett land...",
+            "placeholderCompanyEmail": "Ange en e-postadress...",
+            "placeholderCompanyName": "Ange företagsnamn...",
+            "placeholderCompanyPhone": "Ange telefonnummer...",
+            "placeholderCompanyStreet": "Ange en gatuadress...",
+            "placeholderCompanyUrl": "Gå in på webbplatsen...",
+            "placeholderCompanyZipcode": "Ange postnummer...",
+            "placeholderExecutiveDirector": "Ange företagsledare...",
+            "placeholderFileNamePrefix": "Ange prefix...",
+            "placeholderFileNameSuffix": "Ange suffix...",
+            "placeholderFileTypes": "Välj filformat...",
+            "placeholderItemsPerPage": "Ange antal objekt per sida...",
             "placeholderName": "Ange namn...",
+            "placeholderPageOrientation": "Välj en sidorientering...",
+            "placeholderPageSize": "Välj ett sidformat...",
+            "placeholderPaymentDueDate": "Ange förfallodatum för betalning...",
+            "placeholderPlaceOfFulfillment": "Ange plats för uppfyllelse...",
+            "placeholderPlaceOfJurisdiction": "Ange jurisdiktionsort...",
+            "placeholderSalesChannel": "Välj en försäljningskanal...",
+            "placeholderTaxNumber": "Ange skattenummer...",
+            "placeholderTaxOffice": "Gå in på skattekontoret...",
+            "placeholderType": "Välj en dokumenttyp...",
+            "placeholderVatId": "Ange moms-ID...",
             "textHeadline": "Nytt dokument"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Allokering",
             "columnName": "Namn",
             "columnType": "Typ",
-            "columnUsedIn": "Används för",
             "contextMenuEdit": "Redigera",
             "global": "Globalt",
             "messageDeleteSuccess": "Dokumentet \"{name}\" togs framgångsrikt bort.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Avböj",
+                "give-consent": "Ge samtycke",
                 "save-preferences": "Spara inställningar",
                 "share-all-data": "Dela alla",
                 "share-nothing": "Dela ingenting"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/sv/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "För fullständig information, se {data-use-details} och vår {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Sekretesspolicy",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Genom att dela butiks- och användardata hjälper du oss att förstå hur administrationen används och utveckla förbättringar som underlättar ditt dagliga arbete.",
-            "opt-out-info": "Du kan välja bort när som helst via inställningarna, och Profilinställningar.",
+            "opt-out-info": {
+                "profile": "Din profil — Sekretessinställningar",
+                "settings": "Inställningar — Sekretess",
+                "snippet": "Du kan ändra dina inställningar när som helst: hantera inställningar för Store Data under {settings}och Personuppgifter under {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "GDPR-kompatibel",
                 "no-third-party": "Ingen data delas med tredje part",
@@ -9899,6 +10059,12 @@
                     "order": "order",
                     "store": "lagra data"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "här",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Diagnostiska data</strong> inom Shopware avser information relaterad till systemhälsa, fel och prestandamätvärden för plattformen. Detta inkluderar detaljer som systemloggar, felmeddelanden, serverns svarstider och andra tekniska indikatorer. Genom att analysera dessa data kan vi snabbt identifiera, åtgärda och distribuera korrigeringar för vanliga problem eller sårbarheter, vilket bibehåller plattformens integritet.",
                     "order": "<strong>Beställningsdata</strong> inom Shopware avser detaljerad information om kundorder som görs på plattformen. Detta inkluderar detaljer som beställda produkter, kvantiteter, priser, ursprung, betalningsmetoder, leverans, etc.. Vi analyserar dessa data för att förstå trender och mönster som hjälper oss att förbättra funktioner samt utveckla nya tjänster som är utformade för att förbättra din affärsframgång. Vi samlar inte in personuppgifter från dina kunder som kan användas för att identifiera en enda person.",
@@ -9912,6 +10078,12 @@
                 "description": "Vi använder {data} om hur du interagerar med administrationen för att förbättra dess användbarhet och prestanda.",
                 "emphasizes": {
                     "data": "data"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Sekretesspolicy",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Användningsdata</strong> inom Shopware avser information relaterad till hur administratörsanvändare och butiksbesökare interagerar med vår plattform. Detta inkluderar detaljer som interaktioner med olika Shopware-administratörsmoduler, visade sidor, besökstid, klickvägar, och användaråtgärder inom plattformen och butiken. Genom att utvärdera användningsdata kan vi identifiera områden på plattformen som ofta besöks eller undviks för att mäta användningen av funktioner, vilket leder till potentiella förbättringar av layout, design och funktionalitet."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Växla objekt \"{name}”",
         "toggleTreeItem": "Växla trädobjektet \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Håller med",
-        "checkListDataSharing": {
-            "gdprCompliant": "Vi är GDPR-kompatibla",
-            "helpText": {
-                "shareDataHelpText": "<strong>”Dela”</strong> avser utlämnande av data för den mottagande partens egna ändamål; vi kan lämna ut uppgifter till våra tjänsteleverantörer."
-            },
-            "personalData": "Vi samlar inte in personuppgifter",
-            "securelyProcessed": "Dina uppgifter behandlas och lagras säkert",
-            "thirdParty": "Vi delar inte dina uppgifter med tredje part för deras egna ändamål",
-            "title": "Vi kan försäkra dig om att:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostiska data",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Diagnostiska data</strong> inom Shopware avser information relaterad till systemhälsa, fel och prestandamätningar för plattformen. Detta inkluderar detaljer som systemloggar, felmeddelanden, serverns svarstider och andra tekniska indikatorer. Genom att analysera dessa data kan vi snabbt identifiera, åtgärda och distribuera korrigeringar för vanliga problem eller sårbarheter och upprätthålla plattformens integritet.",
-                "orderDataHelp": "<strong>Beställningsdata</strong> inom Shopware avser detaljerad information om kundorder som görs på plattformen. Detta inkluderar detaljer som beställda produkter, kvantiteter, priser, ursprung, betalningsmetoder, leverans etc. Vi analyserar dessa data för att förstå trender och mönster som hjälper oss att förbättra funktioner samt utveckla nya tjänster som är utformade för att förbättra din affärsframgång. Vi samlar inte in personuppgifter från dina kunder som kan användas för att identifiera en enda person.",
-                "storeDataHelp": "<strong>Butiksdata</strong> inom Shopware avser all information relaterad till din onlinebutik. Såsom produkter, listor, priser, bilder, beskrivningar etc. och metadata om din butiks inställningar, till exempel teman och plugins. Vi samlar inte in personuppgifter som kan användas för att identifiera en administratörsanvändare eller en butiksbesökare. Med hjälp av aggregerade butiksdata kan vi ge insikter via maskininlärning, till exempel trender på framväxande marknader, så att du kan anpassa produktutbud eller marknadsföringsstrategier därefter.",
-                "usageDataHelp": "<strong>Användningsdata</strong> inom Shopware avser information relaterad till hur administratörsanvändare och butiksbesökare interagerar med vår plattform. Detta inkluderar detaljer som interaktioner med olika Shopware-administratörsmoduler, visade sidor, besökstid, klickvägar, och användaråtgärder inom plattformen och butiken. Genom att utvärdera användningsdata kan vi identifiera områden på plattformen som ofta besöks eller undviks för att mäta användningen av funktioner, vilket leder till potentiella förbättringar av layout, design och funktionalitet. Vi samlar inte in personuppgifter som kan användas för att identifiera en administratör eller butiksbesökare."
-            },
-            "orderData": "Beställningsdata",
-            "storeData": "Lagra data",
-            "usageData": "Användningsdata"
-        },
-        "confirmAuthorization": "Genom att klicka på ”Godkänn” bekräftar du att du är behörig att ingå detta avtal på uppdrag av ditt företag.",
-        "declineDataCollection": "Inte just nu",
-        "fullDetailsDescription": "Fullständig information om detta avtal finns på {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Du kan alltid välja bort datadelning när som helst. Följ med oss för att forma framtiden för e-handel genom att dela dina data med oss!",
-        "headline": "Att forma framtiden för e-handel",
-        "improvingDescription": "Vi förbättrar ständigt de tjänster vi tillhandahåller dig. För att ta nästa steg analyserar vi dina data med hjälp av tekniker som maskininlärning (t.ex. mönsterigenkänning) för att utveckla och förbättra vår produkt. Dina data kommer också att användas för att utveckla datadrivna tjänster utformade för att förbättra din affärsframgång.",
-        "improvingDescriptionNotAccepted": "Vi förbättrar ständigt de tjänster vi tillhandahåller dig. För att ta nästa steg vill vi analysera dina data med hjälp av tekniker som maskininlärning (t.ex. mönsterigenkänning) för att utveckla och förbättra vår produkt. Dina data kommer också att användas för att utveckla datadrivna tjänster utformade för att förbättra din affärsframgång.",
-        "privacyPolicy": "shopware.com/sv/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Du kan när som helst ingå avtalet och därmed bidra till och dra nytta av den ständiga utvecklingen av våra tjänster genom att tillåta datadelning i din {link}",
-        "settings": {
-            "deactivateDataCollection": "Inaktivera datadelning",
-            "sharingInformation": "Du delar data med oss"
-        },
-        "thankYouMessage": "{thanksForParticipation} Du kan när som helst välja bort detta avtal och därmed sluta bidra till och dra nytta av den pågående utvecklingen av våra tjänster genom att inaktivera datadelning i din {link}",
-        "thanksForParticipation": "Tack för ditt deltagande!",
-        "togglePath": "Inställningar"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Användare & rättigheter"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Lås enhetlig skala",
+        "unlock-uniform-scale": "Lås upp enhetlig skala"
+    },
     "sw-wizard": {
         "backButton": "Tillbaka",
-        "closeButton": "Stäng",
         "finishButton": "Avsluta",
         "nextButton": "Nästa"
     }

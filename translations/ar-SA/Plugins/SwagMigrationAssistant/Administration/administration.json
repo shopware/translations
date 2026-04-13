@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "لا يحتوي مفتاح API على الطول الصحيح ({length}/40 حرفًا)."
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "مساعد الترحيل"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "فشلت عملية إحباط الترحيل.",
@@ -29,20 +36,24 @@
         },
         "general": {
             "descriptionTextModule": "وحدة لترحيل البيانات",
+            "disabledMessages": {
+                "disabled": "تم تعطيل الترحيل في هذه البيئة.",
+                "loading": "الترحيل قيد التقدم حاليًا.",
+                "noData": "لا توجد بيانات متاحة للترحيل.",
+                "noPermission": "ليس لديك الأذونات المطلوبة لإجراء الترحيل.",
+                "noSelectedData": "لم يتم تحديد أي عناصر للترحيل.",
+                "resettingChecksum": "يتم حاليًا إعادة تعيين المجاميع الاختبارية.",
+                "truncatingMigration": "يتم حاليًا اقتطاع بيانات الترحيل.",
+                "unfilledPremapping": "أكمل جميع التعيينات المطلوبة قبل المتابعة."
+            },
             "mainMenuItemGeneral": "مساعد الترحيل",
             "tabDataSelector": "اختيار البيانات",
             "tabHistory": "التاريخ",
             "tabMain": "جنرال لواء"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "سيؤدي حذف بيانات الترحيل إلى إزالة إدخالات السجل وإدخالات ملفات الوسائط وسجلات بيانات الترحيل المؤقتة وتشغيل الترحيل، والتي لن تكون متاحة بعد ذلك في سجل الترحيل.",
-                "contentHint": "هل تريد حقًا حذف البيانات؟",
-                "title": "حذف بيانات الترحيل"
-            },
             "connectionName": "اسم الاتصال",
             "contextMenu": {
-                "clearLogs": "حذف بيانات الترحيل",
                 "details": "أظهر التفاصيل",
                 "downloadLogs": "سجل التنزيل"
             },
@@ -59,18 +70,16 @@
                 "logDownload": "قم بتنزيل ملف السجل.",
                 "noErrorsOccurred": "لم تحدث أية أخطاء.",
                 "noProgressData": "تم تنفيذ هذا التشغيل في إصدار سابق من المكون الإضافي وتم حذف بياناته.",
-                "runStatus": "حالة الترحيل:",
                 "status": {
                     "aborted": "أجهض",
                     "finished": "تم الانتهاء",
                     "running": "الجري"
                 },
-                "timestamp": "الوقت:",
                 "title": "تفاصيل الترحيل"
             },
+            "gateway": "بوابة",
             "importDateTime": "وقت البدء",
-            "noData": "لم يتم العثور على عمليات ترحيل.",
-            "profileAndGateway": "الملف الشخصي والبوابة",
+            "profile": "الملف الشخصي",
             "selectedData": "البيانات",
             "shopDomain": "نطاق المتجر",
             "shopSystem": "نظام المتجر",
@@ -78,28 +87,9 @@
         },
         "index": {
             "abortButton": "إلغاء",
-            "assistantCard": {
-                "connection": {
-                    "content": "سيساعد مساعد الترحيل في إنشاء اتصال بين نظام متجرك و Shopware 6 لنقل بياناتك وترحيلها.",
-                    "link": "المساعدة والوثائق",
-                    "title": "قم بإعداد اتصال"
-                },
-                "dataSelection": {
-                    "content": "حدد البيانات التي تريد ترحيلها. من الممكن تضمين بيانات المكون الإضافي أيضًا، إذا كان المكون الإضافي متاحًا بالفعل لـ Shopware 6. تحقق من توفر المكون الإضافي في حساب Shopware الخاص بك.",
-                    "title": "حدد البيانات للترحيل"
-                },
-                "finish": "تم!",
-                "headline": "كيفية عمل الترحيل",
-                "migrationOverview": {
-                    "content": "1. تقوم عملية تلقائية بفحص البيانات المحددة للواجبات المفقودة. استعد لإكمال العملية التلقائية عن طريق إضافة مهام يدوية.\n2. تتم قراءة بيانات متجرك وتخصيصها.\n3. يتم نقل جميع البيانات المحددة والمخصصة بشكل صحيح إلى Shopware 6.\n4. يتم تنزيل عناصر الوسائط.",
-                    "title": "خطوات الترحيل"
-                },
-                "title": "معلومات"
-            },
             "backToOverviewButton": "الرجوع إلى النظرة العامة",
             "confirmAbortDialog": {
-                "cancelPause": "وقفة",
-                "cancelRunning": "واصل",
+                "cancel": "استمر",
                 "confirm": "إيقاف الترحيل",
                 "content": "لم يكتمل الترحيل بشكل كامل. قد تكون البيانات التي تم ترحيلها بالفعل غير قابلة للاستخدام. إذا قمت بالإنهاء الآن، فسيتعين عليك إعادة تشغيل عملية الترحيل بالكامل.",
                 "hint": "هل تريد إيقاف الترحيل؟",
@@ -107,169 +97,175 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "نعم، أود الاستمرار",
-                    "info": "يمكن أن يؤدي الترحيل بعملات افتراضية مختلفة إلى تلف سجلات البيانات والتسبب في آثار جانبية غير متوقعة.",
-                    "question": "هل أنت متأكد من أنه يجب ترحيل البيانات بالعملة القياسية [{targetSystemCurrency}]؟",
                     "text": "لا تتطابق عملة البيانات المراد ترحيلها مع العملة القياسية [{targetSystemCurrency}]. لا يزال من الممكن ترحيل البيانات التي تحتوي على [{sourceSystemCurrency}]، ولكن لن يتم تحويلها تلقائيًا. يمكنك ضبط الأسعار يدويًا بعد ذلك.",
                     "title": "لقد اعترفت الهجرة بعملة أخرى"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "نعم، أود الاستمرار",
-                    "info": "يمكن أن يؤدي الترحيل بلغات افتراضية مختلفة إلى تلف سجلات البيانات والتسبب في آثار جانبية غير متوقعة.",
-                    "question": "هل أنت متأكد من أنه يجب ترحيل البيانات باللغة القياسية [{targetSystemLanguage}]؟",
                     "text": "لا تتطابق لغة البيانات المراد ترحيلها مع اللغة القياسية [{targetSystemLanguage}]. لا يزال من الممكن ترحيل البيانات التي تحتوي على [{sourceSystemLanguage}]، ولكن لن يتم تحويلها تلقائيًا. يمكنك ضبط الترجمات يدويًا بعد ذلك.",
                     "title": "لقد تعرفت الهجرة على لغة أخرى"
                 }
             },
             "continueButton": "واصل",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "تعذّر تحويل الكيان الفرعي {entity} من الكيان الأصلي {parentEntity} بالمعرّف \"{parentSourceId}\".",
-                    "title": "تعذّر تحويل الكيان الفرعي {entity}"
+            "error-resolution": {
+                "codes": {
+                    "SWAG_MIGRATION_CONVERT_ASSOCIATION_MISSING": "الكيان المرتبط مفقود",
+                    "SWAG_MIGRATION_CONVERT_CHILD_ENTITY_FAILED": "فشل تحويل الكيان الفرعي",
+                    "SWAG_MIGRATION_CONVERT_DOCUMENT_TYPE_UNSUPPORTED": "تحويل نوع المستند غير مدعوم",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_ALREADY_EXISTS": "الكيان موجود بالفعل",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_FAILED": "فشل تحويل الكيان",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_UNKNOWN": "كيان تابع غير معروف",
+                    "SWAG_MIGRATION_CONVERT_FIELD_REASSIGNED": "تمت إعادة تعيين حقل الكيان تلقائيًا",
+                    "SWAG_MIGRATION_CONVERT_LANGUAGE_PACK_DEACTIVATED": "تم إلغاء تنشيط حزمة اللغة",
+                    "SWAG_MIGRATION_CONVERT_MAIN_VARIANT_RELATION_FAILED": "فشل تحويل علاقة المتغير الرئيسي",
+                    "SWAG_MIGRATION_CONVERT_OBJECT_TYPE_UNSUPPORTED": "نوع الكائن غير معتمد",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_CALCULATION_TYPE_UNSUPPORTED": "نوع حساب الشحن غير مدعوم",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_PRICE_UNSUPPORTED": "نوع سعر الشحن غير مدعوم",
+                    "SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE": "بيانات المصدر غير مكتملة",
+                    "SWAG_MIGRATION_CONVERT_UNSERIALIZED_DATA_INVALID": "البيانات غير المتسلسلة غير صالحة",
+                    "SWAG_MIGRATION_FETCH_DATASET_MISSING": "مجموعة بيانات للكيان المفقود",
+                    "SWAG_MIGRATION_FETCH_ENTITY_COUNT_FAILED": "فشلت قراءة عدد الكيانات من النظام المصدر",
+                    "SWAG_MIGRATION_FETCH_PROCESSOR_MISSING": "معالج الكيان المفقود",
+                    "SWAG_MIGRATION_MEDIA_DEFAULT_FOLDER_UNSUPPORTED": "مجلد الوسائط الافتراضي غير مدعوم",
+                    "SWAG_MIGRATION_MEDIA_FILE_MISSING": "ملف وسائط مفقود",
+                    "SWAG_MIGRATION_MEDIA_MIME_TYPE_UNKNOWN": "نوع MIME للوسائط غير معروف",
+                    "SWAG_MIGRATION_MEDIA_TEMPORARY_FILE_FAILED": "فشل إنشاء ملف مؤقت للوسائط",
+                    "SWAG_MIGRATION_RUN_ABORTED": "تم إحباط الترحيل تلقائيًا",
+                    "SWAG_MIGRATION_RUN_EXCEPTION": "حدث استثناء الترحيل",
+                    "SWAG_MIGRATION_RUN_MESSAGE_QUEUE_EXCEPTION": "حدث استثناء لقائمة انتظار الرسائل",
+                    "SWAG_MIGRATION_VALIDATION_ASSOCIATION_INVALID": "اقتران الكيان غير صالح",
+                    "SWAG_MIGRATION_VALIDATION_EXCEPTION": "حدث استثناء التحقق",
+                    "SWAG_MIGRATION_VALIDATION_OPTIONAL_FIELD_VALUE_INVALID": "يحتوي الحقل الاختياري على قيمة غير صالحة",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_MISSING": "الحقل المطلوب مفقود",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_VALUE_INVALID": "يحتوي الحقل المطلوب على قيمة غير صالحة",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_TRANSLATION_INVALID": "الترجمة المطلوبة غير صالحة",
+                    "SWAG_MIGRATION_WRITE_EXCEPTION": "حدث استثناء الكتابة",
+                    "SWAG_MIGRATION_WRITE_THEME_COMPILING_FAILED": "فشل تجميع الموضوع",
+                    "unknown": "خطأ غير معروف"
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "لا يمكن تحويل الكيان {entity} بمعرف المصدر \"{sourceId}\".",
-                    "title": "تعذّر تحويل الكيان {entity}"
+                "descriptionTitle": "وصف الحقل",
+                "errors": {
+                    "continueMigrationFailed": "فشلت عملية الترحيل المستمرة.",
+                    "downloadLogsFailed": "فشل تنزيل ملف السجل.",
+                    "fetchExampleFailed": "فشلت عملية جلب بيانات المثال.",
+                    "fetchExistingFixesFailed": "فشل جلب الإصلاحات الموجودة.",
+                    "fetchFilterDataFailed": "فشلت عملية جلب بيانات عامل التصفية.",
+                    "fetchLogsFailed": "فشلت عملية جلب بيانات السجل.",
+                    "fetchRunFailed": "فشلت عملية جلب بيانات تشغيل الترحيل.",
+                    "fieldValueNotSet": "لم يتم تعيين قيمة الحقل.",
+                    "invalidFieldValueFormat": "تنسيق قيمة الحقل غير صالح.",
+                    "noEntityIdsFound": "لم يتم العثور على معرفات كيانات صالحة في إدخالات السجل المحددة.",
+                    "noLogsSelected": "يرجى تحديد إدخال سجل واحد على الأقل لحل المشكلة.",
+                    "resetResolutionFailed": "فشلت إعادة ضبط دقة الخطأ.",
+                    "submitResolutionFailed": "فشلت عملية إرسال حل الخطأ.",
+                    "validationFailed": "فشلت عملية التحقق من الصحة."
                 },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "لا يمكن تنزيل/نسخ الملف {entity} الذي يحتوي على uri \"{uri}\" ومعرف الوسائط \"{sourceId}\".",
-                    "title": "لا يمكن تنزيل الملف {entity} /نسخه"
+                "modals": {
+                    "details": {
+                        "convertedDataLabel": "البيانات المحولة",
+                        "sourceDataLabel": "بيانات المصدر",
+                        "title": "التفاصيل: {entityName}"
+                    },
+                    "error": {
+                        "left": {
+                            "details": "أظهر التفاصيل",
+                            "reset": "إعادة ضبط",
+                            "select-all": "حدد الكل ({count})",
+                            "status": {
+                                "resolved": "تم حلها",
+                                "unresolved": "لم يتم حلها"
+                            }
+                        },
+                        "right": {
+                            "apply": "تطبيق التغييرات",
+                            "banner": {
+                                "content": "يرجى إنشاء خيار واحد على الأقل لتحديده في منطقة الإدارة المقابلة.",
+                                "link": "إضافة خيار",
+                                "title": "لا يوجد خيار متاح"
+                            },
+                            "title": "تحرير: {count} عناصر",
+                            "unhandledBanner": {
+                                "content": "لا يمكن تحديد نوع الحقل. يرجى تصحيح بيانات المصدر الخام. يجب أن تكون القيمة بالتنسيق الصحيح.",
+                                "title": "نوع حقل غير معروف"
+                            },
+                            "unresolvableBanner": {
+                                "content": "يرجى التحقق من ملف السجل لمزيد من المعلومات.",
+                                "title": "لا يمكن حل هذا الخطأ حاليًا عبر مساعد الترحيل"
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "الحالة"
+                            }
+                        },
+                        "title": "إصلاح الخطأ: {code}, {entityName}, {fieldName}"
+                    }
                 },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "الكيان {entity} بمعرف المصدر \"{sourceId}\" موجود بالفعل ولا يمكن كتابته.",
-                    "title": "الكيان {entity} موجود بالفعل"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "حصل الكيان {entity} الذي يحتوي على معرف المصدر \"{sourceId}\" على الحقل \"{emptyField}\" الذي تم استبداله بـ \"{replacementField}».",
-                    "title": "يحتوي الكيان {entity} على حقل تمت إعادة تعيينه"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "لا يمكن للكيان {requiredForEntity} بمعرف المصدر \"{requiredForSourceId}\" العثور على كيان {entity} المعتمد بمعرف المصدر \"{sourceId}».",
-                    "title": "لا يمكن العثور على {entity}"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "حدث استثناء أثناء معالجة قائمة انتظار الرسائل.",
-                    "title": "استثناء قائمة انتظار الرسائل"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "تم إحباط الترحيل تلقائيًا، بسبب حدوث عدد كبير جدًا من الاستثناءات المتتالية.",
-                    "title": "تم إحباط الترحيل تلقائيًا"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "حدث استثناء"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "تعذرت قراءة العدد الإجمالي للكيان {entity} . تأكد من وجود الجدول \"{table}\" في نظام المصدر الخاص بك وأن الشرط الاختياري \"{condition}\" صالح. رسالة الاستثناء: {exceptionMessage}",
-                    "title": "تعذرت قراءة عدد الكيانات"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "لم يتم العثور على مجموعة البيانات الخاصة بالملف الشخصي \"{profileName}\" والكيان \"{entity}\". تعذرت معالجة الكيان الذي يحمل معرف \"{sourceId}\".",
-                    "title": "لم يتم العثور على مجموعة البيانات"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "إخراج التصحيح"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "تعذر تحويل المستند الذي يحتوي على معرف المصدر \"{sourceId}\" لأن نوع المستند \"{type}\" غير مدعوم.",
-                    "title": "نوع المستند غير مدعوم"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "عنوان البريد الإلكتروني للكيان {entity}  بمعرف المصدر \"{sourceId}\" غير صالح: {email}",
-                    "title": "عنوان بريد إلكتروني غير صالح"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "لم يتم العثور على معالج ملف التعريف \"{profileName}\" والبوابة \"{gatewayName}\" والكيان \"{entity}\".",
-                    "title": "لم يتم العثور على المعالج"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "لا يمكن العثور على {missingEntity} بمعرف المصدر \"{sourceId}\" ولكنه مطلوب لـ {requiredFor}.",
-                    "title": "لم يتم العثور على {entity} المرتبط"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "لا يمكن نسخ الملف المصدر. الملف: {path}",
-                    "title": "لم يتم العثور على الملف المصدر"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "لا يمكن تنزيل الوسائط. الملف المتأثر: {uri}",
-                    "title": "لا يمكن تنزيل الوسائط"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "لا يحتوي الكيان {entity} الذي يحتوي على معرف المصدر \"{sourceId}\" على البيانات الضرورية للحقل \"{emptyField}»",
-                    "title": "يحتوي الكيان {entity} على حقل ضروري فارغ"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "تعذر تحويل الكيان {entity} بمعرف المصدر \"{sourceId}\" بسبب بيانات كائن غير متسلسلة غير صالحة للكيان \"{unserializedEntity}\" والبيانات الأولية هي: {serializedData}",
-                    "title": "بيانات غير متسلسلة غير صالحة"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "لم يتم العثور على الكيان الأصلي للطفل \"{entity}\".",
-                    "title": "لم يتم العثور على الكيان الرئيسي"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "تعذّر تحويل numberRange-entity بمعرف المصدر \"{sourceId}\" بسبب النوع غير المدعوم: {type}.",
-                    "title": "نوع نطاق الأرقام غير معتمد"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "تعذر تحويل {entity} من نوع الكائن \"{objectType}\" بمعرف المصدر \"{sourceId}\".",
-                    "title": "نوع كائن غير معتمد"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "تعذّر تحويل كيان أسلوب الشحن بمعرف المصدر \"{sourceId}\" بسبب نوع الحساب غير المدعوم: {type}.",
-                    "title": "نوع حساب الشحن غير المدعوم"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "تعذر تحويل كيان سعر الشحن الذي يحتوي على معرف المصدر \"{sourceId}\" لطريقة الشحن \"{shippingMethodId}\" بسبب حساب سعر العامل غير المدعوم.",
-                    "title": "حساب سعر عامل الشحن غير المدعوم"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "لا يمكن تجميع الموضوع الذي يحتوي على معرف \"{sourceId}\".",
-                    "title": "خطأ في تجميع الموضوع"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "لم يتم العثور على كاتب الملف لكيان \"{entity}\".",
-                    "title": "لم يتم العثور على كاتب الملف"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "حدث استثناء للكتابة"
-                },
-                "authorizationError": {
-                    "information": "خطأ في التخويل. بيانات الوصول الخاصة بك غير صحيحة. يرجى التحقق من ذلك والمحاولة مرة أخرى."
-                },
-                "canNotConnectToServer": "لا يوجد اتصال بالخادم. يرجى التحقق من الاتصال بحثًا عن المشكلات.",
-                "customerExists": {
-                    "information": "العميل الذي لديه بريد إلكتروني \"{mail}\" موجود بالفعل. لا يمكنك إضافة هذا المستخدم بهذا البريد الإلكتروني إلى قاعدة البيانات الخاصة بك."
-                },
-                "gatewayNotFound": {
-                    "information": "لم يتم العثور على البوابة \"{notFoundGateway}\"."
-                },
-                "gatewayRead": {
-                    "information": "تعذرت قراءة البوابة \"{unreadableGateway}»."
-                },
-                "localeNotFound": {
-                    "information": "لم يتم العثور على رمز الإدخال المحلي \"{notFoundCode}\"."
-                },
-                "mediaProcessConnectionError": "حدث خطأ في الاتصال أثناء نسخ بيانات الوسائط. يرجى التحقق من الاتصال.",
-                "migrationContextPropertyMissing": {
-                    "information": "لم يتم العثور على الخاصية المطلوبة \"{notFoundProperty}\" لسياق الترحيل."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "لم يتم العثور على الخاصية المطلوبة \"{notFoundProperty}\" لحجم عمل الترحيل."
-                },
-                "noFileSystemPermissions": {
-                    "information": "لا توجد أذونات لنظام الملفات لإنشاء ملفات أو أدلة أو كتابتها. يرجى التحقق من الأذونات الخاصة بك."
-                },
-                "profileNotFound": {
-                    "information": "لم يتم العثور على ملف تعريف الترحيل \"{notFoundProfile}\"."
-                },
-                "undefinedIndex": {
-                    "detail": "لا يمكن العثور على فهرس غير محدد.",
-                    "information": "تعذّر العثور على الفهرس \"{unidentifiedIndex}\". يرجى التحقق من البيانات الخاصة بك.",
-                    "title": "فهرس غير محدد"
-                },
-                "unknownError": "خطأ غير معروف. يمكنك التحقق من جدول التسجيل لقاعدة البيانات الخاصة بك لمزيد من المعلومات."
+                "step": {
+                    "card": {
+                        "filter": {
+                            "code": {
+                                "label": "اسم الخطأ",
+                                "placeholder": "حدد اسم خطأ"
+                            },
+                            "entity": {
+                                "label": "الكيان",
+                                "placeholder": "حدد كيانًا"
+                            },
+                            "field": {
+                                "label": "الحقل",
+                                "placeholder": "حدد الحقل"
+                            },
+                            "reset": "إعادة تعيين الفلاتر",
+                            "status": {
+                                "label": "حالة الخطأ",
+                                "options": {
+                                    "resolved": "تم حلها",
+                                    "unresolved": "لم يتم حلها"
+                                },
+                                "placeholder": "حدد حالة الخطأ"
+                            },
+                            "title": "الفلاتر | الفلاتر ({count}) | الفلاتر ({count})"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "رمز",
+                                "count": "ثابت/إجمالي",
+                                "entity": "الكيان",
+                                "field": "الحقل",
+                                "gatewayName": "بوابة",
+                                "name": "اسم",
+                                "profileName": "الملف الشخصي"
+                            },
+                            "empty-state": {
+                                "description": "لم يتم العثور على سجلات مطابقة للفلاتر المحددة.",
+                                "headline": "لا شيء موجود"
+                            }
+                        },
+                        "tabs": {
+                            "errors": "الأخطاء ({count})",
+                            "infos": "معلومات ({count})",
+                            "warnings": "التحذيرات ({count})"
+                        },
+                        "title": "أخطاء قابلة للإصلاح"
+                    },
+                    "continue-modal": {
+                        "text-fixable": "هناك مجموعات {count} من الأخطاء القابلة للإصلاح والتي لا تزال دون حل. يرجى تصحيح هذه الأخطاء قبل المتابعة لتجنب أخطاء المتابعة.",
+                        "text-unfixable": "هناك أخطاء {count} غير قابلة للإصلاح لا تزال دون حل. في حالة المتابعة دون حل الأخطاء المتبقية، قد تظهر أخطاء المتابعة.",
+                        "title": "واصل"
+                    },
+                    "header": {
+                        "banner": {
+                            "content": "هناك أخطاء {count} أو تحذيرات لا يمكن حلها من هذه الشاشة. للتحقق من ذلك، قم بتنزيل ملف السجل ومراجعة رسائل الخطأ المفصلة. قد تحتاج المشكلات الأساسية إلى الإصلاح في النظام المصدر. بمجرد حلها، أعد تشغيل الترحيل للمتابعة.",
+                            "title": "لا يمكن إصلاح بعض الأخطاء من خلال طريقة العرض هذه"
+                        },
+                        "continue": "واصل",
+                        "continueTooltip": "يرجى إصلاح جميع الأخطاء القابلة للإصلاح قبل المتابعة.",
+                        "description": "قم بمراجعة وحل أخطاء الترحيل التي حدثت أثناء الاستيراد. قم بإصلاح مشكلات البيانات مباشرةً في طريقة العرض هذه أو قم بتنزيل ملف السجل للحصول على معلومات مفصلة. استمر بمجرد حل جميع الأخطاء القابلة للإصلاح. يمكنك ترك هذا المنظر والعودة إليه لاحقًا",
+                        "documentation": "التوثيق",
+                        "download": "تنزيل ملف السجل",
+                        "title": "دقة الخطأ"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "خطأ",
@@ -282,6 +278,7 @@
                 "documentationLinkText": "وثائق قائمة انتظار الرسائل",
                 "flowChart": {
                     "cleanup": "تنظيف",
+                    "errorResolution": "دقة الخطأ",
                     "fetchData": "القراءة",
                     "finish": "تم",
                     "indexing": "الفهرسة",
@@ -292,7 +289,6 @@
                 "notice": "نصيحة: يتم تشغيل هذه العملية في قائمة انتظار الرسائل. لا تحتاج إلى البقاء في هذه الصفحة إذا تم تكوين متجرك بشكل صحيح.",
                 "result": {
                     "historyHint": "يمكنك عرض هذه المعلومات في أي وقت في سجل الترحيل. من الممكن إضافة المزيد من رسائل السجل في وقت لاحق لأن تنزيل الوسائط لا يزال قيد التشغيل في الخلفية.",
-                    "logSummary": "دفتر السجل",
                     "title": "تم الانتهاء من مساعد الترحيل"
                 },
                 "status": {
@@ -305,6 +301,11 @@
                         "caption": "تتم إزالة البيانات المؤقتة. اكتمل الترحيل تقريبًا.",
                         "long": "يتم تنظيف الترحيل",
                         "short": "تنظيف"
+                    },
+                    "error-resolution": {
+                        "caption": "يتم إيقاف الترحيل مؤقتًا حتى يتم حل جميع الأخطاء.",
+                        "long": "يمكن حل الأخطاء",
+                        "short": "دقة الخطأ"
                     },
                     "fetching": {
                         "caption": "تتم معالجة الواجبات الجديدة.",
@@ -322,6 +323,7 @@
                         "long": "يتم نقل وسائل الإعلام",
                         "short": "نقل وسائل الإعلام"
                     },
+                    "unknown": "غير معروف",
                     "writing": {
                         "caption": "اعتمادًا على حجم المتجر، قد يستغرق الأمر بضع لحظات.",
                         "long": "تتم كتابة البيانات في Shopware 6",
@@ -348,16 +350,10 @@
                     "transaction_state": "حالات المعاملات",
                     "user": "مستخدم الإدارة"
                 },
-                "loadingCaption": "تم فحص البيانات الموجودة.",
-                "loadingTitle": "فحص البيانات قيد التشغيل",
                 "newAssignmentTitle": "مهام جديدة",
                 "placeholder": "يرجى الاختيار",
                 "previousTitle": "السابق",
-                "unfilledAlert": "لقد اكتشفنا أن هناك بيانات تتطلب التعيين اليدوي.",
-                "unfilledCaption": "لا يمكنك المتابعة إلا بعد اكتمال المهمة اليدوية.",
-                "unfilledTitle": "تم الانتهاء من فحص البيانات",
-                "validCaption": "البيانات جاهزة للمتابعة",
-                "validTitle": "تم الانتهاء من فحص البيانات"
+                "unfilledAlert": "لقد اكتشفنا أن هناك بيانات تتطلب التعيين اليدوي."
             },
             "savePremapping": {
                 "message": "تم حفظ التخطيط المسبق.",
@@ -451,7 +447,8 @@
                     "name": "اسم",
                     "total": "مجموعات البيانات"
                 },
-                "noData": "لم يتم العثور على شيء للهجرة."
+                "noData": "لم يتم العثور على شيء للهجرة.",
+                "noDataSubline": "يرجى التحقق من الاتصال أو تجربة ملف تعريف آخر."
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "إنشاء اتصال جديد",
@@ -467,14 +464,15 @@
                 "connectionCheck": "التحقق من الاتصال:",
                 "gateway": "البوابة:",
                 "lastMigration": "الترحيل الأخير:",
+                "link": "المساعدة والوثائق",
                 "noConnection": "لا يوجد اتصال",
+                "noConnectionCheckDoneYet": "لم يتم إجراء فحص الاتصال حتى الآن",
                 "noMigrationDoneYet": "-",
                 "notConnected": "غير متصل",
                 "profile": "ملف تعريف النظام:",
-                "refreshTooltip": "تحقق من الاتصال بالنظام المصدر",
+                "refreshButton": "تحديث الاتصال",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "إلغاء",
-                    "confirmButtonText": "نعم، احذف",
                     "content": "لن يكون هناك اتصال نشط بعد ذلك. أدخل بيانات الوصول مرة أخرى لاستعادة الاتصال.",
                     "contentHint": "هل ترغب في حذف بيانات الوصول الحالية؟",
                     "title": "حذف بيانات الوصول"
@@ -490,17 +488,35 @@
                     "abortButtonText": "إلغاء",
                     "confirmButtonText": "ضع اللمسات الأخيرة الآن",
                     "content": "رائع! لنقم الآن بإنهاء الترحيل وتنظيف الملفات المؤقتة والبيانات غير المستخدمة. <strong>يرجى ملاحظة ما يلي:</strong> وضع اللمسات الأخيرة على الترحيل هو أمر نهائي. لن تتمكن من ترحيل المزيد من البيانات عبر الاتصال الحالي.",
-                    "contentHint": "هل تريد إنهاء الترحيل الآن؟",
                     "errorNotification": {
                         "message": "الترحيل قيد التقدم حاليًا.",
                         "title": "حدث خطأ أثناء إنهاء الترحيل"
                     },
                     "header": "هل انتهيت من ترحيل بيانات متجرك؟",
                     "title": "وضع اللمسات الأخيرة على الترحيل"
+                },
+                "updateBanner": {
+                    "isResettingChecksums": {
+                        "message": "يتم إعادة تعيين المجاميع الاختبارية. قد يستغرق هذا بضع دقائق.",
+                        "title": "إعادة تعيين المجاميع الاختبارية"
+                    },
+                    "isTruncatingMigration": {
+                        "message": "يتم اقتطاع بيانات الترحيل. قد يستغرق هذا بضع دقائق.",
+                        "title": "اقتطاع بيانات الترحيل"
+                    }
                 }
             },
             "shopwareMajorVersionText": "لقد لاحظنا أن إصدار النظام المصدر {sourceSystem} الخاص بك لا يتطابق مع إصدار النظام المستهدف {targetSystem} . يرجى التأكد من استخدام نفس الإصدار الرئيسي لكلا النظامين قبل بدء الترحيل.",
-            "title": "جنرال لواء"
+            "title": "جنرال لواء",
+            "warningModal": {
+                "cancelButton": "العودة",
+                "confirmButton": "استمر على أي حال",
+                "message": {
+                    "currency": "يمكن أن يؤدي الترحيل بعملات افتراضية مختلفة إلى تلف سجلات البيانات والتسبب في آثار جانبية غير متوقعة.",
+                    "language": "يمكن أن يؤدي الترحيل بلغات افتراضية مختلفة إلى تلف سجلات البيانات والتسبب في آثار جانبية غير متوقعة."
+                },
+                "title": "تم اكتشاف عدم تطابق البيانات"
+            }
         },
         "wizard": {
             "buttonAbort": "إلغاء",
@@ -519,7 +535,6 @@
                     "connectionLabel": "اسم الاتصال",
                     "connectionPlaceholder": "أدخل الاسم",
                     "connectionTooltip": "أدخل اسمًا فريدًا للاتصال.",
-                    "contentInformation": "المعلومات التالية مطلوبة لإجراء الترحيل.",
                     "gatewayLabel": "بوابة",
                     "gatewayPlaceholder": "حدد البوابة",
                     "gatewayTooltip": "نوع الاتصال بين الأنظمة.",
@@ -538,7 +553,6 @@
                 "connectionSelect": {
                     "connectionLabel": "اسم الاتصال",
                     "connectionPlaceholder": "يرجى تحديد اتصال",
-                    "contentInformation": "حدد اتصالاً موجودًا من القائمة لتحديث البيانات.",
                     "title": "الترحيل - تغيير الاتصال"
                 },
                 "credentials": {
@@ -548,9 +562,9 @@
                         "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "إذا كنت تواجه مشكلة في الاتصال، فقد يكون من المفيد التحقق من إصدار curl المثبت حاليًا على الخادم الخاص بك وتحديثه.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "لا يحتوي اتصال قاعدة البيانات على السمات الصحيحة ولا يمكن تعيينها.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "تعذر تأسيس اتصال قاعدة البيانات.",
+                        "SWAG_MIGRATION__DUPLICATE_SOURCE_CONNECTION": "يوجد اتصال بنفس نظام المصدر بالفعل. يرجى استخدام اتصال آخر.",
                         "SWAG_MIGRATION__GATEWAY_READ": "لا يمكن الاتصال بالخادم. يرجى التحقق من نطاق المتجر المحدد.",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "إذا كنت تواجه مشكلة في الاتصال، فقد يكون من المفيد التحقق من إصدار curl المثبت حاليًا على الخادم الخاص بك وتحديثه.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "بيانات الاعتماد الخاصة بك غير صحيحة. يرجى التحقق منها والمحاولة مرة أخرى.",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "بيانات الوصول للاتصال بالنظام المصدر غير موجودة أو غير صحيحة. يرجى التحقق منها والمحاولة مرة أخرى.",
                         "SWAG_MIGRATION__IS_RUNNING": "الترحيل قيد التقدم حاليًا. لذلك، لا يمكنك تحرير بيانات الاعتماد حتى اكتمال الترحيل.",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "لم يتم تثبيت المكون الإضافي المطلوب «موصل الترحيل» في Shopware 5. يرجى تثبيت المكون الإضافي المجاني والمحاولة مرة أخرى.",
@@ -568,13 +582,22 @@
                             "apiUserLabel": "اسم المستخدم (مستخدم API)",
                             "apiUserPlaceholder": "أدخل اسم المستخدم",
                             "apiUserTooltip": "اسم المستخدم الخاص بواجهة Shopware 5 الخلفية الخاصة بك.",
-                            "contentInformation": "تحتاج إلى بيانات اعتماد API صالحة لإنشاء اتصال بين Shopware 5 و Shopware 6. يمكن العثور على بيانات اعتماد API الخاصة بك في الواجهة الخلفية لـ Shopware 5 ضمن «إدارة المستخدم». يجب تنشيط الوصول إلى API هناك وتأكيده عن طريق الحفظ.",
                             "endpointLabel": "نطاق المتجر",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "يستخدم متجري اتصالاً آمنًا (SSL)"
+                            "endpointSSLLabel": "يستخدم متجري اتصالاً آمنًا (SSL)",
+                            "pluginLinkText": "مزيد من المعلومات حول المكون الإضافي",
+                            "pluginName": "موصل الترحيل",
+                            "steps": {
+                                "step1": "قم بتثبيت وتفعيل المكون الإضافي {pluginName} من الواجهة الخلفية لـ Shopware 5 ضمن مدير الإضافات > الإضافات > أدوات الترحيل.",
+                                "step2": "انتقل إلى إدارة المستخدم في الواجهة الخلفية لـ Shopware 5.",
+                                "step3": "حدد المستخدم الذي تريد استخدامه للاتصال.",
+                                "step4": "قم بتنشيط الوصول إلى API وحفظه.",
+                                "step5": "تأكد من أن المستخدم لديه الدور local_admin.",
+                                "step6": "أدخل بيانات اعتماد API هنا لإنشاء الاتصال."
+                            },
+                            "title": "قم بتوصيل متجر شوب وير 5 الخاص بك"
                         },
                         "local": {
-                            "contentInformation": "ما زلنا بحاجة إلى بيانات الوصول للاتصال بقاعدة بيانات Shopware 5 الخاصة بك.",
                             "dbHostLabel": "مضيف",
                             "dbHostPlaceholder": "أدخل المضيف",
                             "dbNameLabel": "اسم قاعدة البيانات",
@@ -596,10 +619,21 @@
                             "apiUserLabel": "معرف مفتاح الوصول",
                             "apiUserPlaceholder": "أدخل معرف مفتاح الوصول",
                             "apiUserTooltip": "معرف مفتاح الوصول للتكامل الخاص بك.",
-                            "contentInformation": "تحتاج إلى بيانات اعتماد API صالحة لإنشاء اتصال بين المصدر ومثيل Shopware 6 المستهدف. يمكنك الحصول عليها عند إنشاء تكامل في نظام المصدر الخاص بك.",
                             "endpointLabel": "نطاق المتجر",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "يستخدم متجري اتصالاً آمنًا (SSL)"
+                            "endpointSSLLabel": "يستخدم متجري اتصالاً آمنًا (SSL)",
+                            "integrationLink": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+                            "integrationLinkText": "المزيد حول عمليات الدمج",
+                            "pluginLink": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+                            "pluginLinkText": "مزيد من المعلومات حول ملحق مساعد الترحيل",
+                            "pluginName": "مساعد الترحيل",
+                            "steps": {
+                                "step1": "قم بتثبيت وتفعيل ملحق {pluginName} على النظام المصدر.",
+                                "step2": "قم بإنشاء تكامل في النظام المصدر عبر الإعدادات > النظام > عمليات التكامل.",
+                                "step3": "قم بإنشاء معرف مفتاح الوصول ومفتاح الوصول السري.",
+                                "step4": "أدخل مفاتيح الوصول ومجال المتجر هنا لإنشاء الاتصال."
+                            },
+                            "title": "قم بتوصيل متجر شوب وير 6 الخاص بك"
                         }
                     },
                     "statusTitle": "فحص الاتصال",
@@ -615,29 +649,6 @@
                     "contentHeadline": "دعونا ننقل بعض الأشياء",
                     "contentInformation": "سنقوم معًا بتوصيل نظام متجرك بـ Shopware 6. بعد ذلك، سيساعدك مساعد الترحيل على ترحيل بياناتك خطوة بخطوة.",
                     "title": "مساعد الترحيل"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "المكون الإضافي المطلوب «Migration Connector» مجاني ويمكن العثور عليه في الواجهة الخلفية لـ Shopware 5 ضمن مدير الإضافات > الإضافات > أدوات الترحيل. يرجى تثبيت المكون الإضافي وتنشيطه للمتابعة.",
-                        "contentTitle": "البرنامج المساعد مطلوب",
-                        "pluginLink": "مزيد من المعلومات حول المكون الإضافي"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "المتطلبات",
-                        "integration": {
-                            "description": "قم بإنشاء تكامل في النظام المصدر عبر الإعدادات > النظام > عمليات التكامل. ستحتاج إلى معرف مفتاح الوصول الذي تم إنشاؤه ومفتاح الوصول السري في الخطوة التالية.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "المزيد عن عمليات الدمج",
-                            "title": "الاندماج"
-                        },
-                        "plugin": {
-                            "description": "قم بتثبيت ملحق Migration Assistant في النظام المصدر.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "المزيد حول ملحق مساعد الترحيل",
-                            "title": "التمديد"
-                        }
-                    },
-                    "title": "الترحيل - إعداد الاتصال"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "كانت متوفرة سابقًا:",

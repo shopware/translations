@@ -317,6 +317,7 @@
             "newsletter_update": "Cập nhật bản tin đăng ký",
             "product_export_log": "Xuất khẩu sản phẩm được thực hiện",
             "review_form_send": "Mẫu đánh giá đã gửi",
+            "revocation_request_sent": "Mẫu yêu cầu thu hồi đã được gửi.",
             "state_enter_order_delivery_state_cancelled": "Hủy bỏ tình trạng lô hàng",
             "state_enter_order_delivery_state_open": "Lô hàng nhập trạng thái mở",
             "state_enter_order_delivery_state_returned": "Lô hàng nhập tình trạng trả về",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Chọn tập tin",
             "caption": "Kéo tệp vào đây để tải lên",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Tệp được chọn \"{name}\" có phần mở rộng tệp không được hỗ trợ. Vui lòng sử dụng một trong các phần mở rộng tệp sau: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Tập tin đã chọn \"{name}\" quá lớn để tải lên. Kích thước tệp không được vượt quá {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Không tìm thấy tài liệu",
                 "title": "Sửa hàng loạt - Thành công"
             },
-            "warningText": "Vui lòng đợi cho việc chỉnh sửa hàng loạt hoàn tất. Việc này có thể mất một thời gian. Nếu bạn đóng tab trình duyệt hoặc hủy quá trình sớm, không phải tất cả các thay đổi sẽ được áp dụng. Bạn có thể chạy chỉnh sửa hàng loạt một lần nữa bất cứ lúc nào."
+            "warningText": "Vui lòng đợi cho việc chỉnh sửa hàng loạt hoàn tất. Việc này có thể mất một thời gian. Nếu bạn đóng tab trình duyệt hoặc hủy quá trình sớm, không phải tất cả các thay đổi sẽ được áp dụng. Bạn có thể chạy chỉnh sửa hàng loạt một lần nữa bất cứ lúc nào.",
+            "warningTextDocumentDeletion": "Tài liệu là một phần của đơn đặt hàng và có thể liên quan đến mục đích thuế. Xóa chúng có thể ảnh hưởng đến khả năng truy xuất nguồn gốc của hồ sơ kế toán của bạn. Vui lòng đảm bảo rằng việc xóa được cho phép hợp pháp."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Tài liệu",
+                "deleteDocuments": {
+                    "helpText": "Với tùy chọn này, tất cả các loại tài liệu đã chọn sẽ bị xóa.",
+                    "label": "Xóa: Tài liệu"
+                },
                 "downloadDocuments": {
                     "helpText": "Với tùy chọn này, các tài liệu gần đây nhất có sẵn được cung cấp để tải xuống. Nhiều tài liệu được hợp nhất vào cùng một tệp. Việc tải xuống có sẵn sau khi nhiều thay đổi đã được hoàn tất.",
                     "label": "Tải xuống: Tài liệu"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Các trang bản tin",
                     "privacyPage": "Trang bảo mật",
                     "revocationPage": "Thông báo hủy bỏ",
+                    "revocationRequestPage": "Mẫu yêu cầu thu hồi",
                     "shippingPaymentInfoPage": "Thông tin thanh toán và vận chuyển",
                     "tosPage": "Trang TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Tiêu đề",
                         "type": "Loại biểu mẫu",
                         "typeContact": "Liên hệ",
-                        "typeNewsletter": "Bản tin"
+                        "typeNewsletter": "Bản tin",
+                        "typeRevocationRequest": "Thu hồi"
                     },
                     "placeholder": {
                         "type": "Chọn một loại biểu mẫu..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Hành động",
+                        "comment": "Bình luận",
+                        "contractNumber": "Số hợp đồng (số đặt hàng, số đăng ký, ... ) *    ",
                         "email": "Địa chỉ email*",
                         "firstName": "Tên*",
                         "lastName": "Họ chọn*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy tempor invidunt ut labore và dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Không có {criteriaName}",
         "placeholder": "Tất cả"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kênh xuất khẩu",
+                        "placeholder": "Chọn kênh xuất…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kênh xuất khẩu"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kênh xuất khẩu",
+                        "placeholder": "Chọn kênh xuất…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kênh xuất khẩu"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Thêm cột kênh xuất và bộ lọc vào danh sách đơn hàng và khách hàng.",
+            "mainMenuItemGeneral": "Theo dõi kênh xuất khẩu"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Tiện ích mở rộng \"{name}\" không tương thích với phiên bản Shopware này",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Loại",
                 "labelRecipient": "Người nhận",
                 "labelReplyTo": "Địa chỉ trả lời",
+                "labelRevocationRequestFormMail": "Người hỏi",
                 "labelSenderName": "Tên người gửi",
                 "labelSubject": "Chủ đề",
                 "placeholderDescription": "Nhập mô tả...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Nhập tên quy tắc...",
                 "placeholderPriority": "Nhập ưu tiên quy tắc...",
                 "placeholderType": "Chọn loại quy tắc...",
+                "productStatesConditionWarning": "Điều kiện “Mục có trạng thái sản phẩm” không được sử dụng và sẽ bị xóa trong v6.8. Vui lòng sử dụng “Item with product type” để thay thế.",
                 "tabDetail": "Chung",
                 "tabRule": "Điều kiện"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Đã trả lại",
             "returnedPartially": "Trả lại một phần",
             "reviewForm": "Đánh giá sản phẩm",
+            "revocationRequestCustomer": "Yêu cầu thu hồi đã được gửi",
+            "revocationRequestMerchant": "Đã nhận được yêu cầu thu hồi",
             "send": "Gửi",
             "sent": "Đã gửi",
             "shipped": "Đã vận chuyển",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Dấu mũ (^)",
             "categoriesLabel": "Danh mục",
             "closeProfileLabel": "Đóng hồ sơ",
-            "closeViolation": "Đóng",
             "commasLabel": "Dấu phẩy (,)",
             "configuratorSettingLabel": "Cài đặt cấu hình biến thể",
             "copyOfLabel": "Bản sao của:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Nhập"
             },
             "updateEntitiesLabel": "Cập nhật dữ liệu hiện có",
-            "violationMessage": "Hồ sơ của bạn vẫn chưa hợp lệ. Bạn cần thêm ánh xạ vào các trường bắt buộc được hiển thị bên dưới để lưu hồ sơ:"
+            "violationModal": {
+                "duplicateMappings": "Bạn có <strong>ánh xạ trùng lặp</strong> trong các trường sau. Vui lòng xóa các bản sao để lưu hồ sơ:",
+                "missingRequiredFields": "Bạn cần thêm ánh xạ vào các trường bắt buộc <strong></strong> hiển thị bên dưới để lưu hồ sơ:",
+                "title": "Hồ sơ của bạn chưa hợp lệ"
+            }
         },
         "progress": {
             "startExportLabel": "Bắt đầu xuất",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Lưu trong phương tiện truyền thông"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Di chuyển đối tượng",
-                "rotate-tooltip": "Xoay đối tượng",
-                "scale-tooltip": "Đối tượng tỷ lệ"
-            },
-            "saveChanges": "Lưu thay đổi",
-            "titleModal": "Trình chỉnh sửa mô hình"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Quay lại"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Di chuyển đối tượng",
+            "rotate-tooltip": "Xoay đối tượng",
+            "scale-tooltip": "Đối tượng tỷ lệ"
+        },
+        "open-model-editor-tooltip": "Mở Trình chỉnh sửa mô hình",
+        "properties": {
+            "transformation": {
+                "label": "Chuyển đổi",
+                "position": {
+                    "label": "Vị trí"
+                },
+                "rotation": {
+                    "label": "Xoay"
+                },
+                "scale": {
+                    "label": "Quy mô"
+                }
+            }
+        },
+        "titleModal": "Trình chỉnh sửa mô hình"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Để tạo một ghi chú tín dụng, trước tiên hãy thêm một mục tín dụng.",
-                    "storno": "Không thể tạo hóa đơn hủy bỏ mà không có hóa đơn."
+                    "storno": "Không thể tạo hóa đơn hủy bỏ mà không có hóa đơn.",
+                    "zugferd_cancellation_invoice": "Không thể tạo hóa đơn hủy ZugFerd nếu không có hóa đơn.",
+                    "zugferd_credit_note": "Để tạo ghi chú tín dụng ZugFerd, cần có hóa đơn và ít nhất một mục tín dụng.",
+                    "zugferd_embedded_cancellation_invoice": "Không thể tạo hóa đơn hủy ZugFerd nhúng nếu không có hóa đơn.",
+                    "zugferd_embedded_credit_note": "Để tạo ghi chú tín dụng ZugFerd nhúng, cần có hóa đơn và ít nhất một mục tín dụng."
                 },
                 "primaryAction": "Tạo tài liệu",
+                "showZugferd": "Hiển thị các biến thể của ZugFerd",
                 "title": "Tạo tài liệu"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Tài liệu",
+            "confirmDeleteText": "Tài liệu này là một phần của đơn đặt hàng và có thể liên quan đến mục đích thuế. Xóa nó có thể ảnh hưởng đến khả năng truy xuất nguồn gốc của hồ sơ kế toán của bạn. Vui lòng đảm bảo rằng việc xóa được cho phép hợp pháp. Hành động này không thể hoàn tác.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Tài liệu số {number} đã được phân bổ."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Tải lên tài liệu tùy chỉnh",
             "labelCancel": "Đóng",
             "labelCreate": "Tạo",
+            "labelCreateDownload": "Tạo và tải xuống",
             "labelCreateDownloadPdf": "Tạo và tải xuống PDF",
             "labelCreateSend": "Tạo và gửi",
             "labelDeliveryDate": "Ngày giao hàng",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Lọc",
             "titleSidebarItemFilterAffiliateCode": "Mã liên kết",
             "titleSidebarItemFilterCampaignCode": "Mã chiến dịch",
-            "titleSidebarItemRefresh": "Làm mới"
+            "titleSidebarItemRefresh": "Làm mới",
+            "tooltipCustomerComment": "Thông tin bổ sung: {comment}",
+            "tooltipInternalComment": "Bình luận nội bộ: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Tên",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Ở đây bạn có thể xác định tùy chọn từ ba đến năm từ khóa mà theo đó sản phẩm của bạn sẽ được tìm thấy.",
             "helpTextMetaDescription": "Với mô tả meta, bạn xác nhận với khách hàng của bạn rằng họ đang ở đúng vị trí trong cửa hàng của bạn. Bạn tạo ra các ưu đãi, xây dựng lòng tin và mời tham gia một hành động. Bạn nên giới hạn bản thân tối đa 155 ký tự. Shopware cho phép chiều dài tối đa 255 ký tự.",
             "helpTextMetaTitle": "Tiêu đề meta là yếu tố SEO quan trọng nhất và phải là duy nhất cho mỗi trang. Bạn nên giới hạn độ dài tối đa là 56 ký tự. Từ khóa của bạn lý tưởng nên được đặt ở phía trước.",
+            "helpTextOpenGraphDescription": "Mô tả Open Graph được sử dụng khi chia sẻ sản phẩm trên phương tiện truyền thông xã hội. Nếu để trống, mô tả meta sẽ được sử dụng như một dự phòng.",
+            "helpTextOpenGraphTitle": "Tiêu đề Open Graph được sử dụng khi chia sẻ sản phẩm trên phương tiện truyền thông xã hội. Nếu để trống, tiêu đề meta sẽ được sử dụng như một dự phòng.",
             "labelCanonicalProduct": "Biến thể cho URL chuẩn",
             "labelCanonicalUrlMode": "Sử dụng URL chuẩn duy nhất cho tất cả các biến thể",
             "labelKeywords": "SEO từ khóa",
             "labelMetaDescription": "Meta description",
             "labelMetaTitle": "Meta title",
+            "labelOpenGraphDescription": "Mô tả OG",
+            "labelOpenGraphImage": "Hình ảnh OG",
+            "labelOpenGraphTitle": "Tiêu đề OG",
             "placeholderCanonicalProduct": "Chọn một biến thể...",
             "placeholderKeywords": "Nhập một hoặc nhiều từ khóa...",
             "placeholderMetaDescription": "Nhập meta description...",
-            "placeholderMetaTitle": "Nhập meta title..."
+            "placeholderMetaTitle": "Nhập meta title...",
+            "placeholderOpenGraphDescription": "Nhập mô tả Open Graph...",
+            "placeholderOpenGraphTitle": "Nhập tiêu đề Open Graph...",
+            "titleOpenGraph": "Mở đồ thị"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Đơn đặt hàng đã bị từ chối.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Điều kiện"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Mã liên kết",
+            "affiliateCodePlaceholder": "Nhập mã liên kết…",
+            "campaignCodeLabel": "Mã chiến dịch",
+            "campaignCodePlaceholder": "Nhập mã chiến dịch…",
+            "cardTitle": "Mã theo dõi",
+            "description": "Định cấu hình mã liên kết và mã chiến dịch sẽ được nhúng trong URL sản phẩm của nguồn cấp dữ liệu của kênh này. Các mã này xác định các đơn đặt hàng và khách hàng được giới thiệu từ kênh Thương mại Đại lý này."
+        },
         "detail": {
             "activateDisable": "Vui lòng gán một chủ đề trước khi kích hoạt và lưu Kênh bán hàng.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Đặt lại về mặc định",
+                "errorLoadingTemplate": "Không thể tải mẫu mặc định.",
+                "integration": {
+                    "feedUrlLabel": "Xuất URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Kết nối OpenAI",
+                            "introduction": {
+                                "description": "Kênh bán hàng này tạo nguồn cấp dữ liệu sản phẩm JSONL để sản phẩm của bạn có thể xuất hiện trong kết quả tìm kiếm ChatGPT. Để làm điều này, bạn phải đăng ký với tư cách là người bán và chia sẻ URL nguồn cấp dữ liệu với OpenAI. Mọi thứ khác được giải thích trong hướng dẫn từng bước dưới đây.",
+                                "title": "Làm thế nào để: Thiết lập và kết nối"
+                            },
+                            "stepByStep": "<li>Đăng ký với tư cách là người bán tại <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchant</a></li><li>Sao chép URL xuất (bên dưới) và chia sẻ nó với OpenAI theo tài liệu <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Nguồn cấp dữ liệu sản phẩm</a></li><li>Đảm bảo URL xuất có thể truy cập công khai</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Từng bước"
+                },
+                "openAiSettingsTitle": "Cài đặt OpenAI",
+                "resetTemplateSuccess": "Mẫu đã được đặt lại về mặc định. Vui lòng lưu để giữ các thay đổi.",
+                "tabIntegration": "Tích hợp",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "Mở AI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Với sự trợ giúp của Google Analytics, bạn có thể thu thập và phân tích dữ liệu của cửa hàng. Để sử dụng chức năng này, một Tài khoản Google là cần thiết. Nếu bạn chưa sở hữu tài khoản Google Analytics, bạn có thể muốn đăng ký tại đây: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Sau khi đăng ký thành công, bạn sẽ nhận được một ID theo dõi, sẽ được điền vào bên dưới để kích hoạt tích hợp.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Khách hàng được giới thiệu",
+                    "dateRanges": {
+                        "14Days": "Gần đây 14 ngày",
+                        "180Days": "180 ngày qua",
+                        "24Hours": "24 giờ qua",
+                        "30Days": "30 ngày qua",
+                        "7Days": "Cuối 7 ngày",
+                        "yesterday": "Hôm qua"
+                    },
+                    "numbers": "Đếm",
+                    "orderCardHeadline": "Đơn đặt hàng được giới thiệu",
+                    "summary": "Tóm tắt",
+                    "totalTurnover": "Doanh thu",
+                    "turnoverCardHeadline": "Doanh thu được giới thiệu"
+                },
+                "tabInsights": "Thống kê"
             },
             "products": {
                 "buttonAddProducts": "Thêm {productCount} sản phẩm | Thêm {productCount} sản phẩm | Thêm {productCount} sản phẩm",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Đã có một tài liệu khác cùng loại trong Kênh bán hàng này.",
             "disabledSalesChannelSelect": "Chọn một loại tài liệu trước tiên.",
             "disabledTypeSelect": "Không thể thay đổi loại tài liệu toàn cầu.",
+            "displayTitle": "Hiển thị:",
             "helpTextDisplayAdditionalNoteDelivery": "Chỉ đủ điều kiện cho các quốc gia thành viên EU, xem thêm “Cài đặt> Quốc gia”.",
-            "helpTextDisplayCompanyAddress": "Hiển thị địa chỉ công ty bên dưới tiêu đề ở phía bên phải của tài liệu.",
-            "helpTextDisplayDeliveryCountries": "Hiển thị chỉ dẫn “giao hàng trong cộng đồng” trên tài liệu hóa đơn cho các quốc gia được chọn.",
             "helpTextDisplayDocumentInCustomerAccount": "Tài liệu được hiển thị trong mục “Đơn đặt hàng” trong tài khoản khách hàng tương ứng. Lưu ý rằng chỉ các tài liệu đã thực sự được gửi đến khách hàng được hiển thị trong tài khoản khách hàng.",
-            "helpTextDisplayReturnAddress": "Hiển thị địa chỉ công ty dưới dạng địa chỉ trả hàng phía trên địa chỉ khách hàng trong khối địa chỉ.",
-            "helpTextPaymentDueDate": "Ví dụ: +30 ngày, +4 tuần, +1 tuần 2 ngày",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "ngân hàng",
             "labelCompanyCity": "Thành phố",
             "labelCompanyCountry": "Quốc gia",
             "labelCompanyEmail": "Địa chỉ email",
+            "labelCompanyLogo": "Logo công ty",
             "labelCompanyName": "Tên",
             "labelCompanyPhone": "Số điện thoại",
             "labelCompanyStreet": "đường phố",
             "labelCompanyUrl": "Website",
             "labelCompanyZipcode": "Mã bưu chính",
-            "labelDeliveryCountries": "Các nước thành viên",
             "labelDisplayAdditionalNoteDelivery": "Hiển thị nhãn “giao hàng trong cộng đồng”",
             "labelDisplayCompanyAddress": "Hiển thị địa chỉ công ty",
             "labelDisplayCustomerVatId": "Hiển thị VAT-ID của khách hàng",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Định dạng tập tin",
             "labelItemsPerPage": "Các mục trên mỗi trang",
             "labelName": "Tên kỹ thuật",
-            "labelOptionMedia": "Logo công ty",
             "labelPageOrientation": "Hướng trang",
             "labelPageSize": "Định dạng trang",
             "labelPaymentDueDate": "Ngày đến hạn thanh toán",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Văn phòng thuế",
             "labelType": "Loại tài liệu",
             "labelVatId": "VAT Reg.No.",
-            "messageSaveSuccess": "Tài liệu \"{name}\" đã được lưu.",
-            "placeholderDisplayDeliveryCountries": "Tìm kiếm và thêm các quốc gia hợp lệ để giao hàng trong cộng đồng...",
+            "pageOrientationOptions": {
+                "landscape": "Phong cảnh",
+                "portrait": "Chân dung"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Pháp lý",
+                "letter": "Thư"
+            },
+            "placeholderBankBic": "Nhập BIC...",
+            "placeholderBankIban": "Nhập IBAN...",
+            "placeholderBankName": "Nhập tên ngân hàng...",
+            "placeholderCompanyCity": "Vào thành phố...",
+            "placeholderCompanyCountry": "Chọn một quốc gia...",
+            "placeholderCompanyEmail": "Nhập địa chỉ email...",
+            "placeholderCompanyName": "Nhập tên công ty...",
+            "placeholderCompanyPhone": "Nhập số điện thoại...",
+            "placeholderCompanyStreet": "Vào đường phố...",
+            "placeholderCompanyUrl": "Nhập trang web...",
+            "placeholderCompanyZipcode": "Nhập mã bưu chính...",
+            "placeholderExecutiveDirector": "Nhập giám đốc kinh doanh...",
+            "placeholderFileNamePrefix": "Nhập tiền tố...",
+            "placeholderFileNameSuffix": "Nhập hậu tố...",
+            "placeholderFileTypes": "Chọn định dạng tệp...",
+            "placeholderItemsPerPage": "Nhập số mục trên mỗi trang...",
             "placeholderName": "Nhập tên...",
+            "placeholderPageOrientation": "Chọn hướng trang...",
+            "placeholderPageSize": "Chọn định dạng trang...",
+            "placeholderPaymentDueDate": "Nhập ngày đến hạn thanh toán...",
+            "placeholderPlaceOfFulfillment": "Nhập nơi hoàn thành...",
+            "placeholderPlaceOfJurisdiction": "Nhập địa điểm thẩm quyền...",
+            "placeholderSalesChannel": "Chọn kênh bán hàng...",
+            "placeholderTaxNumber": "Nhập số thuế...",
+            "placeholderTaxOffice": "Vào cơ quan thuế...",
+            "placeholderType": "Chọn một loại tài liệu...",
+            "placeholderVatId": "Nhập VAT ID...",
             "textHeadline": "Tài liệu mới"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Phân công",
             "columnName": "Tên kỹ thuật",
             "columnType": "Loại",
-            "columnUsedIn": "Được gán cho",
             "contextMenuEdit": "Chỉnh sửa",
             "global": "Toàn cầu",
             "messageDeleteSuccess": "Tài liệu \"{name}\" đã bị xóa.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Từ chối",
+                "give-consent": "Đưa ra sự đồng ý",
                 "save-preferences": "Lưu tùy chọn",
                 "share-all-data": "Chia sẻ tất cả",
                 "share-nothing": "Không chia sẻ gì"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/vi/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Để biết chi tiết đầy đủ, hãy xem {data-use-details} và {privacy-policy}của chúng tôi.",
-                "privacy-policy": {
-                    "label": "Chính sách bảo mật",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Bằng cách chia sẻ dữ liệu cửa hàng và người dùng, bạn giúp chúng tôi hiểu cách Quản trị được sử dụng và phát triển các cải tiến giúp công việc hàng ngày của bạn dễ dàng hơn.",
-            "opt-out-info": "Bạn có thể chọn không tham gia bất cứ lúc nào thông qua cài đặt và cài đặt Hồ sơ.",
+            "opt-out-info": {
+                "profile": "Hồ sơ của bạn - Tùy chọn quyền riêng tư",
+                "settings": "Cài đặt - Quyền riêng tư",
+                "snippet": "Bạn có thể thay đổi tùy chọn của mình bất cứ lúc nào: quản lý cài đặt Dữ liệu cửa hàng trong {settings}và cài đặt Dữ liệu cá nhân trong {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Tuân thủ GDPR",
                 "no-third-party": "Không có dữ liệu nào được chia sẻ với bên thứ ba",
@@ -9899,6 +10059,12 @@
                     "order": "mệnh lệnh",
                     "store": "lưu trữ dữ liệu"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "ở đây",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Dữ liệu chẩn đoán</strong> trong Shopware đề cập đến thông tin liên quan đến tình trạng hệ thống, lỗi và chỉ số hiệu suất của nền tảng. Điều này bao gồm các chi tiết như nhật ký hệ thống, thông báo lỗi, thời gian phản hồi của máy chủ và các chỉ số kỹ thuật khác. Phân tích dữ liệu này giúp chúng tôi nhanh chóng xác định, giải quyết và triển khai các bản sửa lỗi cho các vấn đề hoặc lỗ hổng phổ biến, duy trì tính toàn vẹn của nền tảng.",
                     "order": "<strong>Dữ liệu đơn hàng</strong> trong Shopware đề cập đến thông tin chi tiết về các đơn đặt hàng của khách hàng được đặt trên nền tảng. Điều này bao gồm các chi tiết cụ thể như sản phẩm được đặt hàng, số lượng, giá cả, xuất xứ, phương thức thanh toán, lô hàng, v.v. Chúng tôi phân tích dữ liệu này để hiểu các xu hướng và mô hình giúp chúng tôi nâng cao các tính năng cũng như phát triển các dịch vụ mới được thiết kế để cải thiện thành công kinh doanh của bạn. Chúng tôi không thu thập dữ liệu cá nhân từ khách hàng của bạn có thể được sử dụng để xác định một người duy nhất.",
@@ -9912,6 +10078,12 @@
                 "description": "Chúng tôi sử dụng {data} về cách bạn tương tác với Quản trị để cải thiện khả năng sử dụng và hiệu suất của Quản trị.",
                 "emphasizes": {
                     "data": "dữ liệu"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Chính sách bảo mật",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Dữ liệu sử dụng</strong> trong Shopware liên quan đến thông tin liên quan đến cách người dùng quản trị và khách truy cập cửa hàng tương tác với nền tảng của chúng tôi. Điều này bao gồm các chi tiết như tương tác với các mô-đun quản trị Shopware khác nhau, các trang đã xem, thời lượng truy cập, đường dẫn nhấp chuột và hành động của người dùng trong nền tảng và mặt tiền cửa hàng. Bằng cách đánh giá dữ liệu sử dụng, chúng tôi có thể xác định các khu vực của nền tảng thường xuyên được truy cập hoặc tránh để đo lường việc áp dụng tính năng, dẫn đến những cải tiến tiềm năng trong bố cục, thiết kế và chức năng."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Chuyển đổi mục \"{name}”",
         "toggleTreeItem": "Bật/tắt mục cây \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Đồng ý",
-        "checkListDataSharing": {
-            "gdprCompliant": "Chúng tôi tuân thủ GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>“Chia sẻ”</strong> đề cập đến việc tiết lộ dữ liệu cho mục đích riêng của bên nhận; chúng tôi có thể tiết lộ dữ liệu cho các nhà cung cấp dịch vụ của chúng tôi."
-            },
-            "personalData": "Chúng tôi không thu thập dữ liệu cá nhân",
-            "securelyProcessed": "Dữ liệu của bạn được xử lý và lưu trữ an toàn",
-            "thirdParty": "Chúng tôi không chia sẻ dữ liệu của bạn với các bên thứ ba vì mục đích riêng của họ",
-            "title": "Chúng tôi có thể đảm bảo với bạn rằng:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Dữ liệu chẩn đoán",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Dữ liệu chẩn đoán</strong> trong Shopware đề cập đến thông tin liên quan đến tình trạng hệ thống, lỗi và chỉ số hiệu suất của nền tảng. Điều này bao gồm các chi tiết như nhật ký hệ thống, thông báo lỗi, thời gian phản hồi của máy chủ và các chỉ số kỹ thuật khác. Phân tích dữ liệu này giúp chúng tôi nhanh chóng xác định, giải quyết và triển khai các bản sửa lỗi cho các vấn đề hoặc lỗ hổng phổ biến, duy trì tính toàn vẹn của nền tảng.",
-                "orderDataHelp": "<strong>Dữ liệu đơn hàng</strong> trong Shopware đề cập đến thông tin chi tiết về các đơn đặt hàng của khách hàng được đặt trên nền tảng. Điều này bao gồm các chi tiết cụ thể như sản phẩm được đặt hàng, số lượng, giá cả, xuất xứ, phương thức thanh toán, lô hàng, v.v. Chúng tôi phân tích dữ liệu này để hiểu xu hướng và mô hình giúp chúng tôi nâng cao tính năng cũng như phát triển các dịch vụ mới được thiết kế để cải thiện thành công kinh doanh của bạn. Chúng tôi không thu thập dữ liệu cá nhân từ khách hàng của bạn có thể được sử dụng để xác định một người duy nhất.",
-                "storeDataHelp": "<strong>Lưu trữ dữ liệu</strong> trong Shopware liên quan đến tất cả thông tin liên quan đến cửa hàng trực tuyến của bạn. Chẳng hạn như sản phẩm, danh sách, giá cả, hình ảnh, mô tả, v.v. và siêu dữ liệu về thiết lập cửa hàng của bạn, chẳng hạn như chủ đề và plugin. Chúng tôi không thu thập dữ liệu cá nhân có thể được sử dụng để xác định người dùng quản trị viên hoặc khách truy cập cửa hàng. Sử dụng dữ liệu cửa hàng tổng hợp, chúng tôi có thể cung cấp thông tin chi tiết thông qua học máy như xu hướng thị trường mới nổi, cho phép bạn điều chỉnh các dịch vụ sản phẩm hoặc chiến lược tiếp thị cho phù hợp.",
-                "usageDataHelp": "<strong>Dữ liệu sử dụng</strong> trong Shopware liên quan đến thông tin liên quan đến cách người dùng quản trị và khách truy cập cửa hàng tương tác với nền tảng của chúng tôi. Điều này bao gồm các chi tiết như tương tác với các mô-đun quản trị Shopware khác nhau, các trang đã xem, thời lượng truy cập, đường dẫn nhấp chuột và hành động của người dùng trong nền tảng và mặt tiền cửa hàng. Bằng cách đánh giá dữ liệu sử dụng, chúng tôi có thể xác định các khu vực của nền tảng thường xuyên được truy cập hoặc tránh để đo lường việc áp dụng tính năng, dẫn đến những cải tiến tiềm năng trong bố cục, thiết kế và chức năng. Chúng tôi không thu thập dữ liệu cá nhân có thể được sử dụng để xác định quản trị viên hoặc khách truy cập cửa hàng."
-            },
-            "orderData": "Dữ liệu đặt hàng",
-            "storeData": "Lưu trữ dữ liệu",
-            "usageData": "Chia sẻ dữ liệu"
-        },
-        "confirmAuthorization": "Bằng cách nhấp vào “Đồng ý”, bạn xác nhận rằng bạn được ủy quyền tham gia vào thỏa thuận này thay mặt cho công ty của bạn.",
-        "declineDataCollection": "Không phải tại thời điểm này",
-        "fullDetailsDescription": "Chi tiết đầy đủ của thỏa thuận này có thể được tìm thấy tại {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Bạn luôn có thể chọn không chia sẻ dữ liệu bất cứ lúc nào. Hãy cùng chúng tôi định hình tương lai của thương mại điện tử bằng cách chia sẻ dữ liệu của bạn với chúng tôi!",
-        "headline": "Định hình tương lai của thương mại điện tử",
-        "improvingDescription": "Chúng tôi không ngừng cải tiến các dịch vụ mà chúng tôi cung cấp cho bạn. Để thực hiện bước tiếp theo, chúng tôi đang phân tích dữ liệu của bạn bằng cách sử dụng các kỹ thuật như học máy (ví dụ: nhận dạng mẫu) để phát triển và cải thiện sản phẩm của chúng tôi. Dữ liệu của bạn cũng sẽ được sử dụng để phát triển các dịch vụ dựa trên dữ liệu được thiết kế để nâng cao thành công kinh doanh của bạn.",
-        "improvingDescriptionNotAccepted": "Chúng tôi không ngừng cải tiến các dịch vụ mà chúng tôi cung cấp cho bạn. Để thực hiện bước tiếp theo, chúng tôi muốn phân tích dữ liệu của bạn bằng cách sử dụng các kỹ thuật như học máy (ví dụ: nhận dạng mẫu) để phát triển và cải thiện sản phẩm của chúng tôi. Dữ liệu của bạn cũng sẽ được sử dụng để phát triển các dịch vụ dựa trên dữ liệu được thiết kế để nâng cao thành công kinh doanh của bạn.",
-        "privacyPolicy": "shopware.com/vi/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Bạn có thể tham gia vào thỏa thuận bất cứ lúc nào và do đó đóng góp và thu lợi từ sự phát triển liên tục của các dịch vụ của chúng tôi, bằng cách cho phép chia sẻ dữ liệu trong {link}của bạn",
-        "settings": {
-            "deactivateDataCollection": "Vô hiệu hóa chia sẻ dữ liệu",
-            "sharingInformation": "Bạn đang chia sẻ dữ liệu với chúng tôi"
-        },
-        "thankYouMessage": "{thanksForParticipation} Bạn có thể từ chối thỏa thuận này bất cứ lúc nào và do đó ngừng đóng góp và hưởng lợi từ sự phát triển liên tục của các dịch vụ của chúng tôi bằng cách vô hiệu hóa chia sẻ dữ liệu trong {link}của bạn",
-        "thanksForParticipation": "Cảm ơn bạn đã tham gia!",
-        "togglePath": "Cài đặt"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Người dùng & quyền"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Khóa cân đồng phục",
+        "unlock-uniform-scale": "Mở khóa cân đồng phục"
+    },
     "sw-wizard": {
         "backButton": "Quay lại",
-        "closeButton": "Đóng",
         "finishButton": "Kết thúc",
         "nextButton": "Tiếp"
     }

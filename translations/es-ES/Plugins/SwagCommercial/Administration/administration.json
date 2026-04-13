@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "La suscripción deja el estado en pausa"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Precios individuales",
             "b2b_components_role": "Rol | Roles",
             "b2b_components_shopping_list": "Listas de compras",
             "b2b_employee": "Empleado | Empleados",
+            "bundle": "Paquete | Paquetes",
+            "bundle_item": "Artículo del paquete | Artículos del paquete",
             "export_assistant": "Auxiliar de exportación",
-            "individual_pricing": "Precios individuales",
             "quote": "Cita | Citas",
             "quote_line_item": "Partida de cotización | Partidas de cotización",
             "search_assistant": "Copiloto de IA",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "El artículo es un artículo de paquete",
+                "lineItemOfBundleRule": "Artículo del paquete seleccionado",
                 "subscriptionCartRule": "Carrito de suscripción",
                 "subscriptionIntervalRule": "Intervalo de suscripción",
                 "subscriptionPlanRule": "Plan de suscripción"
             },
             "group": {
                 "subscription": "Suscripción"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Paquete"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Gracias por probar el modelo Bundles. Nos encantaría escuchar tus comentarios.",
+                "link": "Dar comentarios"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Campos adicionales"
+            },
+            "general": {
+                "title": "Información general"
+            },
+            "items": {
+                "actionOpenProductDetails": "Abrir detalles del producto",
+                "buttonAddBundleItems": "Agregar productos",
+                "columnName": "Nombre",
+                "columnPosition": "Partida",
+                "columnPrice": "Precio",
+                "emptyStateDescription": "Añade al menos dos productos al paquete.",
+                "emptyStateTitle": "Aún no se han añadido productos",
+                "title": "Productos ({count})",
+                "tooltipBundleItemCustomizedProduct": "Plantilla de producto personalizada asignada",
+                "tooltipBundleItemHasVariants": "El producto tiene variantes",
+                "tooltipBundleItemInactive": "Inactivo",
+                "tooltipBundleItemIncompatibleVisibilities": "No está asignado a los canales de venta del paquete: {salesChannels}",
+                "tooltipBundleItemIssues": "Cuestiones:",
+                "tooltipBundleItemOutOfStockCloseout": "Agotado (venta de liquidación)",
+                "tooltipBundleItemOutOfStockTemporary": "Este producto está agotado en este momento. El paquete volverá a estar a la venta cuando todos los productos vuelvan a estar disponibles.",
+                "tooltipBundleItemOutOfStockTitle": "Agotado",
+                "tooltipRefreshData": "Actualizar datos"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Fecha de lanzamiento",
+                    "placeholder": "Introduce una fecha de lanzamiento..."
+                },
+                "title": "Etiquetado"
+            },
+            "media": {
+                "subtitle": "Añada archivos a la galería multimedia del paquete.",
+                "title": "Medios"
+            },
+            "messageMinBundleItemsRequired": "Añade al menos dos productos para crear el paquete.",
+            "messageNoChanges": "No hay cambios que guardar",
+            "messageSaveError": "No se pudo guardar el paquete",
+            "messageSaveSuccess": "El paquete se guardó correctamente",
+            "price": {
+                "addDiscount": "Añadir descuento",
+                "currencyDependingPrices": "Precios en función de la moneda",
+                "discount": "Descuento",
+                "discountRules": "Reglas de descuento",
+                "discountTitle": "Descuento",
+                "discountType": "Tipo",
+                "discountTypeAbsolute": "Absoluto",
+                "discountTypePercentage": "Porcentual",
+                "discountValue": "Valor",
+                "discountValuePlaceholder": "Añada valor...",
+                "doNotCombineWith": "No combinar con",
+                "maxValuePlaceholder": "Ilimitado",
+                "maximumDiscountValue": "Valor de descuento máximo",
+                "openAdvancedPricesView": "Abrir vista de precios avanzada",
+                "preventCombination": "Evite la combinación con otras promociones",
+                "preventCombinationHelpText": "Cuando está activado, este descuento no se puede combinar con otras promociones",
+                "promotionsPlaceholder": "Añadir promociones...",
+                "rulesPlaceholder": "Agregar reglas...",
+                "subtotalBased": "Subtotal basado en 1 producto | Subtotal basado en {count} productos",
+                "title": "Mostrar precios",
+                "total": "Total",
+                "totalBased": "Total basado en 1 producto | Total basado en {count} productos"
+            },
+            "tabGeneral": "General",
+            "tabLayout": "Layout",
+            "tabSeo": "SEO",
+            "textHeadline": "Nuevo paquete",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Esto evita que el paquete sea visible en esos canales. Comprueba la visibilidad de los siguientes productos:",
+                    "notAssignedTo": "no asignado a",
+                    "title": "Algunos productos no están asignados a todos los canales de venta seleccionados"
+                },
+                "title": "Visibilidad y estructura"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Activo",
+                "placeholder": "Seleccionar..."
+            },
+            "availabilityFilter": {
+                "label": "Regla de disponibilidad",
+                "placeholder": "Selecciona disponibilidad..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Productos incluidos",
+                "placeholder": "Selecciona los productos incluidos..."
+            },
+            "categoriesFilter": {
+                "label": "Categorías",
+                "placeholder": "Seleccionar categorías..."
+            },
+            "fromPlaceholder": "Introducir valor inicial...",
+            "imagesFilter": {
+                "label": "Imágenes",
+                "placeholder": "Seleccione el estado de la imagen...",
+                "textHasCriteria": "Al menos una imagen de producto asignada",
+                "textNoCriteria": "No se han asignado imágenes de producto"
+            },
+            "priceFilter": {
+                "label": "Precio"
+            },
+            "productNumberFilter": {
+                "label": "Número de producto",
+                "placeholder": "Introduce un número de producto..."
+            },
+            "releaseDateFilter": {
+                "label": "Fecha de lanzamiento"
+            },
+            "salesChannelsFilter": {
+                "label": "Canal de venta",
+                "placeholder": "Selecciona canales de venta…"
+            },
+            "salesFilter": {
+                "label": "Ventas"
+            },
+            "tagsFilter": {
+                "label": "Etiquetas",
+                "placeholder": "Selecciona etiquetas…"
+            },
+            "toPlaceholder": "Introduzca valor final..."
+        },
+        "general": {
+            "description": "Paquetes",
+            "headlineBundles": "Paquetes",
+            "mainMenuItemGeneral": "Paquetes",
+            "placeholderSearchBar": "Buscar paquetes...",
+            "title": "Paquetes"
+        },
+        "generalForm": {
+            "highlightHelpText": "Los paquetes resaltados están marcados con una etiqueta de colores vivos y la palabra «Consejo» en todos los listados de paquetes. Puedes ajustar el color de la etiqueta cambiando la opción «Aviso» en la configuración de <a href=\"{themeUrl}\">themes</a> . También puedes modificar el texto de la etiqueta editando el correspondiente fragmento de texto <a href=\"{snippetUrl}\"></a>.",
+            "labelDescription": "Descripción",
+            "labelMarkAsTopseller": "Paquete de aspectos destacados",
+            "labelName": "Nombre",
+            "labelProductNumber": "Número de producto",
+            "placeholderDescription": "Introduzca la descripción del paquete...",
+            "placeholderName": "Introduzca el nombre del paquete...",
+            "placeholderProductNumber": "Introduce un número de producto..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Un paquete requiere al menos dos productos.",
+            "notEnoughProductsTitle": "No hay suficientes productos",
+            "restrictions": "Uno o más productos tienen restricciones que afectan a la disponibilidad de este paquete. Consulta los iconos de advertencia para obtener más información.",
+            "restrictionsTitle": "Algunos productos tienen restricciones"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "No se encontraron productos coincidentes",
+            "noProductsMatchingBundleSalesChannels": "No hay productos activos que coincidan con los canales de venta seleccionados del paquete.",
+            "noProductsMatchingTermAndFilter": "Ajusta el término o los filtros de búsqueda.",
+            "placeholderSearch": "Examinar todos los productos...",
+            "showIncluded": "Mostrar solo los seleccionados ({count})",
+            "textWhySomeItemsMissing": "¿Por qué faltan algunos productos?",
+            "title": "Agregar productos",
+            "tooltipVariant": "Variante",
+            "tooltipWhySomeItemsMissing": "En este momento, los paquetes solo funcionan con productos físicos y variantes individuales. <br /><br /> Los productos deben estar asignados a los canales de venta seleccionados por el paquete para que aparezcan en la lista."
+        },
+        "list": {
+            "available": "Todavía disponible",
+            "buttonAddBundle": "Añadir paquete",
+            "columnActive": "Activo",
+            "columnAvailable": "Regla de disponibilidad",
+            "columnBundleItemCount": "Núm. de productos",
+            "columnCreatedAt": "Añadido el",
+            "columnName": "Nombre",
+            "columnProductNumber": "Número de producto",
+            "columnSales": "Ventas",
+            "columnTotalPrice": "Precio total",
+            "columnUpdatedAt": "Actualizado el",
+            "emptyStateDescription": "Los paquetes pueden aumentar el valor medio de los pedidos y animar a los clientes a comprar productos relacionados.",
+            "emptyStateTitle": "Añade paquetes para aumentar las ventas",
+            "messageSaveSuccess": "Se guardó el paquete \"{name}».",
+            "titleSidebarItemRefresh": "Actualizar",
+            "unavailable": "No disponible"
+        },
+        "priceModal": {
+            "currency": "Moneda",
+            "price": "Valor",
+            "title": "Precios avanzados"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Agregar productos",
+            "description": "Selecciona primero un canal de ventas para ver qué productos se pueden añadir al paquete. Puedes ajustarlo más adelante en la tarjeta Visibilidad y estructura.",
+            "title": "Se requiere un canal de ventas"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generar imagen",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Descripción del paquete"
+                },
+                "bundleHeading": {
+                    "label": "Nombre del paquete"
+                },
+                "bundleItems": {
+                    "label": "Objetos del paquete"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galería de imágenes y caja de compra de paquetes"
+                },
+                "recommendedBundles": {
+                    "label": "Paquetes recomendados"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Diseño predeterminado: página de paquete de productos",
+                "setAsDefaultBundleDetail": "Establecer como predeterminada la página del paquete de productos"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Página del paquete"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generar imagen",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Los datos del producto de este elemento se cargan automáticamente por el producto asociado a este diseño. El contenido solo muestra una vista previa de muestra."
+                },
+                "label": "Paquete de compra por caja"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Los datos del producto de este elemento se cargan automáticamente por el producto asociado a este diseño. El contenido solo muestra una vista previa de muestra."
+                },
+                "label": "Descripción del paquete",
+                "preview": {
+                    "descriptionTab": "Descripción",
+                    "title": "Paquete"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Permite añadir artículos del paquete directamente al carrito en lugar de abrir la página de detalles del producto.",
+                        "labelTitle": "Usa {count} para mostrar la cantidad de productos del paquete."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Los datos del producto de este elemento se cargan automáticamente por el producto asociado a este diseño. El contenido solo muestra una vista previa de muestra."
+                    },
+                    "label": {
+                        "boxSettings": "Configuración de la caja del producto",
+                        "cta": "Muestra CTA para añadir artículos del paquete directamente al carrito",
+                        "minWidth": "Anchura mínima",
+                        "title": "Título"
+                    }
+                },
+                "label": "Productos incluidos"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Los datos del paquete de este elemento los carga automáticamente el paquete asociado a este diseño. El contenido solo muestra una vista previa de muestra."
+                },
+                "label": "Nombre del paquete"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Cuando está habilitada, inicialmente solo se muestra un subconjunto de paquetes. Los usuarios pueden ampliar la lista para ver más.",
+                        "maxVisibleBundles": "Controla el número de paquetes que se mostrarán hasta que se oculten detrás de la función «Mostrar más».",
+                        "productBoxSettings": "Configuración de la caja del producto",
+                        "productDetailElement": "Los datos del producto de este elemento se cargan automáticamente por el producto asociado a este diseño. El contenido solo muestra una vista previa de muestra.",
+                        "showCTAInfo": "Permite añadir artículos del paquete directamente al carrito en lugar de abrir la página de detalles del producto.",
+                        "sliderSettings": "Configuración del control deslizante"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Número límite de paquetes mostrados inicialmente",
+                        "maxVisibleBundles": "Los paquetes se muestran inicialmente",
+                        "minWidth": "Anchura mínima",
+                        "recommendedCombinationsTitle": "Combinaciones recomendadas",
+                        "showBundleName": "Mostrar nombre del paquete",
+                        "showCTA": "Muestra CTA para añadir artículos del paquete directamente al carrito",
+                        "showCurrentProduct": "Mostrar primero en el paquete el producto que se está viendo actualmente",
+                        "title": "Título"
+                    },
+                    "placeholder": {
+                        "minWidth": "Escriba ancho mínimo...",
+                        "title": "Combinaciones recomendadas"
+                    }
+                },
+                "label": "Combinaciones recomendadas",
+                "preview": {
+                    "label": {
+                        "title": "Combinaciones recomendadas"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generar imagen",
             "contentText": "Crea tus propias imágenes de estado de ánimo para personalizar tu diseño con la ayuda de la imagen generada por IA.",
             "header": "Copiloto de IA"
+        },
+        "tags": {
+            "bundle": "Paquete"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Direcciones de unidades organizativas",
                             "pending_order": "Gestión de pedidos pendientes",
                             "quote": "Gestión de cotizaciones",
-                            "role": "Administración de roles"
+                            "role": "Administración de roles",
+                            "subscription": "Pedir suscripción"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Eliminar dirección de envío",
                                     "update": "Editar dirección de envío"
                                 },
+                                "subscription": {
+                                    "read": "Ver todas las suscripciones de pedidos de la unidad organizativa asignada"
+                                },
                                 "update": "Editar unidad organizativa"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Puede eliminar roles",
                                 "edit": "Puede editar roles",
                                 "read": "Puede ver los roles"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Ver todas las suscripciones de pedidos"
+                                }
                             }
                         },
                         "switchAllLabel": "Todos los permisos"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Administración de roles"
             },
+            "bundle": {
+                "label": "Paquetes"
+            },
             "custom_price": {
                 "label": "Precio del producto al cliente"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Añadir producto a los paquetes",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Lo tengo",
+                "description": "Este producto no se ha podido eliminar de los siguientes paquetes porque un paquete requiere al menos dos productos:",
+                "hint": "Para eliminar este producto, primero agrega otro producto a estos paquetes.",
+                "title": "No se pudo eliminar el producto de todos los paquetes"
+            },
+            "bundleCardSubtitle": "Todos los paquetes que contienen este producto",
+            "bundleCardTitle": "Paquetes ({count})",
+            "buttonAddBundle": "Añadir producto a los paquetes",
+            "buttonAddBundleLanguageWarning": "La adición de paquetes solo es posible en el idioma predeterminado del sistema.",
+            "buttonCreateBundle": "Crear paquete",
+            "buttonManageBundles": "Gestiona paquetes",
+            "columnActive": "Activo",
+            "columnAvailability": "Regla de disponibilidad",
+            "columnBundleItemCount": "Núm. de productos",
+            "columnCreatedAt": "Añadido el",
+            "columnName": "Nombre",
+            "columnProductNumber": "Número de producto",
+            "columnSales": "Ventas",
+            "columnShowBundleOnItemPdp": "Mostrar en la página de detalles",
+            "columnUpdatedAt": "Actualizado el",
+            "emptyStateDescription": "Los paquetes pueden aumentar el valor medio de los pedidos y animar a los clientes a comprar productos relacionados. Los paquetes aparecen en la página de detalles del producto si el diseño del CMS incluye un elemento de paquete.",
+            "emptyStateDescriptionCreateFirst": "Los paquetes pueden aumentar el valor medio de los pedidos y animar a los clientes a comprar productos relacionados. Los paquetes aparecen en la página de detalles del producto si el diseño del CMS incluye un elemento de paquete. Crea un paquete para añadir este producto.",
+            "emptyStateNoBundlesFound": "No se han encontrado paquetes coincidentes",
+            "emptyStateNoBundlesFoundDescription": "Ajusta el término o los filtros de búsqueda.",
+            "emptyStateTitle": "Agregue productos a los paquetes para aumentar las ventas",
+            "hideOnProductDetailPage": "Ocultar en la página de detalles del producto",
+            "messageSaveSuccess": "Se guardó el paquete \"{name}».",
+            "openBundlesDetail": "Abrir detalles del paquete",
+            "placeholderSearch": "Buscar paquetes...",
+            "refreshDataTooltip": "Actualizar datos",
+            "showOnProductDetailPage": "Mostrar en la página de detalles del producto",
+            "showOnlyIncluded": "Mostrar solo los seleccionados",
+            "tooltipBundleHasRestrictions": "Uno o más productos tienen restricciones que afectan a la disponibilidad de este paquete. Consulta los detalles del paquete para obtener más información.",
+            "tooltipBundleInactive": "Inactivo",
+            "tooltipBundleIssues": "Cuestiones:",
+            "tooltipBundleMismatchedSalesChannels": "No asignado a los canales de venta del producto: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Este producto no se puede retirar porque los paquetes requieren al menos dos productos."
+        },
         "card": {
             "textHeadline": "Stock y capacidad de entrega",
             "textLinkModal": "Ver existencias por almacenes y grupos de almacenes",
             "textProductWarehouseModalDisabled": "Guarda los cambios antes de poder abrir más detalles de las existencias.",
             "textTooltipMultiSelect": "Asigne grupos de almacenes para gestionar sus existencias de forma individual en varios almacenes."
+        },
+        "detail": {
+            "tabBundle": "Paquetes"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Cerrar",
@@ -1986,6 +2359,9 @@
             "tabStock": "Existencias",
             "textHeadline": "Stock por almacén y grupos de almacenes",
             "textInlineEdit": "Editar stock"
+        },
+        "type": {
+            "grouped_bundle": "Paquete"
         },
         "variants-overview": {
             "inlineText": "Ver detalles"
@@ -2542,6 +2918,16 @@
             "emptyText": "Escena vacía"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Página de detalles del producto del paquete"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Permitir códigos de promoción para pedidos a partir de cotizaciones"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha amigable",
+                "friendlyCaptchaApiKey": "Clave API Captcha amigable",
                 "friendlyCaptchaDescription": "Basado en mecanismos de prueba de trabajo y señales de riesgo avanzadas, Friendly Captcha emplea un enfoque fundamentalmente nuevo para defender de forma segura sus sitios web y servicios en línea contra el spam y los bots.",
+                "friendlyCaptchaRegion": "Región API",
+                "friendlyCaptchaRegionEu": "UE (Unión Europea)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Selecciona «UE» para enviar todas las solicitudes de captcha exclusivamente a través de servidores europeos. Esto puede ser relevante para el cumplimiento del RGPD.",
                 "friendlyCaptchaSecretKey": "Clave secreta de Captcha amigable",
-                "friendlyCaptchaSiteKey": "Clave de sitio Captcha amigable"
+                "friendlyCaptchaSiteKey": "Clave de sitio Captcha amigable",
+                "friendlyCaptchaV1DeprecationNotice": "La versión 1 es antigua y se eliminará en una versión futura. Recomendamos actualizar a la versión 2 para mejorar la seguridad y disfrutar de una experiencia más limpia con los widgets.",
+                "friendlyCaptchaVersion": "Versión Captcha amigable",
+                "friendlyCaptchaVersionV1": "Versión 1 (antigua)",
+                "friendlyCaptchaVersionV2": "Versión 2 (nueva)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Cancelar",
         "retry": "Intentar de nuevo"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Bloquee la escala uniforme",
-        "unlock-uniform-scale": "Desbloquea una escala uniforme"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Sus clientes pueden definir y administrar los límites presupuestarios para controlar mejor los gastos de sus unidades organizativas.",
         "budgetManagementName": "Presupuestos",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Aprobación del pedido",
                     "ORGANIZATION_UNITS": "Unidades organizativas",
                     "QUICK_ORDER": "Pedidos rápidos",
-                    "QUOTE_MANAGEMENT": "Gestión de cotizaciones"
+                    "QUOTE_MANAGEMENT": "Gestión de cotizaciones",
+                    "SHOPPING_LISTS": "Listas de compras"
                 },
                 "template": "Se requiere {dependency} para {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nombre",
             "columnOrderQuantity": "Cantidad del pedido",
             "columnReturnQuantity": "Cantidad de devolución",
+            "includesShippingCosts": "Incluidos los gastos de envío",
             "messageErrorNoItemHasQuantity": "Debe tener al menos 1 artículo de línea con una cantidad superior a 0 para crear una devolución",
             "messagePreventAddItem": "Este artículo ya forma parte de la devolución o su estado es Cancelado, Devolución o Devolución parcial.",
             "placeholderComment": "Introducir comentario...",

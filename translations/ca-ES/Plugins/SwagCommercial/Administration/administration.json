@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "La subscripció deixa l'estat pausat"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Preus Individuals",
             "b2b_components_role": "Rol | Rols",
             "b2b_components_shopping_list": "Llistes de la compra",
             "b2b_employee": "Empleat | Empleats",
+            "bundle": "Bundle | Paquets",
+            "bundle_item": "Article de paquet | Articles de paquet",
             "export_assistant": "Assistent d'exportació",
-            "individual_pricing": "Preus Individuals",
             "quote": "Cita | Cites",
             "quote_line_item": "Article de la línia de cotització | Articles de la línia de cotització",
             "search_assistant": "Copilot AI",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "L'article és un element de paquet",
+                "lineItemOfBundleRule": "Element del paquet seleccionat",
                 "subscriptionCartRule": "Cistella de subscripció",
                 "subscriptionIntervalRule": "Interval de subscripció",
                 "subscriptionPlanRule": "Pla de subscripció"
             },
             "group": {
                 "subscription": "Subscripció"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Paquet"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Gràcies per provar el pla de Bundles. Ens encantaria escoltar els vostres comentaris.",
+                "link": "Donar comentaris"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Camps personalitzats"
+            },
+            "general": {
+                "title": "Informació general"
+            },
+            "items": {
+                "actionOpenProductDetails": "Obrir detalls del producte",
+                "buttonAddBundleItems": "Afegir productes",
+                "columnName": "Nom",
+                "columnPosition": "Posició",
+                "columnPrice": "Preu",
+                "emptyStateDescription": "Afegiu almenys dos productes al paquet.",
+                "emptyStateTitle": "Encara no hi ha productes afegits",
+                "title": "Productes ({count})",
+                "tooltipBundleItemCustomizedProduct": "Plantilla de producte personalitzada assignada",
+                "tooltipBundleItemHasVariants": "El producte té variants",
+                "tooltipBundleItemInactive": "Inactiu",
+                "tooltipBundleItemIncompatibleVisibilities": "No assignat als canals de venda del paquet: {salesChannels}",
+                "tooltipBundleItemIssues": "Problemes:",
+                "tooltipBundleItemOutOfStockCloseout": "Fora d'estoc (Liquidació venda)",
+                "tooltipBundleItemOutOfStockTemporary": "Actualment, aquest producte està sense estoc. El paquet tornarà a ser adquirible un cop tots els productes tornin a estar en estoc.",
+                "tooltipBundleItemOutOfStockTitle": "Sense estoc",
+                "tooltipRefreshData": "Actualització de dades"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Data de llançament",
+                    "placeholder": "Introdueix la data de llançament"
+                },
+                "title": "Etiquetatge"
+            },
+            "media": {
+                "subtitle": "Afegeix fitxers a la galeria multimèdia del paquet.",
+                "title": "Mitjans"
+            },
+            "messageMinBundleItemsRequired": "Afegiu almenys dos productes per crear el paquet.",
+            "messageNoChanges": "No hi ha canvis per guardar",
+            "messageSaveError": "No s'ha aconseguit desar el paquet",
+            "messageSaveSuccess": "El paquet s'ha guardat amb èxit",
+            "price": {
+                "addDiscount": "Afegir descompte",
+                "currencyDependingPrices": "Moneda en funció dels preus",
+                "discount": "Descompte",
+                "discountRules": "Normes de descompte",
+                "discountTitle": "Descompte",
+                "discountType": "Tipus",
+                "discountTypeAbsolute": "Absolut",
+                "discountTypePercentage": "Percentatge",
+                "discountValue": "Valor",
+                "discountValuePlaceholder": "Afegir valor...",
+                "doNotCombineWith": "No combini amb",
+                "maxValuePlaceholder": "Il·limitat",
+                "maximumDiscountValue": "Valor màxim de descompte",
+                "openAdvancedPricesView": "Veure preus avançats",
+                "preventCombination": "Eviteu la combinació amb altres promocions",
+                "preventCombinationHelpText": "Quan està activat, aquest descompte no es pot combinar amb altres promocions",
+                "promotionsPlaceholder": "Afegeix promocions...",
+                "rulesPlaceholder": "Afegeix regles...",
+                "subtotalBased": "Subtotal basat en 1 producte | Subtotal basat en productes de {count}",
+                "title": "Preus de visualització",
+                "total": "Total",
+                "totalBased": "Total basat en 1 producte | Total basat en productes de {count}"
+            },
+            "tabGeneral": "General",
+            "tabLayout": "Maquetació",
+            "tabSeo": "SEO",
+            "textHeadline": "Nou paquet",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Això evita que el paquet sigui visible en aquests canals. Si us plau, comproveu la visibilitat dels següents productes:",
+                    "notAssignedTo": "No assignat a",
+                    "title": "Alguns productes no estan assignats a tots els canals de venda seleccionats"
+                },
+                "title": "Visibilitat i estructura"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Actiu",
+                "placeholder": "Seleccioneu un estat..."
+            },
+            "availabilityFilter": {
+                "label": "Disponibilitat",
+                "placeholder": "Selecciona disponibilitat..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Productes inclosos",
+                "placeholder": "Seleccioneu productes inclosos..."
+            },
+            "categoriesFilter": {
+                "label": "Categories",
+                "placeholder": "Seleccioneu categories..."
+            },
+            "fromPlaceholder": "Introdueix el valor d'inici...",
+            "imagesFilter": {
+                "label": "Imatges",
+                "placeholder": "Selecciona l'estat de la imatge...",
+                "textHasCriteria": "Almenys una imatge de producte assignada",
+                "textNoCriteria": "No s'han assignat imatges de producte"
+            },
+            "priceFilter": {
+                "label": "Preu"
+            },
+            "productNumberFilter": {
+                "label": "Número de producte",
+                "placeholder": "Introduïu un número de producte..."
+            },
+            "releaseDateFilter": {
+                "label": "Data de llançament"
+            },
+            "salesChannelsFilter": {
+                "label": "Canals de venda",
+                "placeholder": "Seleccioneu Canals de Venda..."
+            },
+            "salesFilter": {
+                "label": "Vendes"
+            },
+            "tagsFilter": {
+                "label": "Etiquetes",
+                "placeholder": "Seleccioneu etiquetes..."
+            },
+            "toPlaceholder": "Introdueix el valor final..."
+        },
+        "general": {
+            "description": "Feixos",
+            "headlineBundles": "Feixos",
+            "mainMenuItemGeneral": "Feixos",
+            "placeholderSearchBar": "Cerca paquets...",
+            "title": "Feixos"
+        },
+        "generalForm": {
+            "highlightHelpText": "Els paquets destacats estan marcats amb una etiqueta de colors vius i la paraula “Consell” en tots els llistats de paquets. Podeu ajustar el color de l'etiqueta canviant l'opció “Avís” a la configuració <a href=\"{themeUrl}\">temes</a> . També podeu alterar el text de l'etiqueta editant el fragment de text <a href=\"{snippetUrl}\">corresponent</a>.",
+            "labelDescription": "Descripció",
+            "labelMarkAsTopseller": "Destaca el paquet",
+            "labelName": "Nom",
+            "labelProductNumber": "Número de producte",
+            "placeholderDescription": "Introduïu la descripció del paquet...",
+            "placeholderName": "Introduïu el nom del paquet...",
+            "placeholderProductNumber": "Introdueix el número de producte"
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Un paquet requereix almenys dos productes.",
+            "notEnoughProductsTitle": "No hi ha prou productes",
+            "restrictions": "Un o més productes tenen restriccions que afecten la disponibilitat d'aquest paquet. Consulteu les icones d'advertència per obtenir més detalls.",
+            "restrictionsTitle": "Alguns productes tenen restriccions"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "No s'han trobat productes coincidents",
+            "noProductsMatchingBundleSalesChannels": "No hi ha productes actius que coincideixin amb els canals de venda seleccionats del paquet.",
+            "noProductsMatchingTermAndFilter": "Ajusta el terme o els filtres de cerca.",
+            "placeholderSearch": "Cercar productes...",
+            "showIncluded": "Només mostra seleccionat ({count})",
+            "textWhySomeItemsMissing": "Per què falten alguns productes?",
+            "title": "Afegir productes",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Ara mateix, els paquets només funcionen amb productes físics i variants úniques. <br /><br /> Els productes s'han d'assignar als Canals de venda seleccionats del paquet perquè apareguin a la llista."
+        },
+        "list": {
+            "available": "Disponible",
+            "buttonAddBundle": "Afegeix paquet",
+            "columnActive": "Actiu",
+            "columnAvailable": "Disponibilitat",
+            "columnBundleItemCount": "Núm. de productes",
+            "columnCreatedAt": "Creat a",
+            "columnName": "Nom",
+            "columnProductNumber": "Número de producte",
+            "columnSales": "Vendes",
+            "columnTotalPrice": "Preu total",
+            "columnUpdatedAt": "Actualitzat a",
+            "emptyStateDescription": "Els paquets poden augmentar el valor mitjà de la vostra comanda i animar els clients a comprar productes relacionats.",
+            "emptyStateTitle": "Afegeix paquets per augmentar les vendes",
+            "messageSaveSuccess": "El paquet \"{name}\" ha estat guardat.",
+            "titleSidebarItemRefresh": "Refrescar",
+            "unavailable": "No disponible"
+        },
+        "priceModal": {
+            "currency": "Moneda",
+            "price": "Valor",
+            "title": "Preus avançats"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Afegir productes",
+            "description": "Seleccioneu primer un Canal de vendes per veure quins productes es poden afegir al paquet. Podeu ajustar-ho més endavant a la targeta Visibilitat i estructura.",
+            "title": "Cal canal de venda"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generar imatge",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Descripció del paquet"
+                },
+                "bundleHeading": {
+                    "label": "Nom del paquet"
+                },
+                "bundleItems": {
+                    "label": "Articles de paquet"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galeria d'imatges i caixa de compra de paquet"
+                },
+                "recommendedBundles": {
+                    "label": "Paquets recomanats"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Disseny predeterminat - Pàgina de paquet de productes",
+                "setAsDefaultBundleDetail": "Estableix com a pàgina de paquet de productes per defecte"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Pàgina de paquet"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generar imatge",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Les dades del producte d'aquest element es carreguen automàticament pel producte associat a aquest disseny. El contingut només mostra una vista prèvia de mostra."
+                },
+                "label": "Caixa de compra de paquet"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Les dades del producte d'aquest element es carreguen automàticament pel producte associat a aquest disseny. El contingut només mostra una vista prèvia de mostra."
+                },
+                "label": "Descripció del paquet",
+                "preview": {
+                    "descriptionTab": "Descripció",
+                    "title": "Paquet"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Permet afegir articles de paquet directament a la cistella en lloc d'obrir la pàgina de detalls del producte.",
+                        "labelTitle": "Utilitzeu {count} per mostrar el nombre de productes del paquet."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Les dades del producte d'aquest element es carreguen automàticament pel producte associat a aquest disseny. El contingut només mostra una vista prèvia de mostra."
+                    },
+                    "label": {
+                        "boxSettings": "Configuració de la caixa del producte",
+                        "cta": "Mostra CTA per afegir articles de paquet directament a la cistella",
+                        "minWidth": "Amplada mínima",
+                        "title": "Títol"
+                    }
+                },
+                "label": "Productes inclosos"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Les dades del paquet d'aquest element es carreguen automàticament pel paquet associat a aquest disseny. El contingut només mostra una vista prèvia de mostra."
+                },
+                "label": "Nom del paquet"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Quan està activat, inicialment només es mostra un subconjunt de paquets. Els usuaris poden ampliar la llista per mostrar-ne més.",
+                        "maxVisibleBundles": "Controla quants paquets es mostraran fins que s'amaguen darrere d'una funcionalitat “Mostra més”.",
+                        "productBoxSettings": "Configuració de la caixa del producte",
+                        "productDetailElement": "Les dades del producte d'aquest element es carreguen automàticament pel producte associat a aquest disseny. El contingut només mostra una vista prèvia de mostra.",
+                        "showCTAInfo": "Permet afegir articles de paquet directament a la cistella en lloc d'obrir la pàgina de detalls del producte.",
+                        "sliderSettings": "Configuració lliscant"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Nombre límit de paquets inicialment mostrats",
+                        "maxVisibleBundles": "Els paquets mostrats inicialment",
+                        "minWidth": "Amplada mínima",
+                        "recommendedCombinationsTitle": "Combinacions recomanades",
+                        "showBundleName": "Mostra el nom del paquet",
+                        "showCTA": "Mostra CTA per afegir articles de paquet directament a la cistella",
+                        "showCurrentProduct": "Mostra el producte vist actualment primer en paquet",
+                        "title": "Títol"
+                    },
+                    "placeholder": {
+                        "minWidth": "Introduïu amplada mínima...",
+                        "title": "Combinacions recomanades"
+                    }
+                },
+                "label": "Combinacions recomanades",
+                "preview": {
+                    "label": {
+                        "title": "Combinacions recomanades"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generar imatge",
             "contentText": "Crea les teves pròpies imatges d'ànim per personalitzar el teu disseny amb l'ajuda de la imatge generada per IA.",
             "header": "Copilot AI"
+        },
+        "tags": {
+            "bundle": "Paquet"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Adreces de la unitat d'organització",
                             "pending_order": "Gestió de comandes pendents",
                             "quote": "Gestió de cotitzacions",
-                            "role": "Gestió de rols"
+                            "role": "Gestió de rols",
+                            "subscription": "Comanda subscripció"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Eliminar l'adreça d'enviament",
                                     "update": "Edita l'adreça d'enviament"
                                 },
+                                "subscription": {
+                                    "read": "Veure totes les subscripcions de comandes des de la unitat d'organització assignada"
+                                },
                                 "update": "Edició de la unitat d'organització"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Pot suprimir rols",
                                 "edit": "Pot editar rols",
                                 "read": "Pot veure rols"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Veure totes les subscripcions de comandes"
+                                }
                             }
                         },
                         "switchAllLabel": "Tots els permisos"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Gestió de rols"
             },
+            "bundle": {
+                "label": "Feixos"
+            },
             "custom_price": {
                 "label": "Preu del client del producte"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Afegir producte als paquets",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Ho ha aconseguit",
+                "description": "Aquest producte no s'ha pogut eliminar dels paquets següents perquè un paquet requereix almenys dos productes:",
+                "hint": "Per eliminar aquest producte, afegiu primer un altre producte a aquests paquets.",
+                "title": "El producte no s'ha pogut eliminar de tots els paquets"
+            },
+            "bundleCardSubtitle": "Tots els paquets que contenen aquest producte",
+            "bundleCardTitle": "Paquets ({count})",
+            "buttonAddBundle": "Afegir producte als paquets",
+            "buttonAddBundleLanguageWarning": "L'addició de paquets només és possible en l'idioma predeterminat del sistema.",
+            "buttonCreateBundle": "Crear paquet",
+            "buttonManageBundles": "Gestionar els paquets",
+            "columnActive": "Actiu",
+            "columnAvailability": "Disponibilitat",
+            "columnBundleItemCount": "Núm. de productes",
+            "columnCreatedAt": "Creat a",
+            "columnName": "Nom",
+            "columnProductNumber": "Número de producte",
+            "columnSales": "Vendes",
+            "columnShowBundleOnItemPdp": "Mostra a la pàgina de detalls",
+            "columnUpdatedAt": "Actualitzat a",
+            "emptyStateDescription": "Els paquets poden augmentar el valor mitjà de la comanda i animar els clients a comprar productes relacionats. Els paquets apareixen a la pàgina de detalls del producte si el disseny del CMS inclou un element de paquet.",
+            "emptyStateDescriptionCreateFirst": "Els paquets poden augmentar el valor mitjà de la comanda i animar els clients a comprar productes relacionats. Els paquets apareixen a la pàgina de detalls del producte si el disseny del CMS inclou un element de paquet. Crea un paquet per afegir aquest producte.",
+            "emptyStateNoBundlesFound": "No s'han trobat paquets coincidents",
+            "emptyStateNoBundlesFoundDescription": "Ajusta el terme o els filtres de cerca.",
+            "emptyStateTitle": "Afegeix producte als paquets per augmentar les vendes",
+            "hideOnProductDetailPage": "Amaga a la pàgina de detalls del producte",
+            "messageSaveSuccess": "El paquet \"{name}\" ha estat guardat.",
+            "openBundlesDetail": "Obrir detalls del paquet",
+            "placeholderSearch": "Cerca paquets...",
+            "refreshDataTooltip": "Actualització de dades",
+            "showOnProductDetailPage": "Mostra a la pàgina de detalls del producte",
+            "showOnlyIncluded": "Només mostra seleccionat",
+            "tooltipBundleHasRestrictions": "Un o més productes tenen restriccions que afecten la disponibilitat d'aquest paquet. Visiteu els detalls del paquet per obtenir més informació.",
+            "tooltipBundleInactive": "Inactiu",
+            "tooltipBundleIssues": "Problemes:",
+            "tooltipBundleMismatchedSalesChannels": "No assignat als canals de venda del producte: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Aquest producte no es pot eliminar perquè els paquets requereixen almenys dos productes."
+        },
         "card": {
             "textHeadline": "Stock i lliurabilitat",
             "textLinkModal": "Veure estoc per magatzems i grups de magatzems",
             "textProductWarehouseModalDisabled": "Deseu els canvis abans que pugueu obrir més detalls d'estoc.",
             "textTooltipMultiSelect": "Assigna grups de magatzems per gestionar el teu estoc individualment a través de diversos magatzems."
+        },
+        "detail": {
+            "tabBundle": "Feixos"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Tancar",
@@ -1986,6 +2359,9 @@
             "tabStock": "Stock",
             "textHeadline": "Estoc per grups de magatzem i magatzem",
             "textInlineEdit": "Edita estoc"
+        },
+        "type": {
+            "grouped_bundle": "Paquet"
         },
         "variants-overview": {
             "inlineText": "Veure detalls"
@@ -2542,6 +2918,16 @@
             "emptyText": "Escena buida"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Pàgina de detalls del producte de paquet"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Permetre codis de promoció a comandes des de cotitzacions"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha amable",
+                "friendlyCaptchaApiKey": "Clau API Captcha amigable",
                 "friendlyCaptchaDescription": "Basat en mecanismes de prova de treball i senyals avançats de risc, Friendly Captcha empra un enfocament fonamentalment nou per defensar de forma segura els seus llocs web i serveis en línia de correu brossa i bots.",
+                "friendlyCaptchaRegion": "Regió API",
+                "friendlyCaptchaRegionEu": "UE (Unió Europea)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Seleccioneu “EU” per encaminar totes les sol·licituds de captcha exclusivament a través dels servidors europeus. Això pot ser rellevant per al compliment del RGPD.",
                 "friendlyCaptchaSecretKey": "Clau secreta Captcha amable",
-                "friendlyCaptchaSiteKey": "Clau de lloc amigable de Captcha"
+                "friendlyCaptchaSiteKey": "Clau de lloc amigable de Captcha",
+                "friendlyCaptchaV1DeprecationNotice": "La versió 1 és herència i serà eliminada en un futur llançament. Recomanem actualitzar a la versió 2 per millorar la seguretat i una experiència de giny més neta.",
+                "friendlyCaptchaVersion": "Versió amigable de Captcha",
+                "friendlyCaptchaVersionV1": "Versió 1 (llegat)",
+                "friendlyCaptchaVersionV2": "Versió 2 (nova)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Cancel·lar",
         "retry": "Torneu a provar"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Bloquejar escala uniforme",
-        "unlock-uniform-scale": "Desbloquejar escala uniforme"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Els teus clients poden definir i gestionar els límits pressupostaris per controlar millor la despesa de les seves unitats d'organització.",
         "budgetManagementName": "Pressupostos",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Aprovació de la comanda",
                     "ORGANIZATION_UNITS": "Unitats d'organització",
                     "QUICK_ORDER": "Comandes ràpides",
-                    "QUOTE_MANAGEMENT": "Gestió de cotitzacions"
+                    "QUOTE_MANAGEMENT": "Gestió de cotitzacions",
+                    "SHOPPING_LISTS": "Llistes de la compra"
                 },
                 "template": "{dependency} és necessari per a {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nom",
             "columnOrderQuantity": "Quantitat de comanda",
             "columnReturnQuantity": "Quantitat de devolució",
+            "includesShippingCosts": "Incloent les despeses d'enviament",
             "messageErrorNoItemHasQuantity": "Hauria de tenir almenys 1 element de línia té una quantitat superior a 0 per crear una devolució",
             "messagePreventAddItem": "Aquest article ja forma part de la devolució o el seu estat és Cancel·lat, Retornat o Retornat parcialment.",
             "placeholderComment": "Introduïu el comentari...",

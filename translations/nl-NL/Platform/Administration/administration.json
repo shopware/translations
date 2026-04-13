@@ -317,6 +317,7 @@
             "newsletter_update": "Aanmelden voor nieuwsbrief bijgewerkt",
             "product_export_log": "Export van het product",
             "review_form_send": "Reviewformulier verzonden",
+            "revocation_request_sent": "Het aanvraagformulier voor herroeping is verzonden.",
             "state_enter_order_delivery_state_cancelled": "Verzending gaat status geannuleerd",
             "state_enter_order_delivery_state_open": "Verzending gaat status geopend",
             "state_enter_order_delivery_state_returned": "Verzending wordt geretourneerd",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Bestand selecteren",
             "caption": "Sleep een bestand naar hier om te uploaden",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Het geselecteerde bestand \"{name}\" heeft een niet ondersteunde bestandsextensie. Gebruik een van de volgende bestandsextensies: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Het geselecteerde bestand \"{name}\" is te groot voor de upload. De maximale bestandsgrootte is {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Geen documenten gevonden",
                 "title": "Bulk edit - Succes"
             },
-            "warningText": "Wacht tot de bulkbewerking is voltooid. Dit kan even duren. Als u het browsertabblad sluit of het proces voortijdig annuleert, worden niet alle wijzigingen toegepast. U kunt de bulkbewerking op elk gewenst moment opnieuw uitvoeren."
+            "warningText": "Wacht tot de bulkbewerking is voltooid. Dit kan even duren. Als u het browsertabblad sluit of het proces voortijdig annuleert, worden niet alle wijzigingen toegepast. U kunt de bulkbewerking op elk gewenst moment opnieuw uitvoeren.",
+            "warningTextDocumentDeletion": "Documenten maken deel uit van een bestelling en kunnen relevant zijn voor belastingdoeleinden. Als u ze verwijdert, kan dit gevolgen hebben voor de traceerbaarheid van uw boekhouding. Zorg ervoor dat verwijdering wettelijk is toegestaan."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Documenten",
+                "deleteDocuments": {
+                    "helpText": "Met deze optie worden alle geselecteerde soorten documenten verwijderd.",
+                    "label": "Verwijderen: Documenten"
+                },
                 "downloadDocuments": {
                     "helpText": "Met deze optie kunnen de meest recente beschikbare documenten worden gedownload. Meerdere documenten worden samengevoegd in hetzelfde bestand. De download is beschikbaar nadat de meervoudige wijziging is voltooid.",
                     "label": "Download: Documenten"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Nieuwsbrief pagina's",
                     "privacyPage": "Privacy pagina's",
                     "revocationPage": "Kennisgevingen van herroeping",
+                    "revocationRequestPage": "Aanvraagformulier voor herroeping",
                     "shippingPaymentInfoPage": "Informatie over betaling en verzending",
                     "tosPage": "TOS-pagina's"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Titel",
                         "type": "Type formulier",
                         "typeContact": "Contact",
-                        "typeNewsletter": "Nieuwsbrief"
+                        "typeNewsletter": "Nieuwsbrief",
+                        "typeRevocationRequest": "Intrekking"
                     },
                     "placeholder": {
                         "type": "Kies een type formulier..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Actie",
+                        "comment": "Commentaar",
+                        "contractNumber": "Contractnummer (bestelnummer, abonnementsnummer, ... ) *    ",
                         "email": "E-mailadres*",
                         "firstName": "Voornaam*",
                         "lastName": "Achternaam*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "Jan",
                         "lastName": "Jansen",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Nr. {criteriaName}",
         "placeholder": "Alle"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kanaal exporteren",
+                        "placeholder": "Selecteer exportkanalen…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kanaal exporteren"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kanaal exporteren",
+                        "placeholder": "Selecteer exportkanalen…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kanaal exporteren"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Voegt kolommen en filters voor exportkanalen toe aan de bestel- en klantenlijsten.",
+            "mainMenuItemGeneral": "Kanaaltracering exporteren"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "De extensie \"{name}\" is niet compatibel met deze Shopware-versie",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Type",
                 "labelRecipient": "Ontvanger",
                 "labelReplyTo": "Antwoordadres",
+                "labelRevocationRequestFormMail": "Onderzoeker",
                 "labelSenderName": "Afzender",
                 "labelSubject": "Onderwerp",
                 "placeholderDescription": "Beschrijving invoeren …",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Voer de regelnaam in...",
                 "placeholderPriority": "Voer regelprioriteit in...",
                 "placeholderType": "Selecteer het regeltype...",
+                "productStatesConditionWarning": "De voorwaarde „Artikel met productstatus” is verouderd en wordt verwijderd in v6.8. Gebruik in plaats daarvan „Artikel met producttype”.",
                 "tabDetail": "Generaal",
                 "tabRule": "Voorwaarden"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Teruggestuurd",
             "returnedPartially": "Gedeeltelijk geretourneerd",
             "reviewForm": "Beoordeling van het product",
+            "revocationRequestCustomer": "Intrekkingsverzoek verzonden",
+            "revocationRequestMerchant": "Intrekkingsverzoek ontvangen",
             "send": "Verzenden",
             "sent": "Verzonden",
             "shipped": "Verzonden",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Accent circonflex (^)",
             "categoriesLabel": "Categorieën",
             "closeProfileLabel": "Profiel sluiten",
-            "closeViolation": "Sluiten",
             "commasLabel": "Komma (,)",
             "configuratorSettingLabel": "Variant configuratie instellingen",
             "copyOfLabel": "Kopie van:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Import"
             },
             "updateEntitiesLabel": "Bestaande gegevens bijwerken",
-            "violationMessage": "Het profiel is nog niet geldig. Voeg toewijzingen aan de onderstaande verplichte velden toe om het profiel op te slaan:"
+            "violationModal": {
+                "duplicateMappings": "Je hebt <strong>dubbele mappings</strong> in de volgende velden. Verwijder de duplicaten om het profiel op te slaan:",
+                "missingRequiredFields": "U moet toewijzingen toevoegen aan de verplichte <strong>-velden</strong> die hieronder worden weergegeven om het profiel op te slaan:",
+                "title": "Je profiel is nog niet geldig"
+            }
         },
         "progress": {
             "startExportLabel": "Export starten",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Opslaan in media"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Object verplaatsen",
-                "rotate-tooltip": "Object roteren",
-                "scale-tooltip": "Object schalen"
-            },
-            "saveChanges": "Wijzigingen opslaan",
-            "titleModal": "Model-editor"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Terug"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Object verplaatsen",
+            "rotate-tooltip": "Object roteren",
+            "scale-tooltip": "Object schalen"
+        },
+        "open-model-editor-tooltip": "Model Editor openen",
+        "properties": {
+            "transformation": {
+                "label": "Transformatie",
+                "position": {
+                    "label": "Positie"
+                },
+                "rotation": {
+                    "label": "Rotatie"
+                },
+                "scale": {
+                    "label": "Weegschaal"
+                }
+            }
+        },
+        "titleModal": "Model-editor"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Voeg eerst een creditnota toe om een creditnota te maken.",
-                    "storno": "Een annuleringsfactuur kan niet worden aangemaakt zonder factuur."
+                    "storno": "Een annuleringsfactuur kan niet worden aangemaakt zonder factuur.",
+                    "zugferd_cancellation_invoice": "Een ZugFeRd-annuleringsfactuur kan niet worden aangemaakt zonder een factuur.",
+                    "zugferd_credit_note": "Om een ZUGFeRd-kredietnota aan te maken, zijn een factuur en minstens één credititem vereist.",
+                    "zugferd_embedded_cancellation_invoice": "Een geïntegreerde ZugFeRD-annuleringsfactuur kan niet worden aangemaakt zonder een factuur.",
+                    "zugferd_embedded_credit_note": "Om een geïntegreerde ZUGFeRd-creditnota te creëren, zijn een factuur en minstens één credititem vereist."
                 },
                 "primaryAction": "Document aanmaken",
+                "showZugferd": "ZugFeRD-varianten tonen",
                 "title": "Document aanmaken"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Bonnen",
+            "confirmDeleteText": "Dit document maakt deel uit van een bestelling en kan relevant zijn voor belastingdoeleinden. Als u deze gegevens verwijdert, kan dit gevolgen hebben voor de traceerbaarheid van uw boekhouding. Zorg ervoor dat verwijdering wettelijk is toegestaan. Deze actie kan niet ongedaan worden gemaakt.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Documentnummer {number} is al toegewezen."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Een eigen document uploaden",
             "labelCancel": "Sluiten",
             "labelCreate": "Bon aanmaken",
+            "labelCreateDownload": "Aanmaken en downloaden",
             "labelCreateDownloadPdf": "Aanmaken en als pdf downloaden",
             "labelCreateSend": "Bon aanmaken en verzenden",
             "labelDeliveryDate": "Leveringsdatum",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filter",
             "titleSidebarItemFilterAffiliateCode": "Affiliate code",
             "titleSidebarItemFilterCampaignCode": "Campagnecode",
-            "titleSidebarItemRefresh": "Bijwerken"
+            "titleSidebarItemRefresh": "Bijwerken",
+            "tooltipCustomerComment": "Aanvullende informatie: {comment}",
+            "tooltipInternalComment": "Intern commentaar: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Naam",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Hier kunt u optioneel drie tot vijf trefwoorden definiëren waaronder uw product moet worden gevonden.",
             "helpTextMetaDescription": "Met de metabeschrijving bevestigt u aan uw klanten dat ze zich op de juiste plek in uw winkel bevinden. Je creëert prikkels, bouwt vertrouwen op en nodigt uit tot actie. Je moet jezelf beperken tot maximaal 155 tekens. Shopware staat een maximale lengte van 255 tekens toe.",
             "helpTextMetaTitle": "De meta titel is het belangrijkste SEO element en moet uniek zijn voor elke pagina. Je moet jezelf in lengte beperken tot maximaal 56 tekens. Uw zoekwoord moet idealiter helemaal aan de voorkant worden geplaatst.",
+            "helpTextOpenGraphDescription": "De Open Graph-beschrijving wordt gebruikt bij het delen van het product op sociale media. Indien leeg gelaten, wordt de metabeschrijving gebruikt als noodoplossing.",
+            "helpTextOpenGraphTitle": "De Open Graph-titel wordt gebruikt bij het delen van het product op sociale media. Indien leeg gelaten, wordt de metatitel gebruikt als noodoplossing.",
             "labelCanonicalProduct": "Variant voor canonieke URL",
             "labelCanonicalUrlMode": "Enkele canonieke URL gebruiken voor alle varianten",
             "labelKeywords": "SEO-zoekwoorden",
             "labelMetaDescription": "Meta description",
             "labelMetaTitle": "Meta title",
+            "labelOpenGraphDescription": "OG-beschrijving",
+            "labelOpenGraphImage": "OG-afbeelding",
+            "labelOpenGraphTitle": "OG-titel",
             "placeholderCanonicalProduct": "Selecteer een variant...",
             "placeholderKeywords": "Voer een of meer trefwoorden in...",
             "placeholderMetaDescription": "Voer een meta description in ...",
-            "placeholderMetaTitle": "Voer een meta title in ..."
+            "placeholderMetaTitle": "Voer een meta title in ...",
+            "placeholderOpenGraphDescription": "Voer een Open Graph-beschrijving in...",
+            "placeholderOpenGraphTitle": "Voer de titel van Open Graph in...",
+            "titleOpenGraph": "Grafiek openen"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Geen nabestellingen mogelijk.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Voorwaarden"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Affiliatecode",
+            "affiliateCodePlaceholder": "Voer de partnercode… in",
+            "campaignCodeLabel": "Campagnecode",
+            "campaignCodePlaceholder": "Voer campagnecode… in",
+            "cardTitle": "Tracking-codes",
+            "description": "Configureer de affiliate- en campagnecodes die worden ingebed in de product-URL's van de feeds van dit kanaal. Deze codes identificeren bestellingen en klanten die via dit Agentic Commerce-kanaal worden doorverwezen."
+        },
         "detail": {
             "activateDisable": "Wijs een theme toe voordat u het verkoopkanaal activeert en opslaat.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Reset naar standaard",
+                "errorLoadingTemplate": "Kon de standaardsjabloon niet laden.",
+                "integration": {
+                    "feedUrlLabel": "Export-URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI-verbinding",
+                            "introduction": {
+                                "description": "Dit verkoopkanaal genereert een JSONL-productfeed zodat uw producten kunnen worden weergegeven in de zoekresultaten van ChatGPT. Om dit te doen, moet je je aanmelden als handelaar en de feed-URL delen met OpenAI. Al het andere wordt uitgelegd in de stapsgewijze handleiding hieronder.",
+                                "title": "Procedure: installatie en koppelen"
+                            },
+                            "stepByStep": "<li>Meld je aan als handelaar op <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchants</a></li><li>Kopieer de export-URL (hieronder) en deel deze met OpenAI volgens de <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Product feeds docs</a></li><li>Zorg ervoor dat de export-URL openbaar toegankelijk is</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Stap voor stap"
+                },
+                "openAiSettingsTitle": "OpenAI-instellingen",
+                "resetTemplateSuccess": "De sjabloon is teruggezet naar de standaardwaarde. Gelieve op te slaan om de wijzigingen te behouden.",
+                "tabIntegration": "Integratie",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Met behulp van Google Analytics kun je de gegevens van je winkel verzamelen en analyseren. Om gebruik te kunnen maken van deze functie is een Google-account nodig. Als je nog geen Google Analytics-account hebt, kun je je hier aanmelden: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Nadat u zich succesvol hebt aangemeld, ontvangt u een tracking-ID, die u hieronder moet invullen om de integratie te activeren.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Doorverwezen klanten",
+                    "dateRanges": {
+                        "14Days": "Afgelopen 14 dagen",
+                        "180Days": "Afgelopen 180 dagen",
+                        "24Hours": "Afgelopen 24 uur",
+                        "30Days": "Afgelopen 30 dagen",
+                        "7Days": "Afgelopen 7 dagen",
+                        "yesterday": "Gisteren"
+                    },
+                    "numbers": "Aantal",
+                    "orderCardHeadline": "Doorverwezen bestellingen",
+                    "summary": "Samenvatting",
+                    "totalTurnover": "Omzet",
+                    "turnoverCardHeadline": "Doorverwezen omzet"
+                },
+                "tabInsights": "Statistieken"
             },
             "products": {
                 "buttonAddProducts": "{productCount} producten toevoegen | {productCount} product toevoegen | {productCount} producten toevoegen",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Er is al een ander document van hetzelfde type in dit verkoopkanaal.",
             "disabledSalesChannelSelect": "Kies eerst een document type.",
             "disabledTypeSelect": "Het type globale documenten kan niet worden gewijzigd.",
+            "displayTitle": "Beeldscherm:",
             "helpTextDisplayAdditionalNoteDelivery": "Komt alleen in aanmerking voor EU-lidstaten, zie ook „Instellingen > Landen”.",
-            "helpTextDisplayCompanyAddress": "Toont het bedrijfsadres onder de koptekst aan de rechterkant van het document.",
-            "helpTextDisplayDeliveryCountries": "Geeft een indicatie van „intra communitybezorging” weer op factuurdocumenten voor geselecteerde landen.",
             "helpTextDisplayDocumentInCustomerAccount": "Het document wordt weergegeven onder „Bestellingen” in het betreffende klantaccount. Houd er rekening mee dat alleen documenten die daadwerkelijk naar de klant zijn verzonden, worden weergegeven in het klantaccount.",
-            "helpTextDisplayReturnAddress": "Toont het bedrijfsadres als retouradres boven het adres van de klant in het adresblok.",
-            "helpTextPaymentDueDate": "Bijvoorbeeld: +30 dagen, +4 weken, +1 week 2 dagen",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Bank",
             "labelCompanyCity": "Stad",
             "labelCompanyCountry": "Land",
             "labelCompanyEmail": "E-mailadres",
+            "labelCompanyLogo": "Bedrijfslogo",
             "labelCompanyName": "Naam",
             "labelCompanyPhone": "Telefoonnummer",
             "labelCompanyStreet": "Straat",
             "labelCompanyUrl": "Website",
             "labelCompanyZipcode": "Postcode",
-            "labelDeliveryCountries": "Lidstaten",
             "labelDisplayAdditionalNoteDelivery": "Label „intracommunautaire levering” weergeven",
             "labelDisplayCompanyAddress": "Bedrijfsadres tonen",
             "labelDisplayCustomerVatId": "BTW-nummer van de klant weergeven",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Bestandsindelingen",
             "labelItemsPerPage": "Posities per pagina",
             "labelName": "Naam",
-            "labelOptionMedia": "Bedrijfslogo",
             "labelPageOrientation": "Pagina-indeling",
             "labelPageSize": "Paginaformaat",
             "labelPaymentDueDate": "Vervaldatum van betaling",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Belastingdienst",
             "labelType": "Documenttype",
             "labelVatId": "BTW Reg.nr.",
-            "messageSaveSuccess": "Het document \"{name}\" is opgeslagen.",
-            "placeholderDisplayDeliveryCountries": "Zoek en voeg landen toe die geldig zijn voor intracommunautaire levering...",
+            "pageOrientationOptions": {
+                "landscape": "Landschap",
+                "portrait": "Portret"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Juridisch",
+                "letter": "Brief"
+            },
+            "placeholderBankBic": "Voer BIC in...",
+            "placeholderBankIban": "IBAN invoeren...",
+            "placeholderBankName": "Voer de banknaam in...",
+            "placeholderCompanyCity": "Plaats invoeren ...",
+            "placeholderCompanyCountry": "Selecteer een land...",
+            "placeholderCompanyEmail": "Voer een e-mailadres in...",
+            "placeholderCompanyName": "Voer de bedrijfsnaam in...",
+            "placeholderCompanyPhone": "Voor telefoonnummer in...",
+            "placeholderCompanyStreet": "Voer een straatnaam in...",
+            "placeholderCompanyUrl": "Ga naar de website...",
+            "placeholderCompanyZipcode": "Postcode invoeren ...",
+            "placeholderExecutiveDirector": "Voer bedrijfsleider in...",
+            "placeholderFileNamePrefix": "Prefix invoeren …",
+            "placeholderFileNameSuffix": "Suffix invoeren …",
+            "placeholderFileTypes": "Selecteer bestandsindelingen...",
+            "placeholderItemsPerPage": "Voer het aantal items per pagina in...",
             "placeholderName": "Naam invoeren …",
+            "placeholderPageOrientation": "Selecteer een paginarichting...",
+            "placeholderPageSize": "Selecteer een pagina-indeling...",
+            "placeholderPaymentDueDate": "Voer de vervaldatum van de betaling in...",
+            "placeholderPlaceOfFulfillment": "Voer de plaats van uitvoering in...",
+            "placeholderPlaceOfJurisdiction": "Plaats van jurisdictie invoeren...",
+            "placeholderSalesChannel": "Selecteer een verkoopkanaal...",
+            "placeholderTaxNumber": "Voer het belastingnummer in...",
+            "placeholderTaxOffice": "Voer het belastingkantoor in...",
+            "placeholderType": "Selecteer een documenttype...",
+            "placeholderVatId": "Voer het btw-nummer in...",
             "textHeadline": "Nieuw document"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Toewijzing",
             "columnName": "Naam",
             "columnType": "Type",
-            "columnUsedIn": "Gebruikt voor:",
             "contextMenuEdit": "Bewerken",
             "global": "Globaal",
             "messageDeleteSuccess": "Het document \"{name}\" is verwijderd.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Weigeren",
+                "give-consent": "Toestemming geven",
                 "save-preferences": "Voorkeuren opslaan",
                 "share-all-data": "Alles delen",
                 "share-nothing": "Niets delen"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/en/gegevens over het gebruik van gegevens",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Zie {data-use-details} en onze {privacy-policy}voor meer informatie.",
-                "privacy-policy": {
-                    "label": "Privacybeleid",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Door winkel- en gebruikersgegevens te delen, helpt u ons te begrijpen hoe de administratie wordt gebruikt en verbeteringen te ontwikkelen die uw dagelijkse werk eenvoudiger maken.",
-            "opt-out-info": "Je kunt je op elk gewenst moment afmelden via de instellingen en de profielinstellingen.",
+            "opt-out-info": {
+                "profile": "Je profiel — Privacyvoorkeuren",
+                "settings": "Instellingen — Privacy",
+                "snippet": "Je kunt je voorkeuren op elk gewenst moment wijzigen: beheer de instellingen voor winkelgegevens onder {settings}en de instellingen voor persoonlijke gegevens onder {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Voldoet aan de AVG",
                 "no-third-party": "Er worden geen gegevens gedeeld met derden",
@@ -9899,6 +10059,12 @@
                     "order": "orders",
                     "store": "gegevens opslaan"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "hier",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Diagnostische gegevens</strong> binnen Shopware verwijst naar de informatie met betrekking tot de systeemstatus, fouten en prestatiestatistieken van het platform. Dit omvat details zoals systeemlogboeken, foutmeldingen, responstijden van de server en andere technische indicatoren. Door deze gegevens te analyseren, kunnen we snel oplossingen voor veelvoorkomende problemen of kwetsbaarheden identificeren, aanpakken en implementeren, waarbij de integriteit van het platform behouden blijft.",
                     "order": "<strong>Bestelgegevens</strong> binnen Shopware verwijst naar de gedetailleerde informatie over bestellingen van klanten die op het platform zijn geplaatst. Dit omvat specifieke informatie zoals bestelde producten, hoeveelheden, prijzen, herkomst, betaalmethoden, verzending, enz. We analyseren deze gegevens om inzicht te krijgen in trends en patronen die ons helpen om functies te verbeteren en nieuwe diensten te ontwikkelen die zijn ontworpen om het succes van uw bedrijf te verbeteren. We verzamelen geen persoonlijke gegevens van uw klanten die kunnen worden gebruikt om één persoon te identificeren.",
@@ -9912,6 +10078,12 @@
                 "description": "We gebruiken {data} over hoe u omgaat met de administratie om de bruikbaarheid en prestaties te verbeteren.",
                 "emphasizes": {
                     "data": "gegevens"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Privacybeleid",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Gebruiksgegevens</strong> binnen Shopware hebben betrekking op de manier waarop beheerders en winkelbezoekers omgaan met ons platform. Dit omvat details zoals interacties met verschillende Shopware-beheermodules, bekeken pagina's, duur van bezoeken, klikpaden en gebruikersacties binnen het platform en de winkel. Door de gebruiksgegevens te evalueren, kunnen we delen van het platform identificeren die vaak worden bezocht of vermeden om de acceptatie van functies te meten, wat kan leiden tot mogelijke verbeteringen in lay-out, ontwerp en functionaliteit."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Schakel het item \"{name}\" in",
         "toggleTreeItem": "Schakel het boomitem \"{name}\" in"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Mee eens",
-        "checkListDataSharing": {
-            "gdprCompliant": "We voldoen aan de AVG",
-            "helpText": {
-                "shareDataHelpText": "<strong>„Delen”</strong> verwijst naar de openbaarmaking van gegevens voor de eigen doeleinden van de ontvangende partij; we kunnen gegevens bekendmaken aan onze serviceproviders."
-            },
-            "personalData": "We verzamelen geen persoonlijke gegevens",
-            "securelyProcessed": "Je gegevens worden veilig verwerkt en opgeslagen",
-            "thirdParty": "We delen uw gegevens niet met derden voor hun eigen doeleinden",
-            "title": "We kunnen u verzekeren dat:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostische gegevens",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Diagnostische gegevens</strong> binnen Shopware verwijzen naar de informatie met betrekking tot de status van het systeem, fouten en prestatiestatistieken van het platform. Dit omvat details zoals systeemlogboeken, foutmeldingen, reactietijden van de server en andere technische indicatoren. Door deze gegevens te analyseren, kunnen we snel oplossingen voor veelvoorkomende problemen of kwetsbaarheden identificeren, aanpakken en implementeren, waarbij de integriteit van het platform behouden blijft.",
-                "orderDataHelp": "<strong>Bestelgegevens</strong> binnen Shopware verwijzen naar de gedetailleerde informatie over bestellingen van klanten die op het platform zijn geplaatst. Dit omvat specifieke informatie zoals bestelde producten, hoeveelheden, prijzen, herkomst, betalingsmethoden, verzending, enz. We analyseren deze gegevens om inzicht te krijgen in trends en patronen die ons helpen om functies te verbeteren en nieuwe diensten te ontwikkelen die zijn ontworpen om uw zakelijke succes te verbeteren. We verzamelen geen persoonlijke gegevens van uw klanten die kunnen worden gebruikt om één persoon te identificeren.",
-                "storeDataHelp": "<strong>Winkelgegevens</strong> binnen Shopware hebben betrekking op alle informatie met betrekking tot uw online winkel. Zoals producten, aanbiedingen, prijzen, afbeeldingen, beschrijvingen, enz. en metagegevens over de inrichting van je winkel, zoals thema's en plug-ins. We verzamelen geen persoonlijke gegevens die kunnen worden gebruikt om een beheerder of een bezoeker van een winkel te identificeren. Met behulp van geaggregeerde winkelgegevens kunnen we via machine learning inzichten verschaffen, zoals trends in opkomende markten, zodat u productaanbiedingen of marketingstrategieën dienovereenkomstig kunt aanpassen.",
-                "usageDataHelp": "<strong>Gebruiksgegevens</strong> binnen Shopware hebben betrekking op de informatie met betrekking tot de manier waarop beheerders en bezoekers van de webwinkel omgaan met ons platform. Dit omvat details zoals interacties met verschillende Shopware-beheermodules, bekeken pagina's, duur van bezoeken, klikpaden en gebruikersacties binnen het platform en de webwinkel. Door de gebruiksgegevens te evalueren, kunnen we gebieden van het platform identificeren die vaak worden bezocht of vermeden om de acceptatie van functies te meten, wat kan leiden tot mogelijke verbeteringen in de lay-out, het ontwerp en de functionaliteit. We verzamelen geen persoonlijke gegevens die kunnen worden gebruikt om een beheerder of winkelbezoekers te identificeren."
-            },
-            "orderData": "Bestelgegevens",
-            "storeData": "Gegevens opslaan",
-            "usageData": "Het delen van gegevens"
-        },
-        "confirmAuthorization": "Door op „Akkoord” te klikken, bevestigt u dat u bevoegd bent om deze overeenkomst namens uw bedrijf aan te gaan.",
-        "declineDataCollection": "Op dit moment niet",
-        "fullDetailsDescription": "Alle details van deze overeenkomst zijn te vinden op {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Je kunt je altijd afmelden voor het delen van gegevens. Geef samen met ons vorm aan de toekomst van e-commerce door uw gegevens met ons te delen!",
-        "headline": "De toekomst van e-commerce vormgeven",
-        "improvingDescription": "We verbeteren voortdurend de diensten die we aan u leveren. Om de volgende stap te zetten, analyseren we uw gegevens met behulp van technieken zoals machine learning (bijv. patroonherkenning) om ons product te ontwikkelen en te verbeteren. Uw gegevens worden ook gebruikt om datagestuurde services te ontwikkelen die zijn ontworpen om het succes van uw bedrijf te vergroten.",
-        "improvingDescriptionNotAccepted": "We verbeteren voortdurend de diensten die we aan u leveren. Om de volgende stap te zetten, willen we uw gegevens analyseren met behulp van technieken zoals machine learning (bijv. patroonherkenning) om ons product te ontwikkelen en te verbeteren. Uw gegevens worden ook gebruikt om datagestuurde services te ontwikkelen die zijn ontworpen om het succes van uw bedrijf te vergroten.",
-        "privacyPolicy": "shopware.com/en/gegevens over het gebruik van gegevens",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "U kunt op elk moment de overeenkomst aangaan en zo bijdragen aan en profiteren van de voortdurende evolutie van onze diensten, door het delen van gegevens toe te staan in uw {link}",
-        "settings": {
-            "deactivateDataCollection": "Het delen van gegevens uitschakelen",
-            "sharingInformation": "Je deelt gegevens met ons"
-        },
-        "thankYouMessage": "{thanksForParticipation} U kunt zich op elk moment afmelden voor deze overeenkomst en zo stoppen met bijdragen aan en profiteren van de voortdurende ontwikkeling van onze diensten door het delen van gegevens uit te schakelen in uw {link}",
-        "thanksForParticipation": "Bedankt voor je deelname!",
-        "togglePath": "Instellingen"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Gebruikers & rechten"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Uniforme weegschaal vergrendelen",
+        "unlock-uniform-scale": "Ontgrendelen van een uniforme schaal"
+    },
     "sw-wizard": {
         "backButton": "Terug",
-        "closeButton": "Sluiten",
         "finishButton": "Finish",
         "nextButton": "Volgende"
     }

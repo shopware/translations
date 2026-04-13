@@ -317,6 +317,7 @@
             "newsletter_update": "Posodobljeno prijavo na novice",
             "product_export_log": "Izveden izvoz izdelka",
             "review_form_send": "Poslan obrazec za pregled",
+            "revocation_request_sent": "Obrazec za zahtevo za preklic je bil poslan.",
             "state_enter_order_delivery_state_cancelled": "Pošiljka vstopi v status preklicanega",
             "state_enter_order_delivery_state_open": "Pošiljka začne status odprtega",
             "state_enter_order_delivery_state_returned": "Pošiljka vnese status vrne",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Izberite datoteko",
             "caption": "Povlecite datoteko tukaj za prenos",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Izbrana datoteka \"{name}\" ima nepodprto datotečno razširitev. Prosimo, uporabite eno od naslednjih razširitev datotek: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Izbrana datoteka \"{name}\" je prevelika za nalaganje. Velikost datoteke ne sme presegati {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Ni najdenih dokumentov",
                 "title": "Bulk urejanje - Uspeh"
             },
-            "warningText": "Počakajte, da se dokonča večnamensko urejanje. To lahko traja nekaj časa. Če zaprete zavihek brskalnika ali prezgodaj prekličete postopek, ne bodo uporabljene vse spremembe. Večkratno urejanje lahko kadar koli znova zaženete."
+            "warningText": "Počakajte, da se dokonča večnamensko urejanje. To lahko traja nekaj časa. Če zaprete zavihek brskalnika ali prezgodaj prekličete postopek, ne bodo uporabljene vse spremembe. Večkratno urejanje lahko kadar koli znova zaženete.",
+            "warningTextDocumentDeletion": "Dokumenti so del naročila in so lahko pomembni za davčne namene. Njihovo brisanje lahko vpliva na sledljivost vaših računovodskih evidenc. Prepričajte se, da je brisanje zakonsko dovoljeno."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Dokumenti",
+                "deleteDocuments": {
+                    "helpText": "S to možnostjo bodo izbrisane vse izbrane vrste dokumentov.",
+                    "label": "Izbriši: Dokumenti"
+                },
                 "downloadDocuments": {
                     "helpText": "S to možnostjo so na voljo najnovejši dokumenti, ki so na voljo za prenos. Več dokumentov se združi v isto datoteko. Prenos je na voljo po končani večkratni spremembi.",
                     "label": "Prenos: Dokumenti"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Strani z novicami",
                     "privacyPage": "Strani za zasebnost",
                     "revocationPage": "Obvestila o preklicu",
+                    "revocationRequestPage": "Obrazec za zahtevo za preklic",
                     "shippingPaymentInfoPage": "Podatki o plačilu in pošiljanju",
                     "tosPage": "TOS strani"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Naslov",
                         "type": "Vrsta obrazca",
                         "typeContact": "Kontakt",
-                        "typeNewsletter": "Newsletter"
+                        "typeNewsletter": "Newsletter",
+                        "typeRevocationRequest": "Preklic"
                     },
                     "placeholder": {
                         "type": "Izberite vrsto obrazca..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Ukrep",
+                        "comment": "Komentar",
+                        "contractNumber": "Številka pogodbe (številka naročila, številka naročnine, ... ) *    ",
                         "email": "E-poštni naslov*",
                         "firstName": "Ime",
                         "lastName": "Priimek",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam Erat, sed diam voluptua. Na vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Št. {criteriaName}",
         "placeholder": "Vse"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kanal za izvoz",
+                        "placeholder": "Izberite kanale za izvoz…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kanal za izvoz"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Kanal za izvoz",
+                        "placeholder": "Izberite kanale za izvoz…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Kanal za izvoz"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Dodaja stolpce in filtre izvoznih kanalov na sezname naročil in strank.",
+            "mainMenuItemGeneral": "Sledenje izvoznim kanalom"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Razširitev \"{name}\" ni združljiva s to različico Shopware",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Vrsta",
                 "labelRecipient": "Prejemnik",
                 "labelReplyTo": "Naslov za odgovor",
+                "labelRevocationRequestFormMail": "Poizvedovalec",
                 "labelSenderName": "Ime pošiljatelja",
                 "labelSubject": "Predmet",
                 "placeholderDescription": "Vnesite opis...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Vnesite ime pravila...",
                 "placeholderPriority": "Vnesite prednost pravila...",
                 "placeholderType": "Izberite vrsto pravila...",
+                "productStatesConditionWarning": "Pogoj« Element with product state »je zastarel in bo odstranjen v verziji 6.8. Namesto tega uporabite »Artikel z vrsto izdelka«.",
                 "tabDetail": "Splošno",
                 "tabRule": "Pogoj"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Vrnjen",
             "returnedPartially": "Vrnjeno delno",
             "reviewForm": "Pregled izdelka",
+            "revocationRequestCustomer": "Zahteva za preklic poslana",
+            "revocationRequestMerchant": "Prejeta zahteva za preklic",
             "send": "Pošlji",
             "sent": "Poslano",
             "shipped": "Odpremljeno",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Karet (^)",
             "categoriesLabel": "Kategorije",
             "closeProfileLabel": "Zapri profil",
-            "closeViolation": "Zapri",
             "commasLabel": "Vejica (,)",
             "configuratorSettingLabel": "Nastavitve konfiguracije variant",
             "copyOfLabel": "Kopija:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Uvoz"
             },
             "updateEntitiesLabel": "Posodobite obstoječe podatke",
-            "violationMessage": "Vaš profil še ni veljaven. Če želite shraniti profil, morate dodati preslikave v zahtevana polja:"
+            "violationModal": {
+                "duplicateMappings": "V naslednjih poljih imate <strong>podvojene preslikave</strong> . Če želite shraniti profil, odstranite dvojnike:",
+                "missingRequiredFields": "Če želite shraniti profil, morate dodati preslikave v polja <strong>obvezna</strong> , prikazana spodaj:",
+                "title": "Vaš profil še ni veljaven"
+            }
         },
         "progress": {
             "startExportLabel": "Začetek izvoza",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Shrani v medijih"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Premakni predmet",
-                "rotate-tooltip": "Zavrtite predmet",
-                "scale-tooltip": "Objekt lestvice"
-            },
-            "saveChanges": "Shrani spremembe",
-            "titleModal": "Urejevalnik modelov"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Nazaj"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Premakni predmet",
+            "rotate-tooltip": "Zavrtite predmet",
+            "scale-tooltip": "Objekt lestvice"
+        },
+        "open-model-editor-tooltip": "Odpri urejevalnik modelov",
+        "properties": {
+            "transformation": {
+                "label": "Transformacija",
+                "position": {
+                    "label": "Položaj"
+                },
+                "rotation": {
+                    "label": "Vrtenje"
+                },
+                "scale": {
+                    "label": "Lestvica"
+                }
+            }
+        },
+        "titleModal": "Urejevalnik modelov"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Če želite ustvariti dobroimetje, najprej dodajte kreditno postavko.",
-                    "storno": "Računa za odpoved ni mogoče ustvariti brez računa."
+                    "storno": "Računa za odpoved ni mogoče ustvariti brez računa.",
+                    "zugferd_cancellation_invoice": "Računa za odpoved ZugFerd ni mogoče ustvariti brez računa.",
+                    "zugferd_credit_note": "Če želite ustvariti kreditno obvestilo ZugFerd, je potreben račun in vsaj ena kreditna postavka.",
+                    "zugferd_embedded_cancellation_invoice": "Vdelanega računa za odpoved ZugFerd ni mogoče ustvariti brez računa.",
+                    "zugferd_embedded_credit_note": "Če želite ustvariti vdelano kreditno obvestilo ZugFerd, potrebujete račun in vsaj eno kreditno postavko."
                 },
                 "primaryAction": "Ustvarjanje dokumenta",
+                "showZugferd": "Pokaži različice Zugferd",
                 "title": "Ustvarjanje dokumenta"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Dokumenti",
+            "confirmDeleteText": "Ta dokument je del naročila in je lahko pomemben za davčne namene. Če ga izbrišete, lahko vpliva na sledljivost vaših računovodskih evidenc. Prepričajte se, da je brisanje zakonsko dovoljeno. Tega dejanja ni mogoče razveljaviti.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Številka dokumenta {number} je že bila dodeljena."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Naloži dokument po meri",
             "labelCancel": "Zapri",
             "labelCreate": "Ustvarite",
+            "labelCreateDownload": "Ustvarite in prenesite",
             "labelCreateDownloadPdf": "Ustvarjanje in prenos datotek PDF",
             "labelCreateSend": "Ustvarite in pošljite",
             "labelDeliveryDate": "Datum dobave",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filter",
             "titleSidebarItemFilterAffiliateCode": "Affiliate koda",
             "titleSidebarItemFilterCampaignCode": "Koda kampanje",
-            "titleSidebarItemRefresh": "Osveži"
+            "titleSidebarItemRefresh": "Osveži",
+            "tooltipCustomerComment": "Dodatne informacije: {comment}",
+            "tooltipInternalComment": "Notranji komentar: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Ime",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Tukaj lahko po želji določite tri do pet ključnih besed, pod katerimi naj bo vaš izdelek najden.",
             "helpTextMetaDescription": "Z meta opisom svojim strankam potrjujete, da so na pravem mestu v vaši trgovini. Ustvarjate spodbude, gradite zaupanje in povabite k akciji. Omejite se na največ 155 znakov. Shopware omogoča največjo dolžino 255 znakov.",
             "helpTextMetaTitle": "Meta naslov je najpomembnejši SEO element in mora biti edinstven za vsako stran. Dolžino se omejite na največ 56 znakov. Vaša ključna beseda bi morala biti v idealnem primeru postavljena na samem spredaj.",
+            "helpTextOpenGraphDescription": "Opis Open Graph se uporablja pri skupni rabi izdelka na družbenih omrežjih. Če ostane prazen, bo meta opis uporabljen kot rezervni dodatek.",
+            "helpTextOpenGraphTitle": "Naslov Open Graph se uporablja pri skupni rabi izdelka na družbenih omrežjih. Če ostane prazen, bo meta naslov uporabljen kot rezervni dodatek.",
             "labelCanonicalProduct": "Varianta za kanonični URL",
             "labelCanonicalUrlMode": "Uporaba enojnega kanoničnega URL-ja za vse različice",
             "labelKeywords": "SEO ključne besede",
             "labelMetaDescription": "Meta opis",
             "labelMetaTitle": "Meta naslov",
+            "labelOpenGraphDescription": "OG opis",
+            "labelOpenGraphImage": "OG slika",
+            "labelOpenGraphTitle": "OG naslov",
             "placeholderCanonicalProduct": "Izberite različico...",
             "placeholderKeywords": "Vnesite eno ali več ključnih besed...",
             "placeholderMetaDescription": "Vnesite meta opis...",
-            "placeholderMetaTitle": "Vnesite meta naslov..."
+            "placeholderMetaTitle": "Vnesite meta naslov...",
+            "placeholderOpenGraphDescription": "Vnesite opis odprtega grafa...",
+            "placeholderOpenGraphTitle": "Vnesite naslov Open Graph...",
+            "titleOpenGraph": "Odpri graf"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Nahrbtniki zanikal.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Pogoji"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Affiliate koda",
+            "affiliateCodePlaceholder": "Vnesite partnersko kodo…",
+            "campaignCodeLabel": "Koda kampanje",
+            "campaignCodePlaceholder": "Vnesite kodo oglaševalske akcije…",
+            "cardTitle": "Kode za sledenje",
+            "description": "Konfigurirajte partnerske kode in kode oglaševalskih akcij, ki bodo vdelane v URL-je izdelkov virov tega kanala. Te kode identificirajo naročila in stranke, napotirane s tega kanala Agentic Commerce."
+        },
         "detail": {
             "activateDisable": "Preden aktivirate in shranite prodajni kanal, dodelite temo.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Ponastavi na privzeto",
+                "errorLoadingTemplate": "Privzete predloge ni mogoče naložiti.",
+                "integration": {
+                    "feedUrlLabel": "Izvozi URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Povezava OpenAI",
+                            "introduction": {
+                                "description": "Ta prodajni kanal ustvari vir izdelkov JSONL, tako da se lahko vaši izdelki prikažejo v rezultatih iskanja ChatGPT. Če želite to narediti, se morate prijaviti kot trgovec in deliti URL vira z OpenAI. Vse ostalo je razloženo v spodnjem vodniku po korakih.",
+                                "title": "Kako se: Nastavitev in povezava"
+                            },
+                            "stepByStep": "<li>Prijavite se kot trgovec na <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/commerciants</a></li><li>Kopirajte izvozni URL (spodaj) in ga delite z OpenAI v skladu s <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">dokumentacijo o virih izdelkov</a></li><li>Prepričajte se, da je URL za izvoz javno dostopen</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Korak za korakom"
+                },
+                "openAiSettingsTitle": "Nastavitve OpenAI",
+                "resetTemplateSuccess": "Predloga je bila ponastavljena na privzeto. Prosimo, shranite, da ohranite spremembe.",
+                "tabIntegration": "Vključevanje",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "S pomočjo storitve Google Analytics lahko zbirate in analizirate podatke svoje trgovine. Za uporabo te funkcije je potreben Google Račun. Če še nimate računa za Google Analytics, se boste morda želeli prijaviti tukaj: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Po uspešni prijavi boste prejeli ID za sledenje, ki ga morate izpolniti spodaj, da aktivirate integracijo.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Navedene stranke",
+                    "dateRanges": {
+                        "14Days": "Zadnjih 14 dni",
+                        "180Days": "Zadnjih 180 dni",
+                        "24Hours": "Zadnjih 24 ur",
+                        "30Days": "Zadnjih 30 dni",
+                        "7Days": "Zadnjih 7 dni",
+                        "yesterday": "Včeraj"
+                    },
+                    "numbers": "Štetje",
+                    "orderCardHeadline": "Navedena naročila",
+                    "summary": "Povzetek",
+                    "totalTurnover": "Prihodki",
+                    "turnoverCardHeadline": "Navedeni promet"
+                },
+                "tabInsights": "Statistika"
             },
             "products": {
                 "buttonAddProducts": "Dodaj {productCount} izdelkov | Dodaj {productCount} izdelek | Dodaj {productCount} izdelkov",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "V tem prodajnem kanalu že obstaja drug dokument iste vrste.",
             "disabledSalesChannelSelect": "Najprej izberite vrsto dokumenta.",
             "disabledTypeSelect": "Vrsta globalnih dokumentov ni mogoče spremeniti.",
+            "displayTitle": "Prikaz:",
             "helpTextDisplayAdditionalNoteDelivery": "Upravičeno samo za države članice EU, glejte tudi »Nastavitve > Države«.",
-            "helpTextDisplayCompanyAddress": "Prikaže naslov podjetja pod glavo na desni strani dokumenta.",
-            "helpTextDisplayDeliveryCountries": "Prikaže navedbo »dostava znotraj skupnosti« na dokumentih na računu za izbrane države.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokument je prikazan v razdelku« Naročila »v ustreznem računu stranke. Upoštevajte, da so v računu stranke prikazani samo dokumenti, ki so bili dejansko poslani stranki.",
-            "helpTextDisplayReturnAddress": "Prikaže naslov podjetja kot povratni naslov nad naslovom stranke v naslovnem bloku.",
-            "helpTextPaymentDueDate": "Na primer: +30 dni, +4 tedna, +1 teden 2 dni",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Banka",
             "labelCompanyCity": "Mesto",
             "labelCompanyCountry": "Država",
             "labelCompanyEmail": "E-poštni naslov",
+            "labelCompanyLogo": "Logotip podjetja",
             "labelCompanyName": "Ime",
             "labelCompanyPhone": "Telefonska številka",
             "labelCompanyStreet": "Ulica",
             "labelCompanyUrl": "Spletna stran",
             "labelCompanyZipcode": "Poštna številka",
-            "labelDeliveryCountries": "Države članice",
             "labelDisplayAdditionalNoteDelivery": "Prikaži oznako »Dostava znotraj Skupnosti«",
             "labelDisplayCompanyAddress": "Prikažite naslov podjetja",
             "labelDisplayCustomerVatId": "Prikaži ID DDV stranke",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Oblike datotek",
             "labelItemsPerPage": "Elementi na stran",
             "labelName": "Tehnično ime",
-            "labelOptionMedia": "Logotip podjetja",
             "labelPageOrientation": "Usmerjenost strani",
             "labelPageSize": "Oblika strani",
             "labelPaymentDueDate": "Datum zapadlosti plačila",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Davčni urad",
             "labelType": "Vrsta dokumenta",
             "labelVatId": "Uredba o DDV št.",
-            "messageSaveSuccess": "Dokument \"{name}\" je bil shranjen.",
-            "placeholderDisplayDeliveryCountries": "Iskanje in dodajanje držav, veljavnih za dostavo znotraj Skupnosti...",
+            "pageOrientationOptions": {
+                "landscape": "Pokrajina",
+                "portrait": "Portret"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Pravno",
+                "letter": "Pismo"
+            },
+            "placeholderBankBic": "Vnesite BIC...",
+            "placeholderBankIban": "Vnesite IBAN...",
+            "placeholderBankName": "Vnesite ime banke...",
+            "placeholderCompanyCity": "Vstopite v mesto...",
+            "placeholderCompanyCountry": "Izberite državo...",
+            "placeholderCompanyEmail": "Vnesite e-poštni naslov...",
+            "placeholderCompanyName": "Vnesite ime podjetja...",
+            "placeholderCompanyPhone": "Vnesite telefonsko številko...",
+            "placeholderCompanyStreet": "Vstopite v ulico",
+            "placeholderCompanyUrl": "Vnesite spletno stran...",
+            "placeholderCompanyZipcode": "Vnesite poštno številko...",
+            "placeholderExecutiveDirector": "Vnesite poslovnega direktorja...",
+            "placeholderFileNamePrefix": "Vnesite predpono...",
+            "placeholderFileNameSuffix": "Vnesite pripono...",
+            "placeholderFileTypes": "Izberite oblike datotek...",
+            "placeholderItemsPerPage": "Vnesite število elementov na stran...",
             "placeholderName": "Vnesite ime...",
+            "placeholderPageOrientation": "Izberite usmeritev strani...",
+            "placeholderPageSize": "Izberite obliko strani...",
+            "placeholderPaymentDueDate": "Vnesite rok plačila...",
+            "placeholderPlaceOfFulfillment": "Vnesite kraj izpolnitve...",
+            "placeholderPlaceOfJurisdiction": "Vnesite kraj pristojnosti...",
+            "placeholderSalesChannel": "Izberite prodajni kanal...",
+            "placeholderTaxNumber": "Vnesite davčno številko...",
+            "placeholderTaxOffice": "Vstopite v davčni urad...",
+            "placeholderType": "Izberite vrsto dokumenta...",
+            "placeholderVatId": "Vnesite ID DDV...",
             "textHeadline": "Nov dokument"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Dodelitev",
             "columnName": "Tehnično ime",
             "columnType": "Vrsta",
-            "columnUsedIn": "Dodeljeno",
             "contextMenuEdit": "Uredi",
             "global": "Globalni",
             "messageDeleteSuccess": "Dokument \"{name}\" je bil izbrisan.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Zavrnitev",
+                "give-consent": "Dajte soglasje",
                 "save-preferences": "Shrani nastavitve",
                 "share-all-data": "Delite vse",
                 "share-nothing": "Ne delite ničesar"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/sl/podatkov-uporabe-podrobnosti",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Za vse podrobnosti glejte {data-use-details} in naš {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Politika zasebnosti",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Z skupno rabo podatkov o trgovini in uporabnikih nam pomagate razumeti, kako se uporablja uprava, in razvijemo izboljšave, ki olajšajo vaše vsakodnevno delo.",
-            "opt-out-info": "Kadar koli se lahko odjavite prek nastavitev in nastavitev profila.",
+            "opt-out-info": {
+                "profile": "Vaš profil — Nastavitve zasebnosti",
+                "settings": "Nastavitve — Zasebnost",
+                "snippet": "Kadar koli lahko spremenite svoje nastavitve: upravljajte nastavitve podatkov trgovine pod {settings}in nastavitve osebnih podatkov pod {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Skladno z GDPR",
                 "no-third-party": "Podatki se ne delijo s tretjimi osebami",
@@ -9899,6 +10059,12 @@
                     "order": "naročila",
                     "store": "shranjevanje podatkov"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "tukaj",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Diagnostični podatki</strong> znotraj Shopware se nanašajo na informacije, povezane z zdravstvenim stanjem sistema, napakami in meritvami uspešnosti platforme. To vključuje podrobnosti, kot so sistemski dnevniki, sporočila o napakah, odzivni časi strežnika in drugi tehnični kazalniki. Analiza teh podatkov nam pomaga hitro prepoznati, odpraviti in uvajati popravke pogostih težav ali ranljivosti ter ohraniti celovitost platforme.",
                     "order": "<strong>Podatki o naročilu</strong> znotraj Shopware se nanašajo na podrobne informacije o naročilih strank, oddanih na platformi. To vključuje posebnosti, kot so naročeni izdelki, količine, cene, poreklo, načini plačila, pošiljka itd. Te podatke analiziramo, da bi razumeli trende in vzorce, ki nam pomagajo izboljšati funkcije in razviti nove storitve, namenjene izboljšanju vašega poslovnega uspeha. Ne zbiramo osebnih podatkov vaših strank, ki jih je mogoče uporabiti za identifikacijo posamezne osebe.",
@@ -9912,6 +10078,12 @@
                 "description": "Uporabljamo {data} o tem, kako komunicirate z administracijo, da izboljšamo njeno uporabnost in delovanje.",
                 "emphasizes": {
                     "data": "podatkov"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Politika zasebnosti",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Podatki o uporabi</strong> znotraj Shopware se nanašajo na informacije, povezane s tem, kako skrbniški uporabniki in obiskovalci trgovine komunicirajo z našo platformo. To vključuje podrobnosti, kot so interakcije z različnimi skrbniškimi moduli Shopware, ogledane strani, trajanje obiskov, poti klikov in dejanja uporabnikov znotraj platforme in prodajalne. Z ocenjevanjem podatkov o uporabi lahko prepoznamo področja platforme, ki jih pogosto obiskujemo ali se izogibamo za merjenje sprejetja funkcij, kar vodi do potencialnih izboljšav postavitve, oblikovanja in funkcionalnosti."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Preklopi element \"{name}«",
         "toggleTreeItem": "Preklopi element drevesa \"{name}«"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Strinjam se",
-        "checkListDataSharing": {
-            "gdprCompliant": "Smo skladni z GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>»Skupna raba«</strong> se nanaša na razkritje podatkov za lastne namene prejemnika; podatke lahko razkrijemo našim ponudnikom storitev."
-            },
-            "personalData": "Ne zbiramo osebnih podatkov",
-            "securelyProcessed": "Vaši podatki so varno obdelani in shranjeni",
-            "thirdParty": "Vaših podatkov ne delimo s tretjimi osebami za njihove lastne namene",
-            "title": "Zagotavljamo vam, da:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostični podatki",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Diagnostični podatki</strong> znotraj Shopware se nanašajo na informacije, povezane z zdravstvenim stanjem sistema, napakami in meritvami uspešnosti platforme. To vključuje podrobnosti, kot so sistemski dnevniki, sporočila o napakah, odzivni časi strežnika in drugi tehnični kazalniki. Analiza teh podatkov nam pomaga hitro prepoznati, odpraviti in uvesti popravke pogostih težav ali ranljivosti ter ohraniti celovitost platforme.",
-                "orderDataHelp": "<strong>Podatki o naročilu</strong> znotraj Shopware se nanašajo na podrobne informacije o naročilih strank, oddanih na platformi. To vključuje posebnosti, kot so naročeni izdelki, količine, cene, izvor, načini plačila, pošiljka itd. Te podatke analiziramo, da razumemo trende in vzorce, ki nam pomagajo izboljšati funkcije in razviti nove storitve, namenjene izboljšanju vašega poslovnega uspeha. Ne zbiramo osebnih podatkov vaših strank, ki jih je mogoče uporabiti za identifikacijo posamezne osebe.",
-                "storeDataHelp": "<strong>Podatki o shranjevanju</strong> znotraj Shopware se nanašajo na vse informacije, povezane z vašo spletno trgovino. Na primer izdelki, oglasi, cene, slike, opisi itd. ter metapodatki o nastavitvi vaše trgovine, kot so teme in vtičniki. Ne zbiramo osebnih podatkov, ki bi jih lahko uporabili za identifikacijo skrbniškega uporabnika ali obiskovalca trgovine. Z zbirnimi podatki o trgovinah lahko zagotovimo vpoglede prek strojnega učenja, kot so nastajajoči tržni trendi, kar vam omogoča, da ustrezno prilagodite ponudbo izdelkov ali tržne strategije.",
-                "usageDataHelp": "<strong>Podatki o uporabi</strong> znotraj Shopware se nanašajo na informacije, povezane s tem, kako skrbniški uporabniki in obiskovalci trgovine komunicirajo z našo platformo. To vključuje podrobnosti, kot so interakcije z različnimi skrbniškimi moduli Shopware, ogledane strani, trajanje obiskov, poti klikov in dejanja uporabnikov znotraj platforme in prodajalne. Z ocenjevanjem podatkov o uporabi lahko prepoznamo področja platforme, ki jih pogosto obiskujemo ali se izogibamo za merjenje sprejetja funkcij, kar vodi do potencialnih izboljšav postavitve, oblikovanja in funkcionalnosti. Ne zbiramo osebnih podatkov, ki bi jih lahko uporabili za identifikacijo skrbnika ali obiskovalcev trgovine."
-            },
-            "orderData": "Podatki o naročilu",
-            "storeData": "Shranjevanje podatkov",
-            "usageData": "Skupna raba podatkov"
-        },
-        "confirmAuthorization": "S klikom na« Strinjam se »potrjujete, da ste pooblaščeni za sklenitev te pogodbe v imenu vašega podjetja.",
-        "declineDataCollection": "Trenutno ne",
-        "fullDetailsDescription": "Vse podrobnosti tega sporazuma najdete na naslovu {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Vedno lahko kadar koli izključite skupno rabo podatkov. Pridružite se nam pri oblikovanju prihodnosti e-trgovine, tako da delite svoje podatke z nami!",
-        "headline": "Oblikovanje prihodnosti e-trgovine",
-        "improvingDescription": "Nenehno izboljšujemo storitve, ki vam jih ponujamo. Za naslednji korak analiziramo vaše podatke z uporabo tehnik, kot je strojno učenje (npr. prepoznavanje vzorcev) za razvoj in izboljšanje našega izdelka. Vaši podatki bodo uporabljeni tudi za razvoj storitev, ki temeljijo na podatkih, namenjenih izboljšanju vašega poslovnega uspeha.",
-        "improvingDescriptionNotAccepted": "Nenehno izboljšujemo storitve, ki vam jih ponujamo. Za naslednji korak bi radi analizirali vaše podatke z uporabo tehnik, kot je strojno učenje (npr. prepoznavanje vzorcev) za razvoj in izboljšanje našega izdelka. Vaši podatki bodo uporabljeni tudi za razvoj storitev, ki temeljijo na podatkih, namenjenih izboljšanju vašega poslovnega uspeha.",
-        "privacyPolicy": "shopware.com/sl/podatkov-uporabe-podrobnosti",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Kadarkoli lahko sklenete pogodbo in s tem prispevate k stalnemu razvoju naših storitev ter ga izkoristite, tako da omogočite skupno rabo podatkov v vašem {link}",
-        "settings": {
-            "deactivateDataCollection": "Onemogoči skupno rabo podatkov",
-            "sharingInformation": "Podatke delite z nami"
-        },
-        "thankYouMessage": "{thanksForParticipation} Kadarkoli se lahko odjavite od te pogodbe in tako prenehate prispevati k stalnemu razvoju naših storitev in ga izkoristiti, tako da onemogočite skupno rabo podatkov v vaši {link}",
-        "thanksForParticipation": "Hvala za sodelovanje!",
-        "togglePath": "Nastavitve"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Uporabniki in dovoljenja"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Zaklenite enakomerno lestvico",
+        "unlock-uniform-scale": "Odkleni enotno lestvico"
+    },
     "sw-wizard": {
         "backButton": "Nazaj",
-        "closeButton": "Zapri",
         "finishButton": "Dokončaj",
         "nextButton": "Naslednji"
     }

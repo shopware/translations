@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "API anahtarı doğru uzunluğa sahip değil ({length}/40 karakter)."
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "Geçiş Asistanı"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "Geçiş iptal edilemedi.",
@@ -29,20 +36,24 @@
         },
         "general": {
             "descriptionTextModule": "Verileri geçirmek için modül",
+            "disabledMessages": {
+                "disabled": "Geçiş bu ortamda devre dışı bırakılmıştır.",
+                "loading": "Göç şu anda devam ediyor.",
+                "noData": "Geçiş için veri yok.",
+                "noPermission": "Geçiş gerçekleştirmek için gerekli izinlere sahip değilsiniz.",
+                "noSelectedData": "Geçiş için hiçbir öğe seçilmedi.",
+                "resettingChecksum": "Kontrol toplamları şu anda sıfırlanıyor.",
+                "truncatingMigration": "Geçiş verileri şu anda kesiliyor.",
+                "unfilledPremapping": "Devamadan önce gerekli tüm eşlemeleri tamamlayın."
+            },
             "mainMenuItemGeneral": "Geçiş Asistanı",
             "tabDataSelector": "Veri seçimi",
             "tabHistory": "Tarih",
             "tabMain": "General"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "Geçiş verilerinin silinmesi, günlük girdilerini, medya dosyası girişlerini, geçici geçiş veri kayıtlarını ve geçiş çalışmasını kaldırır ve bu işlem artık geçiş geçmişinde kullanılamaz.",
-                "contentHint": "Verileri gerçekten silmek istiyor musunuz?",
-                "title": "Geçiş verilerini silme"
-            },
             "connectionName": "Bağlantı adı",
             "contextMenu": {
-                "clearLogs": "Geçiş verilerini silme",
                 "details": "Ayrıntıları göster",
                 "downloadLogs": "Günlüğü indir"
             },
@@ -59,18 +70,16 @@
                 "logDownload": "günlük dosyasını indirin.",
                 "noErrorsOccurred": "Hata oluşmadı.",
                 "noProgressData": "Bu çalışma, eklentinin önceki bir sürümünde gerçekleştirildi ve verileri silindi.",
-                "runStatus": "Geçiş durumu:",
                 "status": {
                     "aborted": "Kürtaj",
                     "finished": "Bitmiş",
                     "running": "Koşu"
                 },
-                "timestamp": "Süre:",
                 "title": "Geçiş ayrıntıları"
             },
+            "gateway": "geçit",
             "importDateTime": "Başlangıç saati",
-            "noData": "Hiçbir göç bulunamadı.",
-            "profileAndGateway": "Profil ve ağ geçidi",
+            "profile": "Profil",
             "selectedData": "Veri",
             "shopDomain": "Alan adı",
             "shopSystem": "Mağaza sistemi",
@@ -78,28 +87,9 @@
         },
         "index": {
             "abortButton": "İptal",
-            "assistantCard": {
-                "connection": {
-                    "content": "Migration Assistant, verilerinizi aktarmak ve aktarmak için mağaza sisteminiz ile Shopware 6 arasında bir bağlantı kurmanıza yardımcı olacaktır.",
-                    "link": "Yardım ve belgeler",
-                    "title": "Bağlantı kurma"
-                },
-                "dataSelection": {
-                    "content": "Geçirmek istediğiniz verileri seçin. Eklenti zaten Shopware 6 için mevcut olması durumunda eklenti verilerini de dahil etmek mümkündür. Shopware hesabınızda eklenti kullanılabilirliğini kontrol edin.",
-                    "title": "Geçiş için veri belirleme"
-                },
-                "finish": "Bitti!",
-                "headline": "Geçiş nasıl çalışır?",
-                "migrationOverview": {
-                    "content": "1. Otomatik bir işlem, seçilen verileri eksik atamalar için denetler. Manuel atamalar ekleyerek otomatik işlemi tamamlamaya hazırlanın.\n2. Mağazanızın verileri okunur ve atanır.\n3. Seçilen ve uygun şekilde atanan tüm veriler Shopware 6'ya aktarılır.\n4. Medya öğeleri indirilir.",
-                    "title": "Geçiş adımları"
-                },
-                "title": "Bilgi"
-            },
             "backToOverviewButton": "Genel bakış için geri dön",
             "confirmAbortDialog": {
-                "cancelPause": "Duraklat",
-                "cancelRunning": "Devam",
+                "cancel": "Devamını",
                 "confirm": "Geçişi durdurma",
                 "content": "Geçiş tam olarak tamamlanmadı. Zaten geçirilen veriler kullanılamaz olabilir. Şimdi çıkıyorsanız, geçiş işlemini tamamen yeniden başlatmanız gerekir.",
                 "hint": "Göç işlemini durdurmak istiyor musunuz?",
@@ -107,169 +97,175 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "Evet, devam etmek istiyorum.",
-                    "info": "Farklı varsayılan para birimleriyle yapılan geçiş, veri kayıtlarının bozulmasına ve öngörülemeyen yan etkilere neden olabilir.",
-                    "question": "Verilerin standart para biriminde geçirilmesi gerektiğinden emin misiniz [{targetSystemCurrency}]?",
                     "text": "Geçirilecek verilerin para birimi standart para birimi [{targetSystemCurrency}] ile eşleşmiyor. [{sourceSystemCurrency}] içeren veriler yine de geçirilebilir, ancak otomatik olarak dönüştürülemez. Fiyatları daha sonra manuel olarak ayarlayabilirsiniz.",
                     "title": "Göç başka bir para birimini tanıdı"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "Evet, devam etmek istiyorum.",
-                    "info": "Farklı varsayılan dillerdeki geçiş, veri kayıtlarının bozulmasına ve öngörülemeyen yan etkilere neden olabilir.",
-                    "question": "Verilerin standart dilde geçirilmesi gerektiğinden emin misiniz [{targetSystemLanguage}]?",
                     "text": "Geçirilecek verilerin dili standart dil [{targetSystemLanguage}] ile eşleşmiyor. [{sourceSystemLanguage}] içeren veriler yine de geçirilebilir, ancak otomatik olarak dönüştürülemez. Çevirileri daha sonra manuel olarak ayarlayabilirsiniz.",
                     "title": "Göç başka bir dili tanıdı"
                 }
             },
             "continueButton": "Devam",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "“{parentSourceId}\" kimliğiyle {parentEntity} üst varlıktan {entity} alt varlık dönüştürülemedi.",
-                    "title": "{entity} alt varlık dönüştürülemedi"
+            "error-resolution": {
+                "codes": {
+                    "SWAG_MIGRATION_CONVERT_ASSOCIATION_MISSING": "İlişkili varlık eksik",
+                    "SWAG_MIGRATION_CONVERT_CHILD_ENTITY_FAILED": "Alt varlık dönüştürme başarısız oldu",
+                    "SWAG_MIGRATION_CONVERT_DOCUMENT_TYPE_UNSUPPORTED": "Belge türü dönüştürme desteklenmiyor",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_ALREADY_EXISTS": "Varlık zaten var",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_FAILED": "Varlık dönüştürme başarısız oldu",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_UNKNOWN": "Bağımlı varlık bilinmiyor",
+                    "SWAG_MIGRATION_CONVERT_FIELD_REASSIGNED": "Varlık alanı otomatik olarak yeniden atandı",
+                    "SWAG_MIGRATION_CONVERT_LANGUAGE_PACK_DEACTIVATED": "Dil paketi devre dışı",
+                    "SWAG_MIGRATION_CONVERT_MAIN_VARIANT_RELATION_FAILED": "Ana varyant ilişkisi dönüşümü başarısız oldu",
+                    "SWAG_MIGRATION_CONVERT_OBJECT_TYPE_UNSUPPORTED": "Nesne türü desteklenmiyor",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_CALCULATION_TYPE_UNSUPPORTED": "Nakliye hesaplama türü desteklenmiyor",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_PRICE_UNSUPPORTED": "Nakliye fiyatı türü desteklenmiyor",
+                    "SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE": "Kaynak veriler eksik",
+                    "SWAG_MIGRATION_CONVERT_UNSERIALIZED_DATA_INVALID": "Serileştirilmemiş veriler geçersiz",
+                    "SWAG_MIGRATION_FETCH_DATASET_MISSING": "Varlık için veri kümesi eksik",
+                    "SWAG_MIGRATION_FETCH_ENTITY_COUNT_FAILED": "Kaynak sistemden varlık sayısı okunamadı",
+                    "SWAG_MIGRATION_FETCH_PROCESSOR_MISSING": "Varlık için işlemci eksik",
+                    "SWAG_MIGRATION_MEDIA_DEFAULT_FOLDER_UNSUPPORTED": "Medya varsayılan klasörü desteklenmiyor",
+                    "SWAG_MIGRATION_MEDIA_FILE_MISSING": "Medya dosyası eksik",
+                    "SWAG_MIGRATION_MEDIA_MIME_TYPE_UNKNOWN": "Medya MIME türü bilinmiyor",
+                    "SWAG_MIGRATION_MEDIA_TEMPORARY_FILE_FAILED": "Medya geçici dosyası oluşturma başarısız oldu",
+                    "SWAG_MIGRATION_RUN_ABORTED": "Geçiş otomatik olarak iptal edildi",
+                    "SWAG_MIGRATION_RUN_EXCEPTION": "Geçiş istisnası meydana geldi",
+                    "SWAG_MIGRATION_RUN_MESSAGE_QUEUE_EXCEPTION": "İleti kuyruğu istisnası oluştu",
+                    "SWAG_MIGRATION_VALIDATION_ASSOCIATION_INVALID": "Varlık ilişkilendirmesi geçersiz",
+                    "SWAG_MIGRATION_VALIDATION_EXCEPTION": "Doğrulama istisnası oluştu",
+                    "SWAG_MIGRATION_VALIDATION_OPTIONAL_FIELD_VALUE_INVALID": "İsteğe bağlı alan geçersiz bir değere sahip",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_MISSING": "Zorunlu alan eksik",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_VALUE_INVALID": "Zorunlu alan geçersiz bir değere sahip",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_TRANSLATION_INVALID": "Gerekli çeviri geçersiz",
+                    "SWAG_MIGRATION_WRITE_EXCEPTION": "Yazma istisnası oluştu",
+                    "SWAG_MIGRATION_WRITE_THEME_COMPILING_FAILED": "Tema derleme başarısız oldu",
+                    "unknown": "Bilinmeyen hata"
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan {entity} varlık dönüştürülemedi.",
-                    "title": "{entity} varlık dönüştürülemedi"
+                "descriptionTitle": "Alan açıklaması",
+                "errors": {
+                    "continueMigrationFailed": "Geçiş devam edilemedi.",
+                    "downloadLogsFailed": "Günlük dosyası indirilemedi.",
+                    "fetchExampleFailed": "Örnek veriler getirilemedi.",
+                    "fetchExistingFixesFailed": "Mevcut düzeltmeler getirilemedi.",
+                    "fetchFilterDataFailed": "Filtre verileri getirilemedi.",
+                    "fetchLogsFailed": "Günlük verileri getirilemedi.",
+                    "fetchRunFailed": "Geçiş çalıştırma verileri getirilemedi.",
+                    "fieldValueNotSet": "Alan değeri ayarlanmadı.",
+                    "invalidFieldValueFormat": "Geçersiz alan değeri biçimi.",
+                    "noEntityIdsFound": "Seçilen günlük girişlerinde geçerli varlık kimliği bulunamadı.",
+                    "noLogsSelected": "Lütfen çözmek için en az bir günlük girişi seçin.",
+                    "resetResolutionFailed": "Hata çözünürlüğü sıfırlanamadı.",
+                    "submitResolutionFailed": "Hata çözümü gönderilemedi.",
+                    "validationFailed": "Doğrulama başarısız oldu."
                 },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "\"{uri}\" uri ve medya kimliği \"{sourceId}\" olan {entity} dosyası indirilemez/kopyalanamaz.",
-                    "title": "{entity} dosyası indirilemez/ kopyalanamaz"
+                "modals": {
+                    "details": {
+                        "convertedDataLabel": "Dönüştürülen veriler",
+                        "sourceDataLabel": "Kaynak veri",
+                        "title": "Ayrıntılar: {entityName}"
+                    },
+                    "error": {
+                        "left": {
+                            "details": "Ayrıntıları göster",
+                            "reset": "sıfırla",
+                            "select-all": "Tümünü seç ({count})",
+                            "status": {
+                                "resolved": "Çözüldü",
+                                "unresolved": "Çözülmemiş"
+                            }
+                        },
+                        "right": {
+                            "apply": "Değişiklikleri uygulama",
+                            "banner": {
+                                "content": "Lütfen ilgili Yönetim alanında seçmek için en az bir seçenek oluşturun.",
+                                "link": "Bir Seçenek Ekle",
+                                "title": "Seçenek yok"
+                            },
+                            "title": "Düzenleme: {count} Items",
+                            "unhandledBanner": {
+                                "content": "Alan türü belirlenemedi. Lütfen ham kaynak verilerini düzeltin. Değer doğru formatta olmalıdır.",
+                                "title": "Bilinmeyen alan türü"
+                            },
+                            "unresolvableBanner": {
+                                "content": "Daha fazla bilgi için lütfen günlük dosyasını kontrol edin.",
+                                "title": "Bu hata şu anda Geçiş Yardımcısı aracılığıyla çözülemiyor"
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "Durum"
+                            }
+                        },
+                        "title": "Hatayı düzeltin: {code}, {entityName}, {fieldName}"
+                    }
                 },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan {entity} varlığı zaten var ve yazılamıyor.",
-                    "title": "{entity} varlık zaten var"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan {entity} varlık \"{emptyField}\" alanını \"{replacementField}” ile değiştirdi.",
-                    "title": "{entity} varlığın yeniden atanmış bir alanı vardır"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "Kaynak kimliği \"{requiredForSourceId}\" olan {requiredForEntity} varlık, \"{sourceId}” kaynak kimliğiyle bağımlı {entity} varlığı bulamıyor.",
-                    "title": "{entity}bulunamıyor"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "İleti kuyruğu işlenirken bir istisna oluştu.",
-                    "title": "Mesaj kuyruğu istisnası"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "Çok fazla ardışık istisna meydana geldiğinden geçiş otomatik olarak iptal edildi.",
-                    "title": "Geçiş otomatik olarak iptal edildi"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "Bir istisna oluştu"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "{entity} varlık için toplam sayısı okunamadı. Kaynak sisteminizde \"{table}\" tablosunun bulunduğundan ve isteğe bağlı \"{condition}\" koşulunun geçerli olduğundan emin olun. Özel durum iletisi: {exceptionMessage}",
-                    "title": "Varlık sayısı okunamadı"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "Profil \"{profileName}\" ve varlık \"{entity}\" için DataSet bulunamadı. “{sourceId}\" kimliğine sahip varlık işlenemedi.",
-                    "title": "DataSet bulunamadı"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "Hata Ayıklama Çıktısı"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "“{type}\" belge türü desteklenmediğinden \"{sourceId}\" kaynak kimliği olan belge dönüştürülemedi.",
-                    "title": "Belge türü desteklenmiyor"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan {entity}  varlığın e-posta adresi geçersiz: {email}",
-                    "title": "Geçersiz E-posta adresi"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "Profil “{profileName}“, ağ geçidi\"{gatewayName}\"ve varlık\"{entity}\"için işlemci bulunamadı.",
-                    "title": "İşlemci bulunamadı"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan {missingEntity} bulunamadı ancak {requiredFor}için gereklidir.",
-                    "title": "İlişkilendirilmiş {entity} bulunamadı"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "Kaynak dosya kopyalanamadı. Dosya: {path}",
-                    "title": "Kaynak dosya bulunamadı"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "Medya indirilemiyor. Etkilenen dosya: {uri}",
-                    "title": "Medya indirilemiyor"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan {entity} varlık, \"{emptyField}” alanı için gerekli verilere sahip değildir",
-                    "title": "{entity} varlığın boş bir gerekli alanı vardır"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "“{sourceId}” kaynak kimliğine sahip {entity} varlık, \"{unserializedEntity}\" varlık için geçersiz serileştirilmemiş nesne verisi nedeniyle dönüştürülemedi ve ham veri şu şekilde: {serializedData}",
-                    "title": "Geçersiz serileştirilmemiş veriler"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "“{entity}\" çocuk için ebeveyn varlık bulunamadı.",
-                    "title": "Üst varlık bulunamadı"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan NumberRange-Varlık desteklenmeyen türü nedeniyle dönüştürülemedi: {type}.",
-                    "title": "Desteklenmeyen sayı aralığı türü"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "Kaynak kimliği “{sourceId}“olan “{objectType}“nesne türünün{entity} dönüştürülemedi.",
-                    "title": "Desteklenmeyen nesne türü"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "Kaynak kimliği \"{sourceId}\" olan gönderim yöntemi varlığı desteklenmeyen hesaplama türü nedeniyle dönüştürülemedi: {type}.",
-                    "title": "Desteklenmeyen gönderi hesaplama türü"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "“{shippingMethodId}\" gönderim yönteminin \"{sourceId}\" kaynak kimliğine sahip kargo fiyatı varlığı, desteklenmeyen faktör fiyat hesaplaması nedeniyle dönüştürülemedi.",
-                    "title": "Desteklenmeyen kargo faktörü fiyat hesaplaması"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "“{sourceId}\" kimliği ile tema derlenemedi.",
-                    "title": "Tema derleme hatası"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "“{entity}\" varlık için dosya yazarı bulunamadı.",
-                    "title": "Dosya yazıcısı bulunamadı"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "Bir yazma özel durumu oluştu"
-                },
-                "authorizationError": {
-                    "information": "Yetkilendirme hatası. Erişim verileriniz doğru değil. Lütfen kontrol edin ve tekrar deneyin."
-                },
-                "canNotConnectToServer": "Sunucuya bağlantı yok. Sorunlar için lütfen bağlantıyı kontrol edin.",
-                "customerExists": {
-                    "information": "“{mail}\" e-postası olan müşteri zaten mevcut. Bu kullanıcıyı bu e-postayla veritabanınıza ekleyemezsiniz."
-                },
-                "gatewayNotFound": {
-                    "information": "Ağ geçidi \"{notFoundGateway}\" bulunamadı."
-                },
-                "gatewayRead": {
-                    "information": "Ağ geçidi \"{unreadableGateway}” okunamadı."
-                },
-                "localeNotFound": {
-                    "information": "Yerel giriş kodu \"{notFoundCode}\" bulunamadı."
-                },
-                "mediaProcessConnectionError": "Medya verileri kopyalanırken bir bağlantı hatası oluştu. Lütfen bağlantıyı kontrol edin.",
-                "migrationContextPropertyMissing": {
-                    "information": "Geçiş bağlamı için gerekli özellik \"{notFoundProperty}\" bulunamadı."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "Geçiş iş iş yükü için gerekli özellik \"{notFoundProperty}\" bulunamadı."
-                },
-                "noFileSystemPermissions": {
-                    "information": "Dosya veya dizin oluşturmak veya yazmak için dosya sistemi izinleri yok. Lütfen izinlerinizi kontrol edin."
-                },
-                "profileNotFound": {
-                    "information": "Geçiş profili \"{notFoundProfile}\" bulunamadı."
-                },
-                "undefinedIndex": {
-                    "detail": "Tanımlanamayan dizin bulunamadı.",
-                    "information": "Index \"{unidentifiedIndex}\" bulunamadı. Lütfen verilerinizi kontrol edin.",
-                    "title": "Tanımlanamayan dizin"
-                },
-                "unknownError": "Bilinmeyen hata. Daha fazla bilgi için veritabanınızın günlük tablosunu kontrol edebilirsiniz."
+                "step": {
+                    "card": {
+                        "filter": {
+                            "code": {
+                                "label": "Hata adı",
+                                "placeholder": "Bir hata adı seçin"
+                            },
+                            "entity": {
+                                "label": "Varlık",
+                                "placeholder": "Bir varlık seçin"
+                            },
+                            "field": {
+                                "label": "Saha",
+                                "placeholder": "Bir alan seçin"
+                            },
+                            "reset": "Filtre sıfırlama",
+                            "status": {
+                                "label": "Hata durumu",
+                                "options": {
+                                    "resolved": "Çözüldü",
+                                    "unresolved": "Çözülmemiş"
+                                },
+                                "placeholder": "Bir hata durumu seçin"
+                            },
+                            "title": "Filtreler | Filtreler ({count}) | Filtreler ({count})"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "Kodu",
+                                "count": "Sabit/Toplam",
+                                "entity": "Varlık",
+                                "field": "Saha",
+                                "gatewayName": "geçit",
+                                "name": "İsim",
+                                "profileName": "Profil"
+                            },
+                            "empty-state": {
+                                "description": "Seçilen filtrelerle eşleşen günlükler bulunamadı.",
+                                "headline": "Hiçbir şey bulunamadı"
+                            }
+                        },
+                        "tabs": {
+                            "errors": "Hatalar ({count})",
+                            "infos": "Bilgi ({count})",
+                            "warnings": "Uyarılar ({count})"
+                        },
+                        "title": "Düzeltilebilir Hatalar"
+                    },
+                    "continue-modal": {
+                        "text-fixable": "Hala çözülmemiş {count} düzeltilebilir hata grubu vardır. Takip hatalarını önlemek için devam etmeden önce lütfen bu hataları düzeltin.",
+                        "text-unfixable": "Hala çözülmemiş {count} düzeltilemez hata var. Kalan hataları çözmeden devam ederseniz, takip hataları görünebilir.",
+                        "title": "Devam"
+                    },
+                    "header": {
+                        "banner": {
+                            "content": "Bu ekrandan çözülemeyen {count} hataları veya uyarıları var. Araştırmak için günlük dosyasını indirin ve ayrıntılı hata mesajlarını inceleyin. Altta yatan sorunların kaynak sistemde düzeltilmesi gerekebilir. Çözüldükten sonra devam etmek için geçişi yeniden çalıştırın.",
+                            "title": "Bazı hatalar bu görünümle düzeltilemez"
+                        },
+                        "continue": "Devam",
+                        "continueTooltip": "Lütfen devam etmeden önce tüm düzeltilebilir hataları düzeltin.",
+                        "description": "İçe aktarma sırasında meydana gelen geçiş hatalarını gözden geçirin ve giderin. Veri sorunlarını doğrudan bu görünümde düzeltin veya ayrıntılı bilgi için günlük dosyasını indirin. Tüm düzeltilebilir hatalar çözüldüğünde devam edin. Bu görünümü bırakabilir ve daha sonra geri dönebilirsiniz",
+                        "documentation": "Dokümantasyon",
+                        "download": "Günlük dosyasını indir",
+                        "title": "Hata çözümü"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "Hata",
@@ -282,6 +278,7 @@
                 "documentationLinkText": "Mesaj kuyruğu belgeleri",
                 "flowChart": {
                     "cleanup": "Temizlik",
+                    "errorResolution": "Hata çözümü",
                     "fetchData": "Okuma",
                     "finish": "Bitti",
                     "indexing": "İndeksleme",
@@ -292,7 +289,6 @@
                 "notice": "İpucu: Bu işlem ileti kuyruğunda çalışır. Mağazanız doğru yapılandırılmışsa bu sayfada kalmanıza gerek yoktur.",
                 "result": {
                     "historyHint": "Bu bilgileri geçiş geçmişinde istediğiniz zaman görüntüleyebilirsiniz. Medya indirme işlemi hala arka planda çalıştığı için daha sonra daha fazla günlük mesajının eklenmesi mümkündür.",
-                    "logSummary": "Seyir defteri",
                     "title": "Geçiş Asistanı tamamlandı"
                 },
                 "status": {
@@ -305,6 +301,11 @@
                         "caption": "Geçici veriler kaldırılıyor. Göç neredeyse tamamlandı.",
                         "long": "Göç temizleniyor",
                         "short": "Temizlik"
+                    },
+                    "error-resolution": {
+                        "caption": "Tüm hatalar çözülene kadar geçiş duraklatılır.",
+                        "long": "Hatalar çözülebilir",
+                        "short": "Hata çözümü"
                     },
                     "fetching": {
                         "caption": "Yeni atamalar işlenir.",
@@ -322,6 +323,7 @@
                         "long": "Medya aktarılıyor",
                         "short": "Medya aktarımı"
                     },
+                    "unknown": "Bilinmeyen",
                     "writing": {
                         "caption": "Mağaza büyüklüğüne bağlı olarak birkaç dakika sürebilir.",
                         "long": "Veriler Shopware 6'da yazılıyor",
@@ -348,16 +350,10 @@
                     "transaction_state": "İşlem durumları",
                     "user": "Yönetim kullanıcısı"
                 },
-                "loadingCaption": "Mevcut veriler kontrol edildi.",
-                "loadingTitle": "Veri kontrolü çalışıyor",
                 "newAssignmentTitle": "Yeni ödevler",
                 "placeholder": "Lütfen seçin",
                 "previousTitle": "önceki",
-                "unfilledAlert": "Manuel atama gerektiren verilerin olduğunu tespit ettik.",
-                "unfilledCaption": "Yalnızca manuel atama tamamlandıktan sonra devam edebilirsiniz.",
-                "unfilledTitle": "Veri kontrolü tamamlandı",
-                "validCaption": "Veriler devam etmeye hazır",
-                "validTitle": "Veri kontrolü tamamlandı"
+                "unfilledAlert": "Manuel atama gerektiren verilerin olduğunu tespit ettik."
             },
             "savePremapping": {
                 "message": "Hazırlık kaydedildi.",
@@ -451,7 +447,8 @@
                     "name": "İsim",
                     "total": "Veri kümeleri"
                 },
-                "noData": "Göç edecek bir şey bulunamadı."
+                "noData": "Göç edecek bir şey bulunamadı.",
+                "noDataSubline": "Lütfen bağlantınızı kontrol edin veya başka bir profil deneyin."
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "Yeni bağlantı oluştur",
@@ -467,14 +464,15 @@
                 "connectionCheck": "Bağlantı kontrolü:",
                 "gateway": "Ağ Geçidi:",
                 "lastMigration": "Son geçiş:",
+                "link": "Yardım ve belgeler",
                 "noConnection": "Bağlantı yok",
+                "noConnectionCheckDoneYet": "Henüz bağlantı kontrolü yapılmadı",
                 "noMigrationDoneYet": "-",
                 "notConnected": "Bağlı değil",
                 "profile": "Sistem profili:",
-                "refreshTooltip": "Kaynak sisteme bağlantıyı kontrol edin",
+                "refreshButton": "Bağlantıyı yenileyin",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "İptal",
-                    "confirmButtonText": "Evet, sil",
                     "content": "Bundan sonra aktif bir bağlantı olmayacak. Bağlantıyı geri yüklemek için erişim verilerinizi tekrar girin.",
                     "contentHint": "Geçerli erişim verilerini silmek ister misiniz?",
                     "title": "Erişim verilerini silme"
@@ -490,17 +488,35 @@
                     "abortButtonText": "İptal",
                     "confirmButtonText": "Şimdi bitir",
                     "content": "Harika! Şimdi geçişinizi sonlandıralım ve geçici dosyaları ve kullanılmayan verileri temizleyelim. <strong>Lütfen dikkat:</strong> Geçişin tamamlanması terminaldir. Geçerli bağlantı üzerinden daha fazla veri taşıyamazsınız.",
-                    "contentHint": "Göç işlemini şimdi tamamlamak istiyor musunuz?",
                     "errorNotification": {
                         "message": "Geçiş şu anda devam ediyor.",
                         "title": "Geçiş tamamlanırken hata oluştu"
                     },
                     "header": "Mağaza verilerinizi taşımayı bitirdiniz mi?",
                     "title": "Geçişi tamamlayın"
+                },
+                "updateBanner": {
+                    "isResettingChecksums": {
+                        "message": "Kontrol toplamları sıfırlanıyor. Bu birkaç dakika sürebilir.",
+                        "title": "Kontrol toplamlarını sıfırlama"
+                    },
+                    "isTruncatingMigration": {
+                        "message": "Geçiş verileri kesiliyor. Bu birkaç dakika sürebilir.",
+                        "title": "Geçiş verilerinin kesilmesi"
+                    }
                 }
             },
             "shopwareMajorVersionText": "Kaynak sistem {sourceSystem} sürümünüzün hedef sistem {targetSystem} sürümüyle eşleşmediğini fark ettik. Geçişi başlatmadan önce lütfen her iki sistem için de aynı ana sürümü kullandığınızdan emin olun.",
-            "title": "General"
+            "title": "General",
+            "warningModal": {
+                "cancelButton": "Geri dön",
+                "confirmButton": "Yine de devam et",
+                "message": {
+                    "currency": "Farklı varsayılan para birimleriyle yapılan geçiş, veri kayıtlarının bozulmasına ve öngörülemeyen yan etkilere neden olabilir.",
+                    "language": "Farklı varsayılan dillerdeki geçiş, veri kayıtlarının bozulmasına ve öngörülemeyen yan etkilere neden olabilir."
+                },
+                "title": "Veri uyuşmazlığı tespit edildi"
+            }
         },
         "wizard": {
             "buttonAbort": "İptal",
@@ -519,7 +535,6 @@
                     "connectionLabel": "Bağlantı adı",
                     "connectionPlaceholder": "İsim girin",
                     "connectionTooltip": "Bağlantı için benzersiz bir ad girin.",
-                    "contentInformation": "Geçişi gerçekleştirmek için aşağıdaki bilgiler gereklidir.",
                     "gatewayLabel": "geçit",
                     "gatewayPlaceholder": "Ağ geçidini seç",
                     "gatewayTooltip": "Sistemler arasındaki bağlantı türü.",
@@ -538,7 +553,6 @@
                 "connectionSelect": {
                     "connectionLabel": "Bağlantı adı",
                     "connectionPlaceholder": "Lütfen bir bağlantı seçin",
-                    "contentInformation": "Verileri güncellemek için listeden mevcut bir bağlantıyı seçin.",
                     "title": "Geçiş — Bağlantıyı değiştirme"
                 },
                 "credentials": {
@@ -548,9 +562,9 @@
                         "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "Bağlanmakta sorun yaşıyorsanız, sunucunuzda yüklü olan curl sürümünü kontrol etmeye ve güncellemeye değer olabilir.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "Veritabanı bağlantısı doğru özelliklere sahip değildir ve ayarlanamazlar.",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "Veritabanı bağlantısı kurulamadı.",
+                        "SWAG_MIGRATION__DUPLICATE_SOURCE_CONNECTION": "Aynı kaynak sisteme bir bağlantı zaten var. Lütfen başka bir bağlantı kullanın.",
                         "SWAG_MIGRATION__GATEWAY_READ": "Sunucuya bağlanılamadı. Lütfen verilen mağaza alanını kontrol edin.",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "Bağlanmakta sorun yaşıyorsanız, sunucunuzda yüklü olan curl sürümünü kontrol etmeye ve güncellemeye değer olabilir.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "Kimlik bilgileriniz yanlış. Lütfen kontrol edin ve tekrar deneyin.",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "Kaynak sisteme bağlantı için erişim verileri mevcut değil veya yanlış. Lütfen kontrol edin ve tekrar deneyin.",
                         "SWAG_MIGRATION__IS_RUNNING": "Geçiş şu anda devam ediyor. Bu nedenle, geçiş tamamlanıncaya kadar kimlik bilgilerini düzenleyemezsiniz.",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "Gerekli eklenti “Migration Connector” Shopware 5'te yüklü değil. Lütfen ücretsiz eklentiyi yükleyin ve tekrar deneyin.",
@@ -568,13 +582,22 @@
                             "apiUserLabel": "Kullanıcı adı (API kullanıcısı)",
                             "apiUserPlaceholder": "Kullanıcı adını girin",
                             "apiUserTooltip": "Shopware 5 arka ucunuzun kullanıcı adı.",
-                            "contentInformation": "Shopware 5 ve Shopware 6 arasında bağlantı kurmak için geçerli API kimlik bilgilerine ihtiyacınız vardır. API kimlik bilgileriniz Shopware 5 arka ucunuzda “Kullanıcı yönetimi” altında bulunabilir. API erişiminin orada etkinleştirilmesi ve kaydederek onaylanması gerekir.",
                             "endpointLabel": "Alan adı",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Mağazamda güvenli bir bağlantı (SSL) kullanıyor"
+                            "endpointSSLLabel": "Mağazamda güvenli bir bağlantı (SSL) kullanıyor",
+                            "pluginLinkText": "Eklenti hakkında daha fazla bilgi",
+                            "pluginName": "Geçiş Bağlayıcısı",
+                            "steps": {
+                                "step1": "Eklenti {pluginName} eklentisini Shopware 5 arka ucunuzdan Eklenti Yöneticisi> Uzantılar> Geçiş araçları altında yükleyin ve etkinleştirin.",
+                                "step2": "Shopware 5 arka ucunuzdaki Kullanıcı yönetimi'ne gidin.",
+                                "step3": "Bağlantı için kullanmak istediğiniz kullanıcıyı seçin.",
+                                "step4": "API erişimini etkinleştirin ve kaydedin.",
+                                "step5": "Kullanıcının local_admin rolüne sahip olduğundan emin olun.",
+                                "step6": "Bağlantıyı kurmak için API kimlik bilgilerini buraya girin."
+                            },
+                            "title": "Shopware 5 mağazanızı bağlayın"
                         },
                         "local": {
-                            "contentInformation": "Shopware 5 veritabanınıza bağlanmak için hala erişim verilerine ihtiyacımız var.",
                             "dbHostLabel": "Ev Sahibi",
                             "dbHostPlaceholder": "Ana bilgisayarı girin",
                             "dbNameLabel": "Veritabanı adı",
@@ -596,10 +619,21 @@
                             "apiUserLabel": "Erişim anahtarı kimliği",
                             "apiUserPlaceholder": "Erişim anahtarı kimliğini girin",
                             "apiUserTooltip": "Entegrasyonunuzun anahtar kimliğine erişin.",
-                            "contentInformation": "Kaynağınız ve hedef Shopware 6 örneğiniz arasında bağlantı kurmak için geçerli API kimlik bilgilerine ihtiyacınız vardır. Kaynak sisteminizde bir entegrasyon oluşturduğunuzda bunları alırsınız.",
                             "endpointLabel": "Alan adı",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Mağazamda güvenli bir bağlantı (SSL) kullanıyor"
+                            "endpointSSLLabel": "Mağazamda güvenli bir bağlantı (SSL) kullanıyor",
+                            "integrationLink": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+                            "integrationLinkText": "Entegrasyonlar hakkında daha fazla bilgi",
+                            "pluginLink": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+                            "pluginLinkText": "Migration Assistant uzantısı hakkında daha fazla bilgi",
+                            "pluginName": "Geçiş Asistanı",
+                            "steps": {
+                                "step1": "Kaynak sistemdeki {pluginName} uzantısını yükleyin ve etkinleştirin.",
+                                "step2": "Kaynak sistemde Ayarlar > Sistem > Entegrasyonlar aracılığıyla bir entegrasyon oluşturun.",
+                                "step3": "Bir erişim anahtarı kimliği ve gizli erişim anahtarı oluşturun.",
+                                "step4": "Bağlantıyı kurmak için erişim anahtarlarını ve mağaza alanını buraya girin."
+                            },
+                            "title": "Shopware 6 mağazanızı bağlayın"
                         }
                     },
                     "statusTitle": "Bağlantı kontrolü",
@@ -615,29 +649,6 @@
                     "contentHeadline": "Hadi bir şeyler taşıyalım.",
                     "contentInformation": "Birlikte mağaza sisteminizi Shopware 6'ya bağlayacağız. Daha sonra Geçiş Yardımcısı, verilerinizi adım adım taşımanıza yardımcı olacaktır.",
                     "title": "Geçiş Asistanı"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "Gerekli “Migration Connector” eklentisi ücretsizdir ve Shopware 5 arka ucunuzda Plugin Manager > Extensions > Migration tools altında bulunabilir. Lütfen devam etmek için eklentiyi kurun ve etkinleştirin.",
-                        "contentTitle": "Eklenti gerekli",
-                        "pluginLink": "Eklenti hakkında daha fazla bilgi"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "Gereksinimler",
-                        "integration": {
-                            "description": "Kaynak sistemde Ayarlar > Sistem > Entegrasyonlar aracılığıyla bir entegrasyon oluşturun. Bir sonraki adımda oluşturulan erişim anahtarı kimliğine ve gizli erişim anahtarına ihtiyacınız olacak.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "Entegrasyonlar hakkında daha fazla bilgi",
-                            "title": "Entegrasyon"
-                        },
-                        "plugin": {
-                            "description": "Migration Assistant uzantısını kaynak sisteme yükleyin.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "Migration Assistant uzantısı hakkında daha fazla bilgi",
-                            "title": "Uzantı"
-                        }
-                    },
-                    "title": "Geçiş - Bağlantı hazırlığı"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "Daha önce kullanılabilir:",

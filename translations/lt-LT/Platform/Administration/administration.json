@@ -317,6 +317,7 @@
             "newsletter_update": "Atnaujintas naujienlaiškio registraviklis",
             "product_export_log": "Produkto eksportas įvykdytas",
             "review_form_send": "Peržiūros forma išsiųsta",
+            "revocation_request_sent": "Atsiųsta prašymo atšaukimo forma.",
             "state_enter_order_delivery_state_cancelled": "Siuntimas patenka į statusą atšauktas",
             "state_enter_order_delivery_state_open": "Siuntimas įveda atvirą statusą",
             "state_enter_order_delivery_state_returned": "Siunta įveda grąžintą statusą",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Pasirinkti failą",
             "caption": "Nuvilkite failą čia, norint įkelti",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Pasirinktas failas \"{name}\" turi nepalaikomą failo plėtinį. Prašome naudoti vieną iš šių failų plėtinių: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Pasirinktas failas \"{name}\" yra per didelis, kad būtų galima įkelti. Failo dydis neturi viršyti {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Dokumentų nerasta",
                 "title": "Masinis redagavimas - sėkmė"
             },
-            "warningText": "Prašome palaukti, kol bus baigtas masinis redagavimas. Tai gali užtrukti. Jei uždarysite naršyklės skirtuką arba atšauksite procesą per anksti, ne visi pakeitimai bus taikomi. Jūs galite paleisti masinį redagavimą dar kartą bet kuriuo metu."
+            "warningText": "Prašome palaukti, kol bus baigtas masinis redagavimas. Tai gali užtrukti. Jei uždarysite naršyklės skirtuką arba atšauksite procesą per anksti, ne visi pakeitimai bus taikomi. Jūs galite paleisti masinį redagavimą dar kartą bet kuriuo metu.",
+            "warningTextDocumentDeletion": "Dokumentai yra užsakymo dalis ir gali būti svarbūs mokesčių tikslais. Jų ištrynimas gali turėti įtakos jūsų apskaitos įrašų atsekamumui. Įsitikinkite, kad ištrynimas yra teisiškai leidžiamas."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Dokumentai",
+                "deleteDocuments": {
+                    "helpText": "Naudojant šią parinktį, visi pasirinkti dokumentų tipai bus ištrinti.",
+                    "label": "Ištrinti: Dokumentai"
+                },
                 "downloadDocuments": {
                     "helpText": "Naudojant šią parinktį, naujausi turimi dokumentai yra siūlomi atsisiųsti. Keli dokumentai sujungiami į tą patį failą. Atsisiųsti galima po kelių pakeitimų buvo baigtas.",
                     "label": "Atsisiųsti: Dokumentai"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Naujienlaiškio puslapiai",
                     "privacyPage": "Privatumo puslapių",
                     "revocationPage": "Pranešimai apie atšaukimą",
+                    "revocationRequestPage": "Prašymo atšaukti formą",
                     "shippingPaymentInfoPage": "Informacija apie mokėjimą ir pristatymą",
                     "tosPage": "TOS puslapiai"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Antraštė",
                         "type": "Formos tipas",
                         "typeContact": "Kontaktai",
-                        "typeNewsletter": "Naujienlaiškis"
+                        "typeNewsletter": "Naujienlaiškis",
+                        "typeRevocationRequest": "Atšaukimas"
                     },
                     "placeholder": {
                         "type": "Pasirinkite formos tipą..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Veiksmas",
+                        "comment": "Pastaba",
+                        "contractNumber": "Sutarties numeris (užsakymo numeris, abonentinis numeris, ... ) *    ",
                         "email": "El. pašto adresas",
                         "firstName": "Vardas",
                         "lastName": "Pavardė",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "Martynas",
                         "lastName": "Mažvydas",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Nėra {criteriaName}",
         "placeholder": "Visi"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Eksporto kanalas",
+                        "placeholder": "Pasirinkite eksporto kanalus…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Eksporto kanalas"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Eksporto kanalas",
+                        "placeholder": "Pasirinkite eksporto kanalus…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Eksporto kanalas"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Prideda eksporto kanalų stulpelius ir filtrus į užsakymų ir klientų sąrašus.",
+            "mainMenuItemGeneral": "Eksporto kanalo stebėjimas"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Plėtinys “{name}” nesuderinamas su šia “Shopware” versija",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Tipas",
                 "labelRecipient": "Gavėjas",
                 "labelReplyTo": "Atsakymo adresas",
+                "labelRevocationRequestFormMail": "Klausiantysis",
                 "labelSenderName": "Siuntėjo vardas",
                 "labelSubject": "Tema",
                 "placeholderDescription": "Įvesti aprašą...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Įveskite taisyklės pavadinimą...",
                 "placeholderPriority": "Įveskite taisyklės prioritetą...",
                 "placeholderType": "Pasirinkite taisyklės tipą...",
+                "productStatesConditionWarning": "Sąlyga “Prekė su produkto būsena” yra pasenusi ir bus pašalinta iš v6.8. Vietoj to naudokite “Prekė su produkto tipu”.",
                 "tabDetail": "Bendra",
                 "tabRule": "Sąlyga"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Grąžinta",
             "returnedPartially": "Grąžinta iš dalies",
             "reviewForm": "Produkto peržiūra",
+            "revocationRequestCustomer": "Atsiųstas prašymas atšaukti",
+            "revocationRequestMerchant": "Gautas prašymas atšaukti",
             "send": "Siųsti",
             "sent": "Išsiųsta",
             "shipped": "Siunčiama",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Caret (^)",
             "categoriesLabel": "Kategorijos",
             "closeProfileLabel": "Uždaryti profilį",
-            "closeViolation": "Uždaryti",
             "commasLabel": "Kablelis (,)",
             "configuratorSettingLabel": "Variantas konfigūracijos",
             "copyOfLabel": "Kopija:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Importo"
             },
             "updateEntitiesLabel": "Atnaujinti esamus duomenis",
-            "violationMessage": "Jūsų profilis dar negalioja. Norėdami išsaugoti profilį, turite pridėti žemėlapius prie reikiamų laukų, pateiktų žemiau:"
+            "violationModal": {
+                "duplicateMappings": "Tolesniuose laukuose turite <strong>pasikartojančius žemėlapius</strong> . Norėdami išsaugoti profilį, pašalinkite dublikatus:",
+                "missingRequiredFields": "Norėdami išsaugoti profilį, turite pridėti kartografavimus į žemiau rodomus <strong>privalomus laukus</strong>:",
+                "title": "Jūsų profilis dar negalioja"
+            }
         },
         "progress": {
             "startExportLabel": "Pradėti eksportuoti",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Išsaugoti žiniasklaidoje"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Perkelti objektą",
-                "rotate-tooltip": "Pasukti objektą",
-                "scale-tooltip": "Objekto mastelis"
-            },
-            "saveChanges": "Išsaugoti pakeitimus",
-            "titleModal": "Modelio redaktorius"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Grįžti"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Perkelti objektą",
+            "rotate-tooltip": "Pasukti objektą",
+            "scale-tooltip": "Objekto mastelis"
+        },
+        "open-model-editor-tooltip": "Atidarykite modelio redaktorių",
+        "properties": {
+            "transformation": {
+                "label": "Transformacija",
+                "position": {
+                    "label": "Padėtis"
+                },
+                "rotation": {
+                    "label": "Rotacija"
+                },
+                "scale": {
+                    "label": "Skalė"
+                }
+            }
+        },
+        "titleModal": "Modelio redaktorius"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Norėdami sukurti kredito pastabą, pirmiausia pridėkite kredito elementą.",
-                    "storno": "Atšaukimo sąskaitos faktūros negalima sukurti be sąskaitos faktūros."
+                    "storno": "Atšaukimo sąskaitos faktūros negalima sukurti be sąskaitos faktūros.",
+                    "zugferd_cancellation_invoice": "“ZugFerd” atšaukimo sąskaitos faktūros negalima sukurti be sąskaitos faktūros.",
+                    "zugferd_credit_note": "Norint sukurti ZugferD kredito raštelį, reikalinga sąskaita faktūra ir bent viena kredito prekė.",
+                    "zugferd_embedded_cancellation_invoice": "Įterptosios “ZugFerd” atšaukimo sąskaitos faktūros negalima sukurti be sąskaitos faktūros.",
+                    "zugferd_embedded_credit_note": "Norint sukurti įterptą ZugFerd kredito pastabą, reikalinga sąskaita faktūra ir bent vienas kredito elementas."
                 },
                 "primaryAction": "Sukurti dokumentą",
+                "showZugferd": "Rodyti ZugferD variantus",
                 "title": "Sukurti dokumentą"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Dokumentai",
+            "confirmDeleteText": "Šis dokumentas yra užsakymo dalis ir gali būti svarbus mokesčių tikslais. Jo ištrynimas gali turėti įtakos jūsų apskaitos įrašų atsekamumui. Įsitikinkite, kad ištrynimas yra teisiškai leidžiamas. Šis veiksmas negali būti atšauktas.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumento numeris {number} jau yra priskirtas."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Įkelti nestandartinį dokumentą",
             "labelCancel": "Uždaryti",
             "labelCreate": "Sukurti",
+            "labelCreateDownload": "Sukurkite ir atsisiųskite",
             "labelCreateDownloadPdf": "Sukurti ir atsisiųsti PDF",
             "labelCreateSend": "Sukurti ir siųsti",
             "labelDeliveryDate": "Pristatymo data",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtras",
             "titleSidebarItemFilterAffiliateCode": "Partnerio kodas",
             "titleSidebarItemFilterCampaignCode": "Nuolaidos kodas",
-            "titleSidebarItemRefresh": "Atnaujinti"
+            "titleSidebarItemRefresh": "Atnaujinti",
+            "tooltipCustomerComment": "Papildoma informacija: {comment}",
+            "tooltipInternalComment": "Vidinis komentaras: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Pavadinimas",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Čia galite nustatyti pasirinktinai nuo trijų iki penkių raktinių žodžių, pagal kuriuos turėtų būti rastas jūsų produktas.",
             "helpTextMetaDescription": "Naudodami meta aprašymą, jūs patvirtinate savo klientams, kad jie yra tinkamoje vietoje jūsų parduotuvėje. Jūs kuriate paskatas, sukuriate pasitikėjimą ir kviečiate į veiksmą. Turėtumėte apsiriboti ne daugiau kaip 155 simboliais. “Shopware” leidžia maksimalų 255 simbolių ilgį.",
             "helpTextMetaTitle": "Meta pavadinimas yra svarbiausias SEO elementas ir turėtų būti unikalus kiekvienam puslapiui. Turėtumėte apriboti save ilgiu ne daugiau kaip 56 simboliais. Idealiu atveju jūsų raktinis žodis turėtų būti dedamas pačiame priekyje.",
+            "helpTextOpenGraphDescription": "“Open Graph” aprašymas naudojamas bendrinant produktą socialinėje žiniasklaidoje. Jei bus paliktas tuščias, meta aprašymas bus naudojamas kaip atsarginis.",
+            "helpTextOpenGraphTitle": "“Open Graph” pavadinimas naudojamas bendrinant produktą socialinėje žiniasklaidoje. Jei bus paliktas tuščias, meta pavadinimas bus naudojamas kaip atsarginė kopija.",
             "labelCanonicalProduct": "Kanoninio URL variantas",
             "labelCanonicalUrlMode": "Naudokite vieną kanoninį URL visiems variantams",
             "labelKeywords": "SEO raktažodžiai",
             "labelMetaDescription": "Meta aprašymas",
             "labelMetaTitle": "Meta žymos pavadinimas",
+            "labelOpenGraphDescription": "OG aprašymas",
+            "labelOpenGraphImage": "OG vaizdas",
+            "labelOpenGraphTitle": "OG pavadinimas",
             "placeholderCanonicalProduct": "Pasirinkite variantą...",
             "placeholderKeywords": "Įveskite vieną ar daugiau raktažodžių...",
             "placeholderMetaDescription": "Įveskite meta aprašymą...",
-            "placeholderMetaTitle": "Įveskite meta pavadinimą..."
+            "placeholderMetaTitle": "Įveskite meta pavadinimą...",
+            "placeholderOpenGraphDescription": "Įveskite Open Graph aprašymą...",
+            "placeholderOpenGraphTitle": "Įveskite “Open Graph” pavadinimą...",
+            "titleOpenGraph": "Atidarykite grafiką"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Užsakymai paneigė.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Sąlygos"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Partnerio kodas",
+            "affiliateCodePlaceholder": "Įveskite partnerio kodą…",
+            "campaignCodeLabel": "Kampanijos kodas",
+            "campaignCodePlaceholder": "Įveskite kampanijos kodą…",
+            "cardTitle": "Sekimo kodai",
+            "description": "Konfigūruokite partnerių ir kampanijos kodus, kurie bus įterpti į šio kanalo sklaidos kanalų produktų URL. Šie kodai identifikuoja užsakymus ir klientus, nurodytus iš šio “Agentic Commerce” kanalo."
+        },
         "detail": {
             "activateDisable": "Prieš aktyvindami ir išsaugodami pardavimo kanalą, priskirkite temą.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Atstatyti pagal numatytuosius nustatymus",
+                "errorLoadingTemplate": "Nepavyko įkelti numatytojo šablono.",
+                "integration": {
+                    "feedUrlLabel": "Eksportuoti URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "“OpenAI” ryšys",
+                            "introduction": {
+                                "description": "Šis pardavimų kanalas generuoja JSONL produktų sklaidos kanalą, kad jūsų produktai galėtų būti rodomi “ChatGPT” paieškos rezultatuose. Norėdami tai padaryti, turite kreiptis kaip prekybininkas ir bendrinti kanalo URL su “OpenAI”. Visa kita paaiškinta toliau pateiktame žingsnis po žingsnio vadove.",
+                                "title": "Kaip: sąranka ir prijungimas"
+                            },
+                            "stepByStep": "<li>Kreipkitės kaip prekybininkas adresu <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/pirkliai</a></li><li>Nukopijuokite eksporto URL (žemiau) ir bendrinkite jį su OpenAI pagal <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Produktų sklaidos kanalus docs</a></li><li>Įsitikinkite, kad eksporto URL yra viešai prieinamas</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Žingsnis po žingsnio"
+                },
+                "openAiSettingsTitle": "OpenAI nustatymai",
+                "resetTemplateSuccess": "Šablonas buvo atstatytas į numatytuosius nustatymus. Išsaugokite, kad pakeitimai būtų išsaugoti.",
+                "tabIntegration": "integracija",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "“OpenAI” (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analitikos",
                 "description": "Naudodamiesi “Google Analytics” galite rinkti ir analizuoti savo parduotuvės duomenis. Norint pasinaudoti šia funkcija, būtina “Google” paskyra. Jei dar neturite “Google Analytics” paskyros, galbūt norėsite užsiregistruoti čia: <a href=\"https://analytics.google.com/\" target=\"_blank\">“Google Analytics”</a>. Sėkmingai užsiregistravus, gausite stebėjimo ID, kurį reikia užpildyti žemiau, kad suaktyvintumėte integraciją.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Nurodyti klientai",
+                    "dateRanges": {
+                        "14Days": "Paskutinės 14 dienų",
+                        "180Days": "Paskutinės 180 dienos",
+                        "24Hours": "Paskutinės 24 valandos",
+                        "30Days": "Paskutinės 30 dienų",
+                        "7Days": "Paskutinės 7 dienų",
+                        "yesterday": "Vakar"
+                    },
+                    "numbers": "Kiekis",
+                    "orderCardHeadline": "Nurodyti įsakymai",
+                    "summary": "Suvestinė",
+                    "totalTurnover": "apyvarta",
+                    "turnoverCardHeadline": "Nurodyta apyvarta"
+                },
+                "tabInsights": "Statistiniai"
             },
             "products": {
                 "buttonAddProducts": "Pridėti {productCount} produktų | Pridėti {productCount} produktą | Pridėti {productCount} produktus",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Šiame pardavimo kanale jau yra dar vienas to paties tipo dokumentas.",
             "disabledSalesChannelSelect": "Pirmiausia pasirinkite dokumento tipą.",
             "disabledTypeSelect": "Visuotinių dokumentų tipas negali būti pakeistas.",
+            "displayTitle": "Ekranas:",
             "helpTextDisplayAdditionalNoteDelivery": "Tinka tik ES valstybėms narėms, taip pat žr. “Nustatymai > Šalys”.",
-            "helpTextDisplayCompanyAddress": "Rodomas įmonės adresas žemiau antraštės dešinėje dokumento pusėje.",
-            "helpTextDisplayDeliveryCountries": "Atrinktų šalių sąskaitose faktūrose nurodomas “pristatymas į bendruomenę”.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokumentas rodomas skiltyje “Užsakymai” atitinkamoje kliento paskyroje. Atminkite, kad kliento paskyroje rodomi tik tie dokumentai, kurie iš tikrųjų buvo išsiųsti klientui.",
-            "helpTextDisplayReturnAddress": "Rodomas įmonės adresas kaip grąžinimo adresas virš kliento adreso adresų bloke.",
-            "helpTextPaymentDueDate": "Pvz.: +30 dienų, +4 savaičių, +1 savaitė 2 dienos",
             "labelBankBic": "BIC",
             "labelBankIban": "IBANAS",
             "labelBankName": "bankas",
             "labelCompanyCity": "Miestas",
             "labelCompanyCountry": "Šalis",
             "labelCompanyEmail": "El. pašto adresas",
+            "labelCompanyLogo": "Įmonės logotipas",
             "labelCompanyName": "Pavadinimas",
             "labelCompanyPhone": "Telefono numeris",
             "labelCompanyStreet": "Gatvė",
             "labelCompanyUrl": "Tinklalapis",
             "labelCompanyZipcode": "Pašto kodas",
-            "labelDeliveryCountries": "Šalys narės",
             "labelDisplayAdditionalNoteDelivery": "Rodyti etiketę “Pristatymas Bendrijos viduje”",
             "labelDisplayCompanyAddress": "Rodyti įmonės adresą",
             "labelDisplayCustomerVatId": "Rodyti kliento PVM ID",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Failų formatai",
             "labelItemsPerPage": "Elementai puslapyje",
             "labelName": "Techninis pavadinimas",
-            "labelOptionMedia": "Įmonės logotipas",
             "labelPageOrientation": "Puslapio orientacija",
             "labelPageSize": "Puslapio formatas",
             "labelPaymentDueDate": "Mokėjimo terminas",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Mokesčių inspekcija",
             "labelType": "Dokumento tipas",
             "labelVatId": "PVM kodas",
-            "messageSaveSuccess": "Dokumentas \"{name}\" buvo išsaugotas.",
-            "placeholderDisplayDeliveryCountries": "Ieškokite ir pridėkite šalių, galiojančių pristatymui Bendrijos viduje...",
+            "pageOrientationOptions": {
+                "landscape": "Kraštovaizdis",
+                "portrait": "Portretas"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Teisinis",
+                "letter": "Laiškas"
+            },
+            "placeholderBankBic": "Įveskite BIC...",
+            "placeholderBankIban": "Įveskite IBAN...",
+            "placeholderBankName": "Įveskite banko pavadinimą...",
+            "placeholderCompanyCity": "Įveskite miestą...",
+            "placeholderCompanyCountry": "Pasirinkite šalį...",
+            "placeholderCompanyEmail": "Įveskite el. pašto adresą...",
+            "placeholderCompanyName": "Įveskite įmonės pavadinimą...",
+            "placeholderCompanyPhone": "Įveskite telefono numerį...",
+            "placeholderCompanyStreet": "Įveskite gatvę...",
+            "placeholderCompanyUrl": "Įveskite svetainę...",
+            "placeholderCompanyZipcode": "Įveskite pašto kodą...",
+            "placeholderExecutiveDirector": "Įveskite verslo vadovą...",
+            "placeholderFileNamePrefix": "Įveskite priešdėlį...",
+            "placeholderFileNameSuffix": "Įveskite priesagą...",
+            "placeholderFileTypes": "Pasirinkite failų formatus...",
+            "placeholderItemsPerPage": "Įveskite elementų skaičių puslapyje...",
             "placeholderName": "Įveskite pavadinimą...",
+            "placeholderPageOrientation": "Pasirinkite puslapio orientaciją...",
+            "placeholderPageSize": "Pasirinkite puslapio formatą...",
+            "placeholderPaymentDueDate": "Įveskite mokėjimo terminą...",
+            "placeholderPlaceOfFulfillment": "Įveskite įvykdymo vietą...",
+            "placeholderPlaceOfJurisdiction": "Įveskite jurisdikcijos vietą...",
+            "placeholderSalesChannel": "Pasirinkite pardavimo kanalą...",
+            "placeholderTaxNumber": "Įveskite mokesčio numerį...",
+            "placeholderTaxOffice": "Įveskite mokesčių inspekciją...",
+            "placeholderType": "Pasirinkite dokumento tipą...",
+            "placeholderVatId": "Įveskite PVM ID...",
             "textHeadline": "Naujas dokumentas"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Užduotis",
             "columnName": "Techninis pavadinimas",
             "columnType": "Tipas",
-            "columnUsedIn": "Priskirtas",
             "contextMenuEdit": "Redaguoti",
             "global": "Globalus",
             "messageDeleteSuccess": "Dokumentas \"{name}\" ištrintas.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Atmesti",
+                "give-consent": "Suteikite sutikimą",
                 "save-preferences": "Išsaugoti nuostatas",
                 "share-all-data": "Pasidalinkite visais",
                 "share-nothing": "Nieko nesidalinkite"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/lt/duomenu-naudojimo-detales",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Išsamią informaciją rasite {data-use-details} ir mūsų {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Privatumo politika",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Dalindamiesi parduotuvės ir vartotojo duomenimis, padedate mums suprasti, kaip naudojama Administracija, ir kurti patobulinimus, kurie palengvina jūsų kasdienį darbą.",
-            "opt-out-info": "Atsisakyti galite bet kuriuo metu naudodami nustatymus ir Profilio nustatymus.",
+            "opt-out-info": {
+                "profile": "Jūsų profilis — Privatumo nuostatos",
+                "settings": "Nustatymai — Privatumas",
+                "snippet": "Galite bet kada pakeisti savo nuostatas: tvarkyti Parduotuvės duomenų parametrus skiltyje {settings}, o Asmens duomenų nustatymus — skiltyje {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Atitinka GDPR",
                 "no-third-party": "Duomenys nėra dalijamasi su trečiosiomis šalimis",
@@ -9899,6 +10059,12 @@
                     "order": "įsakymai",
                     "store": "saugoti duomenis"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "čia",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Diagnostikos duomenys</strong> “Shopware” reiškia informaciją, susijusią su sistemos sveikata, klaidomis ir platformos našumo metrika. Tai apima tokią informaciją kaip sistemos žurnalai, klaidų pranešimai, serverio atsako laikas ir kiti techniniai rodikliai. Šių duomenų analizė padeda greitai nustatyti, spręsti ir įdiegti įprastų problemų ar pažeidžiamumų pataisas, išlaikant platformos vientisumą.",
                     "order": "<strong>Užsakymo duomenys</strong> per Shopware reiškia išsamią informaciją apie klientų užsakymus, pateiktus platformoje. Tai apima specifiką, pvz., Užsakytus produktus, kiekius, kainas, kilmę, mokėjimo būdus, siuntimą ir kt.. Mes analizuojame šiuos duomenis, kad suprastume tendencijas ir modelius, kurie padeda mums patobulinti funkcijas, taip pat kurti naujas paslaugas, skirtas pagerinti jūsų verslo sėkmę. Mes nerenkame jūsų klientų asmens duomenų, kurie gali būti naudojami vieno asmens identifikavimui.",
@@ -9912,6 +10078,12 @@
                 "description": "Mes naudojame {data} apie tai, kaip jūs bendraujate su Administracija, kad pagerintume jos patogumą ir našumą.",
                 "emphasizes": {
                     "data": "duomenys"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Privatumo politika",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Naudojimo duomenys</strong> “Shopware” yra susiję su informacija, susijusia su tuo, kaip administratorių vartotojai ir parduotuvių lankytojai sąveikauja su mūsų platforma. Tai apima išsamią informaciją, pavyzdžiui, sąveiką su skirtingais “Shopware” administratoriaus moduliais, peržiūrėtus puslapius, apsilankymų trukmę, paspaudimų kelius ir vartotojų veiksmus platformoje ir parduotuvėje. Vertindami naudojimo duomenis, galime nustatyti platformos sritis, kuriose dažnai lankomos arba vengiama išmatuoti funkcijų pritaikymą, todėl galima patobulinti išdėstymą, dizainą ir funkcionalumą."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Perjungti elementą \"{name}”",
         "toggleTreeItem": "Perjungti medžio elementą \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Sutinku",
-        "checkListDataSharing": {
-            "gdprCompliant": "Mes laikomės GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>“Dalintis”</strong> reiškia duomenų atskleidimą pačios gaunančiosios šalies tikslams; mes galime atskleisti duomenis savo paslaugų teikėjams."
-            },
-            "personalData": "Mes nerenkame asmens duomenų",
-            "securelyProcessed": "Jūsų duomenys yra saugiai tvarkomi ir saugomi",
-            "thirdParty": "Mes nesidaliname jūsų duomenimis su trečiosiomis šalimis jų pačių tikslais",
-            "title": "Galime jus užtikrinti, kad:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostiniai duomenys",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Diagnostikos duomenys</strong> per Shopware reiškia informaciją, susijusią su sistemos sveikata, klaidomis ir našumo metrika platformos. Tai apima tokią informaciją kaip sistemos žurnalai, klaidų pranešimai, serverio atsako laikas ir kiti techniniai rodikliai. Šių duomenų analizė padeda mums greitai nustatyti, spręsti ir įdiegti bendrų problemų ar pažeidžiamumų pataisas, išlaikant platformos vientisumą.",
-                "orderDataHelp": "<strong>Užsakymo duomenys</strong> per Shopware reiškia išsamią informaciją apie klientų užsakymus, pateiktus platformoje. Tai apima specifiką, pvz., Užsakytus produktus, kiekius, kainas, kilmę, mokėjimo būdus, siuntimą ir tt Mes analizuojame šiuos duomenis, kad suprastume tendencijas ir modelius, kurie padeda mums patobulinti funkcijas, taip pat kurti naujas paslaugas, skirtas pagerinti jūsų verslo sėkmę. Mes nerenkame jūsų klientų asmens duomenų, kurie gali būti naudojami vieno asmens identifikavimui.",
-                "storeDataHelp": "<strong>Parduotuvės duomenys</strong> “Shopware” yra susiję su visa informacija, susijusia su jūsų internetine parduotuve. Pavyzdžiui, produktai, sąrašai, kainos, vaizdai, aprašymai ir kt. ir metaduomenys apie jūsų parduotuvės sąranką, pvz., temos ir papildiniai. Mes nerenkame asmens duomenų, kurie gali būti naudojami administratoriaus vartotojui ar parduotuvės lankytojui identifikuoti. Naudodamiesi suvestiniais parduotuvės duomenimis, mes galime pateikti įžvalgų per mašininį mokymąsi, pavyzdžiui, kylančias rinkos tendencijas, leidžiančias atitinkamai pakoreguoti produktų pasiūlymus ar rinkodaros strategijas.",
-                "usageDataHelp": "<strong>Naudojimo duomenys</strong> “Shopware” yra susiję su informacija, susijusia su tuo, kaip administratorių vartotojai ir parduotuvių lankytojai sąveikauja su mūsų platforma. Tai apima išsamią informaciją, pavyzdžiui, sąveiką su skirtingais “Shopware” administratoriaus moduliais, peržiūrėtus puslapius, apsilankymų trukmę, paspaudimų kelius ir vartotojų veiksmus platformoje ir parduotuvėje. Vertindami naudojimo duomenis, galime nustatyti platformos sritis, kuriose dažnai lankomos arba vengiama išmatuoti funkcijų pritaikymą, todėl galima patobulinti išdėstymą, dizainą ir funkcionalumą. Mes nerenkame asmens duomenų, kurie gali būti naudojami administratoriaus ar parduotuvės lankytojų identifikavimui."
-            },
-            "orderData": "Užsakymo duomenys",
-            "storeData": "Saugokite duomenis",
-            "usageData": "Duomenų dalijimasis"
-        },
-        "confirmAuthorization": "Spustelėdami “Sutinku” patvirtinate, kad esate įgaliotas sudaryti šią sutartį savo įmonės vardu.",
-        "declineDataCollection": "Šiuo metu ne",
-        "fullDetailsDescription": "Išsamią informaciją apie šią sutartį galite rasti adresu {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Visada galite bet kada atsisakyti dalijimosi duomenimis. Prisijunkite prie mūsų formuojant elektroninės komercijos ateitį, dalindamiesi savo duomenimis su mumis!",
-        "headline": "Elektroninės komercijos ateities formavimas",
-        "improvingDescription": "Mes nuolat tobuliname paslaugas, kurias jums teikiame. Norėdami žengti kitą žingsnį, analizuojame jūsų duomenis naudodami tokius metodus kaip mašininis mokymasis (pvz., modelio atpažinimas), kad sukurtume ir tobulintume savo produktą. Jūsų duomenys taip pat bus naudojami kuriant duomenimis pagrįstas paslaugas, skirtas padidinti jūsų verslo sėkmę.",
-        "improvingDescriptionNotAccepted": "Mes nuolat tobuliname paslaugas, kurias jums teikiame. Norėdami žengti kitą žingsnį, norėtume analizuoti jūsų duomenis naudodami tokius metodus kaip mašininis mokymasis (pvz., modelio atpažinimas), kad sukurtume ir tobulintume savo produktą. Jūsų duomenys taip pat bus naudojami kuriant duomenimis pagrįstas paslaugas, skirtas padidinti jūsų verslo sėkmę.",
-        "privacyPolicy": "shopware.com/lt/duomenu-naudojimo-detales",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Jūs galite bet kuriuo metu sudaryti sutartį ir taip prisidėti prie nuolatinės mūsų paslaugų evoliucijos bei pelnytis iš jos, leisdami dalytis duomenimis savo {link}",
-        "settings": {
-            "deactivateDataCollection": "Išjungti duomenų bendrinimą",
-            "sharingInformation": "Jūs dalijatės duomenimis su mumis"
-        },
-        "thankYouMessage": "{thanksForParticipation} Jūs galite bet kada atsisakyti šios sutarties ir taip nustoti prisidėti prie nuolatinės mūsų paslaugų plėtros ir gauti naudos iš jos, išjungdami dalijimąsi duomenimis savo {link}",
-        "thanksForParticipation": "Dėkojame už dalyvavimą!",
-        "togglePath": "Nustatymai"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Vartotojai ir teisės"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Užrakinkite vienodą skalę",
+        "unlock-uniform-scale": "Atrakinkite vienodą skalę"
+    },
     "sw-wizard": {
         "backButton": "Grįžti",
-        "closeButton": "Uždaryti",
         "finishButton": "Užbaigti",
         "nextButton": "Kitas"
     }

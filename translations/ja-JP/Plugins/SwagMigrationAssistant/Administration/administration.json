@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "API キーの長さ ({length}/40 文字) が正しくありません。"
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "移行アシスタント"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "移行を中止できませんでした。",
@@ -29,20 +36,24 @@
         },
         "general": {
             "descriptionTextModule": "データを移行するモジュール",
+            "disabledMessages": {
+                "disabled": "この環境では移行は無効になっています。",
+                "loading": "移行は現在進行中です。",
+                "noData": "移行できるデータはありません。",
+                "noPermission": "移行を実行するのに必要な権限がありません。",
+                "noSelectedData": "移行するアイテムが選択されていません。",
+                "resettingChecksum": "チェックサムは現在リセット中です。",
+                "truncatingMigration": "現在、移行データは切り捨てられています。",
+                "unfilledPremapping": "続行する前に、必要なマッピングをすべて完了してください。"
+            },
             "mainMenuItemGeneral": "移行アシスタント",
             "tabDataSelector": "データの選択",
             "tabHistory": "履歴",
             "tabMain": "全般"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "移行データを削除すると、ログエントリ、メディアファイルエントリ、一時的な移行データレコード、および移行実行が削除され、移行履歴には表示されなくなります。",
-                "contentHint": "本当にデータを削除しますか？",
-                "title": "移行データを削除"
-            },
             "connectionName": "接続名",
             "contextMenu": {
-                "clearLogs": "移行データを削除",
                 "details": "詳細表示",
                 "downloadLogs": "ログをダウンロード"
             },
@@ -59,18 +70,16 @@
                 "logDownload": "ログファイルをダウンロード。",
                 "noErrorsOccurred": "エラーは発生していません。",
                 "noProgressData": "この実行は以前のバージョンのプラグインで実行され、そのデータは削除されました。",
-                "runStatus": "移行ステータス:",
                 "status": {
                     "aborted": "中断",
                     "finished": "完了",
                     "running": "実行中"
                 },
-                "timestamp": "時間:",
                 "title": "移行の詳細"
             },
+            "gateway": "ゲートウェイ",
             "importDateTime": "開始時間",
-            "noData": "移行が見つかりません。",
-            "profileAndGateway": "プロファイルとゲートウェイ",
+            "profile": "プロファイル",
             "selectedData": "データ",
             "shopDomain": "ショップのドメイン",
             "shopSystem": "ショップ システム",
@@ -78,28 +87,9 @@
         },
         "index": {
             "abortButton": "キャンセル",
-            "assistantCard": {
-                "connection": {
-                    "content": "移行アシスタントは、移行元のショップシステムとShopware 6間の接続を確立してデータを転送および移行するのに役立ちます。",
-                    "link": "ヘルプとドキュメント",
-                    "title": "接続をセットアップ"
-                },
-                "dataSelection": {
-                    "content": "移行するデータを選択します。プラグインがShopware 6ですでに利用可能であれば、プラグインデータを含めることもできます。Shopware アカウントでプラグインの可用性を確認してください。",
-                    "title": "移行するデータを指定"
-                },
-                "finish": "完了!",
-                "headline": "移行の仕組み",
-                "migrationOverview": {
-                    "content": "1. 自動処理は選択されたデータの欠如した割り当てをチェックします。 手動割り当てを行うことで、自動処理を完了する下準備ができます。{linebreak}2. あなたのショップのデータは読み取られ割り当てられます。{linebreak}3. 全ての選択された適切にアサイン済みのデータは Shopware 6に転送されます。{linebreak}4. メディアファイルがダウンロードされます。",
-                    "title": "マイグレーションステップ"
-                },
-                "title": "情報"
-            },
             "backToOverviewButton": "概要に戻る",
             "confirmAbortDialog": {
-                "cancelPause": "一時停止",
-                "cancelRunning": "続ける",
+                "cancel": "続けて",
                 "confirm": "マイグレーションを停止",
                 "content": "移行は完全には完了していません。すでに移行されたデータは使用できない場合があります。ここで終了した場合は、移行プロセスを完全に再実行する必要があります。",
                 "hint": "移行を停止しますか？",
@@ -107,169 +97,175 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "はい、続行します",
-                    "info": "異なるデフォルト通貨を使用して移行すると、データレコードが破損し、予期しない副作用が発生する可能性があります。",
-                    "question": "標準通貨 [{targetSystemCurrency}] でデータを移行しますか？",
                     "text": "標準の通貨 [{targetSystemCurrency}] と一致しない通貨データは移行されます。[{sourceSystemCurrency}] のデータは移行されますが、自動では変換されません。移行処理後に手動で価格を調整できます。",
                     "title": "移行が別の通貨を認識しました"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "はい、続行します",
-                    "info": "異なるデフォルト言語を使用して移行すると、データレコードが破損し、予期しない副作用が発生する可能性があります。",
-                    "question": "標準言語 [{targetSystemLanguage}] でデータを移行しますか？",
                     "text": "標準の言語 [{targetSystemLanguage}] と一致しない言語データは移行されます。[{sourceSystemLanguage}] のデータは移行されますが、自動では変換されません。移行処理後に手動で翻訳を調整できます。",
                     "title": "移行が別の言語を認識しました"
                 }
             },
             "continueButton": "続ける",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "親エンティティ {parentEntity} のIDが \"{parentSourceId}\" の子エンティティ {entity} は変換できませんでした。",
-                    "title": "{entity} の子エンティティは変換できませんでした"
+            "error-resolution": {
+                "codes": {
+                    "SWAG_MIGRATION_CONVERT_ASSOCIATION_MISSING": "関連エンティティが見つかりません",
+                    "SWAG_MIGRATION_CONVERT_CHILD_ENTITY_FAILED": "子エンティティの変換に失敗しました",
+                    "SWAG_MIGRATION_CONVERT_DOCUMENT_TYPE_UNSUPPORTED": "ドキュメントタイプの変換はサポートされていません",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_ALREADY_EXISTS": "エンティティは既に存在します",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_FAILED": "エンティティの変換に失敗しました",
+                    "SWAG_MIGRATION_CONVERT_ENTITY_UNKNOWN": "依存エンティティ不明",
+                    "SWAG_MIGRATION_CONVERT_FIELD_REASSIGNED": "エンティティフィールドは自動的に再割り当てされます",
+                    "SWAG_MIGRATION_CONVERT_LANGUAGE_PACK_DEACTIVATED": "言語パックは無効化されました",
+                    "SWAG_MIGRATION_CONVERT_MAIN_VARIANT_RELATION_FAILED": "メインバリアントリレーションの変換に失敗しました",
+                    "SWAG_MIGRATION_CONVERT_OBJECT_TYPE_UNSUPPORTED": "オブジェクトタイプはサポートされていません",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_CALCULATION_TYPE_UNSUPPORTED": "配送料計算タイプはサポートされていません",
+                    "SWAG_MIGRATION_CONVERT_SHIPPING_PRICE_UNSUPPORTED": "配送価格タイプはサポートされていません",
+                    "SWAG_MIGRATION_CONVERT_SOURCE_DATA_INCOMPLETE": "ソースデータが不完全です",
+                    "SWAG_MIGRATION_CONVERT_UNSERIALIZED_DATA_INVALID": "シリアル化されていないデータが無効です",
+                    "SWAG_MIGRATION_FETCH_DATASET_MISSING": "エンティティのデータセットが見つかりません",
+                    "SWAG_MIGRATION_FETCH_ENTITY_COUNT_FAILED": "ソースシステムからエンティティ数を読み込めませんでした",
+                    "SWAG_MIGRATION_FETCH_PROCESSOR_MISSING": "エンティティのプロセッサが見つかりません",
+                    "SWAG_MIGRATION_MEDIA_DEFAULT_FOLDER_UNSUPPORTED": "メディアデフォルトフォルダはサポートされていません",
+                    "SWAG_MIGRATION_MEDIA_FILE_MISSING": "メディアファイルが見つかりません",
+                    "SWAG_MIGRATION_MEDIA_MIME_TYPE_UNKNOWN": "メディア MIME タイプが不明です",
+                    "SWAG_MIGRATION_MEDIA_TEMPORARY_FILE_FAILED": "メディアテンポラリファイルの作成に失敗しました",
+                    "SWAG_MIGRATION_RUN_ABORTED": "マイグレーションは自動的に中止されました",
+                    "SWAG_MIGRATION_RUN_EXCEPTION": "移行例外が発生しました",
+                    "SWAG_MIGRATION_RUN_MESSAGE_QUEUE_EXCEPTION": "メッセージキュー例外が発生しました",
+                    "SWAG_MIGRATION_VALIDATION_ASSOCIATION_INVALID": "エンティティの関連付けが無効です",
+                    "SWAG_MIGRATION_VALIDATION_EXCEPTION": "検証例外が発生しました",
+                    "SWAG_MIGRATION_VALIDATION_OPTIONAL_FIELD_VALUE_INVALID": "オプションフィールドの値が無効です",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_MISSING": "必須フィールドが入力されていません",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_FIELD_VALUE_INVALID": "必須フィールドの値が無効です",
+                    "SWAG_MIGRATION_VALIDATION_REQUIRED_TRANSLATION_INVALID": "必要な翻訳は無効です",
+                    "SWAG_MIGRATION_WRITE_EXCEPTION": "書き込み例外が発生しました",
+                    "SWAG_MIGRATION_WRITE_THEME_COMPILING_FAILED": "テーマのコンパイルに失敗しました",
+                    "unknown": "不明なエラー"
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "ソース Id が \"{sourceId}\" の {entity} エンティティは変換できませんでした。",
-                    "title": "{entity} のエンティティは変換できませんでした"
+                "descriptionTitle": "フィールド説明",
+                "errors": {
+                    "continueMigrationFailed": "移行を続行できませんでした。",
+                    "downloadLogsFailed": "ログファイルをダウンロードできませんでした。",
+                    "fetchExampleFailed": "サンプルデータを取得できませんでした。",
+                    "fetchExistingFixesFailed": "既存の修正を取得できませんでした。",
+                    "fetchFilterDataFailed": "フィルターデータを取得できませんでした。",
+                    "fetchLogsFailed": "ログデータを取得できませんでした。",
+                    "fetchRunFailed": "移行実行データを取得できませんでした。",
+                    "fieldValueNotSet": "フィールド値が設定されていません。",
+                    "invalidFieldValueFormat": "フィールド値の形式が無効です。",
+                    "noEntityIdsFound": "選択したログエントリに有効なエンティティ ID が見つかりません。",
+                    "noLogsSelected": "解決するログエントリを少なくとも 1 つ選択してください。",
+                    "resetResolutionFailed": "エラー解決のリセットに失敗しました。",
+                    "submitResolutionFailed": "エラー解決の送信に失敗しました。",
+                    "validationFailed": "検証が失敗しました。"
                 },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "Uri が \"{uri}\" でメディア Id が \"{sourceId}\" の {entity} ファイルは、ダウンロード/コピーできません。",
-                    "title": "{entity} ファイルをダウンロード/コピーできません"
+                "modals": {
+                    "details": {
+                        "convertedDataLabel": "変換されたデータ",
+                        "sourceDataLabel": "ソースデータ",
+                        "title": "ディテール: {entityName}"
+                    },
+                    "error": {
+                        "left": {
+                            "details": "詳細を表示",
+                            "reset": "リセット",
+                            "select-all": "すべて選択 ({count})",
+                            "status": {
+                                "resolved": "解決済み",
+                                "unresolved": "[未解決]"
+                            }
+                        },
+                        "right": {
+                            "apply": "変更を適用",
+                            "banner": {
+                                "content": "対応する管理領域で選択するオプションを少なくとも 1 つ作成してください。",
+                                "link": "オプションを追加",
+                                "title": "利用できるオプションはありません"
+                            },
+                            "title": "編集: {count} アイテム",
+                            "unhandledBanner": {
+                                "content": "フィールドタイプを特定できませんでした。未加工のソースデータを修正してください。値は正しい形式である必要があります。",
+                                "title": "不明なフィールドタイプ"
+                            },
+                            "unresolvableBanner": {
+                                "content": "詳細については、ログファイルを確認してください。",
+                                "title": "このエラーは現在、移行アシスタントでは解決できません。"
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "ステータス"
+                            }
+                        },
+                        "title": "エラーを修正: {code}, {entityName}, {fieldName}"
+                    }
                 },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "ソース Id が \"{sourceId}\" の {entity} エンティティはすでに存在し、書き込めません。",
-                    "title": "{entity} エンティティは既に存在します"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "ソース Id が \"{sourceId}\" の {entity} エンティティは、フィールド \"{emptyField}\" が \"{replacementField}\" に置き換えられました。",
-                    "title": "{entity} エンティティには再割り当てされたフィールドがあります"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "ソース Id が \"{requiredForSourceId}\" の {requiredForEntity} エンティティは、ソース Id が \"{sourceId}\" の従属 {entity} エンティティを見つけることができません。",
-                    "title": "{entity} が見つかりません"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "メッセージキューの処理中に例外が発生しました。",
-                    "title": "メッセージキュー例外"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "連続して発生した例外が多すぎるため、移行は自動的に中止されました。",
-                    "title": "マイグレーションは自動的に中止されました"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "例外が発生しました"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "エンティティ {entity} の合計数を読み取れませんでした。テーブル「{table}」がソースシステムに存在し、オプションの条件「{condition}」が有効であることを確認してください。例外メッセージ: {exceptionMessage}",
-                    "title": "エンティティ数を読み取れませんでした"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "プロファイル \"{profileName}\" とエンティティ \"{entity}\" のデータセットが見つかりません。Id が \"{sourceId}\" のエンティティは処理できませんでした。",
-                    "title": "データセットが見つかりません"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "デバッグ出力"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "ソース Id が \"{sourceId}\" のドキュメントは、ドキュメントタイプ \"{type}\" がサポートされていないため変換できませんでした。",
-                    "title": "ドキュメントタイプはサポートされていません"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "ソース Id が \"{sourceId}\" のエンティティ {entity}  の電子メールアドレスは無効です: {email}",
-                    "title": "無効な e メール アドレス"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "プロファイル \"{profileName}\", ゲートウェイ\"{gatewayName}\" とエンティティ\"{entity}\" のプロセッサが見つかりません。",
-                    "title": "プロセッサが見つかりません"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "ソース Id が \"{sourceId}\" の {missingEntity} は見つかりませんが、 {requiredFor} には必要です。",
-                    "title": "関連する {entity} が見つかりません"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "ソースファイルをコピーできませんでした。ファイル: {path}",
-                    "title": "ソースファイルが見つかりません"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "メディアをダウンロードできません。該当ファイル: {uri}",
-                    "title": "メディアをダウンロードできません"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "ソース Id が \"{sourceId}\" の {entity} エンティティには、フィールド \"{emptyField}\" に必要なデータがありません",
-                    "title": "{entity} エンティティには空の必須フィールドがあります"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "ソース ID \" {sourceId}\" を持つ {entity} エンティティは、\"{unserializedEntity}\" エンティティに対する無効なシリアライズされていないオブジェクトデータのため変換できませんでした。生データは次のとおりです: {serializedData}",
-                    "title": "不正なシリアライズ化されていないデータ"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "\"{entity}\" の親エンティティが見つかりません。",
-                    "title": "親エンティティが見つかりません"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "ソースID \"{sourceId}\" を持つ数値範囲エンティティは、サポートされていない計算タイプ: {type} のために変換できませんでした。",
-                    "title": "サポートされていない数値範囲タイプ"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "ソース Id が \"{sourceId}\" のオブジェクトタイプ \"{objectType}\" の {entity} は変換できませんでした。",
-                    "title": "サポートされていないオブジェクトタイプ"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "ソースID \"{sourceId}\" を持つ配送方法エンティティは、サポートされていない計算タイプ: {type} のために変換できませんでした。",
-                    "title": "配送計算タイプがサポートされていません"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "価格の計算条件がサポートされていないため、配送方法 \"{shippingMethodId}\"のソース Id が \"{sourceId}\" の配送価格エンティティを変換できませんでした。",
-                    "title": "サポートされていない配送料の計算式です"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "Id \"{sourceId}\" のテーマをコンパイルできませんでした。",
-                    "title": "テーマコンパイルエラー"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "\"{entity}\" エンティティのファイルライターが見つかりません。",
-                    "title": "ファイルライターが見つかりません"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "書き込み例外が発生しました"
-                },
-                "authorizationError": {
-                    "information": "認証エラー。認証情報が正しくありません。確認してもう一度やり直してください。"
-                },
-                "canNotConnectToServer": "サーバーに接続されていません。接続に問題がないか確認してください。",
-                "customerExists": {
-                    "information": "メールアドレス \"{mail}\" の顧客は既に存在します。このユーザーをデータベースに追加することはできません。"
-                },
-                "gatewayNotFound": {
-                    "information": "ゲートウェイ \"{notFoundGateway}\" が見つかりません。"
-                },
-                "gatewayRead": {
-                    "information": "ゲートウェイ「{unreadableGateway}」を読み込めませんでした。"
-                },
-                "localeNotFound": {
-                    "information": "ロケールエントリコード \"{notFoundCode}\" が見つかりません。"
-                },
-                "mediaProcessConnectionError": "メディアデータのコピー中に接続エラーが発生しました。接続を確認してください。",
-                "migrationContextPropertyMissing": {
-                    "information": "マイグレーションコンテキストに必要なプロパティ \"{notFoundProperty}\" が見つかりません。"
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "マイグレーションワークロードに必要なプロパティ \"{notFoundProperty}\" が見つかりません。"
-                },
-                "noFileSystemPermissions": {
-                    "information": "ファイルまたはディレクトリを作成または書き込むためのファイルシステム権限はありません。権限を確認してください。"
-                },
-                "profileNotFound": {
-                    "information": "移行プロファイル \"{notFoundProfile}\" が見つかりません。"
-                },
-                "undefinedIndex": {
-                    "detail": "未定義のインデックスが見つかりませんでした。",
-                    "information": "インデックス \"{unidentifiedIndex}\" が見つかりませんでした。データを確認してください。",
-                    "title": "未確認インデックス"
-                },
-                "unknownError": "不明なエラー。詳細については、データベースのログテーブルを確認してください。"
+                "step": {
+                    "card": {
+                        "filter": {
+                            "code": {
+                                "label": "エラー名",
+                                "placeholder": "エラー名を選択してください"
+                            },
+                            "entity": {
+                                "label": "エンティティ",
+                                "placeholder": "エンティティを選択する"
+                            },
+                            "field": {
+                                "label": "フィールド",
+                                "placeholder": "フィールドを選択する"
+                            },
+                            "reset": "フィルターのリセット",
+                            "status": {
+                                "label": "エラーステータス",
+                                "options": {
+                                    "resolved": "解決済み",
+                                    "unresolved": "[未解決]"
+                                },
+                                "placeholder": "エラーステータスを選択してください"
+                            },
+                            "title": "フィルター | フィルター ({count}) | フィルター ({count})"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "コード",
+                                "count": "固定/合計",
+                                "entity": "エンティティ",
+                                "field": "フィールド",
+                                "gatewayName": "ゲートウェイ",
+                                "name": "名前",
+                                "profileName": "プロファイル"
+                            },
+                            "empty-state": {
+                                "description": "選択したフィルターに一致するログが見つかりませんでした。",
+                                "headline": "何も見つかりませんでした"
+                            }
+                        },
+                        "tabs": {
+                            "errors": "エラー ({count})",
+                            "infos": "情報 ({count})",
+                            "warnings": "警告 ({count})"
+                        },
+                        "title": "修正可能なエラー"
+                    },
+                    "continue-modal": {
+                        "text-fixable": "まだ解決されていない修正可能なエラーのグループが {count} 個あります。フォローアップエラーを避けるため、続行する前にこれらのエラーを修正してください。",
+                        "text-unfixable": "まだ解決されていない {count} の修正不可能なエラーがあります。残りのエラーを解決せずに続行すると、フォローアップエラーが表示されることがあります。",
+                        "title": "続ける"
+                    },
+                    "header": {
+                        "banner": {
+                            "content": "この画面では解決できない {count} エラーまたは警告があります。調査するには、ログファイルをダウンロードして、詳細なエラーメッセージを確認してください。根本的な問題は、ソースシステムで修正する必要がある場合があります。解決したら、移行を再実行して続行してください。",
+                            "title": "一部のエラーはこのビューでは修正できません"
+                        },
+                        "continue": "続ける",
+                        "continueTooltip": "続行する前に、修正可能なエラーをすべて修正してください。",
+                        "description": "インポート中に発生した移行エラーを確認して解決します。このビューでデータの問題を直接修正するか、ログファイルをダウンロードして詳細情報を確認してください。修正可能なエラーがすべて解決されたら続行してください。このビューを終了して、後で戻ることができます。",
+                        "documentation": "ドキュメンテーション",
+                        "download": "ログファイルのダウンロード",
+                        "title": "エラー解決"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "エラー",
@@ -282,6 +278,7 @@
                 "documentationLinkText": "メッセージキューのドキュメント",
                 "flowChart": {
                     "cleanup": "クリーンアップ",
+                    "errorResolution": "エラー解決",
                     "fetchData": "読み込み中",
                     "finish": "完了",
                     "indexing": "索引付け",
@@ -292,7 +289,6 @@
                 "notice": "ヒント:このプロセスはメッセージキューで実行されます。ショップが正しく設定されていれば、このページを開いておく必要はありません。",
                 "result": {
                     "historyHint": "この情報は、移行履歴でいつでも確認できます。メディアのダウンロードはまだバックグラウンドで実行されているため、後でさらにログメッセージが追加される可能性があります。",
-                    "logSummary": "ログブック",
                     "title": "移行アシスタントは完了しました"
                 },
                 "status": {
@@ -305,6 +301,11 @@
                         "caption": "一時データは削除されています。移行はほぼ完了しました。",
                         "long": "マイグレーションはクリーンアップ中です",
                         "short": "クリーンアップ"
+                    },
+                    "error-resolution": {
+                        "caption": "すべてのエラーが解決されるまで、移行は一時停止されます。",
+                        "long": "エラーは解決できます",
+                        "short": "エラー解決"
                     },
                     "fetching": {
                         "caption": "新しい割り当てが処理されます。",
@@ -322,6 +323,7 @@
                         "long": "メディアを転送中です",
                         "short": "メディア転送"
                     },
+                    "unknown": "不明",
                     "writing": {
                         "caption": "店舗の規模によっては、しばらく時間がかかる場合があります。",
                         "long": "データはShopware 6に書き込まれています",
@@ -348,16 +350,10 @@
                     "transaction_state": "トランザクションの状態",
                     "user": "管理ユーザ"
                 },
-                "loadingCaption": "既存のデータをチェックしました。",
-                "loadingTitle": "データチェックが実行中です",
                 "newAssignmentTitle": "新しい課題",
                 "placeholder": "選択してください",
                 "previousTitle": "前",
-                "unfilledAlert": "手動での割り当てが必要なデータがあることが検出されました。",
-                "unfilledCaption": "手動割り当てが完了した後にのみ続行できます。",
-                "unfilledTitle": "データチェックが完了しました",
-                "validCaption": "データを処理する準備が整いました",
-                "validTitle": "データチェックが完了しました"
+                "unfilledAlert": "手動での割り当てが必要なデータがあることが検出されました。"
             },
             "savePremapping": {
                 "message": "プレマッピングが保存されました。",
@@ -451,7 +447,8 @@
                     "name": "名前",
                     "total": "データセット"
                 },
-                "noData": "移行できるものが見つかりませんでした。"
+                "noData": "移行できるものが見つかりませんでした。",
+                "noDataSubline": "接続を確認するか、別のプロファイルを試してください。"
             },
             "shopInfoCard": {
                 "buttonCreateConnection": "新しい接続を作成",
@@ -467,14 +464,15 @@
                 "connectionCheck": "接続のチェック:",
                 "gateway": "ゲートウェイ:",
                 "lastMigration": "最終マイグレーション:",
+                "link": "ヘルプとドキュメンテーション",
                 "noConnection": "接続なし",
+                "noConnectionCheckDoneYet": "接続チェックはまだ実行されていません",
                 "noMigrationDoneYet": "-",
                 "notConnected": "接続されていません",
                 "profile": "システムプロファイル:",
-                "refreshTooltip": "ソースシステムへの接続を確認",
+                "refreshButton": "接続を更新",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "キャンセル",
-                    "confirmButtonText": "はい、削除します",
                     "content": "この後アクティブな接続はなくなります。接続を復元するには接続情報をもう一度入力してください。",
                     "contentHint": "現在の接続情報を削除してもよろしいですか?",
                     "title": "アクセスデータを削除"
@@ -490,17 +488,35 @@
                     "abortButtonText": "キャンセル",
                     "confirmButtonText": "今完了する",
                     "content": "素晴らしい! 移行処理を完了し、一時ファイルと使用されていないデータをクリーンアップしましょう。<strong>注意:</strong> 移行処理は終了です。現在の接続でこれ以上のデータ移行はできません。",
-                    "contentHint": "今すぐ移行を完了しますか？",
                     "errorNotification": {
                         "message": "現在、移行が進行中です。",
                         "title": "移行を完了中にエラーが発生しました"
                     },
                     "header": "ショップデータの移行は完了しましたか？",
                     "title": "移行を完了"
+                },
+                "updateBanner": {
+                    "isResettingChecksums": {
+                        "message": "チェックサムはリセットされています。これには数分かかることがあります。",
+                        "title": "チェックサムのリセット"
+                    },
+                    "isTruncatingMigration": {
+                        "message": "移行データは切り捨てられています。これには数分かかることがあります。",
+                        "title": "移行データのトランケート"
+                    }
                 }
             },
             "shopwareMajorVersionText": "ソースシステム {sourceSystem} のバージョンがターゲットシステム {targetSystem} のバージョンと一致しないことに気付きました。移行を開始する前に、両方のシステムで同じメジャーバージョンを使用してください。",
-            "title": "全般"
+            "title": "全般",
+            "warningModal": {
+                "cancelButton": "戻る",
+                "confirmButton": "とにかく続けて",
+                "message": {
+                    "currency": "異なるデフォルト通貨を使用して移行すると、データレコードが破損し、予期しない副作用が発生する可能性があります。",
+                    "language": "異なるデフォルト言語を使用して移行すると、データレコードが破損し、予期しない副作用が発生する可能性があります。"
+                },
+                "title": "データの不一致が検出されました"
+            }
         },
         "wizard": {
             "buttonAbort": "キャンセル",
@@ -519,7 +535,6 @@
                     "connectionLabel": "接続名",
                     "connectionPlaceholder": "名前を入力",
                     "connectionTooltip": "接続の一意の名前を入力します。",
-                    "contentInformation": "移行には以下の情報が必要です。",
                     "gatewayLabel": "ゲートウェイ",
                     "gatewayPlaceholder": "ゲートウェイを選択",
                     "gatewayTooltip": "システム間の接続の種類。",
@@ -538,7 +553,6 @@
                 "connectionSelect": {
                     "connectionLabel": "接続名",
                     "connectionPlaceholder": "接続を選択してください",
-                    "contentInformation": "データを更新するには、リストから既存の接続を選択します。",
                     "title": "移行 – 接続の変更"
                 },
                 "credentials": {
@@ -548,9 +562,9 @@
                         "SWAG_MIGRATION__API_CONNECTION_ERROR__HINT": "接続に問題がある場合は、サーバーに現在インストールされている curl のバージョンを確認して更新することをお勧めします。",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ATTRIBUTES_WRONG": "データベース接続には適切な属性がなく、設定できません。",
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "データベース接続を確立できませんでした。",
+                        "SWAG_MIGRATION__DUPLICATE_SOURCE_CONNECTION": "同じソースシステムへの接続が既に存在しています。別の接続を使用してください。",
                         "SWAG_MIGRATION__GATEWAY_READ": "サーバーに接続できませんでした。指定したショップドメインを確認してください。",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "接続に問題がある場合は、サーバーに現在インストールされている curl のバージョンを確認して更新することをお勧めします。",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "認証情報が正しくありません。確認して、もう一度試してください。",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "ソースシステムへの接続のアクセスデータが存在しないか、正しくありません。それらを確認して、もう一度試してください。",
                         "SWAG_MIGRATION__IS_RUNNING": "現在、移行が進行中です。そのため、移行が完了するまで認証情報を編集することはできません。",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "必要なプラグイン「Migration Connector」がShopware 5にインストールされていません。無料のプラグインをインストールして、もう一度試してください。",
@@ -568,13 +582,22 @@
                             "apiUserLabel": "ユーザー名 (API ユーザー)",
                             "apiUserPlaceholder": "ユーザー名を入力",
                             "apiUserTooltip": "Shopware 5バックエンドのユーザー名。",
-                            "contentInformation": "Shopware 5とShopware 6を接続するためには、正しいAPI認証情報が必要です。API認証情報はShopware 5の管理画面にある \"User administration\" で確認できます。APIアクセスは該当のShopware 5の管理画面で有効化が必要です。",
                             "endpointLabel": "ショップのドメイン",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "当店は安全な接続 (SSL) を使用しています"
+                            "endpointSSLLabel": "当店は安全な接続 (SSL) を使用しています",
+                            "pluginLinkText": "プラグインに関する詳細情報",
+                            "pluginName": "マイグレーションコネクタ",
+                            "steps": {
+                                "step1": "Shopware 5 バックエンドから [プラグインマネージャー] > [拡張機能] > [移行ツール] からプラグイン {pluginName} をインストールして有効化します。",
+                                "step2": "Shopware 5 バックエンドの [ユーザー管理] に移動します。",
+                                "step3": "接続に使用するユーザーを選択します。",
+                                "step4": "API アクセスを有効にして保存します。",
+                                "step5": "ユーザーに local_admin ロールが割り当てられていることを確認します。",
+                                "step6": "ここに API 認証情報を入力して接続を確立します。"
+                            },
+                            "title": "ショップウェア 5 ストアを接続"
                         },
                         "local": {
-                            "contentInformation": "Shopware 5 データベースに接続するには、引き続きアクセスデータが必要です。",
                             "dbHostLabel": "ホスト名",
                             "dbHostPlaceholder": "ホスト名を入力",
                             "dbNameLabel": "データベース名",
@@ -596,10 +619,21 @@
                             "apiUserLabel": "アクセスキーID",
                             "apiUserPlaceholder": "アクセスキーIDを入力",
                             "apiUserTooltip": "インテグレーションのアクセスキー ID。",
-                            "contentInformation": "ソースとターゲットのShopware 6インスタンス間の接続を確立するには、有効なAPI認証情報が必要です。これらは、ソースシステムでインテグレーションを作成するときに取得されます。",
                             "endpointLabel": "ショップのドメイン",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "当店は安全な接続 (SSL) を使用しています"
+                            "endpointSSLLabel": "当店は安全な接続 (SSL) を使用しています",
+                            "integrationLink": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
+                            "integrationLinkText": "インテグレーションの詳細",
+                            "pluginLink": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
+                            "pluginLinkText": "移行アシスタントの拡張機能の詳細",
+                            "pluginName": "移行アシスタント",
+                            "steps": {
+                                "step1": "ソースシステムに {pluginName} 拡張モジュールをインストールして有効にします。",
+                                "step2": "[設定] > [システム] > [統合] からソースシステムに統合を作成します。",
+                                "step3": "アクセスキー ID とシークレットアクセスキーを生成します。",
+                                "step4": "ここにアクセスキーとショップドメインを入力して接続を確立します。"
+                            },
+                            "title": "ショップウェア 6 ストアを接続"
                         }
                     },
                     "statusTitle": "接続のチェック",
@@ -615,29 +649,6 @@
                     "contentHeadline": "いくつか動かしてみましょう",
                     "contentInformation": "一緒にお客様のショップシステムをShopware 6に接続します。その後、移行アシスタントがデータを段階的に移行するお手伝いをします。",
                     "title": "移行アシスタント"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "必要なプラグイン「Migration Connector」は無料であり、Shopware 5 backend under Plugin Manager > Extensions > Migration toolsで見つけることができます。 続行するにはプラグインをインストールしてアクティベートしてください。",
-                        "contentTitle": "プラグインが必要です",
-                        "pluginLink": "プラグインの詳細情報"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "必要条件",
-                        "integration": {
-                            "description": "設定 > システム > インテグレーションからソースシステムにインテグレーションを作成します。次のステップでは、生成されたアクセスキー ID とシークレットアクセスキーが必要になります。",
-                            "link": "https://docs.shopware.com/ja/shopware-6-en/settings/system/integrationen",
-                            "linkText": "インテグレーションの詳細",
-                            "title": "インテグレーション"
-                        },
-                        "plugin": {
-                            "description": "移行アシスタント拡張機能をソースシステムにインストールします。",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "移行アシスタント拡張機能の詳細",
-                            "title": "エクステンション"
-                        }
-                    },
-                    "title": "移行 - 接続の準備"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "以前可能だったもの:",

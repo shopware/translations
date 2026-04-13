@@ -317,6 +317,7 @@
             "newsletter_update": "Přihlášení k newsletteru aktualizováno",
             "product_export_log": "Provedený vývoz produktu",
             "review_form_send": "Formulář pro kontrolu odeslán",
+            "revocation_request_sent": "Formulář žádosti o odvolání byl odeslán.",
             "state_enter_order_delivery_state_cancelled": "Zásilka vstoupí do stavu zrušena",
             "state_enter_order_delivery_state_open": "Zásilka vstupuje do stavu otevřeného",
             "state_enter_order_delivery_state_returned": "Zásilka vstupuje do stavu vrácené",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Vybrat datum",
             "caption": "Soubor k odeslání přetáhněte sem",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Vybraný soubor \"{name}\" má nepodporovanou příponu souboru. Použijte jednu z následujících přípon souborů: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Vybraný soubor \"{name}\" je příliš velký a nezle jej odeslat. Maximální velikost souboru je {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Nebyly nalezeny žádné dokumenty",
                 "title": "Hromadné úpravy - Úspěch"
             },
-            "warningText": "Počkejte prosím na dokončení hromadné úpravy. Může to chvíli trvat. Pokud kartu prohlížeče zavřete nebo proces předčasně zrušíte, nebudou použity všechny změny. Hromadnou úpravu můžete kdykoli spustit znovu."
+            "warningText": "Počkejte prosím na dokončení hromadné úpravy. Může to chvíli trvat. Pokud kartu prohlížeče zavřete nebo proces předčasně zrušíte, nebudou použity všechny změny. Hromadnou úpravu můžete kdykoli spustit znovu.",
+            "warningTextDocumentDeletion": "Dokumenty jsou součástí objednávky a mohou být relevantní pro daňové účely. Jejich vymazání může ovlivnit sledovatelnost vašich účetních záznamů. Ujistěte se, že vymazání je zákonně povoleno."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Dokumenty",
+                "deleteDocuments": {
+                    "helpText": "Pomocí této možnosti budou odstraněny všechny vybrané typy dokumentů.",
+                    "label": "Odstranit: Dokumenty"
+                },
                 "downloadDocuments": {
                     "helpText": "Díky této možnosti jsou k dispozici nejnovější dostupné dokumenty ke stažení. Více dokumentů je sloučeno do stejného souboru. Stahování je k dispozici po dokončení vícenásobné změny.",
                     "label": "Ke stažení: Dokumenty"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Stránky Newsletter",
                     "privacyPage": "Stránky ochrany osobních údajů",
                     "revocationPage": "Oznámení o zrušení",
+                    "revocationRequestPage": "Formulář žádosti o odvolání",
                     "shippingPaymentInfoPage": "Informace o platbě a přepravě",
                     "tosPage": "Stránky TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Titul",
                         "type": "Typ formuláře",
                         "typeContact": "Kontakt",
-                        "typeNewsletter": "Novinky"
+                        "typeNewsletter": "Novinky",
+                        "typeRevocationRequest": "Zrušení"
                     },
                     "placeholder": {
                         "type": "Zvolte typ formuláře..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Akce",
+                        "comment": "Komentář",
+                        "contractNumber": "Číslo smlouvy (číslo objednávky, číslo předplatného, ... ) *    ",
                         "email": "E-mailová adresa*",
                         "firstName": "Jméno*",
                         "lastName": "Příjmení*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "Josef",
                         "lastName": "Novák",
@@ -3638,6 +3653,36 @@
         "noCriteria": "č. {criteriaName}",
         "placeholder": "Všechny"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Exportní kanál",
+                        "placeholder": "Vyberte exportní kanály…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Exportní kanál"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Exportní kanál",
+                        "placeholder": "Vyberte exportní kanály…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Exportní kanál"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Přidá sloupce a filtry exportního kanálu do seznamů objednávek a zákazníků.",
+            "mainMenuItemGeneral": "Sledování exportního kanálu"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Rozšíření \"{name}\" není kompatibilní s touto verzí Shopware",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Typ",
                 "labelRecipient": "Příjemce",
                 "labelReplyTo": "Odpovědět na adresu",
+                "labelRevocationRequestFormMail": "Poptavatel",
                 "labelSenderName": "Odesilatel",
                 "labelSubject": "Věc",
                 "placeholderDescription": "Zadejte popis...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Zadejte název pravidla...",
                 "placeholderPriority": "Zadejte prioritu pravidla...",
                 "placeholderType": "Vyberte typ pravidla...",
+                "productStatesConditionWarning": "Podmínka „Položka se stavem produktu“ je zastaralá a bude odstraněna ve verzi 6.8. Místo toho použijte „Položka s typem produktu“.",
                 "tabDetail": "generál",
                 "tabRule": "Podmínky"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Vráceno",
             "returnedPartially": "Částečně vráceno",
             "reviewForm": "Recenze produktu",
+            "revocationRequestCustomer": "Odeslána žádost o odvolání",
+            "revocationRequestMerchant": "Přijata žádost o odvolání",
             "send": "Odeslat",
             "sent": "Odesláno",
             "shipped": "Odesláno",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Šipka nahoru (^)",
             "categoriesLabel": "Kategorie",
             "closeProfileLabel": "Zavřít profil",
-            "closeViolation": "Zavřít",
             "commasLabel": "Čárka (,)",
             "configuratorSettingLabel": "Konfigurace variant",
             "copyOfLabel": "Kopie z:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Import"
             },
             "updateEntitiesLabel": "Aktualizace existujících dat",
-            "violationMessage": "Váš profil ještě není platný. K dole zobrazeným povinným polím musíte přidat přiřazení, aby bylo možné profil uložit:"
+            "violationModal": {
+                "duplicateMappings": "V následujících polích máte <strong>duplicitní mapování</strong> . Odstraňte duplikáty pro uložení profilu:",
+                "missingRequiredFields": "Pro uložení profilu musíte přidat mapování do povinných polí <strong></strong> zobrazených níže:",
+                "title": "Váš profil ještě není platný"
+            }
         },
         "progress": {
             "startExportLabel": "Spustit export",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Uložit na médium"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Přesunout objekt",
-                "rotate-tooltip": "Otočit objekt",
-                "scale-tooltip": "Měřítko objektu"
-            },
-            "saveChanges": "Uložit změny",
-            "titleModal": "Editor modelů"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Zpět"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Přesunout objekt",
+            "rotate-tooltip": "Otočit objekt",
+            "scale-tooltip": "Měřítko objektu"
+        },
+        "open-model-editor-tooltip": "Otevření editoru modelu",
+        "properties": {
+            "transformation": {
+                "label": "Transformace",
+                "position": {
+                    "label": "Pozice"
+                },
+                "rotation": {
+                    "label": "Rotace"
+                },
+                "scale": {
+                    "label": "Měřítko"
+                }
+            }
+        },
+        "titleModal": "Editor modelů"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Chcete-li vytvořit dobropisu, nejprve přidejte položku kreditu.",
-                    "storno": "Storno fakturu nelze vytvořit bez faktury."
+                    "storno": "Storno fakturu nelze vytvořit bez faktury.",
+                    "zugferd_cancellation_invoice": "ZugFerd storno fakturu nelze vytvořit bez faktury.",
+                    "zugferd_credit_note": "K vytvoření dobropisu ZugFerd je vyžadována faktura a alespoň jedna kreditní položka.",
+                    "zugferd_embedded_cancellation_invoice": "Vloženou storno fakturu ZugFerd nelze vytvořit bez faktury.",
+                    "zugferd_embedded_credit_note": "Pro vytvoření vloženého dobropisu ZugFerd je vyžadována faktura a alespoň jedna kreditní položka."
                 },
                 "primaryAction": "Založit dokument",
+                "showZugferd": "Zobrazit varianty ZugFerd",
                 "title": "Založit dokument"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Doklady",
+            "confirmDeleteText": "Tento dokument je součástí objednávky a může být relevantní pro daňové účely. Vymazání může ovlivnit sledovatelnost vašich účetních záznamů. Ujistěte se, že vymazání je zákonně povoleno. Tuto akci nelze vrátit zpět.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokument číslo {number} již byl přidělen."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Odeslat vlastní dokument",
             "labelCancel": "Zavřít",
             "labelCreate": "Vytvořit doklad",
+            "labelCreateDownload": "Vytvářejte a stahujte",
             "labelCreateDownloadPdf": "Vytvořit a stáhnout PDF",
             "labelCreateSend": "Doklad vytvořit a odeslat",
             "labelDeliveryDate": "Datum dodání",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtr",
             "titleSidebarItemFilterAffiliateCode": "Kód pobočky",
             "titleSidebarItemFilterCampaignCode": "Kód kampaně",
-            "titleSidebarItemRefresh": "Aktualizovat"
+            "titleSidebarItemRefresh": "Aktualizovat",
+            "tooltipCustomerComment": "Další informace: {comment}",
+            "tooltipInternalComment": "Interní komentář: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Jméno",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Zde můžete definovat tři až pět klíčových slov, pod kterými by měl být váš produkt nalezen.",
             "helpTextMetaDescription": "S meta popisem potvrzujete svým zákazníkům, že jsou ve vašem obchodě na správném místě. Vytváříte pobídky, budujete důvěru a vyzýváte k akci. Měli byste se omezit na maximálně 155 znaků. Shopware umožňuje maximální délku 255 znaků.",
             "helpTextMetaTitle": "Meta title je nejdůležitějším SEO prvkem a měl by být jedinečný pro každou stránku. Měli byste se omezit na délku maximálně 56 znaků. Vaše klíčové slovo by mělo být v ideálním případě umístěno na přední straně.",
+            "helpTextOpenGraphDescription": "Popis Open Graph se používá při sdílení produktu na sociálních médiích. Pokud zůstane prázdný, meta popis bude použit jako záložní.",
+            "helpTextOpenGraphTitle": "Název Open Graph se používá při sdílení produktu na sociálních médiích. Pokud zůstane prázdný, meta název bude použit jako záložní.",
             "labelCanonicalProduct": "Varianta kanonické adresy URL",
             "labelCanonicalUrlMode": "Použít jednu kanonickou adresu URL pro všechny varianty",
             "labelKeywords": "Klíčová slova",
             "labelMetaDescription": "Meta popis",
             "labelMetaTitle": "Meta název",
+            "labelOpenGraphDescription": "OG popis",
+            "labelOpenGraphImage": "OG obrázek",
+            "labelOpenGraphTitle": "OG titul",
             "placeholderCanonicalProduct": "Vyberte variantu...",
             "placeholderKeywords": "Zadejte jedno nebo více klíčových slov...",
             "placeholderMetaDescription": "Zadejte meta popis...",
-            "placeholderMetaTitle": "Zadejte meta název..."
+            "placeholderMetaTitle": "Zadejte meta název...",
+            "placeholderOpenGraphDescription": "Zadejte popis otevřeného grafu...",
+            "placeholderOpenGraphTitle": "Zadejte název Open Graph...",
+            "titleOpenGraph": "Otevřít graf"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Dodatečné objednávání není možné.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Podmínky"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Kód pobočky",
+            "affiliateCodePlaceholder": "Zadejte partnerský kód…",
+            "campaignCodeLabel": "Kód kampaně",
+            "campaignCodePlaceholder": "Zadejte kód kampaně…",
+            "cardTitle": "Sledovací kódy",
+            "description": "Nakonfigurujte kódy přidružených společností a kampaní, které budou vloženy do adres URL produktů kanálů tohoto kanálu. Tyto kódy identifikují objednávky a zákazníky odkazované z tohoto kanálu Agentic Commerce."
+        },
         "detail": {
             "activateDisable": "Než bude možné prodejní kanál aktivovat, musí být uložen a poté musí být přiřazen tématu.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Obnovit výchozí",
+                "errorLoadingTemplate": "Nelze načíst výchozí šablonu.",
+                "integration": {
+                    "feedUrlLabel": "URL exportu",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Připojení OpenAI",
+                            "introduction": {
+                                "description": "Tento prodejní kanál generuje zdroj produktů JSONL, aby se vaše produkty mohly zobrazit ve výsledcích vyhledávání ChatGPT. Chcete-li to provést, musíte se přihlásit jako obchodník a sdílet adresu URL zdroje s OpenAI. Vše ostatní je vysvětleno v níže uvedeném průvodci krok za krokem.",
+                                "title": "Jak: Nastavení a připojení"
+                            },
+                            "stepByStep": "<li>Přihlaste se jako obchodník na <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchant</a></li><li>Zkopírujte adresu URL exportu (níže) a sdílejte ji s OpenAI podle dokumentu <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Produktové zdroje</a></li><li>Ujistěte se, že adresa URL exportu je veřejně přístupná</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Krok za krokem"
+                },
+                "openAiSettingsTitle": "Nastavení OpenAI",
+                "resetTemplateSuccess": "Šablona byla resetována na výchozí. Chcete-li zachovat změny, uložte.",
+                "tabIntegration": "Integrace",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Pomocí služby Google Analytics můžete shromažďovat a analyzovat data svého obchodu. Aby bylo možné tuto funkci využívat, je nutný účet Google. Pokud ještě nemáte účet Google Analytics, možná se budete chtít zaregistrovat zde: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Po úspěšném přihlášení obdržíte ID sledování, které je třeba vyplnit níže pro aktivaci integrace.",
@@ -7704,6 +7821,25 @@
                         "idealo": "billiger.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Doporučené zákazníky",
+                    "dateRanges": {
+                        "14Days": "Posledních 14 dní",
+                        "180Days": "Posledních 180 dní",
+                        "24Hours": "Posledních 24 hodin",
+                        "30Days": "Posledních 30 dní",
+                        "7Days": "Posledních 7 dní",
+                        "yesterday": "Včera"
+                    },
+                    "numbers": "Počet",
+                    "orderCardHeadline": "Doporučené objednávky",
+                    "summary": "Souhrn",
+                    "totalTurnover": "Obrat",
+                    "turnoverCardHeadline": "Uvedený obrat"
+                },
+                "tabInsights": "Statistiky"
             },
             "products": {
                 "buttonAddProducts": "Přidat {productCount} produktů | Přidat {productCount} produkt | Přidat {productCount} produkty",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "V tomto prodejním kanálu již existuje jiný dokument stejného typu.",
             "disabledSalesChannelSelect": "Nejdříve zvolte typ dokumentu.",
             "disabledTypeSelect": "Typ globálního dokumentu nelze změnit.",
+            "displayTitle": "Displej:",
             "helpTextDisplayAdditionalNoteDelivery": "Způsobilé pouze pro členské státy EU, viz také „Nastavení > Země“.",
-            "helpTextDisplayCompanyAddress": "Zobrazí adresu společnosti pod záhlavím na pravé straně dokumentu.",
-            "helpTextDisplayDeliveryCountries": "Zobrazí údaj „dodávka uvnitř komunity“ v dokladech faktur pro vybrané země.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokument je zobrazen v sekci „Objednávky“ na příslušném zákaznickém účtu. Všimněte si, že v účtu odběratele jsou zobrazeny pouze dokumenty, které byly skutečně odeslány odběrateli.",
-            "helpTextDisplayReturnAddress": "Zobrazí adresu společnosti jako zpáteční adresu nad adresou zákazníka v bloku adres.",
-            "helpTextPaymentDueDate": "Např.: +30 dní, +4 týdny, +1 týden 2 dny",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Banku",
             "labelCompanyCity": "Město",
             "labelCompanyCountry": "Země",
             "labelCompanyEmail": "E-mailová adresa",
+            "labelCompanyLogo": "Firemní logo",
             "labelCompanyName": "Jméno",
             "labelCompanyPhone": "Telefonní číslo",
             "labelCompanyStreet": "Ulice",
             "labelCompanyUrl": "Webové stránky",
             "labelCompanyZipcode": "PSČ",
-            "labelDeliveryCountries": "Členské státy",
             "labelDisplayAdditionalNoteDelivery": "Zobrazit štítek „Dodávka uvnitř Společenství“",
             "labelDisplayCompanyAddress": "Zobrazit obchodní adresu",
             "labelDisplayCustomerVatId": "Zobrazit ID DPH zákazníka",
@@ -8391,20 +8524,53 @@
             "labelFileTypes": "Formáty souborů",
             "labelItemsPerPage": "Položky na stranu",
             "labelName": "Název",
-            "labelOptionMedia": "Firemní logo",
             "labelPageOrientation": "Vyrovnání stran",
             "labelPageSize": "Formát stránky",
             "labelPaymentDueDate": "Datum splatnosti platby",
             "labelPlaceOfFulfillment": "Místo plnění",
-            "labelPlaceOfJurisdiction": "Místo jurisdikce/Obchodní rejstřík č.",
+            "labelPlaceOfJurisdiction": "Soudní příslušnost/Obch. rejstřík č.",
             "labelSalesChannel": "Prodejní kanál",
             "labelTaxNumber": "Daňové číslo",
             "labelTaxOffice": "Finanční úřad",
             "labelType": "Typ dokumentu",
             "labelVatId": "č. DPH",
-            "messageSaveSuccess": "Dokument \"{name}\" byl úspěšně uložen.",
-            "placeholderDisplayDeliveryCountries": "Vyhledávání a přidání zemí platných pro doručení uvnitř Společenství...",
+            "pageOrientationOptions": {
+                "landscape": "Krajina",
+                "portrait": "Portrét"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Právní",
+                "letter": "Písmeno"
+            },
+            "placeholderBankBic": "Zadejte BIC...",
+            "placeholderBankIban": "Zadejte IBAN...",
+            "placeholderBankName": "Zadejte název banky...",
+            "placeholderCompanyCity": "Zadejte místo...",
+            "placeholderCompanyCountry": "Vyberte zemi...",
+            "placeholderCompanyEmail": "Zadejte e-mailovou adresu...",
+            "placeholderCompanyName": "Zadejte název společnosti...",
+            "placeholderCompanyPhone": "Zadejte telefonní číslo...",
+            "placeholderCompanyStreet": "Zadejte název ulice...",
+            "placeholderCompanyUrl": "Zadejte web...",
+            "placeholderCompanyZipcode": "Zadejte PSČ...",
+            "placeholderExecutiveDirector": "Vstupte do obchodního ředitele...",
+            "placeholderFileNamePrefix": "Zadejte prefix...",
+            "placeholderFileNameSuffix": "Zadejte sufix...",
+            "placeholderFileTypes": "Vyberte formáty souborů...",
+            "placeholderItemsPerPage": "Zadejte počet položek na stránku...",
             "placeholderName": "Zadejte název...",
+            "placeholderPageOrientation": "Vyberte orientaci stránky...",
+            "placeholderPageSize": "Vyberte formát stránky...",
+            "placeholderPaymentDueDate": "Zadejte datum splatnosti platby...",
+            "placeholderPlaceOfFulfillment": "Zadejte místo plnění...",
+            "placeholderPlaceOfJurisdiction": "Zadejte místo příslušnosti...",
+            "placeholderSalesChannel": "Vyberte prodejní kanál...",
+            "placeholderTaxNumber": "Zadejte daňové číslo...",
+            "placeholderTaxOffice": "Zadejte daňový úřad...",
+            "placeholderType": "Vyberte typ dokumentu...",
+            "placeholderVatId": "Zadejte DIČ...",
             "textHeadline": "Nový dokument"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Přiřazení",
             "columnName": "Název",
             "columnType": "Typ",
-            "columnUsedIn": "Použito pro",
             "contextMenuEdit": "Upravit",
             "global": "Globálně",
             "messageDeleteSuccess": "Dokument \"{name}\" byl úspěšně smazán.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Odmítnout",
+                "give-consent": "Dejte souhlas",
                 "save-preferences": "Uložit předvolby",
                 "share-all-data": "Sdílet vše",
                 "share-nothing": "Nesdílejte nic"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/cs/data-use-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Úplné podrobnosti viz {data-use-details} a náš {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Zásady ochrany osobních údajů",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Sdílením údajů o úložištích a uživatelích nám pomáháte pochopit, jak je správa využívána, a vyvíjet vylepšení, která usnadňují vaši každodenní práci.",
-            "opt-out-info": "Můžete se kdykoli odhlásit prostřednictvím nastavení, a nastavení profilu.",
+            "opt-out-info": {
+                "profile": "Váš profil — Předvolby ochrany osobních údajů",
+                "settings": "Nastavení — Ochrana osobních údajů",
+                "snippet": "Předvolby můžete kdykoli změnit: spravovat nastavení dat úložiště v části {settings}a nastavení osobních údajů v části {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "V souladu s GDPR",
                 "no-third-party": "Žádné údaje nejsou sdíleny s třetími stranami",
@@ -9899,6 +10059,12 @@
                     "order": "rozkazy",
                     "store": "ukládat data"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "zde",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Diagnostická data</strong> v Shopware odkazují na informace týkající se stavu systému, chyb a metrik výkonu platformy. To zahrnuje podrobnosti, jako jsou systémové protokoly, chybové zprávy, doby odezvy serveru a další technické ukazatele. Analýza těchto dat nám pomáhá rychle identifikovat, řešit a nasadit opravy běžných problémů nebo zranitelností a zachovat integritu platformy.",
                     "order": "<strong>Údaje o objednávce</strong> v rámci Shopware odkazují na podrobné informace o objednávkách zákazníků zadaných na platformě. To zahrnuje specifika, jako jsou objednané produkty, množství, ceny, původ, způsoby platby, zásilka atd. Tyto údaje analyzujeme, abychom porozuměli trendům a vzorcům, které nám pomáhají vylepšovat funkce a vyvíjet nové služby určené ke zlepšení vašeho obchodního úspěchu. Neshromažďujeme od vašich zákazníků osobní údaje, které by mohly být použity k identifikaci jedné osoby.",
@@ -9912,6 +10078,12 @@
                 "description": "Používáme {data} o tom, jak komunikujete se správou, abychom zlepšili její použitelnost a výkon.",
                 "emphasizes": {
                     "data": "data"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Zásady ochrany osobních údajů",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Údaje o používání</strong> v rámci Shopware se týkají informací souvisejících s tím, jak uživatelé administrátorů a návštěvníci obchodů interagují s naší platformou. To zahrnuje podrobnosti, jako jsou interakce s různými moduly pro správu Shopware, zobrazené stránky, doba návštěv, cesty kliknutí a akce uživatelů v rámci platformy a obchodu. Vyhodnocením údajů o využití můžeme identifikovat oblasti platformy, které jsou často navštěvovány nebo se jim vyhýbají, abychom změřili přijetí funkcí, což vede k potenciálním vylepšením rozložení, designu a funkčnosti."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Přepnout položku \"{name}“",
         "toggleTreeItem": "Přepnout stromovou položku \"{name}\""
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Souhlasím",
-        "checkListDataSharing": {
-            "gdprCompliant": "Jsme v souladu s GDPR",
-            "helpText": {
-                "shareDataHelpText": "<strong>„Sdílet“</strong> označuje zveřejnění údajů pro vlastní účely přijímající strany; můžeme sdělit údaje našim poskytovatelům služeb."
-            },
-            "personalData": "Neshromažďujeme osobní údaje",
-            "securelyProcessed": "Vaše údaje jsou bezpečně zpracovávány a uloženy",
-            "thirdParty": "Vaše údaje nesdílíme s třetími stranami pro jejich vlastní účely",
-            "title": "Můžeme vás ujistit, že:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostická data",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Diagnostická data</strong> v Shopware odkazují na informace týkající se stavu systému, chyb a metrik výkonu platformy. To zahrnuje podrobnosti, jako jsou systémové protokoly, chybové zprávy, doby odezvy serveru a další technické ukazatele. Analýza těchto dat nám pomáhá rychle identifikovat, řešit a nasadit opravy běžných problémů nebo zranitelností a zachovat integritu platformy.",
-                "orderDataHelp": "<strong>Údaje o objednávce</strong> v rámci Shopware odkazují na podrobné informace o objednávkách zákazníků zadaných na platformě. To zahrnuje specifika, jako jsou objednané produkty, množství, ceny, původ, způsoby platby, zásilka atd. Tyto údaje analyzujeme, abychom porozuměli trendům a vzorcům, které nám pomáhají vylepšovat funkce a vyvíjet nové služby určené ke zlepšení vašeho obchodního úspěchu. Neshromažďujeme od vašich zákazníků osobní údaje, které by mohly být použity k identifikaci jedné osoby.",
-                "storeDataHelp": "<strong>Úložiště dat</strong> v Shopware se týkají všech informací souvisejících s vaším online obchodem. Například produkty, nabídky, ceny, obrázky, popisy atd. a metadata o nastavení vašeho obchodu, jako jsou témata a pluginy. Neshromažďujeme osobní údaje, které lze použít k identifikaci uživatele administrátora nebo návštěvníka obchodu. Pomocí agregovaných dat z obchodů můžeme poskytnout informace prostřednictvím strojového učení, jako jsou trendy na rozvíjejících se trzích, což vám umožní odpovídajícím způsobem upravit nabídku produktů nebo marketingové strategie.",
-                "usageDataHelp": "<strong>Údaje o používání</strong> v rámci Shopware se týkají informací souvisejících s tím, jak uživatelé administrátorů a návštěvníci obchodu interagují s naší platformou. To zahrnuje podrobnosti, jako jsou interakce s různými moduly pro správu Shopware, zobrazené stránky, doba návštěv, cesty kliknutí a akce uživatelů v rámci platformy a obchodu. Vyhodnocením údajů o využití můžeme identifikovat oblasti platformy, které jsou často navštěvovány nebo se jim vyhýbají, abychom změřili přijetí funkcí, což vede k potenciálním vylepšením rozložení, designu a funkčnosti. Neshromažďujeme osobní údaje, které lze použít k identifikaci administrátora nebo návštěvníků prodejny."
-            },
-            "orderData": "Údaje o objednávce",
-            "storeData": "Uložit data",
-            "usageData": "Údaje o použití"
-        },
-        "confirmAuthorization": "Kliknutím na „Souhlasím“ potvrzujete, že jste oprávněni uzavřít tuto smlouvu jménem vaší společnosti.",
-        "declineDataCollection": "Momentálně ne",
-        "fullDetailsDescription": "Veškeré podrobnosti o této dohodě naleznete na {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Sdílení dat se můžete kdykoli odhlásit. Připojte se k nám při utváření budoucnosti elektronického obchodování sdílením vašich dat s námi!",
-        "headline": "Formování budoucnosti elektronického obchodování",
-        "improvingDescription": "Neustále zlepšujeme služby, které vám poskytujeme. Abychom mohli učinit další krok, analyzujeme vaše data pomocí technik, jako je strojové učení (např. rozpoznávání vzorů), abychom vyvinuli a zlepšili náš produkt. Vaše data budou také použita k vývoji služeb založených na datech určených k posílení vašeho obchodního úspěchu.",
-        "improvingDescriptionNotAccepted": "Neustále zlepšujeme služby, které vám poskytujeme. Abychom mohli učinit další krok, rádi bychom analyzovali vaše data pomocí technik, jako je strojové učení (např. rozpoznávání vzorů), abychom mohli vyvinout a vylepšit náš produkt. Vaše data budou také použita k vývoji služeb založených na datech určených k posílení vašeho obchodního úspěchu.",
-        "privacyPolicy": "shopware.com/cs/data-use-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Můžete kdykoli uzavřít smlouvu a přispívat tak k neustálému vývoji našich služeb a těžit z toho tím, že umožníte sdílení dat ve vašem {link}",
-        "settings": {
-            "deactivateDataCollection": "Zakázat sdílení dat",
-            "sharingInformation": "Sdílíte s námi data"
-        },
-        "thankYouMessage": "{thanksForParticipation} Můžete se kdykoli odhlásit z této smlouvy, a tak přestat přispívat k probíhajícímu vývoji našich služeb a těžit z něj tím, že deaktivujete sdílení dat ve vašem {link}",
-        "thanksForParticipation": "Děkujeme za Vaši účast!",
-        "togglePath": "Nastavení"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Uživatel a práva"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Uzamkněte jednotnou stupnici",
+        "unlock-uniform-scale": "Odemkněte jednotnou stupnici"
+    },
     "sw-wizard": {
         "backButton": "Zpět",
-        "closeButton": "Zavřít",
         "finishButton": "Povrchová úprava",
         "nextButton": "Další"
     }

@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Abonnement efterlader status sat på pause"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuel prisfastsættelse",
             "b2b_components_role": "Rolle | Roller",
             "b2b_components_shopping_list": "Indkøbslister",
             "b2b_employee": "Medarbejder | Medarbejdere",
+            "bundle": "Bundle | Bundler",
+            "bundle_item": "Pakkevare | Bundlevarer",
             "export_assistant": "Eksportassistent",
-            "individual_pricing": "Individuel prisfastsættelse",
             "quote": "Citat | Citater",
             "quote_line_item": "Tilbudslinjeelement | Citér linjeelementer",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Varen er bundtevare",
+                "lineItemOfBundleRule": "Vare af valgt bundt",
                 "subscriptionCartRule": "Abonnementskurv",
                 "subscriptionIntervalRule": "Abonnementsinterval",
                 "subscriptionPlanRule": "Abonnementsplan"
             },
             "group": {
                 "subscription": "Abonnement"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Bundt"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Tak fordi du prøvede Bundles-planen. Vi vil meget gerne høre din feedback.",
+                "link": "Giv feedback"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Brugerdefinerede felter"
+            },
+            "general": {
+                "title": "Generelle oplysninger"
+            },
+            "items": {
+                "actionOpenProductDetails": "Åbn produktoplysninger",
+                "buttonAddBundleItems": "Tilføj produkter",
+                "columnName": "Navn",
+                "columnPosition": "Placering",
+                "columnPrice": "Pris",
+                "emptyStateDescription": "Tilføj mindst to produkter til bundtet.",
+                "emptyStateTitle": "Ingen produkter tilføjet endnu",
+                "title": "Produkter ({count})",
+                "tooltipBundleItemCustomizedProduct": "Tildelt brugerdefineret produktskabelon",
+                "tooltipBundleItemHasVariants": "Produktet har varianter",
+                "tooltipBundleItemInactive": "Inaktive",
+                "tooltipBundleItemIncompatibleVisibilities": "Ikke tildelt bundtets salgskanaler: {salesChannels}",
+                "tooltipBundleItemIssues": "Problemer:",
+                "tooltipBundleItemOutOfStockCloseout": "Udsolgt (Udsalg)",
+                "tooltipBundleItemOutOfStockTemporary": "Dette produkt er i øjeblikket udsolgt. Pakken kan købes igen, når alle produkter er tilbage på lager.",
+                "tooltipBundleItemOutOfStockTitle": "Ikke på lager",
+                "tooltipRefreshData": "Opdater data"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Udgivelsesdato",
+                    "placeholder": "Indtast udgivelsesdato..."
+                },
+                "title": "Etiketter"
+            },
+            "media": {
+                "subtitle": "Føj filer til bundtets mediegalleri.",
+                "title": "Medie"
+            },
+            "messageMinBundleItemsRequired": "Tilføj mindst to produkter for at oprette bundtet.",
+            "messageNoChanges": "Ingen ændringer at gemme",
+            "messageSaveError": "Kunne ikke gemme bundtet",
+            "messageSaveSuccess": "Bundle gemt med succes",
+            "price": {
+                "addDiscount": "Tilføj rabat",
+                "currencyDependingPrices": "Valuta afhængig af priser",
+                "discount": "Rabat",
+                "discountRules": "Rabatregler",
+                "discountTitle": "Rabat",
+                "discountType": "Type",
+                "discountTypeAbsolute": "Absolut",
+                "discountTypePercentage": "Procentdel",
+                "discountValue": "Værdi",
+                "discountValuePlaceholder": "Tilføj værdi...",
+                "doNotCombineWith": "Kombiner ikke med",
+                "maxValuePlaceholder": "Ubegrænset",
+                "maximumDiscountValue": "Maksimal rabatværdi",
+                "openAdvancedPricesView": "Åben avanceret prisvisning",
+                "preventCombination": "Forhindre kombination med andre kampagner",
+                "preventCombinationHelpText": "Når denne rabat er aktiveret, kan denne rabat ikke kombineres med andre kampagner",
+                "promotionsPlaceholder": "Tilføj kampagner...",
+                "rulesPlaceholder": "Tilføj regler...",
+                "subtotalBased": "Subtotal baseret på 1 produkt | Subtotal baseret på {count} produkter",
+                "title": "Vis priser",
+                "total": "I alt",
+                "totalBased": "I alt baseret på 1 produkt | I alt baseret på {count} produkter"
+            },
+            "tabGeneral": "Generel",
+            "tabLayout": "Layout",
+            "tabSeo": "SEO",
+            "textHeadline": "Nyt bundt",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Dette forhindrer bundtet i at være synligt i disse kanaler. Kontroller synligheden for følgende produkter:",
+                    "notAssignedTo": "ikke tildelt",
+                    "title": "Nogle produkter er ikke tildelt alle valgte salgskanaler"
+                },
+                "title": "Synlighed og struktur"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktive",
+                "placeholder": "Vælg en status..."
+            },
+            "availabilityFilter": {
+                "label": "Tilgængelighed",
+                "placeholder": "Vælg tilgængelighed..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Inkluderede produkter",
+                "placeholder": "Vælg inkluderede produkter..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorier",
+                "placeholder": "Vælg kategorier..."
+            },
+            "fromPlaceholder": "Indtast startværdi...",
+            "imagesFilter": {
+                "label": "Billeder",
+                "placeholder": "Vælg billedstatus...",
+                "textHasCriteria": "Mindst ét produkt billede tildelt",
+                "textNoCriteria": "Ingen produktbilleder tildelt"
+            },
+            "priceFilter": {
+                "label": "Pris"
+            },
+            "productNumberFilter": {
+                "label": "Varenummer",
+                "placeholder": "Indtast et produktnummer..."
+            },
+            "releaseDateFilter": {
+                "label": "Udgivelsesdato"
+            },
+            "salesChannelsFilter": {
+                "label": "Salgs kanal",
+                "placeholder": "Vælg salgskanal..."
+            },
+            "salesFilter": {
+                "label": "Salg"
+            },
+            "tagsFilter": {
+                "label": "Tags",
+                "placeholder": "Vælg tags..."
+            },
+            "toPlaceholder": "Indtast slutværdi..."
+        },
+        "general": {
+            "description": "bundter",
+            "headlineBundles": "bundter",
+            "mainMenuItemGeneral": "bundter",
+            "placeholderSearchBar": "Søg i bundter...",
+            "title": "bundter"
+        },
+        "generalForm": {
+            "highlightHelpText": "Fremhævede bundter er markeret med en farvestrålende etiket og ordet „Tip“ i alle bundtelister. Du kan justere etikettens farve ved at ændre indstillingen „Bemærk“ i <a href=\"{themeUrl}\">temaer</a> indstillinger. Du kan også ændre etikettens tekst ved at redigere det tilsvarende <a href=\"{snippetUrl}\">tekststykke</a>.",
+            "labelDescription": "Beskrivelse",
+            "labelMarkAsTopseller": "Fremhæv bundtet",
+            "labelName": "Navn",
+            "labelProductNumber": "Varenummer",
+            "placeholderDescription": "Angiv pakkebeskrivelse...",
+            "placeholderName": "Indtast bundtnavn...",
+            "placeholderProductNumber": "Indtast varenummer..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Et bundt kræver mindst to produkter.",
+            "notEnoughProductsTitle": "Ikke nok produkter",
+            "restrictions": "Et eller flere produkter har begrænsninger, der påvirker tilgængeligheden af denne pakke. Se advarselsikonerne for detaljer.",
+            "restrictionsTitle": "Nogle produkter har begrænsninger"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Ingen matchende produkter fundet",
+            "noProductsMatchingBundleSalesChannels": "Der er ingen aktive produkter, der matcher bundtens valgte salgskanaler.",
+            "noProductsMatchingTermAndFilter": "Juster søgeordet eller filtrene.",
+            "placeholderSearch": "Søg blandt produkter...",
+            "showIncluded": "Vis kun valgte ({count})",
+            "textWhySomeItemsMissing": "Hvorfor mangler nogle produkter?",
+            "title": "Tilføj produkter",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Lige nu fungerer bundter kun med fysiske produkter og enkeltvarianter. <br /><br /> Produkter skal tildeles bundtets valgte salgskanaler for at blive vist på listen."
+        },
+        "list": {
+            "available": "Til rådig",
+            "buttonAddBundle": "Tilføj bundt",
+            "columnActive": "Aktive",
+            "columnAvailable": "Tilgængelighed",
+            "columnBundleItemCount": "Antal produkter",
+            "columnCreatedAt": "Oprettet den",
+            "columnName": "Navn",
+            "columnProductNumber": "Varenummer",
+            "columnSales": "Salg",
+            "columnTotalPrice": "Samlet pris",
+            "columnUpdatedAt": "Opdateret den",
+            "emptyStateDescription": "Bundler kan øge din gennemsnitlige ordreværdi og tilskynde kunderne til at købe relaterede produkter.",
+            "emptyStateTitle": "Tilføj bundter for at øge salget",
+            "messageSaveSuccess": "Bundle \"{name}\" er blevet gemt.",
+            "titleSidebarItemRefresh": "Opdater",
+            "unavailable": "Ikke tilgængelig"
+        },
+        "priceModal": {
+            "currency": "Valuta",
+            "price": "Værdi",
+            "title": "Avanceret priser"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Tilføj produkter",
+            "description": "Vælg først en salgskanal for at se, hvilke produkter der kan føjes til pakken. Du kan justere dette senere i kortet Synlighed og struktur.",
+            "title": "Salgskanal påkrævet"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generer billede",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Bundtbeskrivelse"
+                },
+                "bundleHeading": {
+                    "label": "Bundtnavn"
+                },
+                "bundleItems": {
+                    "label": "Bundle varer"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Billedgalleri og bundkøbsboks"
+                },
+                "recommendedBundles": {
+                    "label": "Anbefalede bundter"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Standardlayout - Produktbundtside",
+                "setAsDefaultBundleDetail": "Angiv som standard for produktbundtsside"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Bundle-side"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generer billede",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dette elements produktdata indlæses automatisk af det produkt, der er knyttet til dette layout. Indholdet viser bare en eksempelvisning."
+                },
+                "label": "Pakkekøbsboks"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dette elements produktdata indlæses automatisk af det produkt, der er knyttet til dette layout. Indholdet viser bare en eksempelvisning."
+                },
+                "label": "Bundtbeskrivelse",
+                "preview": {
+                    "descriptionTab": "Beskrivelse",
+                    "title": "Bundt"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Tillader at tilføje bundtevarer direkte til indkøbskurven i stedet for at åbne siden med produktoplysninger.",
+                        "labelTitle": "Brug {count} til at vise antallet af produkter i pakken."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Dette elements produktdata indlæses automatisk af det produkt, der er knyttet til dette layout. Indholdet viser bare en eksempelvisning."
+                    },
+                    "label": {
+                        "boxSettings": "Indstillinger for produktboks",
+                        "cta": "Vis CTA for at tilføje bundtevarer direkte til indkøbskurven",
+                        "minWidth": "Minimumsbredde",
+                        "title": "Titel"
+                    }
+                },
+                "label": "Inkluderede produkter"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Dette elements bundtdata indlæses automatisk af bundtet, der er knyttet til dette layout. Indholdet viser bare et eksempel på forhåndsvisning."
+                },
+                "label": "Bundtnavn"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Når aktiveret, vises kun et delsæt af bundter oprindeligt. Brugere kan udvide listen for at vise mere.",
+                        "maxVisibleBundles": "Styrer, hvor mange bundter der vises, indtil de gemmes bag en „Vis mere“ -funktionalitet.",
+                        "productBoxSettings": "Indstillinger for produktboks",
+                        "productDetailElement": "Dette elements produktdata indlæses automatisk af det produkt, der er knyttet til dette layout. Indholdet viser bare en eksempelvisning.",
+                        "showCTAInfo": "Tillader at tilføje bundtevarer direkte til indkøbskurven i stedet for at åbne siden med produktoplysninger.",
+                        "sliderSettings": "Slider indstillinger"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Begræns antallet af oprindeligt viste bundter",
+                        "maxVisibleBundles": "Bundler vist oprindeligt",
+                        "minWidth": "Minimumsbredde",
+                        "recommendedCombinationsTitle": "Anbefalede kombinationer",
+                        "showBundleName": "Vis bundtnavn",
+                        "showCTA": "Vis CTA for at tilføje bundtevarer direkte til indkøbskurven",
+                        "showCurrentProduct": "Vis det aktuelt viste produkt først i pakken",
+                        "title": "Titel"
+                    },
+                    "placeholder": {
+                        "minWidth": "Indtast minimal bredde...",
+                        "title": "Anbefalede kombinationer"
+                    }
+                },
+                "label": "Anbefalede kombinationer",
+                "preview": {
+                    "label": {
+                        "title": "Anbefalede kombinationer"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generer billede",
             "contentText": "Opret dine egne stemningsbilleder for at tilpasse dit layout ved hjælp af AI-genereret billede.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Bundt"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organisationsenhedsadresser",
                             "pending_order": "Administration af afventende ordrer",
                             "quote": "Tilbudsstyring",
-                            "role": "Styring af rolle"
+                            "role": "Styring af rolle",
+                            "subscription": "Bestil abonnement"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Slet leveringsadresse",
                                     "update": "Rediger leveringsadresse"
                                 },
+                                "subscription": {
+                                    "read": "Se alle ordreabonnementer fra den tildelte organisationsenhed"
+                                },
                                 "update": "Rediger organisationsenhed"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Kan slette roller",
                                 "edit": "Kan redigere roller",
                                 "read": "Kan se roller"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Se alle ordreabonnementer"
+                                }
                             }
                         },
                         "switchAllLabel": "Alle tilladelser"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rollestyring"
             },
+            "bundle": {
+                "label": "bundter"
+            },
             "custom_price": {
                 "label": "Produkt Kundepris"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Tilføj produkt til bundter",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Fik det",
+                "description": "Dette produkt kunne ikke fjernes fra følgende bundter, fordi et bundt kræver mindst to produkter:",
+                "hint": "For at fjerne dette produkt skal du først tilføje et andet produkt til disse bundter.",
+                "title": "Produktet kunne ikke fjernes fra alle bundter"
+            },
+            "bundleCardSubtitle": "Alle bundter, der indeholder dette produkt",
+            "bundleCardTitle": "Bundter ({count})",
+            "buttonAddBundle": "Tilføj produkt til bundter",
+            "buttonAddBundleLanguageWarning": "Tilføjelse af bundter er kun mulig på systemets standardsprog.",
+            "buttonCreateBundle": "Opret bundt",
+            "buttonManageBundles": "Administrer bundter",
+            "columnActive": "Aktive",
+            "columnAvailability": "Tilgængelighed",
+            "columnBundleItemCount": "Antal produkter",
+            "columnCreatedAt": "Oprettet den",
+            "columnName": "Navn",
+            "columnProductNumber": "Varenummer",
+            "columnSales": "Salg",
+            "columnShowBundleOnItemPdp": "Vis på detaljesiden",
+            "columnUpdatedAt": "Opdateret den",
+            "emptyStateDescription": "Bundler kan øge den gennemsnitlige ordreværdi og tilskynde kunderne til at købe relaterede produkter. Bundler vises på produktdetaljeringssiden, hvis CMS-layoutet indeholder et bundtelement.",
+            "emptyStateDescriptionCreateFirst": "Bundler kan øge den gennemsnitlige ordreværdi og tilskynde kunderne til at købe relaterede produkter. Bundler vises på produktdetaljeringssiden, hvis CMS-layoutet indeholder et bundtelement. Opret et bundt for at tilføje dette produkt.",
+            "emptyStateNoBundlesFound": "Ingen matchende bundter fundet",
+            "emptyStateNoBundlesFoundDescription": "Juster søgeordet eller filtrene.",
+            "emptyStateTitle": "Føj produkt til bundter for at øge salget",
+            "hideOnProductDetailPage": "Skjul på produktdetaljesiden",
+            "messageSaveSuccess": "Bundle \"{name}\" er blevet gemt.",
+            "openBundlesDetail": "Åbn bundtoplysninger",
+            "placeholderSearch": "Søg i bundter...",
+            "refreshDataTooltip": "Opdater data",
+            "showOnProductDetailPage": "Vis på produktdetaljesiden",
+            "showOnlyIncluded": "Vis kun markeret",
+            "tooltipBundleHasRestrictions": "Et eller flere produkter har begrænsninger, der påvirker tilgængeligheden af denne pakke. Besøg bundtoplysningerne for at få flere oplysninger.",
+            "tooltipBundleInactive": "Inaktive",
+            "tooltipBundleIssues": "Problemer:",
+            "tooltipBundleMismatchedSalesChannels": "Ikke tildelt produktets salgskanaler: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Dette produkt kan ikke fjernes, fordi bundter kræver mindst to produkter."
+        },
         "card": {
             "textHeadline": "Lager og leverbarhed",
             "textLinkModal": "Se lager efter lager og lagergrupper",
             "textProductWarehouseModalDisabled": "Gem dine ændringer, før du kan åbne yderligere lageroplysninger.",
             "textTooltipMultiSelect": "Tildel lagergrupper til at administrere dit lager individuelt på tværs af flere lagre."
+        },
+        "detail": {
+            "tabBundle": "bundter"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Luk",
@@ -1986,6 +2359,9 @@
             "tabStock": "Lager",
             "textHeadline": "Lager efter lager og lagergrupper",
             "textInlineEdit": "Rediger lager"
+        },
+        "type": {
+            "grouped_bundle": "Bundt"
         },
         "variants-overview": {
             "inlineText": "Se detaljer"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tom scene"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Bundle-produktdetaljeringsside"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Tillad kampagnekoder til ordrer fra tilbud"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Venlig Captcha",
+                "friendlyCaptchaApiKey": "Venlig Captcha API-nøgle",
                 "friendlyCaptchaDescription": "Baseret på proof-of-work-mekanismer og avancerede risikosignaler anvender Friendly Captcha en grundlæggende ny tilgang til sikkert at beskytte dine websteder og onlinetjenester mod spam og bots.",
+                "friendlyCaptchaRegion": "API-region",
+                "friendlyCaptchaRegionEu": "EU (Den Europæiske Union)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Vælg „EU“ for at dirigere alle captcha-anmodninger udelukkende gennem europæiske servere. Dette kan være relevant for GDPR-overholdelse.",
                 "friendlyCaptchaSecretKey": "Venlig Captcha hemmelig nøgle",
-                "friendlyCaptchaSiteKey": "Venlig Captcha-webstedsnøgle"
+                "friendlyCaptchaSiteKey": "Venlig Captcha-webstedsnøgle",
+                "friendlyCaptchaV1DeprecationNotice": "Version 1 er ældre og vil blive fjernet i en fremtidig udgivelse. Vi anbefaler at opgradere til version 2 for forbedret sikkerhed og en renere widgetoplevelse.",
+                "friendlyCaptchaVersion": "Venlig Captcha version",
+                "friendlyCaptchaVersionV1": "Version 1 (ældre)",
+                "friendlyCaptchaVersionV2": "Version 2 (ny)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Annullér",
         "retry": "Prøv igen"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Lås ensartet skala",
-        "unlock-uniform-scale": "Lås op for ensartet skala"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Dine kunder kan definere og administrere budgetgrænser for bedre at kontrollere deres organisationsenheders udgifter.",
         "budgetManagementName": "Budgetter",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Ordregodkendelse",
                     "ORGANIZATION_UNITS": "Organisationsenheder",
                     "QUICK_ORDER": "Hurtige ordrer",
-                    "QUOTE_MANAGEMENT": "Tilbudshåndtering"
+                    "QUOTE_MANAGEMENT": "Tilbudshåndtering",
+                    "SHOPPING_LISTS": "Indkøbslister"
                 },
                 "template": "{dependency} er påkrævet for {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Navn",
             "columnOrderQuantity": "Bestil antal",
             "columnReturnQuantity": "Returantal",
+            "includesShippingCosts": "Inklusiv forsendelsesomkostninger",
             "messageErrorNoItemHasQuantity": "Skal have mindst 1 linje, varen har en mængde mere end 0 for at oprette en retur",
             "messagePreventAddItem": "Denne vare er allerede en del af returneringen, eller dens status er Annulleret, Returneret eller Returneret delvist.",
             "placeholderComment": "Indtast kommentar...",

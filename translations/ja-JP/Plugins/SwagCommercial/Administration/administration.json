@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "サブスクリプションのステータスが一時停止のままになる"
         },
         "entities": {
+            "b2b_components_individual_pricing": "個別価格設定",
             "b2b_components_role": "役割 | 役割",
             "b2b_components_shopping_list": "ショッピングリスト",
             "b2b_employee": "従業員 | 従業員",
+            "bundle": "バンドル | バンドル",
+            "bundle_item": "バンドルアイテム | バンドルアイテム",
             "export_assistant": "輸出アシスタント",
-            "individual_pricing": "個別価格設定",
             "quote": "引用 | 引用",
             "quote_line_item": "見積品目 | 見積品目",
             "search_assistant": "AI コパイロット",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "アイテムはバンドルアイテムです",
+                "lineItemOfBundleRule": "選択したバンドルの商品",
                 "subscriptionCartRule": "サブスクリプションカート",
                 "subscriptionIntervalRule": "購読間隔",
                 "subscriptionPlanRule": "サブスクリプションプラン"
             },
             "group": {
                 "subscription": "サブスクリプション"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "バンドル"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Bundles ブループリントをお試しいただきありがとうございます。皆さんのフィードバックをお待ちしています。",
+                "link": "フィードバックを送信"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "カスタムフィールド"
+            },
+            "general": {
+                "title": "一般情報"
+            },
+            "items": {
+                "actionOpenProductDetails": "商品詳細を開く",
+                "buttonAddBundleItems": "商品を追加",
+                "columnName": "名前",
+                "columnPosition": "位置",
+                "columnPrice": "価格",
+                "emptyStateDescription": "バンドルに少なくとも2つの商品を追加してください。",
+                "emptyStateTitle": "まだ商品が追加されていません",
+                "title": "プロダクト ({count})",
+                "tooltipBundleItemCustomizedProduct": "カスタム製品テンプレートが割り当てられました",
+                "tooltipBundleItemHasVariants": "製品にはバリエーションがあります",
+                "tooltipBundleItemInactive": "非アクティブ",
+                "tooltipBundleItemIncompatibleVisibilities": "バンドルの販売チャネルには割り当てられていません: {salesChannels}",
+                "tooltipBundleItemIssues": "問題:",
+                "tooltipBundleItemOutOfStockCloseout": "在庫切れ (クリアランスセール)",
+                "tooltipBundleItemOutOfStockTemporary": "この商品は現在在庫切れです。すべての商品が再入荷次第、バンドルは再び購入可能になります。",
+                "tooltipBundleItemOutOfStockTitle": "在庫切れ",
+                "tooltipRefreshData": "データを更新"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "リリース日",
+                    "placeholder": "発売日を入力してください..."
+                },
+                "title": "ラベル"
+            },
+            "media": {
+                "subtitle": "バンドルのメディアギャラリーにファイルを追加します。",
+                "title": "メディア"
+            },
+            "messageMinBundleItemsRequired": "バンドルを作成するには、少なくとも 2 つの製品を追加してください。",
+            "messageNoChanges": "保存する変更はありません",
+            "messageSaveError": "バンドルを保存できませんでした",
+            "messageSaveSuccess": "バンドルは正常に保存されました",
+            "price": {
+                "addDiscount": "割引を追加",
+                "currencyDependingPrices": "通貨は価格によって異なります",
+                "discount": "割引",
+                "discountRules": "割引ルール",
+                "discountTitle": "割引",
+                "discountType": "タイプ",
+                "discountTypeAbsolute": "絶対値",
+                "discountTypePercentage": "割合",
+                "discountValue": "値",
+                "discountValuePlaceholder": "値を追加...",
+                "doNotCombineWith": "と併用しないでください",
+                "maxValuePlaceholder": "無制限",
+                "maximumDiscountValue": "最大割引額",
+                "openAdvancedPricesView": "詳細価格表示を開く",
+                "preventCombination": "他のプロモーションとの併用を防ぐ",
+                "preventCombinationHelpText": "有効になっている場合、この割引を他のプロモーションと組み合わせることはできません",
+                "promotionsPlaceholder": "プロモーションを追加...",
+                "rulesPlaceholder": "ルールを追加...",
+                "subtotalBased": "1 つの製品に基づく小計 | {count} 製品に基づく小計",
+                "title": "表示価格",
+                "total": "合計",
+                "totalBased": "1 製品に基づく合計 | {count} 製品に基づく合計"
+            },
+            "tabGeneral": "一般設定",
+            "tabLayout": "レイアウト",
+            "tabSeo": "SEO",
+            "textHeadline": "新しいバンドル",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "これにより、バンドルがそれらのチャンネルに表示されなくなります。以下の商品の可視性を確認してください。",
+                    "notAssignedTo": "未割り当て",
+                    "title": "一部の商品が、選択したすべての販売チャネルに割り当てられていません"
+                },
+                "title": "可視性と構造"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "有効",
+                "placeholder": "ステータスを選択..."
+            },
+            "availabilityFilter": {
+                "label": "利用可能",
+                "placeholder": "空き状況を選択..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "付属製品",
+                "placeholder": "含まれている製品を選択..."
+            },
+            "categoriesFilter": {
+                "label": "カテゴリー",
+                "placeholder": "カテゴリを選択..."
+            },
+            "fromPlaceholder": "開始値を入力...",
+            "imagesFilter": {
+                "label": "画像",
+                "placeholder": "画像ステータスを選択...",
+                "textHasCriteria": "少なくとも1つの商品画像が割り当てられています",
+                "textNoCriteria": "商品画像が割り当てられていません"
+            },
+            "priceFilter": {
+                "label": "価格"
+            },
+            "productNumberFilter": {
+                "label": "商品番号",
+                "placeholder": "製品番号を入力..."
+            },
+            "releaseDateFilter": {
+                "label": "リリース日"
+            },
+            "salesChannelsFilter": {
+                "label": "セールスチャネル",
+                "placeholder": "販売チャネルを選択..."
+            },
+            "salesFilter": {
+                "label": "セールス"
+            },
+            "tagsFilter": {
+                "label": "タグ",
+                "placeholder": "タグを選択..."
+            },
+            "toPlaceholder": "終了値を入力..."
+        },
+        "general": {
+            "description": "バンドル",
+            "headlineBundles": "バンドル",
+            "mainMenuItemGeneral": "バンドル",
+            "placeholderSearchBar": "バンドルを検索...",
+            "title": "バンドル"
+        },
+        "generalForm": {
+            "highlightHelpText": "ハイライトされたバンドルには、明るい色のラベルと「ヒント」の文字がすべてのバンドルリストに表示されます。 <a href=\"{themeUrl}\">themes</a> 設定の「通知」オプションを変更することで、ラベルの色を調整できます。対応する <a href=\"{snippetUrl}\">テキストスニペット</a> を編集してラベルのテキストを変更することもできます。",
+            "labelDescription": "説明",
+            "labelMarkAsTopseller": "ハイライトバンドル",
+            "labelName": "名前",
+            "labelProductNumber": "商品番号",
+            "placeholderDescription": "バンドルの説明を入力...",
+            "placeholderName": "バンドル名を入力...",
+            "placeholderProductNumber": "製品番号を入力..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "バンドルには少なくとも 2 つの製品が必要です。",
+            "notEnoughProductsTitle": "商品が足りません",
+            "restrictions": "このバンドルの在庫状況に影響する制限が 1 つまたは複数の商品に適用されています。詳細については、警告アイコンを参照してください。",
+            "restrictionsTitle": "一部の製品には制限があります"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "一致する商品が見つかりませんでした",
+            "noProductsMatchingBundleSalesChannels": "バンドルの選択した販売チャネルと一致するアクティブな製品はありません。",
+            "noProductsMatchingTermAndFilter": "検索語またはフィルターを調整します。",
+            "placeholderSearch": "製品を検索...",
+            "showIncluded": "選択したものだけを表示 ({count})",
+            "textWhySomeItemsMissing": "一部の商品が不足しているのはなぜですか？",
+            "title": "商品を追加",
+            "tooltipVariant": "バリアント",
+            "tooltipWhySomeItemsMissing": "現在、バンドルは物理的な商品と単一のバリエーションでのみ機能します。 <br /><br /> 商品がリストに表示されるには、バンドルの選択した販売チャネルに割り当てられている必要があります。"
+        },
+        "list": {
+            "available": "利用可能",
+            "buttonAddBundle": "バンドルを追加",
+            "columnActive": "有効",
+            "columnAvailable": "利用可能",
+            "columnBundleItemCount": "製品数",
+            "columnCreatedAt": "作成日",
+            "columnName": "名前",
+            "columnProductNumber": "商品番号",
+            "columnSales": "セールス",
+            "columnTotalPrice": "合計金額",
+            "columnUpdatedAt": "更新日",
+            "emptyStateDescription": "バンドルは平均注文額を増やし、顧客に関連商品の購入を促すことができます。",
+            "emptyStateTitle": "バンドルを追加して売り上げを伸ばす",
+            "messageSaveSuccess": "バンドル \"{name}\" は保存されました。",
+            "titleSidebarItemRefresh": "更新",
+            "unavailable": "利用不可"
+        },
+        "priceModal": {
+            "currency": "通貨",
+            "price": "値",
+            "title": "拡張価格"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "商品を追加",
+            "description": "最初に販売チャネルを選択して、バンドルに追加できる製品を確認してください。これは後で「可視性と構造」カードで調整できます。",
+            "title": "販売チャネルが必要です"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "画像を生成",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "バンドルの説明"
+                },
+                "bundleHeading": {
+                    "label": "バンドル名"
+                },
+                "bundleItems": {
+                    "label": "バンドル商品"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "イメージギャラリーとセット購入ボックス"
+                },
+                "recommendedBundles": {
+                    "label": "おすすめバンドル"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "デフォルトレイアウト-製品バンドルページ",
+                "setAsDefaultBundleDetail": "製品バンドルページのデフォルトとして設定"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "バンドルページ"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "画像を生成",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "このエレメントの製品データは、このレイアウトに関連付けられている製品によって自動的にロードされます。コンテンツにはサンプルプレビューのみが表示されています。"
+                },
+                "label": "バンドル購入ボックス"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "このエレメントの製品データは、このレイアウトに関連付けられている製品によって自動的にロードされます。コンテンツにはサンプルプレビューのみが表示されています。"
+                },
+                "label": "バンドルの説明",
+                "preview": {
+                    "descriptionTab": "説明",
+                    "title": "バンドル"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "商品詳細ページを開く代わりに、バンドル商品をカートに直接追加できます。",
+                        "labelTitle": "{count} を使用すると、バンドル内の製品数が表示されます。"
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "このエレメントの製品データは、このレイアウトに関連付けられている製品によって自動的にロードされます。コンテンツにはサンプルプレビューのみが表示されています。"
+                    },
+                    "label": {
+                        "boxSettings": "製品ボックス設定",
+                        "cta": "CTAを表示してバンドル品をカートに直接追加",
+                        "minWidth": "最小幅",
+                        "title": "タイトル"
+                    }
+                },
+                "label": "付属製品"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "このエレメントのバンドルデータは、このレイアウトに関連付けられたバンドルによって自動的にロードされます。コンテンツにはサンプルプレビューのみが表示されます。"
+                },
+                "label": "バンドル名"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "有効にすると、最初はバンドルのサブセットのみが表示されます。ユーザーはリストを拡大してさらに表示できます。",
+                        "maxVisibleBundles": "「さらに表示」機能の背後に非表示になるまで、表示するバンドルの数を制御します。",
+                        "productBoxSettings": "製品ボックス設定",
+                        "productDetailElement": "このエレメントの製品データは、このレイアウトに関連付けられている製品によって自動的にロードされます。コンテンツにはサンプルプレビューのみが表示されています。",
+                        "showCTAInfo": "商品詳細ページを開く代わりに、バンドル商品をカートに直接追加できます。",
+                        "sliderSettings": "スライダー設定"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "最初に表示されるバンドルの数を制限する",
+                        "maxVisibleBundles": "最初に表示されるバンドル",
+                        "minWidth": "最小幅",
+                        "recommendedCombinationsTitle": "おすすめの組み合わせ",
+                        "showBundleName": "バンドル名を表示",
+                        "showCTA": "CTAを表示してバンドル品をカートに直接追加",
+                        "showCurrentProduct": "現在閲覧中の商品をバンドルの最初に表示",
+                        "title": "タイトル"
+                    },
+                    "placeholder": {
+                        "minWidth": "最小幅を入力してください...",
+                        "title": "おすすめの組み合わせ"
+                    }
+                },
+                "label": "おすすめの組み合わせ",
+                "preview": {
+                    "label": {
+                        "title": "おすすめの組み合わせ"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "画像を生成",
             "contentText": "AIで生成された画像を使用して、独自のムード画像を作成してレイアウトをカスタマイズします。",
             "header": "AI コパイロット"
+        },
+        "tags": {
+            "bundle": "バンドル"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "組織ユニットアドレス",
                             "pending_order": "保留中の注文管理",
                             "quote": "見積もり管理",
-                            "role": "権限管理"
+                            "role": "権限管理",
+                            "subscription": "注文購読"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "配送先住所を削除",
                                     "update": "配送先住所を編集"
                                 },
+                                "subscription": {
+                                    "read": "割り当てられた組織ユニットからのすべての注文サブスクリプションを表示する"
+                                },
                                 "update": "組織単位の編集"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "ロールを削除できます",
                                 "edit": "ロールを編集できます",
                                 "read": "ロールを表示できます"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "すべての注文購読を表示"
+                                }
                             }
                         },
                         "switchAllLabel": "すべての権限"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "ロール管理"
             },
+            "bundle": {
+                "label": "バンドル"
+            },
             "custom_price": {
                 "label": "製品顧客価格"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "製品をバンドルに追加",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "わかった",
+                "description": "1 つのバンドルには少なくとも 2 つの製品が必要なため、この商品を次のバンドルから削除できませんでした。",
+                "hint": "この商品を削除するには、まずこれらのバンドルに別の商品を追加してください。",
+                "title": "すべてのバンドルから製品を削除できませんでした"
+            },
+            "bundleCardSubtitle": "この商品を含むすべてのバンドル",
+            "bundleCardTitle": "バンドル ({count})",
+            "buttonAddBundle": "製品をバンドルに追加",
+            "buttonAddBundleLanguageWarning": "バンドルの追加は、システムのデフォルト言語でのみ可能です。",
+            "buttonCreateBundle": "バンドルの作成",
+            "buttonManageBundles": "バンドルを管理",
+            "columnActive": "有効",
+            "columnAvailability": "利用可能",
+            "columnBundleItemCount": "製品数",
+            "columnCreatedAt": "作成日",
+            "columnName": "名前",
+            "columnProductNumber": "商品番号",
+            "columnSales": "セールス",
+            "columnShowBundleOnItemPdp": "詳細ページに表示する",
+            "columnUpdatedAt": "更新日",
+            "emptyStateDescription": "バンドルは平均注文額を増やし、顧客に関連商品の購入を促すことができます。CMS レイアウトにバンドル要素が含まれている場合、バンドルは商品詳細ページに表示されます。",
+            "emptyStateDescriptionCreateFirst": "バンドルは平均注文額を増やし、顧客に関連商品の購入を促すことができます。CMS レイアウトにバンドル要素が含まれている場合、バンドルは商品詳細ページに表示されます。バンドルを作成してこの商品を追加します。",
+            "emptyStateNoBundlesFound": "一致するバンドルが見つかりません",
+            "emptyStateNoBundlesFoundDescription": "検索語またはフィルターを調整します。",
+            "emptyStateTitle": "商品をバンドルに追加して売り上げを伸ばす",
+            "hideOnProductDetailPage": "商品詳細ページで非表示にする",
+            "messageSaveSuccess": "バンドル \"{name}\" は保存されました。",
+            "openBundlesDetail": "オープンバンドルの詳細",
+            "placeholderSearch": "バンドルを検索...",
+            "refreshDataTooltip": "データを更新",
+            "showOnProductDetailPage": "商品詳細ページに表示する",
+            "showOnlyIncluded": "選択したものだけを表示",
+            "tooltipBundleHasRestrictions": "このバンドルの在庫状況に影響する制限が 1 つまたは複数の商品に適用されています。詳細については、バンドルの詳細をご覧ください。",
+            "tooltipBundleInactive": "非アクティブ",
+            "tooltipBundleIssues": "問題:",
+            "tooltipBundleMismatchedSalesChannels": "製品の販売チャネルに割り当てられていません: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "バンドルには少なくとも2つの商品が必要なため、この商品は削除できません。"
+        },
         "card": {
             "textHeadline": "在庫と配送性",
             "textLinkModal": "倉庫と倉庫グループごとに在庫を表示",
             "textProductWarehouseModalDisabled": "在庫の詳細を開く前に、変更を保存してください。",
             "textTooltipMultiSelect": "倉庫グループを割り当てて、複数の倉庫の在庫を個別に管理します。"
+        },
+        "detail": {
+            "tabBundle": "バンドル"
         },
         "modal-warehouse-group": {
             "buttonCancel": "閉じる",
@@ -1986,6 +2359,9 @@
             "tabStock": "在庫",
             "textHeadline": "倉庫および倉庫グループ別の在庫",
             "textInlineEdit": "在庫を編集"
+        },
+        "type": {
+            "grouped_bundle": "バンドル"
         },
         "variants-overview": {
             "inlineText": "詳細を表示"
@@ -2542,6 +2918,16 @@
             "emptyText": "空のシーン"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "バンドル商品詳細ページ"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "見積もりからの注文にプロモーションコードを許可する"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "フレンドリーキャプチャ",
+                "friendlyCaptchaApiKey": "わかりやすいキャプチャ API キー",
                 "friendlyCaptchaDescription": "Friendly Captchaは、プルーフ・オブ・ワーク・メカニズムと高度なリスクシグナルに基づいて、根本的に新しいアプローチを採用して、Webサイトやオンラインサービスをスパムやボットから安全に保護します。",
+                "friendlyCaptchaRegion": "API リージョン",
+                "friendlyCaptchaRegionEu": "EU (欧州連合)",
+                "friendlyCaptchaRegionGlobal": "グローバル",
+                "friendlyCaptchaRegionHelpText": "「EU」を選択すると、すべてのキャプチャリクエストがヨーロッパのサーバーのみに転送されます。これは GDPR コンプライアンスに関連する場合があります。",
                 "friendlyCaptchaSecretKey": "わかりやすいキャプチャシークレットキー",
-                "friendlyCaptchaSiteKey": "わかりやすいキャプチャサイトキー"
+                "friendlyCaptchaSiteKey": "わかりやすいキャプチャサイトキー",
+                "friendlyCaptchaV1DeprecationNotice": "バージョン 1 はレガシーであり、将来のリリースで削除される予定です。セキュリティを強化し、ウィジェットの操作をすっきりさせるには、バージョン 2 にアップグレードすることをお勧めします。",
+                "friendlyCaptchaVersion": "フレンドリーなキャプチャバージョン",
+                "friendlyCaptchaVersionV1": "バージョン 1 (レガシー)",
+                "friendlyCaptchaVersionV2": "バージョン 2 (新規)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "キャンセル",
         "retry": "再試行"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "ロックユニフォームスケール",
-        "unlock-uniform-scale": "ユニフォームスケールのロックを解除"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "顧客は予算制限を定義および管理して、組織部門の支出をより適切に管理できます。",
         "budgetManagementName": "予算",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "注文承認",
                     "ORGANIZATION_UNITS": "組織単位",
                     "QUICK_ORDER": "クイックオーダー",
-                    "QUOTE_MANAGEMENT": "見積もり管理"
+                    "QUOTE_MANAGEMENT": "見積もり管理",
+                    "SHOPPING_LISTS": "ショッピングリスト"
                 },
                 "template": "{name}には {dependency} が必要です"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "名前",
             "columnOrderQuantity": "注文数",
             "columnReturnQuantity": "返品数量",
+            "includesShippingCosts": "送料を含む",
             "messageErrorNoItemHasQuantity": "返品するには、数量が0を超える品目が少なくとも1つ必要です",
             "messagePreventAddItem": "この商品はすでに返品されているか、ステータスがキャンセル、返品済み、または部分的に返品されています。",
             "placeholderComment": "コメントを入力...",

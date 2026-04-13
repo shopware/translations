@@ -317,6 +317,7 @@
             "newsletter_update": "Feliratkozás hírlevélre frissítve",
             "product_export_log": "Végrehajtott termék",
             "review_form_send": "Ellenőrzési űrlap elküldve",
+            "revocation_request_sent": "A visszavonási kérelem űrlapot elküldtük.",
             "state_enter_order_delivery_state_cancelled": "A szállítmány állapotba kerül törölve",
             "state_enter_order_delivery_state_open": "A szállítmány állapotba lép",
             "state_enter_order_delivery_state_returned": "A szállítmány visszaadott állapotba lép",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Válassza ki a fájlt",
             "caption": "Húzzon ide egy fájlt a feltöltéshez",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "A kiválasztott \"{name}\" fájl nem támogatott fájlkiterjesztéssel rendelkezik. Kérjük, használja a következő fájlkiterjesztések egyikét: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "A kiválasztott „{name}” fájl túl nagy ahhoz, hogy feltöltse. A fájl mérete nem haladhatja meg a {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Nem található dokumentum",
                 "title": "Tömeges szerkesztés - Siker"
             },
-            "warningText": "Kérjük, várja meg, amíg a tömeges szerkesztés befejeződik. Ez eltarthat egy ideig. Ha bezárja a böngésző lapot, vagy idő előtt megszakítja a folyamatot, nem minden módosítás kerül alkalmazásra. A tömeges szerkesztést bármikor újra futtathatja."
+            "warningText": "Kérjük, várja meg, amíg a tömeges szerkesztés befejeződik. Ez eltarthat egy ideig. Ha bezárja a böngésző lapot, vagy idő előtt megszakítja a folyamatot, nem minden módosítás kerül alkalmazásra. A tömeges szerkesztést bármikor újra futtathatja.",
+            "warningTextDocumentDeletion": "A dokumentumok egy megrendelés részét képezik, és adózási szempontból relevánsak lehetnek. Ezek törlése befolyásolhatja a számviteli nyilvántartások nyomon követhetőségét. Kérjük, győződjön meg arról, hogy a törlés törvényesen engedélyezett"
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Okmányok",
+                "deleteDocuments": {
+                    "helpText": "Ezzel az opcióval az összes kiválasztott típusú dokumentum törlődik.",
+                    "label": "Törlés: Dokumentumok"
+                },
                 "downloadDocuments": {
                     "helpText": "Ezzel a lehetőséggel a legfrissebb rendelkezésre álló dokumentumok letölthetők. Több dokumentumot egyesítenek ugyanabba a fájlba. A letöltés a többszörös módosítás befejezése után érhető el.",
                     "label": "Letöltés: Dokumentumok"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Hírlevél oldalak",
                     "privacyPage": "Adatvédelmi oldalak",
                     "revocationPage": "Visszavonási értesítések",
+                    "revocationRequestPage": "Visszavonási kérelem űrlap",
                     "shippingPaymentInfoPage": "Fizetési és szállítási információk",
                     "tosPage": "TOS oldalak"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Cím",
                         "type": "Űrlap típusa",
                         "typeContact": "Kapcsolat",
-                        "typeNewsletter": "Hírlevél"
+                        "typeNewsletter": "Hírlevél",
+                        "typeRevocationRequest": "Visszavonás"
                     },
                     "placeholder": {
                         "type": "Válasszon ki egy űrlaptípust..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Akció",
+                        "comment": "Megjegyzés",
+                        "contractNumber": "Szerződés száma (rendelési szám, előfizetési szám, ... ) *    ",
                         "email": "E-mail cím*",
                         "firstName": "Keresztnév*",
                         "lastName": "Vezetőnév*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. A vero eos et accusam et justo duo dolores et ea megdorgálja.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "János",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "No {criteriaName}",
         "placeholder": "Minden"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Exportcsatorna",
+                        "placeholder": "Exportálási csatornák kiválasztása…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Exportcsatorna"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Exportcsatorna",
+                        "placeholder": "Exportálási csatornák kiválasztása…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Exportcsatorna"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Exportálási csatornaoszlopokat és szűrőket ad hozzá a rendelési és ügyféllistákhoz.",
+            "mainMenuItemGeneral": "Exportálási csatornakövetés"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "A \"{name}\" kiterjesztés nem kompatibilis ezzel a Shopware verzióval",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Típus",
                 "labelRecipient": "Címzett",
                 "labelReplyTo": "Válaszolási cím",
+                "labelRevocationRequestFormMail": "Érdeklődő",
                 "labelSenderName": "Feladó neve",
                 "labelSubject": "Tárgy",
                 "placeholderDescription": "Adja meg a leírást...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Adja meg a szabály nevét...",
                 "placeholderPriority": "Adja meg a szabály prioritását...",
                 "placeholderType": "Válassza ki a szabály típusát...",
+                "productStatesConditionWarning": "A „Termékállapotú elem” feltétel elavult, és eltávolításra kerül a 6.8-as verzióban. Kérjük, használja helyette a „Terméktípusú termék” lehetőséget.",
                 "tabDetail": "Általános",
                 "tabRule": "Feltétel"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Visszatért",
             "returnedPartially": "Részben visszaküldve",
             "reviewForm": "Termék felülvizsgálata",
+            "revocationRequestCustomer": "Elküldött visszavonási kérelem",
+            "revocationRequestMerchant": "Visszavonási kérelem érkezett",
             "send": "Küldés",
             "sent": "Elküldött",
             "shipped": "Szállított",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Karet (^)",
             "categoriesLabel": "kategóriák",
             "closeProfileLabel": "Profil bezárása",
-            "closeViolation": "Zárja",
             "commasLabel": "Vessző (,)",
             "configuratorSettingLabel": "Változat konfigurációs beállítások",
             "copyOfLabel": "Másolat:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Import"
             },
             "updateEntitiesLabel": "Meglévő adatok frissítése",
-            "violationMessage": "A profilod még nem érvényes. A profil mentéséhez hozzá kell adnia a leképezéseket az alábbi mezőkhöz:"
+            "violationModal": {
+                "duplicateMappings": "A következő mezőkben <strong>ismétlődő leképezés</strong> található. Kérjük, távolítsa el a másolatokat a profil mentéséhez:",
+                "missingRequiredFields": "A profil mentéséhez az alább látható <strong>kötelező</strong> mezőkhöz hozzá kell adnia leképezéseket:",
+                "title": "A profilod még nem érvényes"
+            }
         },
         "progress": {
             "startExportLabel": "Exportálás megkezdése",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Mentés a médiában"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Objektum áthelyezése",
-                "rotate-tooltip": "Objektum elforgatása",
-                "scale-tooltip": "Objektum méretezése"
-            },
-            "saveChanges": "Módosítások mentése",
-            "titleModal": "Modellszerkesztő"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Vissza"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Objektum áthelyezése",
+            "rotate-tooltip": "Objektum elforgatása",
+            "scale-tooltip": "Objektum méretezése"
+        },
+        "open-model-editor-tooltip": "Nyissa meg a Modellszerkesztőt",
+        "properties": {
+            "transformation": {
+                "label": "Átalakítás",
+                "position": {
+                    "label": "Pozíció"
+                },
+                "rotation": {
+                    "label": "forgatás"
+                },
+                "scale": {
+                    "label": "Mérleg"
+                }
+            }
+        },
+        "titleModal": "Modellszerkesztő"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Jóváírás létrehozásához először adjon hozzá egy jóváírási tételt.",
-                    "storno": "A lemondási számla számla nélkül nem hozható létre."
+                    "storno": "A lemondási számla számla nélkül nem hozható létre.",
+                    "zugferd_cancellation_invoice": "A ZugFerd lemondási számla nem hozható létre számla nélkül.",
+                    "zugferd_credit_note": "A ZugFerd hiteljegyzet létrehozásához számla és legalább egy hiteltétel szükséges.",
+                    "zugferd_embedded_cancellation_invoice": "A beágyazott ZugFerd lemondási számla nem hozható létre számla nélkül.",
+                    "zugferd_embedded_credit_note": "Beágyazott ZugFerd hiteljegyzet létrehozásához számla és legalább egy hiteltétel szükséges."
                 },
                 "primaryAction": "Dokumentum létrehozása",
+                "showZugferd": "ZugFerd változatok megjelenítése",
                 "title": "Dokumentum létrehozása"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Okmányok",
+            "confirmDeleteText": "Ez a dokumentum egy megrendelés része, és adózási szempontból releváns lehet. A törlése befolyásolhatja a számviteli nyilvántartások nyomon követhetőségét. Kérjük, győződjön meg arról, hogy a törlés törvényesen engedélyezett Ezt a műveletet nem lehet visszavonni.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "A {number} számú dokumentum már kiosztásra került."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Egyéni dokumentum feltöltése",
             "labelCancel": "Zárja",
             "labelCreate": "létrehozás",
+            "labelCreateDownload": "Hozzon létre és töltse le",
             "labelCreateDownloadPdf": "PDF létrehozása és letöltése",
             "labelCreateSend": "Létrehozás és küldése",
             "labelDeliveryDate": "Szállítási dátum",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Szűrő",
             "titleSidebarItemFilterAffiliateCode": "Affiliate kód",
             "titleSidebarItemFilterCampaignCode": "Kampány kódja",
-            "titleSidebarItemRefresh": "Frissítés"
+            "titleSidebarItemRefresh": "Frissítés",
+            "tooltipCustomerComment": "További információ: {comment}",
+            "tooltipInternalComment": "Belső hozzászólás: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Név",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Itt megadhat opcionálisan három-öt kulcsszót, amely alatt a termék megtalálható.",
             "helpTextMetaDescription": "A meta leírással, megerősíti ügyfeleinek, hogy a megfelelő helyen vannak az üzletben. Ösztönzőket hoz létre, bizalmat épít és felhív egy cselekvésre. Legfeljebb 155 karakterre kell korlátozódnia. Shopware lehetővé teszi a maximális hossza 255 karakter.",
             "helpTextMetaTitle": "A meta cím a legfontosabb SEO elem, és minden oldalon egyedinek kell lennie. A hosszát legfeljebb 56 karakterre kell korlátozni. A kulcsszót ideális esetben a legelején kell elhelyezni.",
+            "helpTextOpenGraphDescription": "A Open Graph leírást akkor használják, amikor a terméket közösségi médiában osztja meg. Ha üresen hagyja, a meta-leírást tartalékként fogjuk használni.",
+            "helpTextOpenGraphTitle": "Az Open Graph címet a termék közösségi médiában történő megosztásakor használják. Ha üresen hagyja, a metacím tartalékként kerül felhasználásra.",
             "labelCanonicalProduct": "Variáns a kanonikus URL-hez",
             "labelCanonicalUrlMode": "Egyetlen gyűjtő-URL használata minden változathoz",
             "labelKeywords": "SEO kulcsszavak",
             "labelMetaDescription": "Meta leírása",
             "labelMetaTitle": "Meta cím",
+            "labelOpenGraphDescription": "OG leírás",
+            "labelOpenGraphImage": "OG kép",
+            "labelOpenGraphTitle": "OG cím",
             "placeholderCanonicalProduct": "Válasszon ki egy változatot...",
             "placeholderKeywords": "Adjon meg egy vagy több kulcsszót...",
             "placeholderMetaDescription": "Adja meg a meta leírását...",
-            "placeholderMetaTitle": "Adja meg a meta címét..."
+            "placeholderMetaTitle": "Adja meg a meta címét...",
+            "placeholderOpenGraphDescription": "Adja meg a Open Graph leírását...",
+            "placeholderOpenGraphTitle": "Adja meg az Open Graph címét...",
+            "titleOpenGraph": "Nyissa meg a grafikont"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Backorders elutasítva.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Feltételek"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Affiliate kód",
+            "affiliateCodePlaceholder": "Adja meg a társult kódot…",
+            "campaignCodeLabel": "Kampány kódja",
+            "campaignCodePlaceholder": "Adja meg a kampánykódot…",
+            "cardTitle": "Követési kódok",
+            "description": "Konfigurálja azokat a társult és kampánykódokat, amelyek beágyazódnak a csatorna hírcsatornáinak termék-URL-eibe. Ezek a kódok azonosítják az Agentic Commerce csatornán hivatkozott megrendeléseket és ügyfeleket."
+        },
         "detail": {
             "activateDisable": "Kérjük, rendeljen hozzá egy témát a Sales Channel aktiválása és mentése előtt.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Alapértelmezés visszaállítása",
+                "errorLoadingTemplate": "Nem sikerült betölteni az alapértelmezett sablont.",
+                "integration": {
+                    "feedUrlLabel": "URL exportálása",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI kapcsolat",
+                            "introduction": {
+                                "description": "Ez az értékesítési csatorna generál egy JSONL termékhírcsatornát, így termékei megjelenhetnek a ChatGPT keresési eredményekben. Ehhez kereskedőként kell jelentkeznie, és meg kell osztania a hírcsatorna URL-jét az OpenAI-val. Minden mást az alábbi lépésről lépésre ismertetünk.",
+                                "title": "Hogyan: Beállítás és kapcsolat"
+                            },
+                            "stepByStep": "<li>Jelentkezés kereskedőként a <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/markets</a></li>webhelyen<li>Másolja az exportáló URL-t (lent), és ossza meg az OpenAI-val a <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Termékhírcsatornák dokumentumok szerint</a></li><li>Győződjön meg róla, hogy az exportáló URL nyilvánosan hozzáférhető</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Lépésről lépésre"
+                },
+                "openAiSettingsTitle": "OpenAI beállítások",
+                "resetTemplateSuccess": "A sablon alapértelmezett állapotba került. Kérjük, mentse el a változások megtartásához.",
+                "tabIntegration": "integráció",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "A Google Analytics segítségével gyűjtheti és elemezheti üzlete adatait. Ennek a funkciónak a használatához Google-fiókra van szükség. Ha még nem rendelkezik Google Analytics-fiókkal, érdemes itt regisztrálnia: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. A sikeres regisztráció után kap egy követési azonosítót, amelyet alább kell kitölteni az integráció aktiválásához.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Ajánlott ügyfelek",
+                    "dateRanges": {
+                        "14Days": "Az elmúlt 14 napban",
+                        "180Days": "Utolsó 180 nap",
+                        "24Hours": "Az elmúlt 24 órában",
+                        "30Days": "Az elmúlt 30 napban",
+                        "7Days": "Az elmúlt 7 napban",
+                        "yesterday": "Tegnap"
+                    },
+                    "numbers": "Count",
+                    "orderCardHeadline": "Hivatkozott megrendelések",
+                    "summary": "Összegzés",
+                    "totalTurnover": "Árbevétel",
+                    "turnoverCardHeadline": "Hivatkozott forgalom"
+                },
+                "tabInsights": "Statisztikák"
             },
             "products": {
                 "buttonAddProducts": "Add hozzá {productCount} termék | Add {productCount} termék | Add {productCount} termék",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Már van egy másik, azonos típusú dokumentum ebben a Sales Channel-ben.",
             "disabledSalesChannelSelect": "Először válasszon ki egy dokumentumtípust.",
             "disabledTypeSelect": "A globális dokumentumok típusa nem módosítható.",
+            "displayTitle": "Kijelző:",
             "helpTextDisplayAdditionalNoteDelivery": "Kizárólag uniós tagállamok számára jogosult, lásd még a „Beállítások > Országok” című részt.",
-            "helpTextDisplayCompanyAddress": "Megjeleníti a cég címét a dokumentum jobb oldalán a fejléc alatt.",
-            "helpTextDisplayDeliveryCountries": "Megjeleníti a „Közösségen belüli szállítás” jelzését a kiválasztott országok számlatokumentumain.",
             "helpTextDisplayDocumentInCustomerAccount": "A dokumentum a megfelelő ügyfélfiók „Rendelések” alatt jelenik meg. Vegye figyelembe, hogy csak a vevőnek ténylegesen elküldött dokumentumok jelennek meg a vevői fiókban.",
-            "helpTextDisplayReturnAddress": "A cég címét visszaküldési címként jeleníti meg az ügyfél címe felett a címblokkban.",
-            "helpTextPaymentDueDate": "Pl.: +30 nap, +4 hét, +1 hét 2 nap",
             "labelBankBic": "BIC",
             "labelBankIban": "IBÁN",
             "labelBankName": "Bank",
             "labelCompanyCity": "Város",
             "labelCompanyCountry": "Ország",
             "labelCompanyEmail": "E-mail cím",
+            "labelCompanyLogo": "Vállalati logó",
             "labelCompanyName": "Név",
             "labelCompanyPhone": "Telefonszám",
             "labelCompanyStreet": "utca",
             "labelCompanyUrl": "Weboldal",
             "labelCompanyZipcode": "Irányítószám",
-            "labelDeliveryCountries": "Tagországok",
             "labelDisplayAdditionalNoteDelivery": "A „Közösségen belüli szállítás” címke megjelenítése",
             "labelDisplayCompanyAddress": "A vállalat címének megjelenítése",
             "labelDisplayCustomerVatId": "Vevő áfaazonosítójának megjelenítése",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Fájlformátumok",
             "labelItemsPerPage": "Tételek oldalanként",
             "labelName": "Műszaki név",
-            "labelOptionMedia": "Cég logó",
             "labelPageOrientation": "Oldal tájolása",
             "labelPageSize": "Oldal formátuma",
             "labelPaymentDueDate": "Fizetési határidő",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Adóhivatal",
             "labelType": "Dokumentum típusa",
             "labelVatId": "ÁFA Reg.No.",
-            "messageSaveSuccess": "A „{name}” dokumentum mentésre került.",
-            "placeholderDisplayDeliveryCountries": "A Közösségen belüli szállításra érvényes országok keresése és hozzáadása...",
+            "pageOrientationOptions": {
+                "landscape": "Tájkép",
+                "portrait": "portré"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Jogi",
+                "letter": "Levél"
+            },
+            "placeholderBankBic": "Írja be a BIC-t...",
+            "placeholderBankIban": "Írja be az IBAN értéket...",
+            "placeholderBankName": "Adja meg a bank nevét...",
+            "placeholderCompanyCity": "Lépjen be a városba...",
+            "placeholderCompanyCountry": "Válasszon országot...",
+            "placeholderCompanyEmail": "Adja meg az e-mail címet...",
+            "placeholderCompanyName": "Adja meg a cég nevét...",
+            "placeholderCompanyPhone": "Add meg a telefonszámod...",
+            "placeholderCompanyStreet": "Lépjen be az utcába",
+            "placeholderCompanyUrl": "Lépjen be a webhelyre...",
+            "placeholderCompanyZipcode": "Adja meg az irányítószámot...",
+            "placeholderExecutiveDirector": "Írja be az üzleti vezetőt...",
+            "placeholderFileNamePrefix": "Adja meg az előtagot...",
+            "placeholderFileNameSuffix": "Adja meg az utótagot...",
+            "placeholderFileTypes": "Fájlformátumok kiválasztása...",
+            "placeholderItemsPerPage": "Adja meg az elemek számát oldalanként...",
             "placeholderName": "Adja meg a nevet...",
+            "placeholderPageOrientation": "Válasszon oldaltájolást...",
+            "placeholderPageSize": "Válasszon oldalformátumot...",
+            "placeholderPaymentDueDate": "Adja meg a fizetés esedékességét...",
+            "placeholderPlaceOfFulfillment": "Adja meg a teljesítés helyét...",
+            "placeholderPlaceOfJurisdiction": "Adja meg a joghatóság helyét...",
+            "placeholderSalesChannel": "Válasszon ki egy értékesítési csatornát...",
+            "placeholderTaxNumber": "Adja meg az adószámot...",
+            "placeholderTaxOffice": "Lépjen be az adóhivatalba...",
+            "placeholderType": "Válasszon ki egy dokumentumtípust...",
+            "placeholderVatId": "Adja meg az ÁFA-azonosítót...",
             "textHeadline": "Új dokumentum"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Feladat",
             "columnName": "Műszaki név",
             "columnType": "Típus",
-            "columnUsedIn": "Hozzárendelve",
             "contextMenuEdit": "Szerkesztés",
             "global": "Global",
             "messageDeleteSuccess": "A \"{name}\" dokumentumot törölték.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Elutasítás",
+                "give-consent": "Adjon beleegyezést",
                 "save-preferences": "Beállítások mentése",
                 "share-all-data": "Ossza meg az összes",
                 "share-nothing": "Ossza meg semmit"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/hu/adatfelhasználás-részletek",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "A részletekért lásd a {data-use-details} és a {privacy-policy}oldalunkat.",
-                "privacy-policy": {
-                    "label": "Adatvédelmi szabályzat",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Az áruház- és felhasználói adatok megosztásával segít megérteni az Adminisztráció használatát, és fejleszteni azokat a fejlesztéseket, amelyek megkönnyítik a mindennapi munkát.",
-            "opt-out-info": "A beállítások és a Profil beállítások segítségével bármikor leiratkozhat.",
+            "opt-out-info": {
+                "profile": "Az Ön profilja - Adatvédelmi beállítások",
+                "settings": "Beállítások — Adatvédelem",
+                "snippet": "Bármikor módosíthatja beállításait: kezelheti a Tárolóadatok beállításait a {settings}alatt, a Személyes adatok beállításait pedig a {profile} alatt."
+            },
             "promises": {
                 "gdpr-compliant": "GDPR-kompatibilis",
                 "no-third-party": "Nem osztanak meg adatokat harmadik felekkel",
@@ -9899,6 +10059,12 @@
                     "order": "parancsok",
                     "store": "adatok tárolása"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "itt",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>A Shopware-en belüli</strong> diagnosztikai adatok a rendszer állapotával, hibáival és a platform teljesítménymutatóival kapcsolatos információkra utalnak. Ez magában foglalja a részleteket, például a rendszernaplókat, a hibaüzeneteket, a szerver válaszidejét és egyéb technikai mutatókat. Ezen adatok elemzése segít gyorsan azonosítani, kezelni és telepíteni a gyakori problémák vagy sebezhetőségek javítását, megőrizve a platform integritását.",
                     "order": "<strong>A Shopware-en belüli</strong> rendelési adatok a platformon leadott ügyfél-megrendelésekkel kapcsolatos részletes információkra utalnak. Ez magában foglalja az olyan sajátosságokat, mint a megrendelt termékek, mennyiségek, árak, származás, fizetési módok, szállítás stb. Ezeket az adatokat elemezzük, hogy megértsük azokat a trendeket és mintákat, amelyek segítenek javítani a funkciókat, valamint új szolgáltatások kifejlesztését, amelyek célja az üzleti siker javítása. Nem gyűjtünk olyan személyes adatokat ügyfeleitől, amelyek felhasználhatók egyetlen személy azonosítására.",
@@ -9912,6 +10078,12 @@
                 "description": "Az Adminisztrációval való kapcsolatfelvételről a {data} szolgáltatást használjuk annak használhatóságának és teljesítményének javítása érdekében.",
                 "emphasizes": {
                     "data": "adatok"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Adatvédelmi szabályzat",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>A Shopware-en belüli</strong> használati adatok arra vonatkoznak, hogy az adminisztrátor felhasználók és az üzletlátogatók hogyan lépnek kapcsolatba a platformunkkal. Ez magában foglalja a részleteket, például a különböző Shopware rendszergazdai modulokkal való interakciókat, a megtekintett oldalakat, a látogatások időtartamát, a kattintási útvonalakat és a felhasználói műveleteket a platformon és az áruházon belül. A használati adatok értékelésével azonosíthatjuk a platform azon területeit, amelyeket gyakran látogatnak vagy kerülnek a jellemzők elfogadásának mérése érdekében, ami potenciális fejlesztésekhez vezet az elrendezés, a tervezés és a funkcionalitás terén."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Elem váltása \"{name}”",
         "toggleTreeItem": "Váltsa át a faelemet \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Egyetértek",
-        "checkListDataSharing": {
-            "gdprCompliant": "Megfelelünk a GDPR-nek",
-            "helpText": {
-                "shareDataHelpText": "<strong>„Megosztás”</strong> a fogadó fél saját céljaira történő adatközlésére vonatkozik; adatokat közölhetjük szolgáltatóinknak."
-            },
-            "personalData": "Nem gyűjtünk személyes adatokat",
-            "securelyProcessed": "Az Ön adatait biztonságosan kezeljük és tároljuk",
-            "thirdParty": "Az Ön adatait nem osztjuk meg harmadik felekkel saját céljukra",
-            "title": "Biztosíthatjuk Önt, hogy:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnosztikai adatok",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>A Shopware-en belüli</strong> diagnosztikai adatok a rendszer állapotával, hibáival és a platform teljesítménymutatóival kapcsolatos információkra utalnak. Ez magában foglalja a részleteket, például a rendszernaplókat, a hibaüzeneteket, a szerver válaszidejét és egyéb technikai mutatókat. Ezen adatok elemzése segít gyorsan azonosítani, kezelni és telepíteni a gyakori problémák vagy sebezhetőségek javítását, megőrizve a platform integritását.",
-                "orderDataHelp": "<strong>A Shopware-en belüli</strong> rendelési adatok a platformon leadott ügyfél-megrendelésekkel kapcsolatos részletes információkra utalnak. Ide tartoznak például a megrendelt termékek, mennyiségek, árak, származás, fizetési módok, szállítás stb. Ezeket az adatokat elemezzük, hogy megértsük azokat a trendeket és mintákat, amelyek segítenek javítani a funkciókat, valamint új szolgáltatásokat fejleszteni, amelyek célja az üzleti siker javítása. Nem gyűjtünk olyan személyes adatokat ügyfeleitől, amelyek felhasználhatók egyetlen személy azonosítására.",
-                "storeDataHelp": "<strong>A Shopware-en belüli</strong> tárolási adatok az online áruházhoz kapcsolódó összes információra vonatkoznak. Ilyen például a termékek, hirdetések, árak, képek, leírások stb., valamint az üzlet beállításaival kapcsolatos metaadatok, például témák és bővítmények. Nem gyűjtünk olyan személyes adatokat, amelyek felhasználhatók az adminisztrátori felhasználó vagy a bolti látogató azonosítására. Az összesített tárolóadatok felhasználásával gépi tanulás révén betekintést nyújthatunk, például a feltörekvő piaci trendeket, lehetővé téve a termékkínálat vagy a marketingstratégiák megfelelő módosítását.",
-                "usageDataHelp": "<strong>A Shopware-en belüli</strong> használati adatok arra vonatkoznak, hogy az adminisztrátor felhasználók és a bolti látogatók hogyan lépnek kapcsolatba a platformunkkal. Ez magában foglalja a részleteket, például a különböző Shopware rendszergazdai modulokkal való interakciókat, a megtekintett oldalakat, a látogatások időtartamát, a kattintási útvonalakat és a felhasználói műveleteket a platformon és az áruházon belül. A használati adatok értékelésével azonosíthatjuk a platform azon területeit, amelyeket gyakran látogatnak vagy kerülnek a jellemzők elfogadásának mérése érdekében, ami potenciális fejlesztésekhez vezet az elrendezés, a tervezés és a funkcionalitás terén. Nem gyűjtünk olyan személyes adatokat, amelyek felhasználhatók az adminisztrátor vagy a bolti látogatók azonosítására."
-            },
-            "orderData": "Rendelési adatok",
-            "storeData": "Adatok tárolása",
-            "usageData": "Adatmegosztás"
-        },
-        "confirmAuthorization": "Az „Elfogadom” gombra kattintva megerősíti, hogy jogosult vállalata nevében megkötni ezt a megállapodást.",
-        "declineDataCollection": "Jelenleg nem",
-        "fullDetailsDescription": "A megállapodás teljes részletei megtalálhatók a {link}oldalon. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Bármikor leiratkozhat az adatmegosztásról. Csatlakozzon hozzánk az e-kereskedelem jövőjének alakításában, és megosztja velünk adatait!",
-        "headline": "Az e-kereskedelem jövőjének alakítása",
-        "improvingDescription": "Folyamatosan fejlesztjük az Ön számára nyújtott szolgáltatásokat. A következő lépés megtételéhez elemezzük adatait olyan technikákkal, mint például a gépi tanulás (pl. mintafelismerés) a termékünk fejlesztése és fejlesztése érdekében. Az Ön adatait az üzleti siker növelésére tervezett adatvezérelt szolgáltatások kifejlesztésére is felhasználják.",
-        "improvingDescriptionNotAccepted": "Folyamatosan fejlesztjük az Ön számára nyújtott szolgáltatásokat. A következő lépés megtételéhez szeretnénk elemezni adatait olyan technikákkal, mint például a gépi tanulás (pl. mintafelismerés) a termékünk fejlesztése és fejlesztése érdekében. Az Ön adatait az üzleti siker növelésére tervezett adatvezérelt szolgáltatások kifejlesztésére is felhasználják.",
-        "privacyPolicy": "shopware.com/hu/adatfelhasználás-részletek",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Ön bármikor megkötheti a szerződést, és így hozzájárulhat szolgáltatásaink folyamatos fejlődéséhez és profitálhat abból, ha lehetővé teszi az adatmegosztást az Ön {link}szolgáltatásaiban",
-        "settings": {
-            "deactivateDataCollection": "Az adatmegosztás letiltása",
-            "sharingInformation": "Adatokat oszt meg velünk"
-        },
-        "thankYouMessage": "{thanksForParticipation} Bármikor leiratkozhat erről a megállapodásról, és ezáltal abbahagyhatja a szolgáltatásaink folyamatos fejlesztéséhez való hozzájárulását és előnyeit azáltal, hogy letiltja az adatmegosztást az Ön {link}-jében",
-        "thanksForParticipation": "Köszönjük részvételét!",
-        "togglePath": "Beállítások"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Felhasználók és engedélyek"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Egységes skála zárolása",
+        "unlock-uniform-scale": "Egységes skála feloldása"
+    },
     "sw-wizard": {
         "backButton": "Vissza",
-        "closeButton": "Zárja",
         "finishButton": "Finish",
         "nextButton": "Következő"
     }

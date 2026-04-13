@@ -317,6 +317,7 @@
             "newsletter_update": "Uuudiskirja registreerumine on uuendatud",
             "product_export_log": "Toote eksport teostatud",
             "review_form_send": "Läbivaatusvorm saadetud",
+            "revocation_request_sent": "Tagasivõtmistaotluse vorm on saadetud.",
             "state_enter_order_delivery_state_cancelled": "Saadetise olek on tühistatud",
             "state_enter_order_delivery_state_open": "Saadetise olek on avatud",
             "state_enter_order_delivery_state_returned": "Saadetis siseneb tagastatud olekusse",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Valige fail",
             "caption": "Üleslaadimiseks lohistage fail siia",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "Valitud failil \"{name}\" on toetamata faililaiend. Palun kasutage ühte järgmistest faililaienditest: {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Valitud fail \"{name}\" on üleslaadimiseks liiga suur. Faili suurus ei tohi ületada {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Dokumente ei leitud",
                 "title": "Hulgiredigeerimine - edu"
             },
-            "warningText": "Palun oodake, kuni hulgiredigeerimine lõpeb. See võib võtta natuke aega. Kui sulgete brauseri vahekaardi või tühistate protsessi enneaegselt, ei rakendata kõiki muudatusi. Hulgiredigeerimise saate igal ajal uuesti käivitada."
+            "warningText": "Palun oodake, kuni hulgiredigeerimine lõpeb. See võib võtta natuke aega. Kui sulgete brauseri vahekaardi või tühistate protsessi enneaegselt, ei rakendata kõiki muudatusi. Hulgiredigeerimise saate igal ajal uuesti käivitada.",
+            "warningTextDocumentDeletion": "Dokumendid on osa tellimusest ja võivad olla maksustamise eesmärgil asjakohased. Nende kustutamine võib mõjutada teie raamatupidamisdokumentide jälgitavust. Veenduge, et kustutamine oleks seaduslikult lubatud."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Dokumendid",
+                "deleteDocuments": {
+                    "helpText": "Selle valiku abil kustutatakse kõik valitud dokumentide tüübid.",
+                    "label": "Kustuta: dokumendid"
+                },
                 "downloadDocuments": {
                     "helpText": "Selle valiku abil pakutakse allalaadimiseks uusimaid saadaolevaid dokumente. Mitu dokumenti ühendatakse samasse faili. Allalaadimine on saadaval pärast mitme muudatuse lõpuleviimist.",
                     "label": "Lae alla: Dokumendid"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Uudiskirja lehed",
                     "privacyPage": "Privaatsuslehed",
                     "revocationPage": "Tühistamisteatised",
+                    "revocationRequestPage": "Tagasivõtmistaotluse vorm",
                     "shippingPaymentInfoPage": "Makse- ja saatmisteave",
                     "tosPage": "TOS-i leheküljed"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Pealkiri",
                         "type": "Vormi tüüp",
                         "typeContact": "Kontakt",
-                        "typeNewsletter": "Uudiskiri"
+                        "typeNewsletter": "Uudiskiri",
+                        "typeRevocationRequest": "tühistamine"
                     },
                     "placeholder": {
                         "type": "Valige vormi tüüp..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Tegevus*",
+                        "comment": "Kommentaar",
+                        "contractNumber": "Lepingu number (tellimuse number, tellimuse number, ... ) *    ",
                         "email": "E-posti aadress*",
                         "firstName": "Eesnimi*",
                         "lastName": "Perekonnanimi*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "See on väga hea meeleavaldus, mis on võimeline saama elitarvitada, kuid see nägi, et töötamine ja valu oli suur, kuid pikkus. Tõesti, süüdistage neid ja süüdistage neid kahtlemata ja kahekesi.",
+                        "contractNumber": "SW123456789",
                         "email": "john {'@'} doe.com",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Ei {criteriaName}",
         "placeholder": "Kõik"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Ekspordikanal",
+                        "placeholder": "Valige ekspordikanalid…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Ekspordikanal"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Ekspordikanal",
+                        "placeholder": "Valige ekspordikanalid…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Ekspordikanal"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Lisab tellimuste ja klientide loenditesse ekspordikanalite veerud ja filtrid.",
+            "mainMenuItemGeneral": "Ekspordikanali jälgimine"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "Laiend \"{name}\" ei ühildu selle Shopware'i versiooniga",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Tüüp",
                 "labelRecipient": "Saaja",
                 "labelReplyTo": "Kohandatud saatja aadress",
+                "labelRevocationRequestFormMail": "Uurija",
                 "labelSenderName": "Saatja nimi",
                 "labelSubject": "Teema",
                 "placeholderDescription": "Sisestage kirjeldus...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Sisestage reegli nimi...",
                 "placeholderPriority": "Sisestage reegli prioriteet...",
                 "placeholderType": "Valige reegli tüüp...",
+                "productStatesConditionWarning": "Tingimus „Toote olekuga toode” on aegunud ja eemaldatakse versioonis 6.8-s. Kasutage selle asemel „Tootetüübiga toode”.",
                 "tabDetail": "Üldine",
                 "tabRule": "Seisund"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Tagasipöördunud",
             "returnedPartially": "Tagastatud osaliselt",
             "reviewForm": "Toote ülevaade",
+            "revocationRequestCustomer": "Tagasivõtmistaotlus saadetud",
+            "revocationRequestMerchant": "Tagasivõtmistaotlus on laekunud",
             "send": "Saada",
             "sent": "Saadetud",
             "shipped": "Saadetud",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Caret (^)",
             "categoriesLabel": "Kategooriad",
             "closeProfileLabel": "Sulge profiil",
-            "closeViolation": "Sulge",
             "commasLabel": "Koma (,)",
             "configuratorSettingLabel": "Variantide konfiguratsiooni seaded",
             "copyOfLabel": "Koopia:",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Import"
             },
             "updateEntitiesLabel": "Olemasolevate andmete värskendamine",
-            "violationMessage": "Teie profiil ei kehti, veel. Profiili salvestamiseks peate lisama kaardistused allpool näidatud nõutavatele väljadele:"
+            "violationModal": {
+                "duplicateMappings": "Järgmistes väljades on <strong>dubleeritud kaardistused</strong> . Profiili salvestamiseks eemaldage duplikaadid:",
+                "missingRequiredFields": "Profiili salvestamiseks peate lisama kaardistused allpool näidatud <strong>nõutavatele väljadele</strong>:",
+                "title": "Teie profiil ei kehti veel"
+            }
         },
         "progress": {
             "startExportLabel": "Eksportimise alustamine",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Salvesta meedias"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Objekti liigutamine",
-                "rotate-tooltip": "Objekti pööramine",
-                "scale-tooltip": "Skaala objekt"
-            },
-            "saveChanges": "Muudatuste salvestamine",
-            "titleModal": "Mudeliredaktor"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Tagasi"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Objekti liigutamine",
+            "rotate-tooltip": "Objekti pööramine",
+            "scale-tooltip": "Skaala objekt"
+        },
+        "open-model-editor-tooltip": "Avage mudeliredaktor",
+        "properties": {
+            "transformation": {
+                "label": "Transformatsioon",
+                "position": {
+                    "label": "Asukoht"
+                },
+                "rotation": {
+                    "label": "Pöörlemine"
+                },
+                "scale": {
+                    "label": "Skaala"
+                }
+            }
+        },
+        "titleModal": "Mudeliredaktor"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Krediitkirja loomiseks lisage kõigepealt krediidiartikkel.",
-                    "storno": "Tühistamisarvet ei saa luua ilma arveta."
+                    "storno": "Tühistamisarvet ei saa luua ilma arveta.",
+                    "zugferd_cancellation_invoice": "ZugFerdi tühistamisarvet ei saa luua ilma arveta.",
+                    "zugferd_credit_note": "ZugFerd krediitkirja loomiseks on vaja arvet ja vähemalt ühte krediidiartiklit.",
+                    "zugferd_embedded_cancellation_invoice": "Manustatud ZugFerdi tühistamisarvet ei saa luua ilma arveta.",
+                    "zugferd_embedded_credit_note": "Manustatud ZugFerd krediitkirja loomiseks on vaja arvet ja vähemalt ühte krediidiartiklit."
                 },
                 "primaryAction": "Dokumendi loomine",
+                "showZugferd": "Näita ZugFerd variante",
                 "title": "Dokumendi loomine"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Dokumendid",
+            "confirmDeleteText": "See dokument on osa tellimusest ja võib olla maksustamise eesmärgil asjakohane. Selle kustutamine võib mõjutada teie raamatupidamisdokumentide jälgitavust. Veenduge, et kustutamine oleks seaduslikult lubatud. Seda toimingut ei saa tühistada.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumendi number {number} on juba eraldatud."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Laadige üles kohandatud dokument",
             "labelCancel": "Sulge",
             "labelCreate": "Loo",
+            "labelCreateDownload": "Looge ja laadige alla",
             "labelCreateDownloadPdf": "Looge ja laadige alla PDF-i",
             "labelCreateSend": "Looge ja saatke",
             "labelDeliveryDate": "Kohaletoimetamise kuupäev",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtreeri",
             "titleSidebarItemFilterAffiliateCode": "Sidusettevõtte kood",
             "titleSidebarItemFilterCampaignCode": "Kampaania kood",
-            "titleSidebarItemRefresh": "Värskenda"
+            "titleSidebarItemRefresh": "Värskenda",
+            "tooltipCustomerComment": "Lisainfo: {comment}",
+            "tooltipInternalComment": "Sisekommentaar: {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Nimi",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Siin saate valikuliselt määratleda kolm kuni viis märksõna, mille all teie toode peaks leidma.",
             "helpTextMetaDescription": "Metakirjeldusega kinnitate oma klientidele, et nad on teie poes õiges kohas. Loote stiimuleid, loote usaldust ja kutsute tegutsema. Peaksite piirduma maksimaalselt 155 tähemärgiga. Shopware võimaldab maksimaalselt 255 tähemärki pikkust.",
             "helpTextMetaTitle": "Meta pealkiri on kõige olulisem SEO element ja peaks olema iga lehe jaoks ainulaadne. Peaksite piirduma pikkusega maksimaalselt 56 tähemärgiga. Teie märksõna peaks ideaalis asetama esiküljele.",
+            "helpTextOpenGraphDescription": "Avatud graafiku kirjeldust kasutatakse toote sotsiaalmeedias jagamisel. Kui see jäetakse tühjaks, kasutatakse metakirjeldust varuandena.",
+            "helpTextOpenGraphTitle": "Avatud graafiku pealkirja kasutatakse toote sotsiaalmeedias jagamisel. Kui see jäetakse tühjaks, kasutatakse meta-pealkirja varuandena.",
             "labelCanonicalProduct": "Kanoonilise URL-i variant",
             "labelCanonicalUrlMode": "Kasutage kõigi variantide jaoks ühte kanoonilist URL-i",
             "labelKeywords": "SEO märksõnad",
             "labelMetaDescription": "Meta kirjeldus",
             "labelMetaTitle": "Meta pealkiri",
+            "labelOpenGraphDescription": "OG kirjeldus",
+            "labelOpenGraphImage": "OG pilt",
+            "labelOpenGraphTitle": "OG pealkiri",
             "placeholderCanonicalProduct": "Valige variant...",
             "placeholderKeywords": "Sisestage üks või mitu märksõna...",
             "placeholderMetaDescription": "Sisestage metakirjeldus...",
-            "placeholderMetaTitle": "Sisestage meta pealkiri..."
+            "placeholderMetaTitle": "Sisestage meta pealkiri...",
+            "placeholderOpenGraphDescription": "Sisestage Ava graafiku kirjeldus...",
+            "placeholderOpenGraphTitle": "Sisestage Open Graph pealkiri...",
+            "titleOpenGraph": "Ava graafik"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Tagastellimused keelduti.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Tingimused"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Sidusettevõtte kood",
+            "affiliateCodePlaceholder": "Sisestage sidusettevõtte kood…",
+            "campaignCodeLabel": "Kampaania kood",
+            "campaignCodePlaceholder": "Sisestage kampaania kood…",
+            "cardTitle": "Jälgimiskoodid",
+            "description": "Konfigureerige sidusettevõtte ja kampaaniakoodid, mis manustatakse selle kanali voogude toote URL-idesse. Need koodid tuvastavad tellimused ja kliendid, millele viidatakse sellelt Agentic Commerce'i kanalilt."
+        },
         "detail": {
             "activateDisable": "Enne müügikanali aktiveerimist ja salvestamist määrake teema.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Lähtesta vaikimisi",
+                "errorLoadingTemplate": "Vaikimalli ei õnnestunud laadida.",
+                "integration": {
+                    "feedUrlLabel": "Ekspordi URL",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "OpenAI ühendus",
+                            "introduction": {
+                                "description": "See müügikanal genereerib JSONL-i tootevoo, et teie tooted saaksid kuvada ChatGPT otsingutulemustes. Selleks peate kandideerima kaupmehena ja jagama voo URL-i OpenAI-ga. Kõik muu on selgitatud allolevas samm-sammult juhendis.",
+                                "title": "Kuidas: Seadistamine ja ühendus"
+                            },
+                            "stepByStep": "<li>Kandideerige kaupmehega aadressil <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/kaupmehed</a></li><li>Kopeerige ekspordiURL (allpool) ja jagage seda OpenAI-ga vastavalt <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">tootevoogudele</a></li><li>Veenduge, et ekspordiURL oleks avalikult kättesaadav</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Samm-sammult"
+                },
+                "openAiSettingsTitle": "OpenAI seaded",
+                "resetTemplateSuccess": "Mall on vaikimisi lähtestatud. Muudatuste säilitamiseks palun salvestage.",
+                "tabIntegration": "Integratsioon",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "Google Analyticsi abil saate oma poe andmeid koguda ja analüüsida. Selle funktsiooni kasutamiseks on vajalik Google'i konto. Kui teil pole veel Google Analyticsi kontot, võiksite registreeruda siin: <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Pärast edukat registreerumist saate jälgimise ID, mis tuleb integreerimise aktiveerimiseks täita allpool.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Soovitatud kliendid",
+                    "dateRanges": {
+                        "14Days": "Viimased 14 päeva",
+                        "180Days": "Viimased 180 päeva",
+                        "24Hours": "Viimased 24 tundi",
+                        "30Days": "Viimased 30 päeva",
+                        "7Days": "Viimased 7 päeva",
+                        "yesterday": "Eile"
+                    },
+                    "numbers": "Arvestada",
+                    "orderCardHeadline": "Viidatud korraldused",
+                    "summary": "Kokkuvõte",
+                    "totalTurnover": "Käive",
+                    "turnoverCardHeadline": "Viidatud käive"
+                },
+                "tabInsights": "Statistika"
             },
             "products": {
                 "buttonAddProducts": "Lisa {productCount} tooted | Lisa {productCount} toode | Lisa {productCount} tooted",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Selles müügikanalis on juba veel üks sama tüüpi dokument.",
             "disabledSalesChannelSelect": "Valige kõigepealt dokumendi tüüp.",
             "disabledTypeSelect": "Ülemaailmsete dokumentide tüüpi ei saa muuta.",
+            "displayTitle": "Ekraan:",
             "helpTextDisplayAdditionalNoteDelivery": "Abikõlblikud ainult ELi liikmesriikidele, vt ka jaotist „Seaded > Riigid”.",
-            "helpTextDisplayCompanyAddress": "Kuvab dokumendi paremas servas oleva päise all ettevõtte aadressi.",
-            "helpTextDisplayDeliveryCountries": "Kuvab valitud riikide arvedokumentidel märge „kogukonnasisene kohaletoimetamine”.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokument kuvatakse vastaval kliendikontol jaotises „Tellimused”. Pange tähele, et kliendikontol kuvatakse ainult need dokumendid, mis on kliendile tegelikult saadetud.",
-            "helpTextDisplayReturnAddress": "Kuvab aadressiplokis kliendiaadressi kohal ettevõtte aadressi tagastusaadressina.",
-            "helpTextPaymentDueDate": "Nt: +30 päeva, +4 nädalat, +1 nädal 2 päeva",
             "labelBankBic": "BIG",
             "labelBankIban": "IBAN",
             "labelBankName": "Pangas",
             "labelCompanyCity": "Linn",
             "labelCompanyCountry": "Riik",
             "labelCompanyEmail": "E-posti aadress",
+            "labelCompanyLogo": "Ettevõtte logo",
             "labelCompanyName": "Nimi",
             "labelCompanyPhone": "Telefoninumber",
             "labelCompanyStreet": "Tänav",
             "labelCompanyUrl": "Veebileht",
             "labelCompanyZipcode": "Postiindeks",
-            "labelDeliveryCountries": "Liikmesriigid",
             "labelDisplayAdditionalNoteDelivery": "Näita silt „ühendusesisene kohaletoimetamine”",
             "labelDisplayCompanyAddress": "Kuva ettevõtte aadress",
             "labelDisplayCustomerVatId": "Kuva kliendi käibemaksuID",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Failivormingud",
             "labelItemsPerPage": "Üksused lehekülje kohta",
             "labelName": "Tehniline nimetus",
-            "labelOptionMedia": "Ettevõtte logo",
             "labelPageOrientation": "Lehe orientatsioon",
             "labelPageSize": "Lehekülje formaat",
             "labelPaymentDueDate": "Maksetähtaeg",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Maksuamet",
             "labelType": "Dokumendi tüüp",
             "labelVatId": "Käibemaksukohustuslase nr.",
-            "messageSaveSuccess": "Dokument \"{name}\" on salvestatud.",
-            "placeholderDisplayDeliveryCountries": "Ühendusesiseseks kohaletoimetamiseks kehtivate riikide otsimine ja lisamine...",
+            "pageOrientationOptions": {
+                "landscape": "Maastik",
+                "portrait": "Portree"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Juriidiline",
+                "letter": "Kiri"
+            },
+            "placeholderBankBic": "Sisestage BIC...",
+            "placeholderBankIban": "Sisestage IBAN...",
+            "placeholderBankName": "Sisestage panga nimi...",
+            "placeholderCompanyCity": "Sisestage linn...",
+            "placeholderCompanyCountry": "Valige riik...",
+            "placeholderCompanyEmail": "Sisestage e-posti aadress...",
+            "placeholderCompanyName": "Sisestage ettevõtte nimi...",
+            "placeholderCompanyPhone": "Sisestage telefoninumber...",
+            "placeholderCompanyStreet": "Sisestage tänav...",
+            "placeholderCompanyUrl": "Sisestage veebisait...",
+            "placeholderCompanyZipcode": "Sisestage postiindeks...",
+            "placeholderExecutiveDirector": "Sisestage ettevõtte juht...",
+            "placeholderFileNamePrefix": "Sisestage eesliide...",
+            "placeholderFileNameSuffix": "Sisestage järelliide...",
+            "placeholderFileTypes": "Valige failivormingud...",
+            "placeholderItemsPerPage": "Sisestage üksuste arv lehekülje kohta...",
             "placeholderName": "Sisestage nimi...",
+            "placeholderPageOrientation": "Valige lehe orientatsioon...",
+            "placeholderPageSize": "Valige lehe vorming...",
+            "placeholderPaymentDueDate": "Sisestage maksetähtaeg...",
+            "placeholderPlaceOfFulfillment": "Sisestage täitmise koht...",
+            "placeholderPlaceOfJurisdiction": "Sisestage kohtualluvuse koht...",
+            "placeholderSalesChannel": "Valige müügikanal...",
+            "placeholderTaxNumber": "Sisestage maksunumber...",
+            "placeholderTaxOffice": "Sisestage maksuamet...",
+            "placeholderType": "Valige dokumendi tüüp...",
+            "placeholderVatId": "Sisestage käibemaksuID...",
             "textHeadline": "Uus dokument"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Ülesanne",
             "columnName": "Tehniline nimetus",
             "columnType": "Tüüp",
-            "columnUsedIn": "Määratud",
             "contextMenuEdit": "Redigeeri",
             "global": "Globaalne",
             "messageDeleteSuccess": "Dokument \"{name}\" on kustutatud.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Kahanemine",
+                "give-consent": "Andke nõusolek",
                 "save-preferences": "Salvesta eelistused",
                 "share-all-data": "Jaga kõiki",
                 "share-nothing": "Ei jaga midagi"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/et/andmekasutamise-details",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Täpsema teabe saamiseks vaadake {data-use-details} ja meie {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Privaatsuspoliitika",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "Jagades poe- ja kasutajaandmeid, aitate meil mõista, kuidas administreerimist kasutatakse, ja arendate täiustusi, mis muudavad teie igapäevase töö lihtsamaks.",
-            "opt-out-info": "Saate igal ajal loobuda seadete ja profiili sätete kaudu.",
+            "opt-out-info": {
+                "profile": "Teie profiil - privaatsuseelistused",
+                "settings": "Seaded - privaatsus",
+                "snippet": "Saate oma eelistusi igal ajal muuta: hallata poe andmete sätteid jaotises {settings}ja Isikuandmete sätteid jaotises {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "GDPR-iga vastav",
                 "no-third-party": "Andmeid ei jagata kolmandate osapooltega",
@@ -9899,6 +10059,12 @@
                     "order": "tellimusi",
                     "store": "salvestada andmeid"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "siin",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Shopware'i diagnostilised andmed</strong> viitavad teabele, mis on seotud süsteemi tervise, vigade ja platvormi jõudlusmõõdikute kohta. See hõlmab selliseid üksikasju nagu süsteemilogid, veateated, serveri reageerimisajad ja muud tehnilised näitajad. Nende andmete analüüsimine aitab meil kiiresti tuvastada, lahendada ja juurutada tavaliste probleemide või haavatavuste parandusi, säilitades platvormi terviklikkuse.",
                     "order": "<strong>Shopware'i tellimuste andmed</strong> viitavad üksikasjalikule teabele platvormil esitatud klientide tellimuste kohta. See hõlmab selliseid eripära nagu tellitud tooted, kogused, hinnad, päritolu, makseviisid, saatmine jne. Analüüsime neid andmeid, et mõista suundumusi ja mustreid, mis aitavad meil funktsioone täiustada ja arendada uusi teenuseid, mis on loodud teie ettevõtte edu parandamiseks. Me ei kogu teie klientidelt isikuandmeid, mida saaks kasutada ühe isiku tuvastamiseks.",
@@ -9912,6 +10078,12 @@
                 "description": "Kasutame {data} selle kohta, kuidas te administratsiooniga suhtlete, et parandada selle kasutatavust ja jõudlust.",
                 "emphasizes": {
                     "data": "andmed"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Privaatsuspoliitika",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Kasutamisandmed</strong> Shopware'is puudutavad teavet selle kohta, kuidas administraatori kasutajad ja kaupluse külastajad meie platvormiga suhtlevad. See hõlmab üksikasju, nagu suhtlemine erinevate Shopware'i administraatorimoodulitega, vaadatud lehed, külastuste kestus, klõpsateed ja kasutajatoimingud platvormil ja kaupluses. Kasutamisandmeid hinnates saame tuvastada platvormi piirkonnad, mida sageli külastatakse või mida funktsioonide kasutuselevõtu mõõtmiseks välditakse, mis viib võimaliku paigutuse, kujunduse ja funktsionaalsuse paranemiseni."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Lülitage üksus \"{name}”",
         "toggleTreeItem": "Lülitage puu üksus \"{name}”"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "Nõus",
-        "checkListDataSharing": {
-            "gdprCompliant": "Oleme GDPR-i nõuetele vastavad",
-            "helpText": {
-                "shareDataHelpText": "<strong>„Jaga”</strong> viitab andmete avalikustamisele vastuvõtva poole enda eesmärkidel; võime avaldada andmeid oma teenusepakkujatele."
-            },
-            "personalData": "Me ei kogu isikuandmeid",
-            "securelyProcessed": "Teie andmeid töödeldakse ja salvestatakse turvaliselt",
-            "thirdParty": "Me ei jaga teie andmeid kolmandate osapooltega nende enda eesmärkidel",
-            "title": "Me võime teile kinnitada, et:"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Diagnostilised andmed",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Shopware'i diagnostilised andmed</strong> viitavad teabele, mis on seotud süsteemi tervise, vigade ja platvormi jõudlusmõõdikute kohta. See hõlmab selliseid üksikasju nagu süsteemilogid, veateated, serveri reageerimisajad ja muud tehnilised näitajad. Nende andmete analüüsimine aitab meil kiiresti tuvastada, lahendada ja juurutada tavaliste probleemide või haavatavuste parandusi, säilitades platvormi terviklikkuse.",
-                "orderDataHelp": "<strong>Shopware'i tellimuste andmed</strong> viitavad üksikasjalikule teabele platvormil esitatud klientide tellimuste kohta. See hõlmab selliseid eripära nagu tellitud tooted, kogused, hinnad, päritolu, makseviisid, saadetised jne. Analüüsime neid andmeid, et mõista suundumusi ja mustreid, mis aitavad meil täiustada funktsioone ja arendada uusi teenuseid, mis on loodud teie ettevõtte edu parandamiseks. Me ei kogu teie klientidelt isikuandmeid, mida saaks kasutada ühe isiku tuvastamiseks.",
-                "storeDataHelp": "<strong>Shopware'is olevad salvestusandmed</strong> puudutavad kogu teie veebipoega seotud teavet. Näiteks tooted, nimekirjad, hinnad, pildid, kirjeldused jne ning teie poe seadistuse metaandmed, näiteks teemad ja pistikprogrammid. Me ei kogu isikuandmeid, mida saab kasutada administraatori kasutaja või kaupluse külastaja tuvastamiseks. Kasutades koondatud kaupluse andmeid, saame anda masinõppe kaudu teavet, näiteks arenevate turusuundumuste kaudu, võimaldades teil tootepakkumisi või turundusstrateegiaid vastavalt kohandada.",
-                "usageDataHelp": "<strong>Kasutamisandmed</strong> Shopware'is puudutavad teavet selle kohta, kuidas administraatori kasutajad ja kaupluse külastajad meie platvormiga suhtlevad. See hõlmab üksikasju, nagu suhtlemine erinevate Shopware'i administraatorimoodulitega, vaadatud lehed, külastuste kestus, klõpsateed ja kasutajatoimingud platvormil ja kaupluses. Kasutamisandmeid hinnates saame tuvastada platvormi piirkonnad, mida sageli külastatakse või mida funktsioonide kasutuselevõtu mõõtmiseks välditakse, mis viib võimaliku paigutuse, kujunduse ja funktsionaalsuse paranemiseni. Me ei kogu isikuandmeid, mida saaks kasutada administraatori või kaupluse külastajate tuvastamiseks."
-            },
-            "orderData": "Tellimuse andmed",
-            "storeData": "Andmete salvestamine",
-            "usageData": "Kasutamisandmed"
-        },
-        "confirmAuthorization": "Klõpsates nuppu „Nõustun”, kinnitate, et teil on õigus sõlmida see leping oma ettevõtte nimel.",
-        "declineDataCollection": "Praegu mitte",
-        "fullDetailsDescription": "Selle lepingu üksikasjad leiate aadressilt {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Andmete jagamisest saate igal ajal loobuda.",
-        "headline": "E-kaubanduse tuleviku kujundamine",
-        "improvingDescription": "Täiustame pidevalt teile pakutavaid teenuseid. Järgmise sammu astumiseks analüüsime teie andmeid, kasutades oma toote arendamiseks ja täiustamiseks selliseid tehnikaid nagu masinõpe (nt mustrituvastus). Teie andmeid kasutatakse ka andmepõhiste teenuste väljatöötamiseks, mis on loodud teie ettevõtte edu parandamiseks. Need on andmed, mida me kogume:",
-        "improvingDescriptionNotAccepted": "Täiustame pidevalt teile pakutavaid teenuseid. Järgmise sammu astumiseks tahaksime teie andmeid analüüsida, kasutades oma toote arendamiseks ja täiustamiseks selliseid tehnikaid nagu masinõpe (nt mustrituvastus). Teie andmeid kasutatakse ka andmepõhiste teenuste väljatöötamiseks, mis on loodud teie ettevõtte edu parandamiseks. Need on andmed, mida me kogume:",
-        "privacyPolicy": "shopware.com/et/andmekasutamise-details",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Võite igal ajal sõlmida lepingu ja seeläbi kaasa aidata meie teenuste pidevale arengule ja sellest kasu saada, lubades andmete jagamist oma {link}",
-        "settings": {
-            "deactivateDataCollection": "Keela andmete jagamine",
-            "sharingInformation": "Jagate meiega andmeid"
-        },
-        "thankYouMessage": "{thanksForParticipation} Võite sellest lepingust igal ajal loobuda ja seeläbi lõpetada meie teenuste jätkuvasse arendamisse panustamise ja sellest kasu saamise, keelates andmete jagamise oma {link}-s.",
-        "thanksForParticipation": "Täname teid osalemise eest!",
-        "togglePath": "Seadistused"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Kasutajad ja õigused"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Lukusta ühtlane skaala",
+        "unlock-uniform-scale": "Avage ühtlane skaala"
+    },
     "sw-wizard": {
         "backButton": "Tagasi",
-        "closeButton": "Sulge",
         "finishButton": "Lõpeta",
         "nextButton": "Järgmine"
     }

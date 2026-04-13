@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Langganan membuat status dijeda"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Harga Individu",
             "b2b_components_role": "Peran | Peran",
             "b2b_components_shopping_list": "Daftar Belanja",
             "b2b_employee": "Karyawan | Karyawan",
+            "bundle": "Bundel | Bundel",
+            "bundle_item": "Item Bundel | Item Bundel",
             "export_assistant": "Asisten ekspor",
-            "individual_pricing": "Harga Individu",
             "quote": "Kutipan | Kutipan",
             "quote_line_item": "Item baris kutipan | Item baris kutipan",
             "search_assistant": "Kopilot AI",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Item adalah item bundel",
+                "lineItemOfBundleRule": "Item dari bundel yang dipilih",
                 "subscriptionCartRule": "Keranjang Langganan",
                 "subscriptionIntervalRule": "Interval berlangganan",
                 "subscriptionPlanRule": "Paket berlangganan"
             },
             "group": {
                 "subscription": "Berlangganan"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Bundel"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Terima kasih telah mencoba cetak biru Bundles. Kami akan senang mendengar tanggapan Anda.",
+                "link": "Berikan umpan balik"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Kolom khusus"
+            },
+            "general": {
+                "title": "Informasi Umum"
+            },
+            "items": {
+                "actionOpenProductDetails": "Buka detail produk",
+                "buttonAddBundleItems": "Tambahkan produk",
+                "columnName": "Nama",
+                "columnPosition": "Posisi",
+                "columnPrice": "Harga",
+                "emptyStateDescription": "Tambahkan setidaknya dua produk ke bundel.",
+                "emptyStateTitle": "Belum ada produk yang ditambahkan",
+                "title": "Produk ({count})",
+                "tooltipBundleItemCustomizedProduct": "Template Produk Kustom ditetapkan",
+                "tooltipBundleItemHasVariants": "Produk memiliki varian",
+                "tooltipBundleItemInactive": "Tidak Aktif",
+                "tooltipBundleItemIncompatibleVisibilities": "Tidak ditetapkan ke Saluran Penjualan bundel: {salesChannels}",
+                "tooltipBundleItemIssues": "Masalah:",
+                "tooltipBundleItemOutOfStockCloseout": "Stok habis (Clearance sale)",
+                "tooltipBundleItemOutOfStockTemporary": "Produk ini saat ini kehabisan stok. Bundel akan dapat dibeli lagi setelah semua produk kembali tersedia.",
+                "tooltipBundleItemOutOfStockTitle": "Stok habis",
+                "tooltipRefreshData": "Menyegarkan data"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Tanggal rilis",
+                    "placeholder": "Masukkan tanggal rilis..."
+                },
+                "title": "Pelabelan"
+            },
+            "media": {
+                "subtitle": "Tambahkan file ke galeri media bundel.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Tambahkan setidaknya dua produk untuk membuat bundel.",
+            "messageNoChanges": "Tidak ada perubahan untuk disimpan",
+            "messageSaveError": "Gagal menyimpan bundel",
+            "messageSaveSuccess": "Bundel berhasil disimpan",
+            "price": {
+                "addDiscount": "Tambah diskon",
+                "currencyDependingPrices": "Mata uang tergantung harga",
+                "discount": "Diskon",
+                "discountRules": "Aturan diskon",
+                "discountTitle": "Diskon",
+                "discountType": "Jenis",
+                "discountTypeAbsolute": "Absolut",
+                "discountTypePercentage": "Presentase",
+                "discountValue": "Nilai",
+                "discountValuePlaceholder": "Tambahkan nilai...",
+                "doNotCombineWith": "Jangan gabungkan dengan",
+                "maxValuePlaceholder": "Tidak Terbatas",
+                "maximumDiscountValue": "Nilai diskon maksimum",
+                "openAdvancedPricesView": "Buka tampilan harga lanjutan",
+                "preventCombination": "Mencegah kombinasi dengan promosi lainnya",
+                "preventCombinationHelpText": "Jika diaktifkan, diskon ini tidak dapat digabungkan dengan promosi lainnya",
+                "promotionsPlaceholder": "Tambahkan promosi...",
+                "rulesPlaceholder": "Tambahkan aturan...",
+                "subtotalBased": "Subtotal berdasarkan 1 produk | Subtotal berdasarkan produk {count}",
+                "title": "Harga tampilan",
+                "total": "Total",
+                "totalBased": "Total berdasarkan 1 produk | Total berdasarkan produk {count}"
+            },
+            "tabGeneral": "Umum",
+            "tabLayout": "Tata letak",
+            "tabSeo": "SEO",
+            "textHeadline": "Bundel baru",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Ini mencegah bundel terlihat di saluran tersebut. Silakan periksa visibilitas untuk produk-produk berikut:",
+                    "notAssignedTo": "tidak ditugaskan untuk",
+                    "title": "Beberapa produk tidak ditugaskan ke semua Saluran Penjualan yang dipilih"
+                },
+                "title": "Visibilitas & struktur"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktif",
+                "placeholder": "Pilih status..."
+            },
+            "availabilityFilter": {
+                "label": "Ketersediaan",
+                "placeholder": "Pilih ketersediaan..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Produk yang disertakan",
+                "placeholder": "Pilih produk yang disertakan..."
+            },
+            "categoriesFilter": {
+                "label": "Kategori",
+                "placeholder": "Pilih kategori..."
+            },
+            "fromPlaceholder": "Masukkan nilai awal...",
+            "imagesFilter": {
+                "label": "Gambar",
+                "placeholder": "Pilih status gambar...",
+                "textHasCriteria": "Setidaknya satu gambar produk ditugaskan",
+                "textNoCriteria": "Tidak ada gambar produk yang ditugaskan"
+            },
+            "priceFilter": {
+                "label": "Harga"
+            },
+            "productNumberFilter": {
+                "label": "Nomor produk",
+                "placeholder": "Masukkan nomor produk..."
+            },
+            "releaseDateFilter": {
+                "label": "Tanggal rilis"
+            },
+            "salesChannelsFilter": {
+                "label": "Jalur penjualan",
+                "placeholder": "Pilih Saluran Penjualan..."
+            },
+            "salesFilter": {
+                "label": "Penjualan"
+            },
+            "tagsFilter": {
+                "label": "Tag",
+                "placeholder": "Pilih tag..."
+            },
+            "toPlaceholder": "Masukkan nilai akhir..."
+        },
+        "general": {
+            "description": "Bundel",
+            "headlineBundles": "Bundel",
+            "mainMenuItemGeneral": "Bundel",
+            "placeholderSearchBar": "Cari bundel...",
+            "title": "Bundel"
+        },
+        "generalForm": {
+            "highlightHelpText": "Bundel yang disorot ditandai dengan label berwarna cerah dan kata “Tip” di semua daftar bundel. Anda dapat menyesuaikan warna label dengan mengubah opsi “Notice” di <a href=\"{themeUrl}\">themes</a> settings. Anda juga dapat mengubah teks label dengan mengedit cuplikan teks <a href=\"{snippetUrl}\">yang sesuai</a>.",
+            "labelDescription": "Deskripsi",
+            "labelMarkAsTopseller": "Bundel sorot",
+            "labelName": "Nama",
+            "labelProductNumber": "Nomor produk",
+            "placeholderDescription": "Masukkan deskripsi bundel...",
+            "placeholderName": "Masukkan nama bundel...",
+            "placeholderProductNumber": "Masukkan nomor produk..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "Sebuah bundel membutuhkan setidaknya dua produk.",
+            "notEnoughProductsTitle": "Tidak cukup produk",
+            "restrictions": "Satu atau lebih produk memiliki batasan yang memengaruhi ketersediaan bundel ini. Lihat ikon peringatan untuk detailnya.",
+            "restrictionsTitle": "Beberapa produk memiliki batasan"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Tidak ditemukan produk yang cocok",
+            "noProductsMatchingBundleSalesChannels": "Tidak ada produk aktif yang cocok dengan Saluran Penjualan yang dipilih bundel.",
+            "noProductsMatchingTermAndFilter": "Sesuaikan istilah pencarian atau filter.",
+            "placeholderSearch": "Mencari produk...",
+            "showIncluded": "Hanya tampilkan yang dipilih ({count})",
+            "textWhySomeItemsMissing": "Mengapa beberapa produk hilang?",
+            "title": "Tambahkan produk",
+            "tooltipVariant": "Varian",
+            "tooltipWhySomeItemsMissing": "Saat ini, bundel hanya berfungsi dengan produk fisik dan varian tunggal. <br /><br /> Produk harus ditetapkan ke Saluran Penjualan yang dipilih bundel agar muncul dalam daftar."
+        },
+        "list": {
+            "available": "Tersedia",
+            "buttonAddBundle": "Tambahkan bundel",
+            "columnActive": "Aktif",
+            "columnAvailable": "Ketersediaan",
+            "columnBundleItemCount": "Jumlah Produk",
+            "columnCreatedAt": "Di buat pada",
+            "columnName": "Nama",
+            "columnProductNumber": "Nomor produk",
+            "columnSales": "Penjualan",
+            "columnTotalPrice": "Total Harga",
+            "columnUpdatedAt": "Diperbaharui pada",
+            "emptyStateDescription": "Bundel dapat meningkatkan nilai pesanan rata-rata Anda dan mendorong pelanggan untuk membeli produk terkait.",
+            "emptyStateTitle": "Tambahkan bundel untuk meningkatkan penjualan",
+            "messageSaveSuccess": "Bundel \"{name}\" telah disimpan.",
+            "titleSidebarItemRefresh": "Segarkan",
+            "unavailable": "Tidak tersedia"
+        },
+        "priceModal": {
+            "currency": "Mata uang",
+            "price": "Nilai",
+            "title": "Harga lanjutan"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Tambahkan produk",
+            "description": "Pilih Saluran Penjualan terlebih dahulu untuk melihat produk mana yang dapat ditambahkan ke bundel. Anda dapat menyesuaikan ini nanti di kartu Visibilitas & struktur.",
+            "title": "Saluran Penjualan diperlukan"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Hasilkan gambar",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Deskripsi bundel"
+                },
+                "bundleHeading": {
+                    "label": "Nama bundel"
+                },
+                "bundleItems": {
+                    "label": "Item bundel"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Galeri gambar dan kotak pembelian bundel"
+                },
+                "recommendedBundles": {
+                    "label": "Bundel yang direkomendasikan"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Tata letak default - Halaman bundel produk",
+                "setAsDefaultBundleDetail": "Tetapkan sebagai halaman bundel produk default"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Halaman bundel"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Hasilkan gambar",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Data produk elemen ini secara otomatis dimuat oleh produk yang terkait dengan tata letak ini. Konten hanya menampilkan pratinjau sampel."
+                },
+                "label": "Kotak pembelian bundel"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Data produk elemen ini secara otomatis dimuat oleh produk yang terkait dengan tata letak ini. Konten hanya menampilkan pratinjau sampel."
+                },
+                "label": "Deskripsi bundel",
+                "preview": {
+                    "descriptionTab": "Deskripsi",
+                    "title": "Bundel"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Memungkinkan untuk menambahkan item bundel langsung ke keranjang alih-alih membuka halaman detail produk.",
+                        "labelTitle": "Gunakan {count} untuk menampilkan jumlah produk dalam bundel."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Data produk elemen ini secara otomatis dimuat oleh produk yang terkait dengan tata letak ini. Konten hanya menampilkan pratinjau sampel."
+                    },
+                    "label": {
+                        "boxSettings": "Pengaturan kotak produk",
+                        "cta": "Tampilkan CTA untuk menambahkan item bundel langsung ke keranjang",
+                        "minWidth": "Minimal lebar",
+                        "title": "Judul"
+                    }
+                },
+                "label": "Produk Termasuk"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Data bundel elemen ini secara otomatis dimuat oleh bundel yang terkait dengan tata letak ini. Konten hanya menampilkan pratinjau sampel."
+                },
+                "label": "Nama bundel"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "Saat diaktifkan, hanya sebagian bundel yang ditampilkan pada awalnya. Pengguna dapat memperluas daftar untuk menampilkan lebih banyak.",
+                        "maxVisibleBundles": "Mengontrol berapa banyak bundel yang akan ditampilkan hingga mereka disembunyikan di balik fungsi “Tampilkan lebih banyak”.",
+                        "productBoxSettings": "Pengaturan kotak produk",
+                        "productDetailElement": "Data produk elemen ini secara otomatis dimuat oleh produk yang terkait dengan tata letak ini. Konten hanya menampilkan pratinjau sampel.",
+                        "showCTAInfo": "Memungkinkan untuk menambahkan item bundel langsung ke keranjang alih-alih membuka halaman detail produk.",
+                        "sliderSettings": "Pengaturan slider"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Batasi jumlah bundel yang awalnya ditampilkan",
+                        "maxVisibleBundles": "Bundel ditampilkan pada awalnya",
+                        "minWidth": "Minimal lebar",
+                        "recommendedCombinationsTitle": "Kombinasi yang disarankan",
+                        "showBundleName": "Tampilkan nama bundel",
+                        "showCTA": "Tampilkan CTA untuk menambahkan item bundel langsung ke keranjang",
+                        "showCurrentProduct": "Tampilkan produk yang sedang dilihat pertama dalam bundel",
+                        "title": "Judul"
+                    },
+                    "placeholder": {
+                        "minWidth": "Masukkan lebar minimal...",
+                        "title": "Kombinasi yang disarankan"
+                    }
+                },
+                "label": "Kombinasi yang disarankan",
+                "preview": {
+                    "label": {
+                        "title": "Kombinasi yang disarankan"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Hasilkan gambar",
             "contentText": "Buat gambar suasana hati Anda sendiri untuk menyesuaikan tata letak Anda dengan bantuan gambar yang dihasilkan AI.",
             "header": "Kopilot AI"
+        },
+        "tags": {
+            "bundle": "Bundel"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Alamat Unit Organisasi",
                             "pending_order": "Manajemen Pesanan Tertunda",
                             "quote": "Manajemen kutipan",
-                            "role": "Manajemen peran"
+                            "role": "Manajemen peran",
+                            "subscription": "Pesan langganan"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Hapus alamat pengiriman",
                                     "update": "Edit alamat pengiriman"
                                 },
+                                "subscription": {
+                                    "read": "Lihat semua langganan pesanan dari unit organisasi yang ditugaskan"
+                                },
                                 "update": "Edit unit organisasi"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Dapat menghapus peran",
                                 "edit": "Dapat mengedit peran",
                                 "read": "Dapat melihat peran"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Lihat semua langganan pesanan"
+                                }
                             }
                         },
                         "switchAllLabel": "Semua izin"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Manajemen Peran"
             },
+            "bundle": {
+                "label": "Bundel"
+            },
             "custom_price": {
                 "label": "Harga Pelanggan Produk"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Tambahkan produk ke bundel",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Mengerti",
+                "description": "Produk ini tidak dapat dihapus dari bundel berikut karena bundel membutuhkan setidaknya dua produk:",
+                "hint": "Untuk menghapus produk ini, tambahkan produk lain ke bundel ini terlebih dahulu.",
+                "title": "Produk tidak dapat dihapus dari semua bundel"
+            },
+            "bundleCardSubtitle": "Semua bundel yang berisi produk ini",
+            "bundleCardTitle": "Bundel ({count})",
+            "buttonAddBundle": "Tambahkan produk ke bundel",
+            "buttonAddBundleLanguageWarning": "Menambahkan bundel hanya dimungkinkan dalam bahasa default sistem.",
+            "buttonCreateBundle": "Buat bundel",
+            "buttonManageBundles": "Kelola bundel",
+            "columnActive": "Aktif",
+            "columnAvailability": "Ketersediaan",
+            "columnBundleItemCount": "Jumlah Produk",
+            "columnCreatedAt": "Di buat pada",
+            "columnName": "Nama",
+            "columnProductNumber": "Nomor produk",
+            "columnSales": "Penjualan",
+            "columnShowBundleOnItemPdp": "Tampilkan pada halaman detail",
+            "columnUpdatedAt": "Diperbaharui pada",
+            "emptyStateDescription": "Bundel dapat meningkatkan nilai pesanan rata-rata dan mendorong pelanggan untuk membeli produk terkait. Bundel muncul di halaman detail produk jika tata letak CMS menyertakan elemen bundel.",
+            "emptyStateDescriptionCreateFirst": "Bundel dapat meningkatkan nilai pesanan rata-rata dan mendorong pelanggan untuk membeli produk terkait. Bundel muncul di halaman detail produk jika tata letak CMS menyertakan elemen bundel. Buat bundel untuk menambahkan produk ini.",
+            "emptyStateNoBundlesFound": "Tidak ada bundel yang cocok ditemukan",
+            "emptyStateNoBundlesFoundDescription": "Sesuaikan istilah pencarian atau filter.",
+            "emptyStateTitle": "Tambahkan produk ke bundel untuk meningkatkan penjualan",
+            "hideOnProductDetailPage": "Sembunyikan di halaman detail produk",
+            "messageSaveSuccess": "Bundel \"{name}\" telah disimpan.",
+            "openBundlesDetail": "Buka detail bundel",
+            "placeholderSearch": "Cari bundel...",
+            "refreshDataTooltip": "Menyegarkan data",
+            "showOnProductDetailPage": "Tampilkan pada halaman detail produk",
+            "showOnlyIncluded": "Hanya tampilkan yang dipilih",
+            "tooltipBundleHasRestrictions": "Satu atau lebih produk memiliki batasan yang memengaruhi ketersediaan bundel ini. Kunjungi detail bundel untuk informasi lebih lanjut.",
+            "tooltipBundleInactive": "Tidak Aktif",
+            "tooltipBundleIssues": "Masalah:",
+            "tooltipBundleMismatchedSalesChannels": "Tidak ditetapkan ke Saluran Penjualan Produk: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Produk ini tidak dapat dihapus karena bundel membutuhkan setidaknya dua produk."
+        },
         "card": {
             "textHeadline": "Stok & Pengiriman",
             "textLinkModal": "Lihat stok berdasarkan gudang dan grup gudang",
             "textProductWarehouseModalDisabled": "Simpan perubahan Anda sebelum Anda dapat membuka detail stok lebih lanjut.",
             "textTooltipMultiSelect": "Tetapkan grup gudang untuk mengelola stok Anda secara individual di beberapa gudang."
+        },
+        "detail": {
+            "tabBundle": "Bundel"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Tutup",
@@ -1986,6 +2359,9 @@
             "tabStock": "Persediaan",
             "textHeadline": "Stok menurut gudang dan kelompok gudang",
             "textInlineEdit": "Edit stok"
+        },
+        "type": {
+            "grouped_bundle": "Bundel"
         },
         "variants-overview": {
             "inlineText": "Lihat rincian"
@@ -2542,6 +2918,16 @@
             "emptyText": "Adegan kosong"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Halaman detail produk bundel"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Izinkan kode promosi untuk pesanan dari penawaran"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Captcha Ramah",
+                "friendlyCaptchaApiKey": "Kunci API Captcha yang Ramah",
                 "friendlyCaptchaDescription": "Berdasarkan mekanisme proof-of-work dan sinyal risiko lanjutan, Friendly Captcha menggunakan pendekatan fundamental baru untuk melindungi situs web dan layanan online Anda dengan aman dari spam dan bot.",
+                "friendlyCaptchaRegion": "Wilayah API",
+                "friendlyCaptchaRegionEu": "Uni Eropa (Uni Eropa)",
+                "friendlyCaptchaRegionGlobal": "Global",
+                "friendlyCaptchaRegionHelpText": "Pilih “UE” untuk merutekan semua permintaan captcha secara eksklusif melalui server Eropa. Ini bisa relevan untuk kepatuhan GDPR.",
                 "friendlyCaptchaSecretKey": "Kunci rahasia Captcha yang ramah",
-                "friendlyCaptchaSiteKey": "Kunci situs Captcha yang ramah"
+                "friendlyCaptchaSiteKey": "Kunci situs Captcha yang ramah",
+                "friendlyCaptchaV1DeprecationNotice": "Versi 1 adalah warisan dan akan dihapus dalam rilis mendatang. Sebaiknya upgrade ke Versi 2 untuk meningkatkan keamanan dan pengalaman widget yang lebih bersih.",
+                "friendlyCaptchaVersion": "Versi Captcha yang Ramah",
+                "friendlyCaptchaVersionV1": "Versi 1 (warisan)",
+                "friendlyCaptchaVersionV2": "Versi 2 (baru)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Batal",
         "retry": "Coba lagi"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Kunci skala seragam",
-        "unlock-uniform-scale": "Buka skala seragam"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Pelanggan Anda dapat menentukan dan mengelola batas anggaran untuk mengontrol pengeluaran unit organisasi mereka dengan lebih baik.",
         "budgetManagementName": "Anggaran",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Persetujuan Pesanan",
                     "ORGANIZATION_UNITS": "Unit Organisasi",
                     "QUICK_ORDER": "Pesanan Cepat",
-                    "QUOTE_MANAGEMENT": "Manajemen Penawaran"
+                    "QUOTE_MANAGEMENT": "Manajemen Penawaran",
+                    "SHOPPING_LISTS": "Daftar Belanja"
                 },
                 "template": "{dependency} diperlukan untuk {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Nama",
             "columnOrderQuantity": "Jumlah pesanan",
             "columnReturnQuantity": "Kuantitas pengembalian",
+            "includesShippingCosts": "Termasuk biaya pengiriman",
             "messageErrorNoItemHasQuantity": "Harus memiliki setidaknya 1 baris item memiliki jumlah lebih dari 0 untuk membuat pengembalian",
             "messagePreventAddItem": "Item ini sudah menjadi bagian dari pengembalian atau statusnya Dibatalkan, Dikembalikan, atau Kembali sebagian.",
             "placeholderComment": "Masukkan komentar...",

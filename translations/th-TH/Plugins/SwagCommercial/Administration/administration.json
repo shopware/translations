@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "การสมัครสมาชิกทำให้สถานะหยุดชั่วคราว"
         },
         "entities": {
+            "b2b_components_individual_pricing": "การกำหนดราคาส่วนบุคคล",
             "b2b_components_role": "บทบาท | บทบาท",
             "b2b_components_shopping_list": "รายการช้อปปิ้ง",
             "b2b_employee": "พนักงาน | พนักงาน",
+            "bundle": "ชุด | ชุด",
+            "bundle_item": "ไอเทมมห่อ | ไอเท็มชุด",
             "export_assistant": "ผู้ช่วยส่งออก",
-            "individual_pricing": "การกำหนดราคาส่วนบุคคล",
             "quote": "ใบเสนอราคา | คำพูด",
             "quote_line_item": "รายการบรรทัดใบเสนอราคา | รายการบรรทัดใบเสนอ",
             "search_assistant": "ไพลอต AI",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "ไอเท็มเป็นไอเทมมมัด",
+                "lineItemOfBundleRule": "รายการของชุดที่เลือก",
                 "subscriptionCartRule": "ตะกร้าสมัครสมาชิก",
                 "subscriptionIntervalRule": "ช่วงเวลาการสมัครสมาชิก",
                 "subscriptionPlanRule": "แผนการสมัครสมาชิก"
             },
             "group": {
                 "subscription": "การสมัครสมาชิก"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "ชุด"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "ขอบคุณที่ลองพิมพ์เขียวของ Bundlesเรายินดีที่จะได้ยินความคิดเห็นของคุณ",
+                "link": "ให้ข้อเสนอแนะ"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "เขตข้อมูลที่กำหนดเอง"
+            },
+            "general": {
+                "title": "ข้อมูลทั่วไป"
+            },
+            "items": {
+                "actionOpenProductDetails": "เปิดรายละเอียดสินค้า",
+                "buttonAddBundleItems": "เพิ่มผลิตภัณฑ์",
+                "columnName": "ชื่อ",
+                "columnPosition": "ตำแหน่ง",
+                "columnPrice": "ราคา",
+                "emptyStateDescription": "เพิ่มอย่างน้อยสองผลิตภัณฑ์ลงในชุด",
+                "emptyStateTitle": "ยังไม่มีผลิตภัณฑ์ที่เพิ่มเข้ามา",
+                "title": "ผลิตภัณฑ์ ({count})",
+                "tooltipBundleItemCustomizedProduct": "กำหนดเทมเพลตผลิตภัณฑ์ที่กำหนดเอง",
+                "tooltipBundleItemHasVariants": "สินค้ามีความหลากหลาย",
+                "tooltipBundleItemInactive": "ไม่ได้ใช้งาน",
+                "tooltipBundleItemIncompatibleVisibilities": "ไม่ได้กำหนดให้กับช่องทางการขายของชุดห่อ: {salesChannels}",
+                "tooltipBundleItemIssues": "ปัญหา:",
+                "tooltipBundleItemOutOfStockCloseout": "หมดสต็อก (ลดราคา)",
+                "tooltipBundleItemOutOfStockTemporary": "ขณะนี้ผลิตภัณฑ์นี้หมดสต็อกชุดนี้จะสามารถซื้อได้อีกครั้งเมื่อผลิตภัณฑ์ทั้งหมดกลับมาในสต็อก",
+                "tooltipBundleItemOutOfStockTitle": "หมดสต็อก",
+                "tooltipRefreshData": "รีเฟรชข้อมูล"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "วันที่เผยแพร่",
+                    "placeholder": "ป้อนวันที่เผยแพร่..."
+                },
+                "title": "การติดฉลาก"
+            },
+            "media": {
+                "subtitle": "เพิ่มไฟล์ลงในแกลเลอรีสื่อของชุดประกอบ",
+                "title": "สื่อมวลชน"
+            },
+            "messageMinBundleItemsRequired": "เพิ่มผลิตภัณฑ์อย่างน้อยสองรายการเพื่อสร้างชุดประกอบ",
+            "messageNoChanges": "ไม่มีการเปลี่ยนแปลงที่จะบันทึก",
+            "messageSaveError": "ล้มเหลวในการบันทึก Bundle",
+            "messageSaveSuccess": "ชุดบันทึกเรียบร้อยแล้ว",
+            "price": {
+                "addDiscount": "เพิ่มส่วนลด",
+                "currencyDependingPrices": "สกุลเงินขึ้นอยู่กับราคา",
+                "discount": "ลดราคา",
+                "discountRules": "กฎส่วนลด",
+                "discountTitle": "ลดราคา",
+                "discountType": "ประเภท",
+                "discountTypeAbsolute": "สัมบูรณ์",
+                "discountTypePercentage": "เปอร์เซ็นต์",
+                "discountValue": "คุ้มค่า",
+                "discountValuePlaceholder": "เพิ่มมูลค่า...",
+                "doNotCombineWith": "อย่ารวมกับ",
+                "maxValuePlaceholder": "ไม่ จำกัด",
+                "maximumDiscountValue": "มูลค่าส่วนลดสูงสุด",
+                "openAdvancedPricesView": "เปิดมุมมองราคาขั้นสูง",
+                "preventCombination": "ป้องกันการใช้ร่วมกับโปรโมชั่นอื่นๆ",
+                "preventCombinationHelpText": "เมื่อเปิดใช้งาน ส่วนลดนี้ไม่สามารถใช้ร่วมกับโปรโมชั่นอื่นได้",
+                "promotionsPlaceholder": "เพิ่มโปรโมชั่น...",
+                "rulesPlaceholder": "เพิ่มกฎ...",
+                "subtotalBased": "รวมย่อยจากสินค้า 1 รายการ | รวมย่อยตามสินค้า {count}",
+                "title": "แสดงราคา",
+                "total": "รวมทั้งหมด",
+                "totalBased": "รวมอิงจากสินค้า 1 รายการ | รวมอิงจากผลิตภัณฑ์ {count}"
+            },
+            "tabGeneral": "ทั่วไป",
+            "tabLayout": "เค้าโครง",
+            "tabSeo": "เอสอีโอ",
+            "textHeadline": "ชุดใหม่",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "สิ่งนี้จะป้องกันไม่ให้เห็นชุดในช่องเหล่านั้นโปรดตรวจสอบการมองเห็นสำหรับผลิตภัณฑ์ต่อไปนี้:",
+                    "notAssignedTo": "ไม่ได้กำหนดให้",
+                    "title": "ผลิตภัณฑ์บางอย่างไม่ได้ถูกกำหนดให้กับช่องทางการขายที่เลือกทั้งหมด"
+                },
+                "title": "ทัศนวิสัยและโครงสร้าง"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "แอคทีฟ",
+                "placeholder": "เลือกสถานะ..."
+            },
+            "availabilityFilter": {
+                "label": "ห้องว่าง",
+                "placeholder": "เลือกความพร้อมใช้งาน..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "ผลิตภัณฑ์ที่รวม",
+                "placeholder": "เลือกผลิตภัณฑ์ที่รวม..."
+            },
+            "categoriesFilter": {
+                "label": "หมวดหมู่สินค้า",
+                "placeholder": "เลือกประเภท..."
+            },
+            "fromPlaceholder": "ป้อนค่าเริ่มต้น...",
+            "imagesFilter": {
+                "label": "ภาพถ่าย",
+                "placeholder": "เลือกสถานะภาพ...",
+                "textHasCriteria": "กำหนดภาพผลิตภัณฑ์อย่างน้อยหนึ่งภาพ",
+                "textNoCriteria": "ยังไม่มีการกำหนดภาพผลิตภัณฑ์"
+            },
+            "priceFilter": {
+                "label": "ราคา"
+            },
+            "productNumberFilter": {
+                "label": "หมายเลขผลิตภัณฑ์",
+                "placeholder": "ป้อนหมายเลขผลิตภัณฑ์..."
+            },
+            "releaseDateFilter": {
+                "label": "วันที่เผยแพร่"
+            },
+            "salesChannelsFilter": {
+                "label": "ช่องทางการขาย",
+                "placeholder": "เลือกช่องทางการขาย..."
+            },
+            "salesFilter": {
+                "label": "ฝ่ายขาย"
+            },
+            "tagsFilter": {
+                "label": "ป้ายกำกับ",
+                "placeholder": "เลือกแท็ก..."
+            },
+            "toPlaceholder": "ป้อนค่าสิ้นสุด..."
+        },
+        "general": {
+            "description": "มัดหรือห่อ",
+            "headlineBundles": "มัดหรือห่อ",
+            "mainMenuItemGeneral": "มัดหรือห่อ",
+            "placeholderSearchBar": "ค้นหาชุด...",
+            "title": "มัดหรือห่อ"
+        },
+        "generalForm": {
+            "highlightHelpText": "ชุดที่ไฮไลต์จะถูกทำเครื่องหมายด้วยป้ายสีสดใสและคำว่า “เคล็ดลับ” ในรายการชุดทั้งหมดคุณสามารถปรับสีของฉลากได้โดยเปลี่ยนตัวเลือก “แจ้งเตือน” ในการตั้งค่า <a href=\"{themeUrl}\">ธีม</a> นอกจากนี้คุณยังสามารถแก้ไขข้อความของป้ายกำกับได้โดยแก้ไขส่วนประกอบข้อความ <a href=\"{snippetUrl}\">ที่เกี่ยวข้อง</a>",
+            "labelDescription": "คำอธิบาย",
+            "labelMarkAsTopseller": "ชุดไฮไลท์",
+            "labelName": "ชื่อ",
+            "labelProductNumber": "หมายเลขผลิตภัณฑ์",
+            "placeholderDescription": "ป้อนคำอธิบายชุดประกอบ...",
+            "placeholderName": "ป้อนชื่อชุดห่อ...",
+            "placeholderProductNumber": "ป้อนหมายเลขผลิตภัณฑ์..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "ชุดต้องใช้ผลิตภัณฑ์อย่างน้อยสองรายการ",
+            "notEnoughProductsTitle": "ผลิตภัณฑ์ไม่เพียงพอ",
+            "restrictions": "ผลิตภัณฑ์อย่างน้อยหนึ่งรายการมีข้อ จำกัด ที่มีผลต่อความพร้อมใช้งานของชุดนี้ดูไอคอนคำเตือนสำหรับรายละเอียด",
+            "restrictionsTitle": "ผลิตภัณฑ์บางอย่างมีข้อ จำกัด"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "ไม่พบสินค้าที่ตรงกัน",
+            "noProductsMatchingBundleSalesChannels": "ไม่มีผลิตภัณฑ์ที่ใช้งานอยู่ตรงกับช่องทางการขายที่เลือกของชุดอุปกรณ์",
+            "noProductsMatchingTermAndFilter": "ปรับคำค้นหาหรือตัวกรอง",
+            "placeholderSearch": "ค้นหาผลิตภัณฑ์...",
+            "showIncluded": "แสดงที่เลือกเท่านั้น ({count})",
+            "textWhySomeItemsMissing": "ทำไมผลิตภัณฑ์บางอย่างถึงขาดหายไป",
+            "title": "เพิ่มผลิตภัณฑ์",
+            "tooltipVariant": "ตัวแปร",
+            "tooltipWhySomeItemsMissing": "ตอนนี้ชุดประกอบใช้งานได้กับผลิตภัณฑ์ทางกายภาพและรุ่นเดี่ยวเท่านั้น <br /><br /> ผลิตภัณฑ์จะต้องถูกกำหนดให้กับช่องทางการขายที่เลือกของชุดเพื่อแสดงในรายการ"
+        },
+        "list": {
+            "available": "มีให้บริการ",
+            "buttonAddBundle": "เพิ่มชุด",
+            "columnActive": "แอคทีฟ",
+            "columnAvailable": "ห้องว่าง",
+            "columnBundleItemCount": "จำนวนสินค้า",
+            "columnCreatedAt": "สร้างที่",
+            "columnName": "ชื่อ",
+            "columnProductNumber": "หมายเลขผลิตภัณฑ์",
+            "columnSales": "ฝ่ายขาย",
+            "columnTotalPrice": "ราคาทั้งหมด",
+            "columnUpdatedAt": "อัปเดตที่",
+            "emptyStateDescription": "ชุดประกอบสามารถเพิ่มมูลค่าการสั่งซื้อเฉลี่ยของคุณและกระตุ้นให้ลูกค้าซื้อผลิตภัณฑ์ที่เกี่ยวข้อง",
+            "emptyStateTitle": "เพิ่มชุดเพื่อเพิ่มยอดขาย",
+            "messageSaveSuccess": "ชุดไฟล์ \"{name}\" ถูกบันทึกไว้",
+            "titleSidebarItemRefresh": "รีเฟรช",
+            "unavailable": "ไม่พร้อมใช้งาน"
+        },
+        "priceModal": {
+            "currency": "เงินตรา",
+            "price": "คุ้มค่า",
+            "title": "ราคาขั้นสูง"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "เพิ่มผลิตภัณฑ์",
+            "description": "เลือกช่องทางการขายก่อนเพื่อดูว่าผลิตภัณฑ์ใดที่สามารถเพิ่มลงในชุดได้คุณสามารถปรับสิ่งนี้ได้ในภายหลังในการ์ดการมองเห็นและโครงสร้าง",
+            "title": "ต้องใช้ช่องทางการขาย"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "สร้างภาพ",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "คำอธิบายชุดประกอบ"
+                },
+                "bundleHeading": {
+                    "label": "ชื่อชุดห่อ"
+                },
+                "bundleItems": {
+                    "label": "รายการมัดส่วน"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "แกลเลอรีรูปภาพและกล่องซื้อชุดประกอบ"
+                },
+                "recommendedBundles": {
+                    "label": "ชุดที่แนะนำ"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "เค้าโครงเริ่มต้น - หน้าชุดผลิตภัณฑ์",
+                "setAsDefaultBundleDetail": "ตั้งค่าเป็นค่าเริ่มต้นของหน้าชุดผลิตภัณฑ์"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "หน้าชุดประกอบ"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "สร้างภาพ",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "ข้อมูลผลิตภัณฑ์ขององค์ประกอบนี้จะถูกโหลดโดยอัตโนมัติโดยผลิตภัณฑ์ที่เกี่ยวข้องกับรูปแบบนี้เนื้อหาเพียงแค่แสดงตัวอย่างตัวอย่าง"
+                },
+                "label": "กล่องซื้อมัดส่วน"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "ข้อมูลผลิตภัณฑ์ขององค์ประกอบนี้จะถูกโหลดโดยอัตโนมัติโดยผลิตภัณฑ์ที่เกี่ยวข้องกับรูปแบบนี้เนื้อหาเพียงแค่แสดงตัวอย่างตัวอย่าง"
+                },
+                "label": "คำอธิบายชุดประกอบ",
+                "preview": {
+                    "descriptionTab": "คำอธิบาย",
+                    "title": "ชุด"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "อนุญาตให้เพิ่มรายการชุดเข้าไปในตะกร้าสินค้าโดยตรงแทนที่จะเปิดหน้ารายละเอียดสินค้า",
+                        "labelTitle": "ใช้ {count} เพื่อแสดงจำนวนสินค้าในชุดประกอบ"
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "ข้อมูลผลิตภัณฑ์ขององค์ประกอบนี้จะถูกโหลดโดยอัตโนมัติโดยผลิตภัณฑ์ที่เกี่ยวข้องกับรูปแบบนี้เนื้อหาเพียงแค่แสดงตัวอย่างตัวอย่าง"
+                    },
+                    "label": {
+                        "boxSettings": "การตั้งค่ากล่องผลิตภัณฑ์",
+                        "cta": "แสดง CTA เพื่อเพิ่มรายการชุดเข้าตะกร้าโดยตรง",
+                        "minWidth": "ความกว้างน้อยที่สุด",
+                        "title": "ชื่อเรื่อง"
+                    }
+                },
+                "label": "ผลิตภัณฑ์ที่รวม"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "ข้อมูลชุดขององค์ประกอบนี้จะถูกโหลดโดยอัตโนมัติโดยชุดที่เชื่อมโยงกับเค้าโครงนี้เนื้อหาเพียงแสดงตัวอย่างตัวอย่าง"
+                },
+                "label": "ชื่อชุดห่อ"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "เมื่อเปิดใช้งาน เฉพาะชุดย่อยของชุดเดียวจะแสดงในตอนแรกผู้ใช้สามารถขยายรายการเพื่อแสดงเพิ่มเติม",
+                        "maxVisibleBundles": "ควบคุมจำนวนชุดที่จะแสดงจนกว่าจะซ่อนอยู่เบื้องหลังฟังก์ชัน “แสดงเพิ่มเติม”",
+                        "productBoxSettings": "การตั้งค่ากล่องผลิตภัณฑ์",
+                        "productDetailElement": "ข้อมูลผลิตภัณฑ์ขององค์ประกอบนี้จะถูกโหลดโดยอัตโนมัติโดยผลิตภัณฑ์ที่เกี่ยวข้องกับรูปแบบนี้เนื้อหาเพียงแค่แสดงตัวอย่างตัวอย่าง",
+                        "showCTAInfo": "อนุญาตให้เพิ่มรายการชุดเข้าไปในตะกร้าสินค้าโดยตรงแทนที่จะเปิดหน้ารายละเอียดสินค้า",
+                        "sliderSettings": "การตั้งค่าแถบเลื่อน"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "จำกัดจำนวนชุดที่แสดงในตอนแรก",
+                        "maxVisibleBundles": "ชุดที่แสดงในตอนแรก",
+                        "minWidth": "ความกว้างน้อยที่สุด",
+                        "recommendedCombinationsTitle": "ชุดค่าผสมที่แนะนำ",
+                        "showBundleName": "แสดงชื่อชุดห่อ",
+                        "showCTA": "แสดง CTA เพื่อเพิ่มรายการชุดเข้าตะกร้าโดยตรง",
+                        "showCurrentProduct": "แสดงผลิตภัณฑ์ที่ดูปัจจุบันเป็นอันดับแรกในชุด",
+                        "title": "ชื่อเรื่อง"
+                    },
+                    "placeholder": {
+                        "minWidth": "ป้อนความกว้างน้อยที่สุด...",
+                        "title": "ชุดค่าผสมที่แนะนำ"
+                    }
+                },
+                "label": "ชุดค่าผสมที่แนะนำ",
+                "preview": {
+                    "label": {
+                        "title": "ชุดค่าผสมที่แนะนำ"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "สร้างภาพ",
             "contentText": "สร้างภาพอารมณ์ของคุณเองเพื่อปรับแต่งเลย์เอาต์ของคุณด้วยความช่วยเหลือของภาพที่สร้างโดย AI",
             "header": "ไพลอต AI"
+        },
+        "tags": {
+            "bundle": "ชุด"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "ที่อยู่หน่วยองค์กร",
                             "pending_order": "การจัดการคำสั่งซื้อที่ค้างอยู่",
                             "quote": "การจัดการใบเสนอราคา",
-                            "role": "การจัดการบทบาท"
+                            "role": "การจัดการบทบาท",
+                            "subscription": "สั่งซื้อการสมัครสมาชิก"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "ลบที่อยู่การจัดส่ง",
                                     "update": "แก้ไขที่อยู่การจัดส่ง"
                                 },
+                                "subscription": {
+                                    "read": "ดูการสมัครรับคำสั่งซื้อทั้งหมดจากหน่วยองค์กรที่ได้รับมอบหมาย"
+                                },
                                 "update": "แก้ไขหน่วยองค์กร"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "สามารถลบบทบาท",
                                 "edit": "สามารถแก้ไขบทบาท",
                                 "read": "สามารถดูบทบาท"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "ดูการสมัครรับคำสั่งซื้อทั้งหมด"
+                                }
                             }
                         },
                         "switchAllLabel": "สิทธิ์ทั้งหมด"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "การจัดการบทบาท"
             },
+            "bundle": {
+                "label": "มัดหรือห่อ"
+            },
             "custom_price": {
                 "label": "ราคาสินค้าสำหรับลูกค้า"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "เพิ่มสินค้าลงในชุด",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "ได้แล้ว",
+                "description": "ไม่สามารถลบผลิตภัณฑ์นี้ออกจากชุดต่อไปนี้ได้เนื่องจากชุดต้องใช้ผลิตภัณฑ์อย่างน้อยสองรายการ:",
+                "hint": "หากต้องการลบผลิตภัณฑ์นี้ให้เพิ่มผลิตภัณฑ์อื่นลงในชุดเหล่านี้ก่อน",
+                "title": "ไม่สามารถลบผลิตภัณฑ์ออกจากชุดทั้งหมดได้"
+            },
+            "bundleCardSubtitle": "ชุดทั้งหมดที่มีผลิตภัณฑ์นี้",
+            "bundleCardTitle": "ชุด ({count})",
+            "buttonAddBundle": "เพิ่มสินค้าลงในชุด",
+            "buttonAddBundleLanguageWarning": "การเพิ่มชุดเป็นไปได้เฉพาะในภาษาเริ่มต้นของระบบเท่านั้น",
+            "buttonCreateBundle": "สร้างชุดประกอบ",
+            "buttonManageBundles": "จัดการแพ็คเกจ",
+            "columnActive": "แอคทีฟ",
+            "columnAvailability": "ห้องว่าง",
+            "columnBundleItemCount": "จำนวนสินค้า",
+            "columnCreatedAt": "สร้างที่",
+            "columnName": "ชื่อ",
+            "columnProductNumber": "หมายเลขผลิตภัณฑ์",
+            "columnSales": "ฝ่ายขาย",
+            "columnShowBundleOnItemPdp": "แสดงในหน้ารายละเอียด",
+            "columnUpdatedAt": "อัปเดตที่",
+            "emptyStateDescription": "ชุดรวมสามารถเพิ่มมูลค่าการสั่งซื้อเฉลี่ยและกระตุ้นให้ลูกค้าซื้อผลิตภัณฑ์ที่เกี่ยวข้องชุดประกอบจะปรากฏในหน้ารายละเอียดผลิตภัณฑ์หากเค้าโครงของ CMS มีองค์ประกอบชุดประกอบ",
+            "emptyStateDescriptionCreateFirst": "ชุดรวมสามารถเพิ่มมูลค่าการสั่งซื้อเฉลี่ยและกระตุ้นให้ลูกค้าซื้อผลิตภัณฑ์ที่เกี่ยวข้องชุดประกอบจะปรากฏในหน้ารายละเอียดผลิตภัณฑ์หากเค้าโครงของ CMS มีองค์ประกอบชุดประกอบสร้างชุดเพื่อเพิ่มผลิตภัณฑ์นี้",
+            "emptyStateNoBundlesFound": "ไม่พบชุดที่ตรงกัน",
+            "emptyStateNoBundlesFoundDescription": "ปรับคำค้นหาหรือตัวกรอง",
+            "emptyStateTitle": "เพิ่มสินค้าลงในชุดเพื่อเพิ่มยอดขาย",
+            "hideOnProductDetailPage": "ซ่อนบนหน้ารายละเอียดสินค้า",
+            "messageSaveSuccess": "ชุดไฟล์ \"{name}\" ถูกบันทึกไว้",
+            "openBundlesDetail": "เปิดรายละเอียดชุดประกอบ",
+            "placeholderSearch": "ค้นหาชุด...",
+            "refreshDataTooltip": "รีเฟรชข้อมูล",
+            "showOnProductDetailPage": "แสดงในหน้ารายละเอียดสินค้า",
+            "showOnlyIncluded": "แสดงที่เลือกเท่านั้น",
+            "tooltipBundleHasRestrictions": "ผลิตภัณฑ์อย่างน้อยหนึ่งรายการมีข้อ จำกัด ที่มีผลต่อความพร้อมใช้งานของชุดนี้เยี่ยมชมรายละเอียดชุดสำหรับข้อมูลเพิ่มเติม",
+            "tooltipBundleInactive": "ไม่ได้ใช้งาน",
+            "tooltipBundleIssues": "ปัญหา:",
+            "tooltipBundleMismatchedSalesChannels": "ไม่ได้กำหนดให้กับช่องทางการขายของผลิตภัณฑ์: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "ไม่สามารถลบผลิตภัณฑ์นี้ได้เนื่องจากชุดประกอบต้องใช้ผลิตภัณฑ์อย่างน้อยสองรายการ"
+        },
         "card": {
             "textHeadline": "สต็อกและการจัดส่ง",
             "textLinkModal": "ดูสต็อกตามคลังสินค้าและกลุ่มคลังสินค้า",
             "textProductWarehouseModalDisabled": "บันทึกการเปลี่ยนแปลงของคุณก่อนที่คุณจะเปิดรายละเอียดสต็อกเพิ่มเติม",
             "textTooltipMultiSelect": "กำหนดกลุ่มคลังสินค้าเพื่อจัดการสต็อกของคุณเป็นรายบุคคลในคลังสินค้าหลายแห่ง"
+        },
+        "detail": {
+            "tabBundle": "มัดหรือห่อ"
         },
         "modal-warehouse-group": {
             "buttonCancel": "ปิด",
@@ -1986,6 +2359,9 @@
             "tabStock": "สต็อก",
             "textHeadline": "สต็อกตามคลังสินค้าและกลุ่มคลังสินค้า",
             "textInlineEdit": "แก้ไขสต็อก"
+        },
+        "type": {
+            "grouped_bundle": "ชุด"
         },
         "variants-overview": {
             "inlineText": "ดูรายละเอียด"
@@ -2542,6 +2918,16 @@
             "emptyText": "ฉากว่างเปล่า"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "หน้ารายละเอียดผลิตภัณฑ์มัดส่วน"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "อนุญาตให้ใช้รหัสโปรโมชั่นสำหรับการสั่งซื้อจากใบเสนอราคา"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "แคปช้าที่เป็นมิตร",
+                "friendlyCaptchaApiKey": "คีย์ Captcha API ที่เป็นมิตร",
                 "friendlyCaptchaDescription": "จากกลไกการพิสูจน์การทำงานและสัญญาณความเสี่ยงขั้นสูง Friendly Captcha ใช้วิธีการใหม่โดยพื้นฐานในการปกป้องเว็บไซต์และบริการออนไลน์ของคุณอย่างปลอดภัยจากสแปมและบอท",
+                "friendlyCaptchaRegion": "ภูมิภาค API",
+                "friendlyCaptchaRegionEu": "EU (สหภาพยุโรป)",
+                "friendlyCaptchaRegionGlobal": "ทั่วโลก",
+                "friendlyCaptchaRegionHelpText": "เลือก “EU” เพื่อกำหนดเส้นทางคำขอ captcha ทั้งหมดผ่านเซิร์ฟเวอร์ยุโรปเท่านั้นสิ่งนี้อาจเกี่ยวข้องกับการปฏิบัติตาม GDPR",
                 "friendlyCaptchaSecretKey": "กุญแจลับ Captcha ที่เป็นมิตร",
-                "friendlyCaptchaSiteKey": "คีย์ไซต์ Captcha ที่เป็นมิตร"
+                "friendlyCaptchaSiteKey": "คีย์ไซต์ Captcha ที่เป็นมิตร",
+                "friendlyCaptchaV1DeprecationNotice": "เวอร์ชัน 1 เป็นรุ่นเก่าและจะถูกลบออกในอนาคตเราขอแนะนำให้อัปเกรดเป็นเวอร์ชัน 2 เพื่อความปลอดภัยที่ดีขึ้นและประสบการณ์วิดเจ็ตที่สะอาดขึ้น",
+                "friendlyCaptchaVersion": "เวอร์ชัน Captcha ที่เป็นมิตร",
+                "friendlyCaptchaVersionV1": "เวอร์ชัน 1 (รุ่นเก่า)",
+                "friendlyCaptchaVersionV2": "เวอร์ชัน 2 (ใหม่)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "ยกเลิก",
         "retry": "ลองใหม่อีกครั้ง"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "ล็อคสเกลสม่ำเสมอ",
-        "unlock-uniform-scale": "ปลดล็อกเครื่องชั่งสม่ำ"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "ลูกค้าของคุณสามารถกำหนดและจัดการขีด จำกัด งบประมาณเพื่อควบคุมการใช้จ่ายของหน่วยองค์กรได้ดียิ่งขึ้น",
         "budgetManagementName": "งบประมาณ",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "อนุมัติคำสั่งซื้อ",
                     "ORGANIZATION_UNITS": "หน่วยองค์กร",
                     "QUICK_ORDER": "คำสั่งซื้อด่วน",
-                    "QUOTE_MANAGEMENT": "การจัดการใบเสนอราคา"
+                    "QUOTE_MANAGEMENT": "การจัดการใบเสนอราคา",
+                    "SHOPPING_LISTS": "รายการช้อปปิ้ง"
                 },
                 "template": "จำเป็นต้องใช้ {dependency} สำหรับ {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "ชื่อ",
             "columnOrderQuantity": "ปริมาณการสั่งซื้อ",
             "columnReturnQuantity": "ปริมาณการส่งคืน",
+            "includesShippingCosts": "รวมค่าจัดส่ง",
             "messageErrorNoItemHasQuantity": "ควรมีรายการอย่างน้อย 1 บรรทัดมีปริมาณมากกว่า 0 เพื่อสร้างผลตอบแทน",
             "messagePreventAddItem": "รายการนี้เป็นส่วนหนึ่งของการส่งคืนแล้ว หรือสถานะของรายการถูกยกเลิก ส่งคืน หรือส่งคืนบางส่วน",
             "placeholderComment": "ป้อนความคิดเห็น...",

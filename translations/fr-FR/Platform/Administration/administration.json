@@ -317,6 +317,7 @@
             "newsletter_update": "Inscription au bulletin mise à jour",
             "product_export_log": "Exportation de produits exécutée",
             "review_form_send": "Formulaire de révision envoyé",
+            "revocation_request_sent": "Le formulaire de demande de révocation a été envoyé.",
             "state_enter_order_delivery_state_cancelled": "L'expédition entre le statut annulé",
             "state_enter_order_delivery_state_open": "L'expédition entre le statut ouvert",
             "state_enter_order_delivery_state_returned": "L'expédition entre le statut retourné",
@@ -1012,6 +1013,9 @@
             "buttonChoose": "Sélectionner un fichier",
             "caption": "Faire glisser ici le fichier à télécharger",
             "notification": {
+                "invalidFileExtension": {
+                    "message": "L'extension du fichier sélectionné « {name} » n'est pas prise en charge. Veuillez utiliser l'une des extensions de fichier suivantes : {supportedExtensions}."
+                },
                 "invalidFileSize": {
                     "message": "Le fichier sélectionné \"{name}\" est trop volumineux pour être téléchargé. La taille du fichier ne peut pas dépasser {limit}."
                 },
@@ -1755,7 +1759,8 @@
                 "messageNoDocumentsFound": "Aucun document trouvé",
                 "title": "Modification en masse - Réussite"
             },
-            "warningText": "Veuillez patienter jusqu'à la fin de la modification en bloc. Cela peut prendre un certain temps. Si vous fermez l'onglet du navigateur ou annulez le processus prématurément, toutes les modifications ne seront pas appliquées. Vous pouvez réexécuter la modification en bloc à tout moment."
+            "warningText": "Veuillez patienter jusqu'à la fin de la modification en bloc. Cela peut prendre un certain temps. Si vous fermez l'onglet du navigateur ou annulez le processus prématurément, toutes les modifications ne seront pas appliquées. Vous pouvez réexécuter la modification en bloc à tout moment.",
+            "warningTextDocumentDeletion": "Les documents font partie d'une commande et peuvent être pertinents à des fins fiscales. Leur suppression peut affecter la traçabilité de vos documents comptables. Assurez-vous que la suppression est légalement autorisée."
         },
         "order": {
             "alertRestrictedFields": {
@@ -1769,6 +1774,10 @@
             },
             "documents": {
                 "cardTitle": "Documents",
+                "deleteDocuments": {
+                    "helpText": "Avec cette option, tous les types de documents sélectionnés seront supprimés.",
+                    "label": "Supprimer : Documents"
+                },
                 "downloadDocuments": {
                     "helpText": "Cette option permet de télécharger les documents les plus récents disponibles. Plusieurs documents sont fusionnés dans le même fichier. Le téléchargement est disponible une fois les modifications multiples terminées.",
                     "label": "Télécharger : Documents"
@@ -2429,6 +2438,7 @@
                     "newsletterPage": "Pages de newsletter",
                     "privacyPage": "Pages de confidentialité",
                     "revocationPage": "Avis de révocation",
+                    "revocationRequestPage": "Formulaire de demande de révocation",
                     "shippingPaymentInfoPage": "Informations de paiement et d'expédition",
                     "tosPage": "Pages TOS"
                 },
@@ -2659,7 +2669,8 @@
                         "title": "Titre",
                         "type": "Type de formulaire",
                         "typeContact": "Contact",
-                        "typeNewsletter": "Newsletter"
+                        "typeNewsletter": "Newsletter",
+                        "typeRevocationRequest": "Révocation"
                     },
                     "placeholder": {
                         "type": "Sélectionnez un type de formulaire..."
@@ -2671,6 +2682,8 @@
                     },
                     "label": {
                         "action": "Promotion",
+                        "comment": "Commentaire",
+                        "contractNumber": "Numéro de contrat (numéro de commande, numéro d'abonnement, ... ) *    ",
                         "email": "Adresse e-mail*",
                         "firstName": "Prénom*",
                         "lastName": "Nom*",
@@ -2691,6 +2704,8 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+                        "contractNumber": "SW123456789",
                         "email": "john{'@'}doe.fr",
                         "firstName": "John",
                         "lastName": "Doe",
@@ -3638,6 +3653,36 @@
         "noCriteria": "Non {criteriaName}",
         "placeholder": "Tous"
     },
+    "sw-export-channel-tracking": {
+        "extension": {
+            "sw-customer-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Canal d'exportation",
+                        "placeholder": "Sélectionnez les canaux d'exportation…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Canal d'exportation"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Canal d'exportation",
+                        "placeholder": "Sélectionnez les canaux d'exportation…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Canal d'exportation"
+                }
+            }
+        },
+        "general": {
+            "descriptionTextModule": "Ajoute des colonnes et des filtres de canaux d'exportation aux listes de commandes et de clients.",
+            "mainMenuItemGeneral": "Suivi des canaux d'exportation"
+        }
+    },
     "sw-extension": {
         "errors": {
             "appIsNotCompatible": "L'extension « {name} » n'est pas compatible avec cette version de Shopware",
@@ -4337,6 +4382,7 @@
                 "labelMailType": "Type",
                 "labelRecipient": "Bénéficiaire",
                 "labelReplyTo": "Adresse de réponse",
+                "labelRevocationRequestFormMail": "Enquêteur",
                 "labelSenderName": "Expéditeur",
                 "labelSubject": "Objet",
                 "placeholderDescription": "Saisir une description...",
@@ -4371,6 +4417,7 @@
                 "placeholderName": "Entrez le nom de la règle...",
                 "placeholderPriority": "Entrez la priorité de la règle...",
                 "placeholderType": "Sélectionnez le type de règle...",
+                "productStatesConditionWarning": "La condition « Article dans l'état du produit » est obsolète et sera supprimée dans la version 6.8. Veuillez utiliser « Article avec type de produit » à la place.",
                 "tabDetail": "Général",
                 "tabRule": "Conditions"
             },
@@ -4484,6 +4531,8 @@
             "returned": "Retournée",
             "returnedPartially": "Retournée partiellement",
             "reviewForm": "Évaluation produit",
+            "revocationRequestCustomer": "Demande de révocation envoyée",
+            "revocationRequestMerchant": "Demande de révocation reçue",
             "send": "Envoyer",
             "sent": "Envoyé",
             "shipped": "Envoyée",
@@ -4646,7 +4695,6 @@
             "caretsLabel": "Accent circonflexe (^)",
             "categoriesLabel": "Catégories",
             "closeProfileLabel": "Fermer le profil",
-            "closeViolation": "Fermer",
             "commasLabel": "Virgule (,)",
             "configuratorSettingLabel": "Configuration des variantes",
             "copyOfLabel": "Copie de :",
@@ -4729,7 +4777,11 @@
                 "importLabel": "Importation"
             },
             "updateEntitiesLabel": "Actualiser les données existantes",
-            "violationMessage": "Votre profil n'est pas encore valide. Vous devez ajouter des attributions dans les champs obligatoires affichés en dessous afin d'enregistrer un profil :"
+            "violationModal": {
+                "duplicateMappings": "Vous avez <strong>doublons de mappages</strong> dans les champs suivants. Supprimez les doublons pour enregistrer le profil :",
+                "missingRequiredFields": "Vous devez ajouter des mappages aux champs obligatoires <strong></strong> affichés ci-dessous pour enregistrer le profil :",
+                "title": "Votre profil n'est pas encore valide"
+            }
         },
         "progress": {
             "startExportLabel": "Démarrer l'exportation",
@@ -5219,21 +5271,35 @@
         },
         "sw-media-save-modal": {
             "titleModal": "Enregistrer dans les médias"
-        },
-        "sw-model-editor": {
-            "edit-options": {
-                "move-tooltip": "Déplacer un objet",
-                "rotate-tooltip": "Faire pivoter l'objet",
-                "scale-tooltip": "Objet d'échelle"
-            },
-            "saveChanges": "Enregistrer les modifications",
-            "titleModal": "Éditeur de modèles"
         }
     },
     "sw-meteor": {
         "navigation": {
             "backButton": "Retour"
         }
+    },
+    "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Déplacer un objet",
+            "rotate-tooltip": "Faire pivoter l'objet",
+            "scale-tooltip": "Objet d'échelle"
+        },
+        "open-model-editor-tooltip": "Ouvrez l'éditeur de modèles",
+        "properties": {
+            "transformation": {
+                "label": "Transformation",
+                "position": {
+                    "label": "Position"
+                },
+                "rotation": {
+                    "label": "Rotation"
+                },
+                "scale": {
+                    "label": "Échelle"
+                }
+            }
+        },
+        "titleModal": "Éditeur de modèles"
     },
     "sw-newsletter-recipient": {
         "detail": {
@@ -5304,9 +5370,14 @@
             "selectDocumentTypeModal": {
                 "helpText": {
                     "credit_note": "Pour créer un avoir, ajoutez d'abord un élément de crédit.",
-                    "storno": "Une facture d'annulation ne peut pas être créée sans facture."
+                    "storno": "Une facture d'annulation ne peut pas être créée sans facture.",
+                    "zugferd_cancellation_invoice": "Il est impossible de créer une facture d'annulation ZUGFeRD sans facture.",
+                    "zugferd_credit_note": "Pour créer une note de crédit ZUGFeRD, une facture et au moins un élément de crédit sont nécessaires.",
+                    "zugferd_embedded_cancellation_invoice": "Une facture d'annulation ZUGFeRD intégrée ne peut pas être créée sans facture.",
+                    "zugferd_embedded_credit_note": "Pour créer une note de crédit ZUGFeRD intégrée, une facture et au moins un élément de crédit sont nécessaires."
                 },
                 "primaryAction": "Créer un document",
+                "showZugferd": "Afficher les variantes de ZUGFeRD",
                 "title": "Créer un document"
             }
         },
@@ -5584,6 +5655,7 @@
         },
         "documentCard": {
             "cardTitle": "Justificatifs",
+            "confirmDeleteText": "Ce document fait partie d'une commande et peut être pertinent à des fins fiscales. Sa suppression peut affecter la traçabilité de vos documents comptables. Assurez-vous que la suppression est légalement autorisée. Cette action ne peut pas être annulée.",
             "error": {
                 "DOCUMENT__NUMBER_ALREADY_EXISTS": "Le document numéro {number} a déjà été alloué."
             },
@@ -5614,6 +5686,7 @@
             "fileInputLabel": "Télécharger votre document",
             "labelCancel": "Fermer",
             "labelCreate": "Créer un justificatif",
+            "labelCreateDownload": "Création et téléchargement",
             "labelCreateDownloadPdf": "Créer et télécharger le PDF",
             "labelCreateSend": "Créer et envoyer un justificatif",
             "labelDeliveryDate": "Date de livraison",
@@ -5839,7 +5912,9 @@
             "titleSidebarItemFilter": "Filtre",
             "titleSidebarItemFilterAffiliateCode": "Code affilié",
             "titleSidebarItemFilterCampaignCode": "Code de la campagne",
-            "titleSidebarItemRefresh": "Mettre à jour"
+            "titleSidebarItemRefresh": "Mettre à jour",
+            "tooltipCustomerComment": "Informations complémentaires : {comment}",
+            "tooltipInternalComment": "Commentaire interne : {comment}"
         },
         "nestedLineItemsModal": {
             "headerLabel": "Nom",
@@ -6521,15 +6596,23 @@
             "helpTextKeywords": "Ici vous pouvez définir éventuellement trois à cinq mots-clés sous lesquels votre produit doit être trouvé.",
             "helpTextMetaDescription": "Avec la méta-description, vous confirmez à vos clients qu'ils se trouvent au bon endroit dans votre boutique. Vous créez des incitations, renforcez la confiance et invitez à une action. Vous devez vous limiter à 155 caractères maximum. Shopware autorise une longueur maximale de 255 caractères.",
             "helpTextMetaTitle": "Le méta titre est l'élément de référencement le plus important et doit être unique pour chaque page. Vous devez vous limiter en longueur à un maximum de 56 caractères. Votre mot clé devrait idéalement être placé à l'avant.",
+            "helpTextOpenGraphDescription": "La description Open Graph est utilisée lors du partage du produit sur les réseaux sociaux. Si elle est laissée vide, la description des métadonnées sera utilisée comme solution de repli.",
+            "helpTextOpenGraphTitle": "Le titre Open Graph est utilisé lors du partage du produit sur les réseaux sociaux. S'il est laissé vide, le titre des métadonnées sera utilisé comme solution de repli.",
             "labelCanonicalProduct": "Variante pour l'URL canonique",
             "labelCanonicalUrlMode": "Utiliser une URL canonique unique pour toutes les variantes",
             "labelKeywords": "Mots-clés",
             "labelMetaDescription": "Description méta",
             "labelMetaTitle": "Titre méta",
+            "labelOpenGraphDescription": "Description de l'OG",
+            "labelOpenGraphImage": "Image OG",
+            "labelOpenGraphTitle": "Titre OG",
             "placeholderCanonicalProduct": "Sélectionner une variante...",
             "placeholderKeywords": "Saisissez un ou plusieurs mots-clés...",
             "placeholderMetaDescription": "Saisissez une méta description...",
-            "placeholderMetaTitle": "Entrez un titre méta..."
+            "placeholderMetaTitle": "Entrez un titre méta...",
+            "placeholderOpenGraphDescription": "Entrez la description d'Open Graph...",
+            "placeholderOpenGraphTitle": "Entrez le titre d'Open Graph...",
+            "titleOpenGraph": "Open Graph"
         },
         "settingsForm": {
             "isCloseoutHelpText": "Commandes supplémentaires impossibles.",
@@ -7494,8 +7577,42 @@
         "ruleCard": "Conditions"
     },
     "sw-sales-channel": {
+        "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Code affilié",
+            "affiliateCodePlaceholder": "Entrez le code d'affiliation…",
+            "campaignCodeLabel": "Code de la campagne",
+            "campaignCodePlaceholder": "Entrez le code de campagne…",
+            "cardTitle": "Codes de suivi",
+            "description": "Configurez les codes d'affiliation et de campagne qui seront intégrés dans les URL des produits des flux de cette chaîne. Ces codes identifient les commandes et les clients référés depuis ce canal Agentic Commerce."
+        },
         "detail": {
             "activateDisable": "Le canal de vente doit être enregistré, puis rattaché à un thème, avant d'être activé.",
+            "agenticCommerce": {
+                "buttonResetTemplate": "Réinitialiser par défaut",
+                "errorLoadingTemplate": "Impossible de charger le modèle par défaut.",
+                "integration": {
+                    "feedUrlLabel": "URL d'exportation",
+                    "providers": {
+                        "open-ai": {
+                            "cardTitle": "Connexion OpenAI",
+                            "introduction": {
+                                "description": "Ce canal de vente génère un flux de produits JSONL afin que vos produits puissent apparaître dans les résultats de recherche ChatGPT. Pour ce faire, vous devez faire une demande en tant que marchand et partager l'URL du flux avec OpenAI. Tout le reste est expliqué dans le guide étape par étape ci-dessous.",
+                                "title": "Procédure : Configuration et connexion"
+                            },
+                            "stepByStep": "<li>Postulez en tant que marchand sur <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchants</a></li><li>Copiez l'URL d'exportation (ci-dessous) et partagez-la avec OpenAI conformément à la documentation <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Product feeds</a></li><li>Assurez-vous que l'URL d'exportation est accessible au public</li>"
+                        }
+                    },
+                    "stepByStepTitle": "Étape par étape"
+                },
+                "openAiSettingsTitle": "Paramètres OpenAI",
+                "resetTemplateSuccess": "Le modèle a été réinitialisé aux valeurs par défaut. Veuillez enregistrer pour conserver les modifications.",
+                "tabIntegration": "Intégration",
+                "templates": {
+                    "template-label": {
+                        "open-ai": "OpenAI (JSONL)"
+                    }
+                }
+            },
             "analytics": {
                 "cardTitle": "Google Analytics",
                 "description": "À l'aide de Google Analytics, vous pouvez collecter et analyser les données de votre boutique. Pour utiliser cette fonction, un compte Google est nécessaire. Si vous ne possédez pas encore de compte Google Analytics, vous pouvez vous inscrire ici : <a href=\"https://analytics.google.com/\" target=\"_blank\">Google Analytics</a>. Une fois votre inscription réussie, vous recevrez un numéro de suivi, qui doit être rempli ci-dessous pour activer l'intégration.",
@@ -7704,6 +7821,25 @@
                         "idealo": "idealo.de (CSV)"
                     }
                 }
+            },
+            "productExport": {
+                "insights": {
+                    "customerCardHeadline": "Clients référés",
+                    "dateRanges": {
+                        "14Days": "Les 14 derniers jours",
+                        "180Days": "Les 180 derniers jours",
+                        "24Hours": "Les dernières 24 heures",
+                        "30Days": "Les 30 derniers jours",
+                        "7Days": "Les 7 derniers jours",
+                        "yesterday": "Hier"
+                    },
+                    "numbers": "Nombre",
+                    "orderCardHeadline": "Commandes renvoyées",
+                    "summary": "Résumé",
+                    "totalTurnover": "Chiffre d'affaires",
+                    "turnoverCardHeadline": "chiffre d'affaires référé"
+                },
+                "tabInsights": "Statistiques"
             },
             "products": {
                 "buttonAddProducts": "Ajouter {productCount} produits | Ajouter {productCount} produit | Ajouter {productCount} produits",
@@ -8355,24 +8491,21 @@
             "disabledSalesChannel": "Il existe déjà un autre document du même type dans ce canal de vente.",
             "disabledSalesChannelSelect": "Sélectionnez d'abord un type de document.",
             "disabledTypeSelect": "Le type de document des documents globaux ne peut pas être modifié.",
+            "displayTitle": "Affichage :",
             "helpTextDisplayAdditionalNoteDelivery": "Éligible uniquement pour les États membres de l'UE, voir également « Paramètres > Pays ».",
-            "helpTextDisplayCompanyAddress": "Affiche l'adresse de l'entreprise sous l'en-tête sur le côté droit du document.",
-            "helpTextDisplayDeliveryCountries": "Affiche l'indication de « livraison intra communautaire » sur les documents de facture pour certains pays.",
             "helpTextDisplayDocumentInCustomerAccount": "Le document est affiché sous « Commandes » dans le compte client respectif. Notez que seuls les documents réellement envoyés au client sont affichés dans le compte client.",
-            "helpTextDisplayReturnAddress": "Affiche l'adresse de l'entreprise comme adresse de retour au-dessus de l'adresse du client dans le bloc d'adresses.",
-            "helpTextPaymentDueDate": "Par exemple : +30 jours, +4 semaines, +1 semaine 2 jours",
             "labelBankBic": "BIC",
             "labelBankIban": "IBAN",
             "labelBankName": "Banque",
             "labelCompanyCity": "Ville",
             "labelCompanyCountry": "Pays",
             "labelCompanyEmail": "Adresse e-mail",
+            "labelCompanyLogo": "Logo de l'entreprise",
             "labelCompanyName": "Nom",
             "labelCompanyPhone": "Numéro de téléphone",
             "labelCompanyStreet": "Rue",
             "labelCompanyUrl": "Site Web",
             "labelCompanyZipcode": "Code postal",
-            "labelDeliveryCountries": "Pays membres",
             "labelDisplayAdditionalNoteDelivery": "Afficher l'étiquette « Livraison intracommunautaire »",
             "labelDisplayCompanyAddress": "Afficher l'adresse commerciale",
             "labelDisplayCustomerVatId": "Afficher le numéro de TVA du client",
@@ -8391,7 +8524,6 @@
             "labelFileTypes": "Formats de fichiers",
             "labelItemsPerPage": "Positions par page",
             "labelName": "Nom",
-            "labelOptionMedia": "Logo de la société",
             "labelPageOrientation": "Agencement des pages",
             "labelPageSize": "Format des pages",
             "labelPaymentDueDate": "Date d'échéance du paiement",
@@ -8402,9 +8534,43 @@
             "labelTaxOffice": "Administration fiscale",
             "labelType": "Type de document",
             "labelVatId": "N° de TVA",
-            "messageSaveSuccess": "Le document \"{name}\" a été enregistré.",
-            "placeholderDisplayDeliveryCountries": "Recherche et ajout de pays valables pour la livraison intracommunautaire...",
+            "pageOrientationOptions": {
+                "landscape": "Paysage",
+                "portrait": "Portrait"
+            },
+            "pageSizeOptions": {
+                "a4": "A4",
+                "a5": "A5",
+                "legal": "Légal",
+                "letter": "Lettre"
+            },
+            "placeholderBankBic": "Entrez le code BIC...",
+            "placeholderBankIban": "Entrez votre IBAN...",
+            "placeholderBankName": "Entrez le nom de la banque...",
+            "placeholderCompanyCity": "Entrer la ville...",
+            "placeholderCompanyCountry": "Sélectionnez un pays...",
+            "placeholderCompanyEmail": "Saisissez une adresse e-mail...",
+            "placeholderCompanyName": "Entrez le nom de l'entreprise...",
+            "placeholderCompanyPhone": "Entrer le n° de téléphone",
+            "placeholderCompanyStreet": "Entrez une adresse...",
+            "placeholderCompanyUrl": "Entrez dans le site Web...",
+            "placeholderCompanyZipcode": "Entrez le code postal...",
+            "placeholderExecutiveDirector": "Entrez un dirigeant d'entreprise...",
+            "placeholderFileNamePrefix": "Saisir un préfixe...",
+            "placeholderFileNameSuffix": "Saisir un suffixe...",
+            "placeholderFileTypes": "Sélectionnez les formats de fichiers...",
+            "placeholderItemsPerPage": "Entrez le nombre d'éléments par page...",
             "placeholderName": "Saisir un nom...",
+            "placeholderPageOrientation": "Sélectionnez une orientation de page...",
+            "placeholderPageSize": "Sélectionnez un format de page...",
+            "placeholderPaymentDueDate": "Entrez la date d'échéance du paiement...",
+            "placeholderPlaceOfFulfillment": "Entrez le lieu d'expédition...",
+            "placeholderPlaceOfJurisdiction": "Entrez le lieu de juridiction...",
+            "placeholderSalesChannel": "Sélectionnez un canal de vente...",
+            "placeholderTaxNumber": "Entrez le numéro fiscal...",
+            "placeholderTaxOffice": "Entrez dans le bureau des impôts...",
+            "placeholderType": "Sélectionnez un type de document...",
+            "placeholderVatId": "Entrez le numéro de TVA...",
             "textHeadline": "Nouveau document"
         },
         "general": {
@@ -8418,7 +8584,6 @@
             "columnAssignment": "Attribution",
             "columnName": "Nom",
             "columnType": "Type",
-            "columnUsedIn": "Utilisé pour",
             "contextMenuEdit": "Modifier",
             "global": "Global",
             "messageDeleteSuccess": "Le document \"{name}\" a été enregistré.",
@@ -9868,23 +10033,18 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Refuser",
+                "give-consent": "Donnez votre consentement",
                 "save-preferences": "Enregistrer les préférences",
                 "share-all-data": "Partagez tout",
                 "share-nothing": "Ne rien partager"
             },
-            "external-links": {
-                "data-use-details": {
-                    "label": "shopware.com/fr/details d'utilisation des données",
-                    "link": "https://www.shopware.com/en/data-use-details/"
-                },
-                "label": "Pour plus de détails, consultez {data-use-details} et notre {privacy-policy}.",
-                "privacy-policy": {
-                    "label": "Politique de confidentialité",
-                    "link": "https://www.shopware.com/en/privacy/"
-                }
-            },
             "intro": "En partageant les données de la boutique et des utilisateurs, vous nous aidez à comprendre comment l'Administration est utilisée et à développer des améliorations qui facilitent votre travail quotidien.",
-            "opt-out-info": "Vous pouvez vous désinscrire à tout moment via les paramètres et les paramètres du profil.",
+            "opt-out-info": {
+                "profile": "Votre profil — Préférences de confidentialité",
+                "settings": "Paramètres — Confidentialité",
+                "snippet": "Vous pouvez modifier vos préférences à tout moment : gérez les paramètres des données de la boutique sous {settings}et les paramètres des données personnelles sous {profile}."
+            },
             "promises": {
                 "gdpr-compliant": "Conforme au RGPD",
                 "no-third-party": "Aucune donnée n'est partagée avec des tiers",
@@ -9899,6 +10059,12 @@
                     "order": "commandes",
                     "store": "stocker des données"
                 },
+                "external-links": {
+                    "data-use-details": {
+                        "label": "ici",
+                        "link": "https://www.shopware.com/en/legal/data-use-details/"
+                    }
+                },
                 "help-text": {
                     "diagnostic": "<strong>Les données de diagnostic</strong> de Shopware font référence aux informations relatives à l'état du système, aux erreurs et aux mesures de performance de la plateforme. Cela inclut des détails tels que les journaux système, les messages d'erreur, les temps de réponse du serveur et d'autres indicateurs techniques. L'analyse de ces données nous permet d'identifier, de résoudre et de déployer rapidement des correctifs pour les problèmes ou vulnérabilités courants, tout en préservant l'intégrité de la plateforme.",
                     "order": "<strong>Les données de commande</strong> dans Shopware font référence aux informations détaillées sur les commandes des clients passées sur la plateforme. Cela inclut des informations spécifiques telles que les produits commandés, les quantités, les prix, l'origine, les modes de paiement, l'expédition, etc. Nous analysons ces données pour comprendre les tendances et les modèles qui nous aident à améliorer les fonctionnalités et à développer de nouveaux services conçus pour améliorer la réussite de votre entreprise. Nous ne collectons pas de données personnelles auprès de vos clients qui peuvent être utilisées pour identifier une seule personne.",
@@ -9912,6 +10078,12 @@
                 "description": "Nous utilisons {data} pour expliquer comment vous interagissez avec l'Administration afin d'améliorer sa facilité d'utilisation et ses performances.",
                 "emphasizes": {
                     "data": "données"
+                },
+                "external-links": {
+                    "privacy-policy": {
+                        "label": "Politique de confidentialité",
+                        "link": "https://www.shopware.com/en/privacy/website/"
+                    }
                 },
                 "help-text": {
                     "data": "<strong>Les données d'utilisation</strong> de Shopware concernent les informations relatives à la manière dont les utilisateurs administrateurs et les visiteurs de la vitrine interagissent avec notre plateforme. Cela inclut des détails tels que les interactions avec les différents modules d'administration de Shopware, les pages consultées, la durée des visites, les chemins de clics et les actions des utilisateurs au sein de la plateforme et de la vitrine. En évaluant les données d'utilisation, nous pouvons identifier les zones de la plateforme qui sont fréquemment visitées ou évitées afin de mesurer l'adoption des fonctionnalités, ce qui peut entraîner des améliorations potentielles en termes de mise en page, de conception et de fonctionnalités."
@@ -10351,48 +10523,6 @@
         "toggleItem": "Activer/désactiver l'élément « {name} »",
         "toggleTreeItem": "Activer/désactiver l'élément « {name} » de l'arborescence"
     },
-    "sw-usage-data-consent-banner": {
-        "acceptDataCollection": "D'accord",
-        "checkListDataSharing": {
-            "gdprCompliant": "Nous sommes conformes au RGPD",
-            "helpText": {
-                "shareDataHelpText": "<strong>« Partager »</strong> fait référence à la divulgation de données aux fins propres à la partie destinataire ; nous pouvons divulguer des données à nos fournisseurs de services."
-            },
-            "personalData": "Nous ne collectons pas de données personnelles",
-            "securelyProcessed": "Vos données sont traitées et stockées en toute sécurité",
-            "thirdParty": "Nous ne partageons pas vos données avec des tiers à leurs propres fins",
-            "title": "Nous pouvons vous assurer que :"
-        },
-        "collectionInformation": {
-            "diagnosticData": "Données diagnostiques",
-            "helpText": {
-                "diagnosticDataHelp": "<strong>Les données de diagnostic</strong> de Shopware font référence aux informations relatives à l'état du système, aux erreurs et aux mesures de performance de la plateforme. Cela inclut des détails tels que les journaux système, les messages d'erreur, les temps de réponse du serveur et d'autres indicateurs techniques. L'analyse de ces données nous permet d'identifier, de résoudre et de déployer rapidement des correctifs pour les problèmes ou vulnérabilités courants, tout en préservant l'intégrité de la plateforme.",
-                "orderDataHelp": "<strong>Les données de commande</strong> dans Shopware font référence aux informations détaillées sur les commandes des clients passées sur la plateforme. Cela inclut des informations spécifiques telles que les produits commandés, les quantités, les prix, l'origine, les modes de paiement, les expéditions, etc. Nous analysons ces données pour comprendre les tendances et les modèles qui nous aident à améliorer les fonctionnalités et à développer de nouveaux services conçus pour améliorer le succès de votre entreprise. Nous ne collectons pas de données personnelles auprès de vos clients qui peuvent être utilisées pour identifier une seule personne.",
-                "storeDataHelp": "<strong>Les données de boutique</strong> de Shopware concernent toutes les informations relatives à votre vitrine en ligne. Tels que les produits, les listes, les prix, les images, les descriptions, etc. et les métadonnées relatives à la configuration de votre boutique, telles que les thèmes et les plugins. Nous ne collectons pas de données personnelles pouvant être utilisées pour identifier un utilisateur administrateur ou un visiteur de la boutique. À l'aide des données agrégées des magasins, nous pouvons fournir des informations via l'apprentissage automatique, telles que les tendances émergentes du marché, ce qui vous permet d'ajuster les offres de produits ou les stratégies marketing en conséquence.",
-                "usageDataHelp": "<strong>Les données d'utilisation</strong> de Shopware concernent les informations relatives à la manière dont les utilisateurs administrateurs et les visiteurs de la boutique interagissent avec notre plateforme. Cela inclut des détails tels que les interactions avec les différents modules d'administration de Shopware, les pages consultées, la durée des visites, les chemins de clics et les actions des utilisateurs au sein de la plateforme et de la vitrine. En évaluant les données d'utilisation, nous pouvons identifier les zones de la plateforme qui sont fréquemment visitées ou évitées afin de mesurer l'adoption des fonctionnalités, ce qui peut entraîner des améliorations potentielles en termes de mise en page, de conception et de fonctionnalités. Nous ne collectons pas de données personnelles pouvant être utilisées pour identifier un administrateur ou les visiteurs de la boutique."
-            },
-            "orderData": "Données de commande",
-            "storeData": "Stockez les données",
-            "usageData": "Données d'utilisation"
-        },
-        "confirmAuthorization": "En cliquant sur « Accepter », vous confirmez que vous êtes autorisé à conclure cet accord au nom de votre entreprise.",
-        "declineDataCollection": "Pas pour le moment",
-        "fullDetailsDescription": "Tous les détails de cet accord sont disponibles à l'adresse {link}. {fullDetailsDescriptionNotAccepted}",
-        "fullDetailsDescriptionNotAccepted": "Vous pouvez refuser le partage de données à tout moment.",
-        "headline": "Façonner le futur du commerce en ligne",
-        "improvingDescription": "Nous améliorons constamment les services que nous vous proposons. Pour passer à l'étape suivante, nous analysons vos données à l'aide de techniques telles que l'apprentissage automatique (par exemple, la reconnaissance des formes) afin de développer et d'améliorer notre produit. Vos données seront également utilisées pour développer des services axés sur les données conçus pour améliorer la réussite de votre entreprise. Voici les données que nous collectons :",
-        "improvingDescriptionNotAccepted": "Nous améliorons constamment les services que nous vous proposons. Pour passer à l'étape suivante, nous aimerions analyser vos données à l'aide de techniques telles que l'apprentissage automatique (par exemple, la reconnaissance des formes) afin de développer et d'améliorer notre produit. Vos données seront également utilisées pour développer des services axés sur les données conçus pour améliorer la réussite de votre entreprise. Voici les données que nous collecterons :",
-        "privacyPolicy": "shopware.com/fr/details d'utilisation des données",
-        "privacyPolicyLink": "https://www.shopware.com/en/data-use-details/",
-        "rejectedMessage": "Vous pouvez à tout moment conclure le contrat et ainsi contribuer et profiter de l'évolution constante de nos services, en autorisant le partage de données dans votre {link}",
-        "settings": {
-            "deactivateDataCollection": "Désactiver le partage de données",
-            "sharingInformation": "Vous partagez des données avec nous"
-        },
-        "thankYouMessage": "{thanksForParticipation} Vous pouvez vous désinscrire de cet accord à tout moment et ainsi cesser de contribuer et de bénéficier du développement continu de nos services en désactivant le partage de données dans votre {link}",
-        "thanksForParticipation": "Merci de votre participation !",
-        "togglePath": "Paramètres"
-    },
     "sw-users-permissions": {
         "general": {
             "label": "Utilisateurs et droits"
@@ -10585,9 +10715,12 @@
             }
         }
     },
+    "sw-vector-field": {
+        "lock-uniform-scale": "Échelle uniforme Lock",
+        "unlock-uniform-scale": "Débloquez une échelle uniforme"
+    },
     "sw-wizard": {
         "backButton": "Retour",
-        "closeButton": "Fermer",
         "finishButton": "Terminer",
         "nextButton": "Suivant"
     }

@@ -338,11 +338,13 @@
             "state_leave_subscription_state_paused": "Prenumerationen lämnar status pausad"
         },
         "entities": {
+            "b2b_components_individual_pricing": "Individuell prissättning",
             "b2b_components_role": "Roll | Roller",
             "b2b_components_shopping_list": "Inköpslistor",
             "b2b_employee": "Medarbetare | Anställda",
+            "bundle": "Bundle | Bundlar",
+            "bundle_item": "Paketobjekt | Paketartiklar",
             "export_assistant": "Exportassistent",
-            "individual_pricing": "Individuell prissättning",
             "quote": "Citat | Citat",
             "quote_line_item": "Citatradpost | Citatradposter",
             "search_assistant": "AI Copilot",
@@ -369,12 +371,23 @@
         },
         "sw-condition": {
             "condition": {
+                "lineItemIsBundleItemRule": "Artikeln är paketartikel",
+                "lineItemOfBundleRule": "Objekt i vald bunt",
                 "subscriptionCartRule": "Prenumerationskorg",
                 "subscriptionIntervalRule": "Prenumerationsintervall",
                 "subscriptionPlanRule": "Prenumerationsplan"
             },
             "group": {
                 "subscription": "Prenumeration"
+            }
+        },
+        "sw-condition-generic": {
+            "cartLineItemProductType": {
+                "productType": {
+                    "options": {
+                        "grouped_bundle": "Bunt"
+                    }
+                }
             }
         },
         "swag-search-assistant": {
@@ -923,13 +936,317 @@
             }
         }
     },
+    "sw-bundle": {
+        "blueprint": {
+            "feedbackBanner": {
+                "description": "Tack för att du provade Bundles Blueprint. Vi vill gärna höra din feedback.",
+                "link": "Ge feedback"
+            }
+        },
+        "detail": {
+            "customFields": {
+                "cardTitle": "Tilläggsfält"
+            },
+            "general": {
+                "title": "Allmän information"
+            },
+            "items": {
+                "actionOpenProductDetails": "Öppna produktinformation",
+                "buttonAddBundleItems": "Lägg till produkter",
+                "columnName": "Namn",
+                "columnPosition": "Position",
+                "columnPrice": "Pris",
+                "emptyStateDescription": "Lägg till minst två produkter i paketet.",
+                "emptyStateTitle": "Inga produkter tillagda ännu",
+                "title": "Produkter ({count})",
+                "tooltipBundleItemCustomizedProduct": "Anpassad produktmall tilldelad",
+                "tooltipBundleItemHasVariants": "Produkten har varianter",
+                "tooltipBundleItemInactive": "Inaktiv",
+                "tooltipBundleItemIncompatibleVisibilities": "Inte tilldelad paketets försäljningskanaler: {salesChannels}",
+                "tooltipBundleItemIssues": "Frågor:",
+                "tooltipBundleItemOutOfStockCloseout": "Slut i lager (Utförsäljning)",
+                "tooltipBundleItemOutOfStockTemporary": "Denna produkt är för närvarande slut i lager. Paketet kommer att kunna köpas igen när alla produkter är tillbaka i lager.",
+                "tooltipBundleItemOutOfStockTitle": "Slut i lager",
+                "tooltipRefreshData": "Uppdatera data"
+            },
+            "labelling": {
+                "releaseDate": {
+                    "label": "Utgivningsdatum",
+                    "placeholder": "Ange ett inställningsdatum..."
+                },
+                "title": "Beviljande"
+            },
+            "media": {
+                "subtitle": "Lägg till filer i paketets mediegalleri.",
+                "title": "Media"
+            },
+            "messageMinBundleItemsRequired": "Lägg till minst två produkter för att skapa paketet.",
+            "messageNoChanges": "Inga ändringar att spara",
+            "messageSaveError": "Det gick inte att spara paketet",
+            "messageSaveSuccess": "Paketet sparades framgångsrikt",
+            "price": {
+                "addDiscount": "Lägg till rabatt",
+                "currencyDependingPrices": "Valuta beroende på priser",
+                "discount": "Rabatt",
+                "discountRules": "Rabattregler",
+                "discountTitle": "Rabatt",
+                "discountType": "Typ",
+                "discountTypeAbsolute": "Absolut",
+                "discountTypePercentage": "Procentuell",
+                "discountValue": "Värde",
+                "discountValuePlaceholder": "Lägg till värde...",
+                "doNotCombineWith": "Kombinera inte med",
+                "maxValuePlaceholder": "Obegränsad",
+                "maximumDiscountValue": "Maximalt rabattvärde",
+                "openAdvancedPricesView": "Öppna utvidgad prisöversikt",
+                "preventCombination": "Förhindra kombination med andra kampanjer",
+                "preventCombinationHelpText": "När denna rabatt är aktiverad kan den inte kombineras med andra kampanjer",
+                "promotionsPlaceholder": "Lägg till kampanjer...",
+                "rulesPlaceholder": "Lägg till regler...",
+                "subtotalBased": "Delsumma baserat på 1 produkt | Delsumma baserat på {count} produkter",
+                "title": "Visa priser",
+                "total": "Totalt",
+                "totalBased": "Totalt baserat på 1 produkt | Totalt baserat på {count} produkter"
+            },
+            "tabGeneral": "General",
+            "tabLayout": "Layout",
+            "tabSeo": "SEO",
+            "textHeadline": "Nytt paket",
+            "visibility": {
+                "mismatchBanner": {
+                    "description": "Detta förhindrar att bunten syns i dessa kanaler. Kontrollera synligheten för följande produkter:",
+                    "notAssignedTo": "inte tilldelad",
+                    "title": "Vissa produkter är inte tilldelade till alla valda försäljningskanaler"
+                },
+                "title": "Synlighet och struktur"
+            }
+        },
+        "filterSidebar": {
+            "activeFilter": {
+                "label": "Aktiv",
+                "placeholder": "Vänligen välj..."
+            },
+            "availabilityFilter": {
+                "label": "Tillgänglighetsregel",
+                "placeholder": "Välj tillgänglighet..."
+            },
+            "bundleIncludedProductsFilter": {
+                "label": "Inkluderade produkter",
+                "placeholder": "Välj inkluderade produkter..."
+            },
+            "categoriesFilter": {
+                "label": "Kategorier",
+                "placeholder": "Välj kategorier..."
+            },
+            "fromPlaceholder": "Skriv in startvärde...",
+            "imagesFilter": {
+                "label": "Bilder",
+                "placeholder": "Välj bildstatus...",
+                "textHasCriteria": "Minst en produktbild tilldelad",
+                "textNoCriteria": "Inga produktbilder tilldelade"
+            },
+            "priceFilter": {
+                "label": "Pris"
+            },
+            "productNumberFilter": {
+                "label": "Produktnummer",
+                "placeholder": "Ange ett produktnummer..."
+            },
+            "releaseDateFilter": {
+                "label": "Utgivningsdatum"
+            },
+            "salesChannelsFilter": {
+                "label": "Försäljningskanal",
+                "placeholder": "Vänligen välj en försäljningskanal..."
+            },
+            "salesFilter": {
+                "label": "Försäljning"
+            },
+            "tagsFilter": {
+                "label": "Taggar",
+                "placeholder": "Välj ut taggar..."
+            },
+            "toPlaceholder": "Ange slutvärde..."
+        },
+        "general": {
+            "description": "Buntar",
+            "headlineBundles": "Buntar",
+            "mainMenuItemGeneral": "Buntar",
+            "placeholderSearchBar": "Sök i paket...",
+            "title": "Buntar"
+        },
+        "generalForm": {
+            "highlightHelpText": "Markerade buntar är markerade med en färgglad etikett och ordet ”Tips” i alla paketlistor. Du kan justera etikettens färg genom att ändra alternativet ”Notera” i <a href=\"{themeUrl}\">teman</a> inställningar. Du kan också ändra etikettens text genom att redigera motsvarande <a href=\"{snippetUrl}\">textfragment</a>.",
+            "labelDescription": "Beskrivning",
+            "labelMarkAsTopseller": "Markeringspaket",
+            "labelName": "Namn",
+            "labelProductNumber": "Produktnummer",
+            "placeholderDescription": "Ange paketbeskrivning...",
+            "placeholderName": "Ange paketnamn...",
+            "placeholderProductNumber": "Ange ett produktnummer..."
+        },
+        "itemsBanner": {
+            "notEnoughProducts": "En bunt kräver minst två produkter.",
+            "notEnoughProductsTitle": "Inte tillräckligt med produkter",
+            "restrictions": "En eller flera produkter har begränsningar som påverkar paketets tillgänglighet. Se varningsikonerna för detaljer.",
+            "restrictionsTitle": "Vissa produkter har begränsningar"
+        },
+        "itemsModal": {
+            "emptyStateTitle": "Inga matchande produkter hittades",
+            "noProductsMatchingBundleSalesChannels": "Det finns inga aktiva produkter som matchar paketets valda försäljningskanaler.",
+            "noProductsMatchingTermAndFilter": "Justera söktermen eller filtren.",
+            "placeholderSearch": "Sök igenom alla produkter...",
+            "showIncluded": "Visa endast markerade ({count})",
+            "textWhySomeItemsMissing": "Varför saknas vissa produkter?",
+            "title": "Lägg till produkter",
+            "tooltipVariant": "Variant",
+            "tooltipWhySomeItemsMissing": "Just nu fungerar buntar bara med fysiska produkter och enstaka varianter. <br /><br /> Produkter måste tilldelas paketets valda försäljningskanaler för att visas i listan."
+        },
+        "list": {
+            "available": "Fortfarande tillgänglig",
+            "buttonAddBundle": "Lägg till paket",
+            "columnActive": "Aktiv",
+            "columnAvailable": "Tillgänglighetsregel",
+            "columnBundleItemCount": "Antal produkter",
+            "columnCreatedAt": "Lades till den",
+            "columnName": "Namn",
+            "columnProductNumber": "Produktnummer",
+            "columnSales": "Försäljning",
+            "columnTotalPrice": "Totalt pris",
+            "columnUpdatedAt": "Uppdaterad den",
+            "emptyStateDescription": "Paket kan öka ditt genomsnittliga ordervärde och uppmuntra kunder att köpa relaterade produkter.",
+            "emptyStateTitle": "Lägg till paket för att öka försäljningen",
+            "messageSaveSuccess": "Bundle \"{name}\" har sparats.",
+            "titleSidebarItemRefresh": "Uppdatera",
+            "unavailable": "Otillgänglig"
+        },
+        "priceModal": {
+            "currency": "Valuta",
+            "price": "Värde",
+            "title": "Avancerade priser"
+        },
+        "salesChannelRequiredModal": {
+            "buttonSave": "Lägg till produkter",
+            "description": "Välj först en försäljningskanal för att se vilka produkter som kan läggas till i paketet. Du kan justera detta senare i kortet Synlighet och struktur.",
+            "title": "Försäljningskanal krävs"
+        }
+    },
     "sw-cms": {
         "blockGenerateImageLinkText": "Generera bild",
+        "blocks": {
+            "commerce": {
+                "bundleDescription": {
+                    "label": "Paketbeskrivning"
+                },
+                "bundleHeading": {
+                    "label": "Buntnamn"
+                },
+                "bundleItems": {
+                    "label": "Paketartiklar"
+                },
+                "galleryBundleBuyBox": {
+                    "label": "Bildgalleri och paketinköpslåda"
+                },
+                "recommendedBundles": {
+                    "label": "Rekommenderade buntar"
+                }
+            }
+        },
+        "components": {
+            "cmsListItem": {
+                "defaultLayoutBundleDetail": "Standardlayout - Produktpaketsida",
+                "setAsDefaultBundleDetail": "Ange som standard för produktpaketsida"
+            }
+        },
+        "detail": {
+            "label": {
+                "pageType": {
+                    "bundleDetail": "Bundle sida"
+                }
+            }
+        },
         "elConfigImageGenerateLinkText": "Generera bild",
+        "elements": {
+            "bundleBuyBox": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Det här elementets produktdata läses in automatiskt av den produkt som är kopplad till den här layouten. Innehållet visar bara en exempelförhandsgranskning."
+                },
+                "label": "Bundköpsbox"
+            },
+            "bundleDescription": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Det här elementets produktdata läses in automatiskt av den produkt som är kopplad till den här layouten. Innehållet visar bara en exempelförhandsgranskning."
+                },
+                "label": "Paketbeskrivning",
+                "preview": {
+                    "descriptionTab": "Beskrivning",
+                    "title": "Bunt"
+                }
+            },
+            "bundleItems": {
+                "config": {
+                    "helpText": {
+                        "labelCta": "Gör det möjligt att lägga till paketartiklar direkt i kundvagnen istället för att öppna produktinformationssidan.",
+                        "labelTitle": "Använd {count} för att visa antalet produkter i paketet."
+                    },
+                    "infoText": {
+                        "bundleDetailElement": "Det här elementets produktdata läses in automatiskt av den produkt som är kopplad till den här layouten. Innehållet visar bara en exempelförhandsgranskning."
+                    },
+                    "label": {
+                        "boxSettings": "Inställningar för produktruta",
+                        "cta": "Visa CTA för att lägga till paketartiklar direkt i kundvagnen",
+                        "minWidth": "Minimal bredd",
+                        "title": "Titel"
+                    }
+                },
+                "label": "Inkluderade produkter"
+            },
+            "bundleName": {
+                "infoText": {
+                    "tooltipSettingDisabled": "Det här elementets paketdata laddas automatiskt av bunten som är associerad med den här layouten. Innehållet visar bara en exempelförhandsvisning."
+                },
+                "label": "Buntnamn"
+            },
+            "recommendedBundles": {
+                "config": {
+                    "infoText": {
+                        "limitInitiallyShownBundles": "När det är aktiverat visas endast en delmängd av buntar initialt. Användare kan expandera listan för att visa mer.",
+                        "maxVisibleBundles": "Styr hur många buntar som ska visas tills de döljs bakom en ”Visa mer” -funktion.",
+                        "productBoxSettings": "Inställningar för produktruta",
+                        "productDetailElement": "Det här elementets produktdata läses in automatiskt av den produkt som är kopplad till den här layouten. Innehållet visar bara en exempelförhandsgranskning.",
+                        "showCTAInfo": "Gör det möjligt att lägga till paketartiklar direkt i kundvagnen istället för att öppna produktinformationssidan.",
+                        "sliderSettings": "Slider inställningar"
+                    },
+                    "label": {
+                        "limitInitiallyShownBundles": "Begränsa antalet initialt visade buntar",
+                        "maxVisibleBundles": "Buntar som visas initialt",
+                        "minWidth": "Minimal bredd",
+                        "recommendedCombinationsTitle": "Rekommenderade kombinationer",
+                        "showBundleName": "Visa paketnamn",
+                        "showCTA": "Visa CTA för att lägga till paketartiklar direkt i kundvagnen",
+                        "showCurrentProduct": "Visa den aktuella produkten först i paketet",
+                        "title": "Titel"
+                    },
+                    "placeholder": {
+                        "minWidth": "Skriv in minimal bredd...",
+                        "title": "Rekommenderade kombinationer"
+                    }
+                },
+                "label": "Rekommenderade kombinationer",
+                "preview": {
+                    "label": {
+                        "title": "Rekommenderade kombinationer"
+                    }
+                }
+            }
+        },
         "sw-image-generator-banner": {
             "buttonText": "Generera bild",
             "contentText": "Skapa dina egna stämningsbilder för att anpassa din layout med hjälp av AI-genererad bild.",
             "header": "AI Copilot"
+        },
+        "tags": {
+            "bundle": "Bunt"
         }
     },
     "sw-cms-generation": {
@@ -1174,7 +1491,8 @@
                             "organization_unit_address": "Organisationsenhetsadresser",
                             "pending_order": "Väntande orderhantering",
                             "quote": "Offerthantering",
-                            "role": "Hantering av roll"
+                            "role": "Hantering av roll",
+                            "subscription": "Beställ prenumeration"
                         },
                         "permissions": {
                             "advanced_product_catalogs": {
@@ -1234,6 +1552,9 @@
                                     "delete": "Radera leveransadress",
                                     "update": "Redigera leveransadress"
                                 },
+                                "subscription": {
+                                    "read": "Visa alla beställningsprenumerationer från tilldelad organisationsenhet"
+                                },
                                 "update": "Redigera organisationsenhet"
                             },
                             "pending_order": {
@@ -1255,6 +1576,11 @@
                                 "delete": "Kan ta bort roller",
                                 "edit": "Kan redigera roller",
                                 "read": "Kan visa roller"
+                            },
+                            "subscription": {
+                                "read": {
+                                    "all": "Visa alla beställningsprenumerationer"
+                                }
                             }
                         },
                         "switchAllLabel": "Alla behörigheter"
@@ -1935,6 +2261,9 @@
             "b2b_role_management": {
                 "label": "Rollhantering"
             },
+            "bundle": {
+                "label": "Buntar"
+            },
             "custom_price": {
                 "label": "Produkt Kundpris"
             },
@@ -1966,11 +2295,55 @@
         }
     },
     "sw-product": {
+        "bundles": {
+            "addBundleTitle": "Lägg till produkt i paket",
+            "bulkRemoveWarningModal": {
+                "buttonGotIt": "Fick det",
+                "description": "Den här produkten kunde inte tas bort från följande paket eftersom ett paket kräver minst två produkter:",
+                "hint": "För att ta bort den här produkten, lägg till en annan produkt i dessa buntar först.",
+                "title": "Produkten kunde inte tas bort från alla paket"
+            },
+            "bundleCardSubtitle": "Alla paket som innehåller denna produkt",
+            "bundleCardTitle": "Buntar ({count})",
+            "buttonAddBundle": "Lägg till produkt i paket",
+            "buttonAddBundleLanguageWarning": "Att lägga till buntar är bara möjligt på systemets standardspråk.",
+            "buttonCreateBundle": "Skapa bunt",
+            "buttonManageBundles": "Hantera paket",
+            "columnActive": "Aktiv",
+            "columnAvailability": "Tillgänglighetsregel",
+            "columnBundleItemCount": "Antal produkter",
+            "columnCreatedAt": "Lades till den",
+            "columnName": "Namn",
+            "columnProductNumber": "Produktnummer",
+            "columnSales": "Försäljning",
+            "columnShowBundleOnItemPdp": "Visa på detaljsidan",
+            "columnUpdatedAt": "Uppdaterad den",
+            "emptyStateDescription": "Paket kan öka det genomsnittliga ordervärdet och uppmuntra kunder att köpa relaterade produkter. Buntar visas på produktinformationssidan om CMS-layouten innehåller ett buntelement.",
+            "emptyStateDescriptionCreateFirst": "Paket kan öka det genomsnittliga ordervärdet och uppmuntra kunder att köpa relaterade produkter. Buntar visas på produktinformationssidan om CMS-layouten innehåller ett buntelement. Skapa ett paket för att lägga till den här produkten.",
+            "emptyStateNoBundlesFound": "Inga matchande paket hittades",
+            "emptyStateNoBundlesFoundDescription": "Justera söktermen eller filtren.",
+            "emptyStateTitle": "Lägg till produkt i paket för att öka försäljningen",
+            "hideOnProductDetailPage": "Dölj på produktdetaljsidan",
+            "messageSaveSuccess": "Bundle \"{name}\" har sparats.",
+            "openBundlesDetail": "Öppna paketdetaljer",
+            "placeholderSearch": "Sök i paket...",
+            "refreshDataTooltip": "Uppdatera data",
+            "showOnProductDetailPage": "Visa på produktdetaljsidan",
+            "showOnlyIncluded": "Visa endast markerade",
+            "tooltipBundleHasRestrictions": "En eller flera produkter har begränsningar som påverkar paketets tillgänglighet. Besök paketinformationen för mer information.",
+            "tooltipBundleInactive": "Inaktiv",
+            "tooltipBundleIssues": "Frågor:",
+            "tooltipBundleMismatchedSalesChannels": "Inte tilldelad produktens försäljningskanaler: {salesChannels}",
+            "tooltipCannotDeleteMinimumItems": "Den här produkten kan inte tas bort eftersom buntar kräver minst två produkter."
+        },
         "card": {
             "textHeadline": "Lager och leveransbarhet",
             "textLinkModal": "Se lager efter lager och lagergrupper",
             "textProductWarehouseModalDisabled": "Spara dina ändringar innan du kan öppna ytterligare lagerinformation.",
             "textTooltipMultiSelect": "Tilldela lagergrupper för att hantera ditt lager individuellt över flera lager."
+        },
+        "detail": {
+            "tabBundle": "Buntar"
         },
         "modal-warehouse-group": {
             "buttonCancel": "Stäng",
@@ -1986,6 +2359,9 @@
             "tabStock": "Aktuellt lager",
             "textHeadline": "Lager efter lager och lagergrupper",
             "textInlineEdit": "Redigera lager"
+        },
+        "type": {
+            "grouped_bundle": "Bunt"
         },
         "variants-overview": {
             "inlineText": "Se detaljer"
@@ -2542,6 +2918,16 @@
             "emptyText": "Tom scen"
         }
     },
+    "sw-seo-url-template-card": {
+        "routeNames": {
+            "frontend-bundle-detail-page": "Produktinformationssida för paket"
+        }
+    },
+    "sw-settings": {
+        "cart": {
+            "allowPromotionToQuote": "Tillåt kampanjkoder för beställningar från offerter"
+        }
+    },
     "sw-settings-aisearch": {
         "component": {
             "AISearch": {
@@ -2589,9 +2975,18 @@
         "captcha": {
             "label": {
                 "friendlyCaptcha": "Vänlig Captcha",
+                "friendlyCaptchaApiKey": "Vänlig Captcha API-nyckel",
                 "friendlyCaptchaDescription": "Baserat på proof-of-work-mekanismer och avancerade risksignaler använder Friendly Captcha ett fundamentalt nytt tillvägagångssätt för att säkert skydda dina webbplatser och onlinetjänster från skräppost och bots.",
+                "friendlyCaptchaRegion": "API-region",
+                "friendlyCaptchaRegionEu": "EU (Europeiska unionen)",
+                "friendlyCaptchaRegionGlobal": "Globalt",
+                "friendlyCaptchaRegionHelpText": "Välj ”EU” för att dirigera alla captcha-förfrågningar uteslutande via europeiska servrar. Detta kan vara relevant för GDPR-efterlevnad.",
                 "friendlyCaptchaSecretKey": "Vänlig Captcha hemlig nyckel",
-                "friendlyCaptchaSiteKey": "Vänlig Captcha-webbplatsnyckel"
+                "friendlyCaptchaSiteKey": "Vänlig Captcha-webbplatsnyckel",
+                "friendlyCaptchaV1DeprecationNotice": "Version 1 är äldre och kommer att tas bort i en framtida version. Vi rekommenderar att du uppgraderar till version 2 för förbättrad säkerhet och en renare widgetupplevelse.",
+                "friendlyCaptchaVersion": "Vänlig Captcha-version",
+                "friendlyCaptchaVersionV1": "Version 1 (äldre)",
+                "friendlyCaptchaVersionV2": "Version 2 (ny)"
             }
         }
     },
@@ -2874,10 +3269,6 @@
         "cancel": "Avbryt",
         "retry": "Försök igen"
     },
-    "sw-vector-field": {
-        "lock-uniform-scale": "Lås enhetlig skala",
-        "unlock-uniform-scale": "Lås upp enhetlig skala"
-    },
     "swag-b2b-features": {
         "budgetManagementDescription": "Dina kunder kan definiera och hantera budgetgränser för att bättre kontrollera sina organisationsenheternas utgifter.",
         "budgetManagementName": "budgetar",
@@ -2903,7 +3294,8 @@
                     "ORDER_APPROVAL": "Beställningsgodkännande",
                     "ORGANIZATION_UNITS": "Organisationsenheter",
                     "QUICK_ORDER": "Snabba beställningar",
-                    "QUOTE_MANAGEMENT": "Offerthantering"
+                    "QUOTE_MANAGEMENT": "Offerthantering",
+                    "SHOPPING_LISTS": "Inköpslistor"
                 },
                 "template": "{dependency} krävs för {name}"
             },
@@ -3100,6 +3492,7 @@
             "columnName": "Namn",
             "columnOrderQuantity": "Beställning kvantitet",
             "columnReturnQuantity": "Returkvantitet",
+            "includesShippingCosts": "Inklusive fraktkostnader",
             "messageErrorNoItemHasQuantity": "Bör ha minst 1 rad objekt har en kvantitet mer än 0 för att skapa en retur",
             "messagePreventAddItem": "Denna artikel är redan en del av returen eller dess status är Avbruten, Returnerad eller Returnerad delvis.",
             "placeholderComment": "Ange kommentar...",
