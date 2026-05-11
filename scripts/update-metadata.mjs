@@ -28,6 +28,11 @@ const CROWDIN_LOCALE_MAP = {
     'no-NO': 'nn-NO',
 };
 
+// Crowdin pseudo-languages (e.g. Acholi) are not reported via the /languages/progress endpoint.
+// Synthesize entries for them whenever their snippet files change so the metadata stays in sync
+// with the exported pseudo-language files for proofreading workflows.
+const ALLOWED_PSEUDO_LOCALES = ['ach-UG'];
+
 async function run() {
     // Build a payload containing updates for locales that had changes
     let diffData = await getDiffPayload(changedFiles);
@@ -69,6 +74,12 @@ async function getDiffPayload(changedFiles) {
                 locale: locale,
                 updatedAt: new Date().toISOString(),
                 progress: crowdinData[locale].progress,
+            });
+        } else if (ALLOWED_PSEUDO_LOCALES.includes(locale)) {
+            payload.push({
+                locale: locale,
+                updatedAt: new Date().toISOString(),
+                progress: 100,
             });
         }
     }
