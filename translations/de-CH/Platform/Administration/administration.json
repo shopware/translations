@@ -4828,13 +4828,45 @@
         },
         "list": {
             "contextMenuDelete": "Löschen",
-            "contextMenuEdit": "Bearbeiten",
+            "contextMenuEdit": "Integration bearbeiten",
+            "contextMenuEditMcp": "MCP-Allowlist bearbeiten",
             "integrationName": "Integration",
+            "labelManagedByApp": "Von App verwaltet",
             "messageEmpty": "Noch keine Integrationen vorhanden",
             "permissions": "Berechtigungen",
             "readAccess": "Lesen",
             "sublineEmpty": "Verwaltung von Integrationen.",
             "writeAccess": "Schreiben"
+        },
+        "mcp": {
+            "adminBanner": "Diese Integration verfügt über Administrator-Rechte. Alle MCP-Funktionen sind standardmäßig zugänglich. Du kannst den Zugriff hier auf bestimmte Tools, Ressourcen oder Prompts einschränken.",
+            "allCapabilitiesLabel": "Alle Funktionen",
+            "allTypeLabel": "Alle",
+            "cardTitle": "MCP-Allowlist",
+            "collapseAll": "Alle einklappen",
+            "coverageWarning": "{count} Tool(s) benötigen ACL-Rechte, die der zugewiesenen Rolle fehlen.",
+            "deniedTypeWarning": "Keine {types} sind fur diese Integration aktiviert.",
+            "dep": "Abhäng.",
+            "dependencyOf": "Dieses Tool wird automatisch ausgewählt, weil ein anderes ausgewähltes Tool davon abhängt.",
+            "expandAll": "Alle aufklappen",
+            "infoText": "Lege fest, welche MCP-Funktionen diese Integration nutzen darf. Wenn \"Alle Funktionen\" aktiviert ist, sind alle registrierten Tools, Ressourcen und Prompts zugänglich. Deaktiviere die Option, um den Zugriff pro Typ zu konfigurieren. Hinweis: Tools benötigen zusätzlich die passenden Entitätsrechte aus der zugewiesenen Rolle.",
+            "missingCapabilitySuggestions": "{count} Ressource(n) oder Prompt(s) aus demselben Modul sind nicht in der Allowlist:",
+            "missingDeps": "Abhängigkeit nicht ausgewählt: {deps}",
+            "missingPrivilegesList": "Fehlend: {privileges}",
+            "missingPrivilegesTooltip": "Fehlende Berechtigungen: {privileges}",
+            "modalTitle": "MCP-Allowlist",
+            "noCapabilitiesDescription": "Es sind derzeit keine MCP-Tools, Ressourcen oder Prompts registriert.",
+            "noCapabilitiesHeadline": "Keine Funktionen gefunden",
+            "privilegesLabel": "Benötigt:",
+            "promptsGuidance": "Prompts sind System-Anweisungen, die den Kontext der KI bestimmen. Nicht benötigte Prompts verschwenden Kontextfenster und können die KI verwirren.",
+            "promptsSection": "Prompts",
+            "requiresLabel": "benötigt",
+            "requiresTooltip": "Dieses Tool aktiviert auch: {deps}",
+            "resourcesGuidance": "Ressourcen liefern schreibgeschützte Referenzdaten (Entitätslisten, State Machines, Vertriebskanäle). Schränke diese ein, um sensible Geschäftsdaten nicht unnötig offenzulegen.",
+            "resourcesSection": "Ressourcen",
+            "staleEntries": "Einige gespeicherte Einträge sind nicht mehr verfügbar: {entries}. Sie werden zur Laufzeit ignoriert.",
+            "toolsGuidance": "Tools führen Aktionen aus und können Nebenwirkungen haben (Schreiben, Löschen). Beschränke den Zugriff auf das, was diese Integration wirklich benötigt.",
+            "toolsSection": "Tools"
         }
     },
     "sw-landing-page": {
@@ -6006,6 +6038,10 @@
                 "all": "Alle",
                 "disabledCheckboxMessage": "Um diese Option deaktivieren zu können, musst Du zuerst die Option 'Alle' deaktivieren.",
                 "label": "Apps"
+            },
+            "integration_mcp": {
+                "editor": "MCP-Allowlist bearbeiten",
+                "label": "Integrationen"
             },
             "marketing": {
                 "label": "Marketing",
@@ -10578,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "Zusätzliche Berechtigungen"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "Bereits über den Tab \"Allgemein\" gewährt."
+            },
             "general": {
                 "cardLabel": "Rollen",
                 "labelCreateNewRole": "Rolle erstellen"
             },
             "grid": {
                 "disabledCheckboxMessage": "Um diese Option deaktivieren zu können, musst Du zuerst andere aktive Optionen deaktivieren.",
-                "title": "Berechtigungen"
+                "title": "Berechtigungen",
+                "tooltipEntityAll": "Alle Rechte für {entity} ({roles})",
+                "tooltipParentAll": "Alle Rechte für {parent} ({roles})",
+                "tooltipParentRole": "Alle {role}-Rechte für {parent}"
+            },
+            "mcpHint": {
+                "linkText": "MCP Tool-Anforderungen anzeigen",
+                "text": "Diese Rolle ist {count} MCP-aktivierten Integration(en) zugewiesen. "
+            },
+            "mcpModal": {
+                "description": "Die folgenden Tools sind in Integrationen erlaubt, die diese Rolle verwenden.",
+                "dynamicPrivilegeHint": "Diese Berechtigung hängt vom zur Laufzeit übergebenen Entitätsparameter ab.",
+                "grant": "Erteilen",
+                "grantAllMissing": "Alle fehlenden vergeben",
+                "legendDynamic": "dynamisch",
+                "legendDynamicHint": "Diese Berechtigung hängt vom zur Laufzeit übergebenen Entitätsparameter ab.",
+                "legendGranted": "vorhanden",
+                "legendGrantedHint": "Diese Berechtigung ist der Rolle bereits zugewiesen.",
+                "legendLabel": "Legende:",
+                "legendMissing": "fehlt",
+                "legendMissingHint": "Diese Berechtigung ist der Rolle noch nicht zugewiesen.",
+                "noToolsDescription": "Für die Integrationen, die diese Rolle verwenden, sind derzeit keine Tools erlaubt.",
+                "noToolsHeadline": "Keine Tools gefunden",
+                "saveReminder": "Berechtigungen vorausgewählt — Rolle speichern, um sie zu übernehmen.",
+                "title": "MCP Tool-Anforderungen",
+                "viewByPermission": "Nach Berechtigung",
+                "viewByTool": "Nach Tool"
             },
             "role-grid": {
                 "contextMenuDelete": "Löschen",
@@ -10656,7 +10721,7 @@
             "user-detail": {
                 "addAccessKey": "Zugangsschlüssel erstellen",
                 "contextMenuDelete": "Löschen",
-                "contextMenuEdit": "Bearbeiten",
+                "contextMenuEdit": "Integration bearbeiten",
                 "disabledRoleSelectWarning": "Rollen sind nur für Benutzer verfügbar, die keine Administrator-Rechte haben.",
                 "errorEmailUsed": "Diese E-Mail-Adresse wird schon benutzt.",
                 "errorUsernameUsed": "Dieser Benutzername wird schon benutzt.",
@@ -10681,6 +10746,8 @@
                 "labelRoles": "Rollen",
                 "labelTimezone": "Zeitzone",
                 "labelUsername": "Benutzername",
+                "mcpAllowlistSaveError": "Die MCP-Allowlist konnte nicht gespeichert werden.",
+                "mcpAllowlistTitle": "MCP-Tool-Allowlist",
                 "modal": {
                     "buttonApply": "Integration speichern",
                     "buttonApplyEdit": "Änderungen speichern",
