@@ -4829,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "Dzēst",
             "contextMenuEdit": "Labot",
+            "contextMenuEditMcp": "Rediģēt MCP atļauju sarakstu",
             "integrationName": "Integrācija",
+            "labelManagedByApp": "Pārvalda lietotne",
             "messageEmpty": "Šobrīd nav integrāciju",
             "permissions": "Atļaujas",
             "readAccess": "Lasīt",
             "sublineEmpty": "Integrāciju vadības modulis",
             "writeAccess": "Rakstīt"
+        },
+        "mcp": {
+            "adminBanner": "Šai integrācijai ir administratora privilēģijas. Visas MCP iespējas ir pieejamas pēc noklusējuma. Papildu drošībai šeit varat ierobežot piekļuvi konkrētiem rīkiem, resursiem vai uzvednēm.",
+            "allCapabilitiesLabel": "Visas iespējas",
+            "allTypeLabel": "Viss",
+            "cardTitle": "MCP atļauju saraksts",
+            "collapseAll": "Sabrukt visu",
+            "coverageWarning": "{count} rīkam (-iem) ir nepieciešamas ACL privilēģijas, kas nav piešķirtas piešķirtajai lomai.",
+            "deniedTypeWarning": "Šai integrācijai nav iespējots {types}.",
+            "dep": "dep",
+            "dependencyOf": "Šis rīks tiek automātiski iekļauts, jo no tā ir atkarīgs cits izvēlēts rīks.",
+            "expandAll": "Izvērst visu",
+            "infoText": "Ierobežojiet, kuras MCP iespējas var izmantot šī integrācija. Kad ir iespējota “Visas iespējas”, ir pieejams katrs reģistrētais rīks, resurss un uzvedne. Atspējojiet to, lai konfigurētu piekļuvi katram tipam. Piezīme.: rīkiem ir vajadzīgas arī atbilstošas entītijas atļaujas piešķirtajai lomai.",
+            "missingCapabilitySuggestions": "{count} resurss (-i) vai uzvedne (-i) no tā paša moduļa nav atļauju sarakstā:",
+            "missingDeps": "Atkarība nav atlasīta: {deps}",
+            "missingPrivilegesList": "Trūkst: {privileges}",
+            "missingPrivilegesTooltip": "Trūkst privilēģiju: {privileges}",
+            "modalTitle": "MCP atļauju saraksts",
+            "noCapabilitiesDescription": "Pašlaik nav reģistrēti nekādi MCP rīki, resursi vai uzvednes.",
+            "noCapabilitiesHeadline": "Nav atrastas iespējas",
+            "privilegesLabel": "Nepieciešams:",
+            "promptsGuidance": "Uzvednes ir sistēmas instrukcijas, kas nosaka AI kontekstu. Nesaistītu uzvedņu atklāšana izšķērd konteksta logu un var sajaukt AI.",
+            "promptsSection": "Uzvednes",
+            "requiresLabel": "vajadzīgi depi",
+            "requiresTooltip": "Iespējot šo rīku, tiks iespējots arī: {deps}",
+            "resourcesGuidance": "Resursi nodrošina tikai lasāmus atsauces datus (entītiju saraksti, valsts iekārtas, pārdošanas kanāli). Ierobežojiet tos, lai izvairītos no biznesa konfigurācijas atklāšanas, kas tirgotāja palīgam nav nepieciešama.",
+            "resourcesSection": "Resursi",
+            "staleEntries": "Daži saglabātie ieraksti vairs nav pieejami: {entries}. Izpildes laikā tie tiks ignorēti.",
+            "toolsGuidance": "Rīki veic darbības, un tiem var būt blakusparādības (raksta, dzēš). Ierobežojiet tieši to, kas šai integrācijai nepieciešams.",
+            "toolsSection": "Instrumenti"
         }
     },
     "sw-landing-page": {
@@ -6006,6 +6038,10 @@
                 "all": "Viss",
                 "disabledCheckboxMessage": "Lai deaktivizētu šo opciju, vispirms ir jādeaktivizē opcija Visi.",
                 "label": "Lietotnes"
+            },
+            "integration_mcp": {
+                "editor": "Rediģēt MCP atļauju sarakstu",
+                "label": "Integrācijas"
             },
             "marketing": {
                 "label": "Mārketings",
@@ -10578,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "Papildu atļaujas"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "Jau piešķirts, izmantojot cilni Vispārīgi."
+            },
             "general": {
                 "cardLabel": "Lomas",
                 "labelCreateNewRole": "Lomas izveide"
             },
             "grid": {
                 "disabledCheckboxMessage": "Lai atspējotu šo opciju, vispirms jāatspējo citas aktīvās opcijas.",
-                "title": "Atļaujas"
+                "title": "Atļaujas",
+                "tooltipEntityAll": "Visas tiesības uz {entity} ({roles})",
+                "tooltipParentAll": "Visas tiesības uz {parent} ({roles})",
+                "tooltipParentRole": "Visas {role} tiesības uz {parent}"
+            },
+            "mcpHint": {
+                "linkText": "Parādīt MCP rīka prasības",
+                "text": "Šī loma ir piešķirta {count} MCP-iespējotajai integrācijai (-ām). "
+            },
+            "mcpModal": {
+                "description": "Integrācijās, kas izmanto šo lomu, ir atļauti šādi rīki.",
+                "dynamicPrivilegeHint": "Šī privilēģija ir atkarīga no entītijas parametra, kas nodots izpildlaikā.",
+                "grant": "Piešķirt",
+                "grantAllMissing": "Piešķiriet visus trūkstošos",
+                "legendDynamic": "dinamisks",
+                "legendDynamicHint": "Šī privilēģija ir atkarīga no entītijas parametra, kas nodots izpildlaikā.",
+                "legendGranted": "piešķirts",
+                "legendGrantedHint": "Šī privilēģija jau ir piešķirta lomai.",
+                "legendLabel": "Leģenda:",
+                "legendMissing": "trūkst",
+                "legendMissingHint": "Šī privilēģija vēl nav piešķirta par lomu.",
+                "noToolsDescription": "Integrācijās, izmantojot šo lomu, pašlaik nav atļauti nekādi rīki.",
+                "noToolsHeadline": "Nav atrasti instrumenti",
+                "saveReminder": "Iepriekš atlasītas atļaujas — uz piemērojamās lomas noklikšķiniet uz Saglabāt.",
+                "title": "MCP rīka prasības",
+                "viewByPermission": "Ar atļauju",
+                "viewByTool": "Pēc rīka"
             },
             "role-grid": {
                 "contextMenuDelete": "Dzēst",
@@ -10681,6 +10746,8 @@
                 "labelRoles": "Lomas",
                 "labelTimezone": "Laika zona",
                 "labelUsername": "Lietotājvārds",
+                "mcpAllowlistSaveError": "MCP atļauju sarakstu nevarēja saglabāt.",
+                "mcpAllowlistTitle": "MCP rīku atļauju saraksts",
                 "modal": {
                     "buttonApply": "Saglabāt integrāciju",
                     "buttonApplyEdit": "Saglabāt izmaiņas",
