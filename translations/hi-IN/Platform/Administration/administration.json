@@ -101,7 +101,6 @@
                 "mail_header_footer_translation": "शीर्षलेख और पाद लेख अनुवाद",
                 "mail_template": "ईमेल टेम्प्लेट",
                 "mail_template_media": "मीडिया",
-                "mail_template_sales_channel": "बिक्री चैनल",
                 "mail_template_translation": "ईमेल टेम्पलेट अनुवाद",
                 "mail_template_type": "टाइप करें",
                 "mail_template_type_translation": "अनुवाद टाइप करें"
@@ -1803,8 +1802,7 @@
                     "helpText": "यह क्रिया संबंधित संख्या सीमा के मान को बढ़ाती है।",
                     "label": "जनरेट करें: इनवॉइस",
                     "labelDatePicker": "तारीख़",
-                    "labelTextarea": "टिप्पणी",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "टिप्पणी"
                 },
                 "warning": "बल्क एडिट अब एक बेहतर दस्तावेज़ निर्माण का उपयोग करता है। हालाँकि, आपके सिस्टम पर एक या अधिक एक्सटेंशन नए दस्तावेज़ निर्माण के साथ अलग-अलग परिणाम दे सकते हैं।\nइसलिए, कृपया जांच लें कि आपके दस्तावेज़ बल्क एडिट का उपयोग किए बिना और उसके बिना अंतर दिखाते हैं या नहीं।"
             },
@@ -2020,7 +2018,9 @@
             },
             "property": {
                 "cardTitle": "गुण",
-                "changeLabel": "बदलें: गुण"
+                "changeLabel": "बदलें: गुण",
+                "descriptionEmptyState": "बल्क संपादन केवल उन गुणों को सूचीबद्ध करता है जिन्हें बदला जाएगा। मौजूदा उत्पाद गुण यहां नहीं दिखाए गए हैं।",
+                "titleEmptyState": "अभी तक कोई संपत्ति परिवर्तन नहीं चुना गया है।"
             },
             "sellingPackaging": {
                 "cardTitle": "बिक्री और पैकेजिंग की जानकारी",
@@ -2185,8 +2185,8 @@
                 "dynamicProductGroupHelpText": {
                     "label": "उत्पाद एक गतिशील उत्पाद समूह से संबंधित हैं यदि वे उस उत्पाद समूह की शर्तों को पूरा करते हैं। शर्तों को {link} मॉड्यूल के भीतर परिभाषित किया जा सकता है।",
                     "linkText": "गतिशील उत्पाद समूह",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "videoLink": "एआई कोपिलॉट",
+                    "videoUrl": "एआई कोपिलॉट"
                 },
                 "dynamicProductGroupInvalidMessage": "चयनित डायनेमिक उत्पाद समूह मान्य नहीं है। कृपया अपने गतिशील उत्पाद समूह विवरण की पुष्टि करें।",
                 "productAssignmentEmptyStateDescription": "कोई उत्पाद असाइन नहीं किया गया",
@@ -3409,6 +3409,8 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "वाणिज्यिक ग्राहकों के लिए फील्ड कंपनी की आवश्यकता होती है।",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "चुना गया पासवर्ड बहुत लंबा है।",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "चुना गया पासवर्ड बहुत छोटा है।",
             "passwordDoNotMatch": "नए पासवर्ड और पासवर्ड की पुष्टि के लिए आपके इनपुट मेल नहीं खाते हैं।"
         },
         "filter": {
@@ -4827,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "मिटाएँ",
             "contextMenuEdit": "संपादित करें",
+            "contextMenuEditMcp": "MCP अनुमति सूची संपादित करें",
             "integrationName": "एकता",
+            "labelManagedByApp": "ऐप द्वारा प्रबंधित",
             "messageEmpty": "अभी तक कोई एकीकरण नहीं",
             "permissions": "अनुमतियाँ",
             "readAccess": "पढ़ें",
             "sublineEmpty": "एकीकरण के प्रबंधन के लिए मॉड्यूल।",
             "writeAccess": "लिखें"
+        },
+        "mcp": {
+            "adminBanner": "इस एकीकरण में व्यवस्थापकीय विशेषाधिकार हैं। सभी MCP क्षमताएं डिफ़ॉल्ट रूप से एक्सेस की जा सकती हैं। आप अतिरिक्त सुरक्षा के लिए यहां विशिष्ट टूल, संसाधनों या संकेतों तक पहुंच को प्रतिबंधित कर सकते हैं।",
+            "allCapabilitiesLabel": "सभी क्षमताएं",
+            "allTypeLabel": "सब",
+            "cardTitle": "MCP अनुमति सूची",
+            "collapseAll": "सभी को संकुचित करें",
+            "coverageWarning": "{count} टूल (ओं) को ACL विशेषाधिकारों की आवश्यकता होती है जो असाइन की गई भूमिका पर प्रदान नहीं किए गए हैं।",
+            "deniedTypeWarning": "इस एकीकरण के लिए कोई {types} सक्षम नहीं है।",
+            "dep": "डेप",
+            "dependencyOf": "यह टूल स्वचालित रूप से शामिल है क्योंकि एक अन्य चयनित टूल इस पर निर्भर करता है।",
+            "expandAll": "सभी का विस्तार करें",
+            "infoText": "प्रतिबंधित करें कि यह एकीकरण किन MCP क्षमताओं का उपयोग कर सकता है। जब “सभी क्षमताएं” सक्षम हो जाती हैं, तो हर पंजीकृत टूल, संसाधन और प्रॉम्प्ट एक्सेस किया जा सकता है। प्रति प्रकार की पहुँच को कॉन्फ़िगर करने के लिए इसे अक्षम करें। ध्यान दें: टूल को असाइन की गई भूमिका से मेल खाने वाली इकाई की अनुमतियों की भी आवश्यकता होती है।",
+            "missingCapabilitySuggestions": "उसी मॉड्यूल से {count} संसाधन या प्रॉम्प्ट अनुमति सूची में नहीं हैं:",
+            "missingDeps": "निर्भरता का चयन नहीं किया गया: {deps}",
+            "missingPrivilegesList": "अनुपलब्ध: {privileges}",
+            "missingPrivilegesTooltip": "अनुपलब्ध विशेषाधिकार: {privileges}",
+            "modalTitle": "MCP अनुमति सूची",
+            "noCapabilitiesDescription": "वर्तमान में कोई MCP उपकरण, संसाधन या संकेत पंजीकृत नहीं हैं।",
+            "noCapabilitiesHeadline": "कोई क्षमताएं नहीं मिलीं",
+            "privilegesLabel": "इसके लिए आवश्यक है:",
+            "promptsGuidance": "प्रॉम्प्ट सिस्टम निर्देश हैं जो AI के संदर्भ को सेट करते हैं। असंबंधित संकेतों को उजागर करने से संदर्भ विंडो बर्बाद हो जाती है और इससे AI भ्रमित हो सकता है।",
+            "promptsSection": "प्रॉम्प्ट्स",
+            "requiresLabel": "डिप्स की जरूरत है",
+            "requiresTooltip": "इस टूल को सक्षम करने से यह भी सक्षम हो जाएगा: {deps}",
+            "resourcesGuidance": "संसाधन केवल-पढ़ने के लिए संदर्भ डेटा (इकाई सूची, राज्य मशीन, बिक्री चैनल) प्रदान करते हैं। व्यावसायिक कॉन्फ़िगरेशन को उजागर करने से बचने के लिए इन्हें सीमित करें, जिसकी किसी मर्चेंट सहायक को आवश्यकता नहीं है।",
+            "resourcesSection": "संसाधन",
+            "staleEntries": "कुछ सहेजी गई प्रविष्टियाँ अब उपलब्ध नहीं हैं: {entries}। रनटाइम के दौरान उन्हें अनदेखा कर दिया जाएगा।",
+            "toolsGuidance": "उपकरण क्रियाओं को निष्पादित करते हैं और इसके दुष्प्रभाव हो सकते हैं (लिखते हैं, हटाते हैं)। ठीक उसी तक सीमित करें जिसकी इस एकीकरण को आवश्यकता है।",
+            "toolsSection": "टूल्स"
         }
     },
     "sw-landing-page": {
@@ -5077,6 +5111,12 @@
                 "placeholderSubject": "ईमेल टेम्पलेट विषय भरें...",
                 "titleCard": "विकल्प"
             },
+            "previewModalMailContentHtmlLabel": "मेल सामग्री (HTML)",
+            "previewModalMailContentPlainLabel": "मेल सामग्री (सादा पाठ)",
+            "previewModalMailFooterHtmlLabel": "मेल फुटर (एचटीएमएल)",
+            "previewModalMailFooterPlainLabel": "मेल फुटर (सादा पाठ)",
+            "previewModalMailHeaderHtmlLabel": "मेल हेडर (एचटीएमएल)",
+            "previewModalMailHeaderPlainLabel": "मेल हेडर (सादा पाठ)",
             "previewModalTitle": "पूर्वावलोकन",
             "sidebar": {
                 "buttonTestMail": "भेजें",
@@ -5085,6 +5125,9 @@
                 "labelTestMail": "प्राप्तकर्ता पता",
                 "languageNotAssignedToSalesChannel": "वर्तमान भाषा चयनित बिक्री चैनल को असाइन नहीं की गई है।",
                 "placeholderTestMail": "दुकान {'@'} example.com",
+                "previewSalesChannelHint": "बिक्री-चैनल-विशिष्ट शीर्षलेख और पाद लेख निर्धारित करने के लिए उपयोग किया जाता है।",
+                "selectTriggerEventHint": "उपलब्ध डेटा को निर्धारित करने के लिए उपयोग किया जाता है।",
+                "selectTriggerEventLabel": "ट्रिगर इवेंट",
                 "titleShowAvailableVariables": "चर",
                 "titleShowPreview": "पूर्वावलोकन दिखाएँ",
                 "titleTestMail": "परीक्षण ईमेल भेजें"
@@ -5995,6 +6038,10 @@
                 "all": "सब",
                 "disabledCheckboxMessage": "इस विकल्प को निष्क्रिय करने के लिए, आपको पहले ऑल ऑप्शन को निष्क्रिय करना होगा।",
                 "label": "ऐप्लिकेशन"
+            },
+            "integration_mcp": {
+                "editor": "MCP अनुमति सूची संपादित करें",
+                "label": "एकीकरण"
             },
             "marketing": {
                 "label": "मार्केटिंग",
@@ -7459,6 +7506,14 @@
     },
     "sw-rating-stars": {
         "ratingTooltipText": "{actual} में से {max} सितारे"
+    },
+    "sw-request-consent-modal": {
+        "acceptButton": "स्वीकार करें",
+        "declineButton": "अस्वीकार",
+        "message": "एक्सटेंशन {appName} निम्नलिखित विषय के लिए आपकी सहमति का अनुरोध करता है: {consentName}",
+        "readMore": "अधिक जानकारी के लिए देखें:",
+        "title": "सहमति आवश्यक है",
+        "updateFailed": "आपकी सहमति को अपडेट करते समय एक त्रुटि हुई। आपकी पिछली पसंद, यदि कोई हो, तो उसे बरकरार रखा जाएगा।"
     },
     "sw-restricted-rules": {
         "and": "और",
@@ -9100,6 +9155,19 @@
         },
         "detail": {
             "associations": {
+                "columns": {
+                    "active": "सक्रिय",
+                    "description": "विवरण",
+                    "extension": "एक्सटेंशन",
+                    "flow": "फ्लो",
+                    "manufacturer": "निर्माता",
+                    "name": "नाम",
+                    "position": "स्थिति",
+                    "taxCalculation": "टैक्स गणना",
+                    "trigger": "ट्रिगर",
+                    "validFrom": "से मान्य",
+                    "validTo": "के लिए मान्य"
+                },
                 "flows": "फ्लो बिल्डर्स",
                 "paymentMethods": "भुगतान के तरीके",
                 "products": "उत्पाद मूल्य नियम",
@@ -9253,6 +9321,9 @@
             "fieldDisplayNamePlaceholder": "एक अभिवादन दर्ज करें...",
             "fieldLetterNameLabel": "पत्र अभिवादन",
             "fieldLetterNamePlaceholder": "एक पत्र अभिवादन दर्ज करें...",
+            "fieldPositionLabel": "स्थिति",
+            "fieldPositionPlaceholder": "एक स्थिति चुनें...",
+            "fieldPositionTooltip": "ड्रॉपडाउन में डिस्प्ले ऑर्डर को नियंत्रित करता है; छोटे नंबर पहले दिखाए जाते हैं।",
             "fieldSalutationKeyLabel": "तकनीकी नाम",
             "fieldSalutationKeyPlaceholder": "एक तकनीकी नाम दर्ज करें...",
             "fieldSalutationKeyTooltip": "एक अद्वितीय तकनीकी नाम चुनें जिसे सलामी शामिल करने के लिए आवश्यक है, उदाहरण के लिए ईमेल टेम्पलेट्स में।",
@@ -9268,6 +9339,7 @@
         "list": {
             "columnDisplayName": "अभिवादन",
             "columnLetterName": "पत्र अभिवादन",
+            "columnPosition": "स्थिति",
             "columnSalutationKey": "तकनीकी नाम"
         }
     },
@@ -10542,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "अतिरिक्त अनुमतियाँ"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "सामान्य टैब के माध्यम से पहले ही दी जा चुकी है।"
+            },
             "general": {
                 "cardLabel": "भूमिकाएँ",
                 "labelCreateNewRole": "भूमिका बनाएँ"
             },
             "grid": {
                 "disabledCheckboxMessage": "इस विकल्प को अक्षम करने के लिए, आपको पहले अन्य सक्रिय विकल्पों को अक्षम करना होगा।",
-                "title": "अनुमतियाँ"
+                "title": "अनुमतियाँ",
+                "tooltipEntityAll": "{entity} ({roles}) के लिए सभी अधिकार",
+                "tooltipParentAll": "{parent} ({roles}) के लिए सभी अधिकार",
+                "tooltipParentRole": "{parent} के लिए सभी {role} अधिकार"
+            },
+            "mcpHint": {
+                "linkText": "MCP उपकरण आवश्यकताएँ दिखाएं",
+                "text": "यह भूमिका {count} MCP-सक्षम एकीकरण (ओं) को दी गई है। "
+            },
+            "mcpModal": {
+                "description": "इस भूमिका का उपयोग करने वाले इंटीग्रेशन पर निम्नलिखित टूल अनुमति-सूची में दिए गए हैं।",
+                "dynamicPrivilegeHint": "यह विशेषाधिकार रनटाइम पर पास किए गए एंटिटी पैरामीटर पर निर्भर करता है।",
+                "grant": "ग्रांट",
+                "grantAllMissing": "सभी लापता को अनुदान दें",
+                "legendDynamic": "गतिशील",
+                "legendDynamicHint": "यह विशेषाधिकार रनटाइम पर पास किए गए एंटिटी पैरामीटर पर निर्भर करता है।",
+                "legendGranted": "दी",
+                "legendGrantedHint": "भूमिका पर यह विशेषाधिकार पहले से ही दिया गया है।",
+                "legendLabel": "लीजेंड:",
+                "legendMissing": "लापता",
+                "legendMissingHint": "यह विशेषाधिकार अभी तक भूमिका पर नहीं दिया गया है।",
+                "noToolsDescription": "इस भूमिका का उपयोग करके एकीकरण पर वर्तमान में किसी भी उपकरण को सूचीबद्ध करने की अनुमति नहीं है।",
+                "noToolsHeadline": "कोई औज़ार नहीं मिला",
+                "saveReminder": "पहले से चुनी गई अनुमतियां — आवेदन करने के लिए भूमिका पर सहेजें पर क्लिक करें।",
+                "title": "MCP उपकरण आवश्यकताएँ",
+                "viewByPermission": "अनुमति से",
+                "viewByTool": "औज़ार के द्वारा"
             },
             "role-grid": {
                 "contextMenuDelete": "मिटाएँ",
@@ -10645,6 +10746,8 @@
                 "labelRoles": "भूमिकाएँ",
                 "labelTimezone": "टाइमज़ोन",
                 "labelUsername": "उपयोक्ता नाम",
+                "mcpAllowlistSaveError": "MCP अनुमति सूची सहेजी नहीं जा सकी।",
+                "mcpAllowlistTitle": "MCP टूल की अनुमति सूची",
                 "modal": {
                     "buttonApply": "एकीकरण सहेजें",
                     "buttonApplyEdit": "परिवर्तन सहेजें",

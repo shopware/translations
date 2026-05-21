@@ -101,7 +101,6 @@
                 "mail_header_footer_translation": "Översättning av sidhuvud och sidfot",
                 "mail_template": "E-postmall",
                 "mail_template_media": "Media",
-                "mail_template_sales_channel": "Försäljningskanal",
                 "mail_template_translation": "Översättning av e-postmallar",
                 "mail_template_type": "Typ",
                 "mail_template_type_translation": "Typ översättning"
@@ -1803,8 +1802,7 @@
                     "helpText": "Denna åtgärd ökar värdet för motsvarande nummerintervall.",
                     "label": "Generera: faktura",
                     "labelDatePicker": "Datum",
-                    "labelTextarea": "Kommentar",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Kommentar"
                 },
                 "warning": "Massredigeringen använder nu ett förbättrat dokumentskapande. En eller flera tillägg på ditt system kan dock ge olika resultat när det nya dokumentet skapas.\nKontrollera därför om dina dokument visar skillnader med och utan att använda massredigeringen."
             },
@@ -2020,7 +2018,9 @@
             },
             "property": {
                 "cardTitle": "Egenskaper",
-                "changeLabel": "Ändra: Egenskaper"
+                "changeLabel": "Ändra: Egenskaper",
+                "descriptionEmptyState": "Massredigering visar bara egenskaper som kommer att ändras. Befintliga produktegenskaper visas inte här.",
+                "titleEmptyState": "Inga egenskapsändringar har valts ännu."
             },
             "sellingPackaging": {
                 "cardTitle": "Försäljnings- och förpackningsinformation",
@@ -2185,8 +2185,8 @@
                 "dynamicProductGroupHelpText": {
                     "label": "Produkter tillhör en dynamisk produktgrupp om de uppfyller villkoren för den produktgruppen. Villkoren kan definieras i modulen {link}.",
                     "linkText": "dynamiska produktgrupper",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "videoLink": "AI Copilot",
+                    "videoUrl": "AI Copilot"
                 },
                 "dynamicProductGroupInvalidMessage": "Den valda dynamiska produktgruppen är ogiltig. Kontrollera informationen om din dynamiska produktgrupp.",
                 "productAssignmentEmptyStateDescription": "Inga produkter har tilldelats",
@@ -3409,6 +3409,8 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "Fältföretaget krävs för kommersiella kunder.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "Det valda lösenordet är för långt.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "Det valda lösenordet är för kort.",
             "passwordDoNotMatch": "Dina ingångar för det nya lösenordet och lösenordsbekräftelsen matchar inte."
         },
         "filter": {
@@ -4827,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "Radera",
             "contextMenuEdit": "Redigera",
+            "contextMenuEditMcp": "Redigera MCP Allowlist",
             "integrationName": "Integration",
+            "labelManagedByApp": "Hanteras av App",
             "messageEmpty": "Ännu finns inga integrationer",
             "permissions": "Behörigheter",
             "readAccess": "Läsa",
             "sublineEmpty": "Hantering av integrationer.",
             "writeAccess": "Skriva"
+        },
+        "mcp": {
+            "adminBanner": "Denna integration har administratörsbehörighet. Alla MCP-funktioner är tillgängliga som standard. Du kan begränsa åtkomsten till specifika verktyg, resurser eller uppmaningar här för ytterligare säkerhet.",
+            "allCapabilitiesLabel": "Alla funktioner",
+            "allTypeLabel": "Alla",
+            "cardTitle": "MCP Tillåtelselista",
+            "collapseAll": "Dölj alla",
+            "coverageWarning": "{count} -verktyg kräver ACL-behörigheter som inte beviljas för den tilldelade rollen.",
+            "deniedTypeWarning": "Inga {types} är aktiverade för den här integrationen.",
+            "dep": "dep",
+            "dependencyOf": "Detta verktyg inkluderas automatiskt eftersom ett annat valt verktyg beror på det.",
+            "expandAll": "Expandera alla",
+            "infoText": "Begränsa vilka MCP-funktioner denna integration kan använda. När ”Alla funktioner” är aktiverat är alla registrerade verktyg, resurser och prompter tillgängliga. Inaktivera den för att konfigurera åtkomst per typ. Obs! Verktyg kräver också matchande entitetsbehörigheter från den tilldelade rollen.",
+            "missingCapabilitySuggestions": "{count} resurs (er) eller prompt (er) från samma modul finns inte i tillåtlistan:",
+            "missingDeps": "Beroende inte valt: {deps}",
+            "missingPrivilegesList": "Saknas: {privileges}",
+            "missingPrivilegesTooltip": "Behörigheter saknas: {privileges}",
+            "modalTitle": "MCP Tillåtelselista",
+            "noCapabilitiesDescription": "Inga MCP-verktyg, resurser eller uppmaningar är för närvarande registrerade.",
+            "noCapabilitiesHeadline": "Inga funktioner hittades",
+            "privilegesLabel": "Kräver:",
+            "promptsGuidance": "Uppmaningar är systeminstruktioner som ställer in AI: s sammanhang. Att exponera orelaterade uppmaningar slösar bort kontextfönstret och kan förvirra AI.",
+            "promptsSection": "Uppmaningar",
+            "requiresLabel": "behöver deps",
+            "requiresTooltip": "Om du aktiverar det här verktyget aktiveras också: {deps}",
+            "resourcesGuidance": "Resurser tillhandahåller skrivskyddade referensdata (entitetslistor, tillståndsmaskiner, försäljningskanaler). Begränsa dessa för att undvika att exponera affärskonfiguration som en handelsassistent inte behöver.",
+            "resourcesSection": "Medel",
+            "staleEntries": "Vissa sparade poster är inte längre tillgängliga: {entries}. De kommer att ignoreras vid körning.",
+            "toolsGuidance": "Verktyg utför åtgärder och kan ha biverkningar (skriver, raderar). Begränsa till exakt vad denna integration behöver.",
+            "toolsSection": "Verktyg"
         }
     },
     "sw-landing-page": {
@@ -5077,6 +5111,12 @@
                 "placeholderSubject": "Ange ämne...",
                 "titleCard": "Alternativ"
             },
+            "previewModalMailContentHtmlLabel": "E-postinnehåll (HTML)",
+            "previewModalMailContentPlainLabel": "E-postinnehåll (vanlig text)",
+            "previewModalMailFooterHtmlLabel": "E-postsidfot (HTML)",
+            "previewModalMailFooterPlainLabel": "E-postsidfot (vanlig text)",
+            "previewModalMailHeaderHtmlLabel": "E-postrubrik (HTML)",
+            "previewModalMailHeaderPlainLabel": "E-postrubrik (vanlig text)",
             "previewModalTitle": "Förhandsvisning",
             "sidebar": {
                 "buttonTestMail": "Skicka",
@@ -5085,6 +5125,9 @@
                 "labelTestMail": "Mottagaradress",
                 "languageNotAssignedToSalesChannel": "Det aktuella språket är inte tilldelat den valda försäljningskanalen.",
                 "placeholderTestMail": "Ange e-postadress...",
+                "previewSalesChannelHint": "Används för att bestämma försäljningskanalens specifika sidhuvud och sidfot.",
+                "selectTriggerEventHint": "Används för att bestämma tillgängliga data.",
+                "selectTriggerEventLabel": "Utlösningshändelse",
                 "titleShowAvailableVariables": "Variabler",
                 "titleShowPreview": "Visa förhandsgranskning",
                 "titleTestMail": "Skicka testmeddelande"
@@ -5995,6 +6038,10 @@
                 "all": "Alla",
                 "disabledCheckboxMessage": "Om du vill inaktivera det här alternativet måste du först avaktivera alternativet Alla.",
                 "label": "Appar"
+            },
+            "integration_mcp": {
+                "editor": "Redigera MCP-tillåtlista",
+                "label": "Integrationer"
             },
             "marketing": {
                 "label": "Marknadsföring",
@@ -7459,6 +7506,14 @@
     },
     "sw-rating-stars": {
         "ratingTooltipText": "{actual} av {max} stjärnor"
+    },
+    "sw-request-consent-modal": {
+        "acceptButton": "Acceptera",
+        "declineButton": "Avböj",
+        "message": "Tillägget {appName} begär ditt samtycke för följande ämne: {consentName}",
+        "readMore": "För mer information se:",
+        "title": "Samtycke krävs",
+        "updateFailed": "Ett fel har inträffat vid uppdatering av ditt samtycke. Ditt tidigare val, om något, kommer att behållas."
     },
     "sw-restricted-rules": {
         "and": "och",
@@ -9100,6 +9155,19 @@
         },
         "detail": {
             "associations": {
+                "columns": {
+                    "active": "Aktiv",
+                    "description": "Beskrivning",
+                    "extension": "Utökning",
+                    "flow": "Flow",
+                    "manufacturer": "Tillverkare",
+                    "name": "Namn",
+                    "position": "Position",
+                    "taxCalculation": "Skatteberäkning",
+                    "trigger": "Trig",
+                    "validFrom": "Giltig från",
+                    "validTo": "Gäller till"
+                },
                 "flows": "Flödesbyggare",
                 "paymentMethods": "Betalningsmetoder",
                 "products": "Regler för produktpris",
@@ -9253,6 +9321,9 @@
             "fieldDisplayNamePlaceholder": "Ange en hälsningsfras...",
             "fieldLetterNameLabel": "Hälsning",
             "fieldLetterNamePlaceholder": "Ange en hälsning...",
+            "fieldPositionLabel": "Position",
+            "fieldPositionPlaceholder": "Välj en position...",
+            "fieldPositionTooltip": "Styr visningsordningen i rullgardinsmenyerna; mindre siffror visas först.",
             "fieldSalutationKeyLabel": "Tekniskt namn",
             "fieldSalutationKeyPlaceholder": "Ange ett tekniskt namn...",
             "fieldSalutationKeyTooltip": "Ett unikt, tekniskt namn som används för integration av hälsningsfraser i t.ex. e-postmallar.",
@@ -9268,6 +9339,7 @@
         "list": {
             "columnDisplayName": "Hälsningsfras",
             "columnLetterName": "Hälsning",
+            "columnPosition": "Position",
             "columnSalutationKey": "Tekniskt namn"
         }
     },
@@ -10542,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "Ytterligare behörigheter"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "Redan beviljat via fliken Allmänt."
+            },
             "general": {
                 "cardLabel": "Roller",
                 "labelCreateNewRole": "Skapa roll"
             },
             "grid": {
                 "disabledCheckboxMessage": "Om du vill inaktivera det här alternativet måste du först inaktivera andra aktiva alternativ.",
-                "title": "Behörigheter"
+                "title": "Behörigheter",
+                "tooltipEntityAll": "Alla rättigheter för {entity} ({roles})",
+                "tooltipParentAll": "Alla rättigheter för {parent} ({roles})",
+                "tooltipParentRole": "Alla {role} -rättigheter för {parent}"
+            },
+            "mcpHint": {
+                "linkText": "Visa MCP-verktygskrav",
+                "text": "Den här rollen tilldelas {count} MCP-aktiverade integrationer. "
+            },
+            "mcpModal": {
+                "description": "Följande verktyg är tillåtna för integrationer som använder den här rollen.",
+                "dynamicPrivilegeHint": "Denna behörighet beror på entitetsparametern som skickas vid körning.",
+                "grant": "Bidrag",
+                "grantAllMissing": "Bevilja alla saknade",
+                "legendDynamic": "dynamisk",
+                "legendDynamicHint": "Denna behörighet beror på entitetsparametern som skickas vid körning.",
+                "legendGranted": "beviljas",
+                "legendGrantedHint": "Detta privilegium beviljas redan på rollen.",
+                "legendLabel": "Förklaring:",
+                "legendMissing": "försvunnen",
+                "legendMissingHint": "Detta privilegium har ännu inte beviljats på rollen.",
+                "noToolsDescription": "Inga verktyg är för närvarande tillåtna i integrationerna som använder den här rollen.",
+                "noToolsHeadline": "Inga verktyg hittades",
+                "saveReminder": "Behörigheter förvalda — klicka på Spara på rollen som ska tillämpas.",
+                "title": "MCP-verktygskrav",
+                "viewByPermission": "Med tillstånd",
+                "viewByTool": "Av Verktyg"
             },
             "role-grid": {
                 "contextMenuDelete": "Radera",
@@ -10645,6 +10746,8 @@
                 "labelRoles": "Roller",
                 "labelTimezone": "Tidszon",
                 "labelUsername": "Användarnamn",
+                "mcpAllowlistSaveError": "Det gick inte att spara MCP-tillåtlistan.",
+                "mcpAllowlistTitle": "Tillåtelselista för MCP-verktyg",
                 "modal": {
                     "buttonApply": "Spara integration",
                     "buttonApplyEdit": "Spara ändringar",
