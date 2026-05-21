@@ -101,7 +101,6 @@
                 "mail_header_footer_translation": "Ylä- ja alatunnisteen käännös",
                 "mail_template": "Sähköpostimalli",
                 "mail_template_media": "Media",
-                "mail_template_sales_channel": "Myyntikanava",
                 "mail_template_translation": "Sähköpostimallin käännös",
                 "mail_template_type": "Tyyppi",
                 "mail_template_type_translation": "Tyyppi käännös"
@@ -1803,8 +1802,7 @@
                     "helpText": "Tämä toiminto lisää vastaavan lukualueen arvoa.",
                     "label": "Luo: Lasku",
                     "labelDatePicker": "Päivämäärä",
-                    "labelTextarea": "kommentti",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "kommentti"
                 },
                 "warning": "Joukkomuokkaus käyttää nyt parannettua asiakirjan luomista. Yksi tai useampi laajennus järjestelmässäsi voi kuitenkin tuottaa erilaisia tuloksia uuden asiakirjan luomisen yhteydessä.\nTarkista siis, onko asiakirjoissasi eroja joukkomuokkauksen kanssa ja käyttämättä sitä."
             },
@@ -2020,7 +2018,9 @@
             },
             "property": {
                 "cardTitle": "Ominaisuudet",
-                "changeLabel": "Muuta: Ominaisuudet"
+                "changeLabel": "Muuta: Ominaisuudet",
+                "descriptionEmptyState": "Joukkomuokkauksessa luetellaan vain ominaisuudet, joita muutetaan. Olemassa olevia tuotteen ominaisuuksia ei näytetä tässä.",
+                "titleEmptyState": "Kiinteistömuutoksia ei ole vielä valittu."
             },
             "sellingPackaging": {
                 "cardTitle": "Myynti- ja pakkaustiedot",
@@ -2185,8 +2185,8 @@
                 "dynamicProductGroupHelpText": {
                     "label": "Tuotteet kuuluvat dynaamiseen tuoteryhmään, jos ne täyttävät kyseisen tuoteryhmän ehdot. Ehdot voidaan määritellä sisällä {link} moduuli.",
                     "linkText": "dynaamiset tuoter",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "videoLink": "AI Copilot",
+                    "videoUrl": "AI Copilot"
                 },
                 "dynamicProductGroupInvalidMessage": "Valittu dynaaminen tuoteryhmä ei kelpaa. Tarkista dynaamisen tuoteryhmän tiedot.",
                 "productAssignmentEmptyStateDescription": "Ei annettuja tuotteita",
@@ -3409,6 +3409,8 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "Kenttäyhtiö vaaditaan kaupallisille asiakkaille.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "Valittu salasana on liian pitkä.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "Valittu salasana on liian lyhyt.",
             "passwordDoNotMatch": "Uuden salasanan ja salasanan vahvistuksen syötteet eivät täsmää."
         },
         "filter": {
@@ -4827,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "Poista",
             "contextMenuEdit": "Edit",
+            "contextMenuEditMcp": "Muokkaa MCP Allowlist",
             "integrationName": "integraatio",
+            "labelManagedByApp": "Sovelluksen hallinnoima",
             "messageEmpty": "Ei vielä integraatioita",
             "permissions": "Käyttöoikeudet",
             "readAccess": "Lue",
             "sublineEmpty": "Moduuli integrointien hallintaan.",
             "writeAccess": "Kirjoita"
+        },
+        "mcp": {
+            "adminBanner": "Tällä integroinnilla on järjestelmänvalvojan oikeudet. Kaikki MCP-ominaisuudet ovat oletusarvoisesti käytettävissä. Voit rajoittaa tiettyjen työkalujen, resurssien tai kehotteiden käyttöä tässä lisäsuojauksen lisäämiseksi.",
+            "allCapabilitiesLabel": "Kaikki ominaisuudet",
+            "allTypeLabel": "Kaikki",
+            "cardTitle": "MCP: n sallittu luettelo",
+            "collapseAll": "Kutista kaikki",
+            "coverageWarning": "{count} -työkalut edellyttävät ACL-oikeuksia, joita ei ole myönnetty määritetylle roolille.",
+            "deniedTypeWarning": "Tässä integraatiossa ei ole käytössä {types}.",
+            "dep": "dep",
+            "dependencyOf": "Tämä työkalu sisällytetään automaattisesti, koska toinen valittu työkalu riippuu siitä.",
+            "expandAll": "Laajenna kaikki",
+            "infoText": "Rajoita, mitä MCP-ominaisuuksia tämä integrointi voi käyttää. Kun ”Kaikki ominaisuudet” on käytössä, kaikki rekisteröidyt työkalut, resurssit ja kehote ovat käytettävissä. Poista se käytöstä määrittääksesi käyttöoikeudet tyypin mukaan. Huomautus: työkalut edellyttävät myös vastaavan entiteetin käyttöoikeudet määritetystä roolista.",
+            "missingCapabilitySuggestions": "Samasta moduulista peräisin olevat {count} -resurssit tai kehotteet eivät ole sallittujen luettelossa:",
+            "missingDeps": "Riippuvuutta ei valittu: {deps}",
+            "missingPrivilegesList": "Puuttuu: {privileges}",
+            "missingPrivilegesTooltip": "Puuttuvat oikeudet: {privileges}",
+            "modalTitle": "MCP: n sallittu luettelo",
+            "noCapabilitiesDescription": "MCP-työkaluja, resursseja tai kehotteita ei ole tällä hetkellä rekisteröity.",
+            "noCapabilitiesHeadline": "Ominaisuuksia ei löytynyt",
+            "privilegesLabel": "Vaatii:",
+            "promptsGuidance": "Kehotteet ovat järjestelmäohjeita, jotka määrittävät tekoälyn kontekstin. Liittymättömien kehotteiden paljastaminen tuhlaa kontekstiikkunaa ja voi sekoittaa tekoälyä.",
+            "promptsSection": "Kehotukset",
+            "requiresLabel": "tarvitsee osastoja",
+            "requiresTooltip": "Tämän työkalun ottaminen käyttöön mahdollistaa myös: {deps}",
+            "resourcesGuidance": "Resurssit tarjoavat vain lukutietoja (entiteettiluettelot, tilakoneet, myyntikanavat). Rajoita näitä, jotta vältät liiketoiminnan kokoonpanon paljastamisen, jota kauppiasavustaja ei tarvitse.",
+            "resourcesSection": "Resurssit",
+            "staleEntries": "Jotkin tallennetut merkinnät eivät ole enää käytettävissä: {entries}. Ne jätetään huomiotta ajon aikana.",
+            "toolsGuidance": "Työkalut suorittavat toimintoja ja niillä voi olla sivuvaikutuksia (kirjoittaa, poistaa). Rajoitetaan tarkalleen siihen, mitä tämä integraatio tarvitsee.",
+            "toolsSection": "Työkalut"
         }
     },
     "sw-landing-page": {
@@ -5077,6 +5111,12 @@
                 "placeholderSubject": "Kirjoita sähköpostimallin aihe...",
                 "titleCard": "Vaihtoehdot"
             },
+            "previewModalMailContentHtmlLabel": "Postin sisältö (HTML)",
+            "previewModalMailContentPlainLabel": "Postin sisältö (pelkkä teksti)",
+            "previewModalMailFooterHtmlLabel": "Sähköpostin alatunniste (HTML)",
+            "previewModalMailFooterPlainLabel": "Sähköpostin alatunniste (pelkkä teksti)",
+            "previewModalMailHeaderHtmlLabel": "Sähköpostin otsikko (HTML)",
+            "previewModalMailHeaderPlainLabel": "Postin otsikko (pelkkä teksti)",
             "previewModalTitle": "esikatselu",
             "sidebar": {
                 "buttonTestMail": "Lähetä",
@@ -5085,6 +5125,9 @@
                 "labelTestMail": "Vastaanottajan osoite",
                 "languageNotAssignedToSalesChannel": "Nykyistä kieltä ei ole määritetty valitulle myyntikanavalle.",
                 "placeholderTestMail": "kauppa {'@'} example.com",
+                "previewSalesChannelHint": "Käytetään myyntikanavakohtaisen ylä- ja alatunnisteen määrittämiseen.",
+                "selectTriggerEventHint": "Käytetään käytettävissä olevien tietojen määrittämiseen.",
+                "selectTriggerEventLabel": "Käynnistystapahtuma",
                 "titleShowAvailableVariables": "Muuttujat",
                 "titleShowPreview": "Näytä esiversio",
                 "titleTestMail": "Lähetä testi sähköposti"
@@ -5995,6 +6038,10 @@
                 "all": "Kaikki",
                 "disabledCheckboxMessage": "Jos haluat poistaa tämän vaihtoehdon käytöstä, sinun on ensin poistettava Kaikki vaihtoehto käytöstä.",
                 "label": "Sovellukset"
+            },
+            "integration_mcp": {
+                "editor": "Muokkaa MCP-sallittua luetteloa",
+                "label": "Integraatiot"
             },
             "marketing": {
                 "label": "markkinointi",
@@ -7459,6 +7506,14 @@
     },
     "sw-rating-stars": {
         "ratingTooltipText": "{actual} of {max} tähteä"
+    },
+    "sw-request-consent-modal": {
+        "acceptButton": "Hyväksy",
+        "declineButton": "Lasku",
+        "message": "Laajennus {appName} pyytää suostumustasi seuraavaan aiheeseen: {consentName}",
+        "readMore": "Lisätietoja:",
+        "title": "Suostumus vaaditaan",
+        "updateFailed": "Suostumustasi päivitettäessä tapahtui virhe. Aiempi valintasi, jos sellainen on, säilytetään."
     },
     "sw-restricted-rules": {
         "and": "ja",
@@ -9100,6 +9155,19 @@
         },
         "detail": {
             "associations": {
+                "columns": {
+                    "active": "Aktiivinen",
+                    "description": "Kuvaus",
+                    "extension": "Laajennus",
+                    "flow": "Flow",
+                    "manufacturer": "Valmistaja",
+                    "name": "Nimi",
+                    "position": "Sijainti",
+                    "taxCalculation": "Veron laskenta",
+                    "trigger": "Laukaista",
+                    "validFrom": "Voimassa",
+                    "validTo": "Voimassa"
+                },
                 "flows": "Virtauksen rakentajat",
                 "paymentMethods": "Maksutavat",
                 "products": "Tuotteen hintaa koskevat säännöt",
@@ -9253,6 +9321,9 @@
             "fieldDisplayNamePlaceholder": "Anna tervehdys...",
             "fieldLetterNameLabel": "Kirjeen tervehdys",
             "fieldLetterNamePlaceholder": "Syötä kirjain tervehdys...",
+            "fieldPositionLabel": "Sijainti",
+            "fieldPositionPlaceholder": "Valitse sijainti...",
+            "fieldPositionTooltip": "Ohjaa näyttöjärjestystä pudotusvalikoissa; pienemmät numerot näytetään ensin.",
             "fieldSalutationKeyLabel": "Tekninen nimi",
             "fieldSalutationKeyPlaceholder": "Kirjoita tekninen nimi...",
             "fieldSalutationKeyTooltip": "Valitse yksilöllinen tekninen nimi, joka vaaditaan tervehdysten sisällyttämiseksi esimerkiksi sähköpostimalleihin.",
@@ -9268,6 +9339,7 @@
         "list": {
             "columnDisplayName": "Tervehdys",
             "columnLetterName": "Kirjeen tervehdys",
+            "columnPosition": "Sijainti",
             "columnSalutationKey": "Tekninen nimi"
         }
     },
@@ -10542,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "Lisäoikeudet"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "Jo myönnetty Yleiset-välilehden kautta."
+            },
             "general": {
                 "cardLabel": "Roolit",
                 "labelCreateNewRole": "Luo rooli"
             },
             "grid": {
                 "disabledCheckboxMessage": "Jos haluat poistaa tämän vaihtoehdon käytöstä, sinun on ensin poistettava muut aktiiviset asetukset käytöstä.",
-                "title": "Käyttöoikeudet"
+                "title": "Käyttöoikeudet",
+                "tooltipEntityAll": "Kaikki oikeudet peliin {entity} ({roles})",
+                "tooltipParentAll": "Kaikki oikeudet peliin {parent} ({roles})",
+                "tooltipParentRole": "Kaikki {role} -oikeudet {parent}"
+            },
+            "mcpHint": {
+                "linkText": "Näytä MCP-työkaluvaatimukset",
+                "text": "Tämä rooli on määritetty {count} MCP-yhteensopiville integraatioille. "
+            },
+            "mcpModal": {
+                "description": "Seuraavat työkalut ovat sallittuja integroinnissa, joissa käytetään tätä roolia.",
+                "dynamicPrivilegeHint": "Tämä käyttöoikeus riippuu suorituksen aikana lähetetystä entiteettiparametrista.",
+                "grant": "Myöntää",
+                "grantAllMissing": "Myönnä kaikki puuttuvat",
+                "legendDynamic": "dynaaminen",
+                "legendDynamicHint": "Tämä käyttöoikeus riippuu suorituksen aikana lähetetystä entiteettiparametrista.",
+                "legendGranted": "myönnetty",
+                "legendGrantedHint": "Tämä etuoikeus on jo myönnetty roolille.",
+                "legendLabel": "Selite:",
+                "legendMissing": "puuttuva",
+                "legendMissingHint": "Tätä etuoikeutta ei ole vielä myönnetty roolille.",
+                "noToolsDescription": "Tätä roolia käyttävissä integraatioissa ei ole tällä hetkellä sallittuja työkaluja.",
+                "noToolsHeadline": "Työkaluja ei löytynyt",
+                "saveReminder": "Käyttöoikeudet ennalta valittuna — klikkaa Tallenna käytettävästä roolista.",
+                "title": "MCP-työkaluvaatimukset",
+                "viewByPermission": "Luvalla",
+                "viewByTool": "Työkalulla"
             },
             "role-grid": {
                 "contextMenuDelete": "Poista",
@@ -10645,6 +10746,8 @@
                 "labelRoles": "Roolit",
                 "labelTimezone": "Aikavyöhyke",
                 "labelUsername": "Käyttäjänimi",
+                "mcpAllowlistSaveError": "MCP-sallittua luetteloa ei voitu tallentaa.",
+                "mcpAllowlistTitle": "MCP-työkalun sallittu luettelo",
                 "modal": {
                     "buttonApply": "Tallenna integrointi",
                     "buttonApplyEdit": "Tallenna muutokset",

@@ -101,7 +101,6 @@
                 "mail_header_footer_translation": "Перевод верхнего и нижнего колонтитулов",
                 "mail_template": "Шаблон электронной почты",
                 "mail_template_media": "Медиа",
-                "mail_template_sales_channel": "Канал продаж",
                 "mail_template_translation": "Перевод шаблонов электронной почты",
                 "mail_template_type": "Тип",
                 "mail_template_type_translation": "Тип перевода"
@@ -1803,8 +1802,7 @@
                     "helpText": "Это действие увеличивает значение соответствующего диапазона чисел.",
                     "label": "Создать: счет-фактура",
                     "labelDatePicker": "Дата",
-                    "labelTextarea": "Комментарий",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Комментарий"
                 },
                 "warning": "В массовом редактировании теперь используется улучшенное создание документов. Однако одно или несколько расширений в вашей системе могут давать разные результаты при создании нового документа.\nПоэтому проверьте, есть ли в ваших документах различия с массовым редактированием и без него."
             },
@@ -2020,7 +2018,9 @@
             },
             "property": {
                 "cardTitle": "Свойства",
-                "changeLabel": "Изменение: свойства"
+                "changeLabel": "Изменение: свойства",
+                "descriptionEmptyState": "При массовом редактировании перечислены только те свойства, которые будут изменены. Существующие свойства продукта здесь не отображаются.",
+                "titleEmptyState": "Пока не выбрано ни одного изменения свойств."
             },
             "sellingPackaging": {
                 "cardTitle": "Информация о продаже и упаковке",
@@ -2185,8 +2185,8 @@
                 "dynamicProductGroupHelpText": {
                     "label": "Продукты относятся к динамической группе продуктов, если они соответствуют условиям этой группы продуктов. Условия могут быть определены в модуле {link}.",
                     "linkText": "динамические группы продуктов",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "videoLink": "Второй пилот ИИ",
+                    "videoUrl": "Второй пилот ИИ"
                 },
                 "dynamicProductGroupInvalidMessage": "Выбранная динамическая группа товаров недействительна. Пожалуйста, проверьте данные вашей динамической группы продуктов.",
                 "productAssignmentEmptyStateDescription": "Нет назначенных товаров",
@@ -3409,6 +3409,8 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "Полевая компания необходима коммерческим клиентам.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "Выбранный пароль слишком длинный.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "Выбранный пароль слишком короткий.",
             "passwordDoNotMatch": "Введенные данные для ввода нового пароля и подтверждения пароля не совпадают."
         },
         "filter": {
@@ -4827,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "Удалить",
             "contextMenuEdit": "Редактировать",
+            "contextMenuEditMcp": "Изменить список разрешенных MCP",
             "integrationName": "Интеграция",
+            "labelManagedByApp": "Управляется приложением",
             "messageEmpty": "Пока нет интеграций",
             "permissions": "Права доступа",
             "readAccess": "Читать",
             "sublineEmpty": "Модуль управления интеграцией.",
             "writeAccess": "Написать"
+        },
+        "mcp": {
+            "adminBanner": "Эта интеграция имеет права администратора. Все возможности MCP доступны по умолчанию. Для дополнительной безопасности здесь можно ограничить доступ к определенным инструментам, ресурсам или подсказкам.",
+            "allCapabilitiesLabel": "Все возможности",
+            "allTypeLabel": "Все",
+            "cardTitle": "Список разрешенных MCP",
+            "collapseAll": "Свернуть все",
+            "coverageWarning": "Для инструментов {count} требуются привилегии ACL, не предоставленные назначенной роли.",
+            "deniedTypeWarning": "Для этой интеграции нет включенных тегов {types}.",
+            "dep": "глубокий",
+            "dependencyOf": "Этот инструмент включается автоматически, потому что от него зависит другой выбранный инструмент.",
+            "expandAll": "Расширить все",
+            "infoText": "Ограничьте возможности MCP, которые может использовать эта интеграция. Когда опция «Все возможности» включена, доступны все зарегистрированные инструменты, ресурсы и приглашения. Отключите его, чтобы настроить доступ по типам. Примечание. Для инструментов также требуются разрешения соответствующих сущностей из назначенной роли.",
+            "missingCapabilitySuggestions": "Ресурсы {count} или приглашения из одного и того же модуля отсутствуют в списке разрешенных:",
+            "missingDeps": "Зависимость не выбрана: {deps}",
+            "missingPrivilegesList": "Пропало: {privileges}",
+            "missingPrivilegesTooltip": "Недостающие привилегии: {privileges}",
+            "modalTitle": "Список разрешенных MCP",
+            "noCapabilitiesDescription": "В настоящее время инструменты, ресурсы или приглашения MCP не зарегистрированы.",
+            "noCapabilitiesHeadline": "Возможности не найдены",
+            "privilegesLabel": "Требуется:",
+            "promptsGuidance": "Подсказки — это системные инструкции, которые задают контекст ИИ. Разоблачение несвязанных подсказок приводит к потере контекстного окна и может сбить ИИ с толку.",
+            "promptsSection": "Подсказки",
+            "requiresLabel": "нуждается в отделе",
+            "requiresTooltip": "Включение этого инструмента также позволит: {deps}",
+            "resourcesGuidance": "Ресурсы предоставляют справочные данные, доступные только для чтения (списки сущностей, конечные автоматы, каналы продаж). Ограничьте их количество, чтобы не раскрывать бизнес-конфигурацию, которая не нужна помощнику продавца.",
+            "resourcesSection": "Ресурсы",
+            "staleEntries": "Некоторые сохраненные записи больше не доступны: {entries}. Во время выполнения они будут проигнорированы.",
+            "toolsGuidance": "Инструменты выполняют действия и могут иметь побочные эффекты (запись, удаление). Ограничьтесь именно тем, что необходимо для этой интеграции.",
+            "toolsSection": "Инструменты"
         }
     },
     "sw-landing-page": {
@@ -5077,6 +5111,12 @@
                 "placeholderSubject": "Введите тему шаблона письма...",
                 "titleCard": "Настроки"
             },
+            "previewModalMailContentHtmlLabel": "Содержимое почты (HTML)",
+            "previewModalMailContentPlainLabel": "Содержимое почты (обычный текст)",
+            "previewModalMailFooterHtmlLabel": "Нижний колонтитул письма (HTML)",
+            "previewModalMailFooterPlainLabel": "Нижний колонтитул письма (обычный текст)",
+            "previewModalMailHeaderHtmlLabel": "Заголовок письма (HTML)",
+            "previewModalMailHeaderPlainLabel": "Заголовок письма (обычный текст)",
             "previewModalTitle": "Предварительный просмотр",
             "sidebar": {
                 "buttonTestMail": "Отправить",
@@ -5085,6 +5125,9 @@
                 "labelTestMail": "Адрес получателя",
                 "languageNotAssignedToSalesChannel": "Текущий язык не назначен выбранному каналу продаж.",
                 "placeholderTestMail": "магазин {'@'} example.com",
+                "previewSalesChannelHint": "Используется для определения заголовка и нижнего колонтитула канала продаж.",
+                "selectTriggerEventHint": "Используется для определения доступных данных.",
+                "selectTriggerEventLabel": "Триггерное событие",
                 "titleShowAvailableVariables": "Переменные",
                 "titleShowPreview": "Показать предварительный просмотр",
                 "titleTestMail": "Отправить тестовое письмо"
@@ -5995,6 +6038,10 @@
                 "all": "Все",
                 "disabledCheckboxMessage": "Чтобы деактивировать эту опцию, вы должны сначала деактивировать опцию All.",
                 "label": "Приложения"
+            },
+            "integration_mcp": {
+                "editor": "Изменить список разрешенных MCP",
+                "label": "Интеграции"
             },
             "marketing": {
                 "label": "Маркетинг",
@@ -7459,6 +7506,14 @@
     },
     "sw-rating-stars": {
         "ratingTooltipText": "{actual} из {max} звезд"
+    },
+    "sw-request-consent-modal": {
+        "acceptButton": "Принять",
+        "declineButton": "Отказать",
+        "message": "Расширение {appName} запрашивает ваше согласие на следующую тему: {consentName}",
+        "readMore": "Для получения дополнительной информации см.:",
+        "title": "Требуется согласие",
+        "updateFailed": "При обновлении вашего согласия произошла ошибка. Ваш предыдущий выбор, если таковой был, будет сохранен."
     },
     "sw-restricted-rules": {
         "and": "и",
@@ -9100,6 +9155,19 @@
         },
         "detail": {
             "associations": {
+                "columns": {
+                    "active": "Активный",
+                    "description": "Описание",
+                    "extension": "Расширение",
+                    "flow": "Поток",
+                    "manufacturer": "Производитель",
+                    "name": "Название",
+                    "position": "Позиция",
+                    "taxCalculation": "Расчет налога",
+                    "trigger": "Триггер",
+                    "validFrom": "Действует с",
+                    "validTo": "Действует до"
+                },
                 "flows": "Конструкторы потока",
                 "paymentMethods": "Способы оплаты",
                 "products": "Правила цены на продукцию",
@@ -9253,6 +9321,9 @@
             "fieldDisplayNamePlaceholder": "Введите приветствие...",
             "fieldLetterNameLabel": "Письмо приветствия",
             "fieldLetterNamePlaceholder": "Введите письмо приветствия...",
+            "fieldPositionLabel": "Позиция",
+            "fieldPositionPlaceholder": "Выберите позицию...",
+            "fieldPositionTooltip": "Управляет порядком отображения в раскрывающихся списках; меньшие числа отображаются первыми.",
             "fieldSalutationKeyLabel": "Техническое имя",
             "fieldSalutationKeyPlaceholder": "Введите техническое имя...",
             "fieldSalutationKeyTooltip": "Выберите уникальное техническое имя, которое необходимо включить в список приветствий, например в шаблоны электронной почты.",
@@ -9268,6 +9339,7 @@
         "list": {
             "columnDisplayName": "Приветствие",
             "columnLetterName": "Письмо приветствия",
+            "columnPosition": "Позиция",
             "columnSalutationKey": "Техническое имя"
         }
     },
@@ -10542,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "Дополнительные разрешения"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "Уже предоставлено на вкладке «Общие»."
+            },
             "general": {
                 "cardLabel": "Роли",
                 "labelCreateNewRole": "Создать роль"
             },
             "grid": {
                 "disabledCheckboxMessage": "Чтобы отключить эту опцию, вы должны сначала отключить другие активные опции.",
-                "title": "Права доступа"
+                "title": "Права доступа",
+                "tooltipEntityAll": "Все права на {entity} ({roles})",
+                "tooltipParentAll": "Все права на {parent} ({roles})",
+                "tooltipParentRole": "Все права {role} для {parent}"
+            },
+            "mcpHint": {
+                "linkText": "Показать требования к инструментам MCP",
+                "text": "Эта роль назначена интеграциям {count} с поддержкой MCP. "
+            },
+            "mcpModal": {
+                "description": "Следующие инструменты разрешены для интеграций, использующих эту роль.",
+                "dynamicPrivilegeHint": "Эта привилегия зависит от параметра сущности, переданного во время выполнения.",
+                "grant": "Грант",
+                "grantAllMissing": "Грант все пропавшие без вести",
+                "legendDynamic": "динамичный",
+                "legendDynamicHint": "Эта привилегия зависит от параметра сущности, переданного во время выполнения.",
+                "legendGranted": "предоставляется",
+                "legendGrantedHint": "Эта привилегия уже предоставлена этой роли.",
+                "legendLabel": "Легенда:",
+                "legendMissing": "отсутствует",
+                "legendMissingHint": "Эта привилегия пока не предоставлена этой роли.",
+                "noToolsDescription": "В настоящее время в интеграциях, использующих эту роль, нет разрешенных инструментов.",
+                "noToolsHeadline": "Инструменты не найдены",
+                "saveReminder": "Разрешения выбраны заранее — нажмите Сохранить в роли, чтобы подать заявку.",
+                "title": "Требования к инструментам MCP",
+                "viewByPermission": "По разрешению",
+                "viewByTool": "По инструменту"
             },
             "role-grid": {
                 "contextMenuDelete": "Удалить",
@@ -10645,6 +10746,8 @@
                 "labelRoles": "Роли",
                 "labelTimezone": "Часовой пояс",
                 "labelUsername": "Имя пользователя",
+                "mcpAllowlistSaveError": "Не удалось сохранить список разрешенных файлов MCP.",
+                "mcpAllowlistTitle": "Список разрешенных инструментов MCP",
                 "modal": {
                     "buttonApply": "Сохранить интеграцию",
                     "buttonApplyEdit": "Сохранить изменения",

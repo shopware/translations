@@ -101,7 +101,6 @@
                 "mail_header_footer_translation": "머리글 및 바닥글 번역",
                 "mail_template": "전자 메일 서식 파일",
                 "mail_template_media": "미디어",
-                "mail_template_sales_channel": "판매 채널",
                 "mail_template_translation": "이메일 템플릿 번역",
                 "mail_template_type": "유형",
                 "mail_template_type_translation": "유형 번역"
@@ -1803,8 +1802,7 @@
                     "helpText": "이 작업을 수행하면 해당 번호 범위의 값이 증가합니다.",
                     "label": "생성: 인보이스",
                     "labelDatePicker": "날짜",
-                    "labelTextarea": "코멘트",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "코멘트"
                 },
                 "warning": "이제 일괄 편집에서는 향상된 문서 작성을 사용합니다.그러나 시스템에 있는 하나 이상의 확장 프로그램을 사용하면 새 문서를 만들 때 다른 결과가 나올 수 있습니다.\n따라서 일괄 편집을 사용하거나 사용하지 않고 문서에 차이가 있는지 확인하십시오."
             },
@@ -2020,7 +2018,9 @@
             },
             "property": {
                 "cardTitle": "등록 정보",
-                "changeLabel": "변경: 속성"
+                "changeLabel": "변경: 속성",
+                "descriptionEmptyState": "대량 편집은 변경될 속성만 나열합니다.기존 제품 속성은 여기에 표시되지 않습니다.",
+                "titleEmptyState": "속성 변경이 아직 선택되지 않았습니다."
             },
             "sellingPackaging": {
                 "cardTitle": "판매 및 포장 정보",
@@ -2185,8 +2185,8 @@
                 "dynamicProductGroupHelpText": {
                     "label": "제품이 해당 제품 그룹의 조건을 충족하는 경우 동적 제품 그룹에 속합니다.조건은 {link} 모듈 내에서 정의 할 수 있습니다.",
                     "linkText": "동적 제품 그룹",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "videoLink": "AI 코파일럿",
+                    "videoUrl": "AI 코파일럿"
                 },
                 "dynamicProductGroupInvalidMessage": "선택한 동적 제품 그룹이 유효하지 않습니다.동적 제품 그룹 세부 정보를 확인하십시오.",
                 "productAssignmentEmptyStateDescription": "할당된 제품이 없습니다.",
@@ -3409,6 +3409,8 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "기업 고객의 경우 현장 회사가 필요합니다.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "선택한 암호가 너무 깁니다.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "선택한 암호가 너무 짧습니다.",
             "passwordDoNotMatch": "새 암호와 암호 확인에 입력한 내용이 일치하지 않습니다."
         },
         "filter": {
@@ -4827,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "삭제",
             "contextMenuEdit": "편집",
+            "contextMenuEditMcp": "MCP 허용 목록 편집",
             "integrationName": "통합",
+            "labelManagedByApp": "앱으로 관리",
             "messageEmpty": "아직 통합 기능 없음",
             "permissions": "사용 권한",
             "readAccess": "읽기",
             "sublineEmpty": "통합 관리를 위한 모듈입니다.",
             "writeAccess": "쓰기"
+        },
+        "mcp": {
+            "adminBanner": "이 통합에는 관리자 권한이 있습니다.기본적으로 모든 MCP 기능에 액세스할 수 있습니다.추가 보안을 위해 여기에서 특정 도구, 리소스 또는 프롬프트에 대한 액세스를 제한할 수 있습니다.",
+            "allCapabilitiesLabel": "모든 기능",
+            "allTypeLabel": "모든",
+            "cardTitle": "MCP 허용 목록",
+            "collapseAll": "모두 축소",
+            "coverageWarning": "{count} 도구에는 할당된 역할에 부여되지 않은 ACL 권한이 필요합니다.",
+            "deniedTypeWarning": "이 통합에는 {types} 이 (가) 활성화되지 않았습니다.",
+            "dep": "dep",
+            "dependencyOf": "이 도구는 선택한 다른 도구가 종속되므로 자동으로 포함됩니다.",
+            "expandAll": "모두 확장",
+            "infoText": "이 통합에서 사용할 수 있는 MCP 기능을 제한하십시오.“모든 기능”을 활성화하면 등록된 모든 도구, 리소스 및 프롬프트에 액세스할 수 있습니다.유형별로 액세스를 구성하려면 비활성화하세요.참고: 도구를 사용하려면 할당된 역할의 해당 엔티티 권한도 필요합니다.",
+            "missingCapabilitySuggestions": "{count} 동일한 모듈의 리소스 또는 프롬프트가 허용 목록에 없습니다.",
+            "missingDeps": "종속성이 선택되지 않음: {deps}",
+            "missingPrivilegesList": "누락됨: {privileges}",
+            "missingPrivilegesTooltip": "권한 누락: {privileges}",
+            "modalTitle": "MCP 허용 목록",
+            "noCapabilitiesDescription": "MCP 도구, 리소스 또는 프롬프트가 현재 등록되어 있지 않습니다.",
+            "noCapabilitiesHeadline": "기능을 찾을 수 없음",
+            "privilegesLabel": "요구 사항:",
+            "promptsGuidance": "프롬프트는 AI의 컨텍스트를 설정하는 시스템 명령입니다.관련 없는 프롬프트를 노출하면 컨텍스트 창이 낭비되고 AI가 혼동될 수 있습니다.",
+            "promptsSection": "프롬프트",
+            "requiresLabel": "뎁스가 필요해",
+            "requiresTooltip": "이 도구를 활성화하면 다음과 같은 기능도 사용할 수 있습니다. {deps}",
+            "resourcesGuidance": "리소스는 읽기 전용 참조 데이터 (엔티티 목록, 상태 머신, 판매 채널) 를 제공합니다.판매자 어시스턴트에게 필요하지 않은 비즈니스 구성이 노출되지 않도록 제한하세요.",
+            "resourcesSection": "리소스",
+            "staleEntries": "일부 저장된 항목은 더 이상 사용할 수 없습니다: {entries}.런타임 시 무시됩니다.",
+            "toolsGuidance": "도구는 작업을 실행하며 부작용 (쓰기, 삭제) 이 있을 수 있습니다.이 통합에 정확히 필요한 내용으로 제한하세요.",
+            "toolsSection": "도구"
         }
     },
     "sw-landing-page": {
@@ -5077,6 +5111,12 @@
                 "placeholderSubject": "전자 메일 서식 파일 제목 입력...",
                 "titleCard": "옵션"
             },
+            "previewModalMailContentHtmlLabel": "메일 콘텐츠 (HTML)",
+            "previewModalMailContentPlainLabel": "메일 콘텐츠 (일반 텍스트)",
+            "previewModalMailFooterHtmlLabel": "메일 바닥글 (HTML)",
+            "previewModalMailFooterPlainLabel": "메일 바닥글 (일반 텍스트)",
+            "previewModalMailHeaderHtmlLabel": "메일 헤더 (HTML)",
+            "previewModalMailHeaderPlainLabel": "메일 헤더 (일반 텍스트)",
             "previewModalTitle": "시사",
             "sidebar": {
                 "buttonTestMail": "보내기",
@@ -5085,6 +5125,9 @@
                 "labelTestMail": "수신자 주소",
                 "languageNotAssignedToSalesChannel": "선택한 판매 채널에 현재 언어가 할당되지 않았습니다.",
                 "placeholderTestMail": "쇼핑 {'@'} example.com",
+                "previewSalesChannelHint": "판매 채널별 머리말과 꼬리말을 결정하는 데 사용됩니다.",
+                "selectTriggerEventHint": "사용 가능한 데이터를 결정하는 데 사용됩니다.",
+                "selectTriggerEventLabel": "트리거 이벤트",
                 "titleShowAvailableVariables": "변수",
                 "titleShowPreview": "미리 보기 표시",
                 "titleTestMail": "테스트 이메일 보내기"
@@ -5995,6 +6038,10 @@
                 "all": "모든",
                 "disabledCheckboxMessage": "이 옵션을 비활성화하려면 먼저 모두 옵션을 비활성화해야 합니다.",
                 "label": "앱"
+            },
+            "integration_mcp": {
+                "editor": "MCP 허용 목록 편집",
+                "label": "통합 기능"
             },
             "marketing": {
                 "label": "마케팅",
@@ -7459,6 +7506,14 @@
     },
     "sw-rating-stars": {
         "ratingTooltipText": "{max} 스타 중 {actual}"
+    },
+    "sw-request-consent-modal": {
+        "acceptButton": "수락",
+        "declineButton": "거절",
+        "message": "확장 프로그램 {appName} 은 다음 주제에 대한 귀하의 동의를 요청합니다. {consentName}",
+        "readMore": "자세한 내용은 다음을 참조하십시오.",
+        "title": "동의가 필요함",
+        "updateFailed": "동의를 업데이트하는 동안 오류가 발생했습니다.이전에 선택한 내용이 있는 경우 그대로 유지됩니다."
     },
     "sw-restricted-rules": {
         "and": "과",
@@ -9100,6 +9155,19 @@
         },
         "detail": {
             "associations": {
+                "columns": {
+                    "active": "활성",
+                    "description": "설명",
+                    "extension": "확장",
+                    "flow": "플로우",
+                    "manufacturer": "제조 업체",
+                    "name": "이름",
+                    "position": "직책",
+                    "taxCalculation": "세금 계산",
+                    "trigger": "트리거",
+                    "validFrom": "유효 기간",
+                    "validTo": "까지 유효"
+                },
                 "flows": "플로우 빌더",
                 "paymentMethods": "결제 방법",
                 "products": "제품 가격 규칙",
@@ -9253,6 +9321,9 @@
             "fieldDisplayNamePlaceholder": "인사말 입력...",
             "fieldLetterNameLabel": "편지 인사말",
             "fieldLetterNamePlaceholder": "편지 인사말 입력...",
+            "fieldPositionLabel": "직책",
+            "fieldPositionPlaceholder": "직책 선택...",
+            "fieldPositionTooltip": "드롭다운의 표시 순서를 제어합니다. 작은 숫자가 먼저 표시됩니다.",
             "fieldSalutationKeyLabel": "기술 이름",
             "fieldSalutationKeyPlaceholder": "기술 이름 입력...",
             "fieldSalutationKeyTooltip": "이메일 템플릿과 같이 인사문을 포함시키는 데 필요한 고유한 기술 이름을 선택합니다.",
@@ -9268,6 +9339,7 @@
         "list": {
             "columnDisplayName": "인사말",
             "columnLetterName": "편지 인사말",
+            "columnPosition": "직책",
             "columnSalutationKey": "기술 이름"
         }
     },
@@ -10542,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "추가 사용 권한"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "일반 탭을 통해 이미 부여되었습니다."
+            },
             "general": {
                 "cardLabel": "역할",
                 "labelCreateNewRole": "역할 만들기"
             },
             "grid": {
                 "disabledCheckboxMessage": "이 옵션을 비활성화하려면 먼저 다른 활성 옵션을 비활성화해야 합니다.",
-                "title": "사용 권한"
+                "title": "사용 권한",
+                "tooltipEntityAll": "{entity} ({roles}) 에 대한 모든 권리",
+                "tooltipParentAll": "{parent} ({roles}) 에 대한 모든 권리",
+                "tooltipParentRole": "{parent} 에 대한 모든 {role} 권리"
+            },
+            "mcpHint": {
+                "linkText": "MCP 도구 요구 사항 보기",
+                "text": "이 역할은 {count} MCP 지원 통합에 할당됩니다. "
+            },
+            "mcpModal": {
+                "description": "이 역할을 사용하는 통합에는 다음과 같은 도구가 허용 목록에 있습니다.",
+                "dynamicPrivilegeHint": "이 권한은 런타임에 전달된 개체 매개 변수에 따라 달라집니다.",
+                "grant": "그랜트",
+                "grantAllMissing": "그랜트 올 미싱",
+                "legendDynamic": "동적",
+                "legendDynamicHint": "이 권한은 런타임에 전달된 개체 매개 변수에 따라 달라집니다.",
+                "legendGranted": "부여됩니다",
+                "legendGrantedHint": "이 권한은 해당 역할에 이미 부여되어 있습니다.",
+                "legendLabel": "레전드:",
+                "legendMissing": "누락되었습니다",
+                "legendMissingHint": "이 권한은 역할에 아직 부여되지 않았습니다.",
+                "noToolsDescription": "이 역할을 사용하는 통합에는 현재 허용 목록에 있는 도구가 없습니다.",
+                "noToolsHeadline": "도구를 찾을 수 없음",
+                "saveReminder": "권한 사전 선택 — 적용할 역할에서 저장을 클릭합니다.",
+                "title": "MCP 도구 요구 사항",
+                "viewByPermission": "허가에 의해",
+                "viewByTool": "도구별"
             },
             "role-grid": {
                 "contextMenuDelete": "삭제",
@@ -10645,6 +10746,8 @@
                 "labelRoles": "역할",
                 "labelTimezone": "시간대",
                 "labelUsername": "사용자 이름",
+                "mcpAllowlistSaveError": "MCP 허용 목록을 저장할 수 없습니다.",
+                "mcpAllowlistTitle": "MCP 도구 허용 목록",
                 "modal": {
                     "buttonApply": "통합 저장",
                     "buttonApplyEdit": "변경 사항 저장",

@@ -101,7 +101,6 @@
                 "mail_header_footer_translation": "Fejléc és lábléc fordítása",
                 "mail_template": "E-mail sablon",
                 "mail_template_media": "Média",
-                "mail_template_sales_channel": "Értékesítési csatorna",
                 "mail_template_translation": "E-mail sablon fordítása",
                 "mail_template_type": "Típus",
                 "mail_template_type_translation": "Típus fordítás"
@@ -1803,8 +1802,7 @@
                     "helpText": "Ez a művelet növeli a megfelelő számtartomány értékét.",
                     "label": "Generálás: Számla",
                     "labelDatePicker": "Dátum",
-                    "labelTextarea": "Megjegyzés",
-                    "placeholderTextarea": ""
+                    "labelTextarea": "Megjegyzés"
                 },
                 "warning": "A tömeges szerkesztés mostantól továbbfejlesztett dokumentumkészítést használ. A rendszer egy vagy több kiterjesztése azonban eltérő eredményeket hozhat az új dokumentum létrehozásával.\nEzért ellenőrizze, hogy dokumentumai eltéréseket mutatnak-e a tömeges szerkesztéssel és anélkül."
             },
@@ -2020,7 +2018,9 @@
             },
             "property": {
                 "cardTitle": "Tulajdonságok",
-                "changeLabel": "Módosítás: tulajdonságok"
+                "changeLabel": "Módosítás: tulajdonságok",
+                "descriptionEmptyState": "A tömeges szerkesztés csak a módosítandó tulajdonságokat sorolja fel. A meglévő terméktulajdonságok itt nem jelennek meg.",
+                "titleEmptyState": "A tulajdonság-módosítás még nincs kiválasztva."
             },
             "sellingPackaging": {
                 "cardTitle": "Értékesítési és csomagolási információk",
@@ -2185,8 +2185,8 @@
                 "dynamicProductGroupHelpText": {
                     "label": "A termékek dinamikus termékcsoporthoz tartoznak, ha megfelelnek az adott termékcsoport feltételeinek. A feltételeket a {link} modulon belül lehet meghatározni.",
                     "linkText": "dinamikus termékcsoportok",
-                    "videoLink": "",
-                    "videoUrl": ""
+                    "videoLink": "AI Copilot",
+                    "videoUrl": "AI Copilot"
                 },
                 "dynamicProductGroupInvalidMessage": "A kiválasztott dinamikus termékcsoport érvénytelen. Kérjük, ellenőrizze a dinamikus termékcsoport adatait.",
                 "productAssignmentEmptyStateDescription": "Nincs hozzárendelt termék",
@@ -3409,6 +3409,8 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "A terepi társaság szükséges a kereskedelmi ügyfelek számára.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "A kiválasztott jelszó túl hosszú.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "A kiválasztott jelszó túl rövid.",
             "passwordDoNotMatch": "Az új jelszó és a jelszó megerősítésének bemenetei nem egyeznek."
         },
         "filter": {
@@ -4827,12 +4829,44 @@
         "list": {
             "contextMenuDelete": "Törlés",
             "contextMenuEdit": "Szerkesztés",
+            "contextMenuEditMcp": "Az MCP engedélyezési lista szerkesztése",
             "integrationName": "integráció",
+            "labelManagedByApp": "Alkalmazás felügyelete",
             "messageEmpty": "Még nincs integráció",
             "permissions": "Jogosultságok",
             "readAccess": "Olvasd",
             "sublineEmpty": "Az integrációk kezelésére szolgáló modul.",
             "writeAccess": "Írj"
+        },
+        "mcp": {
+            "adminBanner": "Ez az integráció rendszergazdai jogosultságokkal rendelkezik. Az összes MCP képesség alapértelmezés szerint elérhető. Itt korlátozhatja a hozzáférést bizonyos eszközökhöz, erőforrásokhoz vagy utasításokhoz a további biztonság érdekében.",
+            "allCapabilitiesLabel": "Minden képesség",
+            "allTypeLabel": "Minden",
+            "cardTitle": "MCP engedélyezési lista",
+            "collapseAll": "Összecsukja az egészet",
+            "coverageWarning": "A {count} eszköz (ek) számára olyan ACL-jogosultságok szükségesek, amelyek nem adhatók meg a hozzárendelt szerepkörön.",
+            "deniedTypeWarning": "A {types} nincs engedélyezve ehhez az integrációhoz.",
+            "dep": "dep",
+            "dependencyOf": "Ez az eszköz automatikusan bekerül, mert egy másik kiválasztott eszköz attól függ.",
+            "expandAll": "Összes kibontása",
+            "infoText": "Korlátozza, hogy az integráció milyen MCP képességeket használhat. Ha az „Minden képesség” engedélyezve van, minden regisztrált eszköz, erőforrás és üzenet elérhető. Tiltsa le a hozzáférés típusonkénti konfigurálásához. Megjegyzés: az eszközök megkövetelik a hozzárendelt szerepkör megfelelő entitásiengedélyét is.",
+            "missingCapabilitySuggestions": "Az azonos modulból származó {count} erőforrás (ek) vagy promptok nem szerepelnek az engedélyezési listában:",
+            "missingDeps": "A függőség nincs kiválasztva: {deps}",
+            "missingPrivilegesList": "Hiányzó: {privileges}",
+            "missingPrivilegesTooltip": "Hiányzó jogosultságok: {privileges}",
+            "modalTitle": "MCP engedélyezési lista",
+            "noCapabilitiesDescription": "Jelenleg nincsenek MCP-eszközök, erőforrások vagy üzenetek regisztrálva.",
+            "noCapabilitiesHeadline": "Nem találtak képességet",
+            "privilegesLabel": "Szükséges:",
+            "promptsGuidance": "A promptok olyan rendszerutasítások, amelyek meghatározzák az AI kontextusát. A nem kapcsolódó utasítások feltárása elpazarolja a környezeti ablakot, és összekeverheti az AI-t.",
+            "promptsSection": "Utasítások",
+            "requiresLabel": "segítségnyújtásokra van szüksége",
+            "requiresTooltip": "Az eszköz engedélyezése a következőket is engedélyezi: {deps}",
+            "resourcesGuidance": "Az erőforrások csak olvasható referenciaadatokat szolgáltatnak (entitáslisták, állapotgépek, értékesítési csatornák). Korlátozza ezeket, hogy elkerülje a kereskedői asszisztensnek nincs szüksége üzleti konfigurációjának nyilvánosságra hozatalának.",
+            "resourcesSection": "Források",
+            "staleEntries": "Néhány mentett bejegyzés már nem érhető el: {entries}. Ezeket a futáskor figyelmen kívül hagyják.",
+            "toolsGuidance": "Az eszközök műveleteket hajtanak végre, és mellékhatásokkal járhatnak (írják, törlik). Pontosan arra korlátozódjon, amire ez az integráció szükséges.",
+            "toolsSection": "Szerszámok"
         }
     },
     "sw-landing-page": {
@@ -5077,6 +5111,12 @@
                 "placeholderSubject": "Adja meg az e-mail sablon tárgyát...",
                 "titleCard": "Opciók"
             },
+            "previewModalMailContentHtmlLabel": "Levelezési tartalom (HTML)",
+            "previewModalMailContentPlainLabel": "Levelezési tartalom (egyszerű szöveg)",
+            "previewModalMailFooterHtmlLabel": "Levelezési lábléc (HTML)",
+            "previewModalMailFooterPlainLabel": "Levelezési lábléc (egyszerű szöveg)",
+            "previewModalMailHeaderHtmlLabel": "Levélfejléc (HTML)",
+            "previewModalMailHeaderPlainLabel": "Levélfejléc (egyszerű szöveg)",
             "previewModalTitle": "Előnézet",
             "sidebar": {
                 "buttonTestMail": "Küldés",
@@ -5085,6 +5125,9 @@
                 "labelTestMail": "Címzett címe",
                 "languageNotAssignedToSalesChannel": "Az aktuális nyelv nincs hozzárendelve a kiválasztott értékesítési csatornához.",
                 "placeholderTestMail": "shop {'@'} example.com",
+                "previewSalesChannelHint": "Az értékesítési csatorna-specifikus fejléc és lábléc meghatározására szolgál.",
+                "selectTriggerEventHint": "A rendelkezésre álló adatok meghatározására szolgál.",
+                "selectTriggerEventLabel": "Trigger esemény",
                 "titleShowAvailableVariables": "Változók",
                 "titleShowPreview": "Előnézet megjelenítése",
                 "titleTestMail": "Teszt e-mail küldése"
@@ -5995,6 +6038,10 @@
                 "all": "Minden",
                 "disabledCheckboxMessage": "Az opció kikapcsolásához először ki kell kapcsolnia az Összes opciót.",
                 "label": "Alkalmazások"
+            },
+            "integration_mcp": {
+                "editor": "Az MCP engedélyezési listájának szerkesztése",
+                "label": "Integrációk"
             },
             "marketing": {
                 "label": "Értékesítés",
@@ -7459,6 +7506,14 @@
     },
     "sw-rating-stars": {
         "ratingTooltipText": "{actual} a {max} csillagból"
+    },
+    "sw-request-consent-modal": {
+        "acceptButton": "Elfogadja",
+        "declineButton": "Elutasítás",
+        "message": "A {appName} kiterjesztés az Ön hozzájárulását kéri az alábbi témához: {consentName}",
+        "readMore": "További információkért lásd:",
+        "title": "Hozzájárulás szükséges",
+        "updateFailed": "Hiba történt a hozzájárulás frissítése során. Korábbi választása, ha van ilyen, megmarad."
     },
     "sw-restricted-rules": {
         "and": "és",
@@ -9100,6 +9155,19 @@
         },
         "detail": {
             "associations": {
+                "columns": {
+                    "active": "Aktív",
+                    "description": "Leírás",
+                    "extension": "Extension",
+                    "flow": "Flow",
+                    "manufacturer": "Gyártó",
+                    "name": "Név",
+                    "position": "Pozíció",
+                    "taxCalculation": "Adószámítás",
+                    "trigger": "Trigger",
+                    "validFrom": "Érvényes",
+                    "validTo": "Érvényes"
+                },
                 "flows": "Flow építők",
                 "paymentMethods": "Fizetési módok",
                 "products": "A termék árának szabályai",
@@ -9253,6 +9321,9 @@
             "fieldDisplayNamePlaceholder": "Írj be egy köszöntést...",
             "fieldLetterNameLabel": "Levél üdvözlet",
             "fieldLetterNamePlaceholder": "Írj be egy betű üdvözlést...",
+            "fieldPositionLabel": "Pozíció",
+            "fieldPositionPlaceholder": "Válasszon egy pozíciót...",
+            "fieldPositionTooltip": "A legördülő menükben szabályozza a megjelenítési sorrendet; először kisebb számok jelennek meg.",
             "fieldSalutationKeyLabel": "Műszaki név",
             "fieldSalutationKeyPlaceholder": "Adjon meg egy műszaki nevet...",
             "fieldSalutationKeyTooltip": "Válasszon egy egyedi technikai nevet, amely a köszöntések feltüntetéséhez szükséges, pl. e-mail sablonokban.",
@@ -9268,6 +9339,7 @@
         "list": {
             "columnDisplayName": "Köszöntés",
             "columnLetterName": "Levél üdvözlet",
+            "columnPosition": "Pozíció",
             "columnSalutationKey": "Műszaki név"
         }
     },
@@ -10542,13 +10614,42 @@
             "detailed-additional-permissions": {
                 "title": "További engedélyek"
             },
+            "detailed-grid": {
+                "coveredByGeneralMessage": "Már az Általános lapon keresztül engedélyezték."
+            },
             "general": {
                 "cardLabel": "Szerepek",
                 "labelCreateNewRole": "Szerepkör létrehozása"
             },
             "grid": {
                 "disabledCheckboxMessage": "Ennek az opciónak a letiltásához először le kell tiltania a többi aktív beállítást.",
-                "title": "Jogosultságok"
+                "title": "Jogosultságok",
+                "tooltipEntityAll": "Minden jog a {entity} ({roles}) oldalra",
+                "tooltipParentAll": "Minden jog a {parent} ({roles}) oldalra",
+                "tooltipParentRole": "Minden {role} jog a {parent} számára"
+            },
+            "mcpHint": {
+                "linkText": "Az MCP szerszámkövetelmények megjelenítése",
+                "text": "Ez a szerep a {count} MCP-kompatibilis integrációhoz van hozzárendelve. "
+            },
+            "mcpModal": {
+                "description": "A következő eszközök szerepelnek az ezt a szerepkört használó integrációk listáján.",
+                "dynamicPrivilegeHint": "Ez a jogosultság a futásidőben átadott entitásparamétertől függ.",
+                "grant": "Grant",
+                "grantAllMissing": "Adja meg az összes hiányzó anyagot",
+                "legendDynamic": "dinamikus",
+                "legendDynamicHint": "Ez a jogosultság a futásidőben átadott entitásparamétertől függ.",
+                "legendGranted": "megadott",
+                "legendGrantedHint": "Ez a kiváltság már megkapta a szerepet.",
+                "legendLabel": "Felirat:",
+                "legendMissing": "hiányzó",
+                "legendMissingHint": "Ezt a kiváltságot még nem adták meg a szerep tekintetében.",
+                "noToolsDescription": "Az ezt a szerepkört használó integrációkban jelenleg nincs engedélyezett eszköz.",
+                "noToolsHeadline": "Nem találtak szerszámokat",
+                "saveReminder": "Előre kiválasztott engedélyek — kattintson a Mentés gombra az alkalmazandó szerepkörön.",
+                "title": "MCP szerszámkövetelmények",
+                "viewByPermission": "Engedélyezéssel",
+                "viewByTool": "Szerszám szerint"
             },
             "role-grid": {
                 "contextMenuDelete": "Törlés",
@@ -10645,6 +10746,8 @@
                 "labelRoles": "Szerepek",
                 "labelTimezone": "Időzóna",
                 "labelUsername": "Felhasználónév",
+                "mcpAllowlistSaveError": "Az MCP engedélyezési listát nem sikerült menteni.",
+                "mcpAllowlistTitle": "MCP eszköz engedélyezési lista",
                 "modal": {
                     "buttonApply": "Integráció mentése",
                     "buttonApplyEdit": "Módosítások mentése",
