@@ -381,6 +381,7 @@
             "bulkEdit": "Mehrfachänderung",
             "cancel": "Abbrechen",
             "close": "Schliessen",
+            "configure": "Konfigurieren",
             "confirm": "Bestätigen",
             "copy": "Kopie",
             "delete": "Löschen",
@@ -644,15 +645,15 @@
                 "billingStateRule": "Rechnungsadresse: Bundesland",
                 "billingStreetRule": "Rechnungsadresse: Strasse",
                 "billingZipCodeRule": "Rechnungsadresse: Postleitzahl",
-                "cartAmountRule": "Gesamtsumme",
-                "cartPositionPrice": "Summe",
+                "cartAmountRule": "Warenkorb-Gesamtsumme (inkl. Versand)",
+                "cartPositionPrice": "Summe der Positionen (ohne Versand)",
                 "cartShippingCost": "Versandkosten",
                 "cartTaxDisplay": {
                     "gross": "Brutto",
                     "label": "Steuerdarstellung",
                     "net": "Netto"
                 },
-                "cartTotalPurchasePrice": "Summe aller Einkaufspreise",
+                "cartTotalPurchasePrice": "Summe der Einkaufspreise",
                 "categoryWithProductStreamTooltip": "Produkte in dieser Kategorie werden durch eine dynamische Produktgruppe zugewiesen. Bitte verwende die Bedingung \"Position in dynamischer Produktgruppe\" um dynamisch auf diese Produkte zuzugreifen.",
                 "createAfter": "Danach erstellen",
                 "createBefore": "Davor erstellen",
@@ -688,8 +689,8 @@
                 "field": {
                     "valuePlaceholder": "Gib einen Wert ein ..."
                 },
-                "goodsCountRule": "Gesamtanzahl unterschiedlicher Produkte",
-                "goodsPriceRule": "Zwischensumme aller Positionen",
+                "goodsCountRule": "Anzahl unterschiedlicher Produkte",
+                "goodsPriceRule": "Zwischensumme der Warenpositionen (ohne Rabatte/Zuschläge)",
                 "hasDeliveryFreeItemRule": "Position ist versandkostenfrei",
                 "isCompanyRule": "Firmenkunde",
                 "isGuestRule": "Gastbesteller",
@@ -720,7 +721,7 @@
                 "lineItemDimensionVolumeRule": "Position mit Volumen",
                 "lineItemDimensionWeightRule": "Position mit Gewicht",
                 "lineItemDimensionWidthRule": "Position mit Breite",
-                "lineItemGoodsTotalRule": "Gesamtanzahl aller Produkte",
+                "lineItemGoodsTotalRule": "Gesamtmenge der Produkte (Stück)",
                 "lineItemInCategoryRule": "Position in Kategorie",
                 "lineItemInProductStreamRule": "Position in dynamischer Produktgruppe",
                 "lineItemIsNewRule": "Position als \"neu\" markiert",
@@ -744,7 +745,7 @@
                 "lineItemStockRule": "Position mit verfügbarem Bestand",
                 "lineItemTagRule": "Position mit Tag",
                 "lineItemTaxationRule": "Position mit Steuersatz",
-                "lineItemTotalPriceRule": "Positionszwischensumme",
+                "lineItemTotalPriceRule": "Positionssumme (Menge × Preis)",
                 "lineItemUnitPriceRule": "Positionsstückpreis",
                 "lineItemVariantValueRule": "Position mit Variantenausprägung",
                 "lineItemWithQuantityRule": "Positionsanzahl",
@@ -1408,7 +1409,7 @@
                 "product-stream": "G D | &nbsp;",
                 "promotion-v2": "G P O | &nbsp;",
                 "property": "G P R | A P R",
-                "sales-channel": " | A S",
+                "sales-channel": "&nbsp; | A S",
                 "settings": "G S | &nbsp;",
                 "settings-payment": "G S P | &nbsp;",
                 "settings-rule": "G S R | A R",
@@ -5229,6 +5230,7 @@
         },
         "mediaLibrary": {
             "descriptionEmptyState": "Verwaltung von Medien.",
+            "labelButtonLoadAll": "Alle laden",
             "labelButtonLoadMore": "Weitere laden",
             "titleEmptyState": "Noch keine Medien vorhanden"
         },
@@ -7652,9 +7654,18 @@
             "agenticCommerce": {
                 "buttonResetTemplate": "Auf Standard zurücksetzen",
                 "errorLoadingTemplate": "Standard-Template konnte nicht geladen werden.",
+                "googleSettingsTitle": "Google-Einstellungen",
                 "integration": {
                     "feedUrlLabel": "Export-URL",
                     "providers": {
+                        "google": {
+                            "cardTitle": "Google-Merchant-Center-Verbindung",
+                            "introduction": {
+                                "description": "Dieser Verkaufskanal generiert einen XML-Produkt-Feed im Google-Merchant-Center-Format, damit Produkte in Google Shopping und in KI-Shopping-Oberflächen erscheinen können. Füge die unten stehende Export-URL im Merchant Center unter Einstellungen &rsaquo; Datenquellen als geplanten Dateiabruf hinzu.",
+                                "title": "How to: Einrichtung und Verbindung"
+                            },
+                            "stepByStep": "<li>Erstelle ein Merchant-Center-Konto unter <a href=\"https://merchants.google.com\" target=\"_blank\" rel=\"noopener noreferrer\">merchants.google.com</a> und verifiziere die URL deines Onlineshops</li><li>Öffne im Merchant Center <em>Einstellungen &rsaquo; Datenquellen</em> und klicke auf <em>Produktquelle hinzufügen</em></li><li>Wähle <em>Datei</em>, dann <em>Geplanten Abruf von einer URL hinzufügen</em>, und füge die Export-URL (unten) als Datei-URL ein</li><li>Stelle sicher, dass die Export-URL öffentlich erreichbar ist (ohne Authentifizierung)</li><li>Prüfe die <a href=\"https://support.google.com/merchants/answer/7052112\" target=\"_blank\" rel=\"noopener noreferrer\">Google-Produktdaten-Spezifikation</a> und passe die Attribute bei Bedarf an</li>"
+                        },
                         "open-ai": {
                             "cardTitle": "OpenAI-Verbindung",
                             "introduction": {
@@ -7671,6 +7682,7 @@
                 "tabIntegration": "Integration",
                 "templates": {
                     "template-label": {
+                        "google": "Google Shopping (XML)",
                         "open-ai": "OpenAI (JSONL)"
                     }
                 }
@@ -8891,11 +8903,12 @@
         },
         "general": {
             "buttonSave": "Speichern",
-            "helpText": "Für weitere Informationen schaue bitte in die <a target=\"_blank\" href=\"https://docs.shopware.com/de/shopware-6-de\">Dokumentation</a>",
+            "docsLabel": "Dokumentation",
+            "docsLink": "https://docs.shopware.com/de/shopware-6-de/einstellungen/mailer",
+            "helpText": "Für weitere Informationen schaue bitte in die",
             "mainMenuItemGeneral": "Mailer",
             "textHeadline": "Mailer"
         },
-        "helpText": "Für weitere Informationen schaue bitte in die <a target=\"_blank\" href=\"https://docs.shopware.com/de/shopware-6-de\">Dokumentation</a>",
         "mailer-configuration": {
             "agent": "Bevorzugter E-Mail-Agent",
             "card-title": "Mailer-Konfiguration",
@@ -9907,7 +9920,8 @@
             },
             "theme": {
                 "async": "Theme Kompilierung im Hintergrund ausführen",
-                "asyncTooltip": "Steuert ob die Kompilierung des Themes über die message queue oder direkt erfolgt."
+                "asyncTooltip": "Steuert ob die Kompilierung des Themes über die message queue oder direkt erfolgt.",
+                "cardTitle": "Theme-Konfiguration"
             }
         },
         "general": {
