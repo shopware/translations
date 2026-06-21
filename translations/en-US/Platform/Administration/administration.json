@@ -634,6 +634,9 @@
             "sanitizedHint": "Some of your inputs have been sanitized. Please double-check your content."
         },
         "sw-condition": {
+            "cartLineItemWithQuantity": {
+                "id": "Product"
+            },
             "condition": {
                 "AddAndCondition": "Add AND condition",
                 "AddOrCondition": "Add OR condition",
@@ -735,6 +738,7 @@
                     "label": "Item of type",
                     "product": "Product"
                 },
+                "lineItemPerItemQuantityRule": "Quantity per item",
                 "lineItemProductStates": "Item with product state",
                 "lineItemProductType": "Item with product type",
                 "lineItemPromotedRule": "Item is promoted",
@@ -797,6 +801,33 @@
                 "zipCodeWildcardPlaceholder": "Use \"*\" as a wildcard character..."
             },
             "dataErrorMessage": "Required fields not filled.",
+            "errors": {
+                "andMore": "+{count} more",
+                "prefix": "Invalid value:"
+            },
+            "field": {
+                "amount": "Amount",
+                "categoryIds": "Category",
+                "count": "Quantity",
+                "fromDate": "From",
+                "fromTime": "From",
+                "identifiers": "Selection",
+                "isAlwaysValid": "Always valid",
+                "isNet": "Net / Gross",
+                "isNumeric": "Comparison mode",
+                "operator": "Operator",
+                "quantity": "Quantity",
+                "renderedField": "Custom field",
+                "renderedFieldValue": "Value",
+                "selectedField": "Custom field",
+                "selectedFieldSet": "Custom field set",
+                "timezone": "Time zone",
+                "toDate": "Until",
+                "toTime": "Until",
+                "type": "Condition",
+                "useTime": "Time mode",
+                "zipCodes": "Postal code"
+            },
             "operator": {
                 "between": "Is between | Are between",
                 "empty": "Is empty | Are empty",
@@ -1758,6 +1789,21 @@
             "success": {
                 "buttonDownload": "Download",
                 "description": "Bulk edit finished.",
+                "documentGenerationFailed": "{count} document could not be generated. | {count} documents could not be generated.",
+                "documentGenerationSkipped": "{count} document was not generated because it already exists. | {count} documents were not generated because they already exist.",
+                "failedDocuments": {
+                    "columnDocumentType": "Document type",
+                    "columnOrder": "Order",
+                    "documentTypes": {
+                        "creditNote": "Credit note",
+                        "deliveryNote": "Delivery note",
+                        "invoice": "Invoice",
+                        "storno": "Cancellation invoice"
+                    },
+                    "downloadFileName": "bulk-edit-document-generation-result",
+                    "downloadHeadline": "Failed documents",
+                    "downloadResult": "Download result"
+                },
                 "instruction": "The bulk edit has been finished successfully.",
                 "messageNoDocumentsFound": "No documents found",
                 "title": "Bulk edit - Success"
@@ -3359,6 +3405,7 @@
             "buttonEdit": "Edit",
             "buttonSave": "Save",
             "labelCreatedByAdmin": "Created by admin",
+            "messageCustomerNotFound": "The customer could not be found. The customer may have been deleted.",
             "messageSaveError": "Customer could not be saved.",
             "messageSaveSuccess": "Customer \"{name}\" has been saved.",
             "notificationImitateCustomerErrorMessage": "There was an error logging in as a customer. Please make sure that opening popups windows are allowed.",
@@ -6371,6 +6418,7 @@
             "buttonSaveAndNew": "Save and create new",
             "buttonSaveDuplicate": "Save and duplicate",
             "errorMinMaxPurchase": "Could not save product, the min purchase quantity is larger than max purchase quantity.",
+            "messageProductNotFound": "The product could not be found. It may have been deleted.",
             "messageSaveSuccess": "Product \"{name}\" has been saved.",
             "messageSaveWarning": "No changes detected.",
             "messageUploadSuccess": "{count} of {total} files saved.",
@@ -6870,7 +6918,9 @@
         "detail": {
             "buttonOpenPreview": "Preview",
             "buttonSave": "Save",
+            "helpTextDisplayAsGroup": "When enabled, matching variants are grouped according to the product presentation setting. Disable to show them individually.",
             "labelDescription": "Description",
+            "labelDisplayAsGroup": "Keep matching variants grouped",
             "labelName": "Name",
             "messageSaveError": "Dynamic product group \"{name}\" could not be saved.",
             "messageSaveSuccess": "Dynamic product group \"{name}\" has been saved.",
@@ -7676,6 +7726,11 @@
             "activateDisable": "Please assign a theme before activating and saving the Sales Channel.",
             "agenticCommerce": {
                 "buttonResetTemplate": "Reset to default",
+                "deprecationBanner": {
+                    "installPlugin": "Install extension",
+                    "message": "The built-in Agentic Commerce feature will be removed in Shopware 6.8. Your Sales Channel keeps working for now. Install the \"Agentic Commerce\" extension to make sure nothing breaks.",
+                    "title": "Agentic Commerce is moving to an extension"
+                },
                 "errorLoadingTemplate": "Could not load default template.",
                 "googleSettingsTitle": "Google settings",
                 "integration": {
@@ -7709,6 +7764,58 @@
                         "open-ai": "OpenAI (JSONL)"
                     }
                 }
+            },
+            "agenticFiles": {
+                "actionDisable": "Disable",
+                "actionEdit": "Edit",
+                "actionEnable": "Enable",
+                "cardTitle": "Agentic files",
+                "columnDescription": "Description",
+                "columnEnabled": "Status",
+                "columnFileName": "File",
+                "description": "Manage AI-readable files served publicly for this Sales Channel, such as llms.txt and agents.md. They give assistants a concise overview of your shop and guidance for using public content.",
+                "descriptions": {
+                    "agentic": {
+                        "agents.md": "Context and operating guidance for agent clients. Use it to explain how agents should interact with this Sales Channel, which public resources they should prefer, and which actions need explicit user confirmation, such as checkout or account changes.",
+                        "llms.txt": "A Markdown index for AI assistants and retrieval tools. It summarizes what this Sales Channel offers and points to the most relevant public pages, so agents can understand the shop without crawling every page. It complements robots.txt and sitemaps, but does not guarantee that every AI service will use it."
+                    }
+                },
+                "detail": {
+                    "actionEditOverride": "Edit override",
+                    "actionEnablePublicPathPreview": "Enable this file first to preview the public path.",
+                    "actionPreviewPublicPath": "Preview",
+                    "backToList": "Back to agentic files",
+                    "columnSourceRole": "Role",
+                    "columnTemplate": "Template",
+                    "customNotesDescription": "Add custom notes to the end of this file without replacing the default content provided by Shopware or extensions.",
+                    "customNotesPlaceholder": "Add additional guidance for AI agents...",
+                    "customNotesTitle": "Custom Notes",
+                    "emptyState": "Agentic file not found",
+                    "hideContentSources": "Hide sources",
+                    "labelContentType": "Content type",
+                    "labelPublicPath": "Public path",
+                    "messagePreviewError": "Could not generate the preview.",
+                    "overrideModalApply": "Apply override",
+                    "overrideModalDescription": "Adjust the content contributed by this template for this Sales Channel. The change is stored as a customization and can be reset to the default template content at any time.",
+                    "overrideModalFieldLabel": "Content",
+                    "overrideModalReset": "Reset to default",
+                    "overrideModalTitle": "Edit {source}",
+                    "previewDescription": "This is the content currently served for this Sales Channel, including saved customizations.",
+                    "previewEmpty": "No preview content generated.",
+                    "previewTitle": "Generated preview",
+                    "roleBase": "Base template",
+                    "roleExtension": "Extension",
+                    "showContentSources": "Show sources",
+                    "templatesDescription": "Shows which templates contribute to the generated file and whether a template has been customized. Advanced users can override individual templates when Custom Notes are not enough.",
+                    "templatesTitle": "Content sources"
+                },
+                "emptyState": "No agentic files found",
+                "enabledState": {
+                    "custom": "Customized",
+                    "disabled": "Disabled",
+                    "enabled": "Enabled"
+                },
+                "messageLoadError": "Could not load agentic files."
             },
             "analytics": {
                 "cardTitle": "Google Analytics",
@@ -7958,6 +8065,7 @@
                 "titleEmptyStateTable": "No matching products found"
             },
             "serviceCategory": "Entry point footer service navigation",
+            "tabAgenticFiles": "Agentic files",
             "tabAnalytics": "Analytics",
             "tabBase": "General",
             "tabProductComparison": "Template",
@@ -8036,6 +8144,7 @@
             "buttonAddChannel": "Add Sales Channel",
             "buttonBack": "Back",
             "buttonShowDetails": "Show details",
+            "messageAgenticCommerce": "In order to create agentic commerce sales channels, please install the Agentic Commerce extension from the Shopware Store.",
             "messageNoProductStreams": "In order to use product comparisons a dynamic product group has to be created first.",
             "title": "Add Sales Channel",
             "titleDescription": "Information",
@@ -8234,6 +8343,7 @@
             "labelCheckVatIdFormat": "Validate tax ID format",
             "labelCompanyTaxFree": "Tax-free (B2B)",
             "labelCustomer": "Customer",
+            "labelDisplayStateInRegistration": "Show state/region",
             "labelForceStateInRegistration": "State/region required",
             "labelIsEu": "Member state of the European Union",
             "labelIso": "ISO2",
