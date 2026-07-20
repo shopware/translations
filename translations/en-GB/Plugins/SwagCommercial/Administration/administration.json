@@ -1409,12 +1409,22 @@
             "labelCompanyCard": "Company"
         },
         "detailOrder": {
-            "columnOrganizationUnit": "Organisation Units",
-            "columnOrganizationUnitEmpty": "No Unit"
+            "columnOrganizationUnit": "Organisation units",
+            "columnOrganizationUnitEmpty": "No unit"
         },
         "employee": {
+            "assigned": {
+                "buttonAssign": "Assign employee account",
+                "cardSubtitle": "Employees from other companies assigned to this company.",
+                "cardTitle": "Assigned employees",
+                "labelRole": "Assigned role",
+                "modalEmptyStateDescription": "There are no unassigned employees from other companies.",
+                "modalEmptyStateHeadline": "No employees",
+                "modalSubtitle": "All employees from other companies are listed here and can be assigned to this company.",
+                "modalTitle": "Add employee assignments"
+            },
             "buttonCreate": "Send invitation",
-            "defaultOrganizationUnit": "No Unit",
+            "defaultOrganizationUnit": "No unit",
             "descriptionDelete": "Are you sure you really want to delete the employee account of {name}?",
             "descriptionRevoke": "Are you sure you really want to revoke {name}'s invitation?",
             "helpTextSalesChannelInvitation": "Select a sales channel on which the employee should complete the registration. This field is disabled if the customer is bound to a sales channel.",
@@ -1422,7 +1432,7 @@
             "labelFirstName": "First name",
             "labelLanguage": "Language",
             "labelLastName": "Last name",
-            "labelOrganizationUnit": "Organisation Units",
+            "labelOrganizationUnit": "Organisation units",
             "labelRole": "Role",
             "labelRoleDefault": "(Default)",
             "labelSalesChannelInvitation": "Sales channel used for invitation",
@@ -1460,12 +1470,14 @@
             "customerTypePlaceholder": "Select customer type..."
         },
         "organizationUnit": {
-            "cardLabel": "Organisation Units",
-            "createNewListLabel": "Add unit",
+            "cardLabel": "Organisation units",
             "createdAtColumn": "Created at",
             "createdByColumn": "Created by",
+            "deleteWithSubUnitsTooltip": "Organisation units with sub organisation units can't be deleted",
             "employeeColumn": "Employee",
+            "manageOrganizationUnitsLabel": "Manage organisation units",
             "nameColumn": "Name",
+            "subUnitsColumn": "Sub organisation units",
             "sublineEmptyState": "Manage your customer's organisation units here",
             "tabLabel": "Company",
             "titleEmptyState": "No organisation units yet"
@@ -1507,8 +1519,8 @@
                             "budget": "Budget management",
                             "employee": "Employee management",
                             "order": "Orders",
-                            "organization_unit": "Organisation Units",
-                            "organization_unit_address": "Organisation Unit Addresses",
+                            "organization_unit": "Organisation units",
+                            "organization_unit_address": "Organisation unit addresses",
                             "pending_order": "Pending Order Management",
                             "quote": "Quote management",
                             "role": "Role management",
@@ -1662,7 +1674,7 @@
             },
             "nameColumn": "Name",
             "noOrganizationUnitSelected": "No unit",
-            "organizationUnitColumn": "Organisation Units",
+            "organizationUnitColumn": "Organisation units",
             "productCountColumn": "Products",
             "tabLabel": "Company",
             "totalPriceColumn": "Total"
@@ -2193,35 +2205,96 @@
         "unassignedEmployees": "Unassigned"
     },
     "sw-organization-unit": {
+        "create": {
+            "emptyState": {
+                "createAction": "Add organisation unit",
+                "description": "Manage organisation units here.",
+                "headline": "No organisation units"
+            }
+        },
         "detail": {
             "addressErrorNotification": "Please ensure this organisational unit has at least one shipping and one billing address",
             "addresses": {
                 "addAdresses": "Add selected",
                 "billing": "Billing address",
+                "billingInheritedHelpText": "Uses the parent organisation unit's billing address by default. Disable inheritance to edit this setting.",
+                "billingRootHelpText": "Sub organisation units with inheritance enabled automatically use these billing addresses.",
                 "columns": {
                     "city": "City",
                     "company": "Company",
                     "defaultAddress": "Default address",
-                    "firstName": "First Name",
-                    "lastName": "Last Name",
+                    "firstName": "First name",
+                    "lastName": "Last name",
                     "street": "Street",
                     "zipcode": "Postal Code"
                 },
-                "default": "Default",
                 "messageEmptyAddress": "No addresses",
                 "modalTitle": "Add address",
                 "newAddress": "Add address",
                 "searchPlaceholder": "Search",
                 "setDefault": "Set as default",
                 "shipping": "Shipping address",
+                "shippingInheritedHelpText": "Uses the parent organisation unit's shipping address by default. Disable inheritance to edit this setting.",
+                "shippingRootHelpText": "Sub organisation units with inheritance enabled automatically use these shipping addresses.",
                 "tab": "Addresses",
                 "title": "{addressType} Addresses"
+            },
+            "deleteErrorNotification": "Error while deleting organisation unit",
+            "deleteModal": {
+                "description": "Are you sure you want to delete the organisation unit \"{name}\"? This action cannot be undone.",
+                "title": "Delete organisation unit"
+            },
+            "deleteSuccessNotification": "Organisation unit successfully deleted",
+            "employees": {
+                "assignEmployees": "Assign employees",
+                "assignSuccessNotification": "Employees successfully assigned",
+                "columns": {
+                    "accountStatus": "Account status",
+                    "company": "Company",
+                    "email": "E-mail",
+                    "firstName": "First name",
+                    "lastName": "Last name",
+                    "role": "Role"
+                },
+                "emptyState": "No employees assigned",
+                "emptyStateDescription": "There are no employees added to this organisation unit.",
+                "emptyStateHeadline": "No employees yet",
+                "manageEmployees": "Manage employees",
+                "modal": {
+                    "emptyStateDescription": "There are no unassigned employees in this company.",
+                    "emptyStateHeadline": "No employees",
+                    "onlyActiveEmployees": "Only active employees can be assigned to an organisation unit.",
+                    "openEmployeeDetail": "Open employee detail",
+                    "searchEmptyStateHeadline": "No employees found",
+                    "searchPlaceholder": "Search",
+                    "subtitle": "Only active employees can be assigned to an organisation unit.",
+                    "title": "Add employee assignments"
+                },
+                "noRole": "No role",
+                "removeModal": {
+                    "description": "Are you sure you want to remove \"{name}\" from this organisation unit?",
+                    "title": "Remove employee assignment"
+                },
+                "searchEmptyStateDescription": "Try a different search term.",
+                "searchEmptyStateHeadline": "No matching employees",
+                "searchPlaceholder": "Search",
+                "status": {
+                    "active": "Active",
+                    "inactive": "Inactive",
+                    "invitationExpired": "Invitation expired",
+                    "invitationSent": "Invitation sent"
+                },
+                "title": "Employees"
             },
             "errorNotification": "Error while saving organisation unit",
             "general": {
                 "field": {
                     "createdAt": {
                         "label": "Created at"
+                    },
+                    "description": {
+                        "label": "Description",
+                        "placeholder": "Enter organisation unit description"
                     },
                     "employees": {
                         "label": "Employees",
@@ -2235,16 +2308,20 @@
                         "placeholder": "Enter organisation unit name"
                     },
                     "paymentMethod": {
+                        "inheritedHelpText": "Uses the parent organisation unit's payment methods by default. Disable inheritance to edit this setting.",
                         "label": "Payment methods",
-                        "placeholder": "Select a payment method"
+                        "placeholder": "Select a payment method",
+                        "rootHelpText": "Sub organisation units with inheritance enabled automatically use these payment methods."
                     },
                     "shippingMethod": {
+                        "inheritedHelpText": "Uses the parent organisation unit's shipping methods by default. Disable inheritance to edit this setting.",
                         "label": "Shipping methods",
-                        "placeholder": "Select a shipping method"
+                        "placeholder": "Select a shipping method",
+                        "rootHelpText": "Sub organisation units with inheritance enabled automatically use these shipping methods."
                     }
                 },
                 "tab": "General",
-                "title": "General Information"
+                "title": "General information"
             },
             "newTitle": "New organisation unit",
             "orders": {
@@ -2259,7 +2336,23 @@
                 "tab": "Shopping list",
                 "title": "Shopping list"
             },
+            "sidebar": {
+                "emptyState": "There aren’t any organisation units yet.",
+                "titleFallback": "Organisation units"
+            },
+            "subOrganizationUnits": {
+                "employeeCount": "{count} employee | {count} employees",
+                "open": "Open {name}",
+                "subUnitCount": "{count} sub unit | {count} sub units",
+                "title": "Sub organisation units"
+            },
             "successNotification": "Organisation unit successfully saved"
+        },
+        "general": {
+            "actions": {
+                "createAfter": "New organisation unit after",
+                "createSub": "New sub-organisation unit"
+            }
         }
     },
     "sw-privileges": {
@@ -2271,7 +2364,7 @@
                 "label": "Budget management"
             },
             "b2b_components_organization": {
-                "label": "Organisation Units"
+                "label": "Organisation units"
             },
             "b2b_components_shopping_list": {
                 "label": "Shopping List"
@@ -2534,7 +2627,7 @@
             "buttonWithdrawQuote": "Withdraw quote",
             "commentCustomerDeclinedQuote": "Declined",
             "commentCustomerRequestQuote": "Requested",
-            "commentTitle": "Message history",
+            "commentTitle": "History",
             "commentTitleHelpText": "View the message history and communication between you and the customer.",
             "createdAtColumn": "Created at",
             "currentDocument": "Latest version",
@@ -2544,7 +2637,7 @@
             "generatedDocument": "Generate and attach quote document",
             "gridHeaderTax": "VAT",
             "gridSearch": "Search...",
-            "gridTitle": "Shopping cart",
+            "gridTitle": "Items",
             "historyAddedLabel": "Added",
             "historyOrderCreatedLabel": "Order created",
             "historySentQuoteValue": "Quote #{quoteNumber}",
@@ -2572,7 +2665,7 @@
             "labelQuoteGrandTotal": "Grand total (gross)",
             "labelQuoteLastSentAt": "Last quote sent at",
             "labelQuoteLevelDiscountType": "Quote-level discount type",
-            "labelRequestedAt": "Created at",
+            "labelRequestedAt": "Requested at",
             "labelState": "Status",
             "labelSubtotalAllItem": "Subtotal (net)",
             "labelSubtotalAllItems": "Subtotal of all items (net)",
@@ -2630,7 +2723,7 @@
             "textNewQuote": "New quote",
             "textQuoteCancel": "Cancel this quote to stop the quoting process.<br/>The quote is not deleted and remains visible to both customer and admin.",
             "textQuoteLevelDiscountHint": "Discount will be applied to the whole quote.",
-            "titleDocument": "Document",
+            "titleDocument": "Documents",
             "titleDraftDeletion": "Delete draft",
             "titleQuote": "Quote #{quoteNumber}",
             "titleQuoteCancel": "Cancellation",
@@ -2714,9 +2807,9 @@
             "gridHeaderLastQuoteSentAt": "Last quote sent at",
             "gridHeaderLastUpdate": "Last updated",
             "gridHeaderOrderNumber": "Order number",
-            "gridHeaderQuoteCreatedAt": "Quoted at",
+            "gridHeaderQuoteCreatedAt": "Created at",
             "gridHeaderQuotePrice": "Grand total",
-            "gridHeaderRequestedAt": "Created at",
+            "gridHeaderRequestedAt": "Requested at",
             "gridHeaderStatus": "Status",
             "gridHeaderSubmittedBy": "Customer",
             "gridHeaderTags": "Tags",

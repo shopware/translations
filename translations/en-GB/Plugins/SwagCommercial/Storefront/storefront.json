@@ -356,6 +356,17 @@
         "account": {
             "orderedBy": "Ordered by:"
         },
+        "context": {
+            "actingAs": "Acting for",
+            "companyLabel": "Company",
+            "companyPlaceholder": "Select company...",
+            "continue": "Continue",
+            "modalBanner": "You are assigned to multiple companies. Please select the company you want to act on behalf of.",
+            "modalTitle": "Select company",
+            "setDefault": "Set as default company",
+            "switchAction": "Switch company",
+            "switchActionWithContext": "Switch company, current context: %context%"
+        },
         "employeeCreate": {
             "labelEmail": "Email address",
             "labelFirstName": "First name",
@@ -416,7 +427,7 @@
             "tableHeaderFirstName": "First name",
             "tableHeaderLastName": "Last name",
             "tableHeaderName": "Name",
-            "tableHeaderOrganizationUnit": "Organisation unit",
+            "tableHeaderOrganizationUnit": "Organisation units",
             "tableHeaderRole": "Role",
             "tableHeaderStatus": "Status",
             "title": "Employees"
@@ -447,9 +458,11 @@
         },
         "organizationUnit": {
             "labelOrganizationUnit": "Organisation unit",
-            "noOrganizationUnitSelected": "No Unit",
+            "noOrganizationUnitSelected": "No unit",
             "organizationUnitConfirmModalText": "Do you really want to remove <strong>%name%</strong> from <strong>%unit%</strong>. <br />This will remove the current permissions of your employee?",
             "organizationUnitConfirmModalTitle": "Remove organisation unit assignment",
+            "organizationUnitPlaceholder": "Search for organisation units",
+            "organizationUnitRemoveModalText": "You are about to remove <strong>%name%</strong> from the following organisation units. This will remove their permissions in those units:",
             "removeAndSaveButton": "Remove and save"
         },
         "overview": {
@@ -477,8 +490,8 @@
                 "collapseMenuLabel": "Collapse menu for ",
                 "employee": "Employee management",
                 "order": "Orders",
-                "organization_unit": "Organisation Units",
-                "organization_unit_address": "Organisation Unit Addresses",
+                "organization_unit": "Organisation units",
+                "organization_unit_address": "Organisation unit addresses",
                 "pending_order": "Pending Order Management",
                 "quote": "Quote management",
                 "role": "Role management",
@@ -602,6 +615,7 @@
         }
     },
     "error": {
+        "ORGANIZATION_UNITS__HAS_CHILDREN": "The organisation unit cannot be deleted because it still contains subordinate organisation units. Please delete or move them first.",
         "VIOLATION::AT_LEAST_ONE_CHOICE": "Need to add at least one %option%",
         "VIOLATION::ENTITY_EXISTS": "The technical name already exists. Please choose a different technical name."
     },
@@ -653,7 +667,7 @@
         "title": "What are you looking for?"
     },
     "order": {
-        "organizationLabel": "Organisation Unit"
+        "organizationLabel": "Organisation unit"
     },
     "orderApproval": {
         "flashMessage": {
@@ -668,33 +682,54 @@
     },
     "organization-unit": {
         "address": {
-            "billing": "Billing",
             "markAsOrganizationBillingAddress": "Mark as organisation billing address",
             "markAsOrganizationShippingAddress": "Mark as organisation shipping address",
             "organizationAddressLabel": "Organisation address",
             "removeBillingAddress": "Remove %name% from the list of organisations who can access billing addresses",
-            "removeShippingAddress": "Remove %name% from the list of organisations who can access shipping addresses",
-            "shipping": "Shipping"
+            "removeShippingAddress": "Remove %name% from the list of organisations who can access shipping addresses"
+        },
+        "context": {
+            "modalIntroSingleCompany": "You are assigned to multiple organisation units. Please select the organisation unit you want to access.",
+            "modalTitleSingleCompany": "Select %company% organisation unit",
+            "organizationHelp": "All organisation units you are assigned to are listed here.",
+            "organizationLabel": "Organisation unit",
+            "organizationPlaceholder": "Please select an organisation unit",
+            "setDefaultCompanyAndOrganization": "Set as default company and organisation unit",
+            "setDefaultOrganization": "Set as default organisation unit"
         },
         "create": {
             "addressPlaceholder": "Search for addresses",
             "billingAddressLabel": "Allow this organisation access to billing addresses",
-            "billingAddressTitle": "Billing Addresses",
+            "billingAddressTitle": "Billing addresses",
+            "billingAddressesDisinheritTitle": "Sub organisation units with inheritance enabled automatically use these billing addresses.",
+            "billingAddressesInheritTitle": "Uses the parent organisation unit's billing address by default. Disable inheritance to edit this setting.",
             "defaultAddress": "Default",
-            "defaultButtonLabel": "Use as default",
-            "employeesLabel": "Assign Employees",
+            "descriptionLabel": "Description",
+            "descriptionPlaceholder": "Enter organisation unit description",
+            "employeesLabel": "Assign employees",
             "employeesPlaceholder": "Search for employees",
-            "generalInformation": "General Information",
+            "generalInformation": "General information",
+            "inheritanceToggleLabel": "Inherit %section%",
             "nameLabel": "Organisation unit name",
             "namePlaceholder": "Enter organisation unit name",
             "noResults": "No results found",
+            "parentClearLabel": "Remove the parent organisation unit selection",
+            "parentLabel": "Parent organisation unit",
+            "parentSearchPlaceholder": "Search for a parent organisation unit",
+            "paymentMethodsDisinheritTitle": "Sub organisation units with inheritance enabled automatically use these payment methods.",
+            "paymentMethodsInheritTitle": "Uses the parent organisation unit's payment methods by default. Disable inheritance to edit this setting.",
             "paymentMethodsLabel": "Allow this organisation access to payment methods",
-            "paymentMethodsTitle": "Payment Methods",
+            "paymentMethodsTitle": "Payment methods",
             "saveButtonLabel": "Create organisation unit",
             "shippingAddressLabel": "Allow this organisation access to shipping addresses",
-            "shippingAddressTitle": "Shipping Addresses",
+            "shippingAddressTitle": "Shipping addresses",
+            "shippingAddressesDisinheritTitle": "Sub organisation units with inheritance enabled automatically use these shipping addresses.",
+            "shippingAddressesInheritTitle": "Uses the parent organisation unit's shipping address by default. Disable inheritance to edit this setting.",
+            "shippingMethodsDisinheritTitle": "Sub organisation units with inheritance enabled automatically use these shipping methods",
+            "shippingMethodsInheritTitle": "Uses the parent organisation unit's shipping methods by default. Disable inheritance to edit this setting.",
             "shippingMethodsLabel": "Allow this organisation access to shipping methods",
-            "shippingMethodsTitle": "Shipping Methods",
+            "shippingMethodsTitle": "Shipping methods",
+            "subUnitLabel": "This is a sub organisation unit",
             "title": "Create new organisation unit"
         },
         "createButton": "Create unit",
@@ -704,21 +739,18 @@
         "emptyDescription": "Create a new organisation unit.",
         "emptyTitle": "No organisation units yet?",
         "listing": {
-            "emptyState": "You have not added any organisation units yet.",
+            "deleteWithSubUnitsTooltip": "Organisation units with sub organisation units can’t be deleted",
             "removeMessage": "Do you really want to delete this organisation unit?<br/>This action cannot be reversed.",
             "removeTitle": "Remove organisation unit",
             "searchPlaceholder": "Search organisation unit...",
             "tableHeaderAction": "Actions",
             "tableHeaderEmployee": "Employees",
-            "tableHeaderName": "Organisation Units"
+            "tableHeaderName": "Name",
+            "tableHeaderSubUnits": "Sub units"
         },
         "noResultsFound": "No results found",
-        "organizationTitle": "Organisation Units",
-        "paging": {
-            "itemsPerPage": "Items per page"
-        },
-        "removeEmployee": "Remove %name% from the list of assigned employees",
-        "roleAndOrganization": "Organisation & Roles"
+        "organizationTitle": "Organisation units",
+        "removeEmployee": "Remove %name% from the list of assigned employees"
     },
     "pendingOrders": {
         "approveModal": {
@@ -870,13 +902,13 @@
         "details": {
             "accepted": "Accepted",
             "cancelled": "Cancelled",
-            "commentTitle": "Message history",
+            "commentTitle": "History",
             "commentTitleHelpText": "When the quote status changes, the history is updated.",
-            "created": "Quoted at",
+            "created": "Created at",
             "customerComment": "You",
             "declined": "Declined",
             "draft": "Draft",
-            "expirationDate": "Valid until",
+            "expirationDate": "Expiry date",
             "expired": "Expired",
             "grandTotalGross": "Grand total (gross)",
             "historyAddedLabel": "Added:",
@@ -911,7 +943,7 @@
             "reopen": "Reopen",
             "replied": "Replied",
             "request_sent": "Request sent",
-            "requestedAt": "Created at",
+            "requestedAt": "Requested at",
             "requestedBy": "Created by",
             "response_received": "Response sent",
             "response_sent": "Response sent",
@@ -928,7 +960,7 @@
         },
         "itemTable": {
             "columnName": "Product",
-            "columnQuantity": "Quantity",
+            "columnQuantity": "Amount",
             "columnQuotedPrice": "Quoted price",
             "columnRequestedPrice": "Requested price",
             "columnTotal": "Subtotal",
@@ -1068,7 +1100,7 @@
         "requestChangesSendButton": "Send",
         "requestQuotePromotionCodeError": "The promotion code for the quotes is not currently supported.",
         "requestQuoteSuccess": "Thank you for your request! A draft quote has been created with the number: #quoteNumber",
-        "searchPlaceholder": "Enter quote number to search...",
+        "searchPlaceholder": "Search...",
         "sendCommentPlaceholderField": "Send a comment...",
         "sendQuoteRequestSuccess": "Your quote request has been sent successfully.",
         "sendRequestLink": "Send quote request",
