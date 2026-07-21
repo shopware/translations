@@ -299,6 +299,7 @@
             "quote_admin_requested": "Pieprasīts citāts admin",
             "quote_change_request": "Piedāvājuma maiņas pieprasījums",
             "quote_requested": "Pieprasīts piedāvājums",
+            "quote_updated": "piedāvājums atjaunināts",
             "state_enter_b2b_components_pending_order_state_approved": "Gaidāms pasūtījums apstiprināts",
             "state_enter_b2b_components_pending_order_state_declined": "Gaidāmais pasūtījums noraidīts",
             "state_enter_b2b_components_pending_order_state_ordered": "Gaidāms pasūtījums pasūtīts",
@@ -1412,6 +1413,16 @@
             "columnOrganizationUnitEmpty": "Nav vienības"
         },
         "employee": {
+            "assigned": {
+                "buttonAssign": "Piešķiriet darbinieka kontu",
+                "cardSubtitle": "Darbinieki no citiem uzņēmumiem, kas piešķirti šim uzņēmumam.",
+                "cardTitle": "Piešķirtie darbinieki",
+                "labelRole": "Piešķirtā loma",
+                "modalEmptyStateDescription": "Nav nekādu nepiešķirtu darbinieku no citiem uzņēmumiem.",
+                "modalEmptyStateHeadline": "Nav darbinieku",
+                "modalSubtitle": "Visi darbinieki no citiem uzņēmumiem ir uzskaitīti šeit, un tos var norīkot šim uzņēmumam.",
+                "modalTitle": "Pievienojiet darbinieku uzdevumus"
+            },
             "buttonCreate": "Nosūtīt ielūgumu",
             "defaultOrganizationUnit": "Nav vienības",
             "descriptionDelete": "Vai tiešām vēlaties dzēst darbinieka kontu {name}?",
@@ -1460,11 +1471,13 @@
         },
         "organizationUnit": {
             "cardLabel": "Organizācijas vienība",
-            "createNewListLabel": "Pievienot vienību",
             "createdAtColumn": "Izveidots",
             "createdByColumn": "Izveidoja",
+            "deleteWithSubUnitsTooltip": "Organizācijas vienības ar apakšorganizācijas vienībām nevar dzēst",
             "employeeColumn": "Darbinieks",
+            "manageOrganizationUnitsLabel": "Organizācijas vienību pārvaldīšana",
             "nameColumn": "Nosaukums",
+            "subUnitsColumn": "Apakšorganizācijas vienības",
             "sublineEmptyState": "Pārvaldiet klienta organizācijas vienības šeit",
             "tabLabel": "Uzņēmums",
             "titleEmptyState": "Pagaidām nav organizācijas vienības"
@@ -1584,11 +1597,15 @@
                             "quote": {
                                 "accept": "Var pieņemt piedāvājumu",
                                 "decline": "Var noraidīt citātu",
+                                "delete": {
+                                    "draft": "Dzēst citātu melnrakstus"
+                                },
                                 "read": {
                                     "all": "Var apskatīt visus citātus"
                                 },
                                 "request": "Var pieprasīt piedāvājumu",
-                                "request_change": "Var pieprasīt cenu maiņu"
+                                "request_change": "Var pieprasīt cenu maiņu",
+                                "request_line_item_price": "Pieprasiet cenas piedāvājuma līnijas cenas maiņu"
                             },
                             "role": {
                                 "create": "Var izveidot lomas",
@@ -1719,7 +1736,8 @@
             "requested": "Pieprasīts",
             "return": "Atgriešanās",
             "status": "Statuss",
-            "subscription": "Abonements"
+            "subscription": "Abonements",
+            "updated": "piedāvājums atjaunināts"
         }
     },
     "sw-flow-call-webhook": {
@@ -2187,11 +2205,20 @@
         "unassignedEmployees": "Nepiešķirts"
     },
     "sw-organization-unit": {
+        "create": {
+            "emptyState": {
+                "createAction": "Pievienot organizācijas vienību",
+                "description": "Pārvaldiet organizācijas vienības šeit.",
+                "headline": "Nav organizācijas vienību"
+            }
+        },
         "detail": {
             "addressErrorNotification": "Lūdzu, pārliecinieties, ka šai organizatoriskajai vienībai ir vismaz viena piegādes un viena norēķinu adrese",
             "addresses": {
                 "addAdresses": "Pievienot atlasīto",
                 "billing": "Norēķinu adrese",
+                "billingInheritedHelpText": "Pēc noklusējuma izmanto mātesuzņēmuma vienības norēķinu adresi. Atspējojiet mantojumu, lai rediģētu šo iestatījumu.",
+                "billingRootHelpText": "Apakšorganizācijas vienības ar iespējotu mantojumu automātiski izmanto šīs norēķinu adreses.",
                 "columns": {
                     "city": "Pilsēta",
                     "company": "Uzņēmums",
@@ -2201,21 +2228,73 @@
                     "street": "Iela",
                     "zipcode": "Pasta indekss"
                 },
-                "default": "Pēc noklusējuma",
                 "messageEmptyAddress": "Nav adreses",
                 "modalTitle": "Pievienot adresi",
                 "newAddress": "Pievienot adresi",
                 "searchPlaceholder": "Meklēt",
                 "setDefault": "Iestatīt kā noklusējumu",
                 "shipping": "Piegādes adrese",
+                "shippingInheritedHelpText": "Pēc noklusējuma izmanto mātesorganizācijas vienības piegādes adresi. Atspējojiet mantojumu, lai rediģētu šo iestatījumu.",
+                "shippingRootHelpText": "Apakšorganizācijas vienības ar iespējotu mantojumu automātiski izmanto šīs piegādes adreses.",
                 "tab": "Adreses",
                 "title": "{addressType} Adreses"
+            },
+            "deleteErrorNotification": "Kļūda, dzēšot organizācijas vienību",
+            "deleteModal": {
+                "description": "Vai tiešām vēlaties dzēst organizācijas vienību \"{name}“? Šo darbību nevar atsaukt.",
+                "title": "Dzēst organizācijas vienību"
+            },
+            "deleteSuccessNotification": "Organizācijas vienība veiksmīgi izdzēsta",
+            "employees": {
+                "assignEmployees": "Piešķirt darbiniekus",
+                "assignSuccessNotification": "Darbinieki veiksmīgi norīkoti",
+                "columns": {
+                    "accountStatus": "Konta statuss",
+                    "company": "Uzņēmums",
+                    "email": "E-pasts",
+                    "firstName": "Vārds",
+                    "lastName": "Uzvārds",
+                    "role": "Loma"
+                },
+                "emptyState": "Nav norīkots darbinieks",
+                "emptyStateDescription": "Šai organizācijas vienībai nav pievienoti darbinieki.",
+                "emptyStateHeadline": "Pagaidām nav darbinieku",
+                "manageEmployees": "Pārvaldiet darbiniekus",
+                "modal": {
+                    "emptyStateDescription": "Šajā uzņēmumā nav nekādu nepiešķirtu darbinieku.",
+                    "emptyStateHeadline": "Nav darbinieku",
+                    "onlyActiveEmployees": "Organizācijas vienībā var norīkot tikai aktīvus darbiniekus.",
+                    "openEmployeeDetail": "Atveriet darbinieku detaļas",
+                    "searchEmptyStateHeadline": "Kontaktpersonas nav atrastas",
+                    "searchPlaceholder": "Meklēt",
+                    "subtitle": "Organizācijas vienībā var norīkot tikai aktīvus darbiniekus.",
+                    "title": "Pievienojiet darbinieku uzdevumus"
+                },
+                "noRole": "Nav lomas",
+                "removeModal": {
+                    "description": "Vai tiešām vēlaties noņemt \"{name}\" no šīs organizācijas vienības?",
+                    "title": "Noņemt darbinieku uzdevumu"
+                },
+                "searchEmptyStateDescription": "Izmēģiniet citu meklējamo terminu.",
+                "searchEmptyStateHeadline": "Nav atbilstošu darbinieku",
+                "searchPlaceholder": "Meklēt",
+                "status": {
+                    "active": "Aktīvs",
+                    "inactive": "Neaktīvs",
+                    "invitationExpired": "Uzaicinājums beidzās",
+                    "invitationSent": "Ielūgums nosūtīts"
+                },
+                "title": "Darbinieki"
             },
             "errorNotification": "Kļūda, saglabājot organizācijas vienību",
             "general": {
                 "field": {
                     "createdAt": {
                         "label": "Izveidots"
+                    },
+                    "description": {
+                        "label": "Apraksts",
+                        "placeholder": "Ievadiet organizācijas vienības aprakstu"
                     },
                     "employees": {
                         "label": "Darbinieki",
@@ -2229,12 +2308,16 @@
                         "placeholder": "Ievadiet organizācijas vienības nosaukumu"
                     },
                     "paymentMethod": {
+                        "inheritedHelpText": "Pēc noklusējuma izmanto mātesorganizācijas vienības maksājumu veidus. Atspējojiet mantojumu, lai rediģētu šo iestatījumu.",
                         "label": "Maksājuma veidi",
-                        "placeholder": "Izvēlieties maksājuma veidu"
+                        "placeholder": "Izvēlieties maksājuma veidu",
+                        "rootHelpText": "Apakšorganizācijas vienības ar iespējotu mantojumu automātiski izmanto šos maksājumu veidus."
                     },
                     "shippingMethod": {
+                        "inheritedHelpText": "Pēc noklusējuma izmanto mātes organizācijas vienības piegādes metodes. Atspējojiet mantojumu, lai rediģētu šo iestatījumu.",
                         "label": "Piegādes veidi",
-                        "placeholder": "Izvēlieties piegādes veidu"
+                        "placeholder": "Izvēlieties piegādes veidu",
+                        "rootHelpText": "Apakšorganizācijas vienības ar iespējotu mantojumu automātiski izmanto šīs piegādes metodes."
                     }
                 },
                 "tab": "Vispārīgi",
@@ -2253,7 +2336,23 @@
                 "tab": "Iepirkumu saraksts",
                 "title": "Iepirkumu saraksts"
             },
+            "sidebar": {
+                "emptyState": "Pagaidām nav nevienas organizācijas vienības.",
+                "titleFallback": "Organizācijas vienības"
+            },
+            "subOrganizationUnits": {
+                "employeeCount": "{count} darbinieks | {count} darbinieki",
+                "open": "Atvērt {name}",
+                "subUnitCount": "{count} apakšvienība | {count} apakšvienības",
+                "title": "Apakšorganizācijas vienības"
+            },
             "successNotification": "Organizācijas vienība veiksmīgi saglabāta"
+        },
+        "general": {
+            "actions": {
+                "createAfter": "Jauna organizācijas vienība pēc",
+                "createSub": "Jauna apakšorganizācijas vienība"
+            }
         }
     },
     "sw-privileges": {
@@ -2450,6 +2549,7 @@
                     "company": "Uzņēmums",
                     "customerNumber": "Klienta numurs",
                     "email": "E-pasta adrese",
+                    "orderNumber": "Pasūtījuma numurs",
                     "quoteNumber": "Citāta numurs"
                 },
                 "spatial_scene": {
@@ -2459,15 +2559,50 @@
         }
     },
     "sw-quote": {
+        "catalogModal": {
+            "actionAddToQuote": "Pievienot citātam",
+            "actionShowProduct": "Rādīt produktu",
+            "alreadyInQuoteTooltip": "Jau pievienots citātam. Rediģējiet vai noņemiet to citātu vienumu pārskatā.",
+            "columnAlreadyInQuote": "Jau citātā",
+            "columnAvailable": "Pieejams",
+            "columnInStock": "Ir krājumā",
+            "columnItem": "Vienība",
+            "columnProductNumber": "Produkta numurs",
+            "columnProductPriceGross": "Produkta cena (bruto)",
+            "columnProductPriceNet": "Produkta cena (neto)",
+            "emptyStateDescription": "Rediģējiet filtrus vai meklēšanas vārdus, lai atrastu rezultātus.",
+            "emptyStateTitle": "Nav atrasta prece",
+            "filterCategory": "Kategorija",
+            "filterDynamicProductGroup": "Dinamiskā produkta grupa",
+            "filterManufacturer": "Ražotājs",
+            "filterOnlyInStock": "Rādīt tikai preces noliktavā",
+            "filterPrice": "Cena",
+            "filterPriceFrom": "Sākuma cena",
+            "filterPriceTo": "Gala cena",
+            "filterProperties": "Īpašības",
+            "filterSearchPlaceholder": "Meklēt produkta nosaukumu vai numuru",
+            "filterSelectPlaceholder": "Atlasīt {entity}",
+            "filterSelectPropertyValues": "Atlasīt {name}",
+            "filterTags": "Tagi",
+            "filtersTitle": "Filtri",
+            "outOfStockTooltip": "Šī prece nav noliktavā.",
+            "productBundleTooltip": "Produktu komplektus nevar pievienot piedāvājumam.",
+            "resetAllFilters": "Atiestatīt visu",
+            "showSelectedFirst": "Vispirms rādīt atlasītos produktus",
+            "singleItemAdded": "Citātam pievienots viens vienums",
+            "smallImage": "Mazs attēls",
+            "title": "Pievienot vienumus priekš #{quoteNumber}"
+        },
         "create": {
-            "buttonContinue": "Turpināt",
             "buttonSaveAsDraft": "Izveidot melnrakstu",
             "detailsHeader": {
                 "descriptionInfo": "Šim klientam būs piekļuve B2B komponentu piedāvājumu pārvaldībai.",
                 "titleInfo": "Pieejama piedāvājumu pārvaldība"
             },
+            "helpTextAccountType": "Citātu pārvaldībai klienta tipam jābūt “komerciālam”.",
             "selectSalesChannel": {
                 "alert": "Tā kā atlasītais pārdošanas kanāls nosaka pieejamos produktus un opcijas, mainot to, tiks noņemti visi atlasītie produkti un atiestatītas visas konfigurētās opcijas.",
+                "alertTitle": "Pārdošanas kanāls nosaka pieejamos produktus un iespējas",
                 "buttonSelect": "Izvēlēties",
                 "description": "Izvēlētajam klientam ir piekļuve vairākiem pārdošanas kanāliem. Lūdzu, izvēlieties pārdošanas kanālu, kuru vēlaties izmantot šim piedāvājumam.",
                 "label": "Izmantojiet pārdošanas kanālu",
@@ -2482,93 +2617,144 @@
         "detail": {
             "buttonAddCustomItems": "Pievienojiet pielāgotu vienumu",
             "buttonAddItems": "Pievienot vienumu",
+            "buttonDraftDeletion": "Dzēst piedāvājumu",
+            "buttonEditItems": "Rediģēt vienumus",
+            "buttonQuoteCancel": "Atcelt piedāvājumu",
             "buttonReopenQuote": "Atkārtoti atvērt citātu",
             "buttonSend": "Sūtīt",
-            "buttonSendMessageOnly": "Sūtīt tikai ziņojumu",
             "buttonSendQuote": "Nosūtīt piedāvājumu",
+            "buttonViewItems": "Skatīt vienumus",
+            "buttonWithdrawQuote": "Atsaukt piedāvājumu",
             "commentCustomerDeclinedQuote": "Noraidīts citāts",
             "commentCustomerRequestQuote": "Pieprasītais piedāvājums",
-            "commentDeclinedQuote": "Samazinājās",
-            "commentEmployeeType": "Darbinieks",
-            "commentExpiredQuote": "Beidzies",
-            "commentMerchantSent": "Tirgotājs nosūtīts",
-            "commentOpenedQuote": "Sāksim sarunu",
-            "commentReopenedQuote": "Atkārtoti atvērts",
-            "commentRepiedQuote": "Nosūtīts",
             "commentTitle": "Ziņojumu vēsture",
-            "commentType": "Klients",
-            "contextMenuRemove": "Noņemt no citāta",
-            "contextMenuShowProduct": "Rādīt produktu",
+            "commentTitleHelpText": "Skatiet ziņojumu vēsturi un saziņu starp jums un klientu.",
             "createdAtColumn": "Izveidots",
             "currentDocument": "Pašreizējais",
+            "currentDraft": "Pašreizējais projekts",
             "customDocument": "Pievienojiet pielāgotu dokumentu",
             "downloadDocument": "Lejupielādēt dokumentu",
             "generatedDocument": "Dokumenta ģenerēšana un pievienošana",
-            "gridHeaderAmount": "Skaits",
-            "gridHeaderDiscount": "Atlaide",
-            "gridHeaderItem": "Vienība",
-            "gridHeaderProductPriceGross": "Produkta cena (bruto)",
-            "gridHeaderProductPriceNet": "Produkta cena (neto)",
-            "gridHeaderPurchasePriceGross": "Pirkuma cena (bruto)",
-            "gridHeaderPurchasePriceNet": "Pirkuma cena (bruto)",
-            "gridHeaderQuoteSubtotal": "Kotācijas starpsumma (neto)",
-            "gridHeaderSubtotalGross": "Starpsumma (bruto)",
-            "gridHeaderSubtotalNet": "Starpsumma (neto)",
             "gridHeaderTax": "PVN",
-            "gridHeaderUnitPriceGross": "Vienības cena (bruto)",
-            "gridHeaderUnitPriceNet": "Vienības cena (neto)",
             "gridSearch": "Meklēt...",
             "gridTitle": "Vienības",
+            "historyAddedLabel": "Pievienots",
+            "historyOrderCreatedLabel": "Pasūtījums izveidots",
+            "historySentQuoteValue": "Citāts {quoteNumber}",
             "labelAbsoluteDiscount": "Absolūta atlaide",
             "labelComment": "Vēstule",
             "labelCompany": "Uzņēmums",
+            "labelCreatedAt": "Izveidots",
+            "labelCreatedBy": "Izveidoja",
             "labelCustomer": "Klients",
             "labelCustomerNumber": "Klienta numurs",
+            "labelDiscount": "Atlaide",
+            "labelDiscountValue": "Atlaides vērtība",
             "labelDocument": "Pievienojiet dokumentu",
             "labelEmail": "E-pasta adrese",
+            "labelEstimatedShippingCosts": "Paredzamās piegādes izmaksas",
             "labelExpirationDate": "Derīguma termiņš",
             "labelExpirationDateError": "Šis datums ir pagātnē",
             "labelExpired": "Beidzies",
-            "labelExpiresDate": "Derīguma termiņš",
             "labelItemInCart": "Preces grozā",
+            "labelItems": "Vienības",
             "labelLastUpdated": "Pēdējais atjaunojums",
-            "labelNew": "Jauns",
             "labelOrderNumber": "Pasūtījuma numurs",
+            "labelOrganisationUnit": "Organizācijas vienība",
             "labelPercentageDiscount": "Relatīvā atlaide",
-            "labelQuoteCreatedAt": "Izveidots",
             "labelQuoteGrandTotal": "Kopsumma (bruto)",
-            "labelQuoteSubtotal": "Kopā (neto)",
+            "labelQuoteLastSentAt": "Pēdējais piedāvājums nosūtīts vietnē",
+            "labelQuoteLevelDiscountType": "Citāta līmeņa atlaižu veids",
             "labelRequestedAt": "Pieprasīts vietnē",
-            "labelSaleChannel": "Pārdošanas kanāls",
-            "labelShippingCosts": "Piegādes izmaksas",
+            "labelState": "Statuss",
             "labelSubtotalAllItem": "Visu posteņu starpsumma (neto)",
+            "labelSubtotalAllItems": "Visu posteņu starpsumma (neto)",
+            "labelSubtotalProductPrice": "Produkta starpsumma (neto)",
             "labelTotalDiscount": "Atlaide",
+            "labelTotalLineItemDiscount": "Piemērotas atlaides atsevišķām precēm",
+            "labelUpdated": "Atjaunināts",
             "labelVAT": "PVN ({number}%)",
-            "messageCreateSuccess": "Citāts \"{quoteNumber}\" ir izveidots.",
+            "messageCancelError": "Atceļot cenu, radās kļūda.",
+            "messageCancelSuccess": "Citāts \"{quoteNumber}\" ir atcelts.",
             "messageEmptyDocument": "Vēl nav pievienots neviens dokuments",
             "messageEmptyItem": "Nav pievienotas nevienas vienības",
             "messageNoFoundItem": "Nav atrasta prece",
+            "messageQuoteOutdated": "Šo citātu tikko nosūtīja cits lietotājs. Lūdzu, atkārtoti ielādējiet lapu, lai redzētu jaunāko versiju.",
+            "messageReopenSuccess": "Citāts #{quoteNumber} veiksmīgi atsākts",
+            "messageResolved": "Ziņojums atrisināts",
             "messageSaveAsDraftSuccess": "Citāts \"{quoteNumber}\" ir saglabāts kā melnraksts.",
             "messageSaveSuccess": "Citāts \"{name}\" ir saglabāts.",
+            "modalCancelConfirm": "Apstipriniet atcelšanu",
+            "modalCancelQuoteConfirm": "Vai tiešām vēlaties atcelt “Citāts #{quoteNumber}“?",
             "nameColumn": "Nosaukums",
             "noDocumentOption": "Nav dokumenta",
             "notificationCancelQuoteErrorMessage": "Apstrādājot jūsu atcelšanas pieprasījumu, radās kļūda.",
+            "notificationDraftAccessDenied": "Šis citāta projekts nav pieejams.",
+            "notifications": {
+                "enableCheckbox": "Nosūtiet e-pasta paziņojumu administratoram, kad piedāvājums tiek atjaunināts",
+                "recipientsLabel": "Papildu saņēmēji",
+                "recipientsPlaceholder": "Izvēlieties lietotājus",
+                "sendNotificationHelpText": "Lietotājs, kurš izveido cenu, vienmēr saņems e-pasta paziņojumu.",
+                "title": "Paziņojumi"
+            },
             "openDocument": "Atvērt dokumentu",
-            "placeHolderSetExpireDate": "Izvēlieties datumu...",
             "placeholderComment": "Pievienot ziņojumu...",
             "placeholderExpirationDate": "Izvēlieties datumu...",
-            "quoteUpdateSuccess": "Citāts ir atjaunināts.",
+            "reopenMessage": "Atkārtoti atvērt ziņojumu",
+            "reopenModal": {
+                "confirmButton": "Atkārtoti atvērt citātu",
+                "description": "Šis piedāvājums ir slēgts uz {inactiveDays} dienu, un tagad tiks atkārtoti atvērts. Lūdzu, pārskatiet preču cenas, jo tās, iespējams, ir mainījušās un tām būs jāpielāgo. | Šis piedāvājums ir slēgts {inactiveDays} dienas un tagad tiks atkārtoti atvērts. Lūdzu, pārskatiet preču cenas, jo tās var būt mainījušās un tām būs jāpielāgo.",
+                "title": "Atkārtoti atvērt citātu #{quoteNumber}"
+            },
+            "reopenRequest": "Atkārtoti atvērt pieprasījumu",
+            "reply": "Atbildēt",
+            "replyImmediateHint": "Ziņojumi tiks nosūtīti klientam nekavējoties",
+            "resolveApiFailed": "Nevarēja saglabāt atrisināto stāvokli: {detail}",
+            "resolveMessage": "Atrisināt ziņojumu",
+            "resolveRequest": "Atrisināt pieprasījumu",
+            "resolved": "Atrisināts",
+            "stockWarningDescription": "Jūsu piedāvājumā ir preces, kuru pašlaik nav noliktavā vai summa pārsniedz krājumu ierobežojumu.",
+            "sublineEmptyDocumentState": "Dokumentus var ģenerēt automātiski vai pievienot manuāli, nosūtot piedāvājumu.",
             "subtitle": "Šeit tiek parādīti tikai klienti, kuriem ir aktivizēta piedāvājumu pārvaldība.",
+            "summaryTitle": "Kopsavilkums",
             "textDeleteConfirm": "Vai tiešām vēlaties dzēst citātu \"{quoteNumber}\"?",
             "textDraftDeletion": "Šī citāta melnraksta dzēšana būs pastāvīga.",
             "textInfo": "Vispārīgi",
             "textNewQuote": "Jauns citāts",
+            "textQuoteCancel": "Atcelt šo citātu, lai apturētu citēšanas procesu.<br/>Citāts netiek dzēsts un paliek redzams gan klientam, gan administratoram.",
+            "textQuoteLevelDiscountHint": "Atlaide tiks piemērota visam piedāvājumam.",
             "titleDocument": "Dokumentu",
             "titleDraftDeletion": "Dzēst melnrakstu",
             "titleQuote": "Citāts {quoteNumber}",
+            "titleQuoteCancel": "Atcelšana",
             "titleSendMessageOnly": "Nosūtīt ziņojumu",
             "titleSendQuoteModal": "Nosūtīt piedāvājumu",
-            "tooltipShippingCosts": "Piegādes izmaksas ir paredzētas tikai atsaucei, un tās tiks pārrēķinātas, tiklīdz jūs pieņemsit piedāvājumu un veicat pasūtījumu."
+            "tooltipShippingCosts": "Piegādes izmaksas ir paredzētas tikai atsaucei, un tās tiks pārrēķinātas, tiklīdz jūs pieņemsit piedāvājumu un veicat pasūtījumu.",
+            "unresolvedCommentBadge": "{count} neatrisināts komentārs | {count} neatrisināti komentāri",
+            "unresolvedRequestBadge": "{count} neatrisināts pieprasījums | {count} neatrisināti pieprasījumi",
+            "withdrawModal": {
+                "confirmButton": "Apstipriniet atsaukšanu",
+                "description": "Vai tiešām vēlaties atsaukt piedāvājumu #{quoteNumber}?<br>Visas izmaiņas vai pieprasījumi, ko klients ir veicis savā melnrakstā kopš piedāvājuma nosūtīšanas, neatgriezeniski izzudīs."
+            }
+        },
+        "displayState": {
+            "accepted": "Pieņemts",
+            "cancelled": "Atcelts",
+            "change_requested": "Pieprasītas izmaiņas",
+            "declined": "Samazinājās",
+            "draft": "Projekts",
+            "expired": "Beidzies",
+            "in_review": "Pārskatā",
+            "offer_sent": "Piedāvājums nosūtīts",
+            "open": "Atvērt",
+            "open_offer": "Atvērts piedāvājums",
+            "open_request": "Atvērt pieprasījumu",
+            "reopen": "Atkārtoti atvērts",
+            "replied": "Nosūtīts",
+            "request_sent": "Pieprasījums nosūtīts",
+            "response_received": "Saņemta atbilde",
+            "response_sent": "Atbilde nosūtīta",
+            "withdrawn": "Atsauktas"
         },
         "filters": {
             "createdByFilter": {
@@ -2579,8 +2765,19 @@
                 "label": "Klients",
                 "placeholder": "Izvēlēties klientu..."
             },
+            "expirationDateFilter": {
+                "label": "Derīguma termiņš"
+            },
+            "organisationUnitFilter": {
+                "label": "Organizācijas vienība",
+                "placeholder": "Izvēlieties organizācijas vienību..."
+            },
             "quoteDateFilter": {
                 "label": "Citāta datums"
+            },
+            "salesChannelFilter": {
+                "label": "Pārdošanas kanāls",
+                "placeholder": "Izvēlieties pārdošanas kanālu..."
             },
             "statusFilter": {
                 "label": "Citāta statuss",
@@ -2602,19 +2799,92 @@
             "buttonAddQuote": "Pievienot citātu",
             "changeQuoteStateError": "Mēģinot mainīt citāta statusu uz \"{stateName}”, radās kļūda.",
             "gridHeaderCompany": "Uzņēmums",
+            "gridHeaderCreatedBy": "Izveidoja",
             "gridHeaderEmail": "E-pasta adrese",
             "gridHeaderExpirationDate": "Derīguma termiņš",
+            "gridHeaderGroup": "Klientu grupa",
             "gridHeaderId": "Citāta numurs",
+            "gridHeaderLastQuoteSentAt": "Pēdējais piedāvājums nosūtīts vietnē",
             "gridHeaderLastUpdate": "Pēdējais atjaunojums",
-            "gridHeaderName": "Klients",
+            "gridHeaderOrderNumber": "Pasūtījuma numurs",
             "gridHeaderQuoteCreatedAt": "Izveidots",
             "gridHeaderQuotePrice": "Citāta cena",
             "gridHeaderRequestedAt": "Pieprasīts vietnē",
             "gridHeaderStatus": "Statuss",
             "gridHeaderSubmittedBy": "Klients",
+            "gridHeaderTags": "Tagi",
             "labelManualQuote": "Izveidoja admin",
             "messageEmpty": "Pagaidām nav citātu",
             "textQuote": "Citāti"
+        },
+        "manageItemsModal": {
+            "buttonAddViaCatalog": "Pievienot preces katalogā",
+            "confirmCloseCancel": "Turpināt rediģēšanu",
+            "confirmCloseDescription": "Jums ir nesaglabātas izmaiņas. Ja aizverat šo dialoglodziņu, visas izmaiņas, kuras veikjāt citātu vienumos, tiks izmestas.",
+            "confirmCloseDiscard": "Atcelt izmaiņas",
+            "confirmDeleteDescription": "Vai tiešām vēlaties noņemt vienumu \"{itemName}“? Visas izmaiņas tiks noņemtas no citāta. Tie paliek redzami produktu vēsturē tikai atsaucei.",
+            "customItemLabelRequired": "Lūdzu, ievadiet pielāgotā vienuma nosaukumu.",
+            "deletedItemNotice": "Šis vienums vairs nav daļa no šī citāta",
+            "emptyStateTitle": "Nav priekšmetu vēl",
+            "filterUnresolved": "Vispirms rādīt vienumus ar neatrisinātiem pieprasījumiem",
+            "historyShowImage": "Rādīt attēlu",
+            "historySortItemAZ": "Preces A-Z",
+            "historySortItemZA": "Preces Z-A",
+            "historySortNewest": "Jaunākās izmaiņas",
+            "historySortOldest": "Vecākās izmaiņas",
+            "itemHistoryActionChange": "Mainīts",
+            "itemHistoryActionRequest": "Pieprasītās izmaiņas",
+            "itemHistoryAddedToQuote": "Pievienots citātam",
+            "itemHistoryRemovedFromQuote": "Noņemts no citāta",
+            "requestResolved": "Pieprasījums atrisināts",
+            "savingChanges": "Izmaiņu saglabāšana...",
+            "searchAlreadyAdded": "Jau pievienots",
+            "searchAlreadyAddedTooltip": "Šis postenis jau ir daļa no citāta",
+            "searchPlaceholder": "Meklēt vienumus",
+            "searchProductBundleTooltip": "Produktu komplektus nevar pievienot piedāvājumam.",
+            "sidebarBadgeAmount": "Daudzums",
+            "sidebarBadgeQuotedPrice": "Norādītā cena",
+            "sidebarBadgeRequestedAmount": "Pieprasītā summa",
+            "sidebarBadgeRequestedQuotedPrice": "Pieprasītā cena",
+            "sidebarBadgeRequestedTax": "Pieprasītais nodoklis",
+            "sidebarBadgeTax": "PVN",
+            "sidebarCurrentChanges": "Pašreizējās izmaiņas ({count})",
+            "sidebarCurrentChangesDescription": "Visas izmaiņas un komentāri ir redzami klientam.",
+            "sidebarCurrentChangesEmpty": "Pagaidām nav izmaiņu.",
+            "sidebarCurrentChangesTitle": "Pašreizējās izmaiņas",
+            "sidebarCustomerRequests": "Klientu pieprasījumi",
+            "sidebarCustomerRequestsEmpty": "Klientu pieprasījumi parādīsies šeit.",
+            "sidebarCustomerRequestsOnlyUnresolved": "Rādīt tikai neatrisinātus pieprasījumus",
+            "sidebarCustomerRequestsUnresolvedEmpty": "Nav neatrisinātu pieprasījumu.",
+            "sidebarDeletedItems": "Dzēsti vienumi ({count})",
+            "sidebarDeletedItemsTitle": "Dzēsti vienumi",
+            "sidebarFormerChanges": "Iepriekšējās izmaiņas ({count})",
+            "sidebarFormerChangesTitle": "Iepriekšējās izmaiņas",
+            "sidebarFormerCustomerRequestsTitle": "Bijušie klientu pieprasījumi",
+            "sidebarHistory": "Vēsture ({count} vienība) | Vēsture ({count} vienības)",
+            "singleAddPlaceholder": "Vienreizējs produkts pēc nosaukuma vai produkta numura",
+            "title": "Pārvaldīt vienumus #{quoteNumber}",
+            "toastItemRemoved": "Vienums noņemts no citāta."
+        },
+        "quoteItemTable": {
+            "actionDeleteItem": "Noņemt no citāta",
+            "actionEditItem": "Rediģēt vienumu",
+            "actionShowItemHistory": "Rādīt vienumu vēsturi",
+            "actionShowProduct": "Rādīt produktu",
+            "columnAmount": "Daudzums",
+            "columnItem": "Vienība",
+            "columnProductPrice": "Produkta cena ({taxLabel})",
+            "columnQuotedPrice": "Kotētā cena ({taxLabel})",
+            "columnRequestedPrice": "Klienta pieprasītā cena ({taxLabel})",
+            "columnSubtotal": "Starpsumma ({taxLabel})",
+            "customItemLabelPlaceholder": "Ievadiet vienuma nosaukumu...",
+            "sortItemAZ": "Preces A-Z",
+            "sortItemZA": "Preces Z-A",
+            "sortNewestChange": "Jaunākās izmaiņas",
+            "sortOldestChange": "Vecākās izmaiņas",
+            "stockExceeded": "Summa pārsniedz pieejamo krājumu.",
+            "taxLabelGross": "bruto",
+            "taxLabelNet": "tīkls"
         }
     },
     "sw-review-list-summaries": {
