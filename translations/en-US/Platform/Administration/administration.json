@@ -621,6 +621,7 @@
             "linkMinimizeMenu": "Collapse menu",
             "navigation": {
                 "label": "Main navigation",
+                "mainMenuItemAutomation": "Automation",
                 "mainMenuItemCatalogue": "Catalogs",
                 "mainMenuItemContent": "Content",
                 "mainMenuItemMarketing": "Marketing",
@@ -4954,6 +4955,7 @@
                 "actionsDisabledInLanguage": "Landing pages can only be created in the system default language."
             },
             "buttonCreate": "Add landing page",
+            "buttonLoadMore": "Load more",
             "mainMenuItemIndex": "Landing pages",
             "placeholderSearchBar": "Search landing pages...",
             "treeHeadSelected": "{count} selected",
@@ -6380,6 +6382,7 @@
             "cardTitleAssignment": "Visibility & structure",
             "cardTitleDeliverabilityInfo": "Deliverability",
             "cardTitleDownloads": "Files",
+            "cardTitleGuarantee": "Guarantee (GARAN Label)",
             "cardTitleMedia": "Media",
             "cardTitlePackaging": "Measures & packaging",
             "cardTitlePrices": "Prices",
@@ -6672,12 +6675,17 @@
             "titleOpenGraph": "Open Graph"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "The guarantee label is only displayed if a valid guarantee duration, a manufacturer and the manufacturer product number is set.",
+            "helpTextGuaranteeMonths": "Minimum value is 30, steps of 6.",
             "isCloseoutHelpText": "Backorders denied.",
             "labelActive": "Active for all selected Sales Channels",
             "labelAvailableStock": "Available stock",
             "labelCreatedAt": "Creation date",
             "labelDeliveryTime": "Delivery time",
             "labelEan": "GTIN/EAN",
+            "labelGuaranteeConfirmed": "Show label in Storefront",
+            "labelGuaranteeDescription": "This label represents a commercial guarantee of durability expressed in years. The guarantee is offered by the producer at no additional costs, covering the entire good and with a duration of more than two years.",
+            "labelGuaranteeMonths": "Producer guarantee duration in months",
             "labelHeight": "Height",
             "labelIsCloseout": "Clearance sale",
             "labelLength": "Length",
@@ -6695,6 +6703,7 @@
             "placeholderCreatedAt": "Enter creation date...",
             "placeholderDeliveryTime": "Enter a delivery time...",
             "placeholderEan": "Enter GTIN/EAN...",
+            "placeholderGuaranteeMonths": "e.g. 30, 36 or 42 months...",
             "placeholderHeight": "e.g. 200...",
             "placeholderLength": "e.g. 100...",
             "placeholderManufacturerNumber": "Enter product number...",
@@ -7063,6 +7072,10 @@
                 "customer_group": {
                     "name": "Name"
                 },
+                "flow": {
+                    "description": "Description",
+                    "name": "Name"
+                },
                 "landing_page": {
                     "name": "Name",
                     "tagsName": "Tags"
@@ -7123,6 +7136,10 @@
                     "name": "Name"
                 },
                 "property_group": {
+                    "name": "Name"
+                },
+                "rule": {
+                    "description": "Description",
                     "name": "Name"
                 },
                 "sales_channel": {
@@ -7784,6 +7801,7 @@
             "footerCategory": "Entry point footer navigation",
             "foreignKeyDelete": "This sales channel cannot be deleted because it is still in use by {assignment}.",
             "helpTextBusinessTimeZone": "Timezone used whenever a date or time is printed in documents of this Sales Channel. If empty, no business timezone override is applied.",
+            "helpTextIsExternalStorefront": "SEO URLs are only generated for domains that point to an external storefront. Per language, only one external storefront can be set for a single sales channel.",
             "helpTextTaxCalculation": {
                 "label": "If a tax provider is activated, these settings may be overwritten. You can check this in {link}.",
                 "linkText": "settings"
@@ -7824,6 +7842,7 @@
             "labelInputSnippet": "Snippet",
             "labelInputTaxCalculation": "Tax calculation",
             "labelInputUrl": "URL",
+            "labelIsExternalStorefront": "External storefront",
             "labelMaintenanceActive": "Maintenance",
             "labelOptionTaxHorizontal": "Horizontal",
             "labelOptionTaxVertical": "Vertical",
@@ -7924,6 +7943,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Currency"
                 },
+                "storefrontDomainHelpText": "For headless sales channels, only domains marked as an external storefront are selectable here. Mark a domain as external storefront in the sales channel's domain settings.",
                 "storefrontDomainLanguage": {
                     "help": "Automatically selected by Sales Channel domain",
                     "label": "Language"
@@ -8081,17 +8101,20 @@
         "labelSeoPathInfo": "SEO path",
         "placeholderMainCategory": "Choose a main category...",
         "textEmptySeoUrls": "There are no SEO URLs yet.",
-        "textSeoUrlsDisallowedForHeadless": "SEO URLs cannot be assigned to a headless Sales Channel.",
+        "textSeoUrlsNotSupported": "SEO URLs cannot be assigned to this type of Sales Channel.",
         "titleCard": "SEO URLs"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "External storefront domain required",
             "labelPossibleValues": "Possible variables",
             "labelSalesChannelSelect": "Sales Channel",
+            "linkExternalStorefrontDomain": "Open sales channel settings",
             "messageSaveError": "Not all templates are valid.",
             "messageSaveSuccess": "SEO URL templates have been saved.",
             "placeholderSelectVariables": "Search and select...",
             "preview": "Preview:",
+            "textExternalStorefrontRequired": "For headless sales channels, SEO URLs are only generated for domains that are marked as an external storefront. Add such a domain to the sales channel to enable SEO URLs.",
             "textInfoMessageBoxEmptyProperties": "When using variables, make sure that data is available in all respective fields of the entities (products, landing pages or categories). If variables refer to empty fields, no SEO URLs will be created for the corresponding entity.",
             "textUrlNoEntitiesForPreview": "No {entity} available.",
             "textUrlPreviewEmptyTemplate": "The template is empty, SEO URLs for {entity} won't be generated.",
@@ -8103,7 +8126,10 @@
         "routeNames": {
             "frontend-detail-page": "Product detail page",
             "frontend-landing-page": "Landing page",
-            "frontend-navigation-page": "Category page"
+            "frontend-navigation-page": "Category page",
+            "store-api-category-detail": "Category page",
+            "store-api-landing-page-detail": "Landing page",
+            "store-api-product-detail": "Product detail page"
         }
     },
     "sw-settings": {
@@ -8707,20 +8733,71 @@
         }
     },
     "sw-settings-language": {
+        "addModal": {
+            "buttonAdd": "Add language",
+            "createCustomLanguage": "Create custom language",
+            "docsHint": "How translations work in Shopware:",
+            "docsLinkLabel": "Learn more",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "Can't find the language you need? Browse available languages in the {extensionStoreLink}",
+            "extensionStoreLink": "Extension Store",
+            "labelLanguage": "Language",
+            "messageAddError": "Language could not be added.",
+            "messageAddSuccess": "Language has been added.",
+            "messageLanguagesLoadError": "Existing languages could not be loaded.",
+            "messageTranslationsLoadError": "Available translations could not be loaded.",
+            "placeholderLanguage": "Select a language...",
+            "title": "Add language",
+            "translationsAvailable": "Translations for this language are available.",
+            "translationsIncomplete": "Some translations for this language may still be missing."
+        },
         "detail": {
+            "createdBannerText": "Activate the language, then assign it to a Sales Channel to make it available to customers.",
+            "createdBannerTitle": "{name} successfully added",
             "labelActive": "Active",
             "labelIsoCode": "ISO code",
             "labelLocale": "Locale",
             "labelName": "Name",
             "labelParent": "Inherit from",
+            "messageLoadError": "Language could not be loaded.",
+            "messageSaveError": "Language could not be saved.",
             "messageSaveSuccess": "Language \"{name}\" has been saved.",
             "placeholderName": "Enter name...",
             "placeholderPleaseSelect": "Please select...",
+            "salesChannels": {
+                "activateHint": "Activate the language, then assign it to a Sales Channel to make it available to customers.",
+                "assignHint": "Assign the language to a Sales Channel to make it available to customers.",
+                "assignedIntro": "Language is assigned to the following Sales Channels:",
+                "openSettings": "Open Sales Channel settings",
+                "showAll": "Show all",
+                "showLess": "Show less",
+                "title": "Sales Channels"
+            },
+            "snippetUpdates": {
+                "autoUpdate": "Auto update",
+                "autoUpdateHelpText": "Automatically keep the snippets of this language up to date.",
+                "builtIn": "Built-in snippets are updated as part of Shopware updates.",
+                "linkButton": "Link language",
+                "linking": "Language is being linked.",
+                "linkingButton": "Linking...",
+                "notAvailable": "Updates aren't available for this language.",
+                "notAvailableHelpText": "Languages added manually or by third-party extensions may be updated differently or may not receive updates at all.",
+                "notLinked": "This language is supported by Shopware but not yet connected to the translation system.",
+                "statusLoadError": "Snippet update status could not be loaded.",
+                "title": "Snippet updates",
+                "upToDate": "Snippets are up to date.",
+                "updateAvailable": "New update available.",
+                "updateButton": "Update",
+                "updateError": "Snippets for this language could not be updated.",
+                "updating": "Snippets are being updated.",
+                "updatingButton": "Updating..."
+            },
             "textAlertChangeParent": "Changing the parent language can lead to inconsistencies in your translations.",
             "textHeadline": "New language",
             "textIsoCodeIsInUse": "This ISO code is already in use.",
             "textLanguageHasParent": "This language is already inheriting from another language.",
             "titleCard": "Settings",
+            "tooltipActive": "Show this language as an option when translating content and configuring Sales Channels in the Administration. Deactivating it does not affect storefront availability.",
             "tooltipInheritanceNotPossible": "The system default language cannot inherit from another language.",
             "tooltipLanguageNotChoosable": "You cannot use a language which is already inheriting from another language."
         },
@@ -8730,6 +8807,8 @@
         },
         "list": {
             "buttonAddLanguage": "Add language",
+            "buttonUpdateAllSnippets": "Update all snippets",
+            "buttonUpdateSelectedSnippets": "Update selected snippets",
             "cardSubtitle": "Languages can be assigned to Sales Channel domains in order to display the appropriate translations. They also enable the translation of content in categories, products, Shopping Experience pages, etc.",
             "cardTitle": "Languages",
             "columnActive": "Active",
@@ -8738,15 +8817,30 @@
             "columnIsoCode": "ISO Code ",
             "columnLocaleName": "Locale",
             "columnName": "Name",
+            "columnSalesChannels": "Sales Channels",
+            "columnSnippetStatus": "Snippet updates",
+            "contextMenuUpdateSnippets": "Update snippets",
             "defaultLabel": "Default",
+            "deleteError": "Languages could not be deleted.",
+            "deleteFilesNote": "This action deletes the language entities and snippets in the administration and not the snippet files in the file system. Do you want to delete those too?",
+            "deleteFilesNoteLabel": "Note:",
+            "deleteModalIntro": "Are you sure you want to delete the following languages? This action cannot be undone:",
+            "deleteModalTitle": "Delete languages?",
+            "deleteTranslationFiles": "Also delete the snippets from file system",
+            "deleteTranslationFilesError": "Snippet files could not be deleted from the file system.",
             "manageSnippets": "Manage snippets",
             "messageDeleteSuccess": "Language \"{name}\" has been deleted.",
-            "textDeleteConfirm": "Are you sure you want to delete the language \"{name}\"? This will delete all content in this language and cannot be undone!",
-            "textFilterInheritedLanguages": "Show only inherited languages",
-            "textFilterRootLanguages": "Show only \"root\" languages",
+            "salesChannelCount": "{count} Sales Channel | {count} Sales Channels",
+            "snippetStatus": {
+                "updateAvailable": "Update available",
+                "updating": "Updating..."
+            },
+            "snippetStatusLoadError": "Snippet updates could not be loaded.",
             "textHeadline": "Languages",
-            "titleSidebarFilter": "Filters",
-            "titleSidebarQuickFilter": "Quick filter"
+            "titleSidebarItemRefresh": "Refresh",
+            "updateSnippetsError": "Snippets could not be updated.",
+            "updateSnippetsProgress": "Updating snippets ({processed}/{total})",
+            "updateSnippetsSuccess": "Snippets have been updated."
         }
     },
     "sw-settings-listing": {
