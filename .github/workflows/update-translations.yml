@@ -48,7 +48,7 @@ jobs:
           done
       - name: Setup github auth
         run: |
-          git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts.outputs.token }}" | base64)"
+          git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts.outputs.token }}" | base64 -w0)"
       - name: Update plugins
         env:
           PLUGINS: |
@@ -56,6 +56,14 @@ jobs:
               {
                 "name": "PluginPublisher",
                 "url": "https://github.com/shopware/SwagPublisher.git"
+              },
+              {
+                "name": "Rufus",
+                "url": "https://github.com/shopware/Rufus.git"
+              },
+              {
+                "name": "SwagAgenticCommerce",
+                "url": "https://github.com/shopware/agentic-commerce.git"
               },
               {
                 "name": "SwagCmsExtensions",
@@ -121,6 +129,6 @@ jobs:
               git commit -m "$(date -I) - Update translations"
               # Reset auth back to GITHUB_TOKEN
               git config --unset http."https://github.com/".extraheader || true
-              git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts-push.outputs.token }}" | base64)"
+              git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts-push.outputs.token }}" | base64 -w0)"
               git push origin main
           fi
