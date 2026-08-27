@@ -1,0 +1,188 @@
+name: "Crowdin Upload Single Language"
+
+on:
+  workflow_dispatch:
+    inputs:
+      language:
+        description: "Language to collect from the plugins and upload to Crowdin"
+        required: true
+        type: choice
+        options:
+          - ach-UG
+          - af-ZA
+          - ar-SA
+          - bg-BG
+          - bs-BA
+          - ca-ES
+          - cs-CZ
+          - da-DK
+          - de-AT
+          - de-CH
+          - de-DE
+          - el-GR
+          - en-US
+          - es-AR
+          - es-ES
+          - et-EE
+          - fi-FI
+          - fr-FR
+          - hi-IN
+          - hr-HR
+          - hu-HU
+          - hy-AM
+          - id-ID
+          - it-IT
+          - ja-JP
+          - ko-KR
+          - lt-LT
+          - lv-LV
+          - nl-NL
+          - nn-NO
+          - pl-PL
+          - pt-PT
+          - ro-RO
+          - ru-RU
+          - sk-SK
+          - sl-SI
+          - sq-AL
+          - sr-RS
+          - sv-SE
+          - th-TH
+          - tr-TR
+          - uk-UA
+          - vi-VN
+      upload_sources:
+        description: "Upload en-GB sources first (needed when the source files do not exist in Crowdin yet)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  crowdin-upload-language:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout translations
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: octo-sts/action@v1.0.0
+        id: octo-sts
+        with:
+          scope: shopware
+          identity: TranslationsUpdate
+
+      - name: Setup github auth
+        run: |
+          git config --global "http.https://github.com/".extraheader "AUTHORIZATION: basic $(echo -n "x-access-token:${{ steps.octo-sts.outputs.token }}" | base64 -w0)"
+
+      - name: Collect plugin translations
+        env:
+          LOCALE: ${{ inputs.language }}
+          PLUGINS: |
+            [
+              {
+                "name": "PluginPublisher",
+                "url": "https://github.com/shopware/SwagPublisher.git"
+              },
+              {
+                "name": "Rufus",
+                "url": "https://github.com/shopware/Rufus.git"
+              },
+              {
+                "name": "SwagAgenticCommerce",
+                "url": "https://github.com/shopware/agentic-commerce.git"
+              },
+              {
+                "name": "SwagCmsExtensions",
+                "url": "https://github.com/shopware/SwagCmsExtensions.git"
+              },
+              {
+                "name": "SwagCommercial",
+                "url": "https://github.com/shopware/SwagCommercial.git"
+              },
+              {
+                "name": "SwagCustomizedProducts",
+                "url": "https://github.com/shopware/SwagCustomizedProducts.git"
+              },
+              {
+                "name": "SwagMigrationAssistant",
+                "url": "https://github.com/shopware/SwagMigrationAssistant.git"
+              },
+              {
+                "name": "SwagMigrationMagento",
+                "url": "https://github.com/shopware/SwagMigrationMagento.git"
+              },
+              {
+                "name": "SwagPayPal",
+                "url": "https://github.com/shopware/SwagPayPal.git"
+              },
+              {
+                "name": "SwagSocialShopping",
+                "url": "https://github.com/shopware/SwagSocialShopping.git"
+              }
+            ]
+        run: |
+          lang_prefix=$(echo "${LOCALE}" | cut -d'-' -f1)
+
+          for plugin in $(jq -c '.[]' <<<${PLUGINS} ); do
+            NAME=$(jq -r '.name' <<<${plugin})
+            URL=$(jq -r '.url' <<<${plugin})
+            echo "${NAME} - ${URL}"
+            git clone --depth 1 "${URL}" "plugins/${NAME}"
+
+            echo "Collecting ${NAME} ${LOCALE} translations..."
+            admin_files=$(find "plugins/${NAME}/" -type f \( -name "${lang_prefix}.json" -o -name "${LOCALE}.json" \) -not -path "*/Resources/snippet/*" -not -path "*/tests/*")
+            if [ -n "${admin_files}" ]; then
+              mkdir -p "translations/${LOCALE}/Plugins/${NAME}/Administration/"
+              jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' ${admin_files} > "translations/${LOCALE}/Plugins/${NAME}/Administration/administration.json"
+            fi
+
+            storefront_files=$(find "plugins/${NAME}/" -type f \( -name "*.${lang_prefix}.json" -o -name "*.${LOCALE}.json" \) -not -path "*/Resources/app/*" -not -path "*/tests/*")
+            if [ -n "${storefront_files}" ]; then
+              mkdir -p "translations/${LOCALE}/Plugins/${NAME}/Storefront/"
+              jq --indent 4 -S -s 'reduce .[] as $item ({}; . * $item)' ${storefront_files} > "translations/${LOCALE}/Plugins/${NAME}/Storefront/storefront.json"
+            fi
+          done
+
+          rm -rf plugins
+          echo "Collected files for ${LOCALE}:"
+          find "translations/${LOCALE}/Plugins" -type f -newer .git/HEAD 2>/dev/null || true
+
+      - name: Prepare pre-fill en-US language files
+        if: inputs.language == 'en-US'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const { main } = await import('${{ github.workspace }}/scripts/prepare-en-US.mjs')
+            await main()
+
+      - name: Upload sources
+        if: inputs.upload_sources
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: true
+          upload_translations: false
+          download_translations: false
+          preserve_hierarchy: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Upload translations (${{ inputs.language }})
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
+          upload_translations: true
+          upload_language: ${{ inputs.language }}
+          import_eq_suggestions: true
+          download_translations: false
+          preserve_hierarchy: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

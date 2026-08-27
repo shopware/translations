@@ -20,11 +20,36 @@ jobs:
             const { main } = await import('${{ github.workspace }}/scripts/prepare-en-US.mjs')
             await main()
 
-      - name: Synchronize with Crowdin
+      - name: Upload sources (en-GB)
         uses: crowdin/github-action@v1
         with:
           upload_sources: true
+          upload_translations: false
+          download_translations: false
+          preserve_hierarchy: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Upload translations (de-DE)
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
           upload_translations: true
+          upload_language: de-DE
+          import_eq_suggestions: true
+          download_translations: false
+          preserve_hierarchy: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Upload translations (en-US)
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
+          upload_translations: true
+          upload_language: en-US
           import_eq_suggestions: true
           download_translations: false
           preserve_hierarchy: false
