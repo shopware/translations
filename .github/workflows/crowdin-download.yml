@@ -27,7 +27,6 @@ jobs:
           upload_sources: false
           upload_translations: false
           download_translations: true
-          skip_untranslated_strings: true
           localization_branch_name: i18n_crowdin_translations
           create_pull_request: true
           pull_request_title: 'Crowdin translations'
@@ -73,19 +72,37 @@ jobs:
 
           # Proceed only if at least one file was changed
           if (( ${#FILES[@]} > 0 )); then
+            # Crowdin exports untranslated strings as "", which Shopware would render literally
+            # instead of falling back to en-GB. Drop them (and objects left empty by that) so only
+            # real translations reach the language files; a file without any translation is removed.
+            for file in "${FILES[@]}"; do
+              [[ "${file}" == translations/*.json && -f "${file}" ]] || continue
+              jq --indent 4 '
+                def prune: if type == "object"
+                  then with_entries(.value |= prune) | with_entries(select(.value != "" and .value != {}))
+                  else . end;
+                prune
+              ' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
+
+              if [[ "$(jq 'length' "${file}")" == "0" ]]; then
+                echo "Removing ${file}: no translations left"
+                rm "${file}"
+              fi
+            done
+
             # Run the metadata update script, passing the changed files as arguments
             node scripts/update-metadata.mjs "${FILES[@]}"
 
-            # If crowdin-metadata.json has changes after running the script...
-            if ! git diff --quiet -- crowdin-metadata.json; then
-              # Stage and commit the updated metadata file
-              git add crowdin-metadata.json
+            git add translations crowdin-metadata.json
+
+            # If the cleanup or the metadata script changed anything...
+            if ! git diff --cached --quiet; then
               git commit -m "Update Crowdin metadata"
 
               # Push changes back to the same branch on GitHub
               git push origin HEAD:i18n_crowdin_translations
             else
-              echo "Metadata unchanged, nothing to commit."
+              echo "Translations and metadata unchanged, nothing to commit."
             fi
           else
             echo "No translation files changed vs main."
