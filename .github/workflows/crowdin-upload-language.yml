@@ -174,12 +174,30 @@ jobs:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
+      - name: Resolve Crowdin language id
+        id: crowdin_language
+        env:
+          LOCALE: ${{ inputs.language }}
+        run: |
+          # The folder names are the mapped side of crowdin.yml (languages_mapping / translation_replace);
+          # invert those rules to get back to the Crowdin language code the CLI expects.
+          id=$(yq -o=json crowdin.yml | jq -r --arg locale "${LOCALE}" '
+            [ .files[] | (.translation_replace // {}), (.languages_mapping.two_letters_code // {}), (.languages_mapping.locale // {}) ]
+            | add
+            | to_entries[]
+            | select(.value == $locale)
+            | .key
+          ' | head -n 1)
+          id="${id:-${LOCALE}}"
+          echo "Crowdin language id for ${LOCALE}: ${id}"
+          echo "id=${id}" >> "${GITHUB_OUTPUT}"
+
       - name: Upload translations (${{ inputs.language }})
         uses: crowdin/github-action@v1
         with:
           upload_sources: false
           upload_translations: true
-          upload_language: ${{ inputs.language }}
+          upload_language: ${{ steps.crowdin_language.outputs.id }}
           import_eq_suggestions: true
           download_translations: false
           preserve_hierarchy: false
