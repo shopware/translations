@@ -6,6 +6,13 @@
             "SWAG_MIGRATION_INVALID_API_KEY": "La clave API no tiene la longitud correcta ({length}/40 caracteres)."
         }
     },
+    "sw-privileges": {
+        "permissions": {
+            "swag_migration": {
+                "label": "Asistente de Migración"
+            }
+        }
+    },
     "swag-migration": {
         "api-error": {
             "abortMigration": "No se pudo abortar la migración.",
@@ -35,14 +42,8 @@
             "tabMain": "General"
         },
         "history": {
-            "clearRunDialog": {
-                "content": "Al eliminar los datos de migración, se eliminarán las entradas de registro, las entradas de archivos multimedia, los registros de datos de migración temporales y la ejecución de la migración, que ya no estarán disponibles en el historial de migración.",
-                "contentHint": "¿Realmente desea eliminar los datos?",
-                "title": "Eliminar datos de migración"
-            },
             "connectionName": "Nombre de conexión",
             "contextMenu": {
-                "clearLogs": "Eliminar datos de migración",
                 "details": "Mostrar detalles",
                 "downloadLogs": "Descargar registro"
             },
@@ -59,18 +60,16 @@
                 "logDownload": "descargue el archivo de registro.",
                 "noErrorsOccurred": "No se han producido errores.",
                 "noProgressData": "Esta ejecución se realizó en una versión anterior del complemento y sus datos se eliminaron.",
-                "runStatus": "Estado de migración:",
                 "status": {
                     "aborted": "Abortado",
                     "finished": "Terminado",
                     "running": "Corriendo"
                 },
-                "timestamp": "Tiempo:",
                 "title": "Detalles de la migración"
             },
+            "gateway": "Portal",
             "importDateTime": "Hora de inicio",
-            "noData": "No se encontraron migraciones.",
-            "profileAndGateway": "Perfil y puerta de enlace",
+            "profile": "Perfil",
             "selectedData": "Dato",
             "shopDomain": "Dominio de tienda",
             "shopSystem": "Sistema de tienda",
@@ -78,28 +77,8 @@
         },
         "index": {
             "abortButton": "Cancelar",
-            "assistantCard": {
-                "connection": {
-                    "content": "El Asistente de Migración te ayudará a establecer una conexión entre el sistema de tu tienda y Shopware 6 para transferir y migrar tus datos.",
-                    "link": "Ayuda y documentación",
-                    "title": "Configurar una conexión"
-                },
-                "dataSelection": {
-                    "content": "Seleccione los datos que desea migrar. Es posible incluir datos de plugin también, si el plugin ya está disponible para Shopware 6. Comprueba la disponibilidad del plugin en tu cuenta de Shopware.",
-                    "title": "Especificar datos para la migración"
-                },
-                "finish": "¡Hecho!",
-                "headline": "Cómo funciona la migración",
-                "migrationOverview": {
-                    "content": "1. Un proceso automático comprueba si faltan asignaciones en los datos seleccionados. Prepárese para completar el proceso automático añadiendo asignaciones manuales.\n2. Se leen y asignan los datos de tu tienda.\n3. Todos los datos seleccionados y correctamente asignados se transfieren a Shopware 6.\n4. Los elementos multimedia se descargan.",
-                    "title": "Pasos de migración"
-                },
-                "title": "Información"
-            },
             "backToOverviewButton": "Volver a la cuenta",
             "confirmAbortDialog": {
-                "cancelPause": "Pausa",
-                "cancelRunning": "Continuar",
                 "confirm": "Detener la migración",
                 "content": "La migración no está completamente completa. Es posible que los datos ya migrados no se puedan utilizar. Si cierra ahora, tendrá que volver a ejecutar completamente el proceso de migración.",
                 "hint": "¿Desea detener la migración?",
@@ -107,169 +86,69 @@
             },
             "confirmWarningCard": {
                 "currencyMismatch": {
-                    "checkboxLabel": "Sí, me gustaría continuar",
-                    "info": "Una migración con monedas predeterminadas diferentes puede provocar la corrupción de los registros de datos y provocar efectos secundarios impredecibles.",
-                    "question": "¿Está seguro de que los datos deben migrarse en la moneda estándar [{targetSystemCurrency}]?",
                     "text": "La moneda de los datos que se van a migrar no coincide con la moneda estándar [{targetSystemCurrency}]. Los datos con [{sourceSystemCurrency}] aún se pueden migrar, pero no se convertirán automáticamente. Puede ajustar los precios manualmente después.",
                     "title": "La migración ha reconocido otra moneda"
                 },
                 "languageMismatch": {
-                    "checkboxLabel": "Sí, me gustaría continuar",
-                    "info": "Una migración con diferentes idiomas predeterminados puede dañar los registros de datos y provocar efectos secundarios impredecibles.",
-                    "question": "¿Está seguro de que los datos deben migrarse en el idioma estándar [{targetSystemLanguage}]?",
                     "text": "El idioma de los datos que se van a migrar no coincide con el idioma estándar [{targetSystemLanguage}]. Los datos con [{sourceSystemLanguage}] aún se pueden migrar, pero no se convertirán automáticamente. Puede ajustar las traducciones manualmente después.",
                     "title": "La migración ha reconocido otro idioma"
                 }
             },
             "continueButton": "Continuar",
-            "error": {
-                "SWAG_MIGRATION_CANNOT_CONVERT_CHILD_ENTITY": {
-                    "description": "No se pudo convertir la entidad secundaria {entity} de la entidad padre {parentEntity} con el id \"{parentSourceId}\".",
-                    "title": "No se pudo convertir la entidad secundaria {entity}"
+            "error-resolution": {
+                "modals": {
+                    "error": {
+                        "left": {
+                            "details": "Detalles",
+                            "reset": "Restablecer"
+                        },
+                        "right": {
+                            "apply": "Aplicar cambios",
+                            "unresolvableBanner": {
+                                "content": "Consulte el archivo de registro para obtener más información."
+                            }
+                        },
+                        "table": {
+                            "columns": {
+                                "status": "Estado"
+                            }
+                        }
+                    }
                 },
-                "SWAG_MIGRATION_CANNOT_CONVERT_ENTITY": {
-                    "description": "No se pudo convertir la entidad {entity} con el identificador de origen \"{sourceId}».",
-                    "title": "No se pudo convertir la entidad {entity}"
-                },
-                "SWAG_MIGRATION_CANNOT_GET_FILE": {
-                    "description": "El archivo {entity} con el uri \"{uri}\" y el id de medio \"{sourceId}\" no se puede descargar/copiar.",
-                    "title": "El archivo {entity} no se puede descargar/ copiar"
-                },
-                "SWAG_MIGRATION_ENTITY_ALREADY_EXISTS": {
-                    "description": "La entidad {entity} con el identificador de origen \"{sourceId}\" ya existe y no se puede escribir.",
-                    "title": "La entidad {entity} ya existe"
-                },
-                "SWAG_MIGRATION_ENTITY_FIELD_REASSIGNED": {
-                    "description": "La entidad {entity} con el id de origen \"{sourceId}\" obtuvo el campo \"{emptyField}\" reemplazado por \"{replacementField}».",
-                    "title": "La entidad {entity} tiene un campo que se reasignó"
-                },
-                "SWAG_MIGRATION_ENTITY_UNKNOWN": {
-                    "description": "La entidad {requiredForEntity} con el id de origen \"{requiredForSourceId}\" no puede encontrar la entidad dependiente {entity} con el id de origen \"{sourceId}».",
-                    "title": "No se puede encontrar {entity}"
-                },
-                "SWAG_MIGRATION_MESSAGE_QUEUE_EXCEPTION": {
-                    "description": "Se ha producido una excepción al procesar la cola de mensajes.",
-                    "title": "Excepción de cola de mensajes"
-                },
-                "SWAG_MIGRATION_RUN_ABORTED_AUTOMATICALLY_EXCEPTION": {
-                    "description": "La migración se canceló automáticamente porque se produjeron demasiadas excepciones consecutivas.",
-                    "title": "La migración se abortó automáticamente"
-                },
-                "SWAG_MIGRATION_RUN_EXCEPTION": {
-                    "description": "{description}",
-                    "title": "Se ha producido una excepción"
-                },
-                "SWAG_MIGRATION__COULD_NOT_READ_ENTITY_COUNT": {
-                    "description": "No se pudo leer el recuento total de la entidad {entity} . Asegúrese de que la tabla \"{table}\" existe en su sistema de origen y que la condición opcional \"{condition}\" es válida. Mensaje de excepción: {exceptionMessage}",
-                    "title": "No se pudo leer el recuento de entidades"
-                },
-                "SWAG_MIGRATION__DATASET_NOT_FOUND": {
-                    "description": "No se encontró el conjunto de datos para el perfil \"{profileName}\" y la entidad \"{entity}\". No se pudo procesar la entidad con el identificador \"{sourceId}».",
-                    "title": "DataSet no encontrado"
-                },
-                "SWAG_MIGRATION__DEBUG": {
-                    "description": "{logData}",
-                    "title": "Depuración de salida"
-                },
-                "SWAG_MIGRATION__DOCUMENT_TYPE_NOT_SUPPORTED": {
-                    "description": "No se pudo convertir el documento con el identificador de origen \"{sourceId}\" porque no se admite el tipo de documento \"{type}».",
-                    "title": "No se admite el tipo de documento"
-                },
-                "SWAG_MIGRATION__INVALID_EMAIL_ADDRESS": {
-                    "description": "La dirección de correo electrónico de la entidad {entity}  con el ID de origen \"{sourceId}\" no es válida: {email}",
-                    "title": "Dirección de correo electrónico no válida"
-                },
-                "SWAG_MIGRATION__PROCESSOR_NOT_FOUND": {
-                    "description": "Procesador para el perfil \"{profileName}«, puerta de enlace\"{gatewayName}\"y entidad\"{entity}\"no encontrado.",
-                    "title": "Procesador no encontrado"
-                },
-                "SWAG_MIGRATION__SHOPWARE_ASSOCIATION_REQUIRED_MISSING": {
-                    "description": "El {missingEntity} con el id de origen \"{sourceId}\" no se puede encontrar, pero es necesario para {requiredFor}.",
-                    "title": "No se ha encontrado {entity} asociado"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_COPY_DATA": {
-                    "description": "No se pudo copiar el archivo de origen. Archivo: {path}",
-                    "title": "Archivo de origen no encontrado"
-                },
-                "SWAG_MIGRATION__SHOPWARE_CANNOT_DOWNLOAD_DATA": {
-                    "description": "No se puede descargar medios. Archivo afectado: {uri}",
-                    "title": "No se puede descargar medios"
-                },
-                "SWAG_MIGRATION__SHOPWARE_EMPTY_NECESSARY_DATA_FIELDS": {
-                    "description": "La entidad {entity} con el identificador de origen \"{sourceId}\" no tiene los datos necesarios para el campo \"{emptyField}»",
-                    "title": "La entidad {entity} tiene un campo vacío necesario"
-                },
-                "SWAG_MIGRATION__SHOPWARE_INVALID_UNSERIALIZED_DATA": {
-                    "description": "No se pudo convertir la entidad {entity} con el identificador de origen \"{sourceId}\" debido a datos de objeto no serializados no válidos para la entidad \"{unserializedEntity}\" y los datos sin procesar son: {serializedData}",
-                    "title": "Datos no serializados no válidos"
-                },
-                "SWAG_MIGRATION__SHOPWARE_PARENT_ENTITY_NOT_FOUND": {
-                    "description": "No se ha encontrado la entidad principal para el elemento secundario \"{entity}».",
-                    "title": "Entidad padre no encontrada"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_NUMBER_RANGE_TYPE": {
-                    "description": "Numberrange-entidad con id de origen \"{sourceId}\" no se pudo convertir debido al tipo no admitido: {type}.",
-                    "title": "Tipo de rango numérico no admitido"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_OBJECT_TYPE": {
-                    "description": "No se pudo convertir{entity} del tipo de objeto «{objectType}«con el id de origen «{sourceId}«.",
-                    "title": "Tipo de objeto no admitido"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_CALCULATION_TYPE": {
-                    "description": "La entidad del método de envío con ID de origen \"{sourceId}\" no se pudo convertir debido al tipo de cálculo no admitido: {type}.",
-                    "title": "Tipo de cálculo de envío no admitido"
-                },
-                "SWAG_MIGRATION__SHOPWARE_UNSUPPORTED_SHIPPING_PRICE": {
-                    "description": "La entidad de precio de envío con el identificador de origen \"{sourceId}\" del método de envío \"{shippingMethodId}\" no se pudo convertir debido a un cálculo del precio del factor no admitido.",
-                    "title": "Cálculo del precio del factor de envío no compatible"
-                },
-                "SWAG_MIGRATION__THEME_COMPILING_ERROR": {
-                    "description": "El tema con id \"{sourceId}\" no se pudo compilar.",
-                    "title": "Error de compilación del tema"
-                },
-                "SWAG_MIGRATION__WRITER_NOT_FOUND": {
-                    "description": "No se encontró el escritor de archivos para la entidad \"{entity}».",
-                    "title": "No se encontró el escritor de archivos"
-                },
-                "SWAG_MIGRATION__WRITE_EXCEPTION_OCCURRED": {
-                    "description": "{description}",
-                    "title": "Se ha producido una excepción de escritura"
-                },
-                "authorizationError": {
-                    "information": "Error de autorización. Sus datos de acceso no son correctos. Comprueba e inténtalo de nuevo."
-                },
-                "canNotConnectToServer": "No hay conexión con el servidor. Compruebe si hay problemas en la conexión.",
-                "customerExists": {
-                    "information": "El cliente con correo electrónico \"{mail}\" ya existe. No puede agregar este usuario con ese correo electrónico a la base de datos."
-                },
-                "gatewayNotFound": {
-                    "information": "Puerta de enlace \"{notFoundGateway}\" no encontrada."
-                },
-                "gatewayRead": {
-                    "information": "No se pudo leer la puerta de enlace \"{unreadableGateway}»."
-                },
-                "localeNotFound": {
-                    "information": "No se ha encontrado el código de entrada regional \"{notFoundCode}»."
-                },
-                "mediaProcessConnectionError": "Se ha producido un error de conexión al copiar los datos de medios. Por favor, compruebe la conexión.",
-                "migrationContextPropertyMissing": {
-                    "information": "No se ha encontrado la propiedad requerida \"{notFoundProperty}\" para el contexto de migración."
-                },
-                "migrationsWorkloadPropertyMissing": {
-                    "information": "No se encontró la propiedad requerida \"{notFoundProperty}\" para la carga de trabajo de migración."
-                },
-                "noFileSystemPermissions": {
-                    "information": "No hay permisos de sistema de archivos para crear o escribir archivos o directorios. Por favor, compruebe sus permisos."
-                },
-                "profileNotFound": {
-                    "information": "No se ha encontrado el perfil de migración \"{notFoundProfile}\"."
-                },
-                "undefinedIndex": {
-                    "detail": "No se pudo encontrar el índice no identificado.",
-                    "information": "No se pudo encontrar el índice \"{unidentifiedIndex}». Por favor, compruebe sus datos.",
-                    "title": "Índice no identificado"
-                },
-                "unknownError": "Error desconocido. Puede consultar la tabla de registro de su base de datos para obtener más información."
+                "step": {
+                    "card": {
+                        "filter": {
+                            "entity": {
+                                "label": "Entidad"
+                            },
+                            "field": {
+                                "label": "Campo"
+                            },
+                            "reset": "Restablecer filtros",
+                            "title": "Filtrar"
+                        },
+                        "table": {
+                            "columns": {
+                                "code": "Código",
+                                "entity": "Entidad",
+                                "field": "Campo",
+                                "gatewayName": "Portal",
+                                "name": "Nombre",
+                                "profileName": "Perfil"
+                            },
+                            "empty-state": {
+                                "headline": "No se encontró nada"
+                            }
+                        }
+                    },
+                    "continue-modal": {
+                        "title": "Continuar"
+                    },
+                    "header": {
+                        "continue": "Continuar",
+                        "documentation": "Documentación"
+                    }
+                }
             },
             "errorTypes": {
                 "error": "Error",
@@ -292,7 +171,6 @@
                 "notice": "Consejo: Este proceso se ejecuta en la cola de mensajes. No es necesario que permanezcas en esta página si tu tienda está configurada correctamente.",
                 "result": {
                     "historyHint": "Puede ver esta información en cualquier momento del historial de migración. Es posible que se agreguen más mensajes de registro más adelante porque la descarga multimedia sigue ejecutándose en segundo plano.",
-                    "logSummary": "Libro de registro",
                     "title": "El Asistente de Migración está hecho"
                 },
                 "status": {
@@ -345,19 +223,14 @@
                     "salesChannel": "Canal de ventas de boletines",
                     "salutation": "Saludo",
                     "shipping_availability_rule": "Disponibilidad del método de envío",
+                    "source_timezone": "Zona horaria",
                     "transaction_state": "Estados de transacción",
                     "user": "Usuario de administración"
                 },
-                "loadingCaption": "Se han comprobado los datos existentes.",
-                "loadingTitle": "La comprobación de datos se está ejecutando",
                 "newAssignmentTitle": "Nuevas asignaciones",
                 "placeholder": "Por favor seleccione",
                 "previousTitle": "Anterior",
-                "unfilledAlert": "Hemos detectado que hay datos que requieren asignación manual.",
-                "unfilledCaption": "Sólo puede continuar después de que se haya completado la asignación manual.",
-                "unfilledTitle": "La comprobación de datos se ha completado",
-                "validCaption": "Los datos están listos para continuar",
-                "validTitle": "La comprobación de datos está completa"
+                "unfilledAlert": "Hemos detectado que hay datos que requieren asignación manual."
             },
             "savePremapping": {
                 "message": "Se ha guardado la preasignación.",
@@ -470,10 +343,8 @@
                 "noMigrationDoneYet": "-",
                 "notConnected": "No conectado",
                 "profile": "Perfil del sistema:",
-                "refreshTooltip": "Compruebe la conexión al sistema fuente",
                 "removeCredentialsConfirmDialog": {
                     "abortButtonText": "Cancelar",
-                    "confirmButtonText": "Sí, eliminar",
                     "content": "No habrá conexión activa después de esto. Ingrese de nuevo los datos de acceso para restaurar la conexión.",
                     "contentHint": "¿Desea eliminar los datos de acceso actuales?",
                     "title": "Eliminar datos de acceso"
@@ -489,7 +360,6 @@
                     "abortButtonText": "Cancelar",
                     "confirmButtonText": "Finalizar ahora",
                     "content": "¡Genial! Ahora finalicemos su migración y limpiemos los archivos temporales y los datos no utilizados. <strong>Tenga en cuenta:</strong> Finalizar la migración es terminal. No podrá migrar más datos a través de la conexión actual.",
-                    "contentHint": "¿Desea finalizar la migración ahora?",
                     "errorNotification": {
                         "message": "Actualmente se está llevando a cabo una migración.",
                         "title": "Error al finalizar la migración"
@@ -499,7 +369,10 @@
                 }
             },
             "shopwareMajorVersionText": "Hemos observado que la versión {sourceSystem} de su sistema de origen no coincide con la versión {targetSystem} de su sistema de destino. Asegúrese de utilizar la misma versión principal para ambos sistemas antes de iniciar la migración.",
-            "title": "General"
+            "title": "General",
+            "warningModal": {
+                "cancelButton": "Atrás"
+            }
         },
         "wizard": {
             "buttonAbort": "Cancelar",
@@ -518,7 +391,6 @@
                     "connectionLabel": "Nombre de conexión",
                     "connectionPlaceholder": "Introducir nombre",
                     "connectionTooltip": "Introduzca un nombre único para la conexión.",
-                    "contentInformation": "Se requiere la siguiente información para realizar la migración.",
                     "gatewayLabel": "Portal",
                     "gatewayPlaceholder": "Seleccionar puerta de enlace",
                     "gatewayTooltip": "El tipo de conexión entre los sistemas.",
@@ -537,7 +409,6 @@
                 "connectionSelect": {
                     "connectionLabel": "Nombre de conexión",
                     "connectionPlaceholder": "Seleccione una conexión",
-                    "contentInformation": "Seleccione una conexión existente de la lista para actualizar los datos.",
                     "title": "Migración: cambio de la conexión"
                 },
                 "credentials": {
@@ -549,7 +420,6 @@
                         "SWAG_MIGRATION__DATABASE_CONNECTION_ERROR": "No se pudo establecer la conexión a la base de datos.",
                         "SWAG_MIGRATION__GATEWAY_READ": "No se pudo conectar con el servidor. Por favor, compruebe el dominio de la tienda dado.",
                         "SWAG_MIGRATION__GATEWAY_READ__HINT": "Si tienes problemas para conectarte, puede valer la pena comprobar la versión de curl actualmente instalada en tu servidor y actualizarla.",
-                        "SWAG_MIGRATION__INVALID_CONNECTION_AUTHENTICATION": "Sus credenciales son incorrectas. Compruébelas e inténtelo de nuevo.",
                         "SWAG_MIGRATION__INVALID_CONNECTION_CREDENTIALS": "Los datos de acceso para la conexión al sistema de origen no existen o son incorrectos. Compruébelos e inténtelo de nuevo.",
                         "SWAG_MIGRATION__IS_RUNNING": "Actualmente se está llevando a cabo una migración. Por lo tanto, no puede editar las credenciales hasta que se complete la migración.",
                         "SWAG_MIGRATION__PLUGIN_NOT_INSTALLED": "El complemento requerido «Conector de migración» no está instalado en Shopware 5. Instale el plugin gratuito e inténtelo de nuevo.",
@@ -567,13 +437,11 @@
                             "apiUserLabel": "Nombre de usuario (usuario API)",
                             "apiUserPlaceholder": "Escriba nombre de usuario",
                             "apiUserTooltip": "Nombre de usuario de su back-end Shopware 5.",
-                            "contentInformation": "Necesita credenciales API válidas para establecer una conexión entre Shopware 5 y Shopware 6. Sus credenciales de API se pueden encontrar en su back-end de Shopware 5 en «Administración de usuarios». El acceso a la API debe activarse allí y confirmarse guardando.",
                             "endpointLabel": "Dominio de tienda",
                             "endpointPlaceholder": "www.demoshop.com",
                             "endpointSSLLabel": "Mi tienda utiliza una conexión segura (SSL)"
                         },
                         "local": {
-                            "contentInformation": "Todavía necesitamos datos de acceso para conectarnos a su base de datos Shopware 5.",
                             "dbHostLabel": "Anfitrión",
                             "dbHostPlaceholder": "Ingresar host",
                             "dbNameLabel": "Nombre de la base",
@@ -595,10 +463,10 @@
                             "apiUserLabel": "ID de clave de acceso",
                             "apiUserPlaceholder": "Introducir ID de clave de acceso",
                             "apiUserTooltip": "Identificador de clave de acceso de su integración.",
-                            "contentInformation": "Necesita credenciales API válidas para establecer una conexión entre la instancia de Shopware 6 de origen y destino. Los obtienes cuando creas una integración en tu sistema fuente.",
                             "endpointLabel": "Dominio de tienda",
                             "endpointPlaceholder": "www.demoshop.com",
-                            "endpointSSLLabel": "Mi tienda utiliza una conexión segura (SSL)"
+                            "endpointSSLLabel": "Mi tienda utiliza una conexión segura (SSL)",
+                            "pluginName": "Asistente de Migración"
                         }
                     },
                     "statusTitle": "Verificación de conexión",
@@ -614,29 +482,6 @@
                     "contentHeadline": "Vamos a mover algunas cosas",
                     "contentInformation": "Juntos conectaremos su sistema de tienda a Shopware 6. Después, el Asistente de Migración le ayudará a migrar los datos paso a paso.",
                     "title": "Asistente de Migración"
-                },
-                "profileInformation": {
-                    "shopware55Api": {
-                        "contentInformation": "El complemento requerido «Conector de migración» es gratuito y se puede encontrar en su back-end de Shopware 5 en Administrador de complementos > Extensiones > Herramientas de migración. Instale y active el plugin para continuar.",
-                        "contentTitle": "Plugin requerido",
-                        "pluginLink": "Más información sobre el plugin"
-                    },
-                    "shopware6Api": {
-                        "contentTitle": "Requerimientos",
-                        "integration": {
-                            "description": "Cree una integración en el sistema fuente a través de Configuración > Sistema > Integraciones. Necesitará el ID de clave de acceso generado y la clave de acceso secreta en el siguiente paso.",
-                            "link": "https://docs.shopware.com/en/shopware-6-en/settings/system/integrationen",
-                            "linkText": "Más información sobre las integraciones",
-                            "title": "Integración"
-                        },
-                        "plugin": {
-                            "description": "Instale la extensión Migration Assistant en el sistema fuente.",
-                            "link": "https://store.shopware.com/en/swag257162657297f/migration-assistant.html",
-                            "linkText": "Más información sobre la extensión Migration Assistant",
-                            "title": "Extensión"
-                        }
-                    },
-                    "title": "Migración - Preparación de la conexión"
                 },
                 "profileInstallation": {
                     "availabilityHeadline": "Anteriormente disponible:",
