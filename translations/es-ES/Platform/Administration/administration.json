@@ -423,6 +423,7 @@
             "feature_set": "plantilla | Plantillas",
             "flow": "Generador de flujo",
             "flow_sequence": "Flujo",
+            "flow_template": "Plantilla de flujo | Plantillas de flujo",
             "frequently_used": "Usado con frecuencia",
             "import_export_profile": "Perfil de importación/exportación | Importación/exportación de perfiles",
             "integration": "Integración | Integraciones",
@@ -497,6 +498,7 @@
             "CONTENT__MEDIA_EMPTY_FILE": "Se debe proporcionar un nombre de archivo válido.",
             "CONTENT__MISSING_RULE_TYPE_EXCEPTION": "Necesitas seleccionar un tipo para esta regla.",
             "DELIVERY_TIME_MIN_INVALID": "El valor mínimo no debería ser superior al valor máximo.",
+            "DOCUMENT_BASE_CONFIG_INVALID_PAYMENT_DUE_DATE": "La fecha de vencimiento del pago debe ser una fecha relativa, como «+14 días».",
             "DUPLICATED_NAME": "Este nombre ya está en uso.",
             "DUPLICATED_PRODUCT_EXPORT_FILE_NAME": "Este nombre de archivo ya está en uso. Por favor, elija otro.",
             "DUPLICATED_SALUTATION_KEY": "Este nombre técnico ya se encuentra en uso. Selecciona otro diferente.",
@@ -617,6 +619,7 @@
         "sw-admin-menu": {
             "administrator": "Administrador",
             "linkCloseMenu": "Cerrar menú",
+            "linkExpandMenu": "Ampliar menú",
             "linkLogout": "Cerrar sesión",
             "linkMinimizeMenu": "Menú Contraer",
             "navigation": {
@@ -628,7 +631,8 @@
                 "mainMenuItemShopwarePayments": "Pagos de Shopware"
             },
             "textProjectName": "Administración",
-            "textShopwareAdmin": "Administración de Shopware"
+            "textShopwareAdmin": "Administración de Shopware",
+            "textVersion": "Versión:"
         },
         "sw-bulk-edit-modal": {
             "bulkEditModalTitle": "Edición masiva: {count} elementos seleccionados | Edición masiva: {count} elemento seleccionado",
@@ -1417,6 +1421,8 @@
         },
         "sw-search-bar": {
             "addNew": "Añadir nuevo",
+            "ariaLabelCloseSearch": "Cerrar búsqueda",
+            "ariaLabelOpenSearch": "Abrir búsqueda",
             "messageNoResults": "No se han encontrado resultados para \"{term}\".",
             "messageNoResultsDetailV2": "Intente usar diferentes palabras clave o compruebe la configuración de su búsqueda.",
             "messageNoResultsV2": "No se han encontrado coincidencias exactas para \"{term}\".",
@@ -1616,6 +1622,10 @@
             "buttonChange": "Cambiar tema",
             "modalTitleChange": "Cambiar tema",
             "textChangeTheme": "¿De verdad quieres cambiar el tema? Esto puede alterar la visualización de tu tienda."
+        },
+        "pendingAssignment": {
+            "description": "«{pendingThemeName}\" se está compilando en segundo plano y reemplazará a \"{liveThemeName}\" automáticamente cuando esté listo.",
+            "descriptionNoLiveTheme": "«{pendingThemeName}\" se está compilando en segundo plano y se aplicará automáticamente cuando esté listo."
         },
         "title": "Asignación temática"
     },
@@ -3834,6 +3844,7 @@
         },
         "sw-extension-app-module-error-page": {
             "error": {
+                "description": "No se ha podido encontrar la página que estás buscando. Es posible que se haya movido o que ya no exista.",
                 "heading": "¡Ups! Te has movido demasiado rápido y has perdido la orientación."
             }
         }
@@ -4395,6 +4406,7 @@
                 "labelDocumentTypeSingle": "Tipo de documento",
                 "labelFileFormats": "Formatos de archivo",
                 "placeholderDocumentType": "Seleccione los documentos...",
+                "placeholderDocumentTypeSingle": "Seleccione el tipo de documento...",
                 "placeholderFileFormats": "Seleccione formatos de archivo...",
                 "titleCreateDocument": "Generar documentos"
             },
@@ -4998,6 +5010,7 @@
     "sw-login": {
         "general": {
             "description": "Inicio de sesión Shopware",
+            "linkBackToLogin": "Volver al inicio de sesión",
             "loadingLabel": "Cargando...",
             "logoAlt": "Logotipo de Shopware",
             "mainMenuItemIndex": "Inicio de sesión"
@@ -5012,6 +5025,7 @@
             "labelUsername": "Nombre de usuario",
             "messageAccessDenied": "Se ha denegado el acceso.",
             "messageAuthThrottled": "Demasiados intentos de inicio de sesión. Espere {seconds} segundos antes de volver a intentar iniciar sesión.",
+            "messageGeneralError": "Algo salió mal durante el inicio de sesión. Por favor, inténtelo de nuevo.",
             "messageGeneralRequestError": "La solicitud a \"{url}\" ha fracasado.",
             "messageInvalidClient": "La autentificación del cliente ha fracasado.",
             "messageInvalidCredentials": "La información del usuario no es válida.",
@@ -5028,9 +5042,11 @@
             },
             "headline": "Restablecimiento de la contraseña",
             "info": {
+                "emailFallback": "su dirección de correo electrónico",
                 "headline": "Volver al inicio de sesión",
                 "info": "Si has indicado una dirección de correo electrónico válida, en pocos minutos recibirás un correo electrónico para restablecer tu contraseña."
             },
+            "messageLinkExpired": "Este enlace de recuperación de contraseña ha caducado o no es válido. Solicita un enlace nuevo.",
             "recovery": {
                 "headline": "Restablecimiento de la contraseña",
                 "newPasswordField": {
@@ -5041,7 +5057,8 @@
                 },
                 "submit": {
                     "label": "Actualizar contraseña"
-                }
+                },
+                "text": "Elige una contraseña nueva para tu cuenta."
             },
             "submit": "Enviar enlace para el restablecimiento",
             "text": "Introduce la dirección de correo electrónico enlazada con tu cuenta."
@@ -5429,14 +5446,30 @@
                     "deliveryNote": "Albarán de entrega",
                     "invoice": "Número de factura"
                 },
+                "emptyStateDescription": "Seleccione un tipo de documento para configurar el documento",
+                "emptyStateTitle": "Falta el tipo de documento",
+                "error": {
+                    "loadDocumentNumber": "No se pudo cargar un número de documento.",
+                    "loadDocumentTypes": "No se pudieron cargar los tipos de documentos disponibles.",
+                    "loadSupportedDocumentFileFormats": "No se pudieron cargar los formatos de archivo disponibles por tipo de documento.",
+                    "loadUploadedDocument": "No se pudo cargar el documento cargado."
+                },
                 "fileFormats": {
-                    "html": "HTML"
+                    "html": "HTML",
+                    "pdf": "PDF",
+                    "zugferdEmbeddedPdf": "PDF incrustado de ZUGFeRD",
+                    "zugferdXml": "XML de ZUGFeRD"
                 },
                 "generate": "Generar",
+                "generateAndDownload": "Generar y descargar",
+                "generateAndSend": "Generar y enviar",
                 "labelDocumentType": "Tipo de documento",
                 "labelFileFormats": "Formatos de archivo",
+                "openButtonLabel": "Generar documento nuevo",
+                "placeholderComment": "Escribe un comentario...",
                 "placeholderDocumentType": "Seleccione un tipo de documento...",
-                "placeholderFileFormats": "Seleccione formatos de archivo..."
+                "placeholderFileFormats": "Seleccione formatos de archivo...",
+                "title": "Generar documento"
             },
             "selectDocumentTypeModal": {
                 "helpText": {
@@ -5453,8 +5486,15 @@
             },
             "uploadDocumentModal": {
                 "buttonUploadFile": "Cargar archivos",
+                "helpTextFileFormat": "Selecciona el formato del archivo que quieres subir.",
+                "labelDocumentUpload": "Carga de documentos",
                 "labelFileFormat": "Formato de archivo",
-                "upload": "Cargar"
+                "openAction": "Cargar documento",
+                "placeholderFileFormat": "Seleccione un formato de archivo...",
+                "title": "Cargar documento",
+                "upload": "Cargar",
+                "uploadAndDownload": "Cargar y descargar",
+                "uploadAndSend": "Subir y enviar"
             }
         },
         "create": {
@@ -5730,7 +5770,15 @@
             "cardTitle": "Comprobantes",
             "confirmDeleteText": "Este documento forma parte de un pedido y puede ser relevante a efectos fiscales. Eliminarlo puede afectar a la trazabilidad de sus registros contables. Asegúrese de que la eliminación esté legalmente permitida. Esta acción no se puede deshacer.",
             "error": {
-                "DOCUMENT__NUMBER_ALREADY_EXISTS": "El número de documento {number} ya se ha asignado."
+                "DOCUMENT__NUMBER_ALREADY_EXISTS": "El número de documento {number} ya se ha asignado.",
+                "attachMediaToDocumentUpload": "No se pudo adjuntar el medio seleccionado al documento.",
+                "createDocument": "No se pudo crear el documento.",
+                "downloadDocument": "No se pudo descargar el documento.",
+                "downloadDocumentArchive": "No se pudo descargar el archivo del documento.",
+                "loadDocumentPreview": "No se pudo cargar la vista previa del documento.",
+                "loadSendingDocument": "No se pudo cargar el documento que se va a enviar.",
+                "openDocument": "No se pudo abrir el documento seleccionado.",
+                "uploadDocument": "No se pudo cargar el documento."
             },
             "info": {
                 "DOCUMENT__NUMBER_WAS_CHANGED": "Número de documento duplicado. Se ha extraído automáticamente un número consecutivo del rango numérico respectivo."
@@ -5740,11 +5788,14 @@
             "labelAvailableFormats": "Formatos disponibles",
             "labelCreateNew": "Crear documento nuevo",
             "labelDate": "Fecha",
+            "labelDownloadAllFormats": "Descargar todos los formatos",
+            "labelDownloadFormat": "Descargar {format}",
             "labelDownloadPdf": "Descargar documento",
             "labelMarkAsSent": "Marcar como enviado",
             "labelMarkAsUnsent": "Marcar como no enviado",
             "labelNumber": "Número",
             "labelOpenDocument": "Abrir documento",
+            "labelOpenFormat": "Abrir {format}",
             "labelPrintDocument": "Imprimir documento",
             "labelSendDocument": "Enviar documento",
             "labelSent": "Enviado",
@@ -5753,9 +5804,11 @@
             "messageEmptyTitle": "Aún no se ha creado ningún documento",
             "messageNoDocumentFound": "No se han encontrado documentos",
             "modalTitle": "Actualización de estado",
+            "notificationDeleteErrorMessage": "No se pudo eliminar el documento.",
             "searchBarPlaceholder": "Examinar comprobantes..."
         },
         "documentModal": {
+            "errorInvoiceMissingCreditItem": "La factura seleccionada no tiene ningún artículo acreditado.",
             "fileInputLabel": "Cargar documento propio",
             "labelCreate": "Crear comprobante",
             "labelCreateDownload": "Crear y descargar",
@@ -6401,6 +6454,7 @@
             "cardTitleAssignment": "Visibilidad y estructura",
             "cardTitleDeliverabilityInfo": "Disponibilidad",
             "cardTitleDownloads": "Archivos",
+            "cardTitleGuarantee": "Garantía (etiqueta GARAN)",
             "cardTitleMedia": "Medios",
             "cardTitlePackaging": "Medidas y embalaje",
             "cardTitlePrices": "Precios",
@@ -6693,12 +6747,17 @@
             "titleOpenGraph": "Abrir gráfico"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "La etiqueta de garantía solo se muestra si se establece una duración de garantía válida, un fabricante y el número de producto del fabricante.",
+            "helpTextGuaranteeMonths": "El valor mínimo es 30, los pasos son 6.",
             "isCloseoutHelpText": "No es posible realizar pedidos posteriores.",
             "labelActive": "Activo para todos los canales de venta seleccionados",
             "labelAvailableStock": "Existencias disponibles",
             "labelCreatedAt": "Fecha de creación",
             "labelDeliveryTime": "Plazo de entrega",
             "labelEan": "GTIN/EAN",
+            "labelGuaranteeConfirmed": "Mostrar etiqueta en Storefront",
+            "labelGuaranteeDescription": "Esta etiqueta representa una garantía comercial de durabilidad expresada en años. La garantía la ofrece el productor sin coste adicional, cubre la totalidad del producto y tiene una duración de más de dos años.",
+            "labelGuaranteeMonths": "Duración de la garantía al productor en meses",
             "labelHeight": "Altura",
             "labelIsCloseout": "Venta",
             "labelLength": "Longitud",
@@ -6716,6 +6775,7 @@
             "placeholderCreatedAt": "Introduce una fecha de creación...",
             "placeholderDeliveryTime": "Indica el plazo de entrega…",
             "placeholderEan": "Introduce GTIN/EAN...",
+            "placeholderGuaranteeMonths": "por ejemplo, 30, 36 o 42 meses...",
             "placeholderHeight": "p. ej., 200…",
             "placeholderLength": "p. ej., 100…",
             "placeholderManufacturerNumber": "Introduce el número de fabricante...",
@@ -7016,6 +7076,7 @@
             "labelEmailField": "Dirección de correo electrónico",
             "labelFirstNameField": "Nombre",
             "labelLastNameField": "Apellidos",
+            "labelModuleIconColorsField": "Colores del módulo",
             "labelNewPassword": "Contraseña nueva",
             "labelNewPasswordConfirm": "Confirmar contraseña",
             "labelOldPassword": "Contraseña antigua",
@@ -7029,6 +7090,7 @@
             "notificationPasswordErrorMessage": "Las contraseñas introducidas no coinciden.",
             "notificationSaveErrorMessage": "No se ha podido guardar tu información de perfil.",
             "notificationSaveSuccessMessage": "Tu información de perfil ha sido guardada correctamente.",
+            "optionModuleIconColorsColored": "Coloreado",
             "optionModuleIconColorsNeutral": "Neutro",
             "placeholderNewPassword": "Introduce una contraseña nueva…",
             "placeholderNewPasswordConfirm": "Repite tu contraseña nueva…",
@@ -7240,6 +7302,7 @@
                             "buttonGenerate": "Generar códigos nuevos",
                             "description": "Los códigos promocionales se generan aleatoriamente a partir de mayúsculas y números. Puede agregar términos individuales fijos como prefijo y/o sufijo o usar un patrón completamente personalizado y ver cómo resulta su patrón de código en la vista previa del código promocional.",
                             "helpTextCustomPattern": "Tenga en cuenta que sólo puede haber una cadena consecutiva de variables, que se convertirá.<br><br>Posibles variables a utilizar:<br>- %d - Dígitos (0-9)<br>- %s - Letras (A-Z)",
+                            "invalidPatternException": "El patrón de código debe contener al menos una variable (%s o %d).",
                             "labelCodeAmount": "Número de códigos de promoción",
                             "labelCodeLength": "Longitud del código",
                             "labelCustomPattern": "Patrón personalizado",
@@ -7813,6 +7876,7 @@
             "footerCategory": "Punto de entrada para la navegación de pie de página",
             "foreignKeyDelete": "Este canal de ventas no se puede eliminar porque {assignment}lo sigue usando.",
             "helpTextBusinessTimeZone": "La zona horaria se utiliza siempre que se imprime una fecha u hora en los documentos de este canal de ventas. Si está vacío, no se aplica ninguna anulación de zona horaria comercial.",
+            "helpTextIsExternalStorefront": "Las URL de SEO solo se generan para los dominios que apuntan a una tienda externa. Por idioma, solo se puede configurar una tienda externa para un único canal de ventas.",
             "helpTextTaxCalculation": {
                 "label": "Si se activa un proveedor de impuestos, es posible que se sobrescriba esta configuración. Puedes comprobarlo en {link}.",
                 "linkText": "configuración"
@@ -7853,6 +7917,7 @@
             "labelInputSnippet": "Juego de bloques de texto",
             "labelInputTaxCalculation": "Cálculo de impuestos",
             "labelInputUrl": "URL",
+            "labelIsExternalStorefront": "Escaparate externo",
             "labelMaintenanceActive": "Modo de mantenimiento",
             "labelOptionTaxHorizontal": "Horizontal",
             "labelOptionTaxVertical": "Vertical",
@@ -7953,6 +8018,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Moneda"
                 },
+                "storefrontDomainHelpText": "En el caso de los canales de venta independientes, aquí solo se pueden seleccionar los dominios marcados como escaparate externo. Marca un dominio como tienda externa en la configuración de dominio del canal de ventas.",
                 "storefrontDomainLanguage": {
                     "help": "Seleccionado automáticamente sobre la base del dominio del escaparate",
                     "label": "Idioma"
@@ -8069,6 +8135,8 @@
             "columnName": "Canal de venta",
             "columnStatus": "Estado",
             "columnType": "Tipo",
+            "emptyStateDescription": "Añade tu primer canal de ventas para empezar a vender a través de escaparates, mercados o redes sociales.",
+            "emptyStateHeadline": "Aún no hay canales de venta",
             "placeholderSearchBar": "Buscar canales de venta...",
             "productsCount": "productos | producto | productos",
             "productsLabel": "Productos",
@@ -8110,16 +8178,20 @@
         "labelSeoPathInfo": "Ruta SEO",
         "placeholderMainCategory": "Seleccionar categoría principal…",
         "textEmptySeoUrls": "Todavía no hay direcciones URL SEO.",
+        "textSeoUrlsNotSupported": "Las URL de SEO no se pueden asignar a este tipo de canal de ventas.",
         "titleCard": "URL SEO"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "Se requiere un dominio de tienda externo",
             "labelPossibleValues": "Variables posibles",
             "labelSalesChannelSelect": "Canal de venta",
+            "linkExternalStorefrontDomain": "Abrir la configuración del canal de ventas",
             "messageSaveError": "No todas las plantillas URL SEO son válidas.",
             "messageSaveSuccess": "Las plantillas URL SEO han sido guardadas correctamente.",
             "placeholderSelectVariables": "Seleccionar…",
             "preview": "Vista previa:",
+            "textExternalStorefrontRequired": "En el caso de los canales de venta independientes, las URL de SEO solo se generan para los dominios que están marcados como escaparate externo. Agregue un dominio de este tipo al canal de ventas para habilitar las URL de SEO.",
             "textInfoMessageBoxEmptyProperties": "Al utilizar variables, asegúrese de que los datos estén disponibles en todos los campos respectivos de las entidades (productos, páginas de destino o categorías). Si las variables hacen referencia a campos vacíos, no se creará ninguna URL de SEO para la entidad correspondiente.",
             "textUrlNoEntitiesForPreview": "No hay {entity} disponibles.",
             "textUrlPreviewEmptyTemplate": "La plantilla está vacía, no se generarán las URL de SEO para {entity} .",
@@ -8636,6 +8708,10 @@
             "displayTitle": "Pantalla:",
             "displayedContentCard": "Contenido mostrado",
             "displayedContentCardSubtitle": "Seleccione el contenido que debe mostrarse en el documento.",
+            "filenameCard": "Denominación de archivos",
+            "filenameInfixHeadline": "Infijo de nombre de archivo",
+            "filenameInfixHelpText": "Agregue un infijo a cada formato de documento para evitar conflictos de nombres entre diferentes versiones del mismo documento.",
+            "filenamePattern": "Patrón de nombre de archivo: <prefix><documentNumber><infix><suffix>.<fileExtension>",
             "helpTextDisplayAdditionalNoteDelivery": "Solo apta para los estados miembros de la UE, consulta también «Ajustes > Países».",
             "helpTextDisplayDocumentInCustomerAccount": "El documento se muestra en «Pedidos» en la cuenta de cliente respectiva. Tenga en cuenta que sólo los documentos que se han enviado realmente al cliente se muestran en la cuenta del cliente.",
             "helpTextPaymentDueDate": "Utiliza un modificador de fecha relativa basado en la fecha del documento, por ejemplo, «+14 días».",
@@ -8701,6 +8777,7 @@
             "placeholderCompanyUrl": "Ingresar al sitio web...",
             "placeholderCompanyZipcode": "Introducir código postal…",
             "placeholderExecutiveDirector": "Ingresa un ejecutivo de negocios...",
+            "placeholderFileNameInfix": "Ingresa el infijo...",
             "placeholderFileNamePrefix": "Introducir prefijo...",
             "placeholderFileNameSuffix": "Introducir sufijo...",
             "placeholderFileTypes": "Seleccione formatos de archivo...",
@@ -8717,6 +8794,9 @@
             "placeholderType": "Seleccione un tipo de documento...",
             "placeholderVatId": "Introduce el identificador de IVA...",
             "textHeadline": "Nuevo documento"
+        },
+        "errors": {
+            "invalidDueDateFormat": "El modificador de fecha no es válido."
         },
         "general": {
             "description": "Configuración de documentos del módulo de ajuste",
@@ -8737,26 +8817,61 @@
     "sw-settings-language": {
         "addModal": {
             "buttonAdd": "Crear idioma",
+            "createCustomLanguage": "Crear un idioma personalizado",
+            "docsHint": "Cómo funcionan las traducciones en Shopware:",
             "docsLinkLabel": "Más información",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "¿No encuentra el idioma que necesita? Busca los idiomas disponibles en el {extensionStoreLink}",
+            "extensionStoreLink": "Tienda de extensiones",
             "labelLanguage": "Idioma",
-            "title": "Crear idioma"
+            "messageAddError": "No se pudo agregar el idioma.",
+            "messageAddSuccess": "Se ha agregado el idioma.",
+            "messageLanguagesLoadError": "No se pudieron cargar los idiomas existentes.",
+            "messageTranslationsLoadError": "No se pudieron cargar las traducciones disponibles.",
+            "placeholderLanguage": "Selecciona un idioma...",
+            "title": "Crear idioma",
+            "translationsAvailable": "Hay traducciones disponibles para este idioma.",
+            "translationsIncomplete": "Es posible que aún falten algunas traducciones para este idioma."
         },
         "detail": {
+            "createdBannerText": "Active el idioma y, a continuación, asígnelo a un canal de ventas para que esté disponible para los clientes.",
+            "createdBannerTitle": "{name} se ha añadido correctamente",
             "labelActive": "Activo",
             "labelIsoCode": "Código ISO",
             "labelLocale": "Localización",
             "labelName": "Nombre",
             "labelParent": "Herencia de",
+            "messageLoadError": "No se pudo cargar el idioma.",
+            "messageSaveError": "No se pudo guardar el idioma.",
             "messageSaveSuccess": "El idioma \"{name}\" ha sido guardado correctamente.",
             "placeholderName": "Introducir nombre...",
             "placeholderPleaseSelect": "Seleccionar...",
             "salesChannels": {
+                "activateHint": "Active el idioma y, a continuación, asígnelo a un canal de ventas para que esté disponible para los clientes.",
+                "assignHint": "Asigne el idioma a un canal de ventas para que esté disponible para los clientes.",
+                "assignedIntro": "El idioma se asigna a los siguientes canales de venta:",
+                "openSettings": "Abrir la configuración del canal de ventas",
                 "showAll": "A la categoría",
                 "showLess": "Mostrar menos",
                 "title": "Canal de venta"
             },
             "snippetUpdates": {
+                "autoUpdate": "Actualización automática",
+                "autoUpdateHelpText": "Mantén actualizados automáticamente los fragmentos de este idioma.",
+                "builtIn": "Los fragmentos integrados se actualizan como parte de las actualizaciones de Shopware.",
+                "linkButton": "Idioma del enlace",
+                "linking": "El idioma se está vinculando.",
+                "linkingButton": "Vinculando...",
+                "notAvailable": "No hay actualizaciones disponibles para este idioma.",
+                "notAvailableHelpText": "Es posible que los idiomas que se añadan manualmente o mediante extensiones de terceros se actualicen de forma diferente o que no reciban ninguna actualización.",
+                "notLinked": "Este idioma es compatible con Shopware, pero aún no está conectado al sistema de traducción.",
+                "statusLoadError": "No se pudo cargar el estado de actualización del fragmento.",
+                "title": "Actualizaciones de fragmentos",
+                "upToDate": "Los fragmentos están actualizados.",
+                "updateAvailable": "Nueva actualización disponible.",
                 "updateButton": "Actualizar",
+                "updateError": "No se pudieron actualizar los fragmentos de este idioma.",
+                "updating": "Se están actualizando los fragmentos.",
                 "updatingButton": "Actualización"
             },
             "textAlertChangeParent": "En su caso, un cambio del idioma heredado puede causar traducciones inconsistentes.",
@@ -8764,6 +8879,7 @@
             "textIsoCodeIsInUse": "Este código ISO ya se encuentra en uso.",
             "textLanguageHasParent": "Este idioma ya recibe una herencia de otro idioma.",
             "titleCard": "Ajustes",
+            "tooltipActive": "Muestre este idioma como una opción al traducir contenido y configurar los canales de venta en la Administración. Su desactivación no afecta a la disponibilidad de la tienda.",
             "tooltipInheritanceNotPossible": "El idioma estándar del sistema no puede heredar de otro idioma.",
             "tooltipLanguageNotChoosable": "La herencia solo es posible desde un idioma que no recibe herencia."
         },
@@ -8773,6 +8889,8 @@
         },
         "list": {
             "buttonAddLanguage": "Crear idioma",
+            "buttonUpdateAllSnippets": "Actualizar todos los fragmentos",
+            "buttonUpdateSelectedSnippets": "Actualizar los fragmentos seleccionados",
             "cardSubtitle": "Se pueden asignar idiomas a los dominios del canal de ventas para mostrar las traducciones adecuadas. También permiten la traducción de contenido en categorías, productos, páginas de experiencia de compra, etc.",
             "cardTitle": "Idiomas",
             "columnActive": "Activo",
@@ -8782,14 +8900,29 @@
             "columnLocaleName": "Localización",
             "columnName": "Nombre",
             "columnSalesChannels": "Canal de venta",
+            "columnSnippetStatus": "Actualizaciones de fragmentos",
+            "contextMenuUpdateSnippets": "Actualizar fragmentos",
             "defaultLabel": "Estándar",
+            "deleteError": "No se pudieron eliminar los idiomas.",
+            "deleteFilesNote": "Esta acción elimina las entidades lingüísticas y los fragmentos de código de la administración y no los archivos de fragmentos del sistema de archivos. ¿También quieres eliminarlos?",
+            "deleteFilesNoteLabel": "Nota:",
+            "deleteModalIntro": "¿Está seguro de que desea eliminar los siguientes idiomas? Esta acción no se puede deshacer:",
+            "deleteModalTitle": "¿Eliminar idiomas?",
+            "deleteTranslationFiles": "Elimine también los fragmentos del sistema de archivos",
+            "deleteTranslationFilesError": "Los archivos de fragmentos no se pudieron eliminar del sistema de archivos.",
             "manageSnippets": "Administrar fragmentos",
             "messageDeleteSuccess": "El idioma \"{name}\" ha sido eliminado correctamente.",
+            "salesChannelCount": "Canal de ventas {count} | Canales de ventas {count}",
             "snippetStatus": {
+                "updateAvailable": "Actualización disponible",
                 "updating": "Actualización"
             },
+            "snippetStatusLoadError": "No se pudieron cargar las actualizaciones de los fragmentos.",
             "textHeadline": "Idiomas",
-            "titleSidebarItemRefresh": "Actualizar"
+            "titleSidebarItemRefresh": "Actualizar",
+            "updateSnippetsError": "No se pudieron actualizar los fragmentos.",
+            "updateSnippetsProgress": "Actualización de fragmentos ({processed}/{total})",
+            "updateSnippetsSuccess": "Se han actualizado los fragmentos."
         }
     },
     "sw-settings-listing": {
@@ -8812,6 +8945,7 @@
                 "placeholderTechnicalName": "Introduzca el nombre técnico...",
                 "title": "General"
             },
+            "lockedInfo": "Esta opción de clasificación está bloqueada y, por lo tanto, solo se pueden editar los campos de traducción.",
             "notification": {
                 "saveError": "No se pudo guardar la opción de ordenación \"{sortingOptionName}».",
                 "saveErrorAlreadyExists": "La opción de clasificación \"{sortingOptionName}\" ya existe.",
@@ -8879,6 +9013,10 @@
                     "title": "No se encontraron opciones"
                 },
                 "grid": {
+                    "deleteTooltip": {
+                        "default": "Esta opción de clasificación es la clasificación predeterminada y, por lo tanto, no se puede eliminar.",
+                        "locked": "Esta opción de clasificación está bloqueada y, por lo tanto, no se puede eliminar."
+                    },
                     "header": {
                         "criteria": "Criterios",
                         "name": "Nombre",
@@ -10186,6 +10324,7 @@
             "opt-out-info": {
                 "profile": "Su perfil — Preferencias de privacidad",
                 "settings": "Configuración — Privacidad",
+                "single-option-snippet": "Puedes cambiar tus preferencias en cualquier momento en {link}.",
                 "snippet": "Puedes cambiar tus preferencias en cualquier momento: gestiona la configuración de los datos de la tienda en {settings}y la configuración de los datos personales en {profile}."
             },
             "promises": {
@@ -10544,6 +10683,7 @@
         "detail": {
             "asyncCompilation": {
                 "completed": "La compilación del tema se ha completado.",
+                "error": "La compilación del tema falló en segundo plano. El tema no se modificó.",
                 "started": "Los cambios se están recopilando en segundo plano. Serán visibles en aproximadamente 1 minuto. Recibirás una notificación cuando se complete la compilación."
             },
             "description": "Descripción",
@@ -10679,10 +10819,22 @@
         "finishButton": "Lo tengo",
         "nextButton": "Continuar",
         "pages": {
+            "adminNavigation": {
+                "description": "A medida que la administración de Shopware ha crecido, también lo ha hecho la cantidad de funciones y elementos de navegación. Hemos rediseñado la navegación para mejorar la densidad y hacer que todo sea más fácil de encontrar, con estados activos más claros, animaciones de submenú más fluidas, mejor legibilidad y mejor accesibilidad del teclado.",
+                "headline": "Una navegación más clara y simplificada"
+            },
             "darkMode": {
+                "badge": "Experimental",
+                "description": "La Administración ahora ofrece una apariencia oscura para la interfaz de usuario, para una mejor accesibilidad y para que coincida con sus preferencias personales.",
+                "headline": "Apariencia oscura",
+                "profileSettingsLink": "configuración de perfil",
+                "themeSaveError": "No se pudo guardar la apariencia.",
+                "themeSelectHint": "Puedes cambiar esta configuración en cualquier momento en tu {profileSettingsLink}.",
                 "themeSelectLabel": "Apariencia"
             }
-        }
+        },
+        "seenSaveError": "No se ha podido guardar tu preferencia. Es posible que este cuadro de diálogo vuelva a aparecer.",
+        "title": "Una nueva imagen para su administración"
     },
     "sw-users-permissions": {
         "general": {
@@ -10859,6 +11011,9 @@
                     },
                     "saveSuccess": {
                         "message": "Usuario \"{name}\" guardado."
+                    },
+                    "themeSaveError": {
+                        "message": "No se pudo guardar la preferencia de tema."
                     }
                 },
                 "passwordConfirmation": {
