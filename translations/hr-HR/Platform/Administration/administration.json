@@ -423,6 +423,7 @@
             "feature_set": "Predložak | Predlošci",
             "flow": "Graditelj protoka",
             "flow_sequence": "Protok",
+            "flow_template": "Predložak protoka | Predlošci protoka",
             "frequently_used": "Često se koristi",
             "import_export_profile": "Profil uvoza/izvoza | Uvoz/izvozni profili",
             "integration": "Integracija | integracije",
@@ -497,6 +498,7 @@
             "CONTENT__MEDIA_EMPTY_FILE": "Mora se navesti valjani naziv datoteke.",
             "CONTENT__MISSING_RULE_TYPE_EXCEPTION": "Za ovo pravilo morate odabrati vrstu.",
             "DELIVERY_TIME_MIN_INVALID": "Minimalna vrijednost ne smije biti veća od maksimalne vrijednosti.",
+            "DOCUMENT_BASE_CONFIG_INVALID_PAYMENT_DUE_DATE": "Datum dospijeća plaćanja mora biti relativni datum kao što je \"+14 dana\".",
             "DUPLICATED_NAME": "Ovo ime je već u upotrebi.",
             "DUPLICATED_PRODUCT_EXPORT_FILE_NAME": "Ovo se ime datoteke već koristi. Molimo odaberite drugi.",
             "DUPLICATED_SALUTATION_KEY": "Tehnički naziv je već u upotrebi. Molimo da odaberite drugi.",
@@ -617,6 +619,7 @@
         "sw-admin-menu": {
             "administrator": "Administrator",
             "linkCloseMenu": "Zatvori izbornik",
+            "linkExpandMenu": "Proširi izbornik",
             "linkLogout": "Odjava",
             "linkMinimizeMenu": "Sažmi izbornik",
             "navigation": {
@@ -628,7 +631,8 @@
                 "mainMenuItemShopwarePayments": "Shopware plaćanja"
             },
             "textProjectName": "Administracija",
-            "textShopwareAdmin": "Administracija Shopware"
+            "textShopwareAdmin": "Administracija Shopware",
+            "textVersion": "Verzija:"
         },
         "sw-bulk-edit-modal": {
             "bulkEditModalTitle": "Skupno uređivanje - odabrana {count} stavka | Skupno uređivanje - odabrana {count} stavka",
@@ -1417,6 +1421,8 @@
         },
         "sw-search-bar": {
             "addNew": "dodati novi",
+            "ariaLabelCloseSearch": "Zatvori pretraživanje",
+            "ariaLabelOpenSearch": "Otvori pretraživanje",
             "messageNoResults": "Nema pronađenih rezultata za \"{term}\".",
             "messageNoResultsDetailV2": "Pokušajte koristiti različite ključne riječi ili provjerite konfiguraciju pretraživanja.",
             "messageNoResultsV2": "Nije pronađeno točno podudaranje za \"{term}\".",
@@ -1616,6 +1622,10 @@
             "buttonChange": "Promijenite temu",
             "modalTitleChange": "Promijenite temu",
             "textChangeTheme": "Želite li stvarno promijeniti temu? To može promijeniti vizualizaciju vaše trgovine."
+        },
+        "pendingAssignment": {
+            "description": "\"{pendingThemeName}\" se sastavlja u pozadini i automatski će zamijeniti \"{liveThemeName}\" nakon što bude spreman.",
+            "descriptionNoLiveTheme": "\"{pendingThemeName}\" se sastavlja u pozadini i automatski će se primijeniti nakon što bude spreman."
         },
         "title": "Zadatak teme"
     },
@@ -3834,6 +3844,7 @@
         },
         "sw-extension-app-module-error-page": {
             "error": {
+                "description": "Stranica koju ste tražili nije pronađena. Možda je premješten ili više ne postoji.",
                 "heading": "Ups! Prebrzo ste se kretali i izgubili orijentaciju."
             }
         }
@@ -4395,6 +4406,7 @@
                 "labelDocumentTypeSingle": "Vrsta dokumenta",
                 "labelFileFormats": "Formati datoteka",
                 "placeholderDocumentType": "Odaberite dokumente...",
+                "placeholderDocumentTypeSingle": "Odaberite vrstu dokumenta...",
                 "placeholderFileFormats": "Odaberite formate datoteka...",
                 "titleCreateDocument": "Generiranje dokumenata"
             },
@@ -4998,6 +5010,7 @@
     "sw-login": {
         "general": {
             "description": "Prijava na Shopware",
+            "linkBackToLogin": "Povratak na prijavu",
             "loadingLabel": "Učitavanje...",
             "logoAlt": "Logotip trgovine",
             "mainMenuItemIndex": "Prijava"
@@ -5012,6 +5025,7 @@
             "labelUsername": "Korisničko ime",
             "messageAccessDenied": "Zahtjev odbijen od strane poslužitelja autorizacije.",
             "messageAuthThrottled": "Previše pokušaja prijave. Molimo pričekajte {seconds} sekundi prije nego što se ponovno pokušate prijaviti.",
+            "messageGeneralError": "Nešto je pošlo po zlu tijekom prijave. Molim pokušajte ponovo.",
             "messageGeneralRequestError": "Došlo je do pogreške prilikom zahtjeva za \"{url}\".",
             "messageInvalidClient": "Provjera autentičnosti nije uspjela.",
             "messageInvalidCredentials": "Neispravni korisnički podaci.",
@@ -5028,9 +5042,11 @@
             },
             "headline": "Povrat lozinke",
             "info": {
+                "emailFallback": "Vašu adresu e-pošte",
                 "headline": "Povratak na prijavu",
                 "info": "Ako je unesena e-mail adresa važeća, u roku od nekoliko minuta dobit ćete poruku za oporavak lozinke."
             },
+            "messageLinkExpired": "Ova veza za oporavak lozinke je istekla ili je nevažeća. Molimo zatražite novu vezu.",
             "recovery": {
                 "headline": "Povrat lozinke",
                 "newPasswordField": {
@@ -5041,7 +5057,8 @@
                 },
                 "submit": {
                     "label": "Ažuriraj lozinku"
-                }
+                },
+                "text": "Odaberite novu lozinku za svoj račun."
             },
             "submit": "Pošalji e-mail za oporavak",
             "text": "Unesite e-mail adresu koja je povezana s vašim računom."
@@ -5429,14 +5446,30 @@
                     "deliveryNote": "Bilješka o dostavi",
                     "invoice": "Broj računa"
                 },
+                "emptyStateDescription": "Odaberite vrstu dokumenta za konfiguriranje dokumenta",
+                "emptyStateTitle": "Nedostaje vrsta dokumenta",
+                "error": {
+                    "loadDocumentNumber": "Nije uspjelo učitati broj dokumenta.",
+                    "loadDocumentTypes": "Nije uspjelo učitati dostupne vrste dokumenata.",
+                    "loadSupportedDocumentFileFormats": "Nije uspjelo učitati dostupne formate datoteka po vrsti dokumenta.",
+                    "loadUploadedDocument": "Učitavanje prenesenog dokumenta nije uspjelo."
+                },
                 "fileFormats": {
-                    "html": "HTML"
+                    "html": "HTML",
+                    "pdf": "PDF",
+                    "zugferdEmbeddedPdf": "ZugferD ugrađeni PDF",
+                    "zugferdXml": "Zugferd XML"
                 },
                 "generate": "Stvori",
+                "generateAndDownload": "Generirajte i preuzmite",
+                "generateAndSend": "Generirajte i pošaljite",
                 "labelDocumentType": "Vrsta dokumenta",
                 "labelFileFormats": "Formati datoteka",
+                "openButtonLabel": "Generiraj novi dokument",
+                "placeholderComment": "Napišite komentar...",
                 "placeholderDocumentType": "Odaberite vrstu dokumenta...",
-                "placeholderFileFormats": "Odaberite formate datoteka..."
+                "placeholderFileFormats": "Odaberite formate datoteka...",
+                "title": "Generiraj dokument"
             },
             "selectDocumentTypeModal": {
                 "helpText": {
@@ -5453,8 +5486,15 @@
             },
             "uploadDocumentModal": {
                 "buttonUploadFile": "Učitaj datoteku",
+                "helpTextFileFormat": "Odaberite format datoteke koju želite prenijeti.",
+                "labelDocumentUpload": "Prijenos dokumenta",
                 "labelFileFormat": "Format datoteke",
-                "upload": "Učitaj"
+                "openAction": "Otpremite dokument",
+                "placeholderFileFormat": "Odaberite format datoteke...",
+                "title": "Otpremite dokument",
+                "upload": "Učitaj",
+                "uploadAndDownload": "Prenesite i preuzmite",
+                "uploadAndSend": "Prenesite i pošaljite"
             }
         },
         "create": {
@@ -5730,7 +5770,15 @@
             "cardTitle": "Dokumenti",
             "confirmDeleteText": "Ovaj dokument dio je naloga i može biti relevantan u porezne svrhe. Brisanje može utjecati na sljedivost vaših računovodstvenih evidencija. Molimo provjerite je li brisanje zakonski dopušteno. Ova radnja se ne može poništiti.",
             "error": {
-                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Broj dokumenta {number} je već dodijeljen."
+                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Broj dokumenta {number} je već dodijeljen.",
+                "attachMediaToDocumentUpload": "Nije uspjelo priložiti odabrani medij dokumentu.",
+                "createDocument": "Nije uspjelo stvoriti dokument.",
+                "downloadDocument": "Nije uspjelo preuzeti dokument.",
+                "downloadDocumentArchive": "Nije uspjelo preuzeti arhivu dokumenata.",
+                "loadDocumentPreview": "Nije uspjelo učitati pregled dokumenta.",
+                "loadSendingDocument": "Nije uspjelo učitati dokument za slanje.",
+                "openDocument": "Otvaranje odabranog dokumenta nije uspjelo.",
+                "uploadDocument": "Učitavanje dokumenta nije uspjelo."
             },
             "info": {
                 "DOCUMENT__NUMBER_WAS_CHANGED": "Duplicirani broj dokumenta. Uzastopni broj automatski je izvučen iz odgovarajućeg raspona brojeva."
@@ -5740,11 +5788,14 @@
             "labelAvailableFormats": "Dostupni formati",
             "labelCreateNew": "Stvaranje novog dokumenta",
             "labelDate": "Datum",
+            "labelDownloadAllFormats": "Preuzmite sve formate",
+            "labelDownloadFormat": "Preuzmi {format}",
             "labelDownloadPdf": "Preuzmite dokument",
             "labelMarkAsSent": "Označi kao poslano",
             "labelMarkAsUnsent": "Označi kao neposlano",
             "labelNumber": "Broj",
             "labelOpenDocument": "Otvori dokument",
+            "labelOpenFormat": "Otvorite stranicu {format}",
             "labelPrintDocument": "Ispis dokumenta",
             "labelSendDocument": "Pošalji dokument",
             "labelSent": "Poslano",
@@ -5753,9 +5804,11 @@
             "messageEmptyTitle": "Dokumenti još nisu stvoreni",
             "messageNoDocumentFound": "Dokumenti nisu pronađeni",
             "modalTitle": "Ažuriranje statusa",
+            "notificationDeleteErrorMessage": "Dokument se nije mogao izbrisati.",
             "searchBarPlaceholder": "Pretraži sve dokumente..."
         },
         "documentModal": {
+            "errorInvoiceMissingCreditItem": "Odabrani račun nema kreditnu stavku.",
             "fileInputLabel": "Prenesite prilagođeni dokument",
             "labelCreate": "Izradi",
             "labelCreateDownload": "Stvorite i preuzmite",
@@ -6401,6 +6454,7 @@
             "cardTitleAssignment": "Vidljivost i struktura",
             "cardTitleDeliverabilityInfo": "Mogućnost za isporuku",
             "cardTitleDownloads": "Datoteke",
+            "cardTitleGuarantee": "Jamstvo (oznaka GARAN)",
             "cardTitleMedia": "Mediji",
             "cardTitlePackaging": "Mjere i pakiranje",
             "cardTitlePrices": "Cijene",
@@ -6693,12 +6747,17 @@
             "titleOpenGraph": "Otvorite grafikon"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "Naljepnica jamstva prikazuje se samo ako je postavljeno valjano trajanje jamstva, proizvođač i broj proizvoda proizvođača.",
+            "helpTextGuaranteeMonths": "Minimalna vrijednost je 30, koraci od 6.",
             "isCloseoutHelpText": "Povratne narudžbe su odbijene.",
             "labelActive": "Aktivno za sve odabrane prodajne kanale",
             "labelAvailableStock": "Dostupne zalihe",
             "labelCreatedAt": "Datum kreiranja",
             "labelDeliveryTime": "Vrijeme isporuke",
             "labelEan": "GTIN/EAN",
+            "labelGuaranteeConfirmed": "Prikaži oznaku u Storefront",
+            "labelGuaranteeDescription": "Ova oznaka predstavlja komercijalno jamstvo trajnosti izraženo u godinama. Jamstvo nudi proizvođač bez dodatnih troškova, pokrivajući cjelokupnu robu i u trajanju duljem od dvije godine.",
+            "labelGuaranteeMonths": "Trajanje garancije proizvođača u mjesecima",
             "labelHeight": "Visina",
             "labelIsCloseout": "Na rasprodaji",
             "labelLength": "Duljina",
@@ -6716,6 +6775,7 @@
             "placeholderCreatedAt": "Unesite datum kreiranja...",
             "placeholderDeliveryTime": "Unesite vrijeme dostave...",
             "placeholderEan": "Unesite GTIN/EAN...",
+            "placeholderGuaranteeMonths": "npr. 30, 36 ili 42 mjeseca...",
             "placeholderHeight": "npr. 200...",
             "placeholderLength": "npr. 100...",
             "placeholderManufacturerNumber": "Unesite broj proizvoda...",
@@ -7016,6 +7076,7 @@
             "labelEmailField": "E-mail adresa",
             "labelFirstNameField": "Ime",
             "labelLastNameField": "Prezime",
+            "labelModuleIconColorsField": "Boje modula",
             "labelNewPassword": "Nova lozinka",
             "labelNewPasswordConfirm": "Potvrdi lozinku",
             "labelOldPassword": "Stara lozinka",
@@ -7029,6 +7090,7 @@
             "notificationPasswordErrorMessage": "Unešene lozinke se ne podudaraju.",
             "notificationSaveErrorMessage": "Podaci profila nisu se mogli spremiti.",
             "notificationSaveSuccessMessage": "Podaci profila su spremljeni.",
+            "optionModuleIconColorsColored": "Obojeno",
             "optionModuleIconColorsNeutral": "Neutralno",
             "placeholderNewPassword": "Unesite novu lozinku...",
             "placeholderNewPasswordConfirm": "Ponovno unesite novu lozinku...",
@@ -7240,6 +7302,7 @@
                             "buttonGenerate": "Generiraj nove ko",
                             "description": "Promotivni kodovi generiraju se nasumično koristeći velika slova i brojeva. Možete dodati fiksne pojedinačne pojmove kao prefiks i / ili sufiks ili upotrijebiti potpuno prilagođeni uzorak i pratiti kako izgleda vaš uzorak koda u pregledu promotivnog koda.",
                             "helpTextCustomPattern": "Imajte na umu da može postojati samo jedan uzastopni niz varijabli koje će se pretvoriti.<br><br>Moguće varijable za upotrebu:<br>- %d - Znamenke (0-9)<br>- %s - Slova (A-Z)",
+                            "invalidPatternException": "Uzorak koda mora sadržavati najmanje jednu varijablu (%s ili %d).",
                             "labelCodeAmount": "Broj promotivnih kodova",
                             "labelCodeLength": "Duljina koda",
                             "labelCustomPattern": "Prilagođeni uzorak",
@@ -7813,6 +7876,7 @@
             "footerCategory": "Navigacija podnožjem ulazne točke",
             "foreignKeyDelete": "Ovaj prodajni kanal ne može se izbrisati jer ga još uvijek koristi {assignment}.",
             "helpTextBusinessTimeZone": "Vremenska zona koja se koristi kad god se datum ili vrijeme ispisuju u dokumentima ovog prodajnog kanala. Ako je prazan, ne primjenjuje se poništavanje poslovne vremenske zone.",
+            "helpTextIsExternalStorefront": "SEO URL-ovi generiraju se samo za domene koje upućuju na vanjsku trgovinu. Po jeziku, samo jedna vanjska trgovina može se postaviti za jedan prodajni kanal.",
             "helpTextTaxCalculation": {
                 "label": "Ako je aktiviran porezni davatelj, te se postavke mogu prebrisati. Ovo možete provjeriti u {link}.",
                 "linkText": "postavke"
@@ -7853,6 +7917,7 @@
             "labelInputSnippet": "Svaštica",
             "labelInputTaxCalculation": "Porezne kalkulacije",
             "labelInputUrl": "URL",
+            "labelIsExternalStorefront": "Vanjska izložba",
             "labelMaintenanceActive": "Održavanje",
             "labelOptionTaxHorizontal": "Horizontalno",
             "labelOptionTaxVertical": "Uspravno",
@@ -7953,6 +8018,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Valuta"
                 },
+                "storefrontDomainHelpText": "Za prodajne kanale bez glave ovdje se mogu odabrati samo domene označene kao vanjska trgovina. Označite domenu kao vanjsku trgovinu u postavkama domene prodajnog kanala.",
                 "storefrontDomainLanguage": {
                     "help": "Automatski izabrano od strane domene Kanala Prodaje",
                     "label": "Jezik"
@@ -8069,6 +8135,8 @@
             "columnName": "Prodajni kanal",
             "columnStatus": "Status",
             "columnType": "Vrsta",
+            "emptyStateDescription": "Dodajte svoj prvi prodajni kanal da biste započeli prodaju putem izloga, tržnica ili društvenih medija.",
+            "emptyStateHeadline": "Još nema prodajnih kanala",
             "placeholderSearchBar": "Pretraživanje prodajnih kanala...",
             "productsCount": "proizvodi | proizvod | proizvodi",
             "productsLabel": "Proizvodi",
@@ -8110,16 +8178,20 @@
         "labelSeoPathInfo": "SEO putanja",
         "placeholderMainCategory": "Odaberite glavnu kategoriju...",
         "textEmptySeoUrls": "Još nema SEO URL-ova.",
+        "textSeoUrlsNotSupported": "SEO URL-ovi se ne mogu dodijeliti ovoj vrsti prodajnog kanala.",
         "titleCard": "SEO URL-ovi"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "Potrebna je vanjska domena trgovine",
             "labelPossibleValues": "Moguće varijable",
             "labelSalesChannelSelect": "Prodajni kanal",
+            "linkExternalStorefrontDomain": "Otvorite postavke prodajnog kanala",
             "messageSaveError": "Nisu svi predlošci odobreni.",
             "messageSaveSuccess": "SEO URL predlošci su pohranjeni.",
             "placeholderSelectVariables": "Pretraži i odaberi...",
             "preview": "Pregled:",
+            "textExternalStorefrontRequired": "Za prodajne kanale bez glave, SEO URL-ovi generiraju se samo za domene koje su označene kao vanjska trgovina. Dodajte takvu domenu na prodajni kanal kako biste omogućili SEO URL-ove.",
             "textInfoMessageBoxEmptyProperties": "Kada koristite varijable, provjerite jesu li podaci dostupni u svim odgovarajućim poljima entiteta (proizvodi, odredišne stranice ili kategorije). Ako se varijable odnose na prazna polja, neće se stvoriti SEO URL-ovi za odgovarajući entitet.",
             "textUrlNoEntitiesForPreview": "Nema dostupnih {entity} .",
             "textUrlPreviewEmptyTemplate": "Predložak je prazan, SEO URL-ovi za {entity} neće biti generirani.",
@@ -8636,6 +8708,10 @@
             "displayTitle": "Prikaz:",
             "displayedContentCard": "Prikazani sadržaj",
             "displayedContentCardSubtitle": "Odaberite koji sadržaj treba prikazati u dokumentu.",
+            "filenameCard": "Imenovanje datoteka",
+            "filenameInfixHeadline": "Ime datoteke infix",
+            "filenameInfixHelpText": "Dodajte upis u svaki format dokumenta kako biste spriječili sukobe imenovanja između različitih verzija istog dokumenta.",
+            "filenamePattern": "Uzorak imena datoteke: <prefix><documentNumber><infix><suffix>.<fileExtension>",
             "helpTextDisplayAdditionalNoteDelivery": "Prihvatljivi su samo za države članice EU-a, pogledajte također \"Postavke > Zemlje\".",
             "helpTextDisplayDocumentInCustomerAccount": "Dokument se prikazuje u dijelu \"Narudžbe\" na odgovarajućem korisničkom računu. Imajte na umu da se na korisničkom računu prikazuju samo dokumenti koji su stvarno poslani kupcu.",
             "helpTextPaymentDueDate": "Koristi relativni modifikator datuma na temelju datuma dokumenta, na primjer \"+14 dana\".",
@@ -8701,6 +8777,7 @@
             "placeholderCompanyUrl": "Unesite web stranicu...",
             "placeholderCompanyZipcode": "Upišite poštanski broj...",
             "placeholderExecutiveDirector": "Unesite poslovnog izvršnog direktora...",
+            "placeholderFileNameInfix": "Unesite infix...",
             "placeholderFileNamePrefix": "Unesite prefiks...",
             "placeholderFileNameSuffix": "Unesite sufiks...",
             "placeholderFileTypes": "Odaberite formate datoteka...",
@@ -8717,6 +8794,9 @@
             "placeholderType": "Odaberite vrstu dokumenta...",
             "placeholderVatId": "Unesite PDV-ID...",
             "textHeadline": "Novi dokument"
+        },
+        "errors": {
+            "invalidDueDateFormat": "Modifikator datuma je nevažeći."
         },
         "general": {
             "description": "Odjeljak konfiguracije dokumenta u modulu postavki",
@@ -8737,26 +8817,61 @@
     "sw-settings-language": {
         "addModal": {
             "buttonAdd": "Dodaj jezik",
+            "createCustomLanguage": "Stvorite prilagođeni jezik",
+            "docsHint": "Kako prijevodi funkcioniraju u Shopware-u:",
             "docsLinkLabel": "Saznaj više",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "Ne možete pronaći jezik koji vam treba? Pregledajte dostupne jezike u {extensionStoreLink}",
+            "extensionStoreLink": "Prodavaonica proširenja",
             "labelLanguage": "Jezik",
-            "title": "Dodaj jezik"
+            "messageAddError": "Jezik nije mogao biti dodan.",
+            "messageAddSuccess": "Jezik je dodan.",
+            "messageLanguagesLoadError": "Postojeći jezici nisu mogli biti učitani.",
+            "messageTranslationsLoadError": "Dostupni prijevodi nisu mogli biti učitani.",
+            "placeholderLanguage": "Odaberite jezik...",
+            "title": "Dodaj jezik",
+            "translationsAvailable": "Dostupni su prijevodi za ovaj jezik.",
+            "translationsIncomplete": "Neki prijevodi za ovaj jezik možda i dalje nedostaju."
         },
         "detail": {
+            "createdBannerText": "Aktivirajte jezik, a zatim ga dodijelite prodajnom kanalu kako biste ga učinili dostupnim kupcima.",
+            "createdBannerTitle": "{name} uspješno dodan",
             "labelActive": "Aktivan",
             "labelIsoCode": "ISO kod",
             "labelLocale": "Mjesto",
             "labelName": "Naziv",
             "labelParent": "Naslijedi od",
+            "messageLoadError": "Jezik se nije mogao učitati.",
+            "messageSaveError": "Jezik se nije mogao spasiti.",
             "messageSaveSuccess": "Jezik \"{name}\" je spremljen.",
             "placeholderName": "Unesite ime...",
             "placeholderPleaseSelect": "Molimo odaberite...",
             "salesChannels": {
+                "activateHint": "Aktivirajte jezik, a zatim ga dodijelite prodajnom kanalu kako biste ga učinili dostupnim kupcima.",
+                "assignHint": "Dodijelite jezik prodajnom kanalu kako biste ga učinili dostupnim kupcima.",
+                "assignedIntro": "Jezik je dodijeljen sljedećim prodajnim kanalima:",
+                "openSettings": "Otvorite postavke prodajnog kanala",
                 "showAll": "Prikaži sve",
                 "showLess": "Prikaži manje",
                 "title": "Prodajni Kanali"
             },
             "snippetUpdates": {
+                "autoUpdate": "Automatsko ažuriranje",
+                "autoUpdateHelpText": "Automatski ažurirajte isječke ovog jezika.",
+                "builtIn": "Ugrađeni isječci ažuriraju se kao dio ažuriranja Shopware-a.",
+                "linkButton": "Jezik veze",
+                "linking": "Jezik je povezan.",
+                "linkingButton": "Povezivanje...",
+                "notAvailable": "Ažuriranja nisu dostupna za ovaj jezik.",
+                "notAvailableHelpText": "Jezici dodani ručno ili proširenjima trećih strana mogu se ažurirati drugačije ili uopće neće primati ažuriranja.",
+                "notLinked": "Ovaj jezik podržava Shopware, ali još nije povezan s prevoditeljskim sustavom.",
+                "statusLoadError": "Status ažuriranja isječka nije moguće učitati.",
+                "title": "Ažuriranja isječka",
+                "upToDate": "Isječci su ažurirani.",
+                "updateAvailable": "Dostupno novo ažuriranje.",
                 "updateButton": "Ažuriranje",
+                "updateError": "Isječci za ovaj jezik nisu mogli biti ažurirani.",
+                "updating": "Isječci se ažuriraju.",
                 "updatingButton": "Ažuriranje..."
             },
             "textAlertChangeParent": "Promjena materinjeg jezika može dovesti do nedosljednosti u prijevodima.",
@@ -8764,6 +8879,7 @@
             "textIsoCodeIsInUse": "Ovaj ISO kod se već koristi.",
             "textLanguageHasParent": "Ovaj jezik već nasljeđuje od drugog jezika.",
             "titleCard": "Postavke",
+            "tooltipActive": "Prikažite ovaj jezik kao opciju prilikom prevođenja sadržaja i konfiguriranja prodajnih kanala u administraciji. Deaktiviranje ne utječe na dostupnost trgovine.",
             "tooltipInheritanceNotPossible": "Sistematski zadani jezik ne može naslijediti od nekog drugog jezika.",
             "tooltipLanguageNotChoosable": "Ne možete koristiti jezik koji već nasljeđuje od drugog jezika."
         },
@@ -8773,6 +8889,8 @@
         },
         "list": {
             "buttonAddLanguage": "Dodaj jezik",
+            "buttonUpdateAllSnippets": "Ažurirajte sve isječke",
+            "buttonUpdateSelectedSnippets": "Ažurirajte odabrane isječke",
             "cardSubtitle": "Jezici se mogu dodijeliti domenama prodajnog kanala kako bi se prikazali odgovarajući prijevodi. Također omogućuju prijevod sadržaja u kategorijama, proizvodima, stranicama Shopping Experience itd.",
             "cardTitle": "Jezici",
             "columnActive": "Aktivan",
@@ -8782,14 +8900,29 @@
             "columnLocaleName": "Mjesto",
             "columnName": "Ime",
             "columnSalesChannels": "Prodajni Kanali",
+            "columnSnippetStatus": "Ažuriranja isječka",
+            "contextMenuUpdateSnippets": "Ažurirajte isječke",
             "defaultLabel": "Zadano",
+            "deleteError": "Jezici se ne mogu izbrisati.",
+            "deleteFilesNote": "Ova radnja briše jezične entitete i isječke u administraciji, a ne datoteke isječaka u datotečnom sustavu. Želite li i njih izbrisati?",
+            "deleteFilesNoteLabel": "Napomena:",
+            "deleteModalIntro": "Jeste li sigurni da želite izbrisati sljedeće jezike? Ova radnja se ne može poništiti:",
+            "deleteModalTitle": "Izbrisati jezike?",
+            "deleteTranslationFiles": "Također izbrišite isječke iz datotečnog sustava",
+            "deleteTranslationFilesError": "Datoteke isječaka nisu se mogle izbrisati iz datotečnog sustava.",
             "manageSnippets": "Upravljanje isječcima",
             "messageDeleteSuccess": "Jezik \"{name}\" je izbrisan.",
+            "salesChannelCount": "{count} Prodajni kanal | {count} prodajni kanali",
             "snippetStatus": {
+                "updateAvailable": "Ažuriranje dostupno",
                 "updating": "Ažuriranje..."
             },
+            "snippetStatusLoadError": "Ažuriranja isječka nisu se mogla učitati.",
             "textHeadline": "Jezici",
-            "titleSidebarItemRefresh": "Osvježi"
+            "titleSidebarItemRefresh": "Osvježi",
+            "updateSnippetsError": "Isječci se nisu mogli ažurirati.",
+            "updateSnippetsProgress": "Ažuriranje isječaka ({processed}/{total})",
+            "updateSnippetsSuccess": "Isječci su ažurirani."
         }
     },
     "sw-settings-listing": {
@@ -8812,6 +8945,7 @@
                 "placeholderTechnicalName": "Unesite tehnički naziv...",
                 "title": "Općenito"
             },
+            "lockedInfo": "Ova je opcija sortiranja zaključana i stoga se mogu uređivati samo polja za prijevod.",
             "notification": {
                 "saveError": "Opciju razvrstavanja \"{sortingOptionName}\" nije moguće spremiti.",
                 "saveErrorAlreadyExists": "Opcija sortiranja \"{sortingOptionName}\" već postoji.",
@@ -8879,6 +9013,10 @@
                     "title": "Nije pronađena nijedna opcija"
                 },
                 "grid": {
+                    "deleteTooltip": {
+                        "default": "Ova je opcija sortiranja zadano sortiranje i stoga se ne može izbrisati.",
+                        "locked": "Ova je opcija sortiranja zaključana i stoga se ne može izbrisati."
+                    },
                     "header": {
                         "criteria": "Kriterij",
                         "name": "Ime",
@@ -10186,6 +10324,7 @@
             "opt-out-info": {
                 "profile": "Vaš profil — Postavke privatnosti",
                 "settings": "Postavke — Privatnost",
+                "single-option-snippet": "Svoje postavke možete promijeniti u bilo kojem trenutku pod {link}.",
                 "snippet": "Svoje postavke možete promijeniti u bilo kojem trenutku: upravljati postavkama podataka trgovine pod {settings}i postavkama osobnih podataka pod {profile}."
             },
             "promises": {
@@ -10544,6 +10683,7 @@
         "detail": {
             "asyncCompilation": {
                 "completed": "Kompilacija tema je završena.",
+                "error": "Kompilacija teme nije uspjela u pozadini. Tema nije promijenjena.",
                 "started": "Promjene se sastavljaju u pozadini. Bit će vidljivi za oko 1 minutu. Primit ćete obavijest nakon završetka kompilacije."
             },
             "description": "Opis",
@@ -10679,10 +10819,22 @@
         "finishButton": "Shvatio sam",
         "nextButton": "Dalje",
         "pages": {
+            "adminNavigation": {
+                "description": "Kako je administracija Shopware rasla, raste i broj značajki i navigacijskih stavki. Redizajnirali smo navigaciju kako bismo poboljšali gustoću i olakšali pronalaženje svega, s jasnijim aktivnim stanjima, glatkijim animacijama podizbornika, boljom čitljivošću i poboljšanom pristupačnošću tipkovnice.",
+                "headline": "Jasnija, jednostavnija navigacija"
+            },
             "darkMode": {
+                "badge": "Eksperimentalno",
+                "description": "Administracija sada nudi tamni izgled korisničkog sučelja, radi bolje pristupačnosti i usklađivanja s vašim osobnim preferencijama.",
+                "headline": "Tamni izgled",
+                "profileSettingsLink": "postavke profila",
+                "themeSaveError": "Izgled se nije mogao spasiti.",
+                "themeSelectHint": "Ovu postavku možete promijeniti u bilo kojem trenutku u svom {profileSettingsLink}.",
                 "themeSelectLabel": "Izgled"
             }
-        }
+        },
+        "seenSaveError": "Vaše preferencije nisu mogle biti sačuvane. Ovaj se dijaloški okvir može ponovno pojaviti.",
+        "title": "Novi izgled vaše administracije"
     },
     "sw-users-permissions": {
         "general": {
@@ -10859,6 +11011,9 @@
                     },
                     "saveSuccess": {
                         "message": "Korisnik \"{name}\" je spremljen."
+                    },
+                    "themeSaveError": {
+                        "message": "Preferencije teme nisu se mogle spremiti."
                     }
                 },
                 "passwordConfirmation": {

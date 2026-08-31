@@ -423,6 +423,7 @@
             "feature_set": "Sjabloon | Sjablone",
             "flow": "Vloeibouer",
             "flow_sequence": "Vloei",
+            "flow_template": "Vloei sjabloon | Vloei templates",
             "frequently_used": "Gereelde gebruik",
             "import_export_profile": "Invoer/uitvoer profiel | Invoer-/uitvoer profiele",
             "integration": "Integrasie | Integrasies",
@@ -497,6 +498,7 @@
             "CONTENT__MEDIA_EMPTY_FILE": "'N Geldige lêernaam moet verskaf word.",
             "CONTENT__MISSING_RULE_TYPE_EXCEPTION": "U moet 'n tipe vir hierdie reël kies.",
             "DELIVERY_TIME_MIN_INVALID": "Die minimum waarde moet nie hoër wees as die maksimum waarde nie.",
+            "DOCUMENT_BASE_CONFIG_INVALID_PAYMENT_DUE_DATE": "Die betalingsdatum moet 'n relatiewe datum wees soos “+14 dae”.",
             "DUPLICATED_NAME": "Hierdie naam is reeds in gebruik.",
             "DUPLICATED_PRODUCT_EXPORT_FILE_NAME": "Hierdie lêernaam is reeds in gebruik. Kies asseblief 'n ander een.",
             "DUPLICATED_SALUTATION_KEY": "Tegniese naam wat reeds gebruik word. Kies asseblief 'n ander een.",
@@ -617,6 +619,7 @@
         "sw-admin-menu": {
             "administrator": "Administrateur",
             "linkCloseMenu": "Sluit spyskaart",
+            "linkExpandMenu": "Brei spyskaart uit",
             "linkLogout": "Teken uit",
             "linkMinimizeMenu": "Sit spyskaart in",
             "navigation": {
@@ -628,7 +631,8 @@
                 "mainMenuItemShopwarePayments": "Shopware betalings"
             },
             "textProjectName": "Administrasie",
-            "textShopwareAdmin": "Shopware Administrasie"
+            "textShopwareAdmin": "Shopware Administrasie",
+            "textVersion": "Weergawe:"
         },
         "sw-bulk-edit-modal": {
             "bulkEditModalTitle": "Grootmaatwysig - {count} item gekies | Grootmaatwysig - {count} items gekies",
@@ -1417,6 +1421,8 @@
         },
         "sw-search-bar": {
             "addNew": "voeg nuwe by",
+            "ariaLabelCloseSearch": "Sluit soektog",
+            "ariaLabelOpenSearch": "Maak soektog oop",
             "messageNoResults": "Geen resultate gevind vir \"{term}” nie.",
             "messageNoResultsDetailV2": "Probeer om verskillende sleutelwoorde te gebruik of kyk na u soekkonfigurasie.",
             "messageNoResultsV2": "Geen presiese wedstryde gevind vir \"{term}” nie.",
@@ -1616,6 +1622,10 @@
             "buttonChange": "Verander tema",
             "modalTitleChange": "Verander tema",
             "textChangeTheme": "Wil jy regtig die tema verander? Dit kan die visualisering van jou winkel verander."
+        },
+        "pendingAssignment": {
+            "description": "“{pendingThemeName}\" word op die agtergrond saamgestel en sal \"{liveThemeName}\" outomaties vervang sodra dit gereed is.",
+            "descriptionNoLiveTheme": "“{pendingThemeName}\" word op die agtergrond saamgestel en sal outomaties toegepas word sodra dit gereed is."
         },
         "title": "Tema opdrag"
     },
@@ -3834,6 +3844,7 @@
         },
         "sw-extension-app-module-error-page": {
             "error": {
+                "description": "Die bladsy waarna jy gesoek het, kon nie gevind word nie. Dit is moontlik verskuif of bestaan nie meer nie.",
                 "heading": "Whoops! Jy het te vinnig beweeg en oriëntasie verloor."
             }
         }
@@ -4395,6 +4406,7 @@
                 "labelDocumentTypeSingle": "Dokumenttipe",
                 "labelFileFormats": "Lêerformate",
                 "placeholderDocumentType": "Kies dokumente...",
+                "placeholderDocumentTypeSingle": "Kies dokumenttipe...",
                 "placeholderFileFormats": "Kies lêerformate...",
                 "titleCreateDocument": "Genereer dokumente"
             },
@@ -4998,6 +5010,7 @@
     "sw-login": {
         "general": {
             "description": "Shopware aanmelding",
+            "linkBackToLogin": "Terug na aanmelding",
             "loadingLabel": "Laai...",
             "logoAlt": "Winkelware logo",
             "mainMenuItemIndex": "Teken aan"
@@ -5012,6 +5025,7 @@
             "labelUsername": "Gebruikersnaam",
             "messageAccessDenied": "Versoek geweier deur magtigeringsbediener.",
             "messageAuthThrottled": "Te veel aanmeldpogings. Wag asseblief {seconds} sekondes voordat u weer probeer aanmeld.",
+            "messageGeneralError": "Iets het verkeerd gegaan tydens aanmelding. Probeer asseblief weer.",
             "messageGeneralRequestError": "Iets het verkeerd gegaan om \"{url}” te versoek.",
             "messageInvalidClient": "Kliënteverifikasie het misluk.",
             "messageInvalidCredentials": "Verkeerde gebruikersbewysings.",
@@ -5028,9 +5042,11 @@
             },
             "headline": "Wagwoordherstel",
             "info": {
+                "emailFallback": "jou e-pos adres",
                 "headline": "Terug na aanmelding",
                 "info": "As die ingevoerde e-posadres geldig is, sal u binne enkele minute u wagwoordherstelpos ontvang."
             },
+            "messageLinkExpired": "Hierdie wagwoordherstelskakel is verval of ongeldig. Versoek asseblief 'n nuwe skakel.",
             "recovery": {
                 "headline": "Wagwoordherstel",
                 "newPasswordField": {
@@ -5041,7 +5057,8 @@
                 },
                 "submit": {
                     "label": "Dateer wagwoord op"
-                }
+                },
+                "text": "Kies 'n nuwe wagwoord vir jou rekening."
             },
             "submit": "Stuur herstelskakel",
             "text": "Voer die e-posadres in wat aan u rekening gekoppel is."
@@ -5429,14 +5446,30 @@
                     "deliveryNote": "Afleweringsnota",
                     "invoice": "Faktuur"
                 },
+                "emptyStateDescription": "Kies 'n dokumenttipe om die dokument op te stel",
+                "emptyStateTitle": "Dokumenttipe ontbreek",
+                "error": {
+                    "loadDocumentNumber": "Misluk om 'n dokumentnommer te laai nie.",
+                    "loadDocumentTypes": "Misluk om beskikbare dokumenttipes te laai nie.",
+                    "loadSupportedDocumentFileFormats": "Misluk om beskikbare lêerformate per dokumenttipe te laai nie.",
+                    "loadUploadedDocument": "Misluk om opgelaaide dokument te laai nie."
+                },
                 "fileFormats": {
-                    "html": "HTML"
+                    "html": "HTML",
+                    "pdf": "PDF",
+                    "zugferdEmbeddedPdf": "ZugFerd ingeboude PDF",
+                    "zugferdXml": "Zugferd XML"
                 },
                 "generate": "Genereer",
+                "generateAndDownload": "Genereer en laai af",
+                "generateAndSend": "Genereer en stuur",
                 "labelDocumentType": "Dokumenttipe",
                 "labelFileFormats": "Lêerformate",
+                "openButtonLabel": "Genereer nuwe dokument",
+                "placeholderComment": "Skryf 'n kommentaar...",
                 "placeholderDocumentType": "Kies 'n dokumenttipe...",
-                "placeholderFileFormats": "Kies lêerformate..."
+                "placeholderFileFormats": "Kies lêerformate...",
+                "title": "Genereer dokument"
             },
             "selectDocumentTypeModal": {
                 "helpText": {
@@ -5453,8 +5486,15 @@
             },
             "uploadDocumentModal": {
                 "buttonUploadFile": "Laai lêer op",
+                "helpTextFileFormat": "Kies die formaat van die lêer wat u wil oplaai.",
+                "labelDocumentUpload": "Dokumentoplaai",
                 "labelFileFormat": "Lêerformaat",
-                "upload": "Laai op"
+                "openAction": "Laai dokument op",
+                "placeholderFileFormat": "Kies 'n lêerformaat...",
+                "title": "Laai dokument op",
+                "upload": "Laai op",
+                "uploadAndDownload": "Laai op en laai af",
+                "uploadAndSend": "Laai op en stuur"
             }
         },
         "create": {
@@ -5730,7 +5770,15 @@
             "cardTitle": "Dokumente",
             "confirmDeleteText": "Hierdie dokument is deel van 'n bestelling en kan relevant wees vir belastingdoeleindes. Die verwydering van dit kan die naspeurbaarheid van u rekeningkundige rekords beïnvloed. Maak asseblief seker dat verwydering wettig toegelaat word. Hierdie aksie kan nie ongedaan word nie.",
             "error": {
-                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumentnommer {number} is reeds toegeken."
+                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumentnommer {number} is reeds toegeken.",
+                "attachMediaToDocumentUpload": "Misluk om geselekteerde media aan die dokument te heg nie.",
+                "createDocument": "Misluk om die dokument te skep nie.",
+                "downloadDocument": "Misluk om die dokument af te laai nie.",
+                "downloadDocumentArchive": "Misluk om die dokumentargief af te laai nie.",
+                "loadDocumentPreview": "Misluk om die dokumentvoorskou te laai nie.",
+                "loadSendingDocument": "Misluk om die dokument te laai om te stuur nie.",
+                "openDocument": "Misluk om die geselekteerde dokument oop te maak nie.",
+                "uploadDocument": "Misluk om die dokument op te laai nie."
             },
             "info": {
                 "DOCUMENT__NUMBER_WAS_CHANGED": "Duplikaat dokumentnommer. 'N Opeenvolgende nommer is outomaties uit die onderskeie nommerreeks getrek."
@@ -5740,11 +5788,14 @@
             "labelAvailableFormats": "Beskikbare formate",
             "labelCreateNew": "Skep nuwe dokument",
             "labelDate": "Datum",
+            "labelDownloadAllFormats": "Laai alle formate af",
+            "labelDownloadFormat": "Aflaai {format}",
             "labelDownloadPdf": "Laai dokument af",
             "labelMarkAsSent": "Merk as gestuur",
             "labelMarkAsUnsent": "Merk as ongestuur",
             "labelNumber": "Nommer",
             "labelOpenDocument": "Maak dokument oop",
+            "labelOpenFormat": "Maak oop {format}",
             "labelPrintDocument": "Druk dokument",
             "labelSendDocument": "Stuur dokument",
             "labelSent": "gestuur",
@@ -5753,9 +5804,11 @@
             "messageEmptyTitle": "Nog geen dokumente geskep nie",
             "messageNoDocumentFound": "Geen dokumente gevind",
             "modalTitle": "Statusopdatering",
+            "notificationDeleteErrorMessage": "Die dokument kon nie verwyder word nie.",
             "searchBarPlaceholder": "Soek alle dokumente..."
         },
         "documentModal": {
+            "errorInvoiceMissingCreditItem": "Die geselekteerde faktuur het geen kredietitem nie.",
             "fileInputLabel": "Laai pasgemaakte dokument op",
             "labelCreate": "Skep",
             "labelCreateDownload": "Skep en laai af",
@@ -6401,6 +6454,7 @@
             "cardTitleAssignment": "Sigbaarheid en struktuur",
             "cardTitleDeliverabilityInfo": "Aflewerbaarheid",
             "cardTitleDownloads": "Lêers",
+            "cardTitleGuarantee": "Waarborg (GARAN-etiket)",
             "cardTitleMedia": "Media",
             "cardTitlePackaging": "Maatreëls en verpakking",
             "cardTitlePrices": "Pryse",
@@ -6693,12 +6747,17 @@
             "titleOpenGraph": "Maak grafiek oop"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "Die waarborgetiket word slegs vertoon as 'n geldige waarborgduur, 'n vervaardiger en die produknommer van die vervaardiger ingestel is.",
+            "helpTextGuaranteeMonths": "Minimum waarde is 30, stappe van 6.",
             "isCloseoutHelpText": "Terugbestellings ontken.",
             "labelActive": "Aktief vir alle geselekteerde verkoopskanale",
             "labelAvailableStock": "Beskikbare voorraad",
             "labelCreatedAt": "Skepping datum",
             "labelDeliveryTime": "Afleweringstyd",
             "labelEan": "GTIN/AN",
+            "labelGuaranteeConfirmed": "Wys etiket in Storefront",
+            "labelGuaranteeDescription": "Hierdie etiket verteenwoordig 'n kommersiële waarborg vir duursaamheid wat in jare uitged Die waarborg word deur die produsent aangebied sonder ekstra koste, wat die hele goed dek en met 'n duur van meer as twee jaar.",
+            "labelGuaranteeMonths": "Duur van die vervaardiger in maande",
             "labelHeight": "Hoogte",
             "labelIsCloseout": "Oorruimingsverkoop",
             "labelLength": "Lengte",
@@ -6716,6 +6775,7 @@
             "placeholderCreatedAt": "Voer skeppingsdatum in...",
             "placeholderDeliveryTime": "Voer 'n afleweringstyd in...",
             "placeholderEan": "Voer GTIN/EAN in...",
+            "placeholderGuaranteeMonths": "bv. 30, 36 of 42 maande...",
             "placeholderHeight": "bv. 200...",
             "placeholderLength": "bv. 100...",
             "placeholderManufacturerNumber": "Voer produknommer in...",
@@ -7016,6 +7076,7 @@
             "labelEmailField": "E-posadres",
             "labelFirstNameField": "Voornaam",
             "labelLastNameField": "Naam",
+            "labelModuleIconColorsField": "Module kleure",
             "labelNewPassword": "Nuwe wagwoord",
             "labelNewPasswordConfirm": "Bevestig wagwoord",
             "labelOldPassword": "Ou wagwoord",
@@ -7029,6 +7090,7 @@
             "notificationPasswordErrorMessage": "Die ingediende wagwoorde stem nie ooreen nie.",
             "notificationSaveErrorMessage": "Profielinligting kon nie gestoor word nie.",
             "notificationSaveSuccessMessage": "Profielinligting is gestoor.",
+            "optionModuleIconColorsColored": "Gekleur",
             "optionModuleIconColorsNeutral": "neutraal",
             "placeholderNewPassword": "Voer nuwe wagwoord in...",
             "placeholderNewPasswordConfirm": "Voer weer nuwe wagwoord in...",
@@ -7240,6 +7302,7 @@
                             "buttonGenerate": "Genereer nuwe kodes",
                             "description": "Promosiekodes word lukraak gegenereer uit hoofletters en syfers. U kan vaste individuele terme as voorvoegsel en/of agtervoegsel byvoeg of 'n heeltemal pasgemaakte patroon gebruik en kyk hoe u kodepatroon in die promosiekode-voorskou uitkom.",
                             "helpTextCustomPattern": "Let daarop dat daar slegs een opeenvolgende string veranderlikes kan wees wat omgeskakel sal word. <strong>Moontlike veranderlikes om te gebruik:</strong><ul><li>%d - Syfers (0-9)</li><li>%s - Letters (A-Z)</li></ul>",
+                            "invalidPatternException": "Die kodepatroon moet ten minste een veranderlike bevat (%s of %d).",
                             "labelCodeAmount": "Aantal promosiekodes",
                             "labelCodeLength": "Kode lengte",
                             "labelCustomPattern": "Pasgemaakte patroon",
@@ -7813,6 +7876,7 @@
             "footerCategory": "Navigasie vir toegangspunt voetskrif",
             "foreignKeyDelete": "Hierdie verkoopskanaal kan nie verwyder word nie omdat dit steeds deur {assignment}gebruik word.",
             "helpTextBusinessTimeZone": "Tydsone wat gebruik word wanneer 'n datum of tyd in dokumente van hierdie verkoopskanaal gedruk word. As dit leeg is, word geen besigheidstydsone oorskakeling toegepas nie.",
+            "helpTextIsExternalStorefront": "SEO-URL's word slegs gegenereer vir domeine wat na 'n eksterne winkelfront wys. Per taal kan slegs een eksterne winkelvoorkant vir 'n enkele verkoopskanaal ingestel word.",
             "helpTextTaxCalculation": {
                 "label": "As 'n belastingverskaffer geaktiveer word, kan hierdie instellings oorgeskryf word. Jy kan dit in {link}nagaan.",
                 "linkText": "verstellings"
@@ -7853,6 +7917,7 @@
             "labelInputSnippet": "Snippet",
             "labelInputTaxCalculation": "Belastingberekening",
             "labelInputUrl": "BA",
+            "labelIsExternalStorefront": "Eksterne winkelvoorkant",
             "labelMaintenanceActive": "Onderhoud",
             "labelOptionTaxHorizontal": "Horisontaal",
             "labelOptionTaxVertical": "Vertikale",
@@ -7953,6 +8018,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Geldeenheid"
                 },
+                "storefrontDomainHelpText": "Vir koplose verkoopskanale kan slegs domeine wat as 'n eksterne winkelvoorkant gemerk is, hier gekies. Merk 'n domein as eksterne winkelvoorkant in die verkoopskanaal se domeininstellings.",
                 "storefrontDomainLanguage": {
                     "help": "Outomaties gekies deur die verkoopskanaaldomein",
                     "label": "Taal"
@@ -8069,6 +8135,8 @@
             "columnName": "Verkoopskanaal",
             "columnStatus": "Status",
             "columnType": "tipe",
+            "emptyStateDescription": "Voeg jou eerste verkoopskanaal by om te begin verkoop deur winkelvoorwerpe, markte of sosiale media.",
+            "emptyStateHeadline": "Nog geen verkoopskanale nie",
             "placeholderSearchBar": "Soek verkoopskanale...",
             "productsCount": "produkte | produk | produkte",
             "productsLabel": "Produkte",
@@ -8110,16 +8178,20 @@
         "labelSeoPathInfo": "SEO-pad",
         "placeholderMainCategory": "Kies 'n hoofkategorie...",
         "textEmptySeoUrls": "Daar is nog geen SEO URL's nie.",
+        "textSeoUrlsNotSupported": "SEO-URL's kan nie aan hierdie tipe verkoopskanaal toegeken word nie.",
         "titleCard": "SEO URL's"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "Eksterne winkeldomein benodig",
             "labelPossibleValues": "Moontlike veranderlikes",
             "labelSalesChannelSelect": "Verkoopskanaal",
+            "linkExternalStorefrontDomain": "Maak verkoopskanaalinstellings",
             "messageSaveError": "Nie alle sjablone is geldig nie.",
             "messageSaveSuccess": "SEO URL-sjablone is gestoor.",
             "placeholderSelectVariables": "Soek en kies...",
             "preview": "Voorskou:",
+            "textExternalStorefrontRequired": "Vir koplose verkoopskanale word SEO-URL's slegs gegenereer vir domeine wat as 'n eksterne winkelvoorkant gemerk is. Voeg so 'n domein by die verkoopskanaal om SEO -URL's in te skakel.",
             "textInfoMessageBoxEmptyProperties": "As u veranderlikes gebruik, maak seker dat data beskikbaar is in alle onderskeie velde van die entiteite (produkte, landingsbladsye of kategorieë). As veranderlikes na leë velde verwys, sal geen SEO-URL's vir die ooreenstemmende entiteit geskep word nie.",
             "textUrlNoEntitiesForPreview": "Geen {entity} beskikbaar.",
             "textUrlPreviewEmptyTemplate": "Die sjabloon is leeg, SEO-URL's vir {entity} sal nie gegenereer word nie.",
@@ -8636,6 +8708,10 @@
             "displayTitle": "Vertoon:",
             "displayedContentCard": "Vertoon inhoud",
             "displayedContentCardSubtitle": "Kies watter inhoud in die dokument vertoon moet word.",
+            "filenameCard": "Lêerbenaming",
+            "filenameInfixHeadline": "Lêernaam infix",
+            "filenameInfixHelpText": "Voeg 'n infix by elke dokumentformaat om naamkonflik tussen verskillende weergawes van dieselfde dokument te voorkom.",
+            "filenamePattern": "Lêernaampatroon: <prefix><documentNumber><infix><suffix>.<fileExtension>",
             "helpTextDisplayAdditionalNoteDelivery": "Kom slegs in aanmerking te kom vir EU-lidlande, sien ook “Instellings> Lande”.",
             "helpTextDisplayDocumentInCustomerAccount": "Die dokument word onder “Bestellings” in die onderskeie kliëntrekening vertoon. Let daarop dat slegs dokumente wat eintlik aan die kliënt gestuur is, in die kliëntrekening vertoon word.",
             "helpTextPaymentDueDate": "Gebruik 'n relatiewe datumwysiger gebaseer op die dokumentdatum, byvoorbeeld “+14 dae”.",
@@ -8701,6 +8777,7 @@
             "placeholderCompanyUrl": "Voer webwerf in...",
             "placeholderCompanyZipcode": "Voer poskode in...",
             "placeholderExecutiveDirector": "Voer besigheidsbestuurder in...",
+            "placeholderFileNameInfix": "Voer infix in...",
             "placeholderFileNamePrefix": "Voer voorvoegsel in...",
             "placeholderFileNameSuffix": "Voer agtervoegsel in...",
             "placeholderFileTypes": "Kies lêerformate...",
@@ -8717,6 +8794,9 @@
             "placeholderType": "Kies 'n dokumenttipe...",
             "placeholderVatId": "Voer VAT-ID in...",
             "textHeadline": "Nuwe dokument"
+        },
+        "errors": {
+            "invalidDueDateFormat": "Die datumwysiger is ongeldig."
         },
         "general": {
             "description": "Dokumentkonfigurasie-afdeling in die instellingsmodule",
@@ -8737,26 +8817,61 @@
     "sw-settings-language": {
         "addModal": {
             "buttonAdd": "Voeg taal by",
+            "createCustomLanguage": "Skep persoonlike taal",
+            "docsHint": "Hoe vertalings in Shopware werk:",
             "docsLinkLabel": "Kom meer te wete",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "Kan jy nie die taal vind wat jy nodig het nie? Blaai deur beskikbare tale in die {extensionStoreLink}",
+            "extensionStoreLink": "Uitbreidingswinkel",
             "labelLanguage": "Taal",
-            "title": "Voeg taal by"
+            "messageAddError": "Taal kon nie bygevoeg word nie.",
+            "messageAddSuccess": "Taal is bygevoeg.",
+            "messageLanguagesLoadError": "Bestaande tale kon nie gelaai word nie.",
+            "messageTranslationsLoadError": "Beskikbare vertalings kon nie gelaai word nie.",
+            "placeholderLanguage": "Kies 'n taal...",
+            "title": "Voeg taal by",
+            "translationsAvailable": "Vertalings vir hierdie taal is beskikbaar.",
+            "translationsIncomplete": "Sommige vertalings vir hierdie taal ontbreek dalk nog."
         },
         "detail": {
+            "createdBannerText": "Aktiveer die taal en ken dit dan toe aan 'n verkoopskanaal om dit aan kliënte beskikbaar te stel.",
+            "createdBannerTitle": "{name} suksesvol bygevoeg",
             "labelActive": "Aktief",
             "labelIsoCode": "ISO-kode",
             "labelLocale": "Lokale",
             "labelName": "Naam",
             "labelParent": "Erf van",
+            "messageLoadError": "Taal kon nie gelaai word nie.",
+            "messageSaveError": "Taal kon nie gered word nie.",
             "messageSaveSuccess": "Taal \"{name}\" is gestoor.",
             "placeholderName": "Voer naam in...",
             "placeholderPleaseSelect": "Kies asseblief...",
             "salesChannels": {
+                "activateHint": "Aktiveer die taal en ken dit dan toe aan 'n verkoopskanaal om dit aan kliënte beskikbaar te stel.",
+                "assignHint": "Ken die taal toe aan 'n verkoopskanaal om dit aan kliënte beskikbaar te stel.",
+                "assignedIntro": "Taal word toegeken aan die volgende verkoopskanale:",
+                "openSettings": "Maak verkoopskanaal-instellings",
                 "showAll": "Wys alles",
                 "showLess": "Wys minder",
                 "title": "Verkoopskanale"
             },
             "snippetUpdates": {
+                "autoUpdate": "Outomatiese opdatering",
+                "autoUpdateHelpText": "Hou die fragmente van hierdie taal outomaties op datum.",
+                "builtIn": "Ingeboude fragmente word opgedateer as deel van Shopware-opdaterings.",
+                "linkButton": "Skakel taal",
+                "linking": "Taal word gekoppel.",
+                "linkingButton": "Skakel...",
+                "notAvailable": "Opdaterings is nie beskikbaar vir hierdie taal nie.",
+                "notAvailableHelpText": "Tale wat met die hand of deur derdeparty-uitbreidings bygevoeg word, kan anders opgedateer word of moontlik glad nie opdaterings ontvang nie.",
+                "notLinked": "Hierdie taal word ondersteun deur Shopware, maar nog nie aan die vertaalstelsel gekoppel is nie.",
+                "statusLoadError": "Snippet-opdateringstatus kon nie gelaai word nie.",
+                "title": "Snippet-opdaterings",
+                "upToDate": "Snippets is op datum.",
+                "updateAvailable": "Nuwe opdatering beskikbaar.",
                 "updateButton": "Opdateer",
+                "updateError": "Snippets vir hierdie taal kon nie opgedateer word nie.",
+                "updating": "Snippets word opgedateer.",
                 "updatingButton": "Opdatering..."
             },
             "textAlertChangeParent": "Die verandering van die ouertaal kan lei tot teenstrydighede in u vertalings.",
@@ -8764,6 +8879,7 @@
             "textIsoCodeIsInUse": "Hierdie ISO-kode is reeds in gebruik.",
             "textLanguageHasParent": "Hierdie taal is reeds van 'n ander taal erf.",
             "titleCard": "instellings",
+            "tooltipActive": "Wys hierdie taal as 'n opsie wanneer u inhoud vertaal en verkoopskanale in die administrasie instel. Die deaktivering daarvan beïnvloed nie die beskikbaarheid van die winkel nie.",
             "tooltipInheritanceNotPossible": "Die stelselstandaard taal kan nie van 'n ander taal erf nie.",
             "tooltipLanguageNotChoosable": "U kan nie 'n taal gebruik wat reeds van 'n ander taal erf word nie."
         },
@@ -8773,6 +8889,8 @@
         },
         "list": {
             "buttonAddLanguage": "Voeg taal by",
+            "buttonUpdateAllSnippets": "Dateer alle snippets op",
+            "buttonUpdateSelectedSnippets": "Dateer geselekteerde fragmente op",
             "cardSubtitle": "Tale kan aan verkoopskanaaldomeine toegeken word om die toepaslike vertalings te vertoon. Dit maak ook die vertaling van inhoud moontlik in kategorieë, produkte, Shopping Experience bladsye, ens.",
             "cardTitle": "Tale",
             "columnActive": "Aktief",
@@ -8782,14 +8900,29 @@
             "columnLocaleName": "Lokale",
             "columnName": "Naam",
             "columnSalesChannels": "Verkoopskanale",
+            "columnSnippetStatus": "Snippet-opdaterings",
+            "contextMenuUpdateSnippets": "Dateer snippets op",
             "defaultLabel": "Standaard",
+            "deleteError": "Tale kon nie verwyder word nie.",
+            "deleteFilesNote": "Hierdie aksie verwyder die taalentiteite en snippets in die administrasie en nie die snippetlêers in die lêerstelsel nie. Wil jy dit ook uitvee?",
+            "deleteFilesNoteLabel": "Opmerking:",
+            "deleteModalIntro": "Is jy seker jy wil die volgende tale verwyder? Hierdie aksie kan nie ongedaan word nie:",
+            "deleteModalTitle": "Verwyder tale?",
+            "deleteTranslationFiles": "Vee ook die snippets uit die lêerstelsel",
+            "deleteTranslationFilesError": "Snippet-lêers kon nie uit die lêerstelsel verwyder word nie.",
             "manageSnippets": "Bestuur snippets",
             "messageDeleteSuccess": "Taal \"{name}\" is verwyder.",
+            "salesChannelCount": "{count} Verkoopskanaal | {count} Verkoopskanale",
             "snippetStatus": {
+                "updateAvailable": "Opdatering beskikbaar",
                 "updating": "Opdatering..."
             },
+            "snippetStatusLoadError": "Snippet-opdaterings kon nie gelaai word nie.",
             "textHeadline": "Tale",
-            "titleSidebarItemRefresh": "Verfris"
+            "titleSidebarItemRefresh": "Verfris",
+            "updateSnippetsError": "Snippets kon nie opgedateer word nie.",
+            "updateSnippetsProgress": "Opdatering van fragmente ({processed}/{total})",
+            "updateSnippetsSuccess": "Snippets is opgedateer."
         }
     },
     "sw-settings-listing": {
@@ -8812,6 +8945,7 @@
                 "placeholderTechnicalName": "Voer tegniese naam in...",
                 "title": "algehele"
             },
+            "lockedInfo": "Hierdie sorteeropsie is gesluit en daarom kan slegs vertaalvelde geredigeer word.",
             "notification": {
                 "saveError": "Die sorteeropsie \"{sortingOptionName}\" kon nie gestoor word nie.",
                 "saveErrorAlreadyExists": "Die sorteeropsie \"{sortingOptionName}\" bestaan reeds.",
@@ -8879,6 +9013,10 @@
                     "title": "Geen opsies gevind"
                 },
                 "grid": {
+                    "deleteTooltip": {
+                        "default": "Hierdie sorteeropsie is die standaard sortering en kan dus nie verwyder word nie.",
+                        "locked": "Hierdie sorteeropsie is gesluit en kan dus nie verwyder word nie."
+                    },
                     "header": {
                         "criteria": "Kriteria",
                         "name": "Naam",
@@ -10186,6 +10324,7 @@
             "opt-out-info": {
                 "profile": "Jou profiel - Privaatheidsvoorkeure",
                 "settings": "Instellings - Privaatheid",
+                "single-option-snippet": "Jy kan jou voorkeure te eniger tyd verander onder {link}.",
                 "snippet": "U kan u voorkeure te eniger tyd verander: bestuur Stoordata-instellings onder {settings}, en persoonlike data-instellings onder {profile}."
             },
             "promises": {
@@ -10544,6 +10683,7 @@
         "detail": {
             "asyncCompilation": {
                 "completed": "Die tema-samestelling is voltooi.",
+                "error": "Die tema-samestelling het op die agtergrond misluk. Die tema is nie verander nie.",
                 "started": "Die veranderinge word op die agtergrond saamgestel. Hulle sal binne ongeveer 1 minuut sigbaar wees. U sal 'n kennisgewing ontvang sodra die samestelling voltooi is."
             },
             "description": "Beskrywing",
@@ -10679,10 +10819,22 @@
         "finishButton": "Het dit",
         "nextButton": "Volgende",
         "pages": {
+            "adminNavigation": {
+                "description": "Namate die Shopware-administrasie gegroei het, het die aantal funksies en navigasie-items ook gegroei. Ons het die navigasie herontwerp om digtheid te verbeter en alles makliker te vind, met duideliker aktiewe toestande, gladder submenu animasies, beter leesbaarheid en verbeterde sleutelbordtoeganklikheid.",
+                "headline": "'N Duideliker, meer stroomgemaakte navigasie"
+            },
             "darkMode": {
+                "badge": "Eksperimentele",
+                "description": "Die administrasie bied nou 'n donker voorkoms vir die gebruikerskoppelvlak, vir beter toeganklikheid en om by u persoonlike voorkeure te pas.",
+                "headline": "Donker voorkoms",
+                "profileSettingsLink": "profielinstellings",
+                "themeSaveError": "Die voorkoms kon nie gered word nie.",
+                "themeSelectHint": "Jy kan hierdie instelling te eniger tyd in jou {profileSettingsLink} verander.",
                 "themeSelectLabel": "Voorkoms"
             }
-        }
+        },
+        "seenSaveError": "Jou voorkeur kon nie gestoor word nie. Hierdie dialoog kan weer verskyn.",
+        "title": "'N Nuwe voorkoms vir jou administrasie"
     },
     "sw-users-permissions": {
         "general": {
@@ -10859,6 +11011,9 @@
                     },
                     "saveSuccess": {
                         "message": "Gebruiker \"{name}\" gestoor."
+                    },
+                    "themeSaveError": {
+                        "message": "Die tema-voorkeur kon nie gestoor word nie."
                     }
                 },
                 "passwordConfirmation": {

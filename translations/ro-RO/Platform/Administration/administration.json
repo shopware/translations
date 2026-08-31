@@ -423,6 +423,7 @@
             "feature_set": "Șablon | Șabloane",
             "flow": "Constructor de flux",
             "flow_sequence": "Fluxul",
+            "flow_template": "Șablon de flux | Șabloane de flux",
             "frequently_used": "Frecvent utilizate",
             "import_export_profile": "Profil de import/export | Profiluri de import/export",
             "integration": "Integrări | Integrări",
@@ -497,6 +498,7 @@
             "CONTENT__MEDIA_EMPTY_FILE": "Trebuie furnizat un nume de fișier valid.",
             "CONTENT__MISSING_RULE_TYPE_EXCEPTION": "Trebuie să alegeți un tip pentru această regulă.",
             "DELIVERY_TIME_MIN_INVALID": "Valoarea minimă nu trebuie să fie mai mare decât valoarea maximă.",
+            "DOCUMENT_BASE_CONFIG_INVALID_PAYMENT_DUE_DATE": "Data scadenței plății trebuie să fie o dată relativă, cum ar fi „+14 zile”.",
             "DUPLICATED_NAME": "Acest nume este deja în uz.",
             "DUPLICATED_PRODUCT_EXPORT_FILE_NAME": "Acest nume de fișier este deja utilizat. Vă rog să alegeţi alta.",
             "DUPLICATED_SALUTATION_KEY": "Denumirea tehnică deja în uz. Vă rugăm să alegeți unul diferit.",
@@ -617,6 +619,7 @@
         "sw-admin-menu": {
             "administrator": "Administrator",
             "linkCloseMenu": "Închide meniul",
+            "linkExpandMenu": "Extindeți meniul",
             "linkLogout": "Deconectare",
             "linkMinimizeMenu": "Restrângere meniu",
             "navigation": {
@@ -628,7 +631,8 @@
                 "mainMenuItemShopwarePayments": "Plăți Shopware"
             },
             "textProjectName": "Administrarea",
-            "textShopwareAdmin": "Administrare Shopware"
+            "textShopwareAdmin": "Administrare Shopware",
+            "textVersion": "Versiune:"
         },
         "sw-bulk-edit-modal": {
             "bulkEditModalTitle": "Editare în bloc - {count} element selectat | Editare în bloc - {count} elemente selectate",
@@ -1417,6 +1421,8 @@
         },
         "sw-search-bar": {
             "addNew": "adăugați noi",
+            "ariaLabelCloseSearch": "Închide căutarea",
+            "ariaLabelOpenSearch": "Deschideți căutarea",
             "messageNoResults": "Nu a fost gasit nici un rezultat dupa \"{term}”.",
             "messageNoResultsDetailV2": "Încercați să utilizați cuvinte cheie diferite sau verificați configurația de căutare.",
             "messageNoResultsV2": "Nu s-au găsit potriviri exacte pentru \"{term}”.",
@@ -1616,6 +1622,10 @@
             "buttonChange": "Schimbă tema",
             "modalTitleChange": "Schimbă tema",
             "textChangeTheme": "Chiar vrei să schimbi tema? Acest lucru poate modifica vizualizarea magazinului dvs."
+        },
+        "pendingAssignment": {
+            "description": "„{pendingThemeName}\" este compilat în fundal și va înlocui automat „{liveThemeName}” odată ce este gata.",
+            "descriptionNoLiveTheme": "„{pendingThemeName}\" este compilat în fundal și va fi aplicat automat odată ce este gata."
         },
         "title": "Atribuirea temei"
     },
@@ -3834,6 +3844,7 @@
         },
         "sw-extension-app-module-error-page": {
             "error": {
+                "description": "Pagina pe care o căutați nu a putut fi găsită. Este posibil să fi fost mutat sau să nu mai existe.",
                 "heading": "Hopa! Te-ai mutat prea repede și ai pierdut orientarea."
             }
         }
@@ -4395,6 +4406,7 @@
                 "labelDocumentTypeSingle": "Tip document",
                 "labelFileFormats": "Formate de fișiere",
                 "placeholderDocumentType": "Selectare documente...",
+                "placeholderDocumentTypeSingle": "Selectați tipul documentului...",
                 "placeholderFileFormats": "Selectați formate de fișiere...",
                 "titleCreateDocument": "Generează documente"
             },
@@ -4998,6 +5010,7 @@
     "sw-login": {
         "general": {
             "description": "Autentificare magazin",
+            "linkBackToLogin": "Înapoi la autentificare",
             "loadingLabel": "Se încarcă...",
             "logoAlt": "Logo-ul Shopware",
             "mainMenuItemIndex": "Login"
@@ -5012,6 +5025,7 @@
             "labelUsername": "Nume utilizator",
             "messageAccessDenied": "Solicitare refuzată de serverul de autorizare.",
             "messageAuthThrottled": "Prea multe încercări de conectare. Vă rugăm să așteptați {seconds} secunde înainte de a încerca să vă conectați din nou.",
+            "messageGeneralError": "Ceva nu a mers bine în timpul autentificării. Vă rugăm să încercați din nou.",
             "messageGeneralRequestError": "Ceva nu a mers bine solicitând \"{url}”.",
             "messageInvalidClient": "Autentificarea clientului a eșuat.",
             "messageInvalidCredentials": "Acreditări de utilizator incorecte.",
@@ -5028,9 +5042,11 @@
             },
             "headline": "Recuperare",
             "info": {
+                "emailFallback": "adresa ta de e-mail",
                 "headline": "Înapoi la autentificare",
                 "info": "Dacă adresa de e-mail introdusă este validă, veți primi e-mailul de recuperare a parolei în câteva minute."
             },
+            "messageLinkExpired": "Acest link de recuperare a parolei este expirat sau nevalid. Vă rugăm să solicitați un link nou.",
             "recovery": {
                 "headline": "Recuperare",
                 "newPasswordField": {
@@ -5041,7 +5057,8 @@
                 },
                 "submit": {
                     "label": "Actualizează parola"
-                }
+                },
+                "text": "Alegeți o nouă parolă pentru contul dvs."
             },
             "submit": "Trimite link-ul de recuperare",
             "text": "Introduceți adresa de e-mail legată de contul dvs."
@@ -5429,14 +5446,30 @@
                     "deliveryNote": "Nota de livrare",
                     "invoice": "Numărul facturii"
                 },
+                "emptyStateDescription": "Selectați un tip de document pentru a configura documentul",
+                "emptyStateTitle": "Tipul documentului lipsește",
+                "error": {
+                    "loadDocumentNumber": "Nu s-a putut încărca un număr de document.",
+                    "loadDocumentTypes": "Nu s-a reușit încărcarea tipurilor de documente disponibile.",
+                    "loadSupportedDocumentFileFormats": "Nu s-a reușit încărcarea formatelor de fișiere disponibile pentru fiecare tip de document.",
+                    "loadUploadedDocument": "Nu s-a putut încărca documentul încărcat."
+                },
                 "fileFormats": {
-                    "html": "HTML"
+                    "html": "HTML",
+                    "pdf": "PDF",
+                    "zugferdEmbeddedPdf": "PDF încorporat ZugFerd",
+                    "zugferdXml": "Exercițiu XML"
                 },
                 "generate": "Generați",
+                "generateAndDownload": "Generați și descărcați",
+                "generateAndSend": "Generați și trimiteți",
                 "labelDocumentType": "Tip document",
                 "labelFileFormats": "Formate de fișiere",
+                "openButtonLabel": "Generați un document nou",
+                "placeholderComment": "Scrie un comentariu...",
                 "placeholderDocumentType": "Selectați un tip de document...",
-                "placeholderFileFormats": "Selectați formate de fișiere..."
+                "placeholderFileFormats": "Selectați formate de fișiere...",
+                "title": "Generați documentul"
             },
             "selectDocumentTypeModal": {
                 "helpText": {
@@ -5453,8 +5486,15 @@
             },
             "uploadDocumentModal": {
                 "buttonUploadFile": "Încărcați fișierul",
+                "helpTextFileFormat": "Selectați formatul fișierului pe care doriți să îl încărcați.",
+                "labelDocumentUpload": "Încărcarea documentului",
                 "labelFileFormat": "Format fișier",
-                "upload": "Încărcați"
+                "openAction": "Încărcați documentul",
+                "placeholderFileFormat": "Selectați un format de fișier...",
+                "title": "Încărcați documentul",
+                "upload": "Încărcați",
+                "uploadAndDownload": "Încărcați și descărcați",
+                "uploadAndSend": "Încărcați și trimiteți"
             }
         },
         "create": {
@@ -5730,7 +5770,15 @@
             "cardTitle": "Documente",
             "confirmDeleteText": "Acest document face parte dintr-o comandă și poate fi relevant în scopuri fiscale. Ștergerea acestuia poate afecta trasabilitatea înregistrărilor dvs. contabile. Vă rugăm să vă asigurați că ștergerea este permisă legal. Această acțiune nu poate fi anulată.",
             "error": {
-                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Documentul numărul {number} a fost deja alocat."
+                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Documentul numărul {number} a fost deja alocat.",
+                "attachMediaToDocumentUpload": "Nu s-a putut atașa suportul selectat la document.",
+                "createDocument": "Nu s-a reușit crearea documentului.",
+                "downloadDocument": "Descărcarea documentului nu a reușit.",
+                "downloadDocumentArchive": "Descărcarea arhivei documentelor nu a reușit.",
+                "loadDocumentPreview": "Nu s-a putut încărca previzualizarea documentului.",
+                "loadSendingDocument": "Nu s-a putut încărca documentul de trimis.",
+                "openDocument": "Nu s-a putut deschide documentul selectat.",
+                "uploadDocument": "Încărcarea documentului nu a reușit."
             },
             "info": {
                 "DOCUMENT__NUMBER_WAS_CHANGED": "Numărul documentului duplicat. Un număr consecutiv a fost extras automat din intervalul de numere respectiv."
@@ -5740,11 +5788,14 @@
             "labelAvailableFormats": "Formate disponibile",
             "labelCreateNew": "Creați un document nou",
             "labelDate": "Data",
+            "labelDownloadAllFormats": "Descărcați toate formatele",
+            "labelDownloadFormat": "Descarca {format}",
             "labelDownloadPdf": "Descarcă documentul",
             "labelMarkAsSent": "Marcați ca trimis",
             "labelMarkAsUnsent": "Marcați ca netrimis",
             "labelNumber": "Număr",
             "labelOpenDocument": "Deschide documentul",
+            "labelOpenFormat": "Deschis {format}",
             "labelPrintDocument": "Imprimați documentul",
             "labelSendDocument": "Trimite documentul",
             "labelSent": "Trimis",
@@ -5753,9 +5804,11 @@
             "messageEmptyTitle": "Nu există documente create încă",
             "messageNoDocumentFound": "Nu au fost găsite documente",
             "modalTitle": "Actualizare stare",
+            "notificationDeleteErrorMessage": "Documentul nu a putut fi șters.",
             "searchBarPlaceholder": "Caută în toate documentele..."
         },
         "documentModal": {
+            "errorInvoiceMissingCreditItem": "Factura selectată nu are element de credit.",
             "fileInputLabel": "Încărcarea documentului personalizat",
             "labelCreate": "Creează",
             "labelCreateDownload": "Creați și descărcați",
@@ -6401,6 +6454,7 @@
             "cardTitleAssignment": "Vizibilitate și structură",
             "cardTitleDeliverabilityInfo": "Livrare",
             "cardTitleDownloads": "Fişiere",
+            "cardTitleGuarantee": "Garanție (eticheta GARAN)",
             "cardTitleMedia": "Media",
             "cardTitlePackaging": "Măsuri & ambalare",
             "cardTitlePrices": "Preturi",
@@ -6693,12 +6747,17 @@
             "titleOpenGraph": "Deschideți graficul"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "Eticheta de garanție este afișată numai dacă este setată o durată valabilă a garanției, un producător și numărul de produs al producătorului.",
+            "helpTextGuaranteeMonths": "Valoarea minimă este de 30, pași de 6.",
             "isCloseoutHelpText": "Ordinele de rezervă refuzate.",
             "labelActive": "Activ pentru toate canalele de vânzări selectate",
             "labelAvailableStock": "Stocul disponibil",
             "labelCreatedAt": "Data creării",
             "labelDeliveryTime": "Timp de livrare",
             "labelEan": "GTIN/EAN",
+            "labelGuaranteeConfirmed": "Afișați eticheta în vitrină",
+            "labelGuaranteeDescription": "Această etichetă reprezintă o garanție comercială a durabilității exprimată în ani. Garanția este oferită de producător fără costuri suplimentare, acoperind întregul bun și cu o durată mai mare de doi ani.",
+            "labelGuaranteeMonths": "Durata garanției producătorului în luni",
             "labelHeight": "Înălțime",
             "labelIsCloseout": "Vânzare de lichi",
             "labelLength": "Lungimea",
@@ -6716,6 +6775,7 @@
             "placeholderCreatedAt": "Introduceți data creării...",
             "placeholderDeliveryTime": "Introduceţi un timp de livrare...",
             "placeholderEan": "Intră pe GTIN/EAN...",
+            "placeholderGuaranteeMonths": "de exemplu, 30, 36 sau 42 de luni...",
             "placeholderHeight": "de exemplu, 200...",
             "placeholderLength": "ex. 100...",
             "placeholderManufacturerNumber": "Introduceți numărul produsului...",
@@ -7016,6 +7076,7 @@
             "labelEmailField": "Adresă de e-mail",
             "labelFirstNameField": "Prenume",
             "labelLastNameField": "Nume de familie",
+            "labelModuleIconColorsField": "Culorile modulului",
             "labelNewPassword": "Parolă nouă",
             "labelNewPasswordConfirm": "Confirmați parola",
             "labelOldPassword": "Parola veche",
@@ -7029,6 +7090,7 @@
             "notificationPasswordErrorMessage": "Parolele trimise nu se potrivesc.",
             "notificationSaveErrorMessage": "Informațiile de profil nu au putut fi salvate.",
             "notificationSaveSuccessMessage": "Informațiile de profil au fost salvate.",
+            "optionModuleIconColorsColored": "colorat",
             "optionModuleIconColorsNeutral": "Neutru",
             "placeholderNewPassword": "Introduceți o parolă nouă...",
             "placeholderNewPasswordConfirm": "Reintroduceți parola nouă...",
@@ -7240,6 +7302,7 @@
                             "buttonGenerate": "Generați coduri noi",
                             "description": "Codurile promoționale sunt generate aleatoriu din majuscule și numere. Puteți adăuga termeni individuali stabiliți ca prefix și/sau sufix sau puteți utiliza un model complet personalizat și urmăriți modul în care modelul dvs. de cod se dovedește în previzualizarea codului promoțional.",
                             "helpTextCustomPattern": "Rețineți că nu poate exista decât un singur șir consecutiv de variabile, care vor fi convertite.<br><br>Variabile posibile de utilizat:<br>- %d - cifre (0-9)<br>- %s - litere (A-Z)",
+                            "invalidPatternException": "Modelul de cod trebuie să conțină cel puțin o variabilă (%s sau %d).",
                             "labelCodeAmount": "Numărul de coduri de promovare",
                             "labelCodeLength": "Lungime cod",
                             "labelCustomPattern": "Model personalizat",
@@ -7813,6 +7876,7 @@
             "footerCategory": "Navigare subsolul punctului de intrare",
             "foreignKeyDelete": "Acest canal de vânzări nu poate fi șters deoarece este încă utilizat de {assignment}.",
             "helpTextBusinessTimeZone": "Fus orar utilizat ori de câte ori o dată sau oră este tipărită în documentele acestui canal de vânzări. Dacă este gol, nu se aplică nicio suprascriere a fusului orar de afaceri.",
+            "helpTextIsExternalStorefront": "Adresele URL SEO sunt generate numai pentru domenii care indică o vitrină externă. Pe limbă, un singur magazin extern poate fi setat pentru un singur canal de vânzări.",
             "helpTextTaxCalculation": {
                 "label": "Dacă un furnizor fiscal este activat, aceste setări pot fi suprascrise. Puteți verifica acest lucru în {link}.",
                 "linkText": "setări"
@@ -7853,6 +7917,7 @@
             "labelInputSnippet": "Fragment",
             "labelInputTaxCalculation": "Calculul impozitelor",
             "labelInputUrl": "URL",
+            "labelIsExternalStorefront": "Vitrina externă",
             "labelMaintenanceActive": "Întreținere",
             "labelOptionTaxHorizontal": "orizontală",
             "labelOptionTaxVertical": "Vertical",
@@ -7953,6 +8018,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Valuta"
                 },
+                "storefrontDomainHelpText": "Pentru canalele de vânzări fără cap, numai domeniile marcate ca o vitrină externă sunt selectabile aici. Marcați un domeniu ca vitrină externă în setările de domeniu ale canalului de vânzări.",
                 "storefrontDomainLanguage": {
                     "help": "Selectat automat de domeniul Sales Channel",
                     "label": "Limba"
@@ -8069,6 +8135,8 @@
             "columnName": "Canal de vânzări",
             "columnStatus": "Stare",
             "columnType": "Tip",
+            "emptyStateDescription": "Adăugați primul canal de vânzări pentru a începe să vindeți prin vitrine, piețe sau social media.",
+            "emptyStateHeadline": "Nu există încă canale de vânzare",
             "placeholderSearchBar": "Căutați canale de vânzări...",
             "productsCount": "produse | produs | produse",
             "productsLabel": "Produse",
@@ -8110,16 +8178,20 @@
         "labelSeoPathInfo": "Calea SEO",
         "placeholderMainCategory": "Alege o categorie principală...",
         "textEmptySeoUrls": "Nu există adrese URL SEO încă.",
+        "textSeoUrlsNotSupported": "Adresele URL SEO nu pot fi atribuite acestui tip de canal de vânzări.",
         "titleCard": "URL-uri SEO"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "Domeniul extern al vitrinei este necesar",
             "labelPossibleValues": "Variabile posibile",
             "labelSalesChannelSelect": "Canal de vânzări",
+            "linkExternalStorefrontDomain": "Deschideți setările canalului de vânzări",
             "messageSaveError": "Nu toate șabloanele sunt valabile.",
             "messageSaveSuccess": "Șabloanele URL SEO au fost salvate.",
             "placeholderSelectVariables": "Caută și selectează...",
             "preview": "Previzualizare:",
+            "textExternalStorefrontRequired": "Pentru canalele de vânzări fără cap, adresele URL SEO sunt generate numai pentru domeniile care sunt marcate ca o vitrină externă. Adăugați un astfel de domeniu la canalul de vânzări pentru a activa adresele URL SEO.",
             "textInfoMessageBoxEmptyProperties": "Atunci când utilizați variabile, asigurați-vă că datele sunt disponibile în toate câmpurile respective ale entităților (produse, pagini de destinație sau categorii). Dacă variabilele se referă la câmpuri goale, nu vor fi create adrese URL SEO pentru entitatea corespunzătoare.",
             "textUrlNoEntitiesForPreview": "Nu este {entity} disponibil.",
             "textUrlPreviewEmptyTemplate": "Șablonul este gol, adresele URL SEO pentru {entity} nu vor fi generate.",
@@ -8636,6 +8708,10 @@
             "displayTitle": "Afișare:",
             "displayedContentCard": "Conținut afișat",
             "displayedContentCardSubtitle": "Selectați ce conținut trebuie afișat în document.",
+            "filenameCard": "Denumirea fișierelor",
+            "filenameInfixHeadline": "Nume fișier infix",
+            "filenameInfixHelpText": "Adăugați un infix la fiecare format de document pentru a preveni conflictele de denumire între diferite versiuni ale aceluiași document.",
+            "filenamePattern": "Model de nume de fișier: <prefix><documentNumber><infix><suffix>.<fileExtension>",
             "helpTextDisplayAdditionalNoteDelivery": "Eligibil numai pentru statele membre ale UE, consultați și „Setări > Țări”.",
             "helpTextDisplayDocumentInCustomerAccount": "Documentul este afișat sub „Comenzi” în contul de client respectiv. Rețineți că numai documentele care au fost efectiv trimise clientului sunt afișate în contul de client.",
             "helpTextPaymentDueDate": "Utilizează un modificator relativ de dată bazat pe data documentului, de exemplu „+14 zile”.",
@@ -8701,6 +8777,7 @@
             "placeholderCompanyUrl": "Introduceți site-ul web...",
             "placeholderCompanyZipcode": "Introduceţi codul poştal...",
             "placeholderExecutiveDirector": "Intră în executivul de afaceri...",
+            "placeholderFileNameInfix": "Introduceți infix...",
             "placeholderFileNamePrefix": "Introduceți prefixul...",
             "placeholderFileNameSuffix": "Introduceți sufixul...",
             "placeholderFileTypes": "Selectați formate de fișiere...",
@@ -8717,6 +8794,9 @@
             "placeholderType": "Selectați un tip de document...",
             "placeholderVatId": "Introduceți ID-ul de TVA...",
             "textHeadline": "Document nou"
+        },
+        "errors": {
+            "invalidDueDateFormat": "Modificatorul datei nu este valid."
         },
         "general": {
             "description": "Secțiunea de configurare a documentelor din modulul de setări",
@@ -8737,26 +8817,61 @@
     "sw-settings-language": {
         "addModal": {
             "buttonAdd": "Adaugă limbă",
+            "createCustomLanguage": "Creați o limbă personalizată",
+            "docsHint": "Cum funcționează traducerile în Shopware:",
             "docsLinkLabel": "Aflați mai multe",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "Nu găsiți limba de care aveți nevoie? Răsfoiți limbile disponibile în {extensionStoreLink}",
+            "extensionStoreLink": "Magazin de extensii",
             "labelLanguage": "Limba",
-            "title": "Adaugă limbă"
+            "messageAddError": "Limba nu a putut fi adăugată.",
+            "messageAddSuccess": "Limba a fost adăugată.",
+            "messageLanguagesLoadError": "Limbile existente nu au putut fi încărcate.",
+            "messageTranslationsLoadError": "Traducerile disponibile nu au putut fi încărcate.",
+            "placeholderLanguage": "Selectați o limbă...",
+            "title": "Adaugă limbă",
+            "translationsAvailable": "Sunt disponibile traduceri pentru această limbă.",
+            "translationsIncomplete": "Unele traduceri pentru această limbă ar putea lipsi în continuare."
         },
         "detail": {
+            "createdBannerText": "Activați limba, apoi atribuiți-o unui canal de vânzări pentru a o pune la dispoziția clienților.",
+            "createdBannerTitle": "{name} adăugat cu succes",
             "labelActive": "Activ",
             "labelIsoCode": "Cod ISO",
             "labelLocale": "Locale",
             "labelName": "Nume",
             "labelParent": "Moșteniți de la",
+            "messageLoadError": "Limba nu a putut fi încărcată.",
+            "messageSaveError": "Limba nu poate fi salvată.",
             "messageSaveSuccess": "Limba „{name}” a fost salvată.",
             "placeholderName": "Introduceți numele...",
             "placeholderPleaseSelect": "Vă rugăm să selectați...",
             "salesChannels": {
+                "activateHint": "Activați limba, apoi atribuiți-o unui canal de vânzări pentru a o pune la dispoziția clienților.",
+                "assignHint": "Atribuiți limba unui canal de vânzări pentru a o pune la dispoziția clienților.",
+                "assignedIntro": "Limba este atribuită următoarelor canale de vânzări:",
+                "openSettings": "Deschideți setările canalului de vânzări",
                 "showAll": "Afișează toate",
                 "showLess": "Arată mai puțin",
                 "title": "Canale de vânzări"
             },
             "snippetUpdates": {
+                "autoUpdate": "Actualizare automată",
+                "autoUpdateHelpText": "Păstrați automat fragmentele acestei limbi actualizate.",
+                "builtIn": "Fragmentele încorporate sunt actualizate ca parte a actualizărilor Shopware.",
+                "linkButton": "Limba linkului",
+                "linking": "Limbajul este legat.",
+                "linkingButton": "Legarea...",
+                "notAvailable": "Actualizările nu sunt disponibile pentru această limbă.",
+                "notAvailableHelpText": "Limbile adăugate manual sau de extensii terțe pot fi actualizate diferit sau pot să nu primească actualizări deloc.",
+                "notLinked": "Această limbă este acceptată de Shopware, dar nu este încă conectată la sistemul de traducere.",
+                "statusLoadError": "Starea actualizării fragmentului nu a putut fi încărcată.",
+                "title": "Actualizări de fragmente",
+                "upToDate": "Fragmentele sunt actualizate.",
+                "updateAvailable": "Actualizare nouă disponibilă.",
                 "updateButton": "Actualizare",
+                "updateError": "Fragmentele pentru această limbă nu au putut fi actualizate.",
+                "updating": "Fragmentele sunt actualizate.",
                 "updatingButton": "Actualizarea..."
             },
             "textAlertChangeParent": "Schimbarea limbii părinte poate duce la neconcordanțe în traducerile dvs.",
@@ -8764,6 +8879,7 @@
             "textIsoCodeIsInUse": "Acest cod ISO este deja utilizat.",
             "textLanguageHasParent": "Această limbă este deja moștenită dintr-o altă limbă.",
             "titleCard": "Setări",
+            "tooltipActive": "Afișați această limbă ca opțiune atunci când traduceți conținut și configurați canalele de vânzări în administrare. Dezactivarea acestuia nu afectează disponibilitatea vitrinei.",
             "tooltipInheritanceNotPossible": "Limba implicită a sistemului nu poate moșteni dintr-o altă limbă.",
             "tooltipLanguageNotChoosable": "Nu puteți utiliza o limbă care este deja moștenită dintr-o altă limbă."
         },
@@ -8773,6 +8889,8 @@
         },
         "list": {
             "buttonAddLanguage": "Adaugă limbă",
+            "buttonUpdateAllSnippets": "Actualizați toate fragmentele",
+            "buttonUpdateSelectedSnippets": "Actualizați fragmentele selectate",
             "cardSubtitle": "Limbile pot fi atribuite domeniilor Channel de vânzări pentru a afișa traducerile corespunzătoare. Ele permit, de asemenea, traducerea conținutului în categorii, produse, pagini Experiență de cumpărături etc.",
             "cardTitle": "Limbi",
             "columnActive": "Activ",
@@ -8782,14 +8900,29 @@
             "columnLocaleName": "Locale",
             "columnName": "Nume",
             "columnSalesChannels": "Canale de vânzări",
+            "columnSnippetStatus": "Actualizări de fragmente",
+            "contextMenuUpdateSnippets": "Actualizați fragmente",
             "defaultLabel": "Default",
+            "deleteError": "Limbile nu au putut fi șterse.",
+            "deleteFilesNote": "Această acțiune șterge entitățile de limbă și fragmentele din administrare și nu fișierele de fragmente din sistemul de fișiere. Vrei să le ștergi și pe acestea?",
+            "deleteFilesNoteLabel": "Notă:",
+            "deleteModalIntro": "Sigur doriți să ștergeți următoarele limbi? Această acțiune nu poate fi anulată:",
+            "deleteModalTitle": "Ștergeți limbile?",
+            "deleteTranslationFiles": "Ștergeți, de asemenea, fragmentele din sistemul de fișiere",
+            "deleteTranslationFilesError": "Fișierele fragment nu au putut fi șterse din sistemul de fișiere.",
             "manageSnippets": "Gestionarea fragmentelor",
             "messageDeleteSuccess": "Limba „{name}” a fost ștearsă.",
+            "salesChannelCount": "{count} Canal de vânzări | {count} Canale de vânzări",
             "snippetStatus": {
+                "updateAvailable": "Actualizare disponibilă",
                 "updating": "Actualizarea..."
             },
+            "snippetStatusLoadError": "Actualizările fragmentelor nu au putut fi încărcate.",
             "textHeadline": "Limbi",
-            "titleSidebarItemRefresh": "Actualizare"
+            "titleSidebarItemRefresh": "Actualizare",
+            "updateSnippetsError": "Fragmentele nu au putut fi actualizate.",
+            "updateSnippetsProgress": "Actualizarea fragmentelor ({processed}/{total})",
+            "updateSnippetsSuccess": "Fragmentele au fost actualizate."
         }
     },
     "sw-settings-listing": {
@@ -8812,6 +8945,7 @@
                 "placeholderTechnicalName": "Introduceți numele tehnic...",
                 "title": "General"
             },
+            "lockedInfo": "Această opțiune de sortare este blocată și, prin urmare, numai câmpurile de traducere pot fi editate.",
             "notification": {
                 "saveError": "Opțiunea de sortare „{sortingOptionName}” nu a putut fi salvată.",
                 "saveErrorAlreadyExists": "Opțiunea de sortare \"{sortingOptionName}\" există deja.",
@@ -8879,6 +9013,10 @@
                     "title": "Nu au fost găsite opțiuni"
                 },
                 "grid": {
+                    "deleteTooltip": {
+                        "default": "Această opțiune de sortare este sortarea implicită și, prin urmare, nu poate fi ștearsă.",
+                        "locked": "Această opțiune de sortare este blocată și, prin urmare, nu poate fi ștearsă."
+                    },
                     "header": {
                         "criteria": "criteriu",
                         "name": "Nume",
@@ -10186,6 +10324,7 @@
             "opt-out-info": {
                 "profile": "Profilul dvs. — Preferințe de confidențialitate",
                 "settings": "Setări — Confidențialitate",
+                "single-option-snippet": "Vă puteți modifica preferințele în orice moment sub {link}.",
                 "snippet": "Vă puteți modifica preferințele în orice moment: gestionați setările Date Store sub {settings}și setările Date personale sub {profile}."
             },
             "promises": {
@@ -10544,6 +10683,7 @@
         "detail": {
             "asyncCompilation": {
                 "completed": "Compilația tematică a fost finalizată.",
+                "error": "Compilarea temei a eșuat în fundal. Tema nu a fost schimbată.",
                 "started": "Modificările sunt compilate în fundal. Vor fi vizibile în aproximativ 1 minut. Veți primi o notificare odată ce compilarea este finalizată."
             },
             "description": "Descriere",
@@ -10679,10 +10819,22 @@
         "finishButton": "Am înţeles",
         "nextButton": "Următorul",
         "pages": {
+            "adminNavigation": {
+                "description": "Pe măsură ce Administrația Shopware a crescut, la fel a crescut și numărul de caracteristici și elemente de navigare. Am reproiectat navigarea pentru a îmbunătăți densitatea și a face totul mai ușor de găsit, cu stări active mai clare, animații mai fine de submeniu, o mai bună lizibilitate și accesibilitate îmbunătățită la tastatură.",
+                "headline": "O navigare mai clară și mai simplificată"
+            },
             "darkMode": {
+                "badge": "Experimental",
+                "description": "Administrația oferă acum un aspect întunecat pentru interfața cu utilizatorul, pentru o mai bună accesibilitate și pentru a se potrivi cu preferințele dvs. personale.",
+                "headline": "Aspect întunecat",
+                "profileSettingsLink": "setările profilului",
+                "themeSaveError": "Aspectul nu a putut fi salvat.",
+                "themeSelectHint": "Puteți modifica această setare oricând în {profileSettingsLink}.",
                 "themeSelectLabel": "Aspectul"
             }
-        }
+        },
+        "seenSaveError": "Preferința dvs. nu a putut fi salvată. Acest dialog poate apărea din nou.",
+        "title": "Un nou aspect pentru administrația ta"
     },
     "sw-users-permissions": {
         "general": {
@@ -10859,6 +11011,9 @@
                     },
                     "saveSuccess": {
                         "message": "Utilizatorul „{name}” salvat."
+                    },
+                    "themeSaveError": {
+                        "message": "Preferința tematică nu a putut fi salvată."
                     }
                 },
                 "passwordConfirmation": {

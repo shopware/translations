@@ -423,6 +423,7 @@
             "feature_set": "Šablona | Šablony",
             "flow": "Tvůrce toku",
             "flow_sequence": "Průtok",
+            "flow_template": "Šablona toku | Šablony toku",
             "frequently_used": "Často používané",
             "import_export_profile": "Import/export profilu | Import/export profilů",
             "integration": "Integrace | Integrace",
@@ -497,6 +498,7 @@
             "CONTENT__MEDIA_EMPTY_FILE": "Musí být uveden platný název souboru.",
             "CONTENT__MISSING_RULE_TYPE_EXCEPTION": "Pro toto pravidlo musíte zvolit typ.",
             "DELIVERY_TIME_MIN_INVALID": "Minimální hodnota nesmí být větší než maximální hodnota.",
+            "DOCUMENT_BASE_CONFIG_INVALID_PAYMENT_DUE_DATE": "Datum splatnosti platby musí být relativní datum, například „+14 dní“.",
             "DUPLICATED_NAME": "Tento název se již používá.",
             "DUPLICATED_PRODUCT_EXPORT_FILE_NAME": "Tento název souboru se již používá. Prosím, vyberte jinou.",
             "DUPLICATED_SALUTATION_KEY": "Tento technický název je již používán. Vyberte jiný.",
@@ -617,6 +619,7 @@
         "sw-admin-menu": {
             "administrator": "Správce",
             "linkCloseMenu": "Zavřít nabídku",
+            "linkExpandMenu": "Rozbalit nabídku",
             "linkLogout": "Odhlásit",
             "linkMinimizeMenu": "Nabídka Sbalit",
             "navigation": {
@@ -628,7 +631,8 @@
                 "mainMenuItemShopwarePayments": "Platby Shopware"
             },
             "textProjectName": "Správa",
-            "textShopwareAdmin": "Správa Shopware"
+            "textShopwareAdmin": "Správa Shopware",
+            "textVersion": "Verze:"
         },
         "sw-bulk-edit-modal": {
             "bulkEditModalTitle": "Hromadná úprava - {count} vybraná položka | Hromadná úprava - Vybrané položky {count}",
@@ -1417,6 +1421,8 @@
         },
         "sw-search-bar": {
             "addNew": "přidat nový",
+            "ariaLabelCloseSearch": "Zavřít vyhledávání",
+            "ariaLabelOpenSearch": "Otevřít vyhledávání",
             "messageNoResults": "Pro \"{term}\" nebyly nalezeny žádné výsledky.",
             "messageNoResultsDetailV2": "Zkuste použít jiná klíčová slova nebo zkontrolujte konfiguraci vyhledávání.",
             "messageNoResultsV2": "Pro \"{term}“ nebyly nalezeny žádné přesné shody.",
@@ -1616,6 +1622,10 @@
             "buttonChange": "Změnit téma",
             "modalTitleChange": "Změnit téma",
             "textChangeTheme": "Opravdu chcete změnit téma? To může změnit vizualizaci vašeho obchodu."
+        },
+        "pendingAssignment": {
+            "description": "„{pendingThemeName}\" je kompilován na pozadí a automaticky nahradí \"{liveThemeName}\", jakmile bude připraven.",
+            "descriptionNoLiveTheme": "„{pendingThemeName}\" se kompiluje na pozadí a bude automaticky aplikován, jakmile bude připraven."
         },
         "title": "Zadání tématu"
     },
@@ -3834,6 +3844,7 @@
         },
         "sw-extension-app-module-error-page": {
             "error": {
+                "description": "Stránka, kterou jste hledali, nebyla nalezena. Možná byla přesunuta nebo již neexistuje.",
                 "heading": "Jejda! Pohybovali jste se příliš rychle a ztratili jste orientaci."
             }
         }
@@ -4395,6 +4406,7 @@
                 "labelDocumentTypeSingle": "Typ dokumentu",
                 "labelFileFormats": "Formáty souborů",
                 "placeholderDocumentType": "Vyberte dokumenty...",
+                "placeholderDocumentTypeSingle": "Vyberte typ dokumentu...",
                 "placeholderFileFormats": "Vyberte formáty souborů...",
                 "titleCreateDocument": "Generování dokumentů"
             },
@@ -4998,6 +5010,7 @@
     "sw-login": {
         "general": {
             "description": "Přihlášení Shopware",
+            "linkBackToLogin": "Zpět na přihlášení",
             "loadingLabel": "Načítání...",
             "logoAlt": "Logo Shopware",
             "mainMenuItemIndex": "Přihlášení"
@@ -5012,6 +5025,7 @@
             "labelUsername": "Jméno uživatele",
             "messageAccessDenied": "Přístup byl odmítnut.",
             "messageAuthThrottled": "Příliš mnoho pokusů o přihlášení. Počkejte prosím {seconds} sekund, než se pokusíte znovu přihlásit.",
+            "messageGeneralError": "Během přihlášení se něco pokazilo. Zkuste to prosím znovu.",
             "messageGeneralRequestError": "Poptávka po \"{url}\" se nezdařila.",
             "messageInvalidClient": "Ověření klienta se nezdařilo.",
             "messageInvalidCredentials": "Uživatelské informace jsou neplatné.",
@@ -5028,9 +5042,11 @@
             },
             "headline": "Obnovení hesla",
             "info": {
+                "emailFallback": "Vaše e-mailová adresa",
                 "headline": "Zpět k přihlášení",
                 "info": "Jestliže jste zadali platnou e-mailovou adresu, během několika minut obdržíte e-mail k obnovení hesla."
             },
+            "messageLinkExpired": "Platnost tohoto odkazu na obnovení hesla vypršela nebo je neplatná. Vyžádejte si prosím nový odkaz.",
             "recovery": {
                 "headline": "Obnovení hesla",
                 "newPasswordField": {
@@ -5041,7 +5057,8 @@
                 },
                 "submit": {
                     "label": "Aktualizovat heslo"
-                }
+                },
+                "text": "Zvolte nové heslo pro svůj účet."
             },
             "submit": "Zaslat odkaz k obnovení",
             "text": "Zadejte e-mailovou adresu spojenou s vaším účtem."
@@ -5429,14 +5446,30 @@
                     "deliveryNote": "Dodací list",
                     "invoice": "Číslo faktury"
                 },
+                "emptyStateDescription": "Vyberte typ dokumentu pro konfiguraci dokumentu",
+                "emptyStateTitle": "Chybí typ dokumentu",
+                "error": {
+                    "loadDocumentNumber": "Nepodařilo se načíst číslo dokumentu.",
+                    "loadDocumentTypes": "Nepodařilo se načíst dostupné typy dokumentů.",
+                    "loadSupportedDocumentFileFormats": "Nepodařilo se načíst dostupné formáty souborů podle typu dokumentu.",
+                    "loadUploadedDocument": "Nepodařilo se načíst nahraný dokument."
+                },
                 "fileFormats": {
-                    "html": "HTML"
+                    "html": "HTML",
+                    "pdf": "PDF",
+                    "zugferdEmbeddedPdf": "ZugFerd vložené PDF",
+                    "zugferdXml": "Zpětná cesta XML"
                 },
                 "generate": "Generovat",
+                "generateAndDownload": "Generovat a stahovat",
+                "generateAndSend": "Generovat a odeslat",
                 "labelDocumentType": "Typ dokumentu",
                 "labelFileFormats": "Formáty souborů",
+                "openButtonLabel": "Generovat nový dokument",
+                "placeholderComment": "Napsat komentář...",
                 "placeholderDocumentType": "Vyberte typ dokumentu...",
-                "placeholderFileFormats": "Vyberte formáty souborů..."
+                "placeholderFileFormats": "Vyberte formáty souborů...",
+                "title": "Generovat dokument"
             },
             "selectDocumentTypeModal": {
                 "helpText": {
@@ -5453,8 +5486,15 @@
             },
             "uploadDocumentModal": {
                 "buttonUploadFile": "Odeslat soubory",
+                "helpTextFileFormat": "Vyberte formát souboru, který chcete nahrát.",
+                "labelDocumentUpload": "Nahrávání dokumentu",
                 "labelFileFormat": "Formát souboru",
-                "upload": "Odeslat"
+                "openAction": "Nahrát dokument",
+                "placeholderFileFormat": "Vyberte formát souboru...",
+                "title": "Nahrát dokument",
+                "upload": "Odeslat",
+                "uploadAndDownload": "Nahrajte a stáhněte",
+                "uploadAndSend": "Nahrajte a odešlete"
             }
         },
         "create": {
@@ -5730,7 +5770,15 @@
             "cardTitle": "Doklady",
             "confirmDeleteText": "Tento dokument je součástí objednávky a může být relevantní pro daňové účely. Vymazání může ovlivnit sledovatelnost vašich účetních záznamů. Ujistěte se, že vymazání je zákonně povoleno. Tuto akci nelze vrátit zpět.",
             "error": {
-                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokument číslo {number} již byl přidělen."
+                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokument číslo {number} již byl přidělen.",
+                "attachMediaToDocumentUpload": "Připojení vybraného média k dokumentu se nezdařilo.",
+                "createDocument": "Vytvoření dokumentu se nezdařilo.",
+                "downloadDocument": "Stažení dokumentu se nezdařilo.",
+                "downloadDocumentArchive": "Stahování archivu dokumentů se nezdařilo.",
+                "loadDocumentPreview": "Nepodařilo se načíst náhled dokumentu.",
+                "loadSendingDocument": "Nepodařilo se načíst dokument k odeslání.",
+                "openDocument": "Nepodařilo se otevřít vybraný dokument.",
+                "uploadDocument": "Nepodařilo se nahrát dokument."
             },
             "info": {
                 "DOCUMENT__NUMBER_WAS_CHANGED": "Duplikovat číslo dokumentu. Z příslušného rozsahu čísel bylo automaticky vykresleno následující číslo."
@@ -5740,11 +5788,14 @@
             "labelAvailableFormats": "Dostupné formáty",
             "labelCreateNew": "Vytvořit nový dokument",
             "labelDate": "Datum",
+            "labelDownloadAllFormats": "Stáhnout všechny formáty",
+            "labelDownloadFormat": "Stáhnout {format}",
             "labelDownloadPdf": "Stáhnout dokument",
             "labelMarkAsSent": "Označit jako odeslané",
             "labelMarkAsUnsent": "Označit jako neodeslané",
             "labelNumber": "Číslo",
             "labelOpenDocument": "Otevřít dokument",
+            "labelOpenFormat": "Otevřeno {format}",
             "labelPrintDocument": "Tisknout dokument",
             "labelSendDocument": "Odeslat dokument",
             "labelSent": "Odesláno",
@@ -5753,9 +5804,11 @@
             "messageEmptyTitle": "Zatím nebyly vytvořeny žádné dokumenty",
             "messageNoDocumentFound": "Nebyly nalezeny žádné dokumenty",
             "modalTitle": "Aktualizace stavu",
+            "notificationDeleteErrorMessage": "Dokument nelze smazat.",
             "searchBarPlaceholder": "Prohledat doklady..."
         },
         "documentModal": {
+            "errorInvoiceMissingCreditItem": "Vybraná faktura nemá žádnou kreditní položku.",
             "fileInputLabel": "Odeslat vlastní dokument",
             "labelCreate": "Vytvořit doklad",
             "labelCreateDownload": "Vytvářejte a stahujte",
@@ -6401,6 +6454,7 @@
             "cardTitleAssignment": "Viditelnost a struktura",
             "cardTitleDeliverabilityInfo": "Možnost dodání",
             "cardTitleDownloads": "Soubory",
+            "cardTitleGuarantee": "Záruka (štítek GARAN)",
             "cardTitleMedia": "Média",
             "cardTitlePackaging": "Opatření a balení",
             "cardTitlePrices": "Ceny",
@@ -6693,12 +6747,17 @@
             "titleOpenGraph": "Otevřít graf"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "Záruční štítek se zobrazí pouze v případě, že je nastavena platná doba záruky, výrobce a číslo produktu výrobce.",
+            "helpTextGuaranteeMonths": "Minimální hodnota je 30, kroky 6.",
             "isCloseoutHelpText": "Dodatečné objednávání není možné.",
             "labelActive": "Aktivní pro všechny vybrané prodejní kanály",
             "labelAvailableStock": "Dostupný stav zásob",
             "labelCreatedAt": "Datum vytvoření",
             "labelDeliveryTime": "Dodací lhůta",
             "labelEan": "GTIN/EAN",
+            "labelGuaranteeConfirmed": "Zobrazit štítek v Storefront",
+            "labelGuaranteeDescription": "Tento štítek představuje komerční záruku trvanlivosti vyjádřenou v letech. Výrobce poskytuje záruku bez dodatečných nákladů, pokrývá celé zboží a trvá déle než dva roky.",
+            "labelGuaranteeMonths": "Doba záruky výrobce v měsících",
             "labelHeight": "Výška",
             "labelIsCloseout": "Výprodej",
             "labelLength": "Délka",
@@ -6716,6 +6775,7 @@
             "placeholderCreatedAt": "Zadejte datum vytvoření...",
             "placeholderDeliveryTime": "Zadejte dodací lhůtu...",
             "placeholderEan": "Zadejte GTIN/EAN...",
+            "placeholderGuaranteeMonths": "např. 30,36 nebo 42 měsíců...",
             "placeholderHeight": "například 200...",
             "placeholderLength": "například 100...",
             "placeholderManufacturerNumber": "Zadejte číslo výrobce...",
@@ -7016,6 +7076,7 @@
             "labelEmailField": "E-mailová adresa",
             "labelFirstNameField": "Jméno",
             "labelLastNameField": "Příjmení",
+            "labelModuleIconColorsField": "Barvy modulu",
             "labelNewPassword": "Nové heslo",
             "labelNewPasswordConfirm": "Potvrdit heslo",
             "labelOldPassword": "Staré heslo",
@@ -7029,6 +7090,7 @@
             "notificationPasswordErrorMessage": "Zadaná hesla nesouhlasí.",
             "notificationSaveErrorMessage": "Informace o profilu nelze uložit.",
             "notificationSaveSuccessMessage": "Informace o profilu byly úspěšně uloženy.",
+            "optionModuleIconColorsColored": "Barevné",
             "optionModuleIconColorsNeutral": "Neutrální",
             "placeholderNewPassword": "Zadejte nové heslo...",
             "placeholderNewPasswordConfirm": "Zopakujte své nové heslo...",
@@ -7240,6 +7302,7 @@
                             "buttonGenerate": "Generování nových kódů",
                             "description": "Propagační kódy jsou generovány náhodně z velkých písmen a čísel. Můžete přidat pevné individuální termíny jako předponu a/nebo příponu nebo použít zcela vlastní vzor a sledovat, jak se váš kód zobrazí v náhledu propagačního kódu.",
                             "helpTextCustomPattern": "Všimněte si, že může existovat pouze jeden po sobě jdoucí řetězec proměnných, který bude převeden.<br><br>Možné použití proměnných:<br>- %d - Číslice (0-9)<br>- %s - Písmena (A-Z)",
+                            "invalidPatternException": "Vzor kódu musí obsahovat alespoň jednu proměnnou (%s nebo %d).",
                             "labelCodeAmount": "Počet kódů propagace",
                             "labelCodeLength": "Délka kódu",
                             "labelCustomPattern": "Vlastní vzor",
@@ -7813,6 +7876,7 @@
             "footerCategory": "Vstupní bod navigace v zápatí",
             "foreignKeyDelete": "Tento prodejní kanál nelze odstranit, protože jej stále používá {assignment}.",
             "helpTextBusinessTimeZone": "Časové pásmo používané vždy, když je datum nebo čas vytištěno v dokumentech tohoto prodejního kanálu. Pokud je prázdná, nepoužije se žádné přepsání obchodního časového pásma.",
+            "helpTextIsExternalStorefront": "SEO adresy URL jsou generovány pouze pro domény, které odkazují na externí výlohu. Pro každý jazyk lze nastavit pouze jednu externí prodejní plochu pro jeden prodejní kanál.",
             "helpTextTaxCalculation": {
                 "label": "Pokud je aktivován poskytovatel daně, mohou být tato nastavení přepsána. Můžete to zkontrolovat {link}.",
                 "linkText": "nastavení"
@@ -7853,6 +7917,7 @@
             "labelInputSnippet": "Sada textových bloků",
             "labelInputTaxCalculation": "Výpočet daně",
             "labelInputUrl": "URL",
+            "labelIsExternalStorefront": "Externí výkladní skříň",
             "labelMaintenanceActive": "Režim údržby",
             "labelOptionTaxHorizontal": "Horizontální",
             "labelOptionTaxVertical": "Vertikální",
@@ -7953,6 +8018,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Měna"
                 },
+                "storefrontDomainHelpText": "U bezhlavých prodejních kanálů jsou zde vybrány pouze domény označené jako externí výloha. Označte doménu jako externí výlohu v nastavení domény prodejního kanálu.",
                 "storefrontDomainLanguage": {
                     "help": "Zvoleno automaticky na bázi domény rozhraní",
                     "label": "Jazyk"
@@ -8069,6 +8135,8 @@
             "columnName": "Prodejní kanál",
             "columnStatus": "Stav",
             "columnType": "Typ",
+            "emptyStateDescription": "Přidejte svůj první prodejní kanál a začněte prodávat prostřednictvím prodejen, tržišť nebo sociálních médií.",
+            "emptyStateHeadline": "Zatím žádné prodejní kanály",
             "placeholderSearchBar": "Hledat prodejní kanály...",
             "productsCount": "produkty | produkt | produkty",
             "productsLabel": "Výrobky",
@@ -8110,16 +8178,20 @@
         "labelSeoPathInfo": "Cesta SEO",
         "placeholderMainCategory": "Zvolte hlavní kategorii...",
         "textEmptySeoUrls": "Zatím neexistují žádné adresy URL SEO.",
+        "textSeoUrlsNotSupported": "K tomuto typu prodejního kanálu nelze přiřadit adresy URL SEO.",
         "titleCard": "SEO URL"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "Vyžaduje se externí doména obchodu",
             "labelPossibleValues": "Možné proměnné",
             "labelSalesChannelSelect": "Prodejní kanál",
+            "linkExternalStorefrontDomain": "Otevřete nastavení prodejního kanálu",
             "messageSaveError": "Ne všechny šablony SEO Url jsou platné.",
             "messageSaveSuccess": "Šablony SEO Url byly úspěšně uloženy.",
             "placeholderSelectVariables": "Vyberte...",
             "preview": "Náhled:",
+            "textExternalStorefrontRequired": "U bezhlavých prodejních kanálů jsou adresy URL SEO generovány pouze pro domény, které jsou označeny jako externí výloha. Přidejte takovou doménu do prodejního kanálu a povolte URL SEO.",
             "textInfoMessageBoxEmptyProperties": "Při použití proměnných se ujistěte, že jsou data dostupná ve všech příslušných polích subjektů (produkty, vstupní stránky nebo kategorie). Pokud proměnné odkazují na prázdná pole, nebudou pro příslušnou entitu vytvořeny žádné SEO URL.",
             "textUrlNoEntitiesForPreview": "Ne {entity} dostupný.",
             "textUrlPreviewEmptyTemplate": "Šablona je prázdná, SEO URL pro {entity} nebudou generovány.",
@@ -8636,6 +8708,10 @@
             "displayTitle": "Displej:",
             "displayedContentCard": "Zobrazený obsah",
             "displayedContentCardSubtitle": "Vyberte, který obsah má být v dokumentu zobrazen.",
+            "filenameCard": "Pojmenování souborů",
+            "filenameInfixHeadline": "Název souboru infix",
+            "filenameInfixHelpText": "Přidejte do každého formátu dokumentu infix, abyste zabránili konfliktům pojmenování mezi různými verzemi stejného dokumentu.",
+            "filenamePattern": "Vzor názvu souboru: <prefix><documentNumber><infix><suffix>.<fileExtension>",
             "helpTextDisplayAdditionalNoteDelivery": "Způsobilé pouze pro členské státy EU, viz také „Nastavení > Země“.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokument je zobrazen v sekci „Objednávky“ na příslušném zákaznickém účtu. Všimněte si, že v účtu odběratele jsou zobrazeny pouze dokumenty, které byly skutečně odeslány odběrateli.",
             "helpTextPaymentDueDate": "Používá relativní modifikátor data založený na datu dokumentu, například „+14 dní“.",
@@ -8701,6 +8777,7 @@
             "placeholderCompanyUrl": "Zadejte web...",
             "placeholderCompanyZipcode": "Zadejte PSČ...",
             "placeholderExecutiveDirector": "Vstupte do obchodního ředitele...",
+            "placeholderFileNameInfix": "Zadejte infix...",
             "placeholderFileNamePrefix": "Zadejte prefix...",
             "placeholderFileNameSuffix": "Zadejte sufix...",
             "placeholderFileTypes": "Vyberte formáty souborů...",
@@ -8717,6 +8794,9 @@
             "placeholderType": "Vyberte typ dokumentu...",
             "placeholderVatId": "Zadejte DIČ...",
             "textHeadline": "Nový dokument"
+        },
+        "errors": {
+            "invalidDueDateFormat": "Modifikátor data je neplatný."
         },
         "general": {
             "description": "Konfigurace dokumentů modulu nastavení",
@@ -8737,26 +8817,61 @@
     "sw-settings-language": {
         "addModal": {
             "buttonAdd": "Založit jazyk",
+            "createCustomLanguage": "Vytvořit vlastní jazyk",
+            "docsHint": "Jak překlady fungují v Shopware:",
             "docsLinkLabel": "Dozvědět se více",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "Nemůžete najít jazyk, který potřebujete? Procházet dostupné jazyky v {extensionStoreLink}",
+            "extensionStoreLink": "Obchod s rozšířeními",
             "labelLanguage": "Jazyk",
-            "title": "Založit jazyk"
+            "messageAddError": "Jazyk nemohl být přidán.",
+            "messageAddSuccess": "Jazyk byl přidán.",
+            "messageLanguagesLoadError": "Existující jazyky nelze načíst.",
+            "messageTranslationsLoadError": "Dostupné překlady nelze načíst.",
+            "placeholderLanguage": "Vyberte jazyk...",
+            "title": "Založit jazyk",
+            "translationsAvailable": "Překlady pro tento jazyk jsou k dispozici.",
+            "translationsIncomplete": "Některé překlady pro tento jazyk mohou stále chybět."
         },
         "detail": {
+            "createdBannerText": "Aktivujte jazyk a poté jej přiřaďte k prodejnímu kanálu a zpřístupněte jej zákazníkům.",
+            "createdBannerTitle": "{name} úspěšně přidáno",
             "labelActive": "Aktivní",
             "labelIsoCode": "Kód ISO",
             "labelLocale": "Lokalizace",
             "labelName": "Název",
             "labelParent": "Dědit od",
+            "messageLoadError": "Jazyk nelze načíst.",
+            "messageSaveError": "Jazyk nemohl být uložen.",
             "messageSaveSuccess": "Jazyk \"{name}\" byl úspěšně uložen.",
             "placeholderName": "Zadejte název...",
             "placeholderPleaseSelect": "Vyberte...",
             "salesChannels": {
+                "activateHint": "Aktivujte jazyk a poté jej přiřaďte k prodejnímu kanálu a zpřístupněte jej zákazníkům.",
+                "assignHint": "Přiřaďte jazyk prodejnímu kanálu a zpřístupněte jej zákazníkům.",
+                "assignedIntro": "Jazyk je přiřazen následujícím prodejním kanálům:",
+                "openSettings": "Otevřete nastavení prodejního kanálu",
                 "showAll": "Ke kategorii",
                 "showLess": "Zobrazit méně",
                 "title": "Prodejní kanál"
             },
             "snippetUpdates": {
+                "autoUpdate": "Automatická aktualizace",
+                "autoUpdateHelpText": "Automaticky udržujte úryvky tohoto jazyka aktuální.",
+                "builtIn": "Vestavěné úryvky jsou aktualizovány jako součást aktualizací Shopware.",
+                "linkButton": "Jazyk odkazů",
+                "linking": "Jazyk je propojen.",
+                "linkingButton": "Propojení...",
+                "notAvailable": "Aktualizace pro tento jazyk nejsou k dispozici.",
+                "notAvailableHelpText": "Jazyky přidané ručně nebo rozšířeními třetích stran mohou být aktualizovány odlišně nebo nemusí dostávat aktualizace vůbec.",
+                "notLinked": "Tento jazyk je podporován Shopware, ale ještě není připojen k překladatelskému systému.",
+                "statusLoadError": "Stav aktualizace fragmentu nelze načíst.",
+                "title": "Aktualizace úryvků",
+                "upToDate": "Úryvky jsou aktuální.",
+                "updateAvailable": "Nová aktualizace k dispozici.",
                 "updateButton": "Aktualizovat",
+                "updateError": "Úryvky pro tento jazyk nelze aktualizovat.",
+                "updating": "Úryvky jsou aktualizovány.",
                 "updatingButton": "Aktualizace"
             },
             "textAlertChangeParent": "Změna děděného jazyka může případně vést k nekonzistentnímu překladu.",
@@ -8764,6 +8879,7 @@
             "textIsoCodeIsInUse": "Tento kód ISO je již používán.",
             "textLanguageHasParent": "Tento jazyk již dědí z jiného jazyka.",
             "titleCard": "Nastavení",
+            "tooltipActive": "Zobrazte tento jazyk jako volbu při překladu obsahu a konfiguraci prodejních kanálů ve správě. Deaktivace nemá vliv na dostupnost výlohy.",
             "tooltipInheritanceNotPossible": "Standardní jazyk systému nemůže dědit z jiného jazyka.",
             "tooltipLanguageNotChoosable": "Dědit lze jen z jednoho jazyka, který sám dosud nedědí."
         },
@@ -8773,6 +8889,8 @@
         },
         "list": {
             "buttonAddLanguage": "Založit jazyk",
+            "buttonUpdateAllSnippets": "Aktualizovat všechny úryvky",
+            "buttonUpdateSelectedSnippets": "Aktualizovat vybrané úryvky",
             "cardSubtitle": "K doménám prodejního kanálu lze přiřadit jazyky, aby se zobrazily příslušné překlady. Umožňují také překlad obsahu v kategoriích, produktech, stránkách Shopping Experience atd.",
             "cardTitle": "Jazyky",
             "columnActive": "Aktivní",
@@ -8782,14 +8900,29 @@
             "columnLocaleName": "Lokalizace",
             "columnName": "Název",
             "columnSalesChannels": "Prodejní kanál",
+            "columnSnippetStatus": "Aktualizace úryvků",
+            "contextMenuUpdateSnippets": "Aktualizovat úryvky",
             "defaultLabel": "Standardní",
+            "deleteError": "Jazyky nemohly být odstraněny.",
+            "deleteFilesNote": "Tato akce odstraní jazykové entity a úryvky ve správě, nikoli soubory fragmentů v systému souborů. Chcete je také smazat?",
+            "deleteFilesNoteLabel": "Poznámka:",
+            "deleteModalIntro": "Opravdu chcete odstranit následující jazyky? Tuto akci nelze vrátit zpět:",
+            "deleteModalTitle": "Smazat jazyky?",
+            "deleteTranslationFiles": "Také odstraňte úryvky ze systému souborů",
+            "deleteTranslationFilesError": "Soubory fragmentů nemohly být odstraněny ze systému souborů.",
             "manageSnippets": "Správa úryvků",
             "messageDeleteSuccess": "Jazyk \"{name}\" byl úspěšně smazán.",
+            "salesChannelCount": "{count} Prodejní kanál | {count} Prodejní kanály",
             "snippetStatus": {
+                "updateAvailable": "Aktualizace k dispozici",
                 "updating": "Aktualizace"
             },
+            "snippetStatusLoadError": "Aktualizace fragmentů nelze načíst.",
             "textHeadline": "Jazyky",
-            "titleSidebarItemRefresh": "Aktualizovat"
+            "titleSidebarItemRefresh": "Aktualizovat",
+            "updateSnippetsError": "Úryvky nemohly být aktualizovány.",
+            "updateSnippetsProgress": "Aktualizace úryvků ({processed}/{total})",
+            "updateSnippetsSuccess": "Úryvky byly aktualizovány."
         }
     },
     "sw-settings-listing": {
@@ -8812,6 +8945,7 @@
                 "placeholderTechnicalName": "Zadejte technický název...",
                 "title": "generál"
             },
+            "lockedInfo": "Tato možnost řazení je uzamčena, a proto lze upravovat pouze pole překladu.",
             "notification": {
                 "saveError": "Možnost řazení \"{sortingOptionName}\" nelze uložit.",
                 "saveErrorAlreadyExists": "Možnost třídění \"{sortingOptionName}\" již existuje.",
@@ -8879,6 +9013,10 @@
                     "title": "Nebyly nalezeny žádné možnosti"
                 },
                 "grid": {
+                    "deleteTooltip": {
+                        "default": "Tato možnost řazení je výchozí třídění, a proto ji nelze odstranit.",
+                        "locked": "Tato možnost řazení je uzamčena, a proto ji nelze odstranit."
+                    },
                     "header": {
                         "criteria": "Kritéria",
                         "name": "Jméno",
@@ -10186,6 +10324,7 @@
             "opt-out-info": {
                 "profile": "Váš profil — Předvolby ochrany osobních údajů",
                 "settings": "Nastavení — Ochrana osobních údajů",
+                "single-option-snippet": "Své předvolby můžete kdykoli změnit v části {link}.",
                 "snippet": "Předvolby můžete kdykoli změnit: spravovat nastavení dat úložiště v části {settings}a nastavení osobních údajů v části {profile}."
             },
             "promises": {
@@ -10544,6 +10683,7 @@
         "detail": {
             "asyncCompilation": {
                 "completed": "Kompilace témat byla dokončena.",
+                "error": "Kompilace motivu selhala na pozadí. Téma se nezměnilo.",
                 "started": "Změny jsou kompilovány na pozadí. Budou viditelné asi za 1 minutu. Po dokončení kompilace obdržíte oznámení."
             },
             "description": "Popis",
@@ -10679,10 +10819,22 @@
         "finishButton": "Mám to",
         "nextButton": "Další",
         "pages": {
+            "adminNavigation": {
+                "description": "Jak správa Shopware rostla, roste i počet funkcí a navigačních položek. Přepracovali jsme navigaci, abychom zlepšili hustotu a usnadnili vyhledávání, s jasnějšími aktivními stavy, plynulejšími animacemi podnabídek, lepší čitelností a zlepšenou přístupností klávesnice.",
+                "headline": "Jasnější a efektivnější navigace"
+            },
             "darkMode": {
+                "badge": "Experimentální",
+                "description": "Administrace nyní nabízí tmavý vzhled uživatelského rozhraní, pro lepší přístupnost a přizpůsobení vašim osobním preferencím.",
+                "headline": "Tmavý vzhled",
+                "profileSettingsLink": "nastavení profilu",
+                "themeSaveError": "Vzhled nemohl být zachráněn.",
+                "themeSelectHint": "Toto nastavení můžete kdykoli změnit v {profileSettingsLink}.",
                 "themeSelectLabel": "Vzhled"
             }
-        }
+        },
+        "seenSaveError": "Vaše preference nemohly být uloženy. Toto dialogové okno se může objevit znovu.",
+        "title": "Nový vzhled pro vaši administrativu"
     },
     "sw-users-permissions": {
         "general": {
@@ -10859,6 +11011,9 @@
                     },
                     "saveSuccess": {
                         "message": "Uživatel \"{name}\" uložen."
+                    },
+                    "themeSaveError": {
+                        "message": "Předvolbu motivu nelze uložit."
                     }
                 },
                 "passwordConfirmation": {

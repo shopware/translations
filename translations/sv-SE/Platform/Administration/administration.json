@@ -423,6 +423,7 @@
             "feature_set": "Mall | Mallar",
             "flow": "Flödesbyggare",
             "flow_sequence": "Flow",
+            "flow_template": "Flödesmall | Flödesmallar",
             "frequently_used": "Används ofta",
             "import_export_profile": "Import/exportera profil | Importera/exportera profiler",
             "integration": "Integration | Integrationer",
@@ -497,6 +498,7 @@
             "CONTENT__MEDIA_EMPTY_FILE": "Ett giltigt filnamn måste anges.",
             "CONTENT__MISSING_RULE_TYPE_EXCEPTION": "Du måste välja en typ för den här regeln.",
             "DELIVERY_TIME_MIN_INVALID": "Minsta värdet bör inte vara större än det maximala värdet.",
+            "DOCUMENT_BASE_CONFIG_INVALID_PAYMENT_DUE_DATE": "Förfallodagen för betalning måste vara ett relativt datum som ”+14 dagar”.",
             "DUPLICATED_NAME": "Detta namn är redan i bruk.",
             "DUPLICATED_PRODUCT_EXPORT_FILE_NAME": "Detta användarnamn används redan. Välj ett annat.",
             "DUPLICATED_SALUTATION_KEY": "Detta tekniska namn är redan i bruk. Vänligen välj ett annat.",
@@ -617,6 +619,7 @@
         "sw-admin-menu": {
             "administrator": "Administratör",
             "linkCloseMenu": "Stäng menyn",
+            "linkExpandMenu": "Expandera menyn",
             "linkLogout": "Logga ut",
             "linkMinimizeMenu": "Komprimera menyn",
             "navigation": {
@@ -628,7 +631,8 @@
                 "mainMenuItemShopwarePayments": "Shopware Betalningar"
             },
             "textProjectName": "Administration",
-            "textShopwareAdmin": "Shopware Administration"
+            "textShopwareAdmin": "Shopware Administration",
+            "textVersion": "Utförande:"
         },
         "sw-bulk-edit-modal": {
             "bulkEditModalTitle": "Massredigering - {count} objekt valt | Massredigering - {count} valda objekt",
@@ -1417,6 +1421,8 @@
         },
         "sw-search-bar": {
             "addNew": "lägg till nya",
+            "ariaLabelCloseSearch": "Stäng sökningen",
+            "ariaLabelOpenSearch": "Öppna sökning",
             "messageNoResults": "Inga resultat funna för \"{term}\".",
             "messageNoResultsDetailV2": "Prova att använda olika nyckelord eller kontrollera din sökkonfiguration.",
             "messageNoResultsV2": "Inga exakta matchningar hittades för \"{term}\".",
@@ -1616,6 +1622,10 @@
             "buttonChange": "Ändra tema",
             "modalTitleChange": "Ändra tema",
             "textChangeTheme": "Vill du verkligen ändra temat? Detta kan förändra visualiseringen av din butik."
+        },
+        "pendingAssignment": {
+            "description": "”{pendingThemeName}\" kompileras i bakgrunden och kommer att ersätta \"{liveThemeName}\" automatiskt när den är klar.",
+            "descriptionNoLiveTheme": "”{pendingThemeName}\" kompileras i bakgrunden och kommer att tillämpas automatiskt när den är klar."
         },
         "title": "Tematilldelning"
     },
@@ -3834,6 +3844,7 @@
         },
         "sw-extension-app-module-error-page": {
             "error": {
+                "description": "Sidan du letade efter kunde inte hittas. Det kan ha flyttats eller existerar inte längre.",
                 "heading": "Hoppsan! Du har rört dig för snabbt och tappat orienteringen."
             }
         }
@@ -4395,6 +4406,7 @@
                 "labelDocumentTypeSingle": "Dokumenttyp",
                 "labelFileFormats": "Filformat",
                 "placeholderDocumentType": "Välj dokument...",
+                "placeholderDocumentTypeSingle": "Välj dokumenttyp...",
                 "placeholderFileFormats": "Välj filformat...",
                 "titleCreateDocument": "Generera dokument"
             },
@@ -4998,6 +5010,7 @@
     "sw-login": {
         "general": {
             "description": "Shopware-login",
+            "linkBackToLogin": "Tillbaka till inloggning",
             "loadingLabel": "Laddar...",
             "logoAlt": "Shopware-logotyp",
             "mainMenuItemIndex": "Inloggning"
@@ -5012,6 +5025,7 @@
             "labelUsername": "Användarnamn",
             "messageAccessDenied": "Åtkomst nekad.",
             "messageAuthThrottled": "För många inloggningsförsök. Vänta {seconds} sekunder innan du försöker logga in igen.",
+            "messageGeneralError": "Något gick fel under inloggningen. Vänligen försök igen.",
             "messageGeneralRequestError": "Förfrågan för \"{url}\" misslyckades.",
             "messageInvalidClient": "Klientautentisering misslyckades.",
             "messageInvalidCredentials": "Användarinformationen är ogiltig.",
@@ -5028,9 +5042,11 @@
             },
             "headline": "Återställning av lösenord",
             "info": {
+                "emailFallback": "din e-postadress",
                 "headline": "Tillbaka till login",
                 "info": "Om du har angett en giltig e-postadress får du ett e-postmeddelande för återställning av ditt lösenord inom några minuter."
             },
+            "messageLinkExpired": "Den här länken för återställning av lösenord har gått ut eller är ogiltig. Vänligen begär en ny länk.",
             "recovery": {
                 "headline": "Återställning av lösenord",
                 "newPasswordField": {
@@ -5041,7 +5057,8 @@
                 },
                 "submit": {
                     "label": "Uppdatera lösenord"
-                }
+                },
+                "text": "Välj ett nytt lösenord för ditt konto."
             },
             "submit": "Skicka e-post med en länk för återställning",
             "text": "Ange den e-postadress som är kopplad till ditt konto."
@@ -5429,14 +5446,30 @@
                     "deliveryNote": "Leveranssedel",
                     "invoice": "Fakturanummer"
                 },
+                "emptyStateDescription": "Välj en dokumenttyp för att konfigurera dokumentet",
+                "emptyStateTitle": "Dokumenttyp saknas",
+                "error": {
+                    "loadDocumentNumber": "Det gick inte att läsa in ett dokumentnummer.",
+                    "loadDocumentTypes": "Det gick inte att läsa in tillgängliga dokumenttyper.",
+                    "loadSupportedDocumentFileFormats": "Det gick inte att läsa in tillgängliga filformat per dokumenttyp.",
+                    "loadUploadedDocument": "Det gick inte att ladda uppladdat dokument."
+                },
                 "fileFormats": {
-                    "html": "HTML"
+                    "html": "HTML",
+                    "pdf": "PDF",
+                    "zugferdEmbeddedPdf": "ZugFerd inbäddad PDF",
+                    "zugferdXml": "Expedition XML"
                 },
                 "generate": "Generera",
+                "generateAndDownload": "Generera och ladda ner",
+                "generateAndSend": "Generera och skicka",
                 "labelDocumentType": "Dokumenttyp",
                 "labelFileFormats": "Filformat",
+                "openButtonLabel": "Skapa nytt dokument",
+                "placeholderComment": "Skriv en kommentar...",
                 "placeholderDocumentType": "Välj en dokumenttyp...",
-                "placeholderFileFormats": "Välj filformat..."
+                "placeholderFileFormats": "Välj filformat...",
+                "title": "Generera dokument"
             },
             "selectDocumentTypeModal": {
                 "helpText": {
@@ -5453,8 +5486,15 @@
             },
             "uploadDocumentModal": {
                 "buttonUploadFile": "Ladda upp filer",
+                "helpTextFileFormat": "Välj formatet på filen du vill ladda upp.",
+                "labelDocumentUpload": "Dokument uppladdning",
                 "labelFileFormat": "Filformat",
-                "upload": "Ladda upp"
+                "openAction": "Ladda upp dokument",
+                "placeholderFileFormat": "Välj ett filformat...",
+                "title": "Ladda upp dokument",
+                "upload": "Ladda upp",
+                "uploadAndDownload": "Ladda upp och ladda ner",
+                "uploadAndSend": "Ladda upp och skicka"
             }
         },
         "create": {
@@ -5730,7 +5770,15 @@
             "cardTitle": "Kvitton",
             "confirmDeleteText": "Detta dokument är en del av en beställning och kan vara relevant för skattemässiga ändamål. Att radera det kan påverka spårbarheten i dina bokföringsregister. Se till att radering är lagligt tillåtet. Denna åtgärd kan inte ångras.",
             "error": {
-                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumentnummer {number} har redan tilldelats."
+                "DOCUMENT__NUMBER_ALREADY_EXISTS": "Dokumentnummer {number} har redan tilldelats.",
+                "attachMediaToDocumentUpload": "Det gick inte att bifoga markerat media till dokumentet.",
+                "createDocument": "Det gick inte att skapa dokumentet.",
+                "downloadDocument": "Det gick inte att ladda ner dokumentet.",
+                "downloadDocumentArchive": "Det gick inte att ladda ned dokumentarkivet.",
+                "loadDocumentPreview": "Det gick inte att läsa in förhandsgranskningen av dokumentet.",
+                "loadSendingDocument": "Det gick inte att läsa in dokumentet som skulle skickas.",
+                "openDocument": "Det gick inte att öppna det markerade dokumentet.",
+                "uploadDocument": "Det gick inte att ladda upp dokumentet."
             },
             "info": {
                 "DOCUMENT__NUMBER_WAS_CHANGED": "Duplicera dokumentnummer. Ett på varandra följande tal har automatiskt dragits från respektive nummerintervall."
@@ -5740,11 +5788,14 @@
             "labelAvailableFormats": "Tillgängliga format",
             "labelCreateNew": "Skapa nytt dokument",
             "labelDate": "Datum",
+            "labelDownloadAllFormats": "Ladda ner alla format",
+            "labelDownloadFormat": "Ladda ner {format}",
             "labelDownloadPdf": "Ladda ner dokument",
             "labelMarkAsSent": "Markera som skickad",
             "labelMarkAsUnsent": "Markera som oskickad",
             "labelNumber": "Nummer",
             "labelOpenDocument": "Öppna dokument",
+            "labelOpenFormat": "Öppna {format}",
             "labelPrintDocument": "Skriv ut dokument",
             "labelSendDocument": "Skicka dokument",
             "labelSent": "Skickat",
@@ -5753,9 +5804,11 @@
             "messageEmptyTitle": "Inga dokument har skapats ännu",
             "messageNoDocumentFound": "Inga dokument hittades",
             "modalTitle": "Statusuppdatering",
+            "notificationDeleteErrorMessage": "Dokumentet kunde inte raderas.",
             "searchBarPlaceholder": "Sök igenom kvitton..."
         },
         "documentModal": {
+            "errorInvoiceMissingCreditItem": "Den valda fakturan har ingen kreditpost.",
             "fileInputLabel": "Ladda upp eget dokument",
             "labelCreate": "Skapa kvitto",
             "labelCreateDownload": "Skapa och ladda ner",
@@ -6401,6 +6454,7 @@
             "cardTitleAssignment": "Synlighet och struktur",
             "cardTitleDeliverabilityInfo": "Tillgänglighet",
             "cardTitleDownloads": "Filer",
+            "cardTitleGuarantee": "Garanti (GARAN-etikett)",
             "cardTitleMedia": "Media",
             "cardTitlePackaging": "Mått & förpackning",
             "cardTitlePrices": "Pris",
@@ -6693,12 +6747,17 @@
             "titleOpenGraph": "Öppna diagrammet"
         },
         "settingsForm": {
+            "helpTextGuaranteeConfirmed": "Garantietiketten visas endast om en giltig garantitid, en tillverkare och tillverkarens produktnummer är inställt.",
+            "helpTextGuaranteeMonths": "Minsta värde är 30, steg om 6.",
             "isCloseoutHelpText": "Inga ytterligare beställningar är möjliga.",
             "labelActive": "Aktiv för alla valda försäljningskanaler",
             "labelAvailableStock": "Tillgängligt lager",
             "labelCreatedAt": "Tillverkningsdatum",
             "labelDeliveryTime": "Leveranstid",
             "labelEan": "GTIN/EAN",
+            "labelGuaranteeConfirmed": "Visa etikett i Storefront",
+            "labelGuaranteeDescription": "Denna etikett representerar en kommersiell garanti för hållbarhet uttryckt i år. Garantin erbjuds av producenten utan extra kostnader, täcker hela varan och med en löptid på mer än två år.",
+            "labelGuaranteeMonths": "Producentgarantins varaktighet i månader",
             "labelHeight": "Höjd",
             "labelIsCloseout": "Försäljning",
             "labelLength": "Längd",
@@ -6716,6 +6775,7 @@
             "placeholderCreatedAt": "Ange ett tillverkningsdatum...",
             "placeholderDeliveryTime": "Ange leveranstid...",
             "placeholderEan": "Ange GTIN/EAN...",
+            "placeholderGuaranteeMonths": "t.ex. 30, 36 eller 42 månader...",
             "placeholderHeight": "t.ex. 200...",
             "placeholderLength": "t.ex. 100...",
             "placeholderManufacturerNumber": "Ange tillverkningsnummer...",
@@ -7016,6 +7076,7 @@
             "labelEmailField": "E-postadress:",
             "labelFirstNameField": "Förnamn",
             "labelLastNameField": "Efternamn",
+            "labelModuleIconColorsField": "Modulfärger",
             "labelNewPassword": "Nytt lösenord",
             "labelNewPasswordConfirm": "Bekräfta lösenordet",
             "labelOldPassword": "Gammalt lösenord",
@@ -7029,6 +7090,7 @@
             "notificationPasswordErrorMessage": "De inmatade lösenorden matchar inte.",
             "notificationSaveErrorMessage": "Din profilinformaiton kunde inte sparas.",
             "notificationSaveSuccessMessage": "Din profilinformation sparades framgångsrikt.",
+            "optionModuleIconColorsColored": "Färgade",
             "optionModuleIconColorsNeutral": "Neutral",
             "placeholderNewPassword": "Ange ett nytt lösenord...",
             "placeholderNewPasswordConfirm": "Upprepa ditt nya lösenord...",
@@ -7240,6 +7302,7 @@
                             "buttonGenerate": "Generera nya koder",
                             "description": "Kampanjkoder genereras slumpmässigt från versaler och siffror. Du kan lägga till fasta individuella termer som prefix och/eller suffix eller använda ett helt anpassat mönster och se hur ditt kodmönster visar sig i förhandsgranskningen av kampanjkoden.",
                             "helpTextCustomPattern": "Observera att det bara kan finnas en rad på varandra följande variabler, som kommer att konverteras.<br><br>Möjliga variabler att använda:<br>- %d - Siffror (0-9)<br>- %s - Bokstäver (A-Z)",
+                            "invalidPatternException": "Kodmönstret måste innehålla minst en variabel (%s eller %d).",
                             "labelCodeAmount": "Antal kampanjkoder",
                             "labelCodeLength": "Kodens längd",
                             "labelCustomPattern": "Anpassat mönster",
@@ -7813,6 +7876,7 @@
             "footerCategory": "Startpunkt för sidfotsnavigeringen",
             "foreignKeyDelete": "Den här försäljningskanalen kan inte tas bort eftersom den fortfarande används av {assignment}.",
             "helpTextBusinessTimeZone": "Tidszon som används när ett datum eller en tid skrivs ut i dokument i denna försäljningskanal. Om det är tomt tillämpas ingen åsidosättning av affärstidszon.",
+            "helpTextIsExternalStorefront": "SEO-webbadresser genereras endast för domäner som pekar på en extern butik. Per språk kan endast en extern butik ställas in för en enda försäljningskanal.",
             "helpTextTaxCalculation": {
                 "label": "Om en skatteleverantör är aktiverad kan dessa inställningar skrivas över. Du kan kontrollera detta i {link}.",
                 "linkText": "inställningar"
@@ -7853,6 +7917,7 @@
             "labelInputSnippet": "Textmodul-set",
             "labelInputTaxCalculation": "Skatteberäkning",
             "labelInputUrl": "URL",
+            "labelIsExternalStorefront": "Extern skyltfönster",
             "labelMaintenanceActive": "Underhållsläge",
             "labelOptionTaxHorizontal": "Horisontell",
             "labelOptionTaxVertical": "Vertikal",
@@ -7953,6 +8018,7 @@
                 "storefrontDomainCurrency": {
                     "label": "Valuta"
                 },
+                "storefrontDomainHelpText": "För huvudlösa försäljningskanaler är det bara domäner som är markerade som en extern butik som kan väljas här. Markera en domän som extern butik i försäljningskanalens domäninställningar.",
                 "storefrontDomainLanguage": {
                     "help": "Väljs automatiskt baserat på butikens domän",
                     "label": "Språk"
@@ -8069,6 +8135,8 @@
             "columnName": "Försäljningskanal",
             "columnStatus": "Status",
             "columnType": "Typ",
+            "emptyStateDescription": "Lägg till din första försäljningskanal för att börja sälja via skyltfönster, marknadsplatser eller sociala medier.",
+            "emptyStateHeadline": "Inga försäljningskanaler än",
             "placeholderSearchBar": "Sök Försäljningskanaler...",
             "productsCount": "Produkter | produkt | produkter",
             "productsLabel": "Produkter",
@@ -8110,16 +8178,20 @@
         "labelSeoPathInfo": "SEO-sökväg",
         "placeholderMainCategory": "Välj huvudkategori...",
         "textEmptySeoUrls": "Det finns inga SEO-webbadresser ännu.",
+        "textSeoUrlsNotSupported": "SEO-webbadresser kan inte tilldelas den här typen av försäljningskanal.",
         "titleCard": "SEO-webbadresser"
     },
     "sw-seo-url-template-card": {
         "general": {
+            "headlineExternalStorefrontRequired": "Extern butiksdomän krävs",
             "labelPossibleValues": "Möjliga variabler",
             "labelSalesChannelSelect": "Försäljningskanal",
+            "linkExternalStorefrontDomain": "Öppna försäljningskanalinställningar",
             "messageSaveError": "Alla SEO och URL-mallar är inte giltiga",
             "messageSaveSuccess": "SEO och URL-mallar sparades framgångsrikt.",
             "placeholderSelectVariables": "Vänligen välj...",
             "preview": "Förhandsvisning:",
+            "textExternalStorefrontRequired": "För huvudlösa försäljningskanaler genereras SEO-webbadresser endast för domäner som är markerade som en extern butik. Lägg till en sådan domän i försäljningskanalen för att aktivera SEO-webbadresser.",
             "textInfoMessageBoxEmptyProperties": "När du använder variabler, se till att data finns tillgängliga i alla respektive fält i enheterna (produkter, målsidor eller kategorier). Om variabler hänvisar till tomma fält skapas inga SEO-webbadresser för motsvarande entitet.",
             "textUrlNoEntitiesForPreview": "Nej {entity} tillgänglig.",
             "textUrlPreviewEmptyTemplate": "Mallen är tom, SEO-webbadresser för {entity} kommer inte att genereras.",
@@ -8636,6 +8708,10 @@
             "displayTitle": "Display:",
             "displayedContentCard": "Visat innehåll",
             "displayedContentCardSubtitle": "Välj vilket innehåll som ska visas i dokumentet.",
+            "filenameCard": "Namngivning av filer",
+            "filenameInfixHeadline": "Filnamn infix",
+            "filenameInfixHelpText": "Lägg till ett infix i varje dokumentformat för att förhindra namnkonflikter mellan olika versioner av samma dokument.",
+            "filenamePattern": "Filnamnsmönster: <prefix><documentNumber><infix><suffix>.<fileExtension>",
             "helpTextDisplayAdditionalNoteDelivery": "Endast berättigade till EU-länder, se även ”Inställningar > Länder”.",
             "helpTextDisplayDocumentInCustomerAccount": "Dokumentet visas under ”Beställningar” i respektive kundkonto. Observera att endast dokument som faktiskt har skickats till kunden visas i kundkontot.",
             "helpTextPaymentDueDate": "Använder en relativ datummodifierare baserad på dokumentdatumet, till exempel ”+14 dagar”.",
@@ -8701,6 +8777,7 @@
             "placeholderCompanyUrl": "Gå in på webbplatsen...",
             "placeholderCompanyZipcode": "Ange postnummer...",
             "placeholderExecutiveDirector": "Ange företagsledare...",
+            "placeholderFileNameInfix": "Ange infix...",
             "placeholderFileNamePrefix": "Ange prefix...",
             "placeholderFileNameSuffix": "Ange suffix...",
             "placeholderFileTypes": "Välj filformat...",
@@ -8717,6 +8794,9 @@
             "placeholderType": "Välj en dokumenttyp...",
             "placeholderVatId": "Ange moms-ID...",
             "textHeadline": "Nytt dokument"
+        },
+        "errors": {
+            "invalidDueDateFormat": "Datummodifieraren är ogiltig."
         },
         "general": {
             "description": "Dokumentkonfigurationer av inställningsmodulen",
@@ -8737,26 +8817,61 @@
     "sw-settings-language": {
         "addModal": {
             "buttonAdd": "Skapa språk",
+            "createCustomLanguage": "Skapa anpassat språk",
+            "docsHint": "Så fungerar översättningar i Shopware:",
             "docsLinkLabel": "Läs mer",
+            "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
+            "extensionStoreHint": "Hittar du inte språket du behöver? Bläddra bland tillgängliga språk i {extensionStoreLink}",
+            "extensionStoreLink": "Förlängningsbutik",
             "labelLanguage": "Språk",
-            "title": "Skapa språk"
+            "messageAddError": "Språk kunde inte läggas till.",
+            "messageAddSuccess": "Språket har lagts till.",
+            "messageLanguagesLoadError": "Befintliga språk kunde inte laddas.",
+            "messageTranslationsLoadError": "Tillgängliga översättningar kunde inte laddas.",
+            "placeholderLanguage": "Välj ett språk...",
+            "title": "Skapa språk",
+            "translationsAvailable": "Översättningar för detta språk finns tillgängliga.",
+            "translationsIncomplete": "Vissa översättningar för detta språk kanske fortfarande saknas."
         },
         "detail": {
+            "createdBannerText": "Aktivera språket och tilldela det sedan till en försäljningskanal för att göra det tillgängligt för kunderna.",
+            "createdBannerTitle": "{name} har lagts till",
             "labelActive": "Aktiv",
             "labelIsoCode": "ISO-kod",
             "labelLocale": "Lokalisering",
             "labelName": "Namn",
             "labelParent": "Arv från",
+            "messageLoadError": "Språket kunde inte laddas.",
+            "messageSaveError": "Språket kunde inte räddas.",
             "messageSaveSuccess": "Språket \"{name}\" sparades framgångsrikt.",
             "placeholderName": "Ange namn...",
             "placeholderPleaseSelect": "Vänligen välj...",
             "salesChannels": {
+                "activateHint": "Aktivera språket och tilldela det sedan till en försäljningskanal för att göra det tillgängligt för kunderna.",
+                "assignHint": "Tilldela språket till en försäljningskanal för att göra det tillgängligt för kunderna.",
+                "assignedIntro": "Språk tilldelas följande försäljningskanaler:",
+                "openSettings": "Öppna inställningar för försäljningskanal",
                 "showAll": "Till kategori",
                 "showLess": "Visa mindre",
                 "title": "Försäljningskanal"
             },
             "snippetUpdates": {
+                "autoUpdate": "Automatisk uppdatering",
+                "autoUpdateHelpText": "Håll utdrag av det här språket automatiskt uppdaterade.",
+                "builtIn": "Inbyggda utdrag uppdateras som en del av Shopware-uppdateringar.",
+                "linkButton": "Länkspråk",
+                "linking": "Språket kopplas samman.",
+                "linkingButton": "Länka...",
+                "notAvailable": "Uppdateringar är inte tillgängliga för det här språket.",
+                "notAvailableHelpText": "Språk som läggs till manuellt eller av tillägg från tredje part kan uppdateras annorlunda eller kanske inte få uppdateringar alls.",
+                "notLinked": "Detta språk stöds av Shopware men är ännu inte anslutet till översättningssystemet.",
+                "statusLoadError": "Det gick inte att läsa in uppdateringsstatus för kodavsnittet.",
+                "title": "Uppdatering av utdrag",
+                "upToDate": "Utdrag är uppdaterade.",
+                "updateAvailable": "Ny uppdatering tillgänglig.",
                 "updateButton": "Uppdatera",
+                "updateError": "Det gick inte att uppdatera utdrag för det här språket.",
+                "updating": "Snippets uppdateras.",
                 "updatingButton": "Uppdatering"
             },
             "textAlertChangeParent": "En ändring av det ärvda språket kan leda till inkonsekventa översättningar.",
@@ -8764,6 +8879,7 @@
             "textIsoCodeIsInUse": "Denna ISO-kod är redan i bruk.",
             "textLanguageHasParent": "Detta språk har redan arv från ett annat språk.",
             "titleCard": "Inställningar",
+            "tooltipActive": "Visa det här språket som ett alternativ när du översätter innehåll och konfigurerar försäljningskanaler i administrationen. Att inaktivera det påverkar inte butiksfönstrets tillgänglighet.",
             "tooltipInheritanceNotPossible": "Systemets standardspråk kan inte ärva från ett annat språk.",
             "tooltipLanguageNotChoosable": "Det kan ärvas endast från ett språk som inte redan har ett arv."
         },
@@ -8773,6 +8889,8 @@
         },
         "list": {
             "buttonAddLanguage": "Skapa språk",
+            "buttonUpdateAllSnippets": "Uppdatera alla utdrag",
+            "buttonUpdateSelectedSnippets": "Uppdatera markerade utdrag",
             "cardSubtitle": "Språk kan tilldelas försäljningskanaldomäner för att visa lämpliga översättningar. De möjliggör också översättning av innehåll i kategorier, produkter, Shopping Experience-sidor etc.",
             "cardTitle": "Språk",
             "columnActive": "Aktiv",
@@ -8782,14 +8900,29 @@
             "columnLocaleName": "Lokalisering",
             "columnName": "Namn",
             "columnSalesChannels": "Försäljningskanal",
+            "columnSnippetStatus": "Uppdatering av utdrag",
+            "contextMenuUpdateSnippets": "Uppdatera utdrag",
             "defaultLabel": "Standard",
+            "deleteError": "Språk kunde inte tas bort.",
+            "deleteFilesNote": "Den här åtgärden tar bort språkenheter och utdrag i administrationen och inte kodavsnittsfilerna i filsystemet. Vill du ta bort dem också?",
+            "deleteFilesNoteLabel": "Anmärkning:",
+            "deleteModalIntro": "Är du säker på att du vill ta bort följande språk? Den här åtgärden kan inte ångras:",
+            "deleteModalTitle": "Radera språk?",
+            "deleteTranslationFiles": "Ta också bort utdrag från filsystemet",
+            "deleteTranslationFilesError": "Det gick inte att ta bort utdragsfiler från filsystemet.",
             "manageSnippets": "Hantera utdrag",
             "messageDeleteSuccess": "Språket \"{name}\" togs framgångsrikt bort.",
+            "salesChannelCount": "{count} Försäljningskanal | {count} Försäljningskanaler",
             "snippetStatus": {
+                "updateAvailable": "Uppdatering tillgänglig",
                 "updating": "Uppdatering"
             },
+            "snippetStatusLoadError": "Det gick inte att läsa in snippetuppdateringar.",
             "textHeadline": "Språk",
-            "titleSidebarItemRefresh": "Uppdatera"
+            "titleSidebarItemRefresh": "Uppdatera",
+            "updateSnippetsError": "Det gick inte att uppdatera utdrag.",
+            "updateSnippetsProgress": "Uppdaterar utdrag ({processed}/{total})",
+            "updateSnippetsSuccess": "Utdrag har uppdaterats."
         }
     },
     "sw-settings-listing": {
@@ -8812,6 +8945,7 @@
                 "placeholderTechnicalName": "Ange tekniskt namn...",
                 "title": "General"
             },
+            "lockedInfo": "Det här sorteringsalternativet är låst och därför kan endast översättningsfält redigeras.",
             "notification": {
                 "saveError": "Sorteringsalternativet \"{sortingOptionName}\" kunde inte sparas.",
                 "saveErrorAlreadyExists": "Sorteringsalternativet \"{sortingOptionName}\" finns redan.",
@@ -8879,6 +9013,10 @@
                     "title": "Inga alternativ hittades"
                 },
                 "grid": {
+                    "deleteTooltip": {
+                        "default": "Det här sorteringsalternativet är standardsorteringen och kan därför inte tas bort.",
+                        "locked": "Det här sorteringsalternativet är låst och kan därför inte tas bort."
+                    },
                     "header": {
                         "criteria": "kriterier",
                         "name": "Namn",
@@ -10186,6 +10324,7 @@
             "opt-out-info": {
                 "profile": "Din profil — Sekretessinställningar",
                 "settings": "Inställningar — Sekretess",
+                "single-option-snippet": "Du kan ändra dina inställningar när som helst under {link}.",
                 "snippet": "Du kan ändra dina inställningar när som helst: hantera inställningar för Store Data under {settings}och Personuppgifter under {profile}."
             },
             "promises": {
@@ -10544,6 +10683,7 @@
         "detail": {
             "asyncCompilation": {
                 "completed": "Temasamlingen har slutförts.",
+                "error": "Temakompileringen misslyckades i bakgrunden. Temat ändrades inte.",
                 "started": "Ändringarna sammanställs i bakgrunden. De kommer att synas om cirka 1 minut. Du kommer att få ett meddelande när sammanställningen är klar."
             },
             "description": "Beskrivning",
@@ -10679,10 +10819,22 @@
         "finishButton": "Fick det",
         "nextButton": "Fler detaljer",
         "pages": {
+            "adminNavigation": {
+                "description": "I takt med att Shopware-administrationen har vuxit, så har antalet funktioner och navigeringsobjekt ökat. Vi gjorde om navigeringen för att förbättra densiteten och göra allt lättare att hitta, med tydligare aktiva tillstånd, mjukare undermenyanimationer, bättre läsbarhet och förbättrad tangentbordets tillgänglighet.",
+                "headline": "En tydligare och mer strömlinjeformad navigering"
+            },
             "darkMode": {
+                "badge": "Experimentell",
+                "description": "Administrationen erbjuder nu ett mörkt utseende för användargränssnittet, för bättre tillgänglighet och för att matcha dina personliga preferenser.",
+                "headline": "Mörkt utseende",
+                "profileSettingsLink": "profilinställningar",
+                "themeSaveError": "Utseendet kunde inte sparas.",
+                "themeSelectHint": "Du kan ändra den här inställningen när som helst i din {profileSettingsLink}.",
                 "themeSelectLabel": "Utseende"
             }
-        }
+        },
+        "seenSaveError": "Din preferens kunde inte sparas. Den här dialogrutan kan visas igen.",
+        "title": "Ett nytt utseende för din administration"
     },
     "sw-users-permissions": {
         "general": {
@@ -10859,6 +11011,9 @@
                     },
                     "saveSuccess": {
                         "message": "Användare \"{name}\" sparad."
+                    },
+                    "themeSaveError": {
+                        "message": "Temainställningen kunde inte sparas."
                     }
                 },
                 "passwordConfirmation": {
