@@ -509,6 +509,7 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Trūkst atļaujas.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Pārāk daudz pieprasījumu. Lūdzu, uzgaidiet {seconds} sekundes, pirms mēģināt vēlreiz.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} ir pretrunā ar esošo maršrutu {blockedSegment}, un to nevar izmantot.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "Garantijas ilgumam jābūt tukšam vai pusgada vērtībai, kas pārsniedz 24 mēnešus, piemēram, 30, 36 vai 42.",
             "INVALID_MAIL": "Lūdzu ievadiet derīgu e-pasta adresi.",
             "INVALID_MEDIA_URL": "Lai augšupielādētu failu lūdzu ievadiet derīgu URL.",
             "INVALID_URL": "Lūdzu ievadiet derīgu url.",
@@ -3808,19 +3809,31 @@
             "bulk": {
                 "activate": "Aktivizēt",
                 "consent": {
+                    "extensionLabel": "{count} paplašinājums|{count} paplašinājumi",
                     "installAction": "Akceptēt un instalēt",
-                    "updateAction": "Akceptēt un atjaunināt"
+                    "installDescription": "Atlasītie paplašinājumi pieprasa šādas atļaujas:",
+                    "installTitle": "Instalējiet {count} paplašinājumu|Instalējiet {count} paplašinājumus",
+                    "updateAction": "Akceptēt un atjaunināt",
+                    "updateDescription": "Atjauninot atlasītos paplašinājumus, ir jāpieņem šādas jaunas atļaujas:",
+                    "updateTitle": "Atjaunināt {count} paplašinājumu|Atjaunināt {count} paplašinājumus"
                 },
                 "deactivate": "Deaktivizēt",
                 "deactivationModal": {
-                    "buttonLabel": "Deaktivizēt"
+                    "alert": "Vai jūs joprojām vēlaties deaktivizēt atlasītos paplašinājumus?",
+                    "buttonLabel": "Deaktivizēt",
+                    "description": "Šiem paplašinājumiem ir ikmēneša abonēšanas maksa. To deaktivizēšana netiks atcelti jūsu abonementi, un maksas turpinās iekasēt:",
+                    "title": "Deaktivizēt {count} paplašinājumu|Deaktivizēt {count} paplašinājumus"
                 },
                 "install": "Instalēt",
                 "selectExtensionAria": "Atlasīt {name}",
                 "uninstall": "Atinstalēt",
                 "uninstallModal": {
                     "alert": "Šo darbību nevar atsaukt.",
-                    "buttonLabel": "Atinstalēt"
+                    "buttonLabel": "Atinstalēt",
+                    "description": "Tiks atinstalēti šādi paplašinājumi:",
+                    "helpTextRemovePluginData": "Brīdinājums: Ja tas ir iespējots, visi šie paplašinājumu izveidotie dati tiks neatgriezeniski noņemti.",
+                    "labelRemovePluginData": "Noņemiet arī visus datus par katru izvēlēto paplašinājumu",
+                    "title": "Atinstalēt {count} paplašinājumu|Atinstalēt {count} paplašinājumus"
                 },
                 "update": "Atjaunināt"
             },
@@ -5014,6 +5027,7 @@
     },
     "sw-license-violation": {
         "alertText": "Mēs esam atklājuši licences pārkāpumu vismaz vienam no jūsu paplašinājumiem šajā instalācijā. Lai novērstu licences pārkāpumu un izvairītos no juridiskām sekām, rezervēt abonementu vai pirkt/iznomāt pagarinājumu (atkarībā no nodarītā pārkāpuma veida). Jūs vairs neizmantojat paplašinājumu? Pēc tam izdzēsiet to, izmantojot pogu “Dzēst paplašinājumu pastāvīgi” vai izmantojot Manus paplašinājumus. Ja neviens no šiem pasākumiem netiek veikts, shopware AG patur tiesības iekasēt soda naudu par jebkuru licences pārkāpumu.",
+        "alreadyRemoved": "Paplašinājums jau tika noņemts",
         "checkboxMessage": "Es esmu ievērojis šo vēstījumu, un galu galā tam ir sekas.",
         "closeModal": "Aizvērt paziņojumu",
         "deletePlugin": "Paplašinājuma dzēšana pastāvīgi",
@@ -5794,9 +5808,12 @@
                 "createDocument": "Neizdevās izveidot dokumentu.",
                 "downloadDocument": "Neizdevās lejupielādēt dokumentu.",
                 "downloadDocumentArchive": "Neizdevās lejupielādēt dokumentu arhīvu.",
+                "duplicateDocumentNumber": "Dokuments ar dokumenta numuru \"{documentNumber}\" jau pastāv.",
                 "loadDocumentPreview": "Neizdevās ielādēt dokumenta priekšskatījumu.",
                 "loadDocumentTypes": "Neizdevās ielādēt pieejamos dokumentu tipus.",
                 "loadSendingDocument": "Neizdevās ielādēt nosūtījamo dokumentu.",
+                "missingCompanyInformation": "Lauks \"{field}\" Jūsu uzņēmuma iestatījumos (Iestatījumi > Pamata informācija) ir tukšs. Pirms dokumentu ģenerēšanas noteikti aizpildiet to ar saviem datiem.",
+                "noUnprocessedCreditLineItems": "Šajā pasūtījumā nav neapstrādātu kredītlīnijas vienību.",
                 "openDocument": "Neizdevās atvērt atlasīto dokumentu.",
                 "uploadDocument": "Neizdevās augšupielādēt dokumentu."
             },
@@ -7390,6 +7407,9 @@
                 "preConditions": {
                     "cardTitlePreConditions": "Priekšnosacījumi",
                     "cardTitleRuleConditions": "Noteikumu pamatoti nosacījumi",
+                    "helpTextCartConditionSelect": "Lai parādītu pielāgotu kļūdas ziņojumu, kad groza noteikums bloķē koda izpirkšanu, izveidojiet veikala fragmentu ar atslēgu “checkout.promotion-not-valid-{ruleId}”.",
+                    "helpTextCustomerSelect": "Ja klienta noteikums bloķē izpirkšanu un neviens klients nav pieteicies, automātiski tiek parādīta īpaša pieteikšanās uzvedne. Attiecībā uz visām pārējām kļūmēm varat parādīt pielāgotu ziņojumu, izveidojot veikala fragmentu ar atslēgu “checkout.promotion-not-valid-{ruleId}”.",
+                    "helpTextOrderConditionSelect": "Lai parādītu pielāgotu kļūdas ziņojumu, kad pasūtījuma noteikums bloķē koda izpirkšanu, izveidojiet veikala fragmentu ar atslēgu “checkout.promotion-not-valid-{ruleId}”.",
                     "helpTextPreventCombination": "Aktivizējot šo opciju, tiks izslēgtas visas pārējās akcijas neatkarīgi no kombinācijas izvēles.",
                     "labelCartConditionSelect": "Iepirkumu grozu noteikumi",
                     "labelCustomerSelect": "Klientu noteikumi",
