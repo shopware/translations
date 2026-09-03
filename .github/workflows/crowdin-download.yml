@@ -77,6 +77,8 @@ jobs:
             # real translations reach the language files; a file without any translation is removed.
             for file in "${FILES[@]}"; do
               [[ "${file}" == translations/*.json && -f "${file}" ]] || continue
+              # de-DE and en-GB are maintained in the shopware repo; empty strings there are intentional
+              [[ "${file}" == translations/de-DE/* || "${file}" == translations/en-GB/* ]] && continue
               jq --indent 4 '
                 def prune: if type == "object"
                   then with_entries(.value |= prune) | with_entries(select(.value != "" and .value != {}))
