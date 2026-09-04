@@ -509,6 +509,7 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "أذونات مفقودة.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "عدد كبير جدًا من الطلبات. يرجى الانتظار لمدة {seconds} ثانية قبل المحاولة مرة أخرى.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "يتعارض عنوان URL {path} مع المسار الحالي {blockedSegment} ولا يمكن استخدامه.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "يجب أن تكون مدة الضمان فارغة (غير مملوؤه) أو بقيمة نصف عام تزيد عن 24 شهرًا، على سبيل المثال 30 أو 36 أو 42.",
             "INVALID_MAIL": "رجاء قم بإعارة بريد الكتروني.",
             "INVALID_MEDIA_URL": "الرجاء إدخال عنوان URL صالح لتحميل الملف.",
             "INVALID_URL": "الرجاء إدخال عنوان URL صحيح.",
@@ -3808,19 +3809,31 @@
             "bulk": {
                 "activate": "قم بتنشيط",
                 "consent": {
+                    "extensionLabel": "ملحق {count} | ملحقات{count}",
                     "installAction": "القبول والتثبيت",
-                    "updateAction": "القبول والتحديث"
+                    "installDescription": "تطلب الإضافات المحددة للموافقات التالية:",
+                    "installTitle": "تثبيت ملحق {count} | تثبيت ملحقات {count}",
+                    "updateAction": "القبول والتحديث",
+                    "updateDescription": "يتطلب تحديث الإضافات المحددة قبول الأذونات الجديدة التالية:",
+                    "updateTitle": "تحديث ملحق {count} | تحديث ملحقات {count}"
                 },
                 "deactivate": "إلغاء التنشيط",
                 "deactivationModal": {
-                    "buttonLabel": "إلغاء التنشيط"
+                    "alert": "هل ما زلت تريد إلغاء تنشيط هذه الإضافة ألمختاره؟",
+                    "buttonLabel": "إلغاء التنشيط",
+                    "description": "يحتوي الملحق \"\" على رسوم اشتراك شهرية. إلغاء تنشيط هذه الإضافة لن يؤدي إلى إلغاء اشتراكك وسيستمر تحصيل الرسوم:",
+                    "title": "إلغاء ملحق {count} | إلغاء ملحقات {count}"
                 },
                 "install": "قم بتثبيت",
                 "selectExtensionAria": "حدد {name}",
                 "uninstall": "إلغاء التثبيت",
                 "uninstallModal": {
                     "alert": "لا يمكن التراجع عن هذا الإجراء.",
-                    "buttonLabel": "إلغاء التثبيت"
+                    "buttonLabel": "إلغاء التثبيت",
+                    "description": "سيتم إلغاء تثبيت الإضافات التالية:",
+                    "helpTextRemovePluginData": "تحذير: في حالة التمكين، ستتم إزالة جميع البيانات التي تم إنشاؤها بواسطة هذه الإضافات نهائيًا.",
+                    "labelRemovePluginData": "قم أيضًا بإزالة جميع البيانات لكل ملحق محدد",
+                    "title": "إلغاء تثبيت ملحق {count} | إلغاء تثبيت ملحقات {count}"
                 },
                 "update": "تحديث"
             },
@@ -5014,6 +5027,7 @@
     },
     "sw-license-violation": {
         "alertText": "لقد اكتشفنا انتهاكًا للترخيص لواحدة على الأقل من إضافاتك في هذا التثبيت. لإصلاح انتهاك الترخيص وتجنب العواقب القانونية، احجز اشتراكًا أو اشتري/استأجر الإضافة (وفقًا لنوع الانتهاك الذي حدث). لم تعد تستخدم الإضافة؟ ثم احذفها عبر زر «حذف الإضافة نهائيًا» أو عبر الإضافات الخاصة بي. في حالة عدم اتخاذ أي من هذه الإجراءات، تحتفظ shopware AG بالحق في فرض رسوم جزائية على أي انتهاك للترخيص.",
+        "alreadyRemoved": "تمت إزالة الإضافة مسبقاً",
         "checkboxMessage": "لقد لاحظت هذه الرسالة وأدت في النهاية إلى عواقب.",
         "closeModal": "إغلاق الإشعار",
         "deletePlugin": "حذف الإضافة نهائيًا",
@@ -5603,6 +5617,7 @@
             "labelPhoneNumber": "رقم هاتف",
             "labelPromotions": "عروض ترويجية",
             "labelSalesChannel": "قناة المبيعات",
+            "labelSendOrderConfirmationMail": "إرسال بريد إلكتروني لتأكيد الطلب إلى العميل",
             "labelShippingAddress": "عنوان الشحن",
             "labelShippingCosts": "تكاليف الشحن",
             "labelShippingMethod": "طريقة الشحن",
@@ -5794,9 +5809,11 @@
                 "createDocument": "فشلت عملية إنشاء المستند.",
                 "downloadDocument": "فشلت عملية تنزيل المستند.",
                 "downloadDocumentArchive": "فشلت عملية تنزيل أرشيف المستندات.",
+                "duplicateDocumentNumber": "يوجد مسبقاً مستند برقم المستند \"{documentNumber}\".",
                 "loadDocumentPreview": "فشلت عملية تحميل معاينة المستند.",
                 "loadDocumentTypes": "فشل تحميل أنواع المستندات المتاحة.",
                 "loadSendingDocument": "فشل تحميل المستند لإرساله.",
+                "missingCompanyInformation": "الحقل \"{field}\" في إعدادات شركتك (الإعدادات > المعلومات الأساسية) فارغ. يرجى التأكد من ملئها ببياناتك قبل إنشاء المستندات.",
                 "openDocument": "فشلت عملية فتح المستند المحدد.",
                 "uploadDocument": "فشلت عملية تحميل المستند."
             },
