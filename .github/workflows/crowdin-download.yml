@@ -92,6 +92,9 @@ jobs:
               fi
             done
 
+            # Validate the export here as GITHUB_TOKEN-created PRs do not trigger pull_request workflows.
+            node scripts/validate-registration-translations.mjs
+
             # Run the metadata update script, passing the changed files as arguments
             node scripts/update-metadata.mjs "${FILES[@]}"
 

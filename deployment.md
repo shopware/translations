@@ -1,0 +1,5 @@
+# fix/registration-modal-placeholders: Crowdin-Registrierungstexte korrigieren
+
+- Die im PR geänderten Werte von `general.privacyNoticeTextModal` in `Platform/Storefront/storefront.json` für alle 35 betroffenen Sprachen in Crowdin übernehmen und freigeben; dafür die einzelnen Strings bearbeiten oder den vorhandenen Workflow `Crowdin Upload Single Language` je Sprache verwenden und die importierten Vorschläge prüfen. Remote-Änderungen erst nach gesonderter Freigabe ausführen.
+- Die vollständigen Linkbeschriftungen und Satzstellung durch Muttersprachler prüfen lassen, insbesondere bei `ar-SA`, `hi-IN`, `ja-JP`, `ko-KR`, `sq-AL`, `th-TH` und `vi-VN`. Bei `nn-NO` die bestehende, möglicherweise Bokmål statt Nynorsk entsprechende Formulierung prüfen; keine neue Übersetzung ungeprüft übernehmen.
+- Nach Freigabe der Crowdin-Strings den Download-Workflow ausführen und den Export samt aktualisierter `crowdin-metadata.json` prüfen und zusammenführen, damit die Änderungen auch über die Metadaten als neue Übersetzungsversion erkannt werden.

@@ -1,0 +1,31 @@
+name: Validate registration translations
+
+on:
+  pull_request:
+    paths:
+      - 'translations/**/Platform/Storefront/storefront.json'
+      - 'scripts/validate-registration-translations.mjs'
+      - 'tests/registration-translations.test.mjs'
+      - '.github/workflows/validate-registration-translations.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'translations/**/Platform/Storefront/storefront.json'
+      - 'scripts/validate-registration-translations.mjs'
+      - 'tests/registration-translations.test.mjs'
+      - '.github/workflows/validate-registration-translations.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/registration-translations.test.mjs
+      - run: node scripts/validate-registration-translations.mjs
