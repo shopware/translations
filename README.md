@@ -23,6 +23,8 @@ Important things to know, when reviewing the pull request:
 
 With those two steps in mind, it's okay for maintainers to merge the pull request without a review by others.
 
-## Uploading a pull request's translations to Crowdin
+## Uploading a branch's translations to Crowdin
 
-Translation fixes that arrive as a pull request against this repository would be overwritten by the next Crowdin download, because Crowdin is the source of truth. Instead of rejecting such a pull request and entering the strings in Crowdin by hand, run the "Crowdin Upload PR Translations" workflow manually with the pull request number. It takes every changed translation file of the pull request (en-GB sources are skipped), uploads it to Crowdin and approves the imported translations. This works for open and already merged pull requests. Use the dry-run option to preview the files first.
+Translation fixes that arrive as a pull request against this repository would be overwritten by the next Crowdin download, because Crowdin is the source of truth. Instead of rejecting such a pull request and entering the strings in Crowdin by hand, run the "Crowdin Upload PR Translations" workflow manually with the name of the branch. It takes every translation file the branch changes against main (en-GB sources are skipped), reduces it to the changed strings, uploads them to Crowdin and approves them. Use the dry-run option to preview the files first.
+
+If a pull request was merged by accident, git can no longer tell its changes apart from main. Enter its pull request number instead of a branch; the changed files are then read from the GitHub API.
