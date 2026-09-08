@@ -509,6 +509,7 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Faltan permisos.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Demasiadas solicitudes. Espere {seconds} segundos antes de volver a intentarlo.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "La URL {path} entra en conflicto con la ruta {blockedSegment} existente y no se puede usar.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "La duración de la garantía debe estar vacía o tener un valor de medio año superior a 24 meses, por ejemplo, 30, 36 o 42.",
             "INVALID_MAIL": "Introduce una dirección de correo electrónico válida.",
             "INVALID_MEDIA_URL": "Introduce una URL válida para cargar un archivo.",
             "INVALID_URL": "Introduce una URL válida.",
@@ -3141,7 +3142,8 @@
             "mainMenuItemGeneral": "Mundos de experiencias",
             "moduleTitle": "Mundos de experiencias",
             "placeholderSearchBar": "Buscar diseños...",
-            "privacyNotice": "Al seleccionar continuar, confirmas que has leído nuestra información de protección de datos <a href=\"%privacyUrl%\"></a> y que has aceptado nuestros términos y condiciones generales <a href=\"%tosUrl%\"></a>."
+            "privacyNotice": "Al seleccionar continuar, confirmas que has leído nuestra información de protección de datos <a href=\"%privacyUrl%\"></a> y que has aceptado nuestros términos y condiciones generales <a href=\"%tosUrl%\"></a>.",
+            "switchLayoutListMode": "Cambiar entre la vista de cuadrícula y la vista de lista"
         },
         "inherit": {
             "formBanner": "Este diseño tiene campos heredados. Lo que significa que mientras el estado heredado esté activo, el contenido se heredará. Los campos heredados se pueden desvincular haciendo clic en el símbolo del enlace. Si vuelve a hacer clic en el símbolo, se restablecerá el estado heredado.",
@@ -3326,7 +3328,7 @@
             "placeholderCustomerNumber": "Introduce un número de cliente…",
             "placeholderEmail": "Introduce una dirección de correo electrónico…",
             "placeholderFirstName": "Introduce un nombre…",
-            "placeholderLanguage": "Selecciona un idioma...",
+            "placeholderLanguage": "Elige un idioma...",
             "placeholderLastName": "Introduce un apellido…",
             "placeholderPassword": "Introduce una contraseña…",
             "placeholderPaymentMethod": "Selecciona un método de pago...",
@@ -3810,19 +3812,31 @@
             "bulk": {
                 "activate": "Activar",
                 "consent": {
+                    "extensionLabel": "extensión {count} | extensiones{count}",
                     "installAction": "Aceptar e instalar",
-                    "updateAction": "Aceptar y actualizar"
+                    "installDescription": "Las extensiones seleccionadas solicitan los siguientes permisos:",
+                    "installTitle": "Instalar la extensión {count} | Instalar las extensiones {count}",
+                    "updateAction": "Aceptar y actualizar",
+                    "updateDescription": "Para actualizar las extensiones seleccionadas es necesario aceptar los siguientes permisos nuevos:",
+                    "updateTitle": "Actualizar la extensión {count} | Actualizar las extensiones {count}"
                 },
                 "deactivate": "Desactivar",
                 "deactivationModal": {
-                    "buttonLabel": "Desactivar"
+                    "alert": "¿Aún quieres desactivar las extensiones seleccionadas?",
+                    "buttonLabel": "Desactivar",
+                    "description": "Las siguientes extensiones tienen una cuota de suscripción mensual. Al desactivarlas, las suscripciones no se cancelarán y se seguirán cobrando tarifas:",
+                    "title": "Desactivar la extensión {count} | Desactivar las extensiones {count}"
                 },
                 "install": "Instalar",
                 "selectExtensionAria": "Selecciona {name}",
                 "uninstall": "Desinstalar",
                 "uninstallModal": {
                     "alert": "Esta acción no se puede deshacer.",
-                    "buttonLabel": "Desinstalar"
+                    "buttonLabel": "Desinstalar",
+                    "description": "Se desinstalarán las siguientes extensiones:",
+                    "helpTextRemovePluginData": "Advertencia: Si se habilita, todos los datos creados por estas extensiones se eliminarán de forma permanente.",
+                    "labelRemovePluginData": "Elimine también todos los datos de cada extensión seleccionada",
+                    "title": "Desinstalar la extensión {count} | Desinstalar las extensiones {count}"
                 },
                 "update": "Actualizar"
             },
@@ -5016,6 +5030,7 @@
     },
     "sw-license-violation": {
         "alertText": "Hemos detectado una infracción de licencia para al menos una de sus extensiones en esta instalación. Para corregir la violación de la licencia y evitar consecuencias legales, reserve una suscripción o comprar/alquilar la extensión (según el tipo de infracción infligido). ¿Ya no usas la extensión? Luego elimínelo a través del botón «Eliminar extensión permanentemente» o a través de Mis extensiones. Si no se toma ninguna de estas medidas, shopware AG se reserva el derecho de cobrar tasas de penalización por cualquier infracción de licencia.",
+        "alreadyRemoved": "La extensión ya se ha eliminado",
         "checkboxMessage": "He leído la advertencia y comprendo las posibles consecuencias.",
         "closeModal": "Cerrar advertencia",
         "deletePlugin": "Eliminar extensión permanentemente",
@@ -5605,6 +5620,7 @@
             "labelPhoneNumber": "Número de teléfono",
             "labelPromotions": "Descuentos y promociones",
             "labelSalesChannel": "Canal de venta",
+            "labelSendOrderConfirmationMail": "Enviar un correo electrónico de confirmación del pedido al cliente",
             "labelShippingAddress": "Dirección de entrega",
             "labelShippingCosts": "Gastos de envío",
             "labelShippingMethod": "Modo de envío",
@@ -5796,9 +5812,12 @@
                 "createDocument": "No se pudo crear el documento.",
                 "downloadDocument": "No se pudo descargar el documento.",
                 "downloadDocumentArchive": "No se pudo descargar el archivo del documento.",
+                "duplicateDocumentNumber": "Ya existe un documento con el número \"{documentNumber}».",
                 "loadDocumentPreview": "No se pudo cargar la vista previa del documento.",
                 "loadDocumentTypes": "No se pudieron cargar los tipos de documentos disponibles.",
                 "loadSendingDocument": "No se pudo cargar el documento que se va a enviar.",
+                "missingCompanyInformation": "El campo \"{field}\" de la configuración de tu empresa (Ajustes > Información básica) está vacío. Asegúrese de rellenarlo con sus datos antes de generar documentos.",
+                "noUnprocessedCreditLineItems": "No hay ningún artículo de línea de crédito sin procesar en este pedido.",
                 "openDocument": "No se pudo abrir el documento seleccionado.",
                 "uploadDocument": "No se pudo cargar el documento."
             },
@@ -7392,6 +7411,9 @@
                 "preConditions": {
                     "cardTitlePreConditions": "Pre-condiciones",
                     "cardTitleRuleConditions": "Condiciones basadas en reglas",
+                    "helpTextCartConditionSelect": "Para mostrar un mensaje de error personalizado cuando una regla del carrito bloquea el canje de código, crea un fragmento de escaparate con la clave «checkout.promotion-not-eligible-{ruleId}».",
+                    "helpTextCustomerSelect": "Cuando una regla de cliente bloquea el canje y ningún cliente ha iniciado sesión, se muestra automáticamente un mensaje de inicio de sesión dedicado. Para todos los demás errores, puedes mostrar un mensaje personalizado creando un fragmento de escaparate con la clave «checkout.promotion-not-eligible-{ruleId}».",
+                    "helpTextOrderConditionSelect": "Para mostrar un mensaje de error personalizado cuando una regla de pedido bloquea el canje de código, crea un fragmento de escaparate con la clave «checkout.promotion-not-eligible-{ruleId}».",
                     "helpTextPreventCombination": "Al activar esta opción, se excluirán todas las demás promociones, independientemente de la combinación seleccionada.",
                     "labelCartConditionSelect": "Reglas del carrito",
                     "labelCustomerSelect": "Reglas del cliente",
@@ -10757,7 +10779,8 @@
             "mainMenuHeader": "Tus temas",
             "mainMenuItemGeneral": "Temas",
             "messageSaveError": "No se pudo asignar el tema al canal de ventas.",
-            "placeholderSearchBar": "Busca los temas disponibles..."
+            "placeholderSearchBar": "Busca los temas disponibles...",
+            "switchThemeListMode": "Cambiar entre la vista de cuadrícula y la vista de lista"
         },
         "list": {
             "gridHeaderAssignment": "Canales de venta asignados",

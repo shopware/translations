@@ -509,6 +509,7 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Puuttuvat käyttöoikeudet.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Liikaa pyyntöjä. Odota {seconds} sekuntia ennen kuin yrität uudelleen.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL-osoite {path} on ristiriidassa olemassa olevan reitin {blockedSegment} kanssa, eikä sitä voi käyttää.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "Takuun keston on oltava tyhjä tai puolivuotisen arvon on oltava yli 24 kuukautta, esim. 30, 36 tai 42.",
             "INVALID_MAIL": "Anna kelvollinen sähköpostiosoite.",
             "INVALID_MEDIA_URL": "Kirjoita kelvollinen URL-osoite tiedoston lataamiseen.",
             "INVALID_URL": "Kirjoita kelvollinen URL-osoite.",
@@ -3141,7 +3142,8 @@
             "mainMenuItemGeneral": "Ostoelämyksiä",
             "moduleTitle": "Ostoelämyksiä",
             "placeholderSearchBar": "Etsi asetteluja...",
-            "privacyNotice": "Valitsemalla Jatka vahvistat, että olet lukenut <a href=\"%privacyUrl%\">tietosuojatiedomme</a> ja hyväksynyt <a href=\"%tosUrl%\">yleiset käyttöehdot</a>."
+            "privacyNotice": "Valitsemalla Jatka vahvistat, että olet lukenut <a href=\"%privacyUrl%\">tietosuojatiedomme</a> ja hyväksynyt <a href=\"%tosUrl%\">yleiset käyttöehdot</a>.",
+            "switchLayoutListMode": "Vaihda ruudukko- ja luettelonäkymän välillä"
         },
         "inherit": {
             "formBanner": "Tämä asettelu on perinyt kentät. Tämä tarkoittaa, että niin kauan kuin peritty tila on aktiivinen, sisältö periytyy. Perittyjen kenttien linkitys voidaan poistaa napsauttamalla linkkisymbolia. Symbolin napsauttaminen uudelleen asettaa perinnöllisen tilan takaisin.",
@@ -3810,19 +3812,31 @@
             "bulk": {
                 "activate": "Aktivoi",
                 "consent": {
+                    "extensionLabel": "{count} -laajennukset|{count} laajennukset",
                     "installAction": "Hyväksy ja asenna",
-                    "updateAction": "Hyväksy ja päivitä"
+                    "installDescription": "Valitut laajennukset pyytävät seuraavia käyttöoikeuksia:",
+                    "installTitle": "Asenna {count} -laajennukset|Asenna {count} laajennukset",
+                    "updateAction": "Hyväksy ja päivitä",
+                    "updateDescription": "Valittujen laajennusten päivittäminen edellyttää seuraavien uusien käyttöoikeuksien hyväksymistä:",
+                    "updateTitle": "Päivitä {count} -laajennukset|Päivitä {count} -laajennukset"
                 },
                 "deactivate": "Poista aktivointi",
                 "deactivationModal": {
-                    "buttonLabel": "Poista aktivointi"
+                    "alert": "Haluatko silti poistaa valitut laajennukset käytöstä?",
+                    "buttonLabel": "Poista aktivointi",
+                    "description": "Seuraavilla laajennuksilla on kuukausittainen tilausmaksu. Niiden poistaminen käytöstä ei peruuta tilaustasi, ja maksuja peritään edelleen:",
+                    "title": "Poista {count} -laajennus käytöstä | Poista {count} laajennukset käytöstä"
                 },
                 "install": "Asenna",
                 "selectExtensionAria": "Valitse {name}",
                 "uninstall": "Poista asennus",
                 "uninstallModal": {
                     "alert": "Tätä toimenpidettä ei voi kumota.",
-                    "buttonLabel": "Poista asennus"
+                    "buttonLabel": "Poista asennus",
+                    "description": "Seuraavat laajennukset poistetaan:",
+                    "helpTextRemovePluginData": "Varoitus: Jos tämä asetus on käytössä, kaikki näiden laajennusten luomat tiedot poistetaan pysyvästi.",
+                    "labelRemovePluginData": "Poista myös kaikki tiedot jokaisesta valitusta laajennuksesta",
+                    "title": "Poista {count} Extension|Poista {count} laajennukset"
                 },
                 "update": "Päivitä"
             },
@@ -5016,6 +5030,7 @@
     },
     "sw-license-violation": {
         "alertText": "Olemme havainneet käyttöoikeusrikkomuksen ainakin yhden laajennuksesi osalta tässä asennuksessa. Jos haluat korjata lisenssirikkomuksen ja välttää oikeudelliset seuraukset, varaa tilaus tai ostaa/vuokraa laajennus (aiheutetun rikkomustyypin mukaan). Etkö käytä laajennusta enää? Poista se sitten ”Poista laajennus pysyvästi” -painikkeella tai Omat laajennukset. Jos mitään näistä toimenpiteistä ei toteuteta, shopware AG pidättää oikeuden periä rangaistusmaksuja lisenssirikkomuksista.",
+        "alreadyRemoved": "Laajennus on jo poistettu",
         "checkboxMessage": "Olen ottanut huomioon tämän viestin ja lopulta kertynyt seurauksia.",
         "closeModal": "Sulje ilmoitus",
         "deletePlugin": "Poista laajennus pysyvästi",
@@ -5605,6 +5620,7 @@
             "labelPhoneNumber": "Puhelinnumero",
             "labelPromotions": "kampanjat",
             "labelSalesChannel": "Myyntikanava",
+            "labelSendOrderConfirmationMail": "Lähetä tilausvahvistusviesti asiakkaalle",
             "labelShippingAddress": "Toimitusosoite",
             "labelShippingCosts": "Toimituskulut",
             "labelShippingMethod": "Toimitusmenetelmä",
@@ -5796,9 +5812,12 @@
                 "createDocument": "Asiakirjan luominen epäonnistui.",
                 "downloadDocument": "Asiakirjan lataaminen epäonnistui.",
                 "downloadDocumentArchive": "Asiakirja-arkiston lataaminen epäonnistui.",
+                "duplicateDocumentNumber": "Asiakirja, jonka asiakirjanumero on \"{documentNumber}\", on jo olemassa.",
                 "loadDocumentPreview": "Asiakirjan esikatselun lataaminen epäonnistui.",
                 "loadDocumentTypes": "Käytettävissä olevien asiakirjatyyppien lataaminen epäonnistui.",
                 "loadSendingDocument": "Lähetettävän asiakirjan lataaminen epäonnistui.",
+                "missingCompanyInformation": "Kenttä \"{field}\" yrityksesi asetuksissa (Asetukset > Perustiedot) on tyhjä. Varmista, että täytät sen tiedoillasi ennen asiakirjojen luomista.",
+                "noUnprocessedCreditLineItems": "Tässä tilauksessa ei ole käsittelemättömiä luottorimiittikohteita.",
                 "openDocument": "Valitun asiakirjan avaaminen epäonnistui.",
                 "uploadDocument": "Asiakirjan lataaminen epäonnistui."
             },
@@ -7392,6 +7411,9 @@
                 "preConditions": {
                     "cardTitlePreConditions": "Ennakkoehdot",
                     "cardTitleRuleConditions": "Sääntöön perustuvat ehdot",
+                    "helpTextCartConditionSelect": "Jos haluat näyttää mukautetun virheilmoituksen, kun ostoskorisääntö estää koodin lunastamisen, luo myymäläkatkelman, jossa on avain ”checkout.promotion-not-⸺-{ruleId}”.",
+                    "helpTextCustomerSelect": "Kun asiakassääntö estää lunastuksen eikä kukaan asiakas ole kirjautunut sisään, oma kirjautumiskehote näytetään automaattisesti. Kaikille muille virheille voit näyttää mukautetun viestin luomalla myymäläkatkelman, jossa on avain ”checkout.promotion-not-⸺-{ruleId}”.",
+                    "helpTextOrderConditionSelect": "Jos haluat näyttää mukautetun virheilmoituksen, kun tilaussääntö estää koodin lunastuksen, luo myymäläkatkelman, jossa on avain ”checkout.promotion-not-⸺-{ruleId}”.",
                     "helpTextPreventCombination": "Tämän vaihtoehdon aktivointi sulkee pois kaikki muut tarjoukset riippumatta yhdistelmävalinnasta.",
                     "labelCartConditionSelect": "Ostoskorin säännöt",
                     "labelCustomerSelect": "Asiakkaan säännöt",
@@ -10757,7 +10779,8 @@
             "mainMenuHeader": "Teemojasi",
             "mainMenuItemGeneral": "teemat",
             "messageSaveError": "Teemaa ei voitu määrittää myyntikanavalle.",
-            "placeholderSearchBar": "Etsi käytettävissä olevia teemoja..."
+            "placeholderSearchBar": "Etsi käytettävissä olevia teemoja...",
+            "switchThemeListMode": "Vaihda ruudukko- ja luettelonäkymän välillä"
         },
         "list": {
             "gridHeaderAssignment": "Määritetyt myyntikanavat",

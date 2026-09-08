@@ -509,6 +509,7 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Puuduvad õigused.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Liiga palju taotlusi. Enne uuesti proovimist oodake {seconds} sekundit.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} on vastuolus olemasoleva marsruudiga {blockedSegment} ja seda ei saa kasutada.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "Garantii kestus peab olema tühi või poolaastase väärtusega üle 24 kuu, nt 30, 36 või 42.",
             "INVALID_MAIL": "Palun sisestage kehtiv e-posti aadress.",
             "INVALID_MEDIA_URL": "Faili üleslaadimiseks sisestage kehtiv URL.",
             "INVALID_URL": "Palun sisestage kehtiv url.",
@@ -3141,7 +3142,8 @@
             "mainMenuItemGeneral": "Ostukogemused",
             "moduleTitle": "Ostukogemused",
             "placeholderSearchBar": "Otsi paigutusi...",
-            "privacyNotice": "Valides jätka kinnitate, et olete lugenud meie <a href=\"%privacyUrl%\">andmekaitseteavet</a> ja nõustunud meie <a href=\"%tosUrl%\">üldistingimustega</a>."
+            "privacyNotice": "Valides jätka kinnitate, et olete lugenud meie <a href=\"%privacyUrl%\">andmekaitseteavet</a> ja nõustunud meie <a href=\"%tosUrl%\">üldistingimustega</a>.",
+            "switchLayoutListMode": "Lülitamine ruudustiku ja loendivaate vahel"
         },
         "inherit": {
             "formBanner": "Sellel paigutusel on päritud väljad. See tähendab, et seni, kuni päritud olek on aktiivne, päritakse sisu. Päritud väljad saab lingi tühistada, klõpsates lingi sümbolil. Sümbolil uuesti klõpsates seatakse päritud olek tagasi.",
@@ -3810,19 +3812,31 @@
             "bulk": {
                 "activate": "Aktiveeri",
                 "consent": {
+                    "extensionLabel": "{count} laiendus|{count} laiendused",
                     "installAction": "Nõustuge ja installige",
-                    "updateAction": "Nõustuge ja värskendage"
+                    "installDescription": "Valitud laiendused nõuavad järgmisi õigusi:",
+                    "installTitle": "Installige laiend {count} |Install {count} laiendused",
+                    "updateAction": "Nõustuge ja värskendage",
+                    "updateDescription": "Valitud laienduste värskendamine nõuab järgmiste uute õiguste aktsepteerimist:",
+                    "updateTitle": "Värskenda {count} laiendus|Värskenda {count} laiendusi"
                 },
                 "deactivate": "Deaktiveeri",
                 "deactivationModal": {
-                    "buttonLabel": "Deaktiveeri"
+                    "alert": "Kas soovite ikkagi valitud laiendused deaktiveerida?",
+                    "buttonLabel": "Deaktiveeri",
+                    "description": "Järgmistel laiendustel on igakuine liitumistasu. Nende deaktiveerimine ei tühista teie tellimusi ja tasusid kogutakse jätkuvalt:",
+                    "title": "Desaktiveeri {count} laiendus|Deaktiveeri {count} laiendused"
                 },
                 "install": "Paigalda",
                 "selectExtensionAria": "Valige {name}",
                 "uninstall": "Desinstallida",
                 "uninstallModal": {
                     "alert": "Seda toimingut ei saa tühistada.",
-                    "buttonLabel": "Desinstallida"
+                    "buttonLabel": "Desinstallida",
+                    "description": "Järgmised laiendused eemaldatakse:",
+                    "helpTextRemovePluginData": "Hoiatus: Kui see on lubatud, eemaldatakse kõik nende laienduste loodud andmed jäädavalt.",
+                    "labelRemovePluginData": "Eemaldage ka kõik andmed iga valitud laienduse kohta",
+                    "title": "Desinstallige {count} Extension|Desinstallige {count} laiendused"
                 },
                 "update": "Uuenda"
             },
@@ -5016,6 +5030,7 @@
     },
     "sw-license-violation": {
         "alertText": "Oleme tuvastanud selles installis vähemalt ühe teie laienduse litsentsirikkumise. Litsentsi rikkumise parandamiseks ja õiguslike tagajärgede vältimiseks broneerige tellimus või osta/rentige pikendus (vastavalt tekitatud rikkumise tüübile). Te ei kasuta laiendust enam? Seejärel kustutage see nupu „Kustuta laiendus jäädavalt” või Minu laiendused kaudu. Kui ühtegi neist meetmetest ei võeta, jätab shopware AG endale õiguse nõuda litsentsi rikkumise eest trahvitasu.",
+        "alreadyRemoved": "Laiendus on juba eemaldatud",
         "checkboxMessage": "Olen seda sõnumit märganud ja lõpuks kogunenud tagajärgi.",
         "closeModal": "Sulge teatis",
         "deletePlugin": "Kustuta laiendus jäädavalt",
@@ -5605,6 +5620,7 @@
             "labelPhoneNumber": "Telefoninumber",
             "labelPromotions": "Kampaaniad",
             "labelSalesChannel": "Müügikanal",
+            "labelSendOrderConfirmationMail": "Saatke kliendile tellimuse kinnitamise e-kiri",
             "labelShippingAddress": "Kohaletoimetamise aadress",
             "labelShippingCosts": "Saatmiskulud",
             "labelShippingMethod": "Kohaletoimetamise viis",
@@ -5796,9 +5812,12 @@
                 "createDocument": "Dokumendi loomine ebaõnnestus.",
                 "downloadDocument": "Dokumendi allalaadimine ebaõnnestus.",
                 "downloadDocumentArchive": "Dokumendiarhiivi allalaadimine ebaõnnestus.",
+                "duplicateDocumentNumber": "Dokument dokumendi numbriga \"{documentNumber}\" on juba olemas.",
                 "loadDocumentPreview": "Dokumendi eelvaate laadimine ebaõnnestus.",
                 "loadDocumentTypes": "Saadaolevate dokumenditüüpide laadimine ebaõnnestus.",
                 "loadSendingDocument": "Saadetava dokumendi laadimine ebaõnnestus.",
+                "missingCompanyInformation": "Väli \"{field}\" teie ettevõtte seadetes (Seaded > Põhiteave) on tühi. Enne dokumentide loomist täitke see kindlasti oma andmetega.",
+                "noUnprocessedCreditLineItems": "Sellel tellimusel pole töötlemata krediidiliini esemeid.",
                 "openDocument": "Valitud dokumenti ei õnnestunud avada.",
                 "uploadDocument": "Dokumendi üleslaadimine ebaõnnestus."
             },
@@ -7392,6 +7411,9 @@
                 "preConditions": {
                     "cardTitlePreConditions": "Eeltingimused",
                     "cardTitleRuleConditions": "Reeglitel põhinevad tingimused",
+                    "helpTextCartConditionSelect": "Kohandatud tõrketeate kuvamiseks, kui ostukorvireegel blokeerib koodi lunastamise, looge kaupluse väljavõte, millel on klahv „checkout.promotion-not-kwalifikohane-{ruleId}”.",
+                    "helpTextCustomerSelect": "Kui kliendireegel blokeerib lunastamise ja ükski klient pole sisse loginud, kuvatakse automaatselt spetsiaalne sisselogimisviip. Kõigi muude tõrkete korral saate kuvada kohandatud sõnumi, luues kaupluse väljaku klahviga „checkout.promotion-not-kwalifikohane-{ruleId}”.",
+                    "helpTextOrderConditionSelect": "Kohandatud tõrketeate kuvamiseks, kui tellimusereegel blokeerib koodi lunastamise, looge kaupluse kärp, millel on klahv „checkout.promotion-not-kwalifikohane-{ruleId}”.",
                     "helpTextPreventCombination": "Selle valiku aktiveerimine välistab kõik muud kampaaniad, olenemata kombinatsiooni valikust.",
                     "labelCartConditionSelect": "Ostukorvi reeglid",
                     "labelCustomerSelect": "Kliendireeglid",
@@ -10757,7 +10779,8 @@
             "mainMenuHeader": "Teie teemad",
             "mainMenuItemGeneral": "Teemad",
             "messageSaveError": "Teemat ei saanud müügikanalile määrata.",
-            "placeholderSearchBar": "Otsi saadaolevaid teemasid..."
+            "placeholderSearchBar": "Otsi saadaolevaid teemasid...",
+            "switchThemeListMode": "Lülitamine ruudustiku ja loendivaate vahel"
         },
         "list": {
             "gridHeaderAssignment": "Määratud müügikanalid",

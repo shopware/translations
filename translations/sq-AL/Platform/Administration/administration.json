@@ -509,6 +509,7 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Lejet që mungojnë.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Shumë kërkesa Ju lutemi prisni {seconds} sekonda para se të provoni përsëri.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "URL {path} bie në kundërshtim me rrugën ekzistuese {blockedSegment} dhe nuk mund të përdoret.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "Kohëzgjatja e garancisë duhet të jetë bosh ose një vlerë gjysmëvjeçare prej më shumë se 24 muaj, p.sh. 30, 36 ose 42.",
             "INVALID_MAIL": "Ju lutemi shkruani një adresë të vlefshme të emailit.",
             "INVALID_MEDIA_URL": "Ju lutemi futni një URL të vlefshme për të ngarkuar një skedar.",
             "INVALID_URL": "Ju lutemi shkruani një URL të vlefshme.",
@@ -3141,7 +3142,8 @@
             "mainMenuItemGeneral": "Përvojat e blerjeve",
             "moduleTitle": "Përvojat e blerjeve",
             "placeholderSearchBar": "Paraqitjet e kërkimit...",
-            "privacyNotice": "Duke zgjedhur vazhdoj ju konfirmoni se keni lexuar informacionin tonë <a href=\"%privacyUrl%\">për mbrojtjen e të dhënave</a> dhe keni pranuar termat dhe kushtet tona të përgjithshme <a href=\"%tosUrl%\"></a>."
+            "privacyNotice": "Duke zgjedhur vazhdoj ju konfirmoni se keni lexuar informacionin tonë <a href=\"%privacyUrl%\">për mbrojtjen e të dhënave</a> dhe keni pranuar termat dhe kushtet tona të përgjithshme <a href=\"%tosUrl%\"></a>.",
+            "switchLayoutListMode": "Kaloni midis rrjetit dhe pamjes së listës"
         },
         "inherit": {
             "formBanner": "Kjo paraqitje ka fusha të trashëguara. Do të thotë se për sa kohë që shteti i trashëguar është aktiv përmbajtja do të trashëgohet. Fushat e trashëguara mund të çlidhen duke klikuar simbolin e lidhjes. Duke klikuar përsëri simbolin do të rikthejë gjendjen e trashëguar.",
@@ -3810,19 +3812,31 @@
             "bulk": {
                 "activate": "Aktivizoni",
                 "consent": {
+                    "extensionLabel": "{count} zgjerimi |{count} zgjerime",
                     "installAction": "Pranoni dhe instaloni",
-                    "updateAction": "Pranoni dhe përditësoni"
+                    "installDescription": "Zgjerimet e zgjedhura kërkojnë lejet e mëposhtme:",
+                    "installTitle": "Instaloni {count} Extension|Instaloni shtesat {count}",
+                    "updateAction": "Pranoni dhe përditësoni",
+                    "updateDescription": "Përditësimi i zgjerimeve të përzgjedhura kërkon pranimin e lejeve të reja",
+                    "updateTitle": "Përditësimi {count} Extension|Përditësoni shtesat {count}"
                 },
                 "deactivate": "Çaktivizoni",
                 "deactivationModal": {
-                    "buttonLabel": "Çaktivizoni"
+                    "alert": "A doni ende të çaktivizoni zgjerimet e zgjedhura?",
+                    "buttonLabel": "Çaktivizoni",
+                    "description": "Zgjerimet e mëposhtme kanë një tarifë abonimi mujor. Çaktivizimi i tyre nuk do të anulojë abonimet tuaja dhe tarifat do të vazhdojnë të mblidhen:",
+                    "title": "Çaktivizoni zgjerimin {count} |Çaktivizoni shtesat {count}"
                 },
                 "install": "Instaloni",
                 "selectExtensionAria": "Zgjidhni {name}",
                 "uninstall": "Çinstaloni",
                 "uninstallModal": {
                     "alert": "Ky veprim nuk mund të çaktivizohet.",
-                    "buttonLabel": "Çinstaloni"
+                    "buttonLabel": "Çinstaloni",
+                    "description": "Zgjerimet e mëposhtme do të çinstalohen:",
+                    "helpTextRemovePluginData": "Paralajmërim: Nëse aktivizohet, të gjitha të dhënat e krijuara nga këto zgjerime do të hiqen përgjithmonë.",
+                    "labelRemovePluginData": "Gjithashtu hiqni të gjitha të dhënat për çdo shtesë të zgjedhur",
+                    "title": "Çinstaloni {count} Extension|Çinstaloni shtesat {count}"
                 },
                 "update": "Përditësimi"
             },
@@ -5016,6 +5030,7 @@
     },
     "sw-license-violation": {
         "alertText": "Ne kemi zbuluar një shkelje të licencës për të paktën një nga zgjerimet tuaja në këtë instalim. Për të rregulluar shkeljen e licencës dhe për të shmangur pasojat ligjore, rezervoni një pajtim ose bleni/merrni me qira zgjatjen (sipas llojit të shkeljes së shkaktuar). Ju nuk e përdorni më shtesën? Pastaj fshini atë përmes butonit “Fshi shtesën përgjithmonë” ose përmes Shtesave të mia. Nëse asnjë nga këto masa nuk merret, shopware AG rezervon të drejtën të ngarkojë tarifa dënimi për çdo shkelje të licencës.",
+        "alreadyRemoved": "Zgjatja tashmë është hequr",
         "checkboxMessage": "Kam vërejtur këtë mesazh dhe përfundimisht pasojat e përmbledhjes.",
         "closeModal": "Mbyllni njoftimin",
         "deletePlugin": "Fshini zgjatjen përgjithmonë",
@@ -5605,6 +5620,7 @@
             "labelPhoneNumber": "Numri i telefonit",
             "labelPromotions": "Promovimet",
             "labelSalesChannel": "Kanali i shitjeve",
+            "labelSendOrderConfirmationMail": "Dërgoni email konfirmimi të porosisë tek klienti",
             "labelShippingAddress": "Adresa e transportit",
             "labelShippingCosts": "Kostot e transportit",
             "labelShippingMethod": "Metoda e transportit",
@@ -5796,9 +5812,12 @@
                 "createDocument": "Nuk dështoi për të krijuar dokumentin.",
                 "downloadDocument": "Dështoi për të shkarkuar dokumentin.",
                 "downloadDocumentArchive": "Dështoi për të shkarkuar arkivin e dokumentit.",
+                "duplicateDocumentNumber": "Një dokument me numrin e dokumentit \"{documentNumber}\" tashmë ekziston.",
                 "loadDocumentPreview": "Dështoi për të ngarkuar pamjen paraprake të dokumentit.",
                 "loadDocumentTypes": "Dështoi të ngarkoni llojet e dokumenteve në dispozicion.",
                 "loadSendingDocument": "Dështoi për të ngarkuar dokumentin për të dërguar.",
+                "missingCompanyInformation": "Fusha \"{field}\" në cilësimet e kompanisë suaj (Cilësimet > Informacioni Bazë) është bosh. Ju lutemi sigurohuni që ta plotësoni atë me të dhënat tuaja para se të gjeneroni dokumente.",
+                "noUnprocessedCreditLineItems": "Nuk ka artikuj të linjës së kreditit të papërpunuar në këtë porosi.",
                 "openDocument": "Dështoi për të hapur dokumentin e zgjedhur.",
                 "uploadDocument": "Dështoi për të ngarkuar dokumentin."
             },
@@ -7392,6 +7411,9 @@
                 "preConditions": {
                     "cardTitlePreConditions": "Para-kushtet",
                     "cardTitleRuleConditions": "Kushtet e bazuara në rregull",
+                    "helpTextCartConditionSelect": "Për të treguar një mesazh gabimi të personalizuar kur një rregull i karrocës bllokon shlyerjen e kodit, krijoni një fragment të dyqanit me çelësin “checkout.promotion-not-⸺-{ruleId}”.",
+                    "helpTextCustomerSelect": "Kur një rregull i klientit bllokon shpenzimin dhe asnjë klient nuk është regjistruar, një kërkesë e dedikuar e hyrjes shfaqet automatikisht. Për të gjitha dështimet e tjera mund të shfaqni një mesazh të personalizuar duke krijuar një fragment të dyqanit me butonin “checkout.promotion-not-⸺-{ruleId}”.",
+                    "helpTextOrderConditionSelect": "Për të treguar një mesazh gabimi të personalizuar kur një rregull i porosisë bllokon shlyerjen e kodit, krijoni një fragment të dyqanit me çelësin “checkout.promotion-not-⸺-{ruleId}”.",
                     "helpTextPreventCombination": "Aktivimi i këtij opsioni do të përjashtojë të gjitha promovimet e tjera, pavarësisht nga zgjedhja e kombinimit.",
                     "labelCartConditionSelect": "Rregullat e karrocës",
                     "labelCustomerSelect": "Rregullat e klientit",
@@ -10757,7 +10779,8 @@
             "mainMenuHeader": "Temat tuaja",
             "mainMenuItemGeneral": "Temat",
             "messageSaveError": "Tema nuk mund të caktohet në Kanalin e Shitjes.",
-            "placeholderSearchBar": "Kërkoni për tema në dispozicion..."
+            "placeholderSearchBar": "Kërkoni për tema në dispozicion...",
+            "switchThemeListMode": "Kaloni midis rrjetit dhe pamjes së listës"
         },
         "list": {
             "gridHeaderAssignment": "Kanale të caktuara të shitjeve",
