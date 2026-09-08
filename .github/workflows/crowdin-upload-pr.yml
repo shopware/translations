@@ -3,10 +3,14 @@ name: "Crowdin Upload PR Translations"
 on:
   workflow_dispatch:
     inputs:
+      branch:
+        description: "Branch (or any git ref, e.g. refs/pull/515/head) whose translation changes against main should be uploaded to Crowdin (en-GB sources are skipped)"
+        required: false
+        type: string
       pull_request:
-        description: "Number of the pull request whose translation changes should be uploaded to Crowdin (en-GB sources are skipped)"
-        required: true
-        type: number
+        description: "Pull request number, only for pull requests that are already merged (the changed files are read from the GitHub API instead). Leave empty when using a branch."
+        required: false
+        type: string
       dry_run:
         description: "Only list the files Crowdin would upload"
         required: false
@@ -24,33 +28,64 @@ jobs:
       - name: Checkout translations
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           persist-credentials: false
 
-      - name: Collect translation changes of the pull request
+      - name: Collect translation changes
         env:
           GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ inputs.branch }}
           PR_NUMBER: ${{ inputs.pull_request }}
         run: |
           set -euo pipefail
 
-          # Ask the API instead of diffing against main, so the workflow also works for PRs that are already merged.
-          mapfile -t FILES < <(
-            gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" \
-              --jq '.[] | select(.status != "removed") | .filename
-                    | select(test("^translations/[^/]+/.+\\.json$") and (startswith("translations/en-GB/") | not))'
-          )
-
-          if (( ${#FILES[@]} == 0 )); then
-            echo "::error::PR #${PR_NUMBER} does not change any translation files (en-GB sources are ignored)."
+          if [[ -n "${BRANCH}" && -n "${PR_NUMBER}" ]] || [[ -z "${BRANCH}" && -z "${PR_NUMBER}" ]]; then
+            echo "::error::Fill in either a branch or a pull request number, not both."
             exit 1
           fi
 
-          base_sha=$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json baseRefOid --jq '.baseRefOid')
-          git fetch --no-tags origin "refs/pull/${PR_NUMBER}/head" "${base_sha}"
-          head_sha=$(git rev-parse FETCH_HEAD)
-          echo "PR head: ${head_sha}, base: ${base_sha}"
+          if [[ -n "${PR_NUMBER}" ]]; then
+            if [[ ! "${PR_NUMBER}" =~ ^[0-9]+$ ]]; then
+              echo "::error::'${PR_NUMBER}' is not a pull request number."
+              exit 1
+            fi
+            SOURCE="PR #${PR_NUMBER}"
 
-          # Remove every other translation file so the Crowdin CLI uploads nothing but the PR's changes;
+            # The API keeps the file list of a PR even after it was merged, when git can no longer tell its changes apart.
+            mapfile -t FILES < <(
+              gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" \
+                --jq '.[] | select(.status != "removed") | .filename'
+            )
+
+            git fetch --no-tags origin "refs/pull/${PR_NUMBER}/head"
+            head_sha=$(git rev-parse FETCH_HEAD)
+            base_sha=$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json baseRefOid --jq '.baseRefOid')
+            git fetch --no-tags origin "${base_sha}"
+          else
+            SOURCE="branch ${BRANCH}"
+
+            git fetch --no-tags origin "${BRANCH}"
+            head_sha=$(git rev-parse FETCH_HEAD)
+            base_sha=$(git merge-base origin/main "${head_sha}")
+
+            if [[ "${base_sha}" == "${head_sha}" ]]; then
+              echo "::error::${BRANCH} is already merged into main; upload it via its pull request number instead."
+              exit 1
+            fi
+
+            mapfile -t FILES < <(git diff --name-only --diff-filter=ACMRT "${base_sha}" "${head_sha}")
+          fi
+          echo "${SOURCE}: head ${head_sha}, base ${base_sha}"
+
+          mapfile -t FILES < <(
+            printf '%s\n' "${FILES[@]}" | grep -E '^translations/[^/]+/.+\.json$' | grep -v '^translations/en-GB/' || true
+          )
+          if (( ${#FILES[@]} == 0 )); then
+            echo "::error::${SOURCE} does not change any translation files (en-GB sources are ignored)."
+            exit 1
+          fi
+
+          # Remove every other translation file so the Crowdin CLI uploads nothing but these changes;
           # the en-GB sources stay as they are on main.
           declare -A keep
           for file in "${FILES[@]}"; do
@@ -62,8 +97,8 @@ jobs:
             rm -f "${file}"
           done < <(git ls-files translations)
 
-          # Auto-approving a whole file would also approve strings translators changed in Crowdin after the PR
-          # was branched off. Reduce every file to the keys the PR actually added or changed.
+          # Auto-approving a whole file would also approve strings translators changed in Crowdin after the branch
+          # was created. Reduce every file to the keys that were actually added or changed.
           UPLOAD=()
           for file in "${FILES[@]}"; do
             git show "${base_sha}:${file}" > base.json 2>/dev/null || echo '{}' > base.json
@@ -91,12 +126,12 @@ jobs:
           rm -f base.json head.json
 
           if (( ${#UPLOAD[@]} == 0 )); then
-            echo "::error::PR #${PR_NUMBER} changes no translated strings."
+            echo "::error::${SOURCE} changes no translated strings."
             exit 1
           fi
 
           {
-            echo "### Uploading ${#UPLOAD[@]} translation file(s) from PR #${PR_NUMBER}"
+            echo "### Uploading ${#UPLOAD[@]} translation file(s) from ${SOURCE}"
             echo
             printf -- '- `%s`\n' "${UPLOAD[@]}"
           } | tee -a "${GITHUB_STEP_SUMMARY}"
