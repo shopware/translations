@@ -22,3 +22,7 @@ Important things to know, when reviewing the pull request:
 - Inspect `de-DE` and `en-GB` changes. Since those are the base of the crowdin translations, normally some action is required if those languages appear in the merge request. You have to check crowdin and accept the correct snippet suggest for that key, since it will probably mean that a snippet was changed but not approved, which has to be done manually.
 
 With those two steps in mind, it's okay for maintainers to merge the pull request without a review by others.
+
+## Uploading a pull request's translations to Crowdin
+
+Translation fixes that arrive as a pull request against this repository would be overwritten by the next Crowdin download, because Crowdin is the source of truth. Instead of rejecting such a pull request and entering the strings in Crowdin by hand, run the "Crowdin Upload PR Translations" workflow manually with the pull request number. It takes every changed translation file of the pull request (en-GB sources are skipped), uploads it to Crowdin and approves the imported translations. This works for open and already merged pull requests. Use the dry-run option to preview the files first.

@@ -1,0 +1,116 @@
+name: "Crowdin Upload PR Translations"
+
+on:
+  workflow_dispatch:
+    inputs:
+      pull_request:
+        description: "Number of the pull request whose translation changes should be uploaded to Crowdin (en-GB sources are skipped)"
+        required: true
+        type: number
+      dry_run:
+        description: "Only list the files Crowdin would upload"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  crowdin-upload-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout translations
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Collect translation changes of the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ inputs.pull_request }}
+        run: |
+          set -euo pipefail
+
+          # Ask the API instead of diffing against main, so the workflow also works for PRs that are already merged.
+          mapfile -t FILES < <(
+            gh api --paginate "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" \
+              --jq '.[] | select(.status != "removed") | .filename
+                    | select(test("^translations/[^/]+/.+\\.json$") and (startswith("translations/en-GB/") | not))'
+          )
+
+          if (( ${#FILES[@]} == 0 )); then
+            echo "::error::PR #${PR_NUMBER} does not change any translation files (en-GB sources are ignored)."
+            exit 1
+          fi
+
+          base_sha=$(gh pr view "${PR_NUMBER}" --repo "${GITHUB_REPOSITORY}" --json baseRefOid --jq '.baseRefOid')
+          git fetch --no-tags origin "refs/pull/${PR_NUMBER}/head" "${base_sha}"
+          head_sha=$(git rev-parse FETCH_HEAD)
+          echo "PR head: ${head_sha}, base: ${base_sha}"
+
+          # Remove every other translation file so the Crowdin CLI uploads nothing but the PR's changes;
+          # the en-GB sources stay as they are on main.
+          declare -A keep
+          for file in "${FILES[@]}"; do
+            keep["${file}"]=1
+          done
+          while IFS= read -r file; do
+            [[ "${file}" == translations/en-GB/* ]] && continue
+            [[ -n "${keep[${file}]:-}" ]] && continue
+            rm -f "${file}"
+          done < <(git ls-files translations)
+
+          # Auto-approving a whole file would also approve strings translators changed in Crowdin after the PR
+          # was branched off. Reduce every file to the keys the PR actually added or changed.
+          UPLOAD=()
+          for file in "${FILES[@]}"; do
+            git show "${base_sha}:${file}" > base.json 2>/dev/null || echo '{}' > base.json
+            git show "${head_sha}:${file}" > head.json
+            jq --indent 4 --slurpfile base base.json '
+              def changed($base):
+                if type == "object" then
+                  to_entries
+                  | map(. as $entry | .value = ($entry.value | changed(if ($base | type) == "object" then $base[$entry.key] else null end)))
+                  | map(select(.value != null and .value != {}))
+                  | from_entries
+                else
+                  if . == $base then null else . end
+                end;
+              changed($base[0])
+            ' head.json > "${file}"
+
+            if [[ "$(jq 'length' "${file}")" == "0" ]]; then
+              echo "Skipping ${file}: no changed strings"
+              rm -f "${file}"
+              continue
+            fi
+            UPLOAD+=("${file} ($(jq '[.. | strings] | length' "${file}") strings)")
+          done
+          rm -f base.json head.json
+
+          if (( ${#UPLOAD[@]} == 0 )); then
+            echo "::error::PR #${PR_NUMBER} changes no translated strings."
+            exit 1
+          fi
+
+          {
+            echo "### Uploading ${#UPLOAD[@]} translation file(s) from PR #${PR_NUMBER}"
+            echo
+            printf -- '- `%s`\n' "${UPLOAD[@]}"
+          } | tee -a "${GITHUB_STEP_SUMMARY}"
+
+      - name: Upload translations to Crowdin
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
+          upload_translations: true
+          import_eq_suggestions: true
+          auto_approve_imported: true
+          download_translations: false
+          preserve_hierarchy: false
+          dryrun_action: ${{ inputs.dry_run }}
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
