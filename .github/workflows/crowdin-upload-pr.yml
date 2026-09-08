@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: "Branch (or any git ref, e.g. refs/pull/515/head) whose translation changes against main should be uploaded to Crowdin (en-GB sources are skipped)"
+        description: "Branch whose translations will be uploaded"
         required: false
         type: string
       pull_request:
-        description: "Pull request number, only for pull requests that are already merged (the changed files are read from the GitHub API instead). Leave empty when using a branch."
+        description: "Pull request number (only for merged pull requests). Leave empty when using a branch."
         required: false
         type: string
       dry_run:
@@ -136,9 +136,16 @@ jobs:
             printf -- '- `%s`\n' "${UPLOAD[@]}"
           } | tee -a "${GITHUB_STEP_SUMMARY}"
 
+      - name: Exclude en-GB from the upload
+        run: |
+          # en-GB is also a target language in Crowdin, so the CLI would upload the source files as its translations.
+          # Point its translation folder somewhere that does not exist; the CLI then skips the language.
+          yq '(.files[] | select(.translation | contains("%locale%")) | .languages_mapping.locale."en-GB") = "en-GB-is-source"' crowdin.yml > crowdin-upload-pr.yml
+
       - name: Upload translations to Crowdin
         uses: crowdin/github-action@v1
         with:
+          config: crowdin-upload-pr.yml
           upload_sources: false
           upload_translations: true
           import_eq_suggestions: true
