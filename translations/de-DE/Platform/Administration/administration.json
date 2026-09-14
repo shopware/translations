@@ -5466,6 +5466,28 @@
             "zipCode": "Postleitzahl"
         }
     },
+    "sw-oauth-authorize": {
+        "consent": {
+            "approve": "Zugriff erlauben",
+            "deny": "Ablehnen",
+            "loggedInAs": "Angemeldet als {username}",
+            "permissionHint": "Die Anwendung kann in Deinem Namen auf Daten zugreifen und Aktionen ausführen. Dabei hat sie dieselben Berechtigungen wie Dein Benutzerkonto. Als Administrator gewährst Du ihr damit vollständigen Zugriff auf Deinen Shop.",
+            "permissionTitle": "Diese Anwendung erhält Deine Berechtigungen",
+            "redirectHint": "Du wirst weitergeleitet zu {host}",
+            "title": "{clientName} möchte auf {shopName} zugreifen",
+            "trustHint": "Erlaube den Zugriff nur, wenn Du dieser Anwendung vertraust und die Anfrage selbst gestartet hast."
+        },
+        "error": {
+            "generic": "Die Autorisierungsanfrage konnte nicht verarbeitet werden.",
+            "missingParameters": "Die Autorisierungsanfrage ist unvollständig. Bitte starte die Autorisierung erneut aus der Anwendung."
+        },
+        "general": {
+            "description": "Einer Anwendung Zugriff auf diesen Shopware Shop gewähren",
+            "title": "Anwendung autorisieren"
+        },
+        "loadingLabel": "Wird geladen ...",
+        "logoAltText": "Shopware-Logo"
+    },
     "sw-order": {
         "addressSelection": {
             "currentlySelected": "Aktuelle Auswahl",
@@ -9949,37 +9971,10 @@
     "sw-settings-shopware-updates": {
         "cards": {
             "extensions": "Erweiterungskompatibilität",
-            "info": "Was ist neu?",
             "requirements": "Systemvoraussetzungen",
             "updating": "Aktualisiere ..."
         },
-        "general": {
-            "checkForUpdates": "Nach Aktualisierungen suchen",
-            "currentVersion": "Aktuelle Version:",
-            "emptyState": "Du bist auf dem aktuellsten Stand.",
-            "emptyTitle": "Shopware-Aktualisierungen",
-            "menuTitle": "Shopware-Aktualisierungen",
-            "title": "Shopware-Aktualisierung ({version})"
-        },
-        "infos": {
-            "backupCheckboxLabel": "Ich habe eine Datensicherung angelegt und möchte die Aktualisierung nun durchführen.",
-            "progress": {
-                "deactivate": "Erweiterungen werden deaktiviert ...",
-                "download": "Aktualisierung-Datei wird heruntergeladen ...",
-                "unpack": "Aktualisierung-Datei wird entpackt ..."
-            },
-            "requirementsNotMet": "Nicht alle Systemanforderungen sind erfüllt.",
-            "startUpdate": "Aktualisierung starten"
-        },
-        "notifications": {
-            "alreadyUpToDate": "Du bist bereits auf dem aktuellsten Stand.",
-            "deactivationFailed": "Deaktivieren der Erweiterungen fehlgeschlagen",
-            "downloadFailed": "Download fehlgeschlagen.",
-            "unpackFailed": "Entpacken fehlgeschlagen.",
-            "updateStarted": "Aktualisierung gestartet.",
-            "updateStopped": "Aktualisierung gestoppt."
-        },
-        "plugins": {
+        "extensions": {
             "actions": {
                 "deactivateAll": "Alle Erweiterungen deaktivieren.",
                 "deactivateIncompatible": "Inkompatible Erweiterungen deaktivieren.",
@@ -9991,24 +9986,49 @@
                 "available": "Kompatibilität",
                 "name": "Erweiterung"
             },
-            "pluginNotInStore": "Diese Erweiterung ist im Store nicht verfügbar. Bitte kontaktiere den Erweiterungs-Hersteller.",
-            "pluginWillBeDeactivatedHint": "(Wird im Aktualisierungsprozess deaktiviert)"
+            "emptyStateDescription": "Alle installierten Erweiterungen sind mit diesem Update kompatibel.",
+            "emptyStateHeadline": "Keine Kompatibilitätsprobleme",
+            "extensionNotInStore": "Diese Erweiterung ist im Store nicht verfügbar. Bitte kontaktiere den Erweiterungs-Hersteller.",
+            "extensionWillBeDeactivatedHint": "(Wird im Aktualisierungsprozess deaktiviert)"
         },
-        "requirements": {
-            "columns": {
-                "message": "Voraussetzung",
-                "status": "Status"
+        "general": {
+            "menuTitle": "Shopware-Updates",
+            "title": "Shopware-Updates"
+        },
+        "infos": {
+            "autoUpdateDisabled": "Automatische Aktualisierungen sind deaktiviert (shopware.auto_update.enabled). Nutze die Shopware CLI zum Aktualisieren.",
+            "backupCheckboxLabel": "Ich habe eine Datensicherung angelegt und möchte die Aktualisierung nun durchführen.",
+            "clusterSetupDisabled": "Aktualisierungen über die Administration sind in Cluster-Setups nicht möglich (shopware.deployment.cluster_setup). Nutze die Shopware CLI zum Aktualisieren.",
+            "progress": {
+                "deactivate": "Erweiterungen werden deaktiviert ...",
+                "download": "Aktualisierung-Datei wird heruntergeladen ...",
+                "unpack": "Aktualisierung-Datei wird entpackt ..."
             },
-            "message": {
-                "invalidShopwareLicense": "Für Deine Shopware-Version konnte keine aktive Subscription ermittelt werden.<br>Die automatische Aktualisierungen kann somit nicht durchgeführt werden.<br>Eine gültige Shopware-Subscription kannst Du aber jederzeit über den <a href=\"https://account.shopware.com\" target=\"_blank\">Shopware Account buchen.</a>",
-                "mysqlVersion": "Erforderliche MySQL-Version: {minVersion}. Installierte MySQL-Version: {currentVersion}.",
-                "phpVersion": "Erforderliche PHP-Version: {minVersion}. Installierte PHP-Version: {currentVersion}.",
-                "validShopwareLicense": "Gültige Shopware-Subscription gefunden. Die Aktualisierung kann nun durchgeführt werden.",
-                "writeableCheckFailed": "Die folgenden Verzeichnisse und Dateien sind nicht beschreibbar:<br>{failedDirectories}",
-                "writeableCheckValid": "Die folgenden Verzeichnisse und Dateien sind beschreibbar:<br/>{checkedDirectories}"
+            "startUpdate": "Aktualisierung starten"
+        },
+        "license": {
+            "bannerMessage": "Für Deine Shopware-Version konnte keine aktive Subscription ermittelt werden. Die automatische Aktualisierung kann somit nicht durchgeführt werden. Eine gültige Shopware-Subscription kannst Du jederzeit über den <a href=\"https://account.shopware.com\" target=\"_blank\">Shopware Account</a> buchen.",
+            "bannerTitle": "Keine aktive Shopware-Subscription"
+        },
+        "methodModal": {
+            "actions": {
+                "continue": "Weiter"
             },
-            "notReady": "Nicht bereit",
-            "ready": "Bereit"
+            "cliDescription": "Die Shopware CLI bietet mehr Kontrolle und wiederholbare Deployments.",
+            "cliInstallHint": "Installiere die Shopware CLI und führe aus:",
+            "cliInstallLink": "Shopware CLI installieren",
+            "cliTitle": "Mit der Shopware CLI",
+            "subtitle": "Vor der Aktualisierung wird eine Datensicherung empfohlen.",
+            "title": "Shopware aktualisieren"
+        },
+        "notifications": {
+            "alreadyUpToDate": "Du bist bereits auf dem aktuellsten Stand.",
+            "checkFailed": "Die Update-Prüfung ist fehlgeschlagen.",
+            "deactivationFailed": "Deaktivieren der Erweiterungen fehlgeschlagen",
+            "downloadFailed": "Download fehlgeschlagen.",
+            "unpackFailed": "Entpacken fehlgeschlagen.",
+            "updateStarted": "Aktualisierung gestartet.",
+            "updateStopped": "Aktualisierung gestoppt."
         },
         "updateModal": {
             "actions": {
@@ -10020,6 +10040,23 @@
             "messageNotInStore": "Es sind Erweiterungen vorhanden, die nicht auf Kompatibilität geprüft werden konnten. Kontaktiere die Erweiterungs-Hersteller für weitere Informationen und stelle sicher, dass Du ein Datensicherung erstellt hast, bevor Du fortfährst.",
             "messageOkay": "Alle Voraussetzungen sind erfüllt. Bitte stelle sicher, dass Du eine aktuelle Datensicherung erstellt hast.",
             "messageUpdateCheck": "Die zurzeit installierte Shopware-Version kann auf Version {version} aktualisiert werden. Was möchtest Du tun?"
+        },
+        "versionCard": {
+            "badgeCheckFailed": "Update-Prüfung fehlgeschlagen",
+            "badgeUpToDate": "Auf dem aktuellen Stand",
+            "badgeUpdateAvailable": "Update verfügbar",
+            "changelogLink": "Changelog ansehen",
+            "cliRecommendedBadge": "Empfohlen",
+            "currentVersionLabel": "Installierte Version:",
+            "methodDivider": "oder weiter mit",
+            "methodsHeadline": "Jetzt aktualisieren",
+            "newVersionLabel": "Neueste Version:",
+            "retryCheck": "Erneut versuchen",
+            "title": "Shopware-Version",
+            "upToDateDescription": "Shopware {version} ist die neueste Version.",
+            "upToDateTitle": "Du bist auf dem neuesten Stand",
+            "webInstallerDescription": "Führe die geführte Aktualisierung direkt im Browser aus.",
+            "webInstallerTitle": "Mit dem Web-Installer"
         }
     },
     "sw-settings-sitemap": {
