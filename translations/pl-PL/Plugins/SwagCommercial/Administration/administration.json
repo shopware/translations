@@ -44,7 +44,9 @@
         },
         "product-bundles": {
             "settingsCart": {
-                "cardTitle": "Wiązki"
+                "cardTitle": "Wiązki",
+                "restorationHelpText": "Po włączeniu pasujące produkty w koszyku są automatycznie łączone w kwalifikujące się pakiety tylko wtedy, gdy obowiązuje zniżka na pakiet, zaczynając od pakietu o najwyższym priorytecie.",
+                "restorationLabel": "Automatyczne łączenie produktów w pakiety"
             }
         },
         "subscriptions": {
@@ -372,6 +374,7 @@
             "BUDGET_TRIGGER_VALUE_INVALID": "Wprowadź prawidłową wartość dla tego typu wyzwalacza.",
             "BUDGET_TRIGGER_VALUE_REQUIRED": "To pole jest wymagane, gdy powiadomienia są włączone.",
             "ORGANIZATION_UNIT_FIELD_REQUIRED": "To pole nie może być puste.",
+            "ORGANIZATION_UNIT_INVALID_EMAIL": "Podaj prawidłowy adres e-mail.",
             "SHOPPING_LIST_FIELD_REQUIRED": "To pole nie może być puste."
         },
         "sw-condition": {
@@ -1016,30 +1019,111 @@
         }
     },
     "sw-bundle": {
-        "bundleItemConfigurationModal": {
-            "generalTab": "Ogólne",
-            "openFullWidth": "Pełna szerokość"
-        },
-        "bundleItemConfigurationSettings": {
-            "quantity": {
-                "label": "Ilość"
+        "bundleItemBanner": {
+            "notEnoughProduct": {
+                "content": "Pakiet wymaga co najmniej dwóch produktów.",
+                "title": "Za mało produktów"
+            },
+            "restriction": {
+                "content": "Jeden lub więcej produktów ma ograniczenia, które wpływają na dostępność tego pakietu. Szczegółowe informacje można znaleźć w ikonach ostrzegawczych.",
+                "title": "Niektóre produkty mają ograniczenia"
             }
         },
+        "bundleItemConfigurationModal": {
+            "exitFullWidth": "Wyjdź z trybu pełnej szerokości",
+            "generalTab": "Ogólne",
+            "openFullWidth": "Pełna szerokość",
+            "variantsTab": "Warianty ({selectedVariantsCount}/{totalVariantsCount})"
+        },
+        "bundleItemConfigurationSettings": {
+            "adjustQuantity": "Klienci mogą dostosować ilość",
+            "fixedQuantityRangeBanner": "Klienci nie będą mogli dostosować ilości, ponieważ minimalna i maksymalna ilość są takie same.",
+            "maxPurchaseHint": "Ze względu na maksymalną ilość zamówienia tego produktu można zamówić co najwyżej {maxPurchase} szt.",
+            "maxQuantity": "Max. ilość",
+            "maxQuantityBelowMinPurchaseError": "Max. ilość nie może być niższa niż minimalna ilość zamówienia tego produktu.",
+            "maxQuantityError": "Maksymalna ilość nie może być mniejsza niż wartość w polu „Ilość”.",
+            "maxQuantityPlaceholder": "np. 5",
+            "minPurchaseHint": "Ze względu na minimalną ilość zamówienia tego produktu należy zamówić co najmniej {minPurchase} szt.",
+            "minQuantity": "Min. ilość",
+            "minQuantityAboveMaxPurchaseError": "Minimalna ilość nie może być większa niż maksymalna ilość zamówienia tego produktu.",
+            "minQuantityError": "Minimalna ilość nie może być większa niż wartość w polu „Ilość”.",
+            "minQuantityPlaceholder": "np. 2",
+            "optional": "Produkt jest opcjonalny",
+            "optionalDisabledHelpText": "Klienci mogą usunąć opcjonalne produkty z pakietu. Pakiet można kupić tylko z co najmniej dwoma różnymi produktami.<br /><br />Produkty mogą być opcjonalne, gdy pakiet zawiera co najmniej trzy produkty.",
+            "optionalEnabledHelpText": "Klienci mogą usunąć opcjonalne produkty z pakietu. Pakiet można kupić tylko z co najmniej dwoma różnymi produktami.",
+            "quantity": {
+                "hint": "Domyślna ilość tego produktu wewnątrz pakietu",
+                "label": "Ilość"
+            },
+            "quantityAboveMaxPurchaseError": "Ilość nie może być większa niż maksymalna ilość zamówienia tego produktu.",
+            "quantityAdjustedBanner": "Ilość została dostosowana do minimalnej ilości zamówienia produktu.",
+            "quantityBelowMinPurchaseError": "Ilość nie może być mniejsza niż minimalna ilość zamówienia tego produktu.",
+            "quantityLimitsMax": "Ten produkt ma ograniczenia ilości zamówienia. Maksymalna ilość: {maxPurchase} szt.",
+            "quantityLimitsMin": "Ten produkt ma ograniczenia ilości zamówienia. Minimalna ilość: {minPurchase} szt.",
+            "quantityLimitsMinAndMax": "Ten produkt ma ograniczenia ilości zamówienia. Dozwolona ilość: {minPurchase}–{maxPurchase} szt.",
+            "quantityPurchaseStepsError": "Ilość musi być zgodna z krokiem zakupu tego produktu."
+        },
         "bundleItemConfigurationVariants": {
+            "actionOpenVariantDetailPage": "Otwórz szczegóły wariantu",
             "actionSetDefault": "Ustaw jako domyślne",
+            "autoIncludeLabel": "Nowe warianty są automatycznie dodawane do wybranych",
             "columnDefault": "Standardowy",
+            "columnIncluded": "W zestawie",
             "columnPrice": "Cena",
+            "deselectAll": "Odznacz wszystkie ({count})",
+            "emptyStateDefault": "Warianty pojawią się tutaj, gdy będą dostępne do wyboru.",
+            "emptyStateFiltered": "Dostosuj wyszukiwane hasło lub filtry.",
+            "emptyStateRestricted": "Nie znaleziono wariantów z ograniczeniami.",
+            "emptyStateSelected": "Obecnie nie wybrano żadnych wariantów.",
+            "emptyStateSelectedRestricted": "Żaden z wybranych wariantów nie ma ograniczeń.",
+            "emptyStateTitle": "Nie znaleziono pasujących wariantów",
+            "optionColor": "Kolor",
             "optionSize": "Rozmiar",
             "placeholderSearch": "Szukaj wariantów...",
-            "selectAll": "Wybierz wszystko ({count})"
+            "selectAll": "Wybierz wszystko ({count})",
+            "selectionBanner": {
+                "noVariant": {
+                    "description": "Produkt wymaga co najmniej dwóch wariantów.",
+                    "title": "Za mało wariantów"
+                },
+                "restrictedVariant": {
+                    "description": "Jeden lub więcej wybranych wariantów ma ograniczenia, które mogą mieć wpływ na dostępność. Szczegółowe informacje można znaleźć w ikonach ostrzegawczych. Produkt pozostaje dostępny, dopóki dostępny jest co najmniej jeden wybrany wariant.",
+                    "title": "Niektóre wybrane warianty mają ograniczenia"
+                },
+                "singleVariant": {
+                    "description": "Jeśli potrzebny jest tylko jeden wariant, zamiast produktu możesz dodać sam wariant. W przeciwnym razie nowe warianty tego produktu będą automatycznie dostępne do wyboru, o ile nie odznaczysz ich tutaj.",
+                    "title": "Wybrano tylko jeden wariant"
+                }
+            },
+            "showRestricted": "Pokaż tylko z ograniczeniami ({count})",
+            "showSelected": "Pokaż tylko wybrane ({count})"
+        },
+        "bundleItemQuantityAdjustmentNotification": {
+            "multiple": {
+                "message": "Ilości zostały skorygowane tak, aby odpowiadały limitom ilościowym na zamówienie produktów.",
+                "title": "Zmieniono ilość produktów {count}"
+            },
+            "single": {
+                "message": "Ilość została dostosowana do limitów obowiązujących dla tego produktu.",
+                "title": "Zmieniono ilość produktu „{productName}”"
+            }
         },
         "bundleItemRemovalConfirmationModal": {
-            "applyChanges": "Przejmij zmiany"
+            "applyChanges": "Przejmij zmiany",
+            "description": "Te zmiany pozostawiają pakiet z mniej niż 3 produktami. Aby pakiet był możliwy do zakupu, wszystkie opcjonalne produkty zostaną ustawione na wymagane.",
+            "title": "Opcjonalne produkty zostaną ustawione na wymagane"
         },
         "bundleItemSelectionModal": {
             "emptyStateTitle": "Nie znaleziono pasujących produktów",
+            "noProductsMatchingBundleSalesChannels": "Brak aktywnych produktów dostępnych w kanałach sprzedaży wybranych dla tego pakietu.",
+            "noProductsMatchingTermAndFilter": "Dostosuj wyszukiwane hasło lub filtry.",
             "placeholderSearch": "Przeszukaj wszystkie produkty...",
-            "title": "Dodaj produkty"
+            "showIncluded": "Pokaż tylko wybrane ({count})",
+            "showOnlyProducts": "Pokaż tylko produkty",
+            "textWhySomeItemsMissing": "Dlaczego brakuje niektórych produktów?",
+            "title": "Dodaj produkty",
+            "tooltipAlreadyAdded": "Już dodany do tego pakietu {count} razy",
+            "tooltipWhySomeItemsMissing": "W tej chwili pakiety działają tylko z produktami fizycznymi.<br /><br /> Produkty muszą być przypisane do wybranych Kanałów Sprzedaży, aby pojawiły się na liście."
         },
         "bundleListFilters": {
             "activeFilter": {
@@ -1047,10 +1131,12 @@
                 "placeholder": "Wybierz..."
             },
             "availabilityFilter": {
-                "label": "Reguła dostępności"
+                "label": "Reguła dostępności",
+                "placeholder": "Wybierz dostępność..."
             },
             "bundleIncludedProductsFilter": {
-                "label": "Dołączone produkty"
+                "label": "Dołączone produkty",
+                "placeholder": "Wybierz produkty zawarte w pakiecie..."
             },
             "categoriesFilter": {
                 "label": "Kategorie",
@@ -1059,6 +1145,7 @@
             "fromPlaceholder": "Wprowadź wartość początkową...",
             "imagesFilter": {
                 "label": "Obrazy",
+                "placeholder": "Wybierz stan obrazu...",
                 "textHasCriteria": "Przypisano co najmniej jeden obraz produktu",
                 "textNoCriteria": "Nie przypisano żadnych obrazów produktów"
             },
@@ -1092,11 +1179,19 @@
         },
         "detail": {
             "bundleItems": {
+                "actionOpenProductDetailPage": "Otwórz szczegóły produktu",
                 "buttonAddBundleItems": "Dodaj produkty",
                 "columnName": "Nazwa",
+                "columnOptional": "Opcjonalnie",
                 "columnPosition": "Pozycja",
                 "columnPrice": "Cena",
                 "columnQuantity": "Ilość",
+                "emptyStateDescription": "Dodaj do pakietu co najmniej dwa produkty.",
+                "emptyStateTitle": "Nie dodano jeszcze żadnych produktów",
+                "messageOptionalProductsSetRequired": "Wszystkie produkty opcjonalne zostały ustawione na wymagane.",
+                "quantityConflictIndicator": "Limity ilościowe tego produktu są sprzeczne z jego skonfigurowaną ilością w pakiecie.",
+                "quantityLimitIndicator": "Ten produkt ma ograniczenia ilości zamówienia, które wpływają na to, ile sztuk można kupić.",
+                "title": "Produkty ({count})",
                 "tooltipRefreshData": "Odśwież dane"
             },
             "customFields": {
@@ -1116,15 +1211,19 @@
                 "subtitle": "Dodaj pliki do galerii multimediów pakietu.",
                 "title": "Media"
             },
+            "messageBundleNotFound": "Nie znaleziono pakietu.",
             "messageMinBundleItemsRequired": "Dodaj co najmniej dwa produkty, aby utworzyć pakiet.",
             "messageNoChanges": "Brak zmian do zapisania",
             "messageSaveError": "Nie udało się zapisać pakietu",
             "messageSaveSuccess": "Pakiet został pomyślnie zapisany",
             "price": {
+                "absoluteDiscountHelpText": "W przypadku zwrotu towaru lub zwrotu środków rabat jest rozdzielany proporcjonalnie na wybrane produkty.",
+                "absoluteDiscountHint": "Rabaty kwotowe są ograniczone do wartości pakietu, dlatego ceny pozycji nie mogą spaść poniżej 0 {currency}.",
                 "addDiscount": "Dodaj rabat",
                 "conditionsTitle": "Warunki",
                 "currencyDependingPrices": "Waluta w zależności od cen",
                 "discount": "Rabat",
+                "discountHigherThanBundleValue": "Skonfigurowany rabat jest wyższy niż bieżąca wartość pakietu. Można zastosować tylko {value}.",
                 "discountRules": "Zasady rabatowe",
                 "discountTitle": "Rabat",
                 "discountType": "Typ",
@@ -1135,6 +1234,13 @@
                 "doNotCombineWith": "Nie łączą się z",
                 "maxValuePlaceholder": "Nieograniczony",
                 "maximumDiscountValue": "Maksymalna wartość rabatu",
+                "minimumBundleValue": "Minimalna wartość pakietu",
+                "minimumBundleValueBanner": "Bez minimalnej wartości pakietu klienci mogą otrzymać pełny rabat na pakiety o niższej wartości. Ustaw minimalną wartość, aby określić, kiedy obowiązuje rabat.",
+                "minimumBundleValueBelowDiscountValueWarning": "Minimalna wartość pakietu nie przekracza kwoty rabatu. Klienci mogą otrzymać bardzo wysoki rabat na pakiety o niskiej wartości.",
+                "minimumBundleValueExceedBundleSubtotalWarning": "Minimalna wartość pakietu jest wyższa niż suma częściowa widoczna powyżej. Przy tej sumie rabat nie zostałby naliczony. Obniż minimalną wartość lub zmień konfigurację pakietu.",
+                "minimumBundleValueHelpText": "Rabat obowiązuje tylko wtedy, gdy aktualna wartość pakietu osiągnie tę kwotę.",
+                "minimumBundleValueHint": "Warto zostawić margines, ponieważ ceny w Storefront mogą się różnić ze względu na warianty, grupy klientów, reguły cenowe lub rabaty.",
+                "minimumBundleValuePlaceholder": "Brak minimum",
                 "openAdvancedPricesView": "Otwórz rozszerzony widok cen",
                 "preventCombination": "Zapobieganie połączeniu z innymi promocjami",
                 "preventCombinationHelpText": "Po włączeniu tej zniżki nie można łączyć z innymi promocjami",
@@ -1174,7 +1280,8 @@
             "labelProductNumber": "Numer produktu",
             "placeholderDescription": "Wprowadź opis pakietu...",
             "placeholderName": "Wprowadź nazwę pakietu...",
-            "placeholderProductNumber": "Wprowadź numeru produktu..."
+            "placeholderProductNumber": "Wprowadź numeru produktu...",
+            "priorityHelpText": "Określa, który pakiet ma priorytet, gdy pojedynczo dodany produkt może tworzyć wiele pakietów w koszyku. Wyższe wartości mają pierwszeństwo."
         },
         "list": {
             "available": "Produkt wciąż dostępny",
@@ -1195,14 +1302,24 @@
             "unavailable": "Niedostępne"
         },
         "productType": {
+            "labelParent": "Produkt z wariantami",
             "labelStandard": "Produkt",
+            "labelVariant": "{variantOptions}",
+            "tooltipParent": "Produkt z wariantami",
             "tooltipVariant": "Wariant"
         },
         "restrictionIndicator": {
-            "isInactive": "Nieaktywny"
+            "isCustomizedProduct": "Przypisano szablon Custom Products",
+            "isInactive": "Nieaktywny",
+            "isOutOfStockCloseout": "Brak na stanie (wyprzedaż magazynowa)",
+            "isVisibilityMismatch": "Nieprzypisany do kanałów sprzedaży pakietu: {salesChannels}",
+            "noSelectedVariants": "Nie wybrano wariantów",
+            "title": "Ograniczenia:"
         },
         "salesChannelModal": {
-            "buttonSave": "Dodaj produkty"
+            "buttonSave": "Dodaj produkty",
+            "description": "Najpierw wybierz kanał sprzedaży, aby zobaczyć, które produkty można dodać do pakietu. Możesz to później dostosować na karcie Widoczność i struktura.",
+            "title": "Wymagany kanał sprzedaży"
         }
     },
     "sw-cms": {
@@ -2425,7 +2542,8 @@
                         "placeholder": "Wprowadź opis jednostki organizacyjnej"
                     },
                     "email": {
-                        "label": "Adres e-mail"
+                        "label": "Adres e-mail",
+                        "placeholder": "Wprowadź adres e-mail jednostki organizacyjnej"
                     },
                     "employees": {
                         "label": "Pracownicy",
@@ -2489,6 +2607,9 @@
                 "title": "Podjednostki organizacyjne"
             },
             "successNotification": "Jednostka organizacyjna pomyślnie zapisana"
+        },
+        "flow": {
+            "recipientLabel": "Jednostka organizacyjna"
         },
         "general": {
             "actions": {
@@ -2560,6 +2681,22 @@
     "sw-product": {
         "bundles": {
             "addBundleTitle": "Dodaj produkt do pakietów",
+            "assignmentRemovalConfirmation": {
+                "buttonRemoveAndUpdate": "Usuń i zaktualizuj",
+                "buttonRemoveWherePossible": "Usuń tam, gdzie to możliwe",
+                "descriptionBlocked": "Nie można usunąć tego produktu z poniższych pakietów, ponieważ muszą one zawierać co najmniej 2 produkty:",
+                "descriptionCombined": "Ten produkt można usunąć z niektórych pakietów, ale nie ze wszystkich. W niektórych pakietach usunięcie go spowoduje również ustawienie opcjonalnych produktów na wymagane.",
+                "descriptionOptionalMultiple": "Usunięcie tego produktu pozostawi tylko 2 produkty w następujących pakietach. Aby można je było kupić, pozostałe produkty zostaną ustawione na wymagane:",
+                "descriptionOptionalSingle": "Usunięcie tego produktu pozostawi tylko 2 produkty w pakiecie. Aby pakiet był możliwy do zakupu, pozostałe produkty zostaną ustawione na wymagane.",
+                "hintBlockedOnly": "Aby usunąć ten produkt, najpierw dodaj inny produkt do tych pakietów.",
+                "hintCombined": "Zmiany zostaną wprowadzone na stronie, ale trzeba je jeszcze zapisać.",
+                "hintOptional": "Zmiany zostaną wprowadzone na stronie, ale trzeba je jeszcze zapisać.",
+                "hintRemoveWherePossible": "Po kontynuowaniu produkt zostanie usunięty z pozostałych wybranych pakietów. Zmiany trzeba jeszcze zapisać.",
+                "notRemovedLabel": "Produkt nie zostanie usunięty z:",
+                "optionalRequiredLabel": "Opcjonalne produkty zostaną ustawione na wymagane w:",
+                "titleBlocked": "Nie można usunąć produktu ze wszystkich pakietów",
+                "titleOptionalRequired": "Opcjonalne produkty zostaną ustawione na wymagane"
+            },
             "bundleCardSubtitle": "Wszystkie pakiety zawierające ten produkt",
             "bundleCardTitle": "Zestawy ({count})",
             "buttonAddBundle": "Dodaj produkt do pakietów",
@@ -2578,13 +2715,21 @@
             "emptyStateDescription": "Pakiety mogą zwiększyć średnią wartość zamówienia i zachęcić klientów do zakupu powiązanych produktów. Pakiety pojawiają się na stronie szczegółów produktu, jeśli układ CMS zawiera element pakietu.",
             "emptyStateDescriptionCreateFirst": "Pakiety mogą zwiększyć średnią wartość zamówienia i zachęcić klientów do zakupu powiązanych produktów. Pakiety pojawiają się na stronie szczegółów produktu, jeśli układ CMS zawiera element pakietu. Utwórz pakiet, aby dodać ten produkt.",
             "emptyStateNoBundlesFound": "Nie znaleziono pasujących pakietów",
+            "emptyStateNoBundlesFoundDescription": "Dostosuj wyszukiwane hasło lub filtry.",
             "emptyStateTitle": "Dodaj produkt do pakietów, aby zwiększyć sprzedaż",
             "hideOnProductDetailPage": "Ukryj na stronie szczegółów produktu",
             "messageSaveSuccess": "Pakiet \"{name}\" został zapamiętany.",
+            "openBundleDetailPage": "Otwórz szczegóły pakietu",
+            "orderQuantityChangedInfo": "Ten produkt jest częścią pakietu. Zmiana jego minimalnej lub maksymalnej ilości zamówienia albo kroku zakupu może wpłynąć na ilość, jaką można kupić w ramach pakietu. Pakiet znajdziesz w karcie „Pakiety”. | Ten produkt jest częścią {count} pakietów. Zmiana jego minimalnej lub maksymalnej ilości zamówienia albo kroku zakupu może wpłynąć na ilość, jaką można kupić w ramach tych pakietów. Wszystkie pakiety znajdziesz w karcie „Pakiety”.",
+            "orderQuantityConflictInfo": "Zmiana minimalnej lub maksymalnej ilości zamówienia albo kroku zakupu tego produktu powoduje konflikt z ilościami skonfigurowanymi w niektórych pakietach. Przed zapisaniem dostosuj te pakiety, aby nadal można było je kupić.",
+            "orderQuantityUpdatedSuccess": "Ilość tego produktu została dostosowana w 1 pakiecie. | Ilość tego produktu została dostosowana w {count} pakietach.",
             "placeholderSearch": "Szukaj pakietów...",
             "refreshDataTooltip": "Odśwież dane",
             "restrictionIndicator": {
-                "isInactive": "Nieaktywny"
+                "isInactive": "Nieaktywny",
+                "isRestricted": "Co najmniej jeden produkt ma ograniczenia, które wpływają na dostępność tego pakietu. Więcej informacji znajdziesz w szczegółach pakietu.",
+                "isVisibilityMismatch": "Nie przypisany do Kanałów Sprzedaży Produktu: {salesChannels}",
+                "title": "Ograniczenia:"
             },
             "showOnProductDetailPage": "Pokaż na stronie szczegółów produktu",
             "showOnlyIncluded": "Pokaż tylko wybrane",
@@ -2621,6 +2766,9 @@
         },
         "variants-overview": {
             "inlineText": "Zobacz szczegóły"
+        },
+        "variations": {
+            "generatedListMessageDeleteErrorBundle": "Nie można usunąć poniższego wariantu, ponieważ jest przypisany do co najmniej jednego pakietu: {variants} | Nie można usunąć poniższych wariantów, ponieważ są przypisane do co najmniej jednego pakietu: {variants}"
         }
     },
     "sw-product-detail-review-summary": {
@@ -3118,24 +3266,36 @@
                 }
             },
             "camera": {
+                "add": "Dodaj kamerę",
                 "create": {
+                    "perspective": "Nowa kamera",
                     "prefix": "Kamera"
+                },
+                "delete": {
+                    "label": "Usuń kamerę"
                 },
                 "locked": "Zablokowany",
                 "name": {
-                    "label": "Nazwa"
+                    "label": "Nazwa",
+                    "placeholder": "Wprowadź nazwę kamery..."
                 },
                 "options": "Opcje",
                 "position": {
                     "label": "Pozycja"
                 },
+                "positionRotation": "Pozycja & Rotacja",
                 "reset": "Cofnij",
                 "rotation": {
                     "label": "Rotacja"
                 },
                 "select": {
-                    "label": "Kamera"
-                }
+                    "label": "Kamera",
+                    "placeholder": "Wybierz kamerę..."
+                },
+                "target": {
+                    "label": "Punkt obrotu"
+                },
+                "title": "Kamery"
             },
             "group": {
                 "options": "Opcje",
