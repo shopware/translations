@@ -241,7 +241,12 @@
     },
     "checkout": {
         "bundle-discount-removed": "Zniżka na pakiet na \"%bundleName%\" została usunięta, ponieważ jednego lub więcej produktów nie ma już w koszyku.",
+        "bundle-discount-removed-combined": "Zniżka \"%bundleName%\" została usunięta. Identyczne produkty zostały ponownie połączone.",
+        "bundle-discount-removed-manual": "Zniżka \"%bundleName%\" została usunięta.",
+        "bundle-insufficient-stock": "Nie można dodać pakietu „%bundleName%” do koszyka, ponieważ nie wszystkie jego produkty są dostępne w wybranej ilości.",
         "bundle-items-has-been-added": "%numberOfItemsAdded% produkty z \"%bundleName%\" zostały dodane do koszyka.",
+        "bundle-restored": "Niektóre produkty w koszyku kwalifikują się teraz do pakietu „%bundleName%”. Rabat został automatycznie naliczony dla tych produktów. <a href=\"?bundleId=%bundleId%&configurationHash=%configurationHash%&undoRestore=1\" class=\"js-bundle-restore-undo\">Cofnij</a>",
+        "bundle-restored-split": "Niektóre produkty w koszyku kwalifikują się teraz do pakietu „%bundleName%”. Do pakietu dodano tylko wymagane ilości, a pozostałe sztuki zostały w koszyku jako osobne pozycje. <a href=\"?bundleId=%bundleId%&configurationHash=%configurationHash%&undoRestore=1\" class=\"js-bundle-restore-undo\">Cofnij</a>",
         "guest-customer-not-allowed": "Subskrypcja nie jest dostępna dla klientów bez konta. Zaloguj się lub utwórz konto.",
         "order-approval-blocked": "To zamówienie musi zostać zatwierdzone z następującego powodu: %reason%",
         "paymentStatus": "Zatwierdzenie oczekuje",
@@ -342,6 +347,7 @@
         }
     },
     "detail": {
+        "configureAndAddToCartButton": "Skonfiguruj i dodaj do koszyka",
         "deliveryTimeRange": "Dostępne, czas dostawy: %range% %unit%",
         "deliveryTimeUnit": {
             "day": "{1} dni| [0, Inf [dni",
@@ -624,7 +630,8 @@
         "ORGANIZATION_UNITS__HAS_CHILDREN": "Jednostka organizacyjna nie może zostać usunięta, ponieważ nadal zawiera podległe jednostki organizacyjne. Najpierw je usuń lub przenieś.",
         "ORGANIZATION_UNITS__TECHNICAL_NAME_NOT_UNIQUE": "Ta nazwa techniczna jest już używana. Proszę wybrać inny.",
         "VIOLATION::AT_LEAST_ONE_CHOICE": "Trzeba dodać co najmniej jeden %option%",
-        "VIOLATION::ENTITY_EXISTS": "Nazwa techniczna już istnieje. Proszę wybrać inną nazwę techniczną."
+        "VIOLATION::ENTITY_EXISTS": "Nazwa techniczna już istnieje. Proszę wybrać inną nazwę techniczną.",
+        "VIOLATION::TOO_FEW_BUNDLE_ITEMS": "{1} Wymagany jeszcze 1 produkt|[2,4] Wymagane jeszcze %count% produkty|[0,Inf[ Wymaganych jeszcze %count% produktów"
     },
     "general": {
         "categories": "Kategorie",
@@ -714,6 +721,7 @@
             "descriptionLabel": "Opis",
             "descriptionPlaceholder": "Wprowadź opis jednostki organizacyjnej",
             "emailLabel": "Adres e-mail",
+            "emailPlaceholder": "Wprowadź adres e-mail jednostki organizacyjnej",
             "employeesLabel": "Przydziel pracowników",
             "employeesPlaceholder": "Szukaj pracowników",
             "generalInformation": "Informacje ogólne",
@@ -728,7 +736,10 @@
             "paymentMethodsInheritTitle": "Domyślnie używa metod płatności jednostki macierzystej organizacji. Wyłącz dziedziczenie, aby edytować to ustawienie.",
             "paymentMethodsLabel": "Zezwalaj tej organizacji na dostęp do metod płatności",
             "paymentMethodsTitle": "Metody płatności",
+            "requiredFieldsMessage": "Proszę wypełnić wszystkie wymagane pola przed utworzeniem jednostki organizacyjnej.",
             "saveButtonLabel": "Tworzenie jednostki organizacyjnej",
+            "saveError": "Nie udało się zapisać jednostki organizacyjnej. Sprawdź wprowadzone dane.",
+            "saveSuccess": "Jednostka organizacyjna została pomyślnie utworzona.",
             "shippingAddressLabel": "Zezwalaj tej organizacji na dostęp do adresów wysyłkowych",
             "shippingAddressTitle": "Adresy wysyłki",
             "shippingAddressesDisinheritTitle": "Podjednostki organizacyjne z włączonym dziedziczeniem automatycznie używają tych adresów wysyłkowych.",
@@ -744,6 +755,7 @@
         },
         "createButton": "Utwórz jednostkę",
         "detail": {
+            "saveSuccess": "Jednostka organizacyjna została pomyślnie zaktualizowana.",
             "title": "Szczegóły jednostki organizacyjnej"
         },
         "emptyDescription": "Utwórz nową jednostkę organizacyjną.",
@@ -1208,13 +1220,28 @@
     "swag-product-bundle": {
         "blocks": {
             "bundleItems": {
+                "applyErrorMessage": "Przepraszamy, nie można zastosować tego wyboru. Spróbuj ponownie.",
                 "applyLabel": "Zastosuj",
                 "configureLabel": "Skonfiguruj",
+                "includeLabel": "W zestawie",
+                "limitedByIncludedProduct": "Ograniczone przez jeden z produktów w pakiecie",
+                "limitsBundleQuantity": "Ogranicza ilość pakietu",
                 "loadingLabel": "Ładowanie",
                 "quantityLabel": "Ilość",
+                "reduceBundleQuantityToInclude": "Zmniejsz ilość pakietu, aby uwzględnić ten produkt",
+                "selectionError": "Ta konfiguracja pakietu jest niedostępna. Zmień swój wybór.",
                 "title": "Dołączone produkty",
-                "titleCounter": "%title% (%count%)"
+                "titleCounter": "%title% (%count%)",
+                "totalIncluded": "Ogółem w zestawie: %count%",
+                "variantInsufficientStock": "Dostępny tylko %available%. Twoja obecna ilość wymaga %required%. Wybierz inny wariant lub zmniejsz ilość."
+            },
+            "buyWidget": {
+                "maxDiscountReached": "Maksymalna zniżka %amount% została osiągnięta.",
+                "minDiscountNotReached": "Dodaj produkty o wartości jeszcze %amount%, aby otrzymać rabat."
             }
+        },
+        "checkout": {
+            "removeBundleDiscount": "Usuń zniżkę na pakiet „%bundleName%”"
         },
         "productCard": {
             "boxLabelDiscount": "Zniżka na pakiet",
