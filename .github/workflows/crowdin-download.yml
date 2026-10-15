@@ -13,6 +13,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
   CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+  LOCALIZATION_BRANCH: i18n_crowdin_translations
 
 jobs:
   crowdin-download:
@@ -21,29 +22,19 @@ jobs:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
 
-      - name: Synchronize with Crowdin
+      # Only download into the workspace. Crowdin re-exports every file on each run, so the
+      # branch and pull request are created below, after the export has been cleaned up and
+      # compared against main.
+      - name: Download translations from Crowdin
         uses: crowdin/github-action@v1
         with:
           upload_sources: false
           upload_translations: false
           download_translations: true
-          localization_branch_name: i18n_crowdin_translations
-          create_pull_request: true
-          pull_request_title: 'Crowdin translations'
-          pull_request_body: 'Crowdin translations update'
-          pull_request_base_branch_name: 'main'
+          push_translations: false
+          create_pull_request: false
 
-  update-metadata:
-    needs: crowdin-download
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout localization branch fresh
-        uses: actions/checkout@v4
-        with:
-          ref: i18n_crowdin_translations
-          fetch-depth: 0
-
-      - name: Update meta data
+      - name: Clean up export, update metadata and open pull request
         run: |
           # Exit immediately on error (-e), treat unset variables as an error (-u),
           # and ensure pipeline errors are not masked (-o pipefail)
@@ -52,60 +43,53 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Fetch the latest changes for the main branch (no tags, remove deleted refs)
-          git fetch --no-tags --prune origin main
+          # Crowdin exports untranslated strings as "", which Shopware would render literally
+          # instead of falling back to en-GB. Drop them (and objects left empty by that) so only
+          # real translations reach the language files; a file without any translation is removed.
+          mapfile -t EXPORTED < <(git diff --name-only --diff-filter=ACMRT origin/main -- translations)
+          echo "Exported files: ${#EXPORTED[@]}"
 
-          if ! git show-ref --verify --quiet refs/remotes/origin/i18n_crowdin_translations; then
-            echo "Branch i18n_crowdin_translations does not exist, exiting successfully"
+          for file in "${EXPORTED[@]}"; do
+            [[ "${file}" == translations/*.json && -f "${file}" ]] || continue
+            # de-DE and en-GB are maintained in the shopware repo; empty strings there are intentional
+            [[ "${file}" == translations/de-DE/* || "${file}" == translations/en-GB/* ]] && continue
+            jq --indent 4 '
+              def prune: if type == "object"
+                then with_entries(.value |= prune) | with_entries(select(.value != "" and .value != {}))
+                else . end;
+              prune
+            ' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
+
+            if [[ "$(jq 'length' "${file}")" == "0" ]]; then
+              echo "Removing ${file}: no translations left"
+              rm "${file}"
+            fi
+          done
+
+          # Only files that still differ from main after the cleanup count as changed
+          mapfile -t CHANGED < <(git diff --name-only origin/main -- translations)
+          echo "Changed files after cleanup: ${#CHANGED[@]}"
+
+          if (( ${#CHANGED[@]} == 0 )); then
+            echo "Crowdin export contains no translation changes, nothing to do."
             exit 0
           fi
 
-          # Check out the i18n_crowdin_translations branch and ensure it's tracking the remote
-          git checkout -B i18n_crowdin_translations origin/i18n_crowdin_translations
+          # Run the metadata update script, passing the changed files as arguments
+          node scripts/update-metadata.mjs "${CHANGED[@]}"
 
-          # Get a list of files changed between main and the current branch
-          #   - name-only: only show file paths
-          #   - diff-filter=ACMRT: include Added, Copied, Modified, Renamed, and Type changed files
-          # Store results in an array variable (FILES)
-          mapfile -t FILES < <(git diff --name-only --diff-filter=ACMRT origin/main...HEAD)
-          echo "Changed files: ${#FILES[@]}"
+          # Rebuild the localization branch from main so it only ever carries the current export
+          git checkout -B "${LOCALIZATION_BRANCH}"
+          git add translations crowdin-metadata.json
+          git commit -m "New Crowdin translations by GitHub Action"
+          git push --force origin "${LOCALIZATION_BRANCH}"
 
-          # Proceed only if at least one file was changed
-          if (( ${#FILES[@]} > 0 )); then
-            # Crowdin exports untranslated strings as "", which Shopware would render literally
-            # instead of falling back to en-GB. Drop them (and objects left empty by that) so only
-            # real translations reach the language files; a file without any translation is removed.
-            for file in "${FILES[@]}"; do
-              [[ "${file}" == translations/*.json && -f "${file}" ]] || continue
-              # de-DE and en-GB are maintained in the shopware repo; empty strings there are intentional
-              [[ "${file}" == translations/de-DE/* || "${file}" == translations/en-GB/* ]] && continue
-              jq --indent 4 '
-                def prune: if type == "object"
-                  then with_entries(.value |= prune) | with_entries(select(.value != "" and .value != {}))
-                  else . end;
-                prune
-              ' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
-
-              if [[ "$(jq 'length' "${file}")" == "0" ]]; then
-                echo "Removing ${file}: no translations left"
-                rm "${file}"
-              fi
-            done
-
-            # Run the metadata update script, passing the changed files as arguments
-            node scripts/update-metadata.mjs "${FILES[@]}"
-
-            git add translations crowdin-metadata.json
-
-            # If the cleanup or the metadata script changed anything...
-            if ! git diff --cached --quiet; then
-              git commit -m "Update Crowdin metadata"
-
-              # Push changes back to the same branch on GitHub
-              git push origin HEAD:i18n_crowdin_translations
-            else
-              echo "Translations and metadata unchanged, nothing to commit."
-            fi
+          if [[ -z "$(gh pr list --head "${LOCALIZATION_BRANCH}" --base main --state open --json number --jq '.[0].number')" ]]; then
+            gh pr create \
+              --head "${LOCALIZATION_BRANCH}" \
+              --base main \
+              --title 'Crowdin translations' \
+              --body 'Crowdin translations update'
           else
-            echo "No translation files changed vs main."
+            echo "Pull request for ${LOCALIZATION_BRANCH} already open, updated via push."
           fi
