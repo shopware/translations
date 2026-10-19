@@ -46,6 +46,9 @@ jobs:
           # Crowdin exports untranslated strings as "", which Shopware would render literally
           # instead of falling back to en-GB. Drop them (and objects left empty by that) so only
           # real translations reach the language files; a file without any translation is removed.
+          # git diff ignores untracked paths, so files new to the repo must be registered first or
+          # they would skip the cleanup and still be swept up by the git add below.
+          git add --intent-to-add translations
           mapfile -t EXPORTED < <(git diff --name-only --diff-filter=ACMRT origin/main -- translations)
           echo "Exported files: ${#EXPORTED[@]}"
 
@@ -54,8 +57,9 @@ jobs:
             # de-DE and en-GB are maintained in the shopware repo; empty strings there are intentional
             [[ "${file}" == translations/de-DE/* || "${file}" == translations/en-GB/* ]] && continue
             jq --indent 4 '
-              def prune: if type == "object"
-                then with_entries(.value |= prune) | with_entries(select(.value != "" and .value != {}))
+              def prune:
+                if type == "object" then with_entries(.value |= prune) | with_entries(select(.value != "" and .value != {}))
+                elif type == "array" then map(prune) | map(select(. != "" and . != {}))
                 else . end;
               prune
             ' "${file}" > "${file}.tmp" && mv "${file}.tmp" "${file}"
