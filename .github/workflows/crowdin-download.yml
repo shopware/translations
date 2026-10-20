@@ -43,6 +43,12 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # TODO(shopware/shopware#19857): After updating Crowdin CLI, use an action version
+          # with `user: auto` and remove this ownership workaround.
+          # The Crowdin Docker action runs as root and may create root-owned exports.
+          # Transfer only those entries to the runner so cleanup can rewrite or remove them.
+          sudo find translations -uid 0 -exec chown "$(id -u):$(id -g)" {} +
+
           # Crowdin exports untranslated strings as "", which Shopware would render literally
           # instead of falling back to en-GB. Drop them (and objects left empty by that) so only
           # real translations reach the language files; a file without any translation is removed.
