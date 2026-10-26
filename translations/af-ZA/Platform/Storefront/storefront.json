@@ -102,6 +102,7 @@
         "VIOLATION::VAT_ID_FORMAT_NOT_CORRECT": "Die BTW-reg.nr wat u ingevoer het, het nie die regte formaat nie.",
         "VIOLATION::ZIP_CODE_INVALID": "Die poskode wat u ingevoer het, het nie die regte formaat nie.",
         "VIOLATION::INVALID_FORMAT_ERROR": "Die invoer het nie die regte formaat nie.",
+        "VIOLATION::CONTAINS_HTML_ERROR": "Moet asseblief nie HTML gebruik nie.",
         "VIOLATION::INVALID_EMAIL_FORMAT_ERROR": "Ongeldige e-posadres. E-posadresse moet die formaat \"user@example.com” gebruik.",
         "VIOLATION::NOT_EQUAL_ERROR": "Bevestigingsveld stem nie ooreen nie.",
         "VIOLATION::FIRST_NAME_IS_BLANK_ERROR": "Vul asseblief jou voornaam in.",
@@ -144,6 +145,7 @@
         "CHECKOUT__ORDER_ORDER_ALREADY_PAID": "Die bestelling met die bestellingsnommer \"%orderNumber%\" is reeds betaal en kan nie daarna geredigeer word nie.",
         "CHECKOUT__ORDER_ORDER_CANCELLED": "Die bestelling met die bestellingsnommer \"%orderNumber%\" is gekanselleer en kan nie daarna geredigeer word nie.",
         "CHECKOUT__ORDER_ORDER_NOT_FOUND": "Hierdie bestelling kon nie gevind word nie.",
+        "CHECKOUT__ORDER_RESTORATION_FAILED": "Die bestelling met die bestellingsnommer \"%orderNumber%\" kon nie gelaai word vir 'n betaalverandering nie.",
         "CHECKOUT__CART_HASH_MISMATCH": "Produkte of pryse in u inkopiemandjie het moontlik verander. Kyk asseblief na u inkopiemandjie voordat u u bestelling plaas.",
         "CHECKOUT__CART_INVALID_LINE_ITEM_QUANTITY": "Die hoeveelheid (%quantity%) is verkeerd.",
         "urlNotAllowed": "Moet asseblief nie 'n URL in hierdie veld invoer nie."
@@ -486,6 +488,7 @@
         "confirmRevocationNoticeModal": "Let asseblief op ons %revocationModalTagOpen%kansellasiebeleid%revocationModalTagClose%.",
         "confirmRevocationNoticePage": "Let asseblief op ons <a href=\"%url%\">kansellasiebeleid</a>.",
         "confirmLegalGuaranteeNoticeLink": "Jou wettige waarborgregte",
+        "confirmLegalGuaranteeNotice": "Let asseblief op %leGalGuaranteNoticeModaltagOpen%U wettige waarborgregte%legalGuaranteeNoticeModalTagClose%.",
         "confirmTermsText": "Ek het die <a class=\"checkout-confirm-terms-modal\" data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\">algemene bepalings en voorwaardes</a>gelees en aanvaar.",
         "confirmTermsTextModal": "Ek het die %toSmodaltagOpen%galgemene bepalings en voorwaardes%tosModalTagClose%gelees en aanvaar.",
         "confirmTermsTextPage": "Ek het die <a href=\"%url%\">algemene bepalings en voorwaardes</a>gelees en aanvaar.",
@@ -520,7 +523,8 @@
         "cart-merged-hint": "Die huidige inkopiemandjie kan addisionele produkte bevat wat tydens 'n vorige besoek bygevoeg en gestoor is.",
         "collapseTriggerMore": "Wys meer",
         "collapseTriggerLess": "Wys minder",
-        "createAccountHeading": "Om toekomstige aankope te versnel, skep 'n gebruikersrekening"
+        "createAccountHeading": "Om toekomstige aankope te versnel, skep 'n gebruikersrekening",
+        "createAccountButton": "Skep rekening"
     },
     "listing": {
         "filterTitleText": "Filter produkte",
@@ -579,6 +583,7 @@
         "subscribeOption": "Teken in op nuusbrief",
         "unsubscribeOption": "Ontteken op nuusbrief",
         "formSubmit": "Teken in",
+        "formSubmitUnsubscribe": "Ontteken",
         "subscriptionPersistedSuccess": "U het pas ingeteken op ons nuusbrief.\n Om die aanmeldproses te voltooi, soek u inboks vir ons bevestigings-e-pos en klik op die skakel wat daarmee verskaf word.",
         "subscriptionPersistedInfo": "As u nie in die volgende paar minute 'n bevestiginge-pos ontvang nie, is u moontlik reeds op die nuusbrief ingeteken. Gaan jou inboks en stromplêergids na. Probeer dan weer in teken en kontak ons ondersteuning as dit ook nie werk nie.",
         "subscriptionRevokeSuccess": "U het suksesvol van die nuusbrief ontteken.",
@@ -604,7 +609,11 @@
     },
     "revocationRequest": {
         "headline": "Herroeping",
+        "firstNameLabel": "Voornaam",
+        "lastNameLabel": "Naam",
+        "eMailLabel": "E-posadres",
         "contractNumberLabel": "Kontraknommer (bestellingsnommer, intekennommer,...)",
+        "commentLabel": "Kommentaar",
         "privacyNoticeTextModal": "Ons privaatheidskennisgewing is beskikbaar %privacyModalTagOpen%here%privacyModalTagClose%.",
         "formSubmit": "Bevestig herroeping",
         "success": "Ons het u herroepingsversoek ontvang en sal dit so gou as moontlik verwerk."
@@ -616,6 +625,9 @@
     "detail": {
         "garanLabelShowLink": "Wys GARAN etiket",
         "garanLabelHideLink": "Versteek GARAN-etiket",
+        "garanLabelTitle": "GARAN etiket",
+        "garanLabelYourEuropeLink": "Inligting oor die kommersiële waarborg van duursaamheid op U Europa (open in 'n nuwe oortjie)",
+        "garanTermsLink": "Waarborg voorwaardes",
         "ordernumberLabel": "Produk nommer:",
         "productNumberLabel": "Produk nommer:",
         "addProduct": "Voeg by inkopiemandjie",
@@ -819,6 +831,7 @@
             },
             "quantitySelect": {
                 "legend": "Produkhoeveelheid: Voer die gewenste hoeveelheid in of gebruik die knoppies om die hoeveelheid te verhoog of te verminder.",
+                "cartUpdateHint": "Die verandering van die hoeveelheid werk die mandjie op.",
                 "areaLiveText": "Hoeveelheid %product% gestel op %quantity%.",
                 "label": "Hoeveelheid",
                 "labelWithProduct": "Hoeveelheid van %product%",
@@ -826,7 +839,8 @@
                 "increaseOfProduct": "Verhoog die hoeveelheid van %product%",
                 "decrease": "Verminder hoeveelheid",
                 "decreaseOfProduct": "Verminder die hoeveelheid van %product%",
-                "stockAdjusted": "Jou hoeveelheid is opgedateer na %quantity%."
+                "stockAdjusted": "Jou hoeveelheid is opgedateer na %quantity%.",
+                "outOfStock": "Die produk is nie meer beskikbaar nie."
             },
             "configurator": {
                 "legend": "<span class=\"%hidden_cls%\">Kies&nbsp;</span>%group_name%"

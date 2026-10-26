@@ -102,6 +102,7 @@
         "VIOLATION::VAT_ID_FORMAT_NOT_CORRECT": "Codul TVA pe care l-ați introdus nu are formatul corect.",
         "VIOLATION::ZIP_CODE_INVALID": "Codul poștal pe care l-ați introdus nu are formatul corect.",
         "VIOLATION::INVALID_FORMAT_ERROR": "E-mailul pe care l-ați introdus nu are formatul corect.",
+        "VIOLATION::CONTAINS_HTML_ERROR": "Vă rugăm să nu utilizați HTML.",
         "VIOLATION::INVALID_EMAIL_FORMAT_ERROR": "Adresă de e-mail invalidă. Adresele de e-mail trebuie să utilizeze acest format `user@example.com `și să includă `@` și un `.`.",
         "VIOLATION::NOT_EQUAL_ERROR": "Intrarea nu este identică.",
         "VIOLATION::FIRST_NAME_IS_BLANK_ERROR": "Nimic nu a intrat. Vă rugăm să completați acest câmp cu prenumele dvs.",
@@ -144,6 +145,7 @@
         "CHECKOUT__ORDER_ORDER_ALREADY_PAID": "Comanda cu numărul comenzii \"%orderNumber%\" a fost deja plătită și nu poate fi editată ulterior.",
         "CHECKOUT__ORDER_ORDER_CANCELLED": "Comanda cu numărul de comandă \"%orderNumber%\" a fost anulată și nu poate fi editată ulterior.",
         "CHECKOUT__ORDER_ORDER_NOT_FOUND": "Această comandă nu a putut fi găsită.",
+        "CHECKOUT__ORDER_RESTORATION_FAILED": "Comanda cu numărul comenzii \"%orderNumber%\" nu a putut fi încărcată pentru o modificare a plății.",
         "CHECKOUT__CART_HASH_MISMATCH": "Este posibil ca produsele sau prețurile din coșul de cumpărături să se fi modificat. Vă rugăm să verificați coșul de cumpărături înainte de a plasa comanda.",
         "CHECKOUT__CART_INVALID_LINE_ITEM_QUANTITY": "Cantitatea (%quantity%) este incorectă.",
         "urlNotAllowed": "Vă rugăm să nu introduceți o adresă URL în acest câmp."
@@ -486,6 +488,7 @@
         "confirmRevocationNoticeModal": "Vă rugăm să rețineți politica noastră de anulare %revocationModalTagOpen%%revocationModalTagClose%.",
         "confirmRevocationNoticePage": "Vă rugăm să rețineți politica noastră de anulare <a href=\"%url%\"></a>.",
         "confirmLegalGuaranteeNoticeLink": "Drepturile dvs. legale de garanție",
+        "confirmLegalGuaranteeNotice": "Vă rugăm să rețineți %leGalGuaranteenoticeModaltagOpen% Drepturile dvs. legale de garanție%legalGuaranteeNoticeModalTagClose%.",
         "confirmTermsText": "Am citit si acceptat termenii si conditiile generale <a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"general terms and conditions\">termenii si conditiile generale</a>.",
         "confirmTermsTextModal": "Am citit și am acceptat termenii și condițiile generale %toSMODALtagOpen%g%tosModalTagClose%.",
         "confirmTermsTextPage": "Am citit și am acceptat termenii și condițiile generale <a href=\"%url%\"></a>.",
@@ -520,7 +523,8 @@
         "cart-merged-hint": "Coșul de cumpărături actual poate conține produse suplimentare care au fost adăugate și salvate în timpul unei vizite anterioare.",
         "collapseTriggerMore": "Arată mai mult",
         "collapseTriggerLess": "Arată mai puțin",
-        "createAccountHeading": "Pentru a accelera achizițiile viitoare, creați un cont de utilizator."
+        "createAccountHeading": "Pentru a accelera achizițiile viitoare, creați un cont de utilizator.",
+        "createAccountButton": "Creați un cont"
     },
     "listing": {
         "filterTitleText": "Filtru",
@@ -579,6 +583,7 @@
         "subscribeOption": "Aboneaza-te la newsletter",
         "unsubscribeOption": "Dezabonare de la newsletter",
         "formSubmit": "Aboneaza-te",
+        "formSubmitUnsubscribe": "Dezabonare",
         "subscriptionPersistedSuccess": "Tocmai v-ați abonat la newsletter-ul nostru.\n Pentru a finaliza procesul de înscriere, căutați în căsuța poștală e-mailul de confirmare și faceți clic pe linkul furnizat împreună cu acesta.",
         "subscriptionPersistedInfo": "Dacă nu ați primit niciun e-mail, vă rugăm să repetați procesul sau să contactați echipa noastră de asistență.",
         "subscriptionRevokeSuccess": "V-ați dezabonat cu succes de la newsletter.",
@@ -604,7 +609,11 @@
     },
     "revocationRequest": {
         "headline": "Revocare",
+        "firstNameLabel": "Prenume",
+        "lastNameLabel": "Nume de familie",
+        "eMailLabel": "Adresă de e-mail",
         "contractNumberLabel": "Numărul contractului (numărul comenzii, numărul abonamentului,...)",
+        "commentLabel": "Comentariu",
         "privacyNoticeTextModal": "Notificarea noastră de confidențialitate este disponibilă %pRivacyModalTagOpen%here%privacyModalTagClose%.",
         "formSubmit": "Confirmați revocarea",
         "success": "Am primit cererea dvs. de revocare și o vom procesa cât mai curând posibil."
@@ -616,6 +625,9 @@
     "detail": {
         "garanLabelShowLink": "Afișați eticheta GARAN",
         "garanLabelHideLink": "Ascundeți eticheta GARAN",
+        "garanLabelTitle": "Eticheta GARAN",
+        "garanLabelYourEuropeLink": "Informații despre garanția comercială a durabilității în Europa ta (se deschide într-o filă nouă)",
+        "garanTermsLink": "Termeni de garanție",
         "ordernumberLabel": "Numărul produsului:",
         "productNumberLabel": "Numărul produsului:",
         "addProduct": "Adăugați în coșul de cumpărături",
@@ -819,6 +831,7 @@
             },
             "quantitySelect": {
                 "legend": "Cantitate produs: Introduceți cantitatea dorită sau utilizați butoanele pentru a mări sau micșora cantitatea.",
+                "cartUpdateHint": "Schimbarea cantității actualizează coșul.",
                 "areaLiveText": "Cantitatea de %product% setată la %quantity%.",
                 "label": "Cantitate",
                 "labelWithProduct": "Cantitatea de %product%",
@@ -826,7 +839,8 @@
                 "increaseOfProduct": "Creșteți cantitatea de %product%",
                 "decrease": "Reduceți cantitatea",
                 "decreaseOfProduct": "Reduceți cantitatea de %product%",
-                "stockAdjusted": "Cantitatea dvs. a fost actualizată la %quantity%."
+                "stockAdjusted": "Cantitatea dvs. a fost actualizată la %quantity%.",
+                "outOfStock": "Produsul nu mai este disponibil."
             },
             "configurator": {
                 "legend": "<span class=\"%hidden_cls%\">Selectați&nbsp;</span>%group_name%"

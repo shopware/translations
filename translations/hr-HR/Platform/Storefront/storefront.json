@@ -102,6 +102,7 @@
         "VIOLATION::VAT_ID_FORMAT_NOT_CORRECT": "Uneseni PDV identifikacijski broj nije u ispravnom formatu.",
         "VIOLATION::ZIP_CODE_INVALID": "Poštanski broj koji ste unijeli nema ispravan format.",
         "VIOLATION::INVALID_FORMAT_ERROR": "E-mail koji ste unijeli nema ispravan format.",
+        "VIOLATION::CONTAINS_HTML_ERROR": "Molim vas, nemojte koristiti HTML.",
         "VIOLATION::INVALID_EMAIL_FORMAT_ERROR": "Nevažeća adresa e-pošte. Adrese e-pošte moraju koristiti ovaj format \"user@example.com\" i sadržavati \"@\" i \".\".",
         "VIOLATION::NOT_EQUAL_ERROR": "Ulaz nije identičan.",
         "VIOLATION::FIRST_NAME_IS_BLANK_ERROR": "Ništa nije ušlo. Molimo popunite ovo polje svojim imenom.",
@@ -144,6 +145,7 @@
         "CHECKOUT__ORDER_ORDER_ALREADY_PAID": "Narudžba s brojem narudžbe \"%orderNumber%\" već je plaćena i nakon toga se ne može uređivati.",
         "CHECKOUT__ORDER_ORDER_CANCELLED": "Narudžba s brojem narudžbe \"%orderNumber%\" je otkazana i nakon toga se ne može uređivati.",
         "CHECKOUT__ORDER_ORDER_NOT_FOUND": "Ovaj nalog nije mogao biti pronađen.",
+        "CHECKOUT__ORDER_RESTORATION_FAILED": "Narudžba s brojem narudžbe \"%orderNumber%\" nije se mogla učitati za promjenu plaćanja.",
         "CHECKOUT__CART_HASH_MISMATCH": "Proizvodi ili cijene u vašoj košarici možda su se promijenili. Molimo provjerite košaricu prije nego što naručite.",
         "CHECKOUT__CART_INVALID_LINE_ITEM_QUANTITY": "Količina (%quantity%) je netočna.",
         "urlNotAllowed": "Molimo nemojte unositi URL u ovo polje."
@@ -486,6 +488,7 @@
         "confirmRevocationNoticeModal": "Molimo imajte na umu naša pravila otkazivanja %revocationModalTagOpen%%revocationModalTagClose%.",
         "confirmRevocationNoticePage": "Molimo imajte na umu naša pravila otkazivanja <a href=\"%url%\"></a>.",
         "confirmLegalGuaranteeNoticeLink": "Vaša prava na zakonsko jamstvo",
+        "confirmLegalGuaranteeNotice": "Imajte na umu %leGalGuaranteNoticeModalTagOpen%Vaša zakonska prava na jamstvo%legalGuaranteeNoticeModalTagClose%.",
         "confirmTermsText": "Pročitao sam i prihvatio <a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"general terms and conditions\">općih uvjeta</a>.",
         "confirmTermsTextModal": "Pročitao sam i prihvatio %toSmodaltagOpen%gopće uvjete i odredbe%tosModalTagClose%.",
         "confirmTermsTextPage": "Pročitao sam i prihvatio <a href=\"%url%\">opće uvjete i odredbe</a>.",
@@ -520,7 +523,8 @@
         "cart-merged-hint": "Trenutna košarica može sadržavati proizvode koji su bili dodani i spremljeni tijekom prethodnog posjeta.",
         "collapseTriggerMore": "Prikaži više",
         "collapseTriggerLess": "Prikaži manje",
-        "createAccountHeading": "Da biste ubrzali buduće kupnje, stvorite korisnički račun."
+        "createAccountHeading": "Da biste ubrzali buduće kupnje, stvorite korisnički račun.",
+        "createAccountButton": "Napravite račun"
     },
     "listing": {
         "filterTitleText": "Filter",
@@ -579,6 +583,7 @@
         "subscribeOption": "Pretplatite se na newsletter",
         "unsubscribeOption": "Odjava sa newslettera",
         "formSubmit": "Pretplatite se",
+        "formSubmitUnsubscribe": "Odjavite pretplatu",
         "subscriptionPersistedSuccess": "Upravo ste se pretplatili na naš newsletter.\n Da biste dovršili postupak registracije, pretražite vašu pristiglu poštu i pronađite našu e-mail potvrdu te kliknite na navedenu poveznicu.",
         "subscriptionPersistedInfo": "Ako u sljedećih nekoliko minuta ne primite e-poštu s potvrdom, možda ste već pretplaćeni na newsletter. Provjerite svoju pristiglu poštu i mapu neželjene pošte. Zatim se pokušajte ponovno pretplatiti i kontaktirajte našu podršku ako ni to ne uspije.",
         "subscriptionRevokeSuccess": "Uspješno ste se odjavili s newslettera.",
@@ -604,7 +609,11 @@
     },
     "revocationRequest": {
         "headline": "Opoziv",
+        "firstNameLabel": "Ime",
+        "lastNameLabel": "Prezime",
+        "eMailLabel": "Adresa e-pošte",
         "contractNumberLabel": "Broj ugovora (broj narudžbe, broj pretplate,...)",
+        "commentLabel": "komentar",
         "privacyNoticeTextModal": "Naša Obavijest o privatnosti dostupna je %pRivacyModalTagOpen%here%privacyModalTagClose%.",
         "formSubmit": "Potvrdite opoziv",
         "success": "Primili smo vaš zahtjev za opoziv i obradićemo ga u najkraćem mogućem roku."
@@ -616,6 +625,9 @@
     "detail": {
         "garanLabelShowLink": "Prikaži oznaku GARAN",
         "garanLabelHideLink": "Sakrij oznaku GARAN",
+        "garanLabelTitle": "NALJEPNICA GARAN",
+        "garanLabelYourEuropeLink": "Informacije o komercijalnom jamstvu trajnosti na Your Europe (otvara se na novoj kartici)",
+        "garanTermsLink": "Uvjeti jamstva",
         "ordernumberLabel": "Broj proizvoda:",
         "productNumberLabel": "Broj proizvoda:",
         "addProduct": "Dodaj u košaricu",
@@ -819,6 +831,7 @@
             },
             "quantitySelect": {
                 "legend": "Količina proizvoda: Unesite željenu količinu ili pomoću gumba povećajte ili smanjite količinu.",
+                "cartUpdateHint": "Promjena količine ažurira košaricu.",
                 "areaLiveText": "Količina %product% postavljena na %quantity%.",
                 "label": "Količina",
                 "labelWithProduct": "Količina %product%",
@@ -826,7 +839,8 @@
                 "increaseOfProduct": "Povećajte količinu %product%",
                 "decrease": "Smanjite količinu",
                 "decreaseOfProduct": "Smanjite količinu %product%",
-                "stockAdjusted": "Vaša količina je ažurirana na %quantity%."
+                "stockAdjusted": "Vaša količina je ažurirana na %quantity%.",
+                "outOfStock": "Proizvod više nije dostupan."
             },
             "configurator": {
                 "legend": "<span class=\"%hidden_cls%\">Odaberi&nbsp;</span>%group_name%"

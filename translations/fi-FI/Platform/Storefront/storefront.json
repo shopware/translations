@@ -102,6 +102,7 @@
         "VIOLATION::VAT_ID_FORMAT_NOT_CORRECT": "Antamasi ALV-kirjain.No ei ole oikeaa muotoa.",
         "VIOLATION::ZIP_CODE_INVALID": "Antamasi postinumero ei ole oikeassa muodossa.",
         "VIOLATION::INVALID_FORMAT_ERROR": "Antamallasi sähköpostiviestillä ei ole oikeaa muotoa.",
+        "VIOLATION::CONTAINS_HTML_ERROR": "Älä käytä HTML-koodia.",
         "VIOLATION::INVALID_EMAIL_FORMAT_ERROR": "Virheellinen sähköpostiosoite. Sähköpostiosoitteiden on käytettävä tätä muotoa `user@example.com` ja niissä on oltava `@` ja ``.",
         "VIOLATION::NOT_EQUAL_ERROR": "Tulo ei ole identtinen.",
         "VIOLATION::FIRST_NAME_IS_BLANK_ERROR": "Mitään ei tullut. Täytä tämä kenttä etunimelläsi.",
@@ -144,6 +145,7 @@
         "CHECKOUT__ORDER_ORDER_ALREADY_PAID": "Tilaus, jonka tilausnumero on \"%orderNumber%\", oli jo maksettu, eikä sitä voi muokata jälkikäteen.",
         "CHECKOUT__ORDER_ORDER_CANCELLED": "Tilaus, jonka tilausnumero on \"%orderNumber%\", peruutettiin eikä sitä voi muokata jälkikäteen.",
         "CHECKOUT__ORDER_ORDER_NOT_FOUND": "Tätä tilausta ei löytynyt.",
+        "CHECKOUT__ORDER_RESTORATION_FAILED": "Tilausta, jonka tilausnumero oli \"%orderNumber%\", ei voitu ladata maksun muutosta varten.",
         "CHECKOUT__CART_HASH_MISMATCH": "Ostoskorisi tuotteet tai hinnat ovat saattaneet muuttua. Tarkista ostoskorisi ennen tilauksen tekemistä.",
         "CHECKOUT__CART_INVALID_LINE_ITEM_QUANTITY": "Määrä (%quantity%) on virheellinen.",
         "urlNotAllowed": "Älä kirjoita URL-osoitetta tähän kenttään."
@@ -486,6 +488,7 @@
         "confirmRevocationNoticeModal": "Huomaa %revocationModalTagOpen%peruutuskäytäntömme%revocationModalTagClose%.",
         "confirmRevocationNoticePage": "Huomaa <a href=\"%url%\">peruutuskäytäntömme</a>.",
         "confirmLegalGuaranteeNoticeLink": "Lakisääteiset takuuoikeutesi",
+        "confirmLegalGuaranteeNotice": "Huomaa %leGalGuaranteeNoticeModaltagOpen%Lailliset takuuoikeutesi%legalGuaranteeNoticeModalTagClose%.",
         "confirmTermsText": "Olen lukenut ja hyväksynyt <a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"general terms and conditions\">yleiset ehdot</a>.",
         "confirmTermsTextModal": "Olen lukenut ja hyväksynyt %toSmodalTagOpen%gyleiset ehdot%tosModalTagClose%.",
         "confirmTermsTextPage": "Olen lukenut ja hyväksynyt <a href=\"%url%\">yleiset ehdot</a>.",
@@ -520,7 +523,8 @@
         "cart-merged-hint": "Nykyinen ostoskori saattaa sisältää muita tuotteita, jotka on lisätty ja tallennettu edellisen käynnin aikana.",
         "collapseTriggerMore": "Näytä lisää",
         "collapseTriggerLess": "Näytä vähemmän",
-        "createAccountHeading": "Luo käyttäjätili tulevien ostojen nopeuttamiseksi."
+        "createAccountHeading": "Luo käyttäjätili tulevien ostojen nopeuttamiseksi.",
+        "createAccountButton": "Luo tili"
     },
     "listing": {
         "filterTitleText": "suodatin",
@@ -579,6 +583,7 @@
         "subscribeOption": "Tilaa uutiskirje",
         "unsubscribeOption": "Peruuta uutiskirjeen tilaus",
         "formSubmit": "Tilaa",
+        "formSubmitUnsubscribe": "Peruuta tilaus",
         "subscriptionPersistedSuccess": "Olet juuri tilannut uutiskirjeemme.\n Jos haluat suorittaa kirjautumisprosessin, etsi Saapuneet-kansiostasi vahvistussähköpostiosoitteemme ja napsauta sen mukana toimitettua linkkiä.",
         "subscriptionPersistedInfo": "Jos et saa vahvistussähköpostia muutaman minuutin aikana, olet ehkä jo tilannut uutiskirjeen. Tarkista postilaatikko ja roskapostikansio. Yritä sitten tilata uudelleen ja ota yhteyttä tukeemme, jos tämä ei myöskään toimi.",
         "subscriptionRevokeSuccess": "Olet peruuttanut uutiskirjeen tilauksen onnistuneesti.",
@@ -604,7 +609,11 @@
     },
     "revocationRequest": {
         "headline": "Peruuttaminen",
+        "firstNameLabel": "Etunimi",
+        "lastNameLabel": "Sukunimi",
+        "eMailLabel": "Sähköpostiosoite",
         "contractNumberLabel": "Sopimuksen numero (tilausnumero, tilausnumero,...)",
+        "commentLabel": "Kommentti",
         "privacyNoticeTextModal": "Tietosuojailmoituksemme on saatavilla %pRivacyModalTagOpen%here%privacyModalTagClose%.",
         "formSubmit": "Vahvista peruuttaminen",
         "success": "Olemme vastaanottaneet peruutuspyyntösi ja käsittelemme sen mahdollisimman pian."
@@ -616,6 +625,9 @@
     "detail": {
         "garanLabelShowLink": "Näytä GARAN-etiketti",
         "garanLabelHideLink": "Piilota GARAN-etiketti",
+        "garanLabelTitle": "GARAN-etiketti",
+        "garanLabelYourEuropeLink": "Tietoa Eurooppaasi koskevasta kaupallisesta kestävyystakuusta (avautuu uuteen välilehteen)",
+        "garanTermsLink": "Takuuehdot",
         "ordernumberLabel": "Tuotenumero:",
         "productNumberLabel": "Tuotenumero:",
         "addProduct": "Lisää ostoskoriin",
@@ -819,6 +831,7 @@
             },
             "quantitySelect": {
                 "legend": "Tuotteen määrä: Anna haluamasi määrä tai lisää tai pienennä määrää painikkeilla.",
+                "cartUpdateHint": "Määrän muuttaminen päivittää ostoskorin.",
                 "areaLiveText": "%product% määrä asetettu arvoon %quantity%.",
                 "label": "Määrä",
                 "labelWithProduct": "Määrä %product%",
@@ -826,7 +839,8 @@
                 "increaseOfProduct": "Lisää %product%: n määrää",
                 "decrease": "Vähennä määrää",
                 "decreaseOfProduct": "Vähennä %product%-määrää",
-                "stockAdjusted": "Määräsi on päivitetty arvoon %quantity%."
+                "stockAdjusted": "Määräsi on päivitetty arvoon %quantity%.",
+                "outOfStock": "Tuote ei ole enää saatavilla."
             },
             "configurator": {
                 "legend": "<span class=\"%hidden_cls%\">Valitse&nbsp;</span>%group_name%"
