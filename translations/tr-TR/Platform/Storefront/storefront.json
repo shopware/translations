@@ -102,6 +102,7 @@
         "VIOLATION::VAT_ID_FORMAT_NOT_CORRECT": "Girdiğiniz KDV Kayıt No. doğru formata sahip değil.",
         "VIOLATION::ZIP_CODE_INVALID": "Girdiğiniz posta kodu doğru biçime sahip değil.",
         "VIOLATION::INVALID_FORMAT_ERROR": "Girdiğiniz e-posta doğru biçime sahip değil.",
+        "VIOLATION::CONTAINS_HTML_ERROR": "Lütfen HTML kullanmayın.",
         "VIOLATION::INVALID_EMAIL_FORMAT_ERROR": "Geçersiz e-posta adresi. E-posta adresleri bu biçimi `user@example.com `kullanmalı ve `@` ve bir `.` içermelidir.",
         "VIOLATION::NOT_EQUAL_ERROR": "Giriş aynı değil.",
         "VIOLATION::FIRST_NAME_IS_BLANK_ERROR": "Hiçbir şey girmedi. Lütfen bu alanı ilk adınızla doldurun.",
@@ -144,6 +145,7 @@
         "CHECKOUT__ORDER_ORDER_ALREADY_PAID": "Sipariş numarası \"%orderNumber%\" olan sipariş zaten ödenmiştir ve daha sonra düzenlenemez.",
         "CHECKOUT__ORDER_ORDER_CANCELLED": "Sipariş numarası \"%orderNumber%\" olan sipariş iptal edildi ve sonrasında düzenlenemiyor.",
         "CHECKOUT__ORDER_ORDER_NOT_FOUND": "Bu sipariş bulunamadı.",
+        "CHECKOUT__ORDER_RESTORATION_FAILED": "Sipariş numarası \"%orderNumber%\" olan sipariş, ödeme değişikliği için yüklenemedi.",
         "CHECKOUT__CART_HASH_MISMATCH": "Alışveriş sepetinizdeki ürünler veya fiyatlar değişmiş olabilir. Lütfen siparişinizi vermeden önce alışveriş sepetinizi kontrol edin.",
         "CHECKOUT__CART_INVALID_LINE_ITEM_QUANTITY": "Miktar (%quantity%) yanlış.",
         "urlNotAllowed": "Lütfen bu alana bir URL girmeyin."
@@ -486,6 +488,7 @@
         "confirmRevocationNoticeModal": "Lütfen %revocationModalTagOpen%iptal politikamıza dikkat edin%revocationModalTagClose%.",
         "confirmRevocationNoticePage": "Lütfen <a href=\"%url%\">iptal politikamıza dikkat edin</a>.",
         "confirmLegalGuaranteeNoticeLink": "Yasal garanti haklarınız",
+        "confirmLegalGuaranteeNotice": "Lütfen %legalGuaranteenoticeModaltagOpen% Yasal garanti haklarınız%legalGuaranteeNoticeModalTagClose%.",
         "confirmTermsText": "Okudum ve kabul ettim <a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"general terms and conditions\">genel şartlar ve koşullar</a>.",
         "confirmTermsTextModal": "%toSMODALtagOpen%ggenel hüküm ve koşullarını okudum ve kabul ettim%tosModalTagClose%.",
         "confirmTermsTextPage": "<a href=\"%url%\">genel hüküm ve koşullarını okudum ve kabul ettim</a>.",
@@ -520,7 +523,8 @@
         "cart-merged-hint": "Mevcut alışveriş sepeti, önceki bir ziyaret sırasında eklenen ve kaydedilmiş ek ürünler içerebilir.",
         "collapseTriggerMore": "Daha fazla göster",
         "collapseTriggerLess": "Daha az göster",
-        "createAccountHeading": "Gelecekteki satın alımları hızlandırmak için bir kullanıcı hesabı oluşturun."
+        "createAccountHeading": "Gelecekteki satın alımları hızlandırmak için bir kullanıcı hesabı oluşturun.",
+        "createAccountButton": "Hesap oluştur"
     },
     "listing": {
         "filterTitleText": "Filtre",
@@ -579,6 +583,7 @@
         "subscribeOption": "Bültene abone olun",
         "unsubscribeOption": "Bülten aboneliğinizi iptal edin",
         "formSubmit": "Abone ol",
+        "formSubmitUnsubscribe": "Aboneliği iptal et",
         "subscriptionPersistedSuccess": "Bültenimize yeni abone oldunuz.\n Kaydolma işlemini tamamlamak için onay e-postamız için gelen kutunuzda arama yapın ve onunla birlikte verilen bağlantıya tıklayın.",
         "subscriptionPersistedInfo": "Herhangi bir e-posta almadıysanız, lütfen işlemi tekrarlayın veya destek ekibimizle iletişime geçin.",
         "subscriptionRevokeSuccess": "Bülten aboneliğinizi başarıyla iptal ettiniz.",
@@ -604,7 +609,11 @@
     },
     "revocationRequest": {
         "headline": "İptal",
+        "firstNameLabel": "İlk isim",
+        "lastNameLabel": "Soyadı",
+        "eMailLabel": "E-posta adresi",
         "contractNumberLabel": "Sözleşme numarası (sipariş numarası, abonelik numarası,...)",
+        "commentLabel": "Yorum",
         "privacyNoticeTextModal": "Gizlilik Bildirimimiz mevcuttur %pRivacyModalTagOpen%here%privacyModalTagClose%.",
         "formSubmit": "İptali onaylayın",
         "success": "İptal talebinizi aldık ve mümkün olan en kısa sürede işleme koyacağız."
@@ -616,6 +625,9 @@
     "detail": {
         "garanLabelShowLink": "GARAN etiketini göster",
         "garanLabelHideLink": "GARAN etiketini gizle",
+        "garanLabelTitle": "GARAN etiketi",
+        "garanLabelYourEuropeLink": "Your Europe'da ticari dayanıklılık garantisi hakkında bilgi (yeni bir sekmede açılır)",
+        "garanTermsLink": "Garanti şartları",
         "ordernumberLabel": "Ürün numarası:",
         "productNumberLabel": "Ürün numarası:",
         "addProduct": "Alışveriş sepetine ekle",
@@ -819,6 +831,7 @@
             },
             "quantitySelect": {
                 "legend": "Ürün Miktarı: İstediğiniz miktarı girin veya miktarı artırmak veya azaltmak için düğmeleri kullanın.",
+                "cartUpdateHint": "Miktarın değiştirilmesi sepeti günceller.",
                 "areaLiveText": "%product% miktarı %quantity%olarak ayarlanmıştır.",
                 "label": "Miktar",
                 "labelWithProduct": "Miktarı %product%",
@@ -826,7 +839,8 @@
                 "increaseOfProduct": "%product%miktarını artırın",
                 "decrease": "Miktarı azaltın",
                 "decreaseOfProduct": "%product%miktarını azaltın",
-                "stockAdjusted": "Miktarınız %quantity% olarak güncellendi."
+                "stockAdjusted": "Miktarınız %quantity% olarak güncellendi.",
+                "outOfStock": "Ürün artık mevcut değil."
             },
             "configurator": {
                 "legend": "<span class=\"%hidden_cls%\">Seçin&nbsp;</span>%group_name%"

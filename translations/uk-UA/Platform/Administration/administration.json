@@ -381,6 +381,7 @@
             "bulkEdit": "Масове редагування",
             "cancel": "Скасувати",
             "close": "Закрити",
+            "configure": "Налаштувати",
             "confirm": "Підтвердження",
             "copy": "Копіювати",
             "delete": "Видалити",
@@ -478,7 +479,8 @@
             "tax_rule": "Податкове правило | Правила оподаткування",
             "theme": "Тема | Теми",
             "unit": "Блок | Одиниці",
-            "user": "Користувач | Користувачі"
+            "user": "Користувач | Користувачі",
+            "webhook": "Вебхук | Вебхуки"
         },
         "entity-components": {
             "deleteMessage": "Ви впевнені, що хочете видалити цей елемент? | Ви впевнені, що хочете видалити ці {count} елементів?",
@@ -509,6 +511,7 @@
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Занадто багато запитів. Будь ласка, зачекайте {seconds} секунд, перш ніж спробувати знову",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "Адреса {path} суперечить існуючому маршруту {blockedSegment} і не може використовуватися.",
             "INVALID_GARAN_GUARANTEE_MONTHS": "Тривалість гарантії повинна бути порожньою або піврічною вартістю більше 24 місяців, наприклад, 30, 36 або 42.",
+            "INVALID_GARAN_GUARANTEE_TERMS_URL": "URL-адреса умов гарантії повинна починатися з http://або https://.",
             "INVALID_MAIL": "Будь ласка, введіть дійсну адресу електронної пошти.",
             "INVALID_MEDIA_URL": "Будь ласка, введіть коректну адресу URL, щоб завантажити файл.",
             "INVALID_URL": "Будь ласка, введіть коректну адресу URL.",
@@ -549,6 +552,7 @@
                 "updatesAvailableTitle": "Доступна нова версія Shopware {version}"
             },
             "title": "Повідомлення",
+            "triggerAriaLabel": "Повідомлення",
             "worker-listener": {
                 "category": {
                     "message": "Категорії індексуються | Залишилася одна категорія... | Залишилося {n} категорій...",
@@ -617,13 +621,16 @@
         },
         "sw-admin-menu": {
             "administrator": "Адміністратор",
+            "linkCloseMenu": "Закрити меню",
             "linkExpandMenu": "Розгорнути меню",
             "linkLogout": "Вихід з системи",
             "linkMinimizeMenu": "Згорнути меню",
             "navigation": {
                 "label": "Основна навігація",
+                "mainMenuItemAutomation": "Автоматизація",
                 "mainMenuItemContent": "Вміст",
                 "mainMenuItemMarketing": "Маркетинг",
+                "mainMenuItemProducts": "Продукти",
                 "mainMenuItemShopwarePayments": "Платежі магазинного продукту"
             },
             "textProjectName": "Адміністрація",
@@ -639,6 +646,9 @@
             "sanitizedHint": "Деякі з ваших входів були санітарні. Будь ласка, двічі перевірте ваш вміст."
         },
         "sw-condition": {
+            "cartLineItemWithQuantity": {
+                "id": "Продукт"
+            },
             "condition": {
                 "AddAndCondition": "Додати І умова",
                 "AddOrCondition": "Додати умову АБО",
@@ -768,6 +778,7 @@
                 "orderCountRule": "Кількість виконаних замовлень",
                 "orderCreatedByAdminRule": "Замовлення створено admin",
                 "orderCustomFieldRule": "Замовлення з користувальницьким полем",
+                "orderDaysSincePlacedRule": "Час з моменту оформлення замовлення",
                 "orderDeliveryStatusRule": "Статус доставки",
                 "orderDocumentTypeRule": "Замовлення з документом",
                 "orderDocumentTypeSentRule": "Замовлення з відправленим документом",
@@ -808,11 +819,25 @@
                 "prefix": "Невірне значення:"
             },
             "field": {
+                "amount": "Сума",
+                "categoryIds": "Категорія",
+                "count": "Кількість",
+                "identifiers": "Вибір",
+                "isAlwaysValid": "Завжди дійсний",
                 "isNet": "Нетто/брутто",
                 "isNumeric": "Режим порівняння",
+                "operator": "Оператор",
+                "quantity": "Кількість",
+                "renderedField": "Користувальницьке поле",
+                "renderedFieldValue": "Значення",
+                "selectedField": "Користувальницьке поле",
+                "selectedFieldSet": "Набір нестандартних полів",
                 "timezone": "Часовий пояс",
                 "toDate": "До",
-                "useTime": "Режим часу"
+                "toTime": "До",
+                "type": "Стан",
+                "useTime": "Режим часу",
+                "zipCodes": "Поштовий індекс"
             },
             "operator": {
                 "between": "Знаходиться між | Є між",
@@ -853,6 +878,14 @@
                     "options": {
                         "digital": "Цифровий",
                         "physical": "Фізичні"
+                    }
+                }
+            },
+            "cartLineItemPurchasePrice": {
+                "type": {
+                    "options": {
+                        "gross": "Брутто",
+                        "net": "Сітка"
                     }
                 }
             },
@@ -963,7 +996,11 @@
             "tooltipListSettings": "Параметри списку"
         },
         "sw-desktop": {
-            "stagingBarText": "Магазин знаходиться в режимі постановки."
+            "stagingBarText": "Магазин знаходиться в режимі постановки.",
+            "theme": {
+                "changed": "Зовнішній вигляд змінено на \"{theme}»",
+                "saveError": "Зовнішній вигляд не можна було змінити"
+            }
         },
         "sw-duplicated-media": {
             "buttonRename": "Перейменувати файл",
@@ -1486,6 +1523,7 @@
         "sw-sso-error": {
             "error-card": {
                 "button": "Увійдіть з іншим обліковим записом",
+                "loadingLabel": "Завантаження...",
                 "loggedInAsPrefix": "Ввійшов в систему як:",
                 "logoAltText": "Логотип магазину",
                 "text": "Ваш вхід був успішним, але у вас немає доступу до цього магазину Shopware.",
@@ -1524,6 +1562,13 @@
             "Reduced rate": "Знижена ставка",
             "Reduced rate 2": "Супер-пільговий тариф",
             "Standard rate": "Стандартна ставка"
+        },
+        "theme": {
+            "names": {
+                "dark": "темний",
+                "light": "Світло",
+                "system": "Система"
+            }
         }
     },
     "help-center": {
@@ -1641,6 +1686,7 @@
                     }
                 },
                 "newValue": "Нове значення",
+                "noStrategySelected": "Спочатку виберіть варіант.",
                 "oldValue": "Стара цінність",
                 "remindMeLater": "Нагадайте мені пізніше",
                 "selectAnOption": "Уважно прочитайте доступні варіанти і виберіть той, який найкраще відповідає вашому сценарію:",
@@ -1662,9 +1708,16 @@
                 "title": "Запропоновано змінити ідентифікатор магазину"
             },
             "sw-app-wrong-app-url-modal": {
+                "checkAgain": "Якщо ви усунете проблему без зміни APP_URL, запустіть цю команду, щоб видалити це попередження:",
+                "checkIntro": "Перевірте, що:",
+                "checkNotBlocked": "запити до /api/app-system/shop/verify не блокуються (брандмауер, аутентифікація HTTP, список дозволів IP)",
+                "checkPointsToShop": "APP_URL вказує на цей магазин",
                 "explanation": "Розширення не можуть встановити з'єднання з вашим магазином через неправильну конфігурацію у вашій системі.",
                 "labelLearnMoreButton": "Дізнайтеся більше",
+                "labelReason": "Причина",
                 "linkToDocsArticle": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/notes-to-the-APP-URL",
+                "reasonStatusCode": "APP_URL відповів на запит перевірки за допомогою HTTP {statusCode}.",
+                "reasonUnknown": "Виконайте команду нижче, щоб дізнатися більше.",
                 "title": "Неправильно налаштований APP_URL"
             }
         }
@@ -1772,10 +1825,13 @@
                 "documentGenerationFailed": "Не вдалося створити документ {count} . | Не вдалося створити документи {count}.",
                 "documentGenerationSkipped": "Документ {count} не був створений, оскільки він вже існує. | {count} документи не були створені, оскільки вони вже існують.",
                 "failedDocuments": {
+                    "columnDocumentType": "Тип документа",
+                    "columnOrder": "Порядок",
                     "documentTypes": {
                         "cancellationInvoice": "Рахунок-фактура для",
                         "creditNote": "Кредитна нота",
-                        "deliveryNote": "Написка про доставку"
+                        "deliveryNote": "Написка про доставку",
+                        "invoice": "Рахунок"
                     },
                     "downloadHeadline": "Невдалі документи",
                     "downloadResult": "Завантажити результат"
@@ -1828,7 +1884,9 @@
                     "helpText": "Ця дія збільшує значення відповідного діапазону чисел.",
                     "label": "Генерувати: Рахунок",
                     "labelDatePicker": "Дата",
-                    "labelTextarea": "Коментар"
+                    "labelFileFormats": "Формати файлів",
+                    "labelTextarea": "Коментар",
+                    "placeholderFileFormats": "Виберіть формати файлів..."
                 },
                 "warning": "Масове редагування тепер використовує вдосконалене створення документа. Однак одне або кілька розширень у вашій системі можуть давати різні результати при створенні нового документа.\nТому, будь ласка, перевірте, чи відображаються у ваших документах відмінності з масовим редагуванням та без використання."
             },
@@ -1978,6 +2036,25 @@
                 "productPromotion": {
                     "changeLabel": "Зміна: Просування продукту",
                     "switchLabel": "Просування продукту"
+                }
+            },
+            "guarantee": {
+                "cardTitle": "Гарантія (етикетка ГАРАН)",
+                "guaranteeConfirmed": {
+                    "changeLabel": "Змінити: Показати мітку на вітрині магазину",
+                    "helpText": "Гарантійний ярлик відображається лише в тому випадку, якщо встановлено дійсний термін гарантії, виробник та номер продукту виробника.",
+                    "label": "Показувати мітку в вітрині"
+                },
+                "guaranteeMonths": {
+                    "changeLabel": "Зміна: Тривалість гарантії виробника",
+                    "helpText": "Між 30 і 600 місяцями, кроками по 6.",
+                    "placeholder": "наприклад, 30, 36 або 42 місяці..."
+                },
+                "guaranteeTermsMedia": {
+                    "changeLabel": "Зміни: Гарантійні умови (PDF)"
+                },
+                "guaranteeTermsUrl": {
+                    "changeLabel": "Змінити: Умови гарантії URL"
                 }
             },
             "labelling": {
@@ -2230,6 +2307,7 @@
                 "placeholderKeywords": "Введіть одне або декілька ключових слів...",
                 "placeholderMetaDescription": "Введіть опис...",
                 "placeholderMetaTitle": "Введіть метазаголовок...",
+                "recommendedLength": "Рекомендовано: макс. Символи {max} ({count} використано)",
                 "title": "SEO"
             }
         },
@@ -2281,6 +2359,9 @@
         "blocks": {
             "blockDisableState": "Цей блок не видно ні на одному пристрої. Ви можете редагувати блок, але зміни не будуть видні у вашому магазині. Відредагуйте цей макет у модулі торгових можливостей, щоб змінити видимість блоку.",
             "commerce": {
+                "categoryHeading": {
+                    "label": "Назва категорії"
+                },
                 "crossSelling": {
                     "label": "Хрест продажу"
                 },
@@ -2657,6 +2738,9 @@
                 },
                 "label": "Купити коробку"
             },
+            "categoryName": {
+                "label": "Назва категорії"
+            },
             "crossSelling": {
                 "config": {
                     "infoText": {
@@ -2686,7 +2770,8 @@
                         "title": "Назва",
                         "type": "Тип форми",
                         "typeContact": "Контакт",
-                        "typeNewsletter": "Інформаційний бюлетень"
+                        "typeNewsletter": "Інформаційний бюлетень",
+                        "typeRevocationRequest": "Відкликання"
                     },
                     "placeholder": {
                         "type": "Виберіть тип форми..."
@@ -2698,6 +2783,7 @@
                     },
                     "label": {
                         "action": "Дія",
+                        "comment": "Коментар",
                         "contractNumber": "Номер договору (номер замовлення, номер підписки, ... ) *    ",
                         "email": "Електронна адреса*",
                         "firstName": "Ім'я",
@@ -2719,6 +2805,7 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "Інтелектуальний продукт є дуже ефективним, високоефективним завданням, але він не забував багато часу, щоб працювати і страждати були великими труднощами, але затребуваними. Справді, вони заряджаються, і вони одразу два болі, і вони сказали.",
                         "contractNumber": "СВ123456789",
                         "email": "Джон {'@'} дое.com",
                         "firstName": "Джон",
@@ -3268,6 +3355,7 @@
             "labelCustomerNumber": "Номер клієнта",
             "labelEmail": "Адреса електронної пошти",
             "labelFirstName": "Ім’я",
+            "labelLanguage": "Мова",
             "labelLastName": "Прізвище",
             "labelPassword": "Пароль",
             "labelPaymentMethod": "Спосіб оплати",
@@ -3280,6 +3368,7 @@
             "placeholderCustomerNumber": "Введіть номер клієнта...",
             "placeholderEmail": "Введіть адресу електронної пошти...",
             "placeholderFirstName": "Введіть ім'я...",
+            "placeholderLanguage": "Виберіть мову...",
             "placeholderLastName": "Введіть прізвище...",
             "placeholderPassword": "Введіть пароль...",
             "placeholderPaymentMethod": "Виберіть спосіб оплати...",
@@ -3349,6 +3438,7 @@
             "manual": {
                 "button": "Встановити пароль",
                 "description": "Встановіть новий пароль для клієнта безпосередньо. Клієнт не буде повідомлений.",
+                "passwordLabel": "Новий пароль",
                 "title": "Встановити пароль вручну"
             },
             "modalTitle": "Конвертувати користувача"
@@ -3387,6 +3477,7 @@
             "buttonAddAddress": "Додати адресу",
             "buttonSaveAndSelect": "Збережіть і виберіть",
             "buttonSelect": "Виберіть",
+            "cardTitle": "Адреси",
             "columnActions": "Дії",
             "columnCity": "Місто",
             "columnCompany": "Компанія",
@@ -3398,6 +3489,7 @@
             "columnZipCode": "Поштовий індекс",
             "contextMenuDefaultBillingAddress": "Встановити як адреса виставлення рахунків за замовчуванням",
             "contextMenuDefaultShippingAddress": "Встановити як типову адресу доставки",
+            "filterPlaceholder": "Пошук адрес...",
             "modalTitleAddAddress": "Додати адресу",
             "modalTitleAddress": "Адреса",
             "modalTitleEditAddress": "Редагувати адресу",
@@ -3430,6 +3522,9 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "Польова компанія обов'язкова для комерційних клієнтів.",
+            "VIOLATION::CUSTOMER_EMAIL_NOT_UNIQUE": "Ця електронна адреса вже зареєстрована.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "Обраний пароль занадто довгий.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "Обраний пароль занадто короткий.",
             "passwordDoNotMatch": "Ваші вхідні дані для підтвердження нового пароля та пароля не збігаються."
         },
         "filter": {
@@ -3675,6 +3770,20 @@
                         "label": "Експортний канал",
                         "placeholder": "Виберіть канали експорту…"
                     }
+                },
+                "list": {
+                    "columnExportFeed": "Експортний канал"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "Експортний канал",
+                        "placeholder": "Виберіть канали експорту…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "Експортний канал"
                 }
             }
         },
@@ -3741,24 +3850,35 @@
                 "registerUrl": "https://account.shopware.com/register?lang=en"
             },
             "bulk": {
+                "activate": "Активувати",
                 "consent": {
                     "extensionLabel": "Розширення {count} |{count} розширення",
+                    "installAction": "Прийняти та встановити",
                     "installDescription": "Вибрані розширення вимагають таких дозволів:",
                     "installTitle": "Встановити розширення {count} |Встановити розширення {count}",
+                    "updateAction": "Прийняти та оновити",
                     "updateDescription": "Оновлення вибраних розширень вимагає прийняття наступних нових дозволів:",
                     "updateTitle": "Оновлення {count} розширення|Оновлення розширень {count}"
                 },
+                "deactivate": "Деактивувати",
                 "deactivationModal": {
                     "alert": "Ви все ще хочете деактивувати вибрані розширення?",
+                    "buttonLabel": "Деактивувати",
                     "description": "Наступні розширення мають щомісячну абонентську плату. Деактивація їх не скасує ваші підписки, а плата продовжуватиметься стягуватися:",
                     "title": "Деактивувати розширення {count} |Деактивувати розширення {count}"
                 },
+                "install": "Встановити",
+                "selectExtensionAria": "Виберіть {name}",
+                "uninstall": "Видалити",
                 "uninstallModal": {
+                    "alert": "Цю дію неможливо скасувати.",
+                    "buttonLabel": "Видалити",
                     "description": "Наступні розширення будуть видалені:",
                     "helpTextRemovePluginData": "Попередження: Якщо увімкнено, всі дані, створені цими розширеннями, будуть видалені назавжди.",
                     "labelRemovePluginData": "Також видаліть усі дані для кожного вибраного розширення",
                     "title": "Видалити розширення {count} |Видалити розширення {count}"
-                }
+                },
+                "update": "Оновити"
             },
             "fileUpload": {
                 "buttonFileUpload": "Розширення завантаження",
@@ -4358,8 +4478,11 @@
             },
             "document": {
                 "labelDocumentType": "Документи",
+                "labelDocumentTypeSingle": "Тип документа",
+                "labelFileFormats": "Формати файлів",
                 "placeholderDocumentType": "Вибрати документи...",
                 "placeholderDocumentTypeSingle": "Виберіть тип документа...",
+                "placeholderFileFormats": "Виберіть формати файлів...",
                 "titleCreateDocument": "Формувати документи"
             },
             "downloadAccess": {
@@ -4390,6 +4513,7 @@
                 "labelMailType": "Тип",
                 "labelRecipient": "одержувач",
                 "labelReplyTo": "Адреса для відповіді",
+                "labelRevocationRequestFormMail": "Запитувач",
                 "labelSenderName": "Ім'я відправника",
                 "labelSubject": "Тема",
                 "placeholderDescription": "Введіть опис...",
@@ -4498,14 +4622,17 @@
             "chargeback": "Повернення заряду",
             "checkout": "Оформити замовлення",
             "completed": "Завершені",
+            "confirm": "Підтвердження",
             "contactForm": "Контактна форма",
             "create": "Створити",
             "customer": "Замовник",
             "declined": "Відхилено",
             "deleted": "Видалено",
+            "document": "Документ",
             "doubleOptInGuestOrder": "Подвійний вибір в гостьовому замовленні",
             "doubleOptInRegistration": "Подвійний увійти в реєстрацію",
             "failed": "Не вдалося",
+            "generation": "Покоління",
             "group": "Груповий",
             "guestRegister": "Гостьова підписка",
             "inProgress": "У процесі",
@@ -4538,6 +4665,7 @@
             "returned": "Повернули",
             "returnedPartially": "Повертається частково",
             "reviewForm": "Огляд продукту",
+            "revocationRequest": "Запит на відкликання",
             "revocationRequestCustomer": "Запит на відкликання надіслано",
             "revocationRequestMerchant": "Отримано запит на відкликання",
             "send": "Відправити",
@@ -4838,6 +4966,7 @@
         "mcp": {
             "adminBanner": "Ця інтеграція має права адміністратора. Усі можливості MCP доступні за замовчуванням. Ви можете обмежити доступ до певних інструментів, ресурсів або підказок тут для додаткової безпеки.",
             "allCapabilitiesLabel": "Всі можливості",
+            "allTypeLabel": "Всі",
             "cardTitle": "Список дозволів MCP",
             "collapseAll": "Згорнути все",
             "coverageWarning": "Інструменти {count} вимагають привілеїв ACL, які не надаються для призначеної ролі.",
@@ -4850,8 +4979,10 @@
             "missingDeps": "Залежність не вибрано: {deps}",
             "missingPrivilegesList": "Відсутній: {privileges}",
             "missingPrivilegesTooltip": "Відсутні привілеї: {privileges}",
+            "modalTitle": "Список дозволів MCP",
             "noCapabilitiesDescription": "Наразі не зареєстровані інструменти, ресурси чи підказки MCP.",
             "noCapabilitiesHeadline": "Не знайдено можливостей",
+            "noSelectionBanner": "Ніяких можливостей не вибрано, тому зараз нічого не досягається через MCP. Виберіть інструменти, ресурси та підказки, які потрібні.",
             "privilegesLabel": "Потрібні:",
             "promptsGuidance": "Підказки - це системні інструкції, які встановлюють контекст штучного інтелекту. Викриття непов'язаних підказок витрачає контекстне вікно і може заплутати AI.",
             "promptsSection": "Підказки",
@@ -4917,6 +5048,7 @@
                 "actionsDisabledInLanguage": "Цільові сторінки можна створювати лише типовою мовою системи."
             },
             "buttonCreate": "Додати цільову сторінку",
+            "buttonLoadMore": "Завантажте більше",
             "mainMenuItemIndex": "Цільові сторінки",
             "placeholderSearchBar": "Пошук цільових сторінок...",
             "treeHeadSelected": "{count} вибрані",
@@ -4960,6 +5092,8 @@
         "general": {
             "description": "Вхід в магазини",
             "linkBackToLogin": "Повернутися до входу",
+            "loadingLabel": "Завантаження...",
+            "logoAlt": "Логотип магазину",
             "mainMenuItemIndex": "Увійти"
         },
         "index": {
@@ -5174,6 +5308,7 @@
             "textMediaSelection": "Вибір носія"
         },
         "general": {
+            "descriptionTextModule": "Керуйте виробниками тут.",
             "mainMenuItemGeneral": "Виробники",
             "mainMenuItemList": "Виробники",
             "placeholderSearchBar": "Пошук виробників..."
@@ -5182,6 +5317,7 @@
             "buttonAddManufacturer": "Додати виробника",
             "columnLink": "Веб-сайт",
             "columnName": "Виробник",
+            "messageEmpty": "Виробників поки немає",
             "textManufacturerOverview": "Виробники",
             "textTotalManufacturer": "Немає виробників | Один виробник | {count} виробників"
         }
@@ -5230,6 +5366,7 @@
                 "replace": "Заміна",
                 "setCover": "Встановити зображення обкладинки",
                 "settings": "Налаштування",
+                "unselectAll": "Скасувати вибір усіх",
                 "vertical": "вертикальний"
             },
             "infoMissingFile": {
@@ -5299,10 +5436,24 @@
         }
     },
     "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "Перемістити об'єкт",
+            "rotate-tooltip": "Повернути об'єкт",
+            "scale-tooltip": "Об'єкт масштабування"
+        },
         "open-model-editor-tooltip": "Відкрити редактор моделей",
         "properties": {
             "transformation": {
-                "label": "Трансформація"
+                "label": "Трансформація",
+                "position": {
+                    "label": "Позиція"
+                },
+                "rotation": {
+                    "label": "обертання"
+                },
+                "scale": {
+                    "label": "Масштаб"
+                }
             }
         },
         "titleModal": "Модельний редактор"
@@ -5344,6 +5495,32 @@
             "zipCode": "Поштовий індекс"
         }
     },
+    "sw-not-found": {
+        "description": "Сторінка, яку ви шукали, не знайдена. Можливо, він був переміщений або більше не існує.",
+        "title": "Сторінка не знайдена"
+    },
+    "sw-oauth-authorize": {
+        "consent": {
+            "approve": "Дозволити доступ",
+            "deny": "Відмовити",
+            "loggedInAs": "Ввійшов в обліковий запис {username}",
+            "permissionHint": "Додаток може отримувати доступ до даних і виконувати дії від вашого імені з тими ж дозволами, що і ваш обліковий запис користувача. Якщо ви адміністратор, це включає повний доступ до вашого магазину.",
+            "permissionTitle": "Ця програма отримує ваші дозволи",
+            "redirectHint": "Ви будете перенаправлені на {host}",
+            "title": "{clientName} хоче отримати доступ до {shopName}",
+            "trustHint": "Дозволяйте доступ лише в тому випадку, якщо ви довіряєте цій програмі та запустили цей запит самостійно."
+        },
+        "error": {
+            "generic": "Запит на авторизацію не вдалося обробити.",
+            "missingParameters": "Запит на авторизацію є неповним. Будь ласка, запустіть авторизацію заново з програми."
+        },
+        "general": {
+            "description": "Надайте додатку доступ до цього магазину Shopware",
+            "title": "Авторизувати заявку"
+        },
+        "loadingLabel": "Завантаження...",
+        "logoAltText": "Логотип магазину"
+    },
     "sw-order": {
         "addressSelection": {
             "currentlySelected": "Поточний вибраний",
@@ -5373,6 +5550,12 @@
         },
         "components": {
             "createDocumentModal": {
+                "documentTypes": {
+                    "cancellationInvoice": "Рахунок-фактура для",
+                    "creditNote": "Кредитна нота",
+                    "deliveryNote": "Написка про доставку",
+                    "invoice": "Рахунок"
+                },
                 "emptyStateDescription": "Виберіть тип документа, щоб налаштувати документ",
                 "emptyStateTitle": "Тип документа відсутній",
                 "error": {
@@ -5382,14 +5565,20 @@
                     "loadUploadedDocument": "Не вдалося завантажити завантажений документ."
                 },
                 "fileFormats": {
+                    "html": "HTML",
                     "pdf": "PDF",
                     "zugferdEmbeddedPdf": "ZugFerd вбудований PDF",
                     "zugferdXml": "Підтримка XML"
                 },
+                "generate": "Створити",
                 "generateAndDownload": "Створіть та завантажте",
                 "generateAndSend": "Створити та надіслати",
+                "labelDocumentType": "Тип документа",
+                "labelFileFormats": "Формати файлів",
                 "openButtonLabel": "Створити новий документ",
                 "placeholderComment": "Написати коментар...",
+                "placeholderDocumentType": "Виберіть тип документа...",
+                "placeholderFileFormats": "Виберіть формати файлів...",
                 "title": "Створити документ"
             },
             "selectDocumentTypeModal": {
@@ -5406,10 +5595,14 @@
                 "title": "Створити документ"
             },
             "uploadDocumentModal": {
+                "buttonUploadFile": "Завантажити файл",
                 "helpTextFileFormat": "Виберіть формат файлу, який потрібно завантажити.",
                 "labelDocumentUpload": "Завантаження документа",
+                "labelFileFormat": "Формат файлу",
                 "openAction": "Завантажити документ",
                 "placeholderFileFormat": "Виберіть формат файлу...",
+                "title": "Завантажити документ",
+                "upload": "Завантажити",
                 "uploadAndDownload": "Завантаження та завантаження",
                 "uploadAndSend": "Завантажте та надішліть"
             }
@@ -5695,6 +5888,7 @@
                 "downloadDocumentArchive": "Не вдалося завантажити архів документів.",
                 "duplicateDocumentNumber": "Документ з номером документа \"{documentNumber}\" вже існує.",
                 "loadDocumentPreview": "Не вдалося завантажити попередній перегляд документа.",
+                "loadDocumentTypes": "Не вдалося завантажити доступні типи документів.",
                 "loadSendingDocument": "Не вдалося завантажити документ для надсилання.",
                 "missingCompanyInformation": "Поле \"{field}\" в налаштуваннях вашої компанії (Налаштування > Основна інформація) порожнє. Будь ласка, не забудьте заповнити його своїми даними перед створенням документів.",
                 "noUnprocessedCreditLineItems": "У цьому замовленні немає необроблених позицій кредитної лінії.",
@@ -5813,7 +6007,8 @@
                     "lastQuarter": "Остання чверть",
                     "lastWeek": "Минулого тижня",
                     "previousYear": "Попередній рік",
-                    "today": "Сьогодні"
+                    "today": "Сьогодні",
+                    "yesterday": "Вчора"
                 }
             },
             "orderNumberFilter": {
@@ -5994,6 +6189,7 @@
             "headlineDeliveryState": "Статус доставки",
             "headlineOrderState": "Статус замовлення",
             "headlineTransactionState": "Статус оплати",
+            "labelCustomer": "Клієнт",
             "labelErrorNoAction": "Статус без змін.",
             "labelErrorStateChange": "Під час оновлення стану сталася помилка:",
             "labelHistory": "Набір статусу {time} на {author}",
@@ -6019,6 +6215,7 @@
                 "transaction": "Оплата",
                 "user": "Змінено"
             },
+            "labelCustomer": "Клієнт",
             "labelIntegration": "інтеграція",
             "labelSystemUser": "Системні",
             "modalTitle": "Історія статусу"
@@ -6029,7 +6226,8 @@
     },
     "sw-payments": {
         "general": {
-            "description": "Керуйте платежами Shopware."
+            "description": "Керуйте платежами Shopware.",
+            "mainMenuItemGeneral": "Платежі магазинного продукту"
         }
     },
     "sw-plugin-box": {
@@ -6050,7 +6248,8 @@
                 "label": "Додатки"
             },
             "integration_mcp": {
-                "editor": "Редагувати список дозволів MCP"
+                "editor": "Редагувати список дозволів MCP",
+                "label": "Інтеграція"
             },
             "marketing": {
                 "label": "Маркетинг",
@@ -6170,6 +6369,7 @@
                 "marketing": "Маркетинг",
                 "orders": "Замовлення",
                 "other": "Інше",
+                "products": "Продукти",
                 "settings": "Налаштування"
             },
             "payment": {
@@ -6222,6 +6422,9 @@
             },
             "state_machine": {
                 "label": "Державні машини"
+            },
+            "sw-payments": {
+                "label": "Платежі магазинного продукту"
             },
             "tag": {
                 "label": "Мітки"
@@ -6375,6 +6578,10 @@
             "cardTitleSeo": "SEO",
             "cardTitleSettings": "Маркування",
             "cardTitleVisibilityStructure": "Структура видимості",
+            "downloadExternalManagementLabel": "Файл не потрібен або надається зовні",
+            "downloadExternalManagementTooltip": "Увімкніть цей параметр, якщо продукт не має файлу, наприклад, для ліцензій або кодів доступу, або якщо файли додаються зовні.",
+            "downloadsContextMenuDownloadFile": "Завантажити файл",
+            "downloadsExternalManagementRequired": "Завантажте принаймні один файл або увімкніть «Файл не потрібен або надається зовні» нижче.",
             "downloadsLabel": "Завантаження файлів",
             "labelContextMenuAddToProduct": "Додати до продукту",
             "linkAdvancedPrices": "Розширені ціни",
@@ -6462,6 +6669,7 @@
             "mainMenuItemAdd": "Додати товар",
             "mainMenuItemGeneral": "Продукти",
             "mainMenuItemList": "Продукти",
+            "mainMenuItemOverview": "Огляд",
             "placeholderSearchBar": "Пошук продуктів...",
             "textAdvancedMode": "Розширений режим",
             "tooltipModeSettings": "Параметри режиму"
@@ -6655,13 +6863,19 @@
             "placeholderMetaTitle": "Введіть метазаголовок...",
             "placeholderOpenGraphDescription": "Введіть опис Відкритого графіка...",
             "placeholderOpenGraphTitle": "Введіть заголовок Відкритого графіка...",
+            "recommendedLength": "Рекомендовано: макс. Символи {max} ({count} використано)",
             "titleOpenGraph": "Відкрити Графік"
         },
         "settingsForm": {
+            "helpTextAllowMultipleUnits": "Якщо декілька одиниць не дозволено, клієнти можуть придбати лише одну одиницю цифрового продукту на замовлення.",
             "helpTextGuaranteeConfirmed": "Гарантійний ярлик відображається лише в тому випадку, якщо встановлено дійсний термін гарантії, виробник та номер продукту виробника.",
             "helpTextGuaranteeMonths": "Мінімальне значення - 30, кроки 6.",
+            "helpTextGuaranteeTermsMedia": "Гарантійний декларат виробника. Він пов'язаний під етикеткою у вітрині та прикріплений до електронного листа з підтвердженням замовлення.",
+            "helpTextGuaranteeTermsUrl": "Необов'язкова веб-сторінка з умовами гарантії. Якщо встановлено, він буде пов'язаний замість PDF-файлу.",
+            "helpTextMaxPurchaseDigital": "Залиште його порожнім, щоб використовувати максимальну кількість з налаштувань кошика.",
             "isCloseoutHelpText": "Відхилено зворотні замовлення.",
             "labelActive": "Активно для всіх вибраних каналів продажів",
+            "labelAllowMultipleUnits": "Дозволити кілька одиниць на замовлення",
             "labelAvailableStock": "Доступний склад",
             "labelCreatedAt": "Дата створення",
             "labelDeliveryTime": "Термін доставки",
@@ -6669,6 +6883,8 @@
             "labelGuaranteeConfirmed": "Показувати мітку в вітрині",
             "labelGuaranteeDescription": "Ця етикетка являє собою комерційну гарантію довговічності, виражену в роках. Гарантія пропонується виробником без додаткових витрат, охоплюючи весь товар і тривалістю більше двох років.",
             "labelGuaranteeMonths": "Термін гарантії виробника в місяцях",
+            "labelGuaranteeTermsMedia": "Гарантійні умови (PDF)",
+            "labelGuaranteeTermsUrl": "Умови гарантії URL",
             "labelHeight": "Висота",
             "labelIsCloseout": "Оформлення продажу",
             "labelLength": "Довжина",
@@ -6683,6 +6899,10 @@
             "labelStock": "Stock",
             "labelWeight": "Вага",
             "labelWidth": "Ширина",
+            "noticeGuaranteeRequirementManufacturer": "{label}: в картці «{card}».",
+            "noticeGuaranteeRequirementManufacturerNumber": "{label}: в картці «{card}».",
+            "noticeGuaranteeRequirementMonths": "{label}: {minimum} до {maximum} місяців, кроками {step}.",
+            "noticeGuaranteeRequirements": "Мітка не відображатиметься у Вітрині, доки не буде збережена наступна інформація:",
             "placeholderCreatedAt": "Введіть дату створення...",
             "placeholderDeliveryTime": "Введіть час доставки...",
             "placeholderEan": "Введіть GTIN/EAN...",
@@ -6738,6 +6958,7 @@
                 "title": "Генерувати варіанти",
                 "uploadAllButton": "Завантажте файл у всі цифрові варіанти",
                 "uploadCardDescription": "Всі цифрові варіанти повинні мати принаймні один файл для того, щоб бути збережені.",
+                "uploadCardExternalManagementDescription": "Цифрові варіанти можна зберігати без завантажених файлів, оскільки увімкнено «Файл не потрібен або надається зовні».",
                 "uploadCardSearchPlaceholder": "Варіанти пошуку...",
                 "uploadInfoBoxCount": "{count} варіантів | {count} варіант | {count} варіанти",
                 "uploadInfoBoxCreateLabel": "буде додано,",
@@ -6991,6 +7212,7 @@
             "labelNewPassword": "Новий пароль",
             "labelNewPasswordConfirm": "Підтвердити пароль",
             "labelOldPassword": "Старий пароль",
+            "labelThemeField": "Зовнішній вигляд",
             "labelTimezoneField": "Часовий пояс",
             "labelUploadAvatar": "Завантажити аватар",
             "labelUseAsAvatar": "Використовувати як аватар",
@@ -7001,6 +7223,7 @@
             "notificationSaveErrorMessage": "Не вдалося зберегти відомості профілю.",
             "notificationSaveSuccessMessage": "Інформація профілю була збережена.",
             "optionModuleIconColorsColored": "Кольорові",
+            "optionModuleIconColorsNeutral": "Нейтральний",
             "placeholderNewPassword": "Введіть новий пароль...",
             "placeholderNewPasswordConfirm": "Повторно введіть новий пароль...",
             "placeholderOldPassword": "Введіть старий пароль...",
@@ -7054,6 +7277,10 @@
                     "zipcode": "Поштовий індекс"
                 },
                 "customer_group": {
+                    "name": "Назва"
+                },
+                "flow": {
+                    "description": "Опис",
                     "name": "Назва"
                 },
                 "landing_page": {
@@ -7116,6 +7343,10 @@
                     "name": "Назва"
                 },
                 "property_group": {
+                    "name": "Назва"
+                },
+                "rule": {
+                    "description": "Опис",
                     "name": "Назва"
                 },
                 "sales_channel": {
@@ -7499,6 +7730,8 @@
         "ratingTooltipText": "{actual} з {max} зірок"
     },
     "sw-request-consent-modal": {
+        "acceptButton": "Прийняти",
+        "declineButton": "Зниження",
         "message": "Розширення {appName} вимагає вашої згоди на наступну тему: {consentName}",
         "readMore": "Для отримання додаткової інформації див.:",
         "title": "Потрібна згода",
@@ -7622,48 +7855,63 @@
     },
     "sw-sales-channel": {
         "agenticCommerceTracking": {
+            "affiliateCodeLabel": "Партнерський код",
             "affiliateCodePlaceholder": "Введіть партнерський код…",
+            "campaignCodeLabel": "Код кампанії",
             "campaignCodePlaceholder": "Введіть код кампанії…",
+            "cardTitle": "Коди відстеження",
             "description": "Налаштуйте партнерські коди та коди кампаній, які будуть вбудовані в URL-адреси продуктів стрічок цього каналу. Ці коди ідентифікують замовлення та клієнтів, які посилаються з цього каналу Agentic Commerce."
         },
         "detail": {
             "activateDisable": "Будь ласка, призначте тему перед активацією та збереженням каналу продажів.",
             "agenticCommerce": {
+                "buttonResetTemplate": "Скинути до типового",
                 "deprecationBanner": {
+                    "installPlugin": "Встановіть розширення",
                     "message": "Вбудована функція Agentic Commerce буде видалена в Shopware 6.8. Ваш канал продажів продовжує працювати наразі. Встановіть розширення «Agentic Commerce», щоб переконатися, що нічого не зламається.",
                     "title": "Агентична комерція переходить до розширення"
                 },
                 "errorLoadingTemplate": "Не вдалося завантажити шаблон за замовчуванням.",
                 "googleSettingsTitle": "Налаштування Google",
                 "integration": {
+                    "feedUrlLabel": "Експортувати URL-адресу",
                     "providers": {
                         "google": {
                             "cardTitle": "Підключення до торгового центру Google",
                             "introduction": {
-                                "description": "Цей канал продажів генерує канал продуктів XML, сумісний з Google Merchant Center, щоб ваші продукти могли відображатися в торгових площах Google і AI. У Merchant Center додайте наведену нижче URL-адресу експорту як запланований пошук файлів у розділі Параметри &rsaquo; Джерела даних."
+                                "description": "Цей канал продажів генерує канал продуктів XML, сумісний з Google Merchant Center, щоб ваші продукти могли відображатися в торгових площах Google і AI. У Merchant Center додайте наведену нижче URL-адресу експорту як запланований пошук файлів у розділі Параметри &rsaquo; Джерела даних.",
+                                "title": "Як: Налаштування та підключення"
                             },
                             "stepByStep": "<li>Створіть обліковий запис Merchant Center за адресою <a href=\"https://merchants.google.com\" target=\"_blank\" rel=\"noopener noreferrer\">merchants.google.com</a> і підтвердьте URL-адресу свого інтернет-магазину</li><li>У Merchant Center відкрийте <em>Налаштування &rsaquo; Джерела даних</em> і натисніть <em>Додати джерело товару</em></li><li>Виберіть <em>Файл</em>, потім <em>Додайте запланований вилучення з URL-адреси</em>і вставте URL-адресу експорту (нижче) як URL файлу</li><li>Переконайтеся, що URL-адреса експорту є загальнодоступною (автентифікація не потрібна)</li><li>Переглянути <a href=\"https://support.google.com/merchants/answer/7052112\" target=\"_blank\" rel=\"noopener noreferrer\">Специфікація даних про продукт Google</a> і коригуйте атрибути, якщо потрібно</li>"
                         },
                         "open-ai": {
                             "cardTitle": "Підключення OpenAI",
                             "introduction": {
-                                "description": "Цей канал продажів генерує канал продуктів JSONL, щоб ваші продукти могли відображатися в результатах пошуку ChatGPT. Для цього вам потрібно подати заявку як продавця та поділитися URL-адресою стрічки з OpenAI. Все інше пояснюється в покроковому посібнику нижче."
+                                "description": "Цей канал продажів генерує канал продуктів JSONL, щоб ваші продукти могли відображатися в результатах пошуку ChatGPT. Для цього вам потрібно подати заявку як продавця та поділитися URL-адресою стрічки з OpenAI. Все інше пояснюється в покроковому посібнику нижче.",
+                                "title": "Як: Налаштування та підключення"
                             },
                             "stepByStep": "<li>Подайте заявку як продавця за адресою <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/</a></li><li>Скопіюйте URL-адресу експорту (нижче) та поділіться нею з OpenAI відповідно до <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Документи каналів продуктів</a></li><li>Переконайтеся, що URL-адреса експорту є загальнодоступною</li>"
                         }
-                    }
+                    },
+                    "stepByStepTitle": "Крок за кроком"
                 },
                 "openAiSettingsTitle": "Налаштування OpenAI",
                 "resetTemplateSuccess": "Шаблон скинуто до типового значення. Будь ласка, збережіть, щоб зберегти зміни.",
+                "tabIntegration": "Інтеграція",
                 "templates": {
                     "template-label": {
+                        "google": "Покупки Google (XML)",
                         "open-ai": "Відкритий АІ (JSONL)"
                     }
                 }
             },
             "agenticFiles": {
+                "actionDisable": "Відключити",
                 "actionEnable": "Увімкнути",
                 "cardTitle": "Агентичні файли",
+                "columnDescription": "Опис",
+                "columnEnabled": "Статус",
+                "columnFileName": "Файл",
                 "description": "Керуйте файлами, що читаються штучним інтелектом, які публічно подаються для цього каналу продажів, такими як llms.txt, agents.md та ai-catalog.json. Вони дають помічникам короткий огляд вашого магазину та вказівки щодо використання загальнодоступного вмісту.",
                 "descriptions": {
                     "agentic": {
@@ -7675,7 +7923,10 @@
                 "detail": {
                     "actionEditOverride": "Змінити перевизначення",
                     "actionEnablePublicPathPreview": "Спочатку увімкніть цей файл для попереднього перегляду загальнодоступного шляху.",
+                    "actionPreviewPublicPath": "Попередній перегляд",
                     "backToList": "Повернутися до файлів агентів",
+                    "columnSourceRole": "Роль",
+                    "columnTemplate": "Шаблон",
                     "customNotesDescription": "Додайте власні примітки до кінця цього файлу, не замінюючи вміст за замовчуванням, наданий Shopware або розширеннями.",
                     "customNotesPlaceholder": "Додайте додаткові вказівки для агентів AI...",
                     "customNotesTitle": "Користувальницькі примітки",
@@ -7686,18 +7937,23 @@
                     "messagePreviewError": "Не вдалося створити попередній перегляд.",
                     "overrideModalApply": "Застосувати перевизначення",
                     "overrideModalDescription": "Налаштуйте вміст, внесений цим шаблоном, для цього каналу продажів. Зміни зберігаються як налаштування та можуть бути скинуті до вмісту шаблону за замовчуванням у будь-який час.",
+                    "overrideModalFieldLabel": "Зміст",
+                    "overrideModalReset": "Скинути до типового",
                     "overrideModalTitle": "Редагувати {source}",
                     "previewDescription": "Це вміст, який зараз подається для цього каналу продажів, включаючи збережені налаштування.",
                     "previewEmpty": "Не створено вмісту попереднього перегляду.",
                     "previewTitle": "Створений перегляд",
                     "roleBase": "Базовий шаблон",
+                    "roleExtension": "Розширення",
                     "showContentSources": "Показувати джерела",
                     "templatesDescription": "Показує, які шаблони вносять внесок у створений файл і чи був шаблон налаштований. Просунуті користувачі можуть перевизначити окремі шаблони, коли користувацьких приміток недостатньо.",
                     "templatesTitle": "Джерела контенту"
                 },
                 "emptyState": "Не знайдено файлів агента",
                 "enabledState": {
-                    "custom": "Індивідуальний"
+                    "custom": "Індивідуальний",
+                    "disabled": "Інваліди",
+                    "enabled": "Увімкнено"
                 },
                 "messageLoadError": "Не вдалося завантажити агентні файли."
             },
@@ -7839,6 +8095,7 @@
                     "titleNoProductStreamsMatching": "Не знайдено відповідних динамічних груп товарів."
                 },
                 "singleProducts": "Вибір продукту",
+                "singleProductsEmptyState": "Більше товарів не знайдено",
                 "title": "Додати продукти"
             },
             "productComparison": {
@@ -7926,12 +8183,20 @@
                 "insights": {
                     "customerCardHeadline": "Рекомендовані клієнти",
                     "dateRanges": {
+                        "14Days": "Останні 14 днів",
                         "180Days": "Останні 180 днів",
+                        "24Hours": "Останні 24 години",
+                        "30Days": "Останні 30 днів",
+                        "7Days": "Останні 7 днів",
                         "yesterday": "Вчора"
                     },
+                    "numbers": "Графік",
                     "orderCardHeadline": "Направлені накази",
+                    "summary": "Резюме",
+                    "totalTurnover": "Оборот",
                     "turnoverCardHeadline": "Рекомендований оборот"
-                }
+                },
+                "tabInsights": "Статистика"
             },
             "products": {
                 "buttonAddProducts": "Додати {productCount} товарів | Додати {productCount} товар | Додати {productCount} товарів",
@@ -7943,6 +8208,8 @@
                 "titleEmptyStateTable": "Відповідних продуктів не знайдено"
             },
             "serviceCategory": "Точка входу нижнього колонтитула служби навігації",
+            "snippetSetGroupOther": "Інші набори фрагментів",
+            "tabAgenticFiles": "Агентичні файли",
             "tabAnalytics": "Аналітика",
             "tabBase": "Загальний",
             "tabProductComparison": "шаблон",
@@ -8073,7 +8340,10 @@
         "routeNames": {
             "frontend-detail-page": "Сторінка подробиць про продукт",
             "frontend-landing-page": "Цільова сторінка",
-            "frontend-navigation-page": "Сторінка категорії"
+            "frontend-navigation-page": "Сторінка категорії",
+            "store-api-category-detail": "Сторінка категорії",
+            "store-api-landing-page-detail": "Цільова сторінка",
+            "store-api-product-detail": "Сторінка докладної інформації про товар"
         }
     },
     "sw-settings": {
@@ -8102,7 +8372,8 @@
             "compileNotice": "Ця конфігурація містить поля, які можна використовувати в темі. Будь ласка, скомпілюйте тему для цих змін, щоб бути видимими.",
             "inherited": "Успадковане",
             "labelSalesChannelSelect": "Канал продажів",
-            "scssHelpText": "Назва змінної SCSS: "
+            "scssHelpText": "Назва змінної SCSS: ",
+            "tabGeneral": "Загальний"
         }
     },
     "sw-settings-basic-information": {
@@ -8209,6 +8480,7 @@
             "helpTextAdvancedPostalCodePattern": "Можливі формати використання:<br><br>^\\ d{5}$ - Точні 5 цифр, наприклад 12345<br><br>^ (\\ d{4})\\ s* ([A-Z]{2}) $ - точні 4 цифри та 2 літери, наприклад 1234 AB",
             "helpTextCheckPostalCodePattern": "Вмикає перевірку поштових індексів для низки країн",
             "helpTextCheckVatIdFormat": "Перевіряє формат VAT Reg.N. для країн-членів ЄС.",
+            "helpTextCheckVatIdFormatNoPattern": "Ця країна не має відомого формату регламенту ПДВ для підтвердження.",
             "helpTextCompanyTaxFree": "Для здійснення неоподатковуваних операцій B2B, відповідні рахунки клієнтів повинні мати дійсний ПДВ Reg.No.",
             "helpTextIsEu": "Використовується, наприклад, для кредитних нот та повернення коштів.",
             "helpTextLabelVatIdRequired": "Будь ласка, майте на увазі глобальний перемикач у розділі «Налаштування > Ввійти/Реєстрація».",
@@ -8307,6 +8579,7 @@
             "notificationCountryErrorMessage": "Сталася помилка під час збереження параметрів валюти країни.",
             "notificationCountrySuccessMessage": "Налаштування валюти країни успішно збережено.",
             "notificationErrorMessage": "Сталася помилка при збереженні валюти.",
+            "notificationIsoCodeAlreadyExists": "Код ISO \"{isoCode}\" вже використовується.",
             "placeholderFactor": "Введіть коефіцієнт перетворення...",
             "placeholderIsoCode": "Введіть код ISO...",
             "placeholderName": "Введіть назву...",
@@ -8635,11 +8908,18 @@
             "placeholderBankBic": "Введіть BIC...",
             "placeholderBankIban": "Введіть IBAN...",
             "placeholderBankName": "Введіть назву банку...",
+            "placeholderCompanyCity": "Введіть місто...",
             "placeholderCompanyCountry": "Виберіть країну...",
+            "placeholderCompanyEmail": "Введіть адресу електронної пошти...",
             "placeholderCompanyName": "Введіть назву компанії...",
+            "placeholderCompanyPhone": "Введіть номер телефону...",
+            "placeholderCompanyStreet": "Увійдіть на вулицю...",
             "placeholderCompanyUrl": "Увійдіть на веб-сайт...",
+            "placeholderCompanyZipcode": "Введіть поштовий індекс...",
             "placeholderExecutiveDirector": "Введіть керівник бізнесу...",
             "placeholderFileNameInfix": "Введіть інфікс...",
+            "placeholderFileNamePrefix": "Введіть префікс...",
+            "placeholderFileNameSuffix": "Введіть суфікс...",
             "placeholderFileTypes": "Виберіть формати файлів...",
             "placeholderItemsPerPage": "Введіть кількість елементів на сторінці...",
             "placeholderName": "Введіть назву...",
@@ -8656,6 +8936,9 @@
             "textHeadline": "Новий документ"
         },
         "errors": {
+            "duplicateFilenameInfix": "Створює ту саму назву файлу, що й {formats}.",
+            "duplicateFilenameInfixInSalesChannelConfig": "Створює те саме ім'я файлу, що і {formats} у конфігурації каналу продажу {configs}.",
+            "duplicateFilenameInfixInherited": "Успадкований інфікс \"{infix}\" створює те саме ім'я файлу, що й {formats}.",
             "invalidDueDateFormat": "Модифікатор дати недійсний."
         },
         "general": {
@@ -8676,16 +8959,20 @@
     },
     "sw-settings-language": {
         "addModal": {
+            "buttonAdd": "Додати мову",
             "createCustomLanguage": "Створіть власну мову",
             "docsHint": "Як працюють переклади в Shopware:",
+            "docsLinkLabel": "Дізнатися більше",
             "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
             "extensionStoreHint": "Не можете знайти потрібну вам мову? Перегляд доступних мов на {extensionStoreLink}",
             "extensionStoreLink": "Магазин розширень",
+            "labelLanguage": "Мова",
             "messageAddError": "Мова не може бути додана.",
             "messageAddSuccess": "Додано мову.",
             "messageLanguagesLoadError": "Неможливо завантажити існуючі мови.",
             "messageTranslationsLoadError": "Неможливо завантажити доступні переклади.",
             "placeholderLanguage": "Виберіть мову...",
+            "title": "Додати мову",
             "translationsAvailable": "Доступні переклади на цю мову.",
             "translationsIncomplete": "Деякі переклади для цієї мови все ще можуть бути відсутні."
         },
@@ -8703,9 +8990,13 @@
             "placeholderName": "Введіть назву...",
             "placeholderPleaseSelect": "Будь ласка, виберіть...",
             "salesChannels": {
+                "activateHint": "Активуйте мову, а потім призначте її каналу продажів, щоб зробити її доступною для клієнтів.",
                 "assignHint": "Призначте мову каналу продажів, щоб зробити її доступною для клієнтів.",
                 "assignedIntro": "Мова присвоюється наступним каналам продажів:",
-                "openSettings": "Відкрити налаштування каналу продажів"
+                "openSettings": "Відкрити налаштування каналу продажів",
+                "showAll": "Показати все",
+                "showLess": "Показати менше",
+                "title": "Канали продажів"
             },
             "snippetUpdates": {
                 "autoUpdate": "Автоматичне оновлення",
@@ -8721,8 +9012,10 @@
                 "title": "Оновлення фрагментів",
                 "upToDate": "Фрагменти актуальні.",
                 "updateAvailable": "Нове оновлення доступне.",
+                "updateButton": "Оновити",
                 "updateError": "Фрагменти для цієї мови не вдалося оновити.",
-                "updating": "Фрагменти оновлюються."
+                "updating": "Фрагменти оновлюються.",
+                "updatingButton": "Оновлення..."
             },
             "textAlertChangeParent": "Зміна батьківської мови може призвести до невідповідностей у ваших перекладах.",
             "textHeadline": "Нова мова",
@@ -8749,6 +9042,8 @@
             "columnIsoCode": "Код ISO ",
             "columnLocaleName": "Локалізація",
             "columnName": "Назва",
+            "columnSalesChannels": "Канали продажів",
+            "columnSnippetStatus": "Оновлення фрагментів",
             "contextMenuUpdateSnippets": "Оновити фрагменти",
             "defaultLabel": "За замовчуванням",
             "deleteError": "Мови не вдалося видалити.",
@@ -8762,10 +9057,12 @@
             "messageDeleteSuccess": "Мова \"{name}\" була вилучена.",
             "salesChannelCount": "{count} Канал продажів | {count} Канали продажів",
             "snippetStatus": {
-                "updateAvailable": "Оновлення доступне"
+                "updateAvailable": "Оновлення доступне",
+                "updating": "Оновлення..."
             },
             "snippetStatusLoadError": "Не вдалося завантажити оновлення фрагментів.",
             "textHeadline": "Мови",
+            "titleSidebarItemRefresh": "Оновити",
             "updateSnippetsError": "Не вдалося оновити фрагменти.",
             "updateSnippetsProgress": "Оновлення фрагментів ({processed}/{total})",
             "updateSnippetsSuccess": "Фрагменти були оновлені."
@@ -9079,6 +9376,7 @@
             "columnUsedIn": "Тип",
             "global": "Глобальний",
             "messageDeleteSuccess": "Діапазон номерів «{name}» був видалений.",
+            "messageEmpty": "Ще немає діапазонів чисел",
             "textDeleteConfirm": "Ви впевнені, що хочете видалити діапазон чисел «{name}»?",
             "textHeadline": "Діапазони чисел"
         }
@@ -9207,6 +9505,7 @@
             "cardTitle": "Цінності",
             "createStateDescription": "Додайте значення, щоб визначити основні характеристики, адаптовані до вашого асортименту.",
             "emptyStateDescription": "Додайте значення, щоб визначити основні характеристики, адаптовані до вашого асортименту.",
+            "emptyStateTitle": "Ще немає значень",
             "labelCreateNew": "Додати поле",
             "labelPosition": "Позиція",
             "labelType": "Тип",
@@ -9224,6 +9523,16 @@
         "detail": {
             "associations": {
                 "columns": {
+                    "active": "Активний",
+                    "description": "Опис",
+                    "extension": "Розширення",
+                    "flow": "Потік",
+                    "manufacturer": "Виробник",
+                    "name": "Назва",
+                    "position": "Позиція",
+                    "taxCalculation": "Розрахунок податку",
+                    "trigger": "Тригер",
+                    "validFrom": "Дійсно з",
                     "validTo": "Дійсно до"
                 },
                 "flows": "Будівельники потоку",
@@ -9242,6 +9551,8 @@
             },
             "associationsLoadingError": "Не вдалося завантажити призначення правил.",
             "buttonAddAssignment": "Додати присвоєння",
+            "deprecatedConditionWarning": "Умова \"{label}\" застаріла і буде видалена в {version}. Будь ласка, використовуйте «{replacement}» замість цього.",
+            "deprecatedConditionWarningNoReplacement": "Умова \"{label}\" застаріла і буде видалена в {version}.",
             "flowOnlyConditionsWarning": "Наступні умови цього правила вимагають контексту потоку: {conditions}. За межами потоку (наприклад, у способах доставки, способах оплати або призначеннях реклами) вони завжди оцінюватимуться як false.",
             "groups": {
                 "cart": "Кошик для покупок",
@@ -9377,6 +9688,8 @@
             "fieldDisplayNamePlaceholder": "Введіть привітання...",
             "fieldLetterNameLabel": "Вітація листа",
             "fieldLetterNamePlaceholder": "Введіть привітання листа...",
+            "fieldPositionLabel": "Позиція",
+            "fieldPositionPlaceholder": "Виберіть позицію...",
             "fieldPositionTooltip": "Керує порядком відображення у випадаючих списках; спочатку відображаються менші цифри.",
             "fieldSalutationKeyLabel": "Технічна назва",
             "fieldSalutationKeyPlaceholder": "Введіть технічну назву...",
@@ -9392,6 +9705,7 @@
         "list": {
             "columnDisplayName": "Вітація",
             "columnLetterName": "Вітація листа",
+            "columnPosition": "Позиція",
             "columnSalutationKey": "Технічна назва"
         }
     },
@@ -9713,12 +10027,31 @@
             "requirements": "Системні вимоги",
             "updating": "Оновлення..."
         },
+        "extensions": {
+            "actions": {
+                "deactivateAll": "Деактивуйте всі розширення.",
+                "deactivateIncompatible": "Деактивувати несумісні розширення.",
+                "deactivateNone": "Я знаю про неявні небезпеки і все ще хочу оновити Shopware, не деактивуючи спочатку несумісні розширення. Я усвідомлюю, що Shopware не може гарантувати функціональність моєї установки після несумісного оновлення.",
+                "openMyExtensions": "До моїх розширень",
+                "recommended": "(Рекомендовано)"
+            },
+            "columns": {
+                "available": "сумісність",
+                "name": "Розширення"
+            },
+            "emptyStateDescription": "Усі встановлені розширення сумісні з цим оновленням.",
+            "emptyStateHeadline": "Немає проблем із сумісністю",
+            "extensionNotInStore": "Це розширення недоступне в магазині. Будь ласка, зв'яжіться з авторами розширення.",
+            "extensionWillBeDeactivatedHint": "(Це розширення буде деактивовано при оновленні)"
+        },
         "general": {
             "menuTitle": "Оновлення Shopware",
             "title": "Оновлення магазинів ({version})"
         },
         "infos": {
+            "autoUpdateDisabled": "Автоматичні оновлення вимкнені (shopware.auto_update.enabled). Використовуйте Shopware CLI для оновлення.",
             "backupCheckboxLabel": "Я створив резервну копію і хочу виконати оновлення зараз.",
+            "clusterSetupDisabled": "Оновлення через Адміністрування неможливе при налаштуваннях кластерів (shopware.deployment.cluster_setup). Використовуйте Shopware CLI для оновлення.",
             "progress": {
                 "deactivate": "Деактивація розширень...",
                 "download": "Звантаження файла оновлення...",
@@ -9726,8 +10059,24 @@
             },
             "startUpdate": "Почати оновлення"
         },
+        "license": {
+            "bannerMessage": "Активної підписки на Shopware не знайдено. Автоматичні оновлення не можуть бути виконані. Ви можете придбати підписку на Shopware через сторінку облікового запису <a target=\"_blank\" href=\"https://account.shopware.com\">Shopware</a>.",
+            "bannerTitle": "Немає активної підписки на Shopware"
+        },
+        "methodModal": {
+            "actions": {
+                "continue": "Продовжити"
+            },
+            "cliDescription": "Shopware CLI надає вам більше контролю та повторюваних розгортань.",
+            "cliInstallHint": "Встановіть Shopware CLI і запустіть:",
+            "cliInstallLink": "Встановіть Shopware CLI",
+            "cliTitle": "З магазинним програмним забезпеченням CLI",
+            "subtitle": "Перед оновленням рекомендується зробити резервну копію.",
+            "title": "Оновити Shopware"
+        },
         "notifications": {
             "alreadyUpToDate": "Ви працюєте з останньою версією.",
+            "checkFailed": "Перевірка оновлень не вдалася.",
             "deactivationFailed": "Неможливо деактивувати розширення.",
             "downloadFailed": "Звантаження зазнала невдачі.",
             "unpackFailed": "Спроба розпакування зазнала невдачі",
@@ -9744,6 +10093,23 @@
             "messageNotInStore": "Є встановлені розширення, які не вдалося успішно перевірити на сумісність. Будь ласка, зв'яжіться з авторами розширення для отримання додаткової інформації. У цьому випадку настійно рекомендується створити резервну копію перед оновленням.",
             "messageOkay": "Всі передумови виконані. Не забудьте створити резервну копію перед оновленням.",
             "messageUpdateCheck": "Поточна версія може бути оновлена до {version}. Що ви хочете зробити?"
+        },
+        "versionCard": {
+            "badgeCheckFailed": "Перевірка оновлення не вдалася",
+            "badgeUpToDate": "В актуальному стані",
+            "badgeUpdateAvailable": "Оновлення доступне",
+            "changelogLink": "Переглянути журнал змін",
+            "cliRecommendedBadge": "Рекомендовано",
+            "currentVersionLabel": "Встановлена версія:",
+            "methodDivider": "або продовжити",
+            "methodsHeadline": "Оновити зараз",
+            "newVersionLabel": "Остання версія:",
+            "retryCheck": "Спробуйте ще раз",
+            "title": "Версія магазинного програмного забезпечення",
+            "upToDateDescription": "Shopware {version} - це остання версія.",
+            "upToDateTitle": "Ви в курсі подій",
+            "webInstallerDescription": "Запустіть кероване оновлення безпосередньо у вашому браузері.",
+            "webInstallerTitle": "За допомогою веб-інсталятора"
         }
     },
     "sw-settings-sitemap": {
@@ -10064,6 +10430,7 @@
             "cardTitle": "Країни",
             "createStateDescription": "Спочатку збережіть цю податкову ставку, а потім додайте більше країн.",
             "emptyStateDescription": "Додайте індивідуальні податкові ставки для різних країн.",
+            "emptyStateTitle": "Поки немає тарифів для конкретних країн",
             "labelActiveFrom": "Активний з",
             "labelAppliesOn": "Застосовується до",
             "labelCountryName": "Країна",
@@ -10108,6 +10475,7 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "Зниження",
                 "give-consent": "Дати згоду",
                 "save-preferences": "Зберегти налаштування",
                 "share-all-data": "Поділитися всім",
@@ -10136,6 +10504,7 @@
                 },
                 "external-links": {
                     "data-use-details": {
+                        "label": "тут",
                         "link": "https://www.shopware.com/en/legal/data-use-details/"
                     }
                 },
@@ -10184,6 +10553,7 @@
         "functionAccessibilityCloseDialog": "Закрити діалог",
         "functionAccessibilityMoveFocusBackward": "Перехід до попереднього фокусованого елемента",
         "functionAccessibilityMoveFocusForward": "Перехід до наступного фокусованого елемента",
+        "functionAccessibilitySkipToContent": "Перейти до вмісту",
         "functionAddCategory": "Додати категорію",
         "functionAddCustomer": "Додати клієнта",
         "functionAddManufacturer": "Додати виробника",
@@ -10211,10 +10581,13 @@
         "functionGoToShoppingExperience": "Перейти до торгового досвіду",
         "functionGoToSnippets": "Перейти до фрагментів",
         "functionSpecialShortcutCancelDetailView": "Скасувати перегляд подробиць",
+        "functionSpecialShortcutClearCache": "Очистити кеш",
+        "functionSpecialShortcutCycleTheme": "Зовнішній вигляд перемикача",
         "functionSpecialShortcutFocusSearch": "Фокус-пошук",
         "functionSpecialShortcutOpenFilters": "Відкрити фільтри",
         "functionSpecialShortcutSaveDetailView": "Зберегти поточний вигляд",
         "functionSpecialShortcutShortcutListing": "Лістинг клавіатурних скорочень",
+        "functionSpecialShortcutToggleNavigation": "Переключити навігацію",
         "iconTooltip": "Натисніть `{key}` щоб відобразити список доступних ярликів",
         "keyboardShortcut": "Сполучення клавіш",
         "keyboardShortcutAccessibilityCloseDialog": "Еск",
@@ -10251,12 +10624,14 @@
         "keyboardShortcutSpecialShortcutClearCacheLinux": "АЛЬТ-С",
         "keyboardShortcutSpecialShortcutClearCacheMac": "КОНТРОЛЬ-C",
         "keyboardShortcutSpecialShortcutClearCacheWindows": "АЛЬТ-С",
+        "keyboardShortcutSpecialShortcutCycleTheme": "C Т",
         "keyboardShortcutSpecialShortcutFocusSearch": "F",
         "keyboardShortcutSpecialShortcutOpenFilters": "О Ф",
         "keyboardShortcutSpecialShortcutSaveDetailViewLinux": "АЛЬТ-С",
         "keyboardShortcutSpecialShortcutSaveDetailViewMac": "CONTROL-S",
         "keyboardShortcutSpecialShortcutSaveDetailViewWindows": "АЛЬТ-С",
         "keyboardShortcutSpecialShortcutShortcutListing": "Зсув?",
+        "keyboardShortcutSpecialShortcutToggleNavigation": "С",
         "modalTitle": "Сполучення клавіш",
         "sectionAccessibility": "Доступність",
         "sectionAddingItems": "Додавання елементів",
@@ -10525,7 +10900,8 @@
             "mainMenuHeader": "Ваші теми",
             "mainMenuItemGeneral": "Теми",
             "messageSaveError": "Тему не вдалося призначити каналу продажів.",
-            "placeholderSearchBar": "Пошук доступних тем..."
+            "placeholderSearchBar": "Пошук доступних тем...",
+            "switchThemeListMode": "Перемикання між сіткою та переглядом списку"
         },
         "list": {
             "gridHeaderAssignment": "Призначені канали продажу",
@@ -10607,19 +10983,23 @@
     },
     "sw-ui-shell-update-2026-modal": {
         "finishButton": "Зрозумів",
+        "nextButton": "Наступний",
         "pages": {
             "adminNavigation": {
                 "description": "У міру зростання Адміністрації Shopware зростає кількість функцій та елементів навігації. Ми переробили навігацію, щоб покращити щільність та полегшити пошук, завдяки чіткішим активним станам, плавнішій анімації підменю, кращій читаності та покращеній доступності клавіатури.",
-                "headline": "Чіткіша, більш спрощена навігація"
+                "headline": "Чіткіша, більш спрощена навігація",
+                "moduleColorsHint": "Віддаєте перевагу кольоровим іконкам модулів? Ви можете будь-коли переключити «Кольори модуля» на «Кольорові» у своєму {profileSettingsLink}."
             },
             "darkMode": {
                 "badge": "Експериментальний",
                 "description": "Адміністрація тепер пропонує темний вигляд для користувальницького інтерфейсу, для кращої доступності та відповідності вашим особистим уподобанням.",
                 "headline": "Темний зовнішній вигляд",
                 "themeSaveError": "Зовнішній вигляд не вдалося зберегти.",
-                "themeSelectHint": "Ви можете змінити цей параметр у будь-який час у своєму {profileSettingsLink}."
+                "themeSelectHint": "Ви можете змінити цей параметр у будь-який час у своєму {profileSettingsLink}.",
+                "themeSelectLabel": "Зовнішній вигляд"
             }
         },
+        "profileSettingsLink": "налаштування профілю",
         "seenSaveError": "Ваші переваги не вдалося зберегти. Це діалогове вікно може з'явитися знову.",
         "title": "Новий вигляд для вашої адміністрації"
     },
@@ -10662,8 +11042,10 @@
             "mcpModal": {
                 "description": "Наступні інструменти дозволені для інтеграцій, які використовують цю роль.",
                 "dynamicPrivilegeHint": "Цей привілей залежить від параметра сутності, переданого під час виконання.",
+                "grant": "Грант",
                 "grantAllMissing": "Надайте всім відсутнім",
                 "legendDynamic": "динамічний",
+                "legendDynamicHint": "Цей привілей залежить від параметра сутності, переданого під час виконання.",
                 "legendGranted": "надано",
                 "legendGrantedHint": "Цей привілей вже надається на роль.",
                 "legendLabel": "Легенда:",
@@ -10747,6 +11129,7 @@
                 "errorEmailUsed": "Ця адреса електронної пошти вже використовується.",
                 "errorUsernameUsed": "Це ім'я користувача вже використовується.",
                 "labelAccessKey": "Ключ доступу",
+                "labelActive": "Активний",
                 "labelAdministrator": "Адміністратор",
                 "labelButtonChangePassword": "Змінити",
                 "labelCard": "Основна інформація",
@@ -10764,7 +11147,9 @@
                 "labelPermissions": "Дозволи",
                 "labelProfilePicture": "Картинка профілю",
                 "labelRoles": "Ролі",
+                "labelRolesPermissionsCard": "Ролі та дозволи",
                 "labelTimezone": "Часовий пояс",
+                "labelUserInterface": "Інтерфейс користувача",
                 "labelUsername": "Ім'я користувача",
                 "mcpAllowlistSaveError": "Не вдалося зберегти список дозволів MCP.",
                 "mcpAllowlistTitle": "Список дозволів інструменту MCP",

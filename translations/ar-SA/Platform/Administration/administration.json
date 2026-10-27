@@ -381,6 +381,7 @@
             "bulkEdit": "تعديل متعدد",
             "cancel": "إلغاء",
             "close": "إغلاق",
+            "configure": "قم بالتهيئة",
             "confirm": "تأكيد",
             "copy": "نسخ",
             "delete": "حذف",
@@ -478,7 +479,8 @@
             "tax_rule": "القاعدة الضريبية | القواعد الضريبية",
             "theme": "موضوع | ثيمات",
             "unit": "الوحدة | الوحدات",
-            "user": "المستخدم | المستخدمون"
+            "user": "المستخدم | المستخدمون",
+            "webhook": "ويب هوك | ويب هوكس"
         },
         "entity-components": {
             "deleteMessage": "هل أنت متأكد أنك تريد حذف هذا البند؟ | هل أنت متأكد من أنك تريد حذف هذه العناصر البالغ عددها {count}؟",
@@ -509,6 +511,7 @@
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "عدد كبير جدًا من الطلبات. يرجى الانتظار لمدة {seconds} ثانية قبل المحاولة مرة أخرى.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "يتعارض عنوان URL {path} مع المسار الحالي {blockedSegment} ولا يمكن استخدامه.",
             "INVALID_GARAN_GUARANTEE_MONTHS": "يجب أن تكون مدة الضمان فارغة (غير مملوؤه) أو بقيمة نصف عام تزيد عن 24 شهرًا، على سبيل المثال 30 أو 36 أو 42.",
+            "INVALID_GARAN_GUARANTEE_TERMS_URL": "يجب أن يبدأ عنوان URL لشروط الضمان بـ http://أو https://.",
             "INVALID_MAIL": "رجاء قم بإعارة بريد الكتروني.",
             "INVALID_MEDIA_URL": "الرجاء إدخال عنوان URL صالح لتحميل الملف.",
             "INVALID_URL": "الرجاء إدخال عنوان URL صحيح.",
@@ -549,6 +552,7 @@
                 "updatesAvailableTitle": "يتوفر إصدار جديد من Shopware {version}"
             },
             "title": "التنبيهات",
+            "triggerAriaLabel": "الإشعارات",
             "worker-listener": {
                 "category": {
                     "message": "الفئات المفهرسة. | فئة واحدة متبقية ... | {n} فئات متبقية ...",
@@ -617,13 +621,16 @@
         },
         "sw-admin-menu": {
             "administrator": "مدير النظام",
+            "linkCloseMenu": "إغلاق القائمة",
             "linkExpandMenu": "قم بتوسيع القائمة",
             "linkLogout": "تسجيل الخروج",
             "linkMinimizeMenu": "طي القائمة",
             "navigation": {
                 "label": "الملاحة الرئيسية",
+                "mainMenuItemAutomation": "التشغيل الآلي",
                 "mainMenuItemContent": "المحتوى",
                 "mainMenuItemMarketing": "التسويق",
+                "mainMenuItemProducts": "منتجات",
                 "mainMenuItemShopwarePayments": "مدفوعات برامج التسوق"
             },
             "textProjectName": "الادارة",
@@ -639,6 +646,9 @@
             "sanitizedHint": "تم تطهير بعض المدخلات الخاصة بك. يرجى التحقق مرة أخرى من المحتوى الخاص بك."
         },
         "sw-condition": {
+            "cartLineItemWithQuantity": {
+                "id": "المنتج"
+            },
             "condition": {
                 "AddAndCondition": "إضافة شرط",
                 "AddOrCondition": "إضافة شرط OR",
@@ -768,6 +778,7 @@
                 "orderCountRule": "كمية الطلبات المكتملة",
                 "orderCreatedByAdminRule": "تم إنشاء الطلب من قبل المشرف",
                 "orderCustomFieldRule": "اطلب باستخدام حقل مخصص",
+                "orderDaysSincePlacedRule": "الوقت منذ تقديم الطلب",
                 "orderDeliveryStatusRule": "حالة التسليم",
                 "orderDocumentTypeRule": "طلبية مع مستند (وثيقة)",
                 "orderDocumentTypeSentRule": "اطلب مع المستند المرسل",
@@ -808,11 +819,25 @@
                 "prefix": "قيمة غير صالحة:"
             },
             "field": {
+                "amount": "المبلغ",
+                "categoryIds": "الفئة",
+                "count": "الكمية",
+                "identifiers": "الاختيار",
+                "isAlwaysValid": "صالحة دائمًا",
                 "isNet": "الصافي/الإجمالي",
                 "isNumeric": "وضع المقارنة",
+                "operator": "المشغل",
+                "quantity": "الكمية",
+                "renderedField": "حقل مخصص",
+                "renderedFieldValue": "القيمة",
+                "selectedField": "حقل مخصص",
+                "selectedFieldSet": "مجموعة حقول مخصصة",
                 "timezone": "منطقة زمنية",
                 "toDate": "حتى",
-                "useTime": "وضع الوقت"
+                "toTime": "حتى",
+                "type": "الحالة",
+                "useTime": "وضع الوقت",
+                "zipCodes": "الرمز البريدي"
             },
             "operator": {
                 "between": "يقع بين | بين",
@@ -853,6 +878,14 @@
                     "options": {
                         "digital": "رقمي",
                         "physical": "فيزيائي"
+                    }
+                }
+            },
+            "cartLineItemPurchasePrice": {
+                "type": {
+                    "options": {
+                        "gross": "إجمالي",
+                        "net": "شبكة"
                     }
                 }
             },
@@ -963,7 +996,11 @@
             "tooltipListSettings": "إعدادات القائمة"
         },
         "sw-desktop": {
-            "stagingBarText": "المتجر في وضع التدريج."
+            "stagingBarText": "المتجر في وضع التدريج.",
+            "theme": {
+                "changed": "تم تغيير المظهر إلى \"{theme}»",
+                "saveError": "لا يمكن تغيير المظهر"
+            }
         },
         "sw-duplicated-media": {
             "buttonRename": "إعادة تسمية الملف",
@@ -1486,6 +1523,7 @@
         "sw-sso-error": {
             "error-card": {
                 "button": "تسجيل الدخول بحساب مختلف",
+                "loadingLabel": "جاري التحميل...",
                 "loggedInAsPrefix": "تم تسجيل الدخول باسم:",
                 "logoAltText": "شعار شوبوير",
                 "text": "تم تسجيل الدخول بنجاح، ولكن ليس لديك حق الوصول إلى متجر Shopware هذا.",
@@ -1524,6 +1562,13 @@
             "Reduced rate": "معدل مخفض",
             "Reduced rate 2": "معدل مخفض للغاية",
             "Standard rate": "سعر قياسي"
+        },
+        "theme": {
+            "names": {
+                "dark": "داكن",
+                "light": "ضوء",
+                "system": "النظام"
+            }
         }
     },
     "help-center": {
@@ -1641,6 +1686,7 @@
                     }
                 },
                 "newValue": "قيمة جديدة",
+                "noStrategySelected": "حدد أحد الخيارات أولاً.",
                 "oldValue": "القيمة القديمة",
                 "remindMeLater": "ذكّرني لاحقًا",
                 "selectAnOption": "اقرأ الخيارات المتاحة بعناية وحدد الخيار الذي يناسب السيناريو الخاص بك:",
@@ -1662,9 +1708,16 @@
                 "title": "تم اقتراح تغيير معرف المتجر"
             },
             "sw-app-wrong-app-url-modal": {
+                "checkAgain": "إذا قمت بإصلاح المشكلة دون تغيير APP_URL، قم بتشغيل هذا الأمر لإزالة هذا التحذير:",
+                "checkIntro": "تحقق من ذلك:",
+                "checkNotBlocked": "لا يتم حظر الطلبات إلى /api/app-system/shop/verify (جدار الحماية ومصادقة HTTP وقائمة السماح بـ IP)",
+                "checkPointsToShop": "يشير APP_URL إلى هذا المتجر",
                 "explanation": "لا تستطيع الإضافات إنشاء اتصال بمتجرك، بسبب تكوين خاطئ في نظامك.",
                 "labelLearnMoreButton": "تعرف على المزيد",
+                "labelReason": "السبب",
                 "linkToDocsArticle": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/notes-to-the-APP-URL",
+                "reasonStatusCode": "أجاب APP_URL على طلب التحقق باستخدام HTTP {statusCode}.",
+                "reasonUnknown": "قم بتشغيل الأمر أدناه للحصول على التفاصيل.",
                 "title": "تم تكوين APP_URL بشكل خاطئ"
             }
         }
@@ -1772,10 +1825,13 @@
                 "documentGenerationFailed": "تعذر إنشاء مستند {count} . | {count} لا يمكن إنشاء مستندات.",
                 "documentGenerationSkipped": "لم يتم إنشاء مستند {count} لأنه موجود بالفعل. | {count} لم يتم إنشاء المستندات لأنها موجودة بالفعل.",
                 "failedDocuments": {
+                    "columnDocumentType": "نوع المستند",
+                    "columnOrder": "اطلب",
                     "documentTypes": {
                         "cancellationInvoice": "فاتورة الإلغاء",
                         "creditNote": "ملاحظة ائتمانية",
-                        "deliveryNote": "ملاحظة التسليم"
+                        "deliveryNote": "ملاحظة التسليم",
+                        "invoice": "الفاتورة"
                     },
                     "downloadHeadline": "المستندات الفاشلة",
                     "downloadResult": "نتيجة التنزيل"
@@ -1828,7 +1884,9 @@
                     "helpText": "يؤدي هذا الإجراء إلى زيادة قيمة نطاق الأرقام المقابل.",
                     "label": "توليد: فاتورة",
                     "labelDatePicker": "التاريخ",
-                    "labelTextarea": "تعليق"
+                    "labelFileFormats": "تنسيقات الملفات",
+                    "labelTextarea": "تعليق",
+                    "placeholderFileFormats": "حدد تنسيقات الملفات..."
                 },
                 "warning": "يستخدم التعديل المجمع الآن إنشاء مستند محسّن. ومع ذلك، قد ينتج ملحق واحد أو أكثر على نظامك نتائج مختلفة مع إنشاء المستند الجديد.\nلذلك، يرجى التحقق مما إذا كانت مستنداتك تظهر اختلافات مع أو بدون استخدام التحرير المجمع."
             },
@@ -1978,6 +2036,25 @@
                 "productPromotion": {
                     "changeLabel": "التغيير: ترويج المنتج",
                     "switchLabel": "ترويج المنتج"
+                }
+            },
+            "guarantee": {
+                "cardTitle": "الضمان (ملصق جاران)",
+                "guaranteeConfirmed": {
+                    "changeLabel": "التغيير: عرض الملصق في واجهة المتجر",
+                    "helpText": "يتم عرض ملصق الضمان فقط في حالة تعيين مدة ضمان صالحة ورقم منتج الشركة المصنعة.",
+                    "label": "اعرض الملصق في واجهة المتجر"
+                },
+                "guaranteeMonths": {
+                    "changeLabel": "التغيير: مدة ضمان المنتج",
+                    "helpText": "بين 30 و 600 شهرًا، في الخطوات من 6.",
+                    "placeholder": "على سبيل المثال 30 أو 36 أو 42 شهرًا..."
+                },
+                "guaranteeTermsMedia": {
+                    "changeLabel": "التغيير: شروط الضمان (PDF)"
+                },
+                "guaranteeTermsUrl": {
+                    "changeLabel": "التغيير: عنوان URL لشروط الضمان"
                 }
             },
             "labelling": {
@@ -2230,6 +2307,7 @@
                 "placeholderKeywords": "أدخل كلمة رئيسية واحدة أو أكثر...",
                 "placeholderMetaDescription": "أدخل وصفًا...",
                 "placeholderMetaTitle": "أدخل عنوان التعريف...",
+                "recommendedLength": "الموصى بها: كحد أقصى. أحرف {max} ({count} المستخدمة)",
                 "title": "سيو"
             }
         },
@@ -2281,6 +2359,9 @@
         "blocks": {
             "blockDisableState": "هذه الكتلة غير مرئية على أي جهاز. يمكنك تحرير الكتلة ولكن التغييرات لن تكون مرئية في متجرك. قم بتحرير هذا التخطيط في وحدة تجارب التسوق لتغيير رؤية الكتلة.",
             "commerce": {
+                "categoryHeading": {
+                    "label": "اسم الفئة"
+                },
                 "crossSelling": {
                     "label": "البيع المتقاطع"
                 },
@@ -2657,6 +2738,9 @@
                 },
                 "label": "صندوق الشراء"
             },
+            "categoryName": {
+                "label": "اسم الفئة"
+            },
             "crossSelling": {
                 "config": {
                     "infoText": {
@@ -2686,7 +2770,8 @@
                         "title": "العنوان",
                         "type": "نوع النموذج",
                         "typeContact": "اتصل بنا",
-                        "typeNewsletter": "النشرة الإخبارية"
+                        "typeNewsletter": "النشرة الإخبارية",
+                        "typeRevocationRequest": "الإبطال"
                     },
                     "placeholder": {
                         "type": "حدد نوع النموذج..."
@@ -2698,6 +2783,7 @@
                     },
                     "label": {
                         "action": "الإجراء",
+                        "comment": "تعليق",
                         "contractNumber": "رقم العقد (رقم الطلب، رقم الاشتراك، ... ) *    ",
                         "email": "عنوان البريد الإلكتروني*",
                         "firstName": "الاسم الأول*",
@@ -2719,6 +2805,7 @@
                         }
                     },
                     "placeholder": {
+                        "comment": "نحن نخبركم دائمًا، ونكون من النخبة، لكنهم لا يشعرون بأي وقت من الأوقات للعمل والألم بقدر كبير من الألم، ولكني أشعر بالحماس. في الحقيقة، اتهموا وعادلوا الألم والشفاه.",
                         "contractNumber": "SW123456789",
                         "email": "جون {'@'} doe.com",
                         "firstName": "فلان",
@@ -3268,6 +3355,7 @@
             "labelCustomerNumber": "رقم الزبون",
             "labelEmail": "عنوان البريد الإلكتروني",
             "labelFirstName": "الاسم الأول",
+            "labelLanguage": "اللغة",
             "labelLastName": "الاسم الأخير",
             "labelPassword": "كلمة المرور",
             "labelPaymentMethod": "طريقة الدفع",
@@ -3280,6 +3368,7 @@
             "placeholderCustomerNumber": "أدخل رقم العميل...",
             "placeholderEmail": "أدخل عنوان البريد الإلكتروني...",
             "placeholderFirstName": "ادخل الإسم الاول...",
+            "placeholderLanguage": "حدد اللغة...",
             "placeholderLastName": "ادخل إسم العائلة...",
             "placeholderPassword": "أدخل كلمة المرور...",
             "placeholderPaymentMethod": "حدد طريقة الدفع...",
@@ -3349,6 +3438,7 @@
             "manual": {
                 "button": "تعيين كلمة مرور",
                 "description": "قم بتعيين كلمة مرور جديدة للعميل مباشرة. لن يتم إخطار العميل.",
+                "passwordLabel": "كلمة مرور جديدة",
                 "title": "تعيين كلمة المرور يدويًا"
             },
             "modalTitle": "تحويل المستخدم"
@@ -3387,6 +3477,7 @@
             "buttonAddAddress": "إضافة عنوان",
             "buttonSaveAndSelect": "احفظ وحدد",
             "buttonSelect": "حدد",
+            "cardTitle": "عناوين",
             "columnActions": "الإجراءات",
             "columnCity": "المدينة",
             "columnCompany": "الشركة",
@@ -3398,6 +3489,7 @@
             "columnZipCode": "الرمز البريدي",
             "contextMenuDefaultBillingAddress": "تم تعيينه كعنوان إرسال فواتير افتراضي",
             "contextMenuDefaultShippingAddress": "تعيين كعنوان تسليم افتراضي",
+            "filterPlaceholder": "عناوين البحث...",
             "modalTitleAddAddress": "إضافة عنوان",
             "modalTitleAddress": "العنوان",
             "modalTitleEditAddress": "تحرير العنوان",
@@ -3430,6 +3522,9 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "الشركة الميدانية مطلوبة للعملاء التجاريين.",
+            "VIOLATION::CUSTOMER_EMAIL_NOT_UNIQUE": "تم تسجيل عنوان البريد الإلكتروني هذا بالفعل.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "كلمة المرور المختارة طويلة جدًا.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "كلمة المرور المختارة قصيرة جدًا.",
             "passwordDoNotMatch": "لا تتطابق مدخلاتك لكلمة المرور الجديدة وتأكيد كلمة المرور."
         },
         "filter": {
@@ -3675,6 +3770,20 @@
                         "label": "قناة التصدير",
                         "placeholder": "حدد قنوات التصدير…"
                     }
+                },
+                "list": {
+                    "columnExportFeed": "قناة التصدير"
+                }
+            },
+            "sw-order-list": {
+                "filters": {
+                    "exportFeedFilter": {
+                        "label": "قناة التصدير",
+                        "placeholder": "حدد قنوات التصدير…"
+                    }
+                },
+                "list": {
+                    "columnExportFeed": "قناة التصدير"
                 }
             }
         },
@@ -3741,24 +3850,35 @@
                 "registerUrl": "https://account.shopware.com/register?lang=en"
             },
             "bulk": {
+                "activate": "قم بالتفعيل",
                 "consent": {
                     "extensionLabel": "ملحق {count} | ملحقات{count}",
+                    "installAction": "القبول والتثبيت",
                     "installDescription": "تطلب الإضافات المحددة للموافقات التالية:",
                     "installTitle": "تثبيت ملحق {count} | تثبيت ملحقات {count}",
+                    "updateAction": "القبول والتحديث",
                     "updateDescription": "يتطلب تحديث الإضافات المحددة قبول الأذونات الجديدة التالية:",
                     "updateTitle": "تحديث ملحق {count} | تحديث ملحقات {count}"
                 },
+                "deactivate": "قم بإلغاء التنشيط",
                 "deactivationModal": {
                     "alert": "هل ما زلت تريد إلغاء تنشيط هذه الإضافة ألمختاره؟",
+                    "buttonLabel": "قم بإلغاء التنشيط",
                     "description": "يحتوي الملحق \"\" على رسوم اشتراك شهرية. إلغاء تنشيط هذه الإضافة لن يؤدي إلى إلغاء اشتراكك وسيستمر تحصيل الرسوم:",
                     "title": "إلغاء ملحق {count} | إلغاء ملحقات {count}"
                 },
+                "install": "قم بتثبيت",
+                "selectExtensionAria": "حدد {name}",
+                "uninstall": "إلغاء التثبيت",
                 "uninstallModal": {
+                    "alert": "لا يمكن التراجع عن هذا الإجراء.",
+                    "buttonLabel": "إلغاء التثبيت",
                     "description": "سيتم إلغاء تثبيت الإضافات التالية:",
                     "helpTextRemovePluginData": "تحذير: في حالة التمكين، ستتم إزالة جميع البيانات التي تم إنشاؤها بواسطة هذه الإضافات نهائيًا.",
                     "labelRemovePluginData": "قم أيضًا بإزالة جميع البيانات لكل ملحق محدد",
                     "title": "إلغاء تثبيت ملحق {count} | إلغاء تثبيت ملحقات {count}"
-                }
+                },
+                "update": "تحديث"
             },
             "fileUpload": {
                 "buttonFileUpload": "ملحق التحميل",
@@ -4358,8 +4478,11 @@
             },
             "document": {
                 "labelDocumentType": "المستندات",
+                "labelDocumentTypeSingle": "نوع المستند",
+                "labelFileFormats": "تنسيقات الملفات",
                 "placeholderDocumentType": "حدد المستندات...",
                 "placeholderDocumentTypeSingle": "حدد نوع المستند...",
+                "placeholderFileFormats": "حدد تنسيقات الملفات...",
                 "titleCreateDocument": "إنشاء مستندات"
             },
             "downloadAccess": {
@@ -4390,6 +4513,7 @@
                 "labelMailType": "النوع",
                 "labelRecipient": "مستلم",
                 "labelReplyTo": "عنوان الرد",
+                "labelRevocationRequestFormMail": "المستفسر",
                 "labelSenderName": "اسم المرسل",
                 "labelSubject": "الموضوع",
                 "placeholderDescription": "أدخل الوصف...",
@@ -4498,14 +4622,17 @@
             "chargeback": "رد المبالغ المدفوعة",
             "checkout": "تسجيل الخروج",
             "completed": "أُنجزت",
+            "confirm": "التأكيد",
             "contactForm": "نموذج الاتصال",
             "create": "قم بإنشاء",
             "customer": "العميل",
             "declined": "تم رفضه",
             "deleted": "تم الحذف",
+            "document": "مستند",
             "doubleOptInGuestOrder": "طلب ضيف مزدوج",
             "doubleOptInRegistration": "تسجيل الاشتراك المزدوج",
             "failed": "فشلت",
+            "generation": "الجيل",
             "group": "مجموعة",
             "guestRegister": "تسجيل الضيف",
             "inProgress": "قيد التقدم",
@@ -4538,6 +4665,7 @@
             "returned": "تم إرجاعه",
             "returnedPartially": "تم إرجاعها جزئيًا",
             "reviewForm": "مراجعة المنتج",
+            "revocationRequest": "طلب الإبطال",
             "revocationRequestCustomer": "تم إرسال طلب الإلغاء",
             "revocationRequestMerchant": "تم استلام طلب الإلغاء",
             "send": "أرسل",
@@ -4838,6 +4966,7 @@
         "mcp": {
             "adminBanner": "يحتوي هذا التكامل على امتيازات المسؤول. يمكن الوصول إلى جميع إمكانيات MCP افتراضيًا. يمكنك تقييد الوصول إلى أدوات أو موارد أو مطالبات محددة هنا لمزيد من الأمان.",
             "allCapabilitiesLabel": "جميع القدرات",
+            "allTypeLabel": "جميع",
             "cardTitle": "قائمة السماح لـ MCP",
             "collapseAll": "طي الكل",
             "coverageWarning": "تتطلب الأداة (الأدوات) {count} امتيازات ACL غير الممنوحة للدور المعين.",
@@ -4850,8 +4979,10 @@
             "missingDeps": "لم يتم تحديد التبعية: {deps}",
             "missingPrivilegesList": "في عداد المفقودين: {privileges}",
             "missingPrivilegesTooltip": "الامتيازات المفقودة: {privileges}",
+            "modalTitle": "قائمة السماح لـ MCP",
             "noCapabilitiesDescription": "لا توجد أدوات أو موارد أو مطالبات لـ MCP مسجلة حاليًا.",
             "noCapabilitiesHeadline": "لم يتم العثور على أية إمكانيات",
+            "noSelectionBanner": "لم يتم تحديد أي إمكانات، لذلك لا يمكن الوصول إلى أي شيء عبر MCP في الوقت الحالي. حدد الأدوات والموارد والمطالبات المطلوبة.",
             "privilegesLabel": "يتطلب:",
             "promptsGuidance": "الموجهات هي تعليمات النظام التي تحدد سياق الذكاء الاصطناعي. يؤدي الكشف عن المطالبات غير ذات الصلة إلى إهدار نافذة السياق وقد يؤدي إلى إرباك الذكاء الاصطناعي.",
             "promptsSection": "موجهات",
@@ -4917,6 +5048,7 @@
                 "actionsDisabledInLanguage": "لا يمكن إنشاء الصفحات المقصودة إلا بلغة النظام الافتراضية."
             },
             "buttonCreate": "إضافة صفحة مقصودة",
+            "buttonLoadMore": "تحميل المزيد",
             "mainMenuItemIndex": "الصفحات المقصودة",
             "placeholderSearchBar": "البحث في الصفحات المقصودة...",
             "treeHeadSelected": "تم اختيار {count}",
@@ -4960,6 +5092,8 @@
         "general": {
             "description": "تسجيل الدخول إلى برامج التسوق",
             "linkBackToLogin": "العودة إلى تسجيل الدخول",
+            "loadingLabel": "جاري التحميل...",
+            "logoAlt": "شعار شوبوير",
             "mainMenuItemIndex": "تسجيل الدخول"
         },
         "index": {
@@ -5174,6 +5308,7 @@
             "textMediaSelection": "اختيار الوسائط"
         },
         "general": {
+            "descriptionTextModule": "قم بإدارة الشركات المصنعة هنا.",
             "mainMenuItemGeneral": "الشركات المصنعة",
             "mainMenuItemList": "الشركات المصنعة",
             "placeholderSearchBar": "ابحث عن الشركات المصنعة..."
@@ -5182,6 +5317,7 @@
             "buttonAddManufacturer": "إضافة الشركة المصنعة",
             "columnLink": "الموقع الإلكتروني",
             "columnName": "الشركة المصنعة",
+            "messageEmpty": "لا توجد شركات مصنعة حتى الآن",
             "textManufacturerOverview": "الشركات المصنعة",
             "textTotalManufacturer": "لا يوجد مصنعون | مصنع واحد | {count} مصنع"
         }
@@ -5230,6 +5366,7 @@
                 "replace": "يحل محل",
                 "setCover": "تعيين صورة الغلاف",
                 "settings": "إعدادات",
+                "unselectAll": "قم بإلغاء تحديد الكل",
                 "vertical": "عمودي"
             },
             "infoMissingFile": {
@@ -5299,10 +5436,24 @@
         }
     },
     "sw-model-editor": {
+        "edit-options": {
+            "move-tooltip": "نقل الكائن",
+            "rotate-tooltip": "تدوير الكائن",
+            "scale-tooltip": "كائن المقياس"
+        },
         "open-model-editor-tooltip": "افتح محرر النموذج",
         "properties": {
             "transformation": {
-                "label": "التحول"
+                "label": "التحول",
+                "position": {
+                    "label": "موضع"
+                },
+                "rotation": {
+                    "label": "الدوران"
+                },
+                "scale": {
+                    "label": "مقياس"
+                }
             }
         },
         "titleModal": "محرر النموذج"
@@ -5344,6 +5495,32 @@
             "zipCode": "الرمز البريدي"
         }
     },
+    "sw-not-found": {
+        "description": "لم يتم العثور على الصفحة التي تبحث عنها. ربما تم نقلها أو لم تعد موجودة.",
+        "title": "لم يتم العثور على الصفحة"
+    },
+    "sw-oauth-authorize": {
+        "consent": {
+            "approve": "السماح بالوصول",
+            "deny": "أنكر",
+            "loggedInAs": "تم تسجيل الدخول باسم {username}",
+            "permissionHint": "يمكن للتطبيق الوصول إلى البيانات وتنفيذ الإجراءات نيابة عنك بنفس الأذونات مثل حساب المستخدم الخاص بك. إذا كنت مسؤولًا، فهذا يشمل الوصول الكامل إلى متجرك.",
+            "permissionTitle": "يحصل هذا التطبيق على الأذونات الخاصة بك",
+            "redirectHint": "ستتم إعادة توجيهك إلى {host}",
+            "title": "{clientName} يريد الوصول إلى {shopName}",
+            "trustHint": "لا تسمح بالوصول إلا إذا كنت تثق بهذا التطبيق وبدأت هذا الطلب بنفسك."
+        },
+        "error": {
+            "generic": "تعذرت معالجة طلب التفويض.",
+            "missingParameters": "طلب التفويض غير مكتمل. يرجى بدء التفويض مرة أخرى من التطبيق."
+        },
+        "general": {
+            "description": "منح التطبيق حق الوصول إلى متجر Shopware هذا",
+            "title": "تفويض التطبيق"
+        },
+        "loadingLabel": "جاري التحميل...",
+        "logoAltText": "شعار شوبوير"
+    },
     "sw-order": {
         "addressSelection": {
             "currentlySelected": "محدد حاليًا",
@@ -5373,6 +5550,12 @@
         },
         "components": {
             "createDocumentModal": {
+                "documentTypes": {
+                    "cancellationInvoice": "فاتورة الإلغاء",
+                    "creditNote": "ملاحظة ائتمانية",
+                    "deliveryNote": "ملاحظة التسليم",
+                    "invoice": "الفاتورة"
+                },
                 "emptyStateDescription": "حدد نوع المستند لتكوين المستند",
                 "emptyStateTitle": "نوع المستند مفقود",
                 "error": {
@@ -5382,14 +5565,20 @@
                     "loadUploadedDocument": "فشل تحميل المستند الذي تم تحميله."
                 },
                 "fileFormats": {
+                    "html": "أتش تي أم أل",
                     "pdf": "PDF",
                     "zugferdEmbeddedPdf": "قم بتصغير ملف PDF المضمن",
                     "zugferdXml": "زوغفيرد إكس إم إل"
                 },
+                "generate": "تولّد",
                 "generateAndDownload": "إنشاء وتنزيل",
                 "generateAndSend": "إنشاء وإرسال",
+                "labelDocumentType": "نوع المستند",
+                "labelFileFormats": "تنسيقات الملفات",
                 "openButtonLabel": "إنشاء مستند جديد",
                 "placeholderComment": "اكتب تعليقًا...",
+                "placeholderDocumentType": "حدد نوع المستند...",
+                "placeholderFileFormats": "حدد تنسيقات الملفات...",
                 "title": "إنشاء مستند"
             },
             "selectDocumentTypeModal": {
@@ -5406,10 +5595,14 @@
                 "title": "إنشاء مستند"
             },
             "uploadDocumentModal": {
+                "buttonUploadFile": "رفع ملف",
                 "helpTextFileFormat": "حدد تنسيق الملف الذي تريد تحميله.",
                 "labelDocumentUpload": "تحميل المستند",
+                "labelFileFormat": "صيغة ملف",
                 "openAction": "قم بتحميل المستند",
                 "placeholderFileFormat": "حدد تنسيق ملف...",
+                "title": "قم بتحميل المستند",
+                "upload": "رفع",
                 "uploadAndDownload": "تحميل وتنزيل",
                 "uploadAndSend": "تحميل وإرسال"
             }
@@ -5695,6 +5888,7 @@
                 "downloadDocumentArchive": "فشلت عملية تنزيل أرشيف المستندات.",
                 "duplicateDocumentNumber": "يوجد مسبقاً مستند برقم المستند \"{documentNumber}\".",
                 "loadDocumentPreview": "فشلت عملية تحميل معاينة المستند.",
+                "loadDocumentTypes": "فشل تحميل أنواع المستندات المتاحة.",
                 "loadSendingDocument": "فشل تحميل المستند لإرساله.",
                 "missingCompanyInformation": "الحقل \"{field}\" في إعدادات شركتك (الإعدادات > المعلومات الأساسية) فارغ. يرجى التأكد من ملئها ببياناتك قبل إنشاء المستندات.",
                 "noUnprocessedCreditLineItems": "لا توجد عناصر خط ائتمان غير معالجة في هذا الطلب.",
@@ -5813,7 +6007,8 @@
                     "lastQuarter": "الربع الأخير",
                     "lastWeek": "الأسبوع الماضي",
                     "previousYear": "العام السابق",
-                    "today": "اليوم"
+                    "today": "اليوم",
+                    "yesterday": "يوم أمس"
                 }
             },
             "orderNumberFilter": {
@@ -5994,6 +6189,7 @@
             "headlineDeliveryState": "حالة التسليم",
             "headlineOrderState": "حالة الطلبية",
             "headlineTransactionState": "حالة الدفع",
+            "labelCustomer": "العميل",
             "labelErrorNoAction": "لم تتغير الحالة.",
             "labelErrorStateChange": "حدث خطأ أثناء تحديث الحالة:",
             "labelHistory": "تم تعيين الحالة {time} × {author}",
@@ -6019,6 +6215,7 @@
                 "transaction": "الدفع",
                 "user": "تم تغييره بواسطة"
             },
+            "labelCustomer": "العميل",
             "labelIntegration": "الاندماج",
             "labelSystemUser": "النظام",
             "modalTitle": "سجل الحالة"
@@ -6029,7 +6226,8 @@
     },
     "sw-payments": {
         "general": {
-            "description": "إدارة مدفوعات Shopware."
+            "description": "إدارة مدفوعات Shopware.",
+            "mainMenuItemGeneral": "مدفوعات برامج التسوق"
         }
     },
     "sw-plugin-box": {
@@ -6050,7 +6248,8 @@
                 "label": "تطبيقات"
             },
             "integration_mcp": {
-                "editor": "تحرير قائمة السماح لـ MCP"
+                "editor": "تحرير قائمة السماح لـ MCP",
+                "label": "عمليات الدمج"
             },
             "marketing": {
                 "label": "التسويق",
@@ -6170,6 +6369,7 @@
                 "marketing": "التسويق",
                 "orders": "الطلبيات",
                 "other": "أخرى",
+                "products": "منتجات",
                 "settings": "إعدادات"
             },
             "payment": {
@@ -6222,6 +6422,9 @@
             },
             "state_machine": {
                 "label": "آلات الدولة"
+            },
+            "sw-payments": {
+                "label": "مدفوعات برامج التسوق"
             },
             "tag": {
                 "label": "العلامات"
@@ -6375,6 +6578,10 @@
             "cardTitleSeo": "سيو",
             "cardTitleSettings": "وضع العلامات",
             "cardTitleVisibilityStructure": "هيكل الرؤية",
+            "downloadExternalManagementLabel": "الملف غير مطلوب أو تم توفيره خارجيًا",
+            "downloadExternalManagementTooltip": "قم بتمكين هذا الخيار إذا كان المنتج لا يحتوي على ملف، على سبيل المثال للتراخيص أو رموز الوصول، أو إذا تمت إضافة الملفات خارجيًا.",
+            "downloadsContextMenuDownloadFile": "تنزيل الملف",
+            "downloadsExternalManagementRequired": "قم بتحميل ملف واحد على الأقل أو قم بتمكين «الملف غير مطلوب أو متوفر خارجيًا» أدناه.",
             "downloadsLabel": "تحميل ملف",
             "labelContextMenuAddToProduct": "إضافة إلى المنتج",
             "linkAdvancedPrices": "التسعير المتقدم",
@@ -6462,6 +6669,7 @@
             "mainMenuItemAdd": "إضافة منتج",
             "mainMenuItemGeneral": "منتجات",
             "mainMenuItemList": "منتجات",
+            "mainMenuItemOverview": "نظرة عامة",
             "placeholderSearchBar": "ابحث عن المنتجات...",
             "textAdvancedMode": "وضع متقدم",
             "tooltipModeSettings": "إعدادات الوضع"
@@ -6655,13 +6863,19 @@
             "placeholderMetaTitle": "أدخل عنوان التعريف...",
             "placeholderOpenGraphDescription": "أدخل وصف الرسم البياني المفتوح...",
             "placeholderOpenGraphTitle": "أدخل عنوان الرسم البياني المفتوح...",
+            "recommendedLength": "الموصى بها: كحد أقصى. أحرف {max} ({count} المستخدمة)",
             "titleOpenGraph": "افتح الرسم البياني"
         },
         "settingsForm": {
+            "helpTextAllowMultipleUnits": "في حالة عدم السماح بوحدات متعددة، يمكن للعملاء شراء وحدة واحدة فقط من المنتج الرقمي لكل طلب.",
             "helpTextGuaranteeConfirmed": "يتم عرض ملصق الضمان فقط في حالة تعيين مدة ضمان صالحة ورقم منتج الشركة المصنعة.",
             "helpTextGuaranteeMonths": "الحد الأدنى للقيمة هو 30، خطوات من 6.",
+            "helpTextGuaranteeTermsMedia": "بيان ضمان المنتج. يتم ربطه أسفل الملصق الموجود في واجهة المتجر وإرفاقه بالبريد الإلكتروني لتأكيد الطلب.",
+            "helpTextGuaranteeTermsUrl": "صفحة ويب اختيارية مع شروط الضمان. في حالة تعيينها، يتم ربطها بدلاً من PDF.",
+            "helpTextMaxPurchaseDigital": "اتركه فارغًا لاستخدام الكمية القصوى من إعدادات عربة التسوق.",
             "isCloseoutHelpText": "تم رفض الطلبات المتأخرة.",
             "labelActive": "نشط لجميع قنوات المبيعات المحددة",
+            "labelAllowMultipleUnits": "السماح بوحدات متعددة لكل طلب",
             "labelAvailableStock": "الأسهم المتاحة",
             "labelCreatedAt": "تاريخ الإنشاء",
             "labelDeliveryTime": "موعد التوصيل",
@@ -6669,6 +6883,8 @@
             "labelGuaranteeConfirmed": "اعرض الملصق في واجهة المتجر",
             "labelGuaranteeDescription": "تمثل هذه العلامة ضمانًا تجاريًا للمتانة يتم التعبير عنه بالسنوات. يتم تقديم الضمان من قبل المنتج دون أي تكاليف إضافية، ويغطي السلعة بأكملها ولمدة تزيد عن عامين.",
             "labelGuaranteeMonths": "مدة ضمان المنتج بالأشهر",
+            "labelGuaranteeTermsMedia": "شروط الضمان (PDF)",
+            "labelGuaranteeTermsUrl": "عنوان URL لشروط الضمان",
             "labelHeight": "الارتفاع",
             "labelIsCloseout": "بيع التخليص",
             "labelLength": "الطول",
@@ -6683,6 +6899,10 @@
             "labelStock": "مخزون",
             "labelWeight": "الوزن",
             "labelWidth": "عرض",
+            "noticeGuaranteeRequirementManufacturer": "{label}: في البطاقة \"{card}».",
+            "noticeGuaranteeRequirementManufacturerNumber": "{label}: في البطاقة \"{card}».",
+            "noticeGuaranteeRequirementMonths": "{label}: {minimum} إلى {maximum} شهرًا، في خطوات {step}.",
+            "noticeGuaranteeRequirements": "لن يتم عرض الملصق في واجهة المتجر حتى يتم تخزين المعلومات التالية:",
             "placeholderCreatedAt": "أدخل تاريخ الإنشاء...",
             "placeholderDeliveryTime": "أدخل وقت التسليم...",
             "placeholderEan": "أدخل GTIN/EAN...",
@@ -6738,6 +6958,7 @@
                 "title": "إنشاء متغيرات",
                 "uploadAllButton": "قم بتحميل الملف إلى جميع المتغيرات الرقمية",
                 "uploadCardDescription": "يجب أن تحتوي جميع المتغيرات الرقمية على ملف واحد على الأقل حتى يتم حفظها.",
+                "uploadCardExternalManagementDescription": "يمكن حفظ المتغيرات الرقمية بدون تحميل الملفات لأنه تم تمكين «الملف غير مطلوب أو متوفر خارجيًا».",
                 "uploadCardSearchPlaceholder": "متغيرات البحث...",
                 "uploadInfoBoxCount": "متغيرات {count} | متغير {count} | متغيرات {count}",
                 "uploadInfoBoxCreateLabel": "سيتم إضافتها،",
@@ -6991,6 +7212,7 @@
             "labelNewPassword": "كلمة مرور جديدة",
             "labelNewPasswordConfirm": "تأكيد كلمة المرور",
             "labelOldPassword": "كلمة المرور القديمة",
+            "labelThemeField": "المظهر",
             "labelTimezoneField": "المنطقة الزمنية",
             "labelUploadAvatar": "تحميل صورة الحساب",
             "labelUseAsAvatar": "استخدم كصورة حساب",
@@ -7001,6 +7223,7 @@
             "notificationSaveErrorMessage": "لا يمكن حفظ معلومات الملف الشخصي.",
             "notificationSaveSuccessMessage": "تم حفظ معلومات الملف الشخصي.",
             "optionModuleIconColorsColored": "ملون",
+            "optionModuleIconColorsNeutral": "محايدة",
             "placeholderNewPassword": "أدخل كلمة مرور جديدة ...",
             "placeholderNewPasswordConfirm": "أعد كلمة إدخال المرور الجديدة ...",
             "placeholderOldPassword": "أدخل كلمة المرور القديمة ...",
@@ -7054,6 +7277,10 @@
                     "zipcode": "الرمز البريدي"
                 },
                 "customer_group": {
+                    "name": "الاسم"
+                },
+                "flow": {
+                    "description": "وصف",
                     "name": "الاسم"
                 },
                 "landing_page": {
@@ -7116,6 +7343,10 @@
                     "name": "الاسم"
                 },
                 "property_group": {
+                    "name": "الاسم"
+                },
+                "rule": {
+                    "description": "وصف",
                     "name": "الاسم"
                 },
                 "sales_channel": {
@@ -7499,6 +7730,8 @@
         "ratingTooltipText": "{actual} من أصل {max} نجوم"
     },
     "sw-request-consent-modal": {
+        "acceptButton": "اقبل",
+        "declineButton": "تراجع",
         "message": "تطلب الإضافة {appName} موافقتك على الموضوع التالي: {consentName}",
         "readMore": "لمزيد من المعلومات، راجع:",
         "title": "الموافقة مطلوبة",
@@ -7622,48 +7855,63 @@
     },
     "sw-sales-channel": {
         "agenticCommerceTracking": {
+            "affiliateCodeLabel": "رمز الإحالة",
             "affiliateCodePlaceholder": "أدخل رمز الإحالة…",
+            "campaignCodeLabel": "رمز الحملة",
             "campaignCodePlaceholder": "أدخل رمز الحملة…",
+            "cardTitle": "رموز التتبع",
             "description": "يمكنك تكوين رموز الشركات التابعة والحملة التي سيتم تضمينها في عناوين URL للمنتجات في خلاصات هذه القناة. تحدد هذه الرموز الطلبات والعملاء المحالين من قناة Agentic Commerce هذه."
         },
         "detail": {
             "activateDisable": "يرجى تعيين موضوع قبل تنشيط قناة المبيعات وحفظها.",
             "agenticCommerce": {
+                "buttonResetTemplate": "إعادة التعيين إلى الوضع الافتراضي",
                 "deprecationBanner": {
+                    "installPlugin": "تثبيت الإضافة",
                     "message": "ستتم إزالة ميزة Agentic Commerce المضمنة في Shopware 6.8. تستمر قناة المبيعات الخاصة بك في العمل الآن. قم بتثبيت ملحق «Agentic Commerce» للتأكد من عدم تعطل أي شيء.",
                     "title": "شركة Agentic Commerce تنتقل إلى ملحق"
                 },
                 "errorLoadingTemplate": "تعذّر تحميل القالب الافتراضي.",
                 "googleSettingsTitle": "إعدادات جوجل",
                 "integration": {
+                    "feedUrlLabel": "عنوان URL للتصدير",
                     "providers": {
                         "google": {
                             "cardTitle": "اتصال جوجل ميرشانت سنتر",
                             "introduction": {
-                                "description": "تنشئ قناة المبيعات هذه خلاصة منتجات XML متوافقة مع Google Merchant Center حتى تظهر منتجاتك في واجهات Google Shopping والتسوق بالذكاء الاصطناعي. في Merchant Center، أضف عنوان URL للتصدير أدناه كجلب ملف مجدول ضمن الإعدادات &rsaquo; مصادر البيانات."
+                                "description": "تنشئ قناة المبيعات هذه خلاصة منتجات XML متوافقة مع Google Merchant Center حتى تظهر منتجاتك في واجهات Google Shopping والتسوق بالذكاء الاصطناعي. في Merchant Center، أضف عنوان URL للتصدير أدناه كجلب ملف مجدول ضمن الإعدادات &rsaquo; مصادر البيانات.",
+                                "title": "كيفية: الإعداد والاتصال"
                             },
                             "stepByStep": "<li>قم بإنشاء حساب Merchant Center على <a href=\"https://merchants.google.com\" target=\"_blank\" rel=\"noopener noreferrer\">merchants.google.com</a> وتحقق من عنوان URL الخاص بالمتجر على الإنترنت</li><li>في Merchant Center، افتح <em>الإعدادات &rsaquo; مصادر البيانات</em> وانقر على <em>إضافة مصدر المنتج</em></li><li>اختر <em>ملف</em>، ثم <em>إضافة جلب مجدول من عنوان URL</em>، والصق عنوان URL للتصدير (أدناه) كعنوان URL للملف</li><li>تأكد من أن عنوان URL للتصدير يمكن الوصول إليه بشكل عام (لا يلزم المصادقة)</li><li>راجع <a href=\"https://support.google.com/merchants/answer/7052112\" target=\"_blank\" rel=\"noopener noreferrer\">مواصفات بيانات منتج Google</a> وضبط السمات إذا لزم الأمر</li>"
                         },
                         "open-ai": {
                             "cardTitle": "اتصال OpenAI",
                             "introduction": {
-                                "description": "تقوم قناة المبيعات هذه بإنشاء موجز منتجات JSONL حتى تظهر منتجاتك في نتائج بحث ChatGPT. للقيام بذلك، يجب عليك التقدم كتاجر ومشاركة عنوان URL للخلاصة مع OpenAI. يتم شرح كل شيء آخر في الدليل خطوة بخطوة أدناه."
+                                "description": "تقوم قناة المبيعات هذه بإنشاء موجز منتجات JSONL حتى تظهر منتجاتك في نتائج بحث ChatGPT. للقيام بذلك، يجب عليك التقدم كتاجر ومشاركة عنوان URL للخلاصة مع OpenAI. يتم شرح كل شيء آخر في الدليل خطوة بخطوة أدناه.",
+                                "title": "كيفية: الإعداد والاتصال"
                             },
                             "stepByStep": "<li>تقدم بطلبك كتاجر على <a href=\"https://chatgpt.com/merchants/\" target=\"_blank\" rel=\"noopener noreferrer\">chatgpt.com/merchants</a></li><li>انسخ عنوان URL للتصدير (أدناه) وشاركه مع OpenAI وفقًا لمستندات <a href=\"https://developers.openai.com/commerce/product-feeds\" target=\"_blank\" rel=\"noopener noreferrer\">Product Feeds</a></li><li>تأكد من أن عنوان URL للتصدير متاح للجمهور</li>"
                         }
-                    }
+                    },
+                    "stepByStepTitle": "خطوة بخطوة"
                 },
                 "openAiSettingsTitle": "افتح إعدادات الذكاء الاصطناعي",
                 "resetTemplateSuccess": "تمت إعادة تعيين القالب إلى الوضع الافتراضي. يرجى الحفظ للحفاظ على التغييرات.",
+                "tabIntegration": "الإندماج",
                 "templates": {
                     "template-label": {
+                        "google": "جوجل شوبينج (XML)",
                         "open-ai": "بيناي (JSONL)"
                     }
                 }
             },
             "agenticFiles": {
+                "actionDisable": "تعطيل",
                 "actionEnable": "تمكين",
                 "cardTitle": "ملفات الوكيل",
+                "columnDescription": "وصف",
+                "columnEnabled": "الحالة",
+                "columnFileName": "ملف",
                 "description": "قم بإدارة الملفات القابلة للقراءة بالذكاء الاصطناعي والتي يتم تقديمها علنًا لقناة المبيعات هذه، مثل llms.txt وagents.md وai-catalog.json. يقدمون للمساعدين نظرة عامة موجزة عن متجرك وإرشادات لاستخدام المحتوى العام.",
                 "descriptions": {
                     "agentic": {
@@ -7675,7 +7923,10 @@
                 "detail": {
                     "actionEditOverride": "تحرير التجاوز",
                     "actionEnablePublicPathPreview": "قم بتمكين هذا الملف أولاً لمعاينة المسار العام.",
+                    "actionPreviewPublicPath": "استطلاع",
                     "backToList": "العودة إلى ملفات الوكيل",
+                    "columnSourceRole": "الدور",
+                    "columnTemplate": "القالب",
                     "customNotesDescription": "أضف ملاحظات مخصصة إلى نهاية هذا الملف دون استبدال المحتوى الافتراضي الذي توفره Shopware أو الإضافات.",
                     "customNotesPlaceholder": "أضف إرشادات إضافية لوكلاء الذكاء الاصطناعي...",
                     "customNotesTitle": "ملاحظات مخصصة",
@@ -7686,18 +7937,23 @@
                     "messagePreviewError": "تعذّر إنشاء المعاينة.",
                     "overrideModalApply": "تطبيق التجاوز",
                     "overrideModalDescription": "اضبط المحتوى الذي ساهم به هذا القالب لقناة المبيعات هذه. يتم تخزين التغيير كتخصيص ويمكن إعادة تعيينه إلى محتوى القالب الافتراضي في أي وقت.",
+                    "overrideModalFieldLabel": "المحتوى",
+                    "overrideModalReset": "إعادة التعيين إلى الوضع الافتراضي",
                     "overrideModalTitle": "تحرير {source}",
                     "previewDescription": "هذا هو المحتوى المعروض حاليًا لقناة المبيعات هذه، بما في ذلك التخصيصات المحفوظة.",
                     "previewEmpty": "لم يتم إنشاء محتوى المعاينة.",
                     "previewTitle": "معاينة تم إنشاؤها",
                     "roleBase": "القالب الأساسي",
+                    "roleExtension": "التوسعة",
                     "showContentSources": "عرض المصادر",
                     "templatesDescription": "يعرض القوالب التي تساهم في الملف الذي تم إنشاؤه وما إذا كان القالب قد تم تخصيصه. يمكن للمستخدمين المتقدمين تجاوز القوالب الفردية عندما لا تكون الملاحظات المخصصة كافية.",
                     "templatesTitle": "مصادر المحتوى"
                 },
                 "emptyState": "لم يتم العثور على ملفات وكيل",
                 "enabledState": {
-                    "custom": "حسب الطلب"
+                    "custom": "حسب الطلب",
+                    "disabled": "معاق",
+                    "enabled": "تم تمكينه"
                 },
                 "messageLoadError": "تعذر تحميل ملفات الوكيل."
             },
@@ -7839,6 +8095,7 @@
                     "titleNoProductStreamsMatching": "لم يتم العثور على مجموعات منتجات ديناميكية مطابقة."
                 },
                 "singleProducts": "اختيار المنتج",
+                "singleProductsEmptyState": "لم يتم العثور على المزيد من المنتجات",
                 "title": "إضافة منتجات"
             },
             "productComparison": {
@@ -7926,12 +8183,20 @@
                 "insights": {
                     "customerCardHeadline": "العملاء المحالين",
                     "dateRanges": {
+                        "14Days": "آخر 14 يومًا",
                         "180Days": "آخر 180 يومًا",
+                        "24Hours": "آخر 24 ساعة",
+                        "30Days": "آخر 30 يومًا",
+                        "7Days": "آخر 7 أيام",
                         "yesterday": "يوم أمس"
                     },
+                    "numbers": "عد",
                     "orderCardHeadline": "الطلبات المُحالة",
+                    "summary": "ملخص",
+                    "totalTurnover": "رقم المبيعات",
                     "turnoverCardHeadline": "المبيعات المشار إليها"
-                }
+                },
+                "tabInsights": "إحصائيات"
             },
             "products": {
                 "buttonAddProducts": "إضافة منتجات {productCount} | إضافة منتج {productCount} | إضافة منتجات {productCount}",
@@ -7943,6 +8208,8 @@
                 "titleEmptyStateTable": "لم يتم العثور على منتجات مطابقة"
             },
             "serviceCategory": "التنقل في خدمة تذييل نقطة الإدخال",
+            "snippetSetGroupOther": "مجموعات مقتطفات أخرى",
+            "tabAgenticFiles": "ملفات الوكيل",
             "tabAnalytics": "تحليلات",
             "tabBase": "جنرال لواء",
             "tabProductComparison": "قالب",
@@ -8073,7 +8340,10 @@
         "routeNames": {
             "frontend-detail-page": "صفحة تفاصيل المنتج",
             "frontend-landing-page": "صفحة الهبوط",
-            "frontend-navigation-page": "صفحة الفئة"
+            "frontend-navigation-page": "صفحة الفئة",
+            "store-api-category-detail": "صفحة الفئة",
+            "store-api-landing-page-detail": "الصفحة المقصودة",
+            "store-api-product-detail": "صفحة تفاصيل المنتج"
         }
     },
     "sw-settings": {
@@ -8102,7 +8372,8 @@
             "compileNotice": "يحتوي هذا التكوين على الحقول التي يمكن استخدامها في السمة. يرجى تجميع موضوع هذه التغييرات لتكون مرئية.",
             "inherited": "موروثة",
             "labelSalesChannelSelect": "قناة المبيعات",
-            "scssHelpText": "اسم متغير SCSS: "
+            "scssHelpText": "اسم متغير SCSS: ",
+            "tabGeneral": "جنرال لواء"
         }
     },
     "sw-settings-basic-information": {
@@ -8209,6 +8480,7 @@
             "helpTextAdvancedPostalCodePattern": "التنسيقات الممكنة للاستخدام:<br><br>^\\ d{5}$ - 5 أرقام بالضبط، على سبيل المثال 12345<br><br>^ (\\ d{4})\\ s* ([A-Z]{2}) $ - 4 أرقام وحرفان بالضبط، على سبيل المثال 1234 AB",
             "helpTextCheckPostalCodePattern": "يتيح التحقق من الرموز البريدية لمجموعة من البلدان",
             "helpTextCheckVatIdFormat": "يتحقق من صحة صيغة قانون ضريبة القيمة المضافة للدول الأعضاء في الاتحاد الأوروبي.",
+            "helpTextCheckVatIdFormatNoPattern": "لا يوجد لدى هذا البلد صيغة معروفة لتسجيل ضريبة القيمة المضافة للتحقق من صحتها.",
             "helpTextCompanyTaxFree": "من أجل إجراء معاملات B2B معفاة من الضرائب، يجب أن يكون لحسابات العملاء المعنية تسجيل ضريبة القيمة المضافة صالح.",
             "helpTextIsEu": "يستخدم على سبيل المثال لمذكرات الائتمان والمبالغ المستردة.",
             "helpTextLabelVatIdRequired": "يرجى مراعاة المفتاح العام في «الإعدادات> تسجيل الدخول/التسجيل».",
@@ -8307,6 +8579,7 @@
             "notificationCountryErrorMessage": "حدث خطأ أثناء حفظ إعدادات عملة بلدك.",
             "notificationCountrySuccessMessage": "تم حفظ إعدادات عملة البلد بنجاح.",
             "notificationErrorMessage": "حدث خطأ أثناء حفظ عملتك.",
+            "notificationIsoCodeAlreadyExists": "رمز ISO \"{isoCode}\" قيد الاستخدام بالفعل.",
             "placeholderFactor": "أدخل عامل التحويل...",
             "placeholderIsoCode": "أدخل رمز ISO...",
             "placeholderName": "أدخل الاسم...",
@@ -8635,11 +8908,18 @@
             "placeholderBankBic": "أدخل BIC...",
             "placeholderBankIban": "أدخل رقم IBAN...",
             "placeholderBankName": "أدخل اسم البنك...",
+            "placeholderCompanyCity": "أدخل المدينة...",
             "placeholderCompanyCountry": "حدد بلدًا...",
+            "placeholderCompanyEmail": "أدخل عنوان البريد الإلكتروني...",
             "placeholderCompanyName": "أدخل اسم الشركة...",
+            "placeholderCompanyPhone": "أدخل رقم الهاتف...",
+            "placeholderCompanyStreet": "أدخل الشارع...",
             "placeholderCompanyUrl": "أدخل موقع الويب...",
+            "placeholderCompanyZipcode": "أدخل الرمز البريدي...",
             "placeholderExecutiveDirector": "أدخل مدير الأعمال...",
             "placeholderFileNameInfix": "أدخل الفهرس...",
+            "placeholderFileNamePrefix": "أدخل البادئة...",
+            "placeholderFileNameSuffix": "أدخل لاحقة...",
             "placeholderFileTypes": "حدد تنسيقات الملفات...",
             "placeholderItemsPerPage": "أدخل عدد العناصر لكل صفحة...",
             "placeholderName": "أدخل الاسم...",
@@ -8656,6 +8936,9 @@
             "textHeadline": "مستند جديد"
         },
         "errors": {
+            "duplicateFilenameInfix": "ينتج نفس اسم الملف مثل {formats}.",
+            "duplicateFilenameInfixInSalesChannelConfig": "ينتج نفس اسم الملف مثل {formats} في تكوين قناة المبيعات {configs}.",
+            "duplicateFilenameInfixInherited": "ينتج الإصلاح الموروث \"{infix}\" نفس اسم الملف مثل {formats}.",
             "invalidDueDateFormat": "معدِّل التاريخ غير صالح."
         },
         "general": {
@@ -8676,16 +8959,20 @@
     },
     "sw-settings-language": {
         "addModal": {
+            "buttonAdd": "إضافة لغة",
             "createCustomLanguage": "إنشاء لغة مخصصة",
             "docsHint": "كيفية عمل الترجمات في Shopware:",
+            "docsLinkLabel": "تعرف على المزيد",
             "docsUrl": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/translations",
             "extensionStoreHint": "لا يمكنك العثور على اللغة التي تحتاجها؟ تصفح اللغات المتاحة في {extensionStoreLink}",
             "extensionStoreLink": "متجر الإضافات",
+            "labelLanguage": "اللغة",
             "messageAddError": "لا يمكن إضافة اللغة.",
             "messageAddSuccess": "تمت إضافة اللغة.",
             "messageLanguagesLoadError": "لا يمكن تحميل اللغات الموجودة.",
             "messageTranslationsLoadError": "لا يمكن تحميل الترجمات المتوفرة.",
             "placeholderLanguage": "حدد لغة...",
+            "title": "إضافة لغة",
             "translationsAvailable": "تتوفر ترجمات لهذه اللغة.",
             "translationsIncomplete": "قد لا تزال بعض الترجمات لهذه اللغة مفقودة."
         },
@@ -8703,9 +8990,13 @@
             "placeholderName": "أدخل الاسم...",
             "placeholderPleaseSelect": "الرجاء تحديد ...",
             "salesChannels": {
+                "activateHint": "قم بتنشيط اللغة، ثم قم بتعيينها لقناة المبيعات لجعلها متاحة للعملاء.",
                 "assignHint": "قم بتعيين اللغة لقناة المبيعات لجعلها متاحة للعملاء.",
                 "assignedIntro": "يتم تعيين اللغة لقنوات المبيعات التالية:",
-                "openSettings": "افتح إعدادات قناة المبيعات"
+                "openSettings": "افتح إعدادات قناة المبيعات",
+                "showAll": "عرض الكل",
+                "showLess": "أظهر أقل",
+                "title": "قنوات المبيعات"
             },
             "snippetUpdates": {
                 "autoUpdate": "تحديث تلقائي",
@@ -8721,8 +9012,10 @@
                 "title": "تحديثات المقتطفات",
                 "upToDate": "المقتطفات محدثة.",
                 "updateAvailable": "تحديث جديد متاح.",
+                "updateButton": "تحديث",
                 "updateError": "لا يمكن تحديث المقتطفات لهذه اللغة.",
-                "updating": "يتم تحديث المقتطفات."
+                "updating": "يتم تحديث المقتطفات.",
+                "updatingButton": "جاري التحديث..."
             },
             "textAlertChangeParent": "يمكن أن يؤدي تغيير اللغة الأم إلى تناقضات في ترجماتك.",
             "textHeadline": "لغة جديدة",
@@ -8749,6 +9042,8 @@
             "columnIsoCode": "كود ايزو ",
             "columnLocaleName": "اللغة",
             "columnName": "الاسم",
+            "columnSalesChannels": "قنوات المبيعات",
+            "columnSnippetStatus": "تحديثات المقتطفات",
             "contextMenuUpdateSnippets": "تحديث المقتطفات",
             "defaultLabel": "افتراضي",
             "deleteError": "لا يمكن حذف اللغات.",
@@ -8762,10 +9057,12 @@
             "messageDeleteSuccess": "تم حذف اللغة \"{name}\".",
             "salesChannelCount": "{count} قناة المبيعات | {count} قنوات المبيعات",
             "snippetStatus": {
-                "updateAvailable": "التحديث متاح"
+                "updateAvailable": "التحديث متاح",
+                "updating": "جاري التحديث..."
             },
             "snippetStatusLoadError": "تعذّر تحميل تحديثات المقتطفات.",
             "textHeadline": "اللغات",
+            "titleSidebarItemRefresh": "قم بتحديث",
             "updateSnippetsError": "لا يمكن تحديث المقتطفات.",
             "updateSnippetsProgress": "تحديث المقتطفات ({processed}/{total})",
             "updateSnippetsSuccess": "تم تحديث المقتطفات."
@@ -9079,6 +9376,7 @@
             "columnUsedIn": "النوع",
             "global": "عالمي",
             "messageDeleteSuccess": "تم حذف نطاق الأرقام \"{name}\".",
+            "messageEmpty": "لا توجد نطاقات أرقام حتى الآن",
             "textDeleteConfirm": "هل تريد بالتأكيد حذف نطاق الأرقام \"{name}\"؟",
             "textHeadline": "نطاقات الأرقام"
         }
@@ -9207,6 +9505,7 @@
             "cardTitle": "القيم",
             "createStateDescription": "أضف قيمًا لتحديد الخصائص الأساسية المصممة خصيصًا لمجموعة منتجاتك.",
             "emptyStateDescription": "أضف قيمًا لتحديد الخصائص الأساسية المصممة خصيصًا لمجموعة منتجاتك.",
+            "emptyStateTitle": "لا توجد قيم حتى الآن",
             "labelCreateNew": "إضافة حقل",
             "labelPosition": "موضع",
             "labelType": "النوع",
@@ -9224,6 +9523,16 @@
         "detail": {
             "associations": {
                 "columns": {
+                    "active": "نشيط",
+                    "description": "وصف",
+                    "extension": "التوسعة",
+                    "flow": "التدفق",
+                    "manufacturer": "الشركة المصنعة",
+                    "name": "الاسم",
+                    "position": "موضع",
+                    "taxCalculation": "حساب الضريبة",
+                    "trigger": "الزناد",
+                    "validFrom": "صالح من",
                     "validTo": "صالح لـ"
                 },
                 "flows": "فلو بيلدرز",
@@ -9242,6 +9551,8 @@
             },
             "associationsLoadingError": "غير قادر على تحميل تعيينات القواعد.",
             "buttonAddAssignment": "إضافة مهمة",
+            "deprecatedConditionWarning": "تم إيقاف الشرط \"{label}\" وستتم إزالته في {version}. يرجى استخدام \"{replacement}\" بدلاً من ذلك.",
+            "deprecatedConditionWarningNoReplacement": "تم إيقاف الشرط \"{label}\" وستتم إزالته في {version}.",
             "flowOnlyConditionsWarning": "تتطلب الشروط التالية في هذه القاعدة سياق التدفق: {conditions}. خارج التدفق (على سبيل المثال في طرق الشحن أو طرق الدفع أو مهام الترويج) سيتم تقييمهم دائمًا على أنه خاطئ.",
             "groups": {
                 "cart": "سلة التسوق",
@@ -9377,6 +9688,8 @@
             "fieldDisplayNamePlaceholder": "أدخل تحية...",
             "fieldLetterNameLabel": "رسالة تحية",
             "fieldLetterNamePlaceholder": "أدخل رسالة تحية...",
+            "fieldPositionLabel": "موضع",
+            "fieldPositionPlaceholder": "حدد منصبًا...",
             "fieldPositionTooltip": "يتحكم في ترتيب العرض في القوائم المنسدلة؛ يتم عرض الأرقام الأصغر أولاً.",
             "fieldSalutationKeyLabel": "الاسم الفني",
             "fieldSalutationKeyPlaceholder": "أدخل اسمًا تقنيًا...",
@@ -9392,6 +9705,7 @@
         "list": {
             "columnDisplayName": "تحية",
             "columnLetterName": "رسالة تحية",
+            "columnPosition": "موضع",
             "columnSalutationKey": "الاسم الفني"
         }
     },
@@ -9713,12 +10027,31 @@
             "requirements": "متطلبات النظام",
             "updating": "يتم التحديث..."
         },
+        "extensions": {
+            "actions": {
+                "deactivateAll": "قم بإلغاء تنشيط جميع الإضافات.",
+                "deactivateIncompatible": "قم بإلغاء تنشيط الإضافات غير المتوافقة.",
+                "deactivateNone": "أنا على دراية بالمخاطر الضمنية وما زلت أرغب في تحديث Shopware دون إلغاء تنشيط الإضافات غير المتوافقة أولاً. أدرك أن Shopware لا يمكنها ضمان وظيفة التثبيت بعد تحديث غير متوافق.",
+                "openMyExtensions": "إلى الإضافات الخاصة بي",
+                "recommended": "(موصى به)"
+            },
+            "columns": {
+                "available": "التوافق",
+                "name": "التوسعة"
+            },
+            "emptyStateDescription": "جميع الإضافات المثبتة متوافقة مع هذا التحديث.",
+            "emptyStateHeadline": "لا توجد مشاكل في التوافق",
+            "extensionNotInStore": "هذه الإضافة غير متوفرة في المتجر. يرجى الاتصال بمؤلفي الإضافة.",
+            "extensionWillBeDeactivatedHint": "(سيتم إلغاء تنشيط هذه الإضافة عند التحديث)"
+        },
         "general": {
             "menuTitle": "تحديثات برامج التسوق",
             "title": "تحديث برامج التسوق ({version})"
         },
         "infos": {
+            "autoUpdateDisabled": "تم تعطيل التحديثات التلقائية (shopware.auto_update.enabled). استخدم Shopware CLI للتحديث.",
             "backupCheckboxLabel": "لقد قمت بإنشاء نسخة احتياطية وأريد تنفيذ التحديث الآن.",
+            "clusterSetupDisabled": "لا يمكن التحديث من خلال الإدارة على إعدادات المجموعة (shopware.deployment.cluster_setup). استخدم Shopware CLI للتحديث.",
             "progress": {
                 "deactivate": "إلغاء تنشيط الإضافات...",
                 "download": "جاري تحميل ملف التحديث...",
@@ -9726,8 +10059,24 @@
             },
             "startUpdate": "ابدأ التحديث"
         },
+        "license": {
+            "bannerMessage": "لم يتم العثور على اشتراك نشط في Shopware. لا يمكن إجراء التحديثات التلقائية. قد ترغب في شراء اشتراك Shopware عبر صفحة حساب <a target=\"_blank\" href=\"https://account.shopware.com\">Shopware</a>.",
+            "bannerTitle": "لا يوجد اشتراك نشط في Shopware"
+        },
+        "methodModal": {
+            "actions": {
+                "continue": "استمر"
+            },
+            "cliDescription": "يمنحك Shopware CLI مزيدًا من التحكم وعمليات النشر القابلة للتكرار.",
+            "cliInstallHint": "قم بتثبيت Shopware CLI وتشغيل:",
+            "cliInstallLink": "قم بتثبيت شوبوير CLI",
+            "cliTitle": "مع شوبوير CLI",
+            "subtitle": "يوصى بعمل نسخة احتياطية قبل التحديث.",
+            "title": "تحديث برنامج Shopware"
+        },
         "notifications": {
             "alreadyUpToDate": "أنت تقوم بتشغيل أحدث إصدار.",
+            "checkFailed": "فشلت عملية التحقق من وجود تحديثات.",
             "deactivationFailed": "غير قادر على إلغاء تنشيط الإضافات.",
             "downloadFailed": "فشل التنزيل.",
             "unpackFailed": "فشلت عملية التفريغ.",
@@ -9744,6 +10093,23 @@
             "messageNotInStore": "هناك ملحقات مثبتة لا يمكن اختبارها بنجاح من أجل التوافق. يرجى الاتصال بمؤلفي الإضافة للحصول على مزيد من المعلومات. في هذه الحالة، يوصى بشدة بإنشاء نسخة احتياطية قبل التحديث.",
             "messageOkay": "تم استيفاء جميع المتطلبات الأساسية. لا تنس إنشاء نسخة احتياطية قبل التحديث.",
             "messageUpdateCheck": "يمكن تحديث الإصدار الحالي الخاص بك إلى {version}. ماذا تريد أن تفعل؟"
+        },
+        "versionCard": {
+            "badgeCheckFailed": "فشل التحقق من التحديث",
+            "badgeUpToDate": "محدّث",
+            "badgeUpdateAvailable": "التحديث متاح",
+            "changelogLink": "عرض سجل التغيير",
+            "cliRecommendedBadge": "يوصى به",
+            "currentVersionLabel": "الإصدار المثبت:",
+            "methodDivider": "أو تابع مع",
+            "methodsHeadline": "قم بالتحديث الآن",
+            "newVersionLabel": "أحدث إصدار:",
+            "retryCheck": "حاول مرة أخرى",
+            "title": "إصدار شوبوير",
+            "upToDateDescription": "Shopware {version} هو أحدث إصدار.",
+            "upToDateTitle": "أنت محدث",
+            "webInstallerDescription": "قم بتشغيل التحديث الموجه مباشرة في متصفحك.",
+            "webInstallerTitle": "مع مثبت الويب"
         }
     },
     "sw-settings-sitemap": {
@@ -10064,6 +10430,7 @@
             "cardTitle": "البلدان",
             "createStateDescription": "احفظ معدل الضريبة هذا أولاً، ثم أضف المزيد من البلدان.",
             "emptyStateDescription": "أضف معدلات الضرائب الفردية لمختلف البلدان.",
+            "emptyStateTitle": "لا توجد أسعار خاصة بكل بلد حتى الآن",
             "labelActiveFrom": "نشط من",
             "labelAppliesOn": "ينطبق على",
             "labelCountryName": "البلد",
@@ -10108,6 +10475,7 @@
     "sw-settings-usage-data": {
         "consent-modal": {
             "actions": {
+                "decline": "تراجع",
                 "give-consent": "منح الموافقة",
                 "save-preferences": "حفظ التفضيلات",
                 "share-all-data": "شارك الكل",
@@ -10136,6 +10504,7 @@
                 },
                 "external-links": {
                     "data-use-details": {
+                        "label": "هنا",
                         "link": "https://www.shopware.com/en/legal/data-use-details/"
                     }
                 },
@@ -10184,6 +10553,7 @@
         "functionAccessibilityCloseDialog": "إغلاق مربع الحوار",
         "functionAccessibilityMoveFocusBackward": "الانتقال إلى العنصر السابق القابل للتركيز",
         "functionAccessibilityMoveFocusForward": "الانتقال إلى العنصر التالي القابل للتركيز",
+        "functionAccessibilitySkipToContent": "انتقل إلى المحتوى",
         "functionAddCategory": "إضافة فئة",
         "functionAddCustomer": "إضافة عميل",
         "functionAddManufacturer": "إضافة الشركة المصنعة",
@@ -10211,10 +10581,13 @@
         "functionGoToShoppingExperience": "انتقل إلى تجارب التسوق",
         "functionGoToSnippets": "انتقل إلى المقتطفات",
         "functionSpecialShortcutCancelDetailView": "إلغاء عرض التفاصيل",
+        "functionSpecialShortcutClearCache": "مسح ذاكرة التخزين المؤقت",
+        "functionSpecialShortcutCycleTheme": "مظهر المحول",
         "functionSpecialShortcutFocusSearch": "البحث المركّز",
         "functionSpecialShortcutOpenFilters": "افتح الفلاتر",
         "functionSpecialShortcutSaveDetailView": "حفظ العرض الحالي",
         "functionSpecialShortcutShortcutListing": "قائمة مختصرة",
+        "functionSpecialShortcutToggleNavigation": "تبديل التنقل",
         "iconTooltip": "اضغط على `{key}` لعرض قائمة بالاختصارات المتاحة",
         "keyboardShortcut": "اختصار لوحة المفاتيح",
         "keyboardShortcutAccessibilityCloseDialog": "إيسك",
@@ -10251,12 +10624,14 @@
         "keyboardShortcutSpecialShortcutClearCacheLinux": "ألت-ج",
         "keyboardShortcutSpecialShortcutClearCacheMac": "كنترول-ج",
         "keyboardShortcutSpecialShortcutClearCacheWindows": "ألت-ج",
+        "keyboardShortcutSpecialShortcutCycleTheme": "ج إلى",
         "keyboardShortcutSpecialShortcutFocusSearch": "و",
         "keyboardShortcutSpecialShortcutOpenFilters": "إلى F",
         "keyboardShortcutSpecialShortcutSaveDetailViewLinux": "ألتس",
         "keyboardShortcutSpecialShortcutSaveDetailViewMac": "عناصر التحكم-S",
         "keyboardShortcutSpecialShortcutSaveDetailViewWindows": "ألتس",
         "keyboardShortcutSpecialShortcutShortcutListing": "التحول-؟",
+        "keyboardShortcutSpecialShortcutToggleNavigation": "S",
         "modalTitle": "اختصارات لوحة المفاتيح",
         "sectionAccessibility": "إمكانية الوصول",
         "sectionAddingItems": "إضافة عناصر",
@@ -10525,7 +10900,8 @@
             "mainMenuHeader": "الموضوعات الخاصة بك",
             "mainMenuItemGeneral": "الموضوعات",
             "messageSaveError": "لا يمكن تعيين السمة لقناة المبيعات.",
-            "placeholderSearchBar": "ابحث عن الموضوعات المتاحة..."
+            "placeholderSearchBar": "ابحث عن الموضوعات المتاحة...",
+            "switchThemeListMode": "التبديل بين الشبكة وعرض القائمة"
         },
         "list": {
             "gridHeaderAssignment": "قنوات المبيعات المعينة",
@@ -10607,19 +10983,23 @@
     },
     "sw-ui-shell-update-2026-modal": {
         "finishButton": "حصلت عليه",
+        "nextButton": "التالي",
         "pages": {
             "adminNavigation": {
                 "description": "ومع نمو إدارة Shopware، ازداد أيضًا عدد الميزات وعناصر التنقل. لقد أعدنا تصميم نظام الملاحة لتحسين الكثافة وتسهيل العثور على كل شيء، مع حالات نشطة أكثر وضوحًا ورسوم متحركة أكثر سلاسة للقائمة الفرعية وقابلية قراءة أفضل وإمكانية وصول محسّنة إلى لوحة المفاتيح.",
-                "headline": "تنقل أكثر وضوحًا وانسيابية"
+                "headline": "تنقل أكثر وضوحًا وانسيابية",
+                "moduleColorsHint": "هل تفضل رموز الوحدة الملونة؟ يمكنك تبديل «ألوان الوحدة» مرة أخرى إلى «ملونة» في أي وقت باستخدام {profileSettingsLink}."
             },
             "darkMode": {
                 "badge": "تجريبي",
                 "description": "تقدم الإدارة الآن مظهرًا داكنًا لواجهة المستخدم، لتحسين إمكانية الوصول ومطابقة تفضيلاتك الشخصية.",
                 "headline": "مظهر داكن",
                 "themeSaveError": "لا يمكن حفظ المظهر.",
-                "themeSelectHint": "يمكنك تغيير هذا الإعداد في أي وقت باستخدام {profileSettingsLink}."
+                "themeSelectHint": "يمكنك تغيير هذا الإعداد في أي وقت باستخدام {profileSettingsLink}.",
+                "themeSelectLabel": "المظهر"
             }
         },
+        "profileSettingsLink": "إعدادات الملف الشخصي",
         "seenSaveError": "لا يمكن حفظ تفضيلاتك. قد يظهر مربع الحوار هذا مرة أخرى.",
         "title": "مظهر جديد لإدارتك"
     },
@@ -10662,8 +11042,10 @@
             "mcpModal": {
                 "description": "يتم السماح بإدراج الأدوات التالية في عمليات الدمج التي تستخدم هذا الدور.",
                 "dynamicPrivilegeHint": "يعتمد هذا الامتياز على معلمة الكيان التي تم تمريرها في وقت التشغيل.",
+                "grant": "منحة",
                 "grantAllMissing": "منح جميع المفقودين",
                 "legendDynamic": "ديناميكية",
+                "legendDynamicHint": "يعتمد هذا الامتياز على معلمة الكيان التي تم تمريرها في وقت التشغيل.",
                 "legendGranted": "منحت",
                 "legendGrantedHint": "تم منح هذا الامتياز بالفعل للدور.",
                 "legendLabel": "الأسطورة:",
@@ -10747,6 +11129,7 @@
                 "errorEmailUsed": "هذا البريد الإلكتروني قيد الاستخدام بالفعل.",
                 "errorUsernameUsed": "اسم المستخدم هذا قيد الاستخدام بالفعل.",
                 "labelAccessKey": "مفتاح الوصول",
+                "labelActive": "نشيط",
                 "labelAdministrator": "مدير النظام",
                 "labelButtonChangePassword": "تغيير",
                 "labelCard": "معلومات اساسية",
@@ -10764,7 +11147,9 @@
                 "labelPermissions": "أذونات",
                 "labelProfilePicture": "الصوره الشخصيه",
                 "labelRoles": "الأدوار",
+                "labelRolesPermissionsCard": "الأدوار والأذونات",
                 "labelTimezone": "المنطقة الزمنية",
+                "labelUserInterface": "واجهة المستخدم",
                 "labelUsername": "اسم المستخدم",
                 "mcpAllowlistSaveError": "لا يمكن حفظ قائمة السماح لـ MCP.",
                 "mcpAllowlistTitle": "قائمة السماح بأداة MCP",

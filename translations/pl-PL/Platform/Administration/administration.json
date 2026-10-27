@@ -421,9 +421,9 @@
             "document_base_config": "Konfiguracja bazy dokumentów | Konfiguracja bazy dokumentów",
             "extension": "Rozszerzenie | Rozszerzenia",
             "feature_set": "Szablon | Szablony",
-            "flow": "Konstruktor przepływu",
+            "flow": "Flow | Flow",
             "flow_sequence": "Przepływ",
-            "flow_template": "Szablon przepływu | Szablony przepływu",
+            "flow_template": "Szablon flow | Szablony flow",
             "frequently_used": "Często używane",
             "import_export_profile": "Profil importu/eksportu | Profile importu/eksportu",
             "integration": "Integracja | Integracje",
@@ -479,7 +479,8 @@
             "tax_rule": "Reguła podatkowa | Przepisy dotyczące opodatkowania",
             "theme": "Motyw | Motywy",
             "unit": "Jednostka miary | Jednostki miary",
-            "user": "Użytkownik"
+            "user": "Użytkownik",
+            "webhook": "Webhook | Hooki internetowe"
         },
         "entity-components": {
             "deleteMessage": "Czy na pewno usunąć wpis? | Czy na pewno usunąć {count} wpisy/wpisów?",
@@ -510,6 +511,7 @@
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Zbyt wiele próśb. Poczekaj {seconds} sekund, zanim spróbujesz ponownie.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "Adres URL {path} koliduje z istniejącą trasą {blockedSegment} i nie można go użyć.",
             "INVALID_GARAN_GUARANTEE_MONTHS": "Czas trwania gwarancji musi być pusty lub półroczna wartość dłuższa niż 24 miesiące, np. 30, 36 lub 42.",
+            "INVALID_GARAN_GUARANTEE_TERMS_URL": "Adres URL warunków gwarancji musi zaczynać się od http://lub https://.",
             "INVALID_MAIL": "Wprowadź aktualny adres e-mail.",
             "INVALID_MEDIA_URL": "Wprowadź prawidłowy adres URL, aby załadować plik.",
             "INVALID_URL": "Wprowadź prawidłowy adres URL.",
@@ -776,6 +778,7 @@
                 "orderCountRule": "Ilość zrealizowanych zamówień",
                 "orderCreatedByAdminRule": "Zamówienie utworzone przez admin",
                 "orderCustomFieldRule": "Zamówienie z polem niestandardowym",
+                "orderDaysSincePlacedRule": "Czas od złożenia zamówienia",
                 "orderDeliveryStatusRule": "Status dostawy",
                 "orderDocumentTypeRule": "Zamówienie z dokumentem",
                 "orderDocumentTypeSentRule": "Zamówienie z wysłanym dokumentem",
@@ -1683,6 +1686,7 @@
                     }
                 },
                 "newValue": "Nowa charakterystyka",
+                "noStrategySelected": "Najpierw wybierz opcję.",
                 "oldValue": "Stara wartość",
                 "remindMeLater": "Przypomnij mi później",
                 "selectAnOption": "Przeczytaj uważnie dostępne opcje i wybierz tę, która najlepiej pasuje do Twojego scenariusza:",
@@ -1704,9 +1708,16 @@
                 "title": "Sugerowana zmiana identyfikatora sklepu"
             },
             "sw-app-wrong-app-url-modal": {
+                "checkAgain": "Jeśli rozwiążesz problem bez zmiany APP_URL, uruchom to polecenie, aby usunąć to ostrzeżenie:",
+                "checkIntro": "Sprawdź, czy:",
+                "checkNotBlocked": "żądania do /api/app-system/shop/verify nie są blokowane (firewall, uwierzytelnianie HTTP, lista dozwolonych adresów IP)",
+                "checkPointsToShop": "APP_URL wskazuje na ten sklep",
                 "explanation": "Rozszerzenia nie są w stanie nawiązać połączenia z Twoim sklepem, z powodu niewłaściwej konfiguracji w systemie.",
                 "labelLearnMoreButton": "Dowiedz się więcej",
+                "labelReason": "Powód",
                 "linkToDocsArticle": "https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/notes-to-the-APP-URL",
+                "reasonStatusCode": "APP_URL odpowiedział na żądanie weryfikacji za pomocą HTTP {statusCode}.",
+                "reasonUnknown": "Uruchom poniższe polecenie, aby uzyskać szczegółowe informacje.",
                 "title": "Nieprawidłowo skonfigurowany APP_URL"
             }
         }
@@ -2038,6 +2049,12 @@
                     "changeLabel": "Zmiana: Czas trwania gwarancji producenta",
                     "helpText": "Od 30 do 600 miesięcy, w krokach po 6.",
                     "placeholder": "np. 30, 36 lub 42 miesiące..."
+                },
+                "guaranteeTermsMedia": {
+                    "changeLabel": "Zmiana: Warunki gwarancji (PDF)"
+                },
+                "guaranteeTermsUrl": {
+                    "changeLabel": "Zmiana: URL warunków gwarancji"
                 }
             },
             "labelling": {
@@ -2290,6 +2307,7 @@
                 "placeholderKeywords": "Wprowadź jedno lub więcej słów kluczowych...",
                 "placeholderMetaDescription": "Wprowadź opis...",
                 "placeholderMetaTitle": "Wprowadź meta-tytuł...",
+                "recommendedLength": "Zalecane: max. {max} znaki ({count} używane)",
                 "title": "SEO"
             }
         },
@@ -4420,7 +4438,7 @@
         "list": {
             "buttonAddFlow": "Dodaj przepływ",
             "confirmText": "Czy na pewno chcesz usunąć ten przepływ?",
-            "emptyStateSubTitle": "Dodaj przepływy, klikając przycisk „Dodaj przepływ”.",
+            "emptyStateSubTitle": "Flow automatycznie wykonują akcje, gdy coś dzieje się w Twoim sklepie, np. wysyłają e-mail po złożeniu zamówienia.",
             "emptyStateTitle": "Nie ma jeszcze przepływów",
             "labelColumnActive": "Aktywny",
             "labelColumnDescription": "Opis",
@@ -4564,7 +4582,7 @@
                 "placeholderPaymentStatus": "Wybierz status płatności...",
                 "titleSetStatus": "Przypisz status",
                 "transitionWarning": {
-                    "message": "Zachowaj ostrożność podczas korzystania z przejść stanu, ponieważ mogą one prowadzić do niepowodzenia przepływów, jeśli przejście stanu nie jest prawidłowe. Rozważ włączenie opcji „Wymuś przejścia stanu”, aby uniknąć takich problemów."
+                    "message": "Zachowaj ostrożność przy przejściach statusu, ponieważ nieprawidłowe przejście statusu może spowodować błąd flow. Rozważ włączenie opcji „Wymuś przejścia statusu”, aby uniknąć takich problemów."
                 }
             },
             "tag": {
@@ -5348,6 +5366,7 @@
                 "replace": "Nadpisz",
                 "setCover": "Ustaw obraz okładki",
                 "settings": "Ustawienia",
+                "unselectAll": "Usuń zaznaczenie wszystkich",
                 "vertical": "Pionowo"
             },
             "infoMissingFile": {
@@ -5475,6 +5494,10 @@
             "updatedAt": "Zaktualizowano dnia",
             "zipCode": "Kod pocztowy"
         }
+    },
+    "sw-not-found": {
+        "description": "Nie można odnaleźć strony, której szukasz. Być może został przeniesiony lub już nie istnieje.",
+        "title": "Strona nie znaleziona"
     },
     "sw-oauth-authorize": {
         "consent": {
@@ -6380,7 +6403,7 @@
                 "label": "Trasy"
             },
             "rule": {
-                "label": "Konstruktor reguł"
+                "label": "Rule Builder"
             },
             "sales_channel": {
                 "label": "Kanały sprzedaży"
@@ -6555,7 +6578,10 @@
             "cardTitleSeo": "SEO",
             "cardTitleSettings": "Oznaczenia",
             "cardTitleVisibilityStructure": "Struktura widoczności",
+            "downloadExternalManagementLabel": "Plik nie jest wymagany lub dostarczany zewnętrznie",
+            "downloadExternalManagementTooltip": "Włącz tę opcję, jeśli produkt nie zawiera pliku, np. dla licencji lub kodów dostępu, lub jeśli pliki są dodawane zewnętrznie.",
             "downloadsContextMenuDownloadFile": "Pobierz plik",
+            "downloadsExternalManagementRequired": "Prześlij co najmniej jeden plik lub włącz „Plik nie jest wymagany lub dostarczany zewnętrznie” poniżej.",
             "downloadsLabel": "Wysyłanie plików",
             "labelContextMenuAddToProduct": "Dodaj do produktu",
             "linkAdvancedPrices": "Rozszerzony widok cen",
@@ -6837,13 +6863,19 @@
             "placeholderMetaTitle": "Wprowadź meta-tytuł...",
             "placeholderOpenGraphDescription": "Wprowadź opis Open Graph...",
             "placeholderOpenGraphTitle": "Wprowadź tytuł Open Graph...",
+            "recommendedLength": "Zalecane: max. {max} znaki ({count} używane)",
             "titleOpenGraph": "Otwórz wykres"
         },
         "settingsForm": {
+            "helpTextAllowMultipleUnits": "Jeśli nie jest dozwolone wiele jednostek, klienci mogą kupić tylko jedną sztukę produktu cyfrowego na zamówienie.",
             "helpTextGuaranteeConfirmed": "Etykieta gwarancyjna jest wyświetlana tylko wtedy, gdy ustawiony jest ważny okres gwarancji, producent i numer produktu producenta.",
             "helpTextGuaranteeMonths": "Minimalna wartość to 30, kroki 6.",
+            "helpTextGuaranteeTermsMedia": "Oświadczenie gwarancyjne producenta. Jest on połączony pod etykietą w witrynie sklepowej i dołączony do wiadomości e-mail z potwierdzeniem zamówienia.",
+            "helpTextGuaranteeTermsUrl": "Opcjonalna strona internetowa z warunkami gwarancji. Jeśli jest ustawiony, jest połączony zamiast pliku PDF.",
+            "helpTextMaxPurchaseDigital": "Pozostaw pusty, aby użyć maksymalnej ilości z ustawień koszyka.",
             "isCloseoutHelpText": "Brak możliwości zamawiania przy zerowym stanie.",
             "labelActive": "Aktywny dla wszystkich wybranych kanałów sprzedaży",
+            "labelAllowMultipleUnits": "Zezwalaj na wiele jednostek na zamówienie",
             "labelAvailableStock": "Dostępny stan magazynowy",
             "labelCreatedAt": "Data utworzenia",
             "labelDeliveryTime": "Czas dostawy",
@@ -6851,6 +6883,8 @@
             "labelGuaranteeConfirmed": "Pokaż etykietę w witrynie sklepowej",
             "labelGuaranteeDescription": "Ta etykieta stanowi komercyjną gwarancję trwałości wyrażoną w latach. Gwarancja jest oferowana przez producenta bez dodatkowych kosztów, obejmująca cały towar i na okres dłuższy niż dwa lata.",
             "labelGuaranteeMonths": "Okres gwarancji producenta w miesiącach",
+            "labelGuaranteeTermsMedia": "Warunki gwarancji (PDF)",
+            "labelGuaranteeTermsUrl": "Warunki gwarancji URL",
             "labelHeight": "Wysokość",
             "labelIsCloseout": "Wyprzedaż magazynowa",
             "labelLength": "Długość",
@@ -6924,6 +6958,7 @@
                 "title": "Wygeneruj warianty",
                 "uploadAllButton": "Prześlij plik do wszystkich wariantów cyfrowych",
                 "uploadCardDescription": "Wszystkie warianty cyfrowe muszą mieć co najmniej jeden plik, aby można je było zapisać.",
+                "uploadCardExternalManagementDescription": "Warianty cyfrowe mogą być zapisywane bez przesłanych plików, ponieważ włączona jest opcja „Plik nie jest wymagany lub dostarczany zewnętrznie”.",
                 "uploadCardSearchPlaceholder": "Szukaj wariantów...",
                 "uploadInfoBoxCount": "{count} wariantów | {count} wariant | {count} warianty",
                 "uploadInfoBoxCreateLabel": "zostaną dodane,",
@@ -8173,6 +8208,7 @@
                 "titleEmptyStateTable": "Nie znaleziono pasujących produktów"
             },
             "serviceCategory": "Punkt wejścia do nawigacji w stopce",
+            "snippetSetGroupOther": "Inne zestawy fragmentów",
             "tabAgenticFiles": "Pliki dla agentów AI",
             "tabAnalytics": "Analiza",
             "tabBase": "Ogólne",
@@ -8306,6 +8342,7 @@
             "frontend-landing-page": "Landing page",
             "frontend-navigation-page": "Strona kategorii",
             "store-api-category-detail": "Strona kategorii",
+            "store-api-landing-page-detail": "Strona docelowa",
             "store-api-product-detail": "Strona produktu"
         }
     },
@@ -8443,6 +8480,7 @@
             "helpTextAdvancedPostalCodePattern": "Możliwe formaty do użycia:<br><br>^\\d{5}$ - Dokładne 5 cyfr, e. 12345<br><br>^(\\d{4})\\s*([A-Z]{2})$ - Dokładne 4 cyfry i 2 litery, np. 1234 AB",
             "helpTextCheckPostalCodePattern": "Umożliwia walidację kodów pocztowych dla szeregu krajów",
             "helpTextCheckVatIdFormat": "Weryfikacja formatu VAT Reg.Nr dla państw członkowskich UE.",
+            "helpTextCheckVatIdFormatNoPattern": "Ten kraj nie ma znanego formatu rejestru VAT, z którym można się zweryfikować.",
             "helpTextCompanyTaxFree": "W celu przeprowadzenia bezpodatkowych transakcji B2B, odpowiednie rachunki klientów muszą posiadać ważny podatek VAT.",
             "helpTextIsEu": "Służy np. do notatek kredytowych i zwrotów.",
             "helpTextLabelVatIdRequired": "Należy pamiętać o przełączniku globalnym w sekcji „Ustawienia > Logowanie/Rejestracja”.",
@@ -9488,6 +9526,7 @@
                     "active": "Aktywny",
                     "description": "Opis",
                     "extension": "Rozszerzenie",
+                    "flow": "Flow",
                     "manufacturer": "Producent",
                     "name": "Nazwa",
                     "position": "Pozycja",
@@ -9514,7 +9553,7 @@
             "buttonAddAssignment": "Dodaj przydział",
             "deprecatedConditionWarning": "Warunek „{label}” jest przestarzały i zostanie usunięty w wersji {version}. Zamiast niego użyj warunku „{replacement}”.",
             "deprecatedConditionWarningNoReplacement": "Warunek \"{label}\" jest przestarzały i zostanie usunięty w {version}.",
-            "flowOnlyConditionsWarning": "Następujące warunki tej reguły wymagają kontekstu przepływu: {conditions}. Poza przepływem (na przykład w metodach wysyłki, metodach płatności lub zadaniach promocyjnych) zawsze będą oceniane jako fałszywe.",
+            "flowOnlyConditionsWarning": "Następujące warunki tej reguły wymagają kontekstu flow: {conditions}. Poza flow (na przykład w metodach wysyłki, metodach płatności lub przypisaniach promocji) zawsze będą niespełnione.",
             "groups": {
                 "cart": "Koszyk",
                 "customers": "Klienci",
@@ -10948,7 +10987,8 @@
         "pages": {
             "adminNavigation": {
                 "description": "Wraz z rozwojem administracji Shopware rośnie liczba funkcji i elementów nawigacyjnych. Przeprojektowaliśmy nawigację, aby poprawić gęstość i ułatwić znalezienie wszystkiego, dzięki wyraźniejszym stanom aktywnym, płynniejszym animacjom podmenu, lepszej czytelności i lepszej dostępności klawiatury.",
-                "headline": "Przejrzysta i bardziej usprawniona nawigacja"
+                "headline": "Przejrzysta i bardziej usprawniona nawigacja",
+                "moduleColorsHint": "Preferujesz kolorowe ikony modułu? Możesz zmienić „Kolory modułu” z powrotem na „Kolorowe” w dowolnym momencie w swoim {profileSettingsLink}."
             },
             "darkMode": {
                 "badge": "Eksperymentalne",
@@ -10959,6 +10999,7 @@
                 "themeSelectLabel": "Wygląd"
             }
         },
+        "profileSettingsLink": "ustawienia profilu",
         "seenSaveError": "Nie można zapisać twoich preferencji. To okno dialogowe może pojawić się ponownie.",
         "title": "Nowy wygląd Twojej administracji"
     },

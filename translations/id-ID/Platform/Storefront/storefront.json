@@ -102,6 +102,7 @@
         "VIOLATION::VAT_ID_FORMAT_NOT_CORRECT": "PPN Reg.No. Anda telah memasukkan tidak memiliki format yang benar.",
         "VIOLATION::ZIP_CODE_INVALID": "Kode pos yang Anda masukkan tidak memiliki format yang benar.",
         "VIOLATION::INVALID_FORMAT_ERROR": "Email yang Anda masukkan tidak memiliki format yang benar.",
+        "VIOLATION::CONTAINS_HTML_ERROR": "Tolong jangan gunakan HTML.",
         "VIOLATION::INVALID_EMAIL_FORMAT_ERROR": "Alamat email tidak valid. Alamat email harus menggunakan format ini `user@example.com` dan menyertakan `@` dan `.`.",
         "VIOLATION::NOT_EQUAL_ERROR": "Inputnya tidak identik.",
         "VIOLATION::FIRST_NAME_IS_BLANK_ERROR": "Tidak ada yang masuk. Silakan isi kolom ini dengan nama depan Anda.",
@@ -144,6 +145,7 @@
         "CHECKOUT__ORDER_ORDER_ALREADY_PAID": "Pesanan dengan nomor pesanan \"%orderNumber%\" sudah dibayar dan tidak dapat diedit setelahnya.",
         "CHECKOUT__ORDER_ORDER_CANCELLED": "Pesanan dengan nomor pesanan \"%orderNumber%\" dibatalkan dan tidak dapat diedit setelahnya.",
         "CHECKOUT__ORDER_ORDER_NOT_FOUND": "Pesanan ini tidak dapat ditemukan.",
+        "CHECKOUT__ORDER_RESTORATION_FAILED": "Pesanan dengan nomor pesanan \"%orderNumber%\" tidak dapat dimuat untuk perubahan pembayaran.",
         "CHECKOUT__CART_HASH_MISMATCH": "Produk atau harga di keranjang belanja Anda mungkin telah berubah. Silakan periksa keranjang belanja Anda sebelum melakukan pemesanan.",
         "CHECKOUT__CART_INVALID_LINE_ITEM_QUANTITY": "Kuantitas (%quantity%) salah.",
         "urlNotAllowed": "Harap jangan masukkan URL di bidang ini."
@@ -486,6 +488,7 @@
         "confirmRevocationNoticeModal": "Harap perhatikan kebijakan pembatalan %revocationModalTagOpen%%revocationModalTagClose%kami.",
         "confirmRevocationNoticePage": "Harap perhatikan kebijakan pembatalan <a href=\"%url%\"></a>kami.",
         "confirmLegalGuaranteeNoticeLink": "Hak jaminan hukum Anda",
+        "confirmLegalGuaranteeNotice": "Harap perhatikan %leGalGuaranteenoticeModaltagOpen%Hak jaminan hukum Anda%legalGuaranteeNoticeModalTagClose%.",
         "confirmTermsText": "Saya telah membaca dan menerima <a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"general terms and conditions\">syarat dan ketentuan umum</a>.",
         "confirmTermsTextModal": "Saya telah membaca dan menerima syarat dan ketentuan umum %toSMODALtagOpen%g%tosModalTagClose%.",
         "confirmTermsTextPage": "Saya telah membaca dan menerima syarat dan ketentuan umum <a href=\"%url%\"></a>.",
@@ -520,7 +523,8 @@
         "cart-merged-hint": "Keranjang belanja saat ini mungkin berisi produk tambahan yang telah ditambahkan dan disimpan selama kunjungan sebelumnya.",
         "collapseTriggerMore": "Tampilkan lebih",
         "collapseTriggerLess": "Tampilkan lebih sedikit",
-        "createAccountHeading": "Untuk mempercepat pembelian di masa mendatang, buat akun pengguna."
+        "createAccountHeading": "Untuk mempercepat pembelian di masa mendatang, buat akun pengguna.",
+        "createAccountButton": "Buat akun"
     },
     "listing": {
         "filterTitleText": "Saring",
@@ -579,6 +583,7 @@
         "subscribeOption": "Berlangganan newsletter",
         "unsubscribeOption": "Berhenti berlangganan newsletter",
         "formSubmit": "Berlangganan",
+        "formSubmitUnsubscribe": "Berhenti berlangganan",
         "subscriptionPersistedSuccess": "Anda baru saja berlangganan newsletter kami.\n Untuk menyelesaikan proses pendaftaran, cari email konfirmasi kami di kotak masuk Anda dan klik tautan yang disediakan.",
         "subscriptionPersistedInfo": "Jika Anda tidak menerima email konfirmasi dalam beberapa menit ke depan, Anda mungkin sudah berlangganan buletin. Periksa kotak masuk dan folder spam Anda. Kemudian coba berlangganan lagi dan hubungi dukungan kami jika ini juga tidak berhasil.",
         "subscriptionRevokeSuccess": "Anda telah berhasil berhenti berlangganan dari buletin.",
@@ -604,7 +609,11 @@
     },
     "revocationRequest": {
         "headline": "Pencabutan",
+        "firstNameLabel": "Nama depan",
+        "lastNameLabel": "Nama belakang",
+        "eMailLabel": "Alamat email",
         "contractNumberLabel": "Nomor kontrak (nomor pesanan, nomor berlangganan,...)",
+        "commentLabel": "Komentar",
         "privacyNoticeTextModal": "Pemberitahuan Privasi kami tersedia %pRivacyModalTagOpen%here%privacyModalTagClose%.",
         "formSubmit": "Konfirmasikan pencabutan",
         "success": "Kami telah menerima permintaan pencabutan Anda dan akan memprosesnya sesegera mungkin."
@@ -616,6 +625,9 @@
     "detail": {
         "garanLabelShowLink": "Tampilkan label GARAN",
         "garanLabelHideLink": "Sembunyikan label GARAN",
+        "garanLabelTitle": "Label GARAN",
+        "garanLabelYourEuropeLink": "Informasi tentang jaminan komersial daya tahan di Your Europe (terbuka di tab baru)",
+        "garanTermsLink": "Ketentuan jaminan",
         "ordernumberLabel": "Nomor produk:",
         "productNumberLabel": "Nomor produk:",
         "addProduct": "Tambah ke keranjang belanja",
@@ -819,6 +831,7 @@
             },
             "quantitySelect": {
                 "legend": "Jumlah Produk: Masukkan jumlah yang diinginkan atau gunakan tombol untuk menambah atau mengurangi kuantitas.",
+                "cartUpdateHint": "Mengubah kuantitas memperbarui keranjang.",
                 "areaLiveText": "Jumlah %product% diatur ke %quantity%.",
                 "label": "Kuantitas",
                 "labelWithProduct": "Jumlah %product%",
@@ -826,7 +839,8 @@
                 "increaseOfProduct": "Tingkatkan jumlah %product%",
                 "decrease": "Kurangi kuantitas",
                 "decreaseOfProduct": "Kurangi jumlah %product%",
-                "stockAdjusted": "Kuantitas Anda telah diperbarui menjadi %quantity%."
+                "stockAdjusted": "Kuantitas Anda telah diperbarui menjadi %quantity%.",
+                "outOfStock": "Produk tidak lagi tersedia."
             },
             "configurator": {
                 "legend": "<span class=\"%hidden_cls%\">Pilih&nbsp;</span>%group_name%"
