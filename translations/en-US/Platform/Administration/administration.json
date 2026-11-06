@@ -519,6 +519,8 @@
             "SHOPWARE_INVALID_IP": "Please enter a valid IP address.",
             "SHOPWARE_INVALID_IP_CIDR": "Please enter a valid IP address or a valid IP-address with CIDR mask.",
             "THEME__INVALID_SCSS_VAR": "SCSS value \"{value}\" is not valid for type \"{type}\".",
+            "USER__USERNAME_NOT_UNIQUE": "This username is already in use.",
+            "USER__USERNAME_WHITESPACE": "The username must not contain leading or trailing whitespace.",
             "c1051bb4-d103-4f74-8988-acbcafc7fdc3": "This field must not be empty."
         },
         "notification": {
@@ -734,6 +736,7 @@
                 "lineItemCustomFieldRule": "Item with custom field",
                 "lineItemDimensionHeightRule": "Item with height",
                 "lineItemDimensionLengthRule": "Item with length",
+                "lineItemDimensionLongestAndGirthRule": "Item with longest side and girth",
                 "lineItemDimensionVolumeRule": "Item with volume",
                 "lineItemDimensionWeightRule": "Item with weight",
                 "lineItemDimensionWidthRule": "Item with width",
@@ -1685,6 +1688,11 @@
                         "label": "Sales channel domains"
                     }
                 },
+                "moveShopPermanently": {
+                    "confirm": "Keep the shop identifier",
+                    "text": "Only do this if you permanently moved your live shop to this installation. The apps move here and stop working in the previous installation, even if it is still running. If this is a staging or test copy, cancel and choose \"Generate a new shop identifier\" instead.",
+                    "title": "Keep the shop identifier?"
+                },
                 "newValue": "New value",
                 "noStrategySelected": "Select an option first.",
                 "oldValue": "Old value",
@@ -1811,7 +1819,11 @@
                     "openLog": "Open log file"
                 },
                 "description": "Bulk edit finished with errors.",
-                "title": "Bulk edit - Error"
+                "failedStatusChanges": "The following status change failed: | The following {count} status changes failed:",
+                "orderLoadFailed": "Order could not be loaded. No status change was attempted.",
+                "orderNotFound": "Order not found or no longer available.",
+                "title": "Bulk edit - Error",
+                "transitionFailed": "Status change reported an error. Check the current order status before trying again."
             },
             "messageBeforeTabLeave": "Bulk edits are being made. If you close the tab, not all changes may be applied.",
             "process": {
@@ -1908,6 +1920,11 @@
                         "newest": "Newest"
                     },
                     "skipSentDocuments": "Skip already sent documents"
+                },
+                "failedFields": {
+                    "orderDeliveries": "Delivery status",
+                    "orderTransactions": "Payment status",
+                    "orders": "Order status"
                 },
                 "order": {
                     "label": "Change: Order status",
@@ -5082,6 +5099,7 @@
         "ignorePlugin": "Ignore permanently",
         "messageDeleteConfirm": "Do you want to delete the extension \"{pluginName}\" completely?",
         "reload": "Reload",
+        "removeExternally": "Remove outside Administration, for example with Composer.",
         "successfullyDeleted": "Extension has been deleted",
         "table": {
             "plugin": "Extension"
@@ -8755,13 +8773,27 @@
     "sw-settings-customer-group": {
         "detail": {
             "cardTitle": "Customer group",
-            "fieldDisplayGrossLabel": "Tax display",
             "fieldDisplayGrossValues": "Gross | Net",
             "fieldNameLabel": "Name",
             "notificationErrorMessage": "An error occured while saving your customer group.",
             "placeholderName": "Enter a name...",
             "placeholderNewCustomerGroup": "New customer group",
-            "registrationForm": "Custom signup form"
+            "priceBasis": {
+                "grossDescription": "Gross prices stay the same when tax rates change. With net display, net prices are derived from the tax rate of the customer's country. Tax-free orders are always charged the net price.",
+                "grossLabel": "Gross stays constant",
+                "label": "Price basis",
+                "netDescription": "Net prices stay the same when tax rates change. Gross prices are derived from the tax rate of the customer's country and do not land on rounded amounts (net 10.00 € shows as 11.90 € at 19 % and 12.00 € at 20 %).",
+                "netLabel": "Net stays constant"
+            },
+            "registrationForm": "Custom signup form",
+            "registrationFormTitle": "Sign up form",
+            "taxDisplay": {
+                "grossDescription": "Prices are shown including tax.",
+                "grossLabel": "Gross",
+                "label": "Tax display",
+                "netDescription": "Prices are shown excluding tax.",
+                "netLabel": "Net"
+            }
         },
         "general": {
             "buttonCreate": "Add customer group",
@@ -8770,7 +8802,9 @@
         },
         "list": {
             "columnDisplayGross": "Tax display",
-            "columnName": "Name"
+            "columnName": "Name",
+            "columnPriceBasis": "Price basis",
+            "columnRegistrationActive": "Custom signup form"
         },
         "modal": {
             "seoUrl": {
@@ -10459,7 +10493,14 @@
         "detail": {
             "fieldLabels": {
                 "name": "Scale unit name",
-                "shortCode": "Short code"
+                "shortCode": "Short code",
+                "uneceCode": "Unit code (UN/ECE)"
+            },
+            "helpTexts": {
+                "uneceCode": "Standard code for e-invoices and integrations, for example KGM for kilogram."
+            },
+            "placeholders": {
+                "uneceCode": "Select unit code..."
             }
         },
         "empty-state": {
@@ -10474,11 +10515,54 @@
         },
         "grid": {
             "columnName": "Scale unit",
-            "columnShortCode": "Shorthand"
+            "columnShortCode": "Shorthand",
+            "columnUneceCode": "Unit code"
         },
         "notification": {
+            "errorLoadingUneceCodes": "Unit codes could not be loaded.",
             "errorMessage": "Scale unit could not be saved. Please fill in all required fields.",
             "successMessage": "Scale unit has been saved."
+        },
+        "uneceCodes": {
+            "ANN": "year",
+            "C62": "one (unit)",
+            "CLT": "centilitre",
+            "CMT": "centimetre",
+            "DAY": "day",
+            "DZN": "dozen",
+            "E48": "service unit",
+            "FOT": "foot",
+            "GRM": "gram",
+            "H87": "piece",
+            "HUR": "hour",
+            "INH": "inch",
+            "KGM": "kilogram",
+            "KMT": "kilometre",
+            "KWH": "kilowatt hour",
+            "LBR": "pound",
+            "LS": "lump sum",
+            "LTR": "litre",
+            "MGM": "milligram",
+            "MIN": "minute",
+            "MLT": "millilitre",
+            "MMT": "millimetre",
+            "MON": "month",
+            "MTK": "square metre",
+            "MTQ": "cubic metre",
+            "MTR": "metre",
+            "ONZ": "ounce",
+            "P1": "percent",
+            "PR": "pair",
+            "SET": "set",
+            "TNE": "tonne",
+            "WEE": "week",
+            "XBG": "bag",
+            "XBO": "bottle",
+            "XBX": "box",
+            "XCA": "can",
+            "XCT": "carton",
+            "XPK": "package",
+            "XPX": "pallet"
         }
     },
     "sw-settings-usage-data": {
@@ -10655,6 +10739,11 @@
         "resetButton": "Reset all"
     },
     "sw-text-editor-toolbar": {
+        "childSearch": {
+            "label": "Search entries",
+            "noResults": "No results found.",
+            "placeholder": "Search..."
+        },
         "link": {
             "buttonVariant": "Button variant",
             "buttonVariantPrimary": "Primary",
