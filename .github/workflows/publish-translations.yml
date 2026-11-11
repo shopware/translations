@@ -1,0 +1,67 @@
+name: Publish translations archive
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "translations/**"
+      - "crowdin-metadata.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-translations
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout translations
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build archive
+        run: |
+          mkdir -p _release
+          zip -r -X -q _release/translations.zip translations crowdin-metadata.json
+      - name: Verify archive
+        run: |
+          locales=$(zipinfo -1 _release/translations.zip 'translations/*.json' | cut -d/ -f2 | sort -u | wc -l)
+          echo "Archive holds files for ${locales} locales"
+          test "${locales}" -ge 30 || { echo "::error::only ${locales} locales carry translation files, expected at least 30"; exit 1; }
+          echo "LOCALE_COUNT=${locales}" >> "$GITHUB_ENV"
+      - name: Write manifest
+        run: |
+          echo "RELEASE_TAG=$(TZ=UTC git log -1 --date=format-local:%Y-%m-%d --format=%cd)-${GITHUB_SHA::7}" >> "$GITHUB_ENV"
+          jq -n \
+            --arg commit "${GITHUB_SHA}" \
+            --arg committedAt "$(git log -1 --format=%cI)" \
+            --arg sha256 "$(sha256sum _release/translations.zip | cut -d' ' -f1)" \
+            --argjson size "$(stat -c %s _release/translations.zip)" \
+            --argjson locales "${LOCALE_COUNT}" \
+            '{commit: $commit, committedAt: $committedAt, archive: {file: "translations.zip", sha256: $sha256, size: $size}, locales: $locales}' \
+            > _release/manifest.json
+          cat _release/manifest.json
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          latest=false
+          if [ "$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq .sha)" = "${GITHUB_SHA}" ]; then
+            latest=true
+          fi
+          gh release create "${RELEASE_TAG}" \
+            _release/translations.zip \
+            _release/manifest.json \
+            --repo "${GITHUB_REPOSITORY}" \
+            --target "${GITHUB_SHA}" \
+            --title "Translations ${RELEASE_TAG}" \
+            --notes "All translations as of ${GITHUB_SHA}." \
+            --latest="${latest}"
