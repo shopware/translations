@@ -12,6 +12,18 @@ The translations are updated automatically via a defined schedule containing mul
 | Download translations from Crowdin                           | Every day at 22:00 CET    |
 | Pull supported languages to SwagLanguagePack                 | Every day at 00:00 CET    |
 | Release new SwagLanguagePack version, if it contains changes | Every Friday at 08:30 CET |
+| Publish the translations archive as a release                | Every change on `main`    |
+
+## Translations archive
+
+Every change to `translations/` or `crowdin-metadata.json` on `main` creates a release with two files, so Shopware can download all locales in one request.
+
+| File               | Content                                                                                                                                      |
+|:-------------------|:---------------------------------------------------------------------------------------------------------------------------------------------|
+| `translations.zip` | The `translations/` folder and `crowdin-metadata.json`, unchanged and at the archive's root                                                  |
+| `manifest.json`    | `commit` and `committedAt` of the source commit, `archive.file`, `archive.sha256` and `archive.size` of the zip, and the number of `locales` |
+
+The newest archive is always at https://github.com/shopware/translations/releases/latest/download/translations.zip, and its manifest at https://github.com/shopware/translations/releases/latest/download/manifest.json. Shopware reads both, so renaming a file or field, or moving the folders inside the zip, breaks every Shopware version that uses them. A release is only published when the archive holds files for at least 30 locales. Only a release built from the current head of `main` becomes the latest one. Releases are tagged with the commit date and the short commit hash, for example `2026-11-10-89e860b`.
 
 ## Crowdin-generated pull requests
 
