@@ -154,23 +154,22 @@ jobs:
           echo "Collected files for ${LOCALE}:"
           find "translations/${LOCALE}/Plugins" -type f -newer .git/HEAD 2>/dev/null || true
 
-      - name: Prepare pre-fill en-US language files
-        if: inputs.language == 'en-US'
+      - name: Pre-fill en-US, de-AT and de-CH from their base language
+        if: contains(fromJSON('["en-US", "de-AT", "de-CH"]'), inputs.language)
         uses: actions/github-script@v7
         with:
           github-token: ${{ github.token }}
           script: |
-            const { main } = await import('${{ github.workspace }}/scripts/prepare-en-US.mjs')
+            const { main } = await import('${{ github.workspace }}/scripts/prepare-default-language-dialects.mjs')
             await main()
 
       - name: Upload sources
         if: inputs.upload_sources
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           upload_sources: true
           upload_translations: false
           download_translations: false
-          preserve_hierarchy: false
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
@@ -179,24 +178,39 @@ jobs:
         id: crowdin_language
         env:
           LOCALE: ${{ inputs.language }}
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
         run: |
-          # The folder names are the mapped side of crowdin.yml (languages_mapping / translation_replace);
-          # invert those rules to get back to the Crowdin language code the CLI expects.
-          id=$(yq -o=json crowdin.yml | jq -r --arg locale "${LOCALE}" '
-            [ .files[] | (.translation_replace // {}), (.languages_mapping.two_letters_code // {}), (.languages_mapping.locale // {}) ]
-            | add
-            | to_entries[]
-            | select(.value == $locale)
-            | .key
-          ' | head -n 1)
-          id="${id:-${LOCALE}}"
-          # Crowdin knows Portuguese only with region suffix
-          [ "${id}" = "pt" ] && id="pt-PT"
+          set -euo pipefail
+
+          # The folder names are Crowdin's locale codes, adjusted by languages_mapping and translation_replace
+          # of crowdin.yml. Apply the same rules to every target language to find the id the CLI expects.
+          base_url=$(yq '.base_url' crowdin.yml)
+          id=$(
+            curl --fail --silent --show-error \
+              --header "Authorization: Bearer ${CROWDIN_PERSONAL_TOKEN}" \
+              "${base_url}/api/v2/projects/${CROWDIN_PROJECT_ID}" \
+            | jq -r --arg locale "${LOCALE}" --argjson group "$(yq -o=json '.files[0]' crowdin.yml)" '
+              .data.targetLanguages[]
+              | .id as $id
+              | (($group.languages_mapping.locale // {})[$id] // .locale) as $folder
+              | reduce (($group.translation_replace // {}) | to_entries[]) as $rule
+                  ($folder; split($rule.key) | join($rule.value))
+              | select(. == $locale)
+              | $id
+            ' | head -n 1
+          )
+
+          if [[ -z "${id}" ]]; then
+            echo "::error::${LOCALE} is not a target language of the Crowdin project."
+            exit 1
+          fi
+
           echo "Crowdin language id for ${LOCALE}: ${id}"
           echo "id=${id}" >> "${GITHUB_OUTPUT}"
 
       - name: Upload translations (${{ inputs.language }})
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           upload_sources: false
           upload_translations: true
@@ -205,7 +219,6 @@ jobs:
           auto_approve_imported: ${{ inputs.language == 'de-DE' }}
           upload_translations_args: ${{ inputs.language == 'de-DE' && '--translate-hidden' || '' }}
           download_translations: false
-          preserve_hierarchy: false
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

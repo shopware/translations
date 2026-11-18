@@ -143,7 +143,7 @@ jobs:
           yq '(.files[] | select(.translation | contains("%locale%")) | .languages_mapping.locale."en-GB") = "en-GB-is-source"' crowdin.yml > crowdin-upload-pr.yml
 
       - name: Upload translations to Crowdin
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           config: crowdin-upload-pr.yml
           upload_sources: false
@@ -152,7 +152,6 @@ jobs:
           auto_approve_imported: true
           upload_translations_args: --translate-hidden
           download_translations: false
-          preserve_hierarchy: false
           dryrun_action: ${{ inputs.dry_run }}
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}

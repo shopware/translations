@@ -12,27 +12,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Prepare pre-fill en-US language files
+      - name: Pre-fill en-US, de-AT and de-CH from their base language
         uses: actions/github-script@v7
         with:
           github-token: ${{ github.token }}
           script: |
-            const { main } = await import('${{ github.workspace }}/scripts/prepare-en-US.mjs')
+            const { main } = await import('${{ github.workspace }}/scripts/prepare-default-language-dialects.mjs')
             await main()
 
       - name: Upload sources (en-GB)
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           upload_sources: true
           upload_translations: false
           download_translations: false
-          preserve_hierarchy: false
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Upload translations (en-GB)
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           upload_sources: false
           upload_translations: true
@@ -41,13 +40,12 @@ jobs:
           auto_approve_imported: true
           upload_translations_args: --translate-hidden
           download_translations: false
-          preserve_hierarchy: false
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Upload translations (de-DE)
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           upload_sources: false
           upload_translations: true
@@ -56,20 +54,42 @@ jobs:
           auto_approve_imported: true
           upload_translations_args: --translate-hidden
           download_translations: false
-          preserve_hierarchy: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Upload translations (de-AT)
+        uses: crowdin/github-action@v3
+        with:
+          upload_sources: false
+          upload_translations: true
+          upload_language: de-AT
+          import_eq_suggestions: true
+          download_translations: false
+        env:
+          CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Upload translations (de-CH)
+        uses: crowdin/github-action@v3
+        with:
+          upload_sources: false
+          upload_translations: true
+          upload_language: de-CH
+          import_eq_suggestions: true
+          download_translations: false
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
       - name: Upload translations (en-US)
-        uses: crowdin/github-action@v1
+        uses: crowdin/github-action@v3
         with:
           upload_sources: false
           upload_translations: true
           upload_language: en-US
           import_eq_suggestions: true
           download_translations: false
-          preserve_hierarchy: false
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
