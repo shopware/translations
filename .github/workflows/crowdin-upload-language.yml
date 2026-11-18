@@ -154,13 +154,13 @@ jobs:
           echo "Collected files for ${LOCALE}:"
           find "translations/${LOCALE}/Plugins" -type f -newer .git/HEAD 2>/dev/null || true
 
-      - name: Prepare pre-fill en-US language files
-        if: inputs.language == 'en-US'
+      - name: Pre-fill en-US, de-AT and de-CH from their base language
+        if: contains(fromJSON('["en-US", "de-AT", "de-CH"]'), inputs.language)
         uses: actions/github-script@v7
         with:
           github-token: ${{ github.token }}
           script: |
-            const { main } = await import('${{ github.workspace }}/scripts/prepare-en-US.mjs')
+            const { main } = await import('${{ github.workspace }}/scripts/prepare-default-language-dialects.mjs')
             await main()
 
       - name: Upload sources

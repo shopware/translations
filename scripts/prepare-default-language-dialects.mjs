@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const languageMapping = {
-    'en-GB': ['en-US']
+    'en-GB': ['en-US'],
+    'de-DE': ['de-AT', 'de-CH']
 };
 
 function deepMerge(source, target) {
