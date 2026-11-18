@@ -241,7 +241,15 @@
     },
     "checkout": {
         "bundle-discount-removed": "Der Bundle-Rabatt für \"%bundleName%\" wurde entfernt, da ein oder mehrere Produkte nicht mehr im Warenkorb sind.",
+        "bundle-discount-removed-combined": "Der Rabatt für \"%bundleName%\" wurde entfernt. Identische Produkte wurden wieder zusammengeführt.",
+        "bundle-discount-removed-manual": "Der Rabatt für \"%bundleName%\" wurde entfernt.",
+        "bundle-insufficient-stock": "\"%bundleName%\" konnte nicht zum Warenkorb hinzugefügt werden, da nicht alle enthaltenen Produkte in der gewünschten Menge verfügbar sind.",
         "bundle-items-has-been-added": "%numberOfItemsAdded% Produkte aus \"%bundleName%\" wurden Ihrem Warenkorb hinzugefügt.",
+        "bundle-max-discount-reached": "Der maximale Rabatt von %amount% für \"%bundleName%\" wurde erreicht.",
+        "bundle-min-value-discount-removed": "Der Rabatt für \"%bundleName%\" wurde entfernt. Fügen Sie qualifizierende Produkte im Wert von weiteren %amount% hinzu, um ihn wieder zu erhalten.",
+        "bundle-min-value-not-reached": "Fügen Sie \"%bundleName%\" Produkte im Wert von weiteren %amount% hinzu, um den Bundle-Rabatt zu erhalten.",
+        "bundle-restored": "Einige Produkte qualifizieren sich jetzt für das Bundle \"%bundleName%\". Der Rabatt wurde automatisch auf die passenden Produkte angewendet. <a href=\"?bundleId=%bundleId%&configurationHash=%configurationHash%&undoRestore=1\" class=\"js-bundle-restore-undo\">Rückgängig machen</a>",
+        "bundle-restored-split": "Einige Produkte qualifizieren sich jetzt für das Bundle \"%bundleName%\". Nur die erforderlichen Mengen wurden aufgenommen; zusätzliche Mengen bleiben separat. <a href=\"?bundleId=%bundleId%&configurationHash=%configurationHash%&undoRestore=1\" class=\"js-bundle-restore-undo\">Rückgängig machen</a>",
         "guest-customer-not-allowed": "Abonnements sind nicht für Gast-Kunden verfügbar. Bitte registrieren Sie sich oder melden Sie sich an.",
         "order-approval-blocked": "Diese Bestellung muss aus folgendem Grund genehmigt werden: %reason%",
         "paymentStatus": "Genehmigung ausstehend",
@@ -342,6 +350,7 @@
         }
     },
     "detail": {
+        "configureAndAddToCartButton": "Konfigurieren und zum Warenkorb hinzufügen",
         "deliveryTimeRange": "Verfügbar, Lieferzeit: %range% %unit%",
         "deliveryTimeUnit": {
             "day": "{1} Tag|[0,Inf[ Tage",
@@ -363,7 +372,9 @@
         },
         "context": {
             "actingAs": "Aktiv für",
+            "companyLabel": "Unternehmen",
             "companyPlaceholder": "Unternehmen auswählen ...",
+            "continue": "Fortfahren",
             "modalBanner": "Sie sind mehreren Unternehmen zugeordnet. Bitte wählen Sie in wessen Namen Sie fortfahren möchten.",
             "modalTitle": "Unternehmen auswählen",
             "setDefault": "Als Standardfirma festlegen",
@@ -371,6 +382,7 @@
             "switchActionWithContext": "Unternehmen wechseln, aktueller Kontext: %context%"
         },
         "employeeCreate": {
+            "buttonSendInvitation": "Einladung senden",
             "labelEmail": "E-Mail-Adresse",
             "labelFirstName": "Vorname",
             "labelLanguage": "Sprache",
@@ -464,6 +476,7 @@
             "noOrganizationUnitSelected": "Keine Einheit",
             "organizationUnitConfirmModalText": "Möchten Sie wirklich <strong>%name%</strong> aus <strong>%unit%</strong> entfernen? <br />Dies wird die aktuellen Berechtigungen Ihres Mitarbeiters entfernen?",
             "organizationUnitConfirmModalTitle": "Organisationseinheit-Zuweisung entfernen",
+            "organizationUnitPlaceholder": "Nach Organisationseinheiten suchen ...",
             "organizationUnitRemoveModalText": "Sie sind dabei <strong>%name%</strong> aus den folgenden Organisationseinheiten zu entfernen. Dadurch werden die Berechtigungen in diesen Einheiten entfernt:",
             "removeAndSaveButton": "Entfernen und speichern"
         },
@@ -564,6 +577,7 @@
                 "pending_order": {
                     "approve_decline": "Freizugebende Bestellungen genehmigen und ablehnen",
                     "approve_decline_all": "Freizugebende Bestellungen unabhängig von Regeln genehmigen und ablehnen",
+                    "edit_items": "Positionen ausstehender Bestellungen bearbeiten",
                     "read_all": "Alle ausstehenden Bestellungen anzeigen"
                 },
                 "quote": {
@@ -618,8 +632,10 @@
     },
     "error": {
         "ORGANIZATION_UNITS__HAS_CHILDREN": "Die Organisationseinheit kann nicht gelöscht werden, da ihr noch untergeordnete Einheiten zugeordnet sind. Bitte lösche oder verschiebe diese zuerst.",
+        "ORGANIZATION_UNITS__TECHNICAL_NAME_NOT_UNIQUE": "Dieser technische Name wird bereits verwendet. Bitte wähle einen anderen.",
         "VIOLATION::AT_LEAST_ONE_CHOICE": "Es muss mindestens eine \"%option%\" hinzugefügt werden",
-        "VIOLATION::ENTITY_EXISTS": "Dieser technische Name existiert bereits. Bitte wählen Sie einen anderen technischen Namen."
+        "VIOLATION::ENTITY_EXISTS": "Dieser technische Name existiert bereits. Bitte wählen Sie einen anderen technischen Namen.",
+        "VIOLATION::TOO_FEW_BUNDLE_ITEMS": "{1} 1 weiteres Produkt erforderlich|[0,Inf[ %count% weitere Produkte erforderlich"
     },
     "general": {
         "categories": "Kategorien",
@@ -673,11 +689,34 @@
     },
     "orderApproval": {
         "flashMessage": {
+            "lineItemAdded": "Position zur ausstehenden Bestellung hinzugefügt.",
+            "lineItemError": {
+                "ORDER_APPROVAL__INVALID_LINE_ITEM_QUANTITY": "Bitte geben Sie eine Menge von mindestens 1 ein.",
+                "ORDER_APPROVAL__LAST_LINE_ITEM_NOT_REMOVABLE": "Eine ausstehende Bestellung muss mindestens eine Position behalten. Lehnen Sie die Bestellung stattdessen ab.",
+                "ORDER_APPROVAL__LINE_ITEM_CHANGE_BLOCKED": "Diese Position kann nicht geändert werden.",
+                "ORDER_APPROVAL__LINE_ITEM_CHANGE_REJECTED": "Diese Änderung ist für diese ausstehende Bestellung nicht möglich.",
+                "ORDER_APPROVAL__LINE_ITEM_CHANGE_REJECTED_REASON": "Diese Änderung ist nicht möglich: %reason%",
+                "ORDER_APPROVAL__LINE_ITEM_EDIT_NOT_ALLOWED": "Die Positionen dieser ausstehenden Bestellung können nicht mehr geändert werden.",
+                "ORDER_APPROVAL__LINE_ITEM_NOT_FOUND": "Diese Position gehört nicht zur ausstehenden Bestellung.",
+                "ORDER_APPROVAL__LINE_ITEM_QUANTITY_NOT_APPLIED": "Die Menge konnte nicht auf %quantity% geändert werden.",
+                "ORDER_APPROVAL__MISSING_REQUEST_PARAMETER_CODE": "Die Anfrage war unvollständig. Bitte versuchen Sie es erneut.",
+                "ORDER_APPROVAL__PRODUCT_ALREADY_IN_PENDING_ORDER": "Dieses Produkt ist bereits Teil der ausstehenden Bestellung.",
+                "ORDER_APPROVAL__PRODUCT_NOT_ADDABLE": "Dieses Produkt kann der ausstehenden Bestellung nicht hinzugefügt werden.",
+                "default": "Die Position konnte nicht geändert werden.",
+                "reason": {
+                    "budget-exceed": "Das Budget dieser Bestellung würde überschritten.",
+                    "budget-invalid": "Das Budget dieser Bestellung ist nicht mehr gültig.",
+                    "budget-missing": "Dieser Bestellung ist kein Budget zugewiesen."
+                }
+            },
+            "lineItemQuantityChanged": "Positionsmenge aktualisiert.",
+            "lineItemRemoved": "Position aus der ausstehenden Bestellung entfernt.",
             "notAllowOrder": "Sie dürfen keine Bestellungen tätigen.",
             "orderDeclined": "Ausstehende Bestellung abgelehnt.",
             "orderDeleted": "Ausstehende Bestellung gelöscht.",
             "orderNotApproved": "Ausstehende Bestellung. Warte auf Genehmigung.",
             "orderNotAvailable": "Ausstehende Bestellung noch nicht verfügbar.",
+            "promotionNoLongerApplies": "Die Aktion \"%name%\" gilt nach dieser Änderung nicht mehr.",
             "ruleCreated": "Genehmigungsregel erstellt.",
             "ruleUpdated": "Genehmigungsregel aktualisiert."
         }
@@ -694,6 +733,7 @@
             "modalIntroSingleCompany": "Sie sind mehreren Organisationseinheiten zugeordnet. Bitte wählen Sie die Organisationseinheit aus, auf die Sie zugreifen möchten.",
             "modalTitleSingleCompany": "Organisationseinheit von %company% auswählen",
             "organizationHelp": "Alle Organisationseinheiten, denen Sie zugewiesen sind, werden hier aufgelistet.",
+            "organizationLabel": "Organisationseinheit",
             "organizationPlaceholder": "Bitte wählen Sie eine Organisationseinheit",
             "setDefaultCompanyAndOrganization": "Als Standardfirma und -organisationseinheit festlegen",
             "setDefaultOrganization": "Als Standardorganisationseinheit festlegen"
@@ -705,7 +745,10 @@
             "billingAddressesDisinheritTitle": "Untergeordnete Organisationseinheiten mit aktivierter Vererbung verwenden automatisch diese Rechnungsadressen.",
             "billingAddressesInheritTitle": "Verwendet standardmäßig die Rechnungsadresse der übergeordneten Organisationseinheit. Deaktiviere die Vererbung, um diese Einstellung zu bearbeiten.",
             "defaultAddress": "Standardadresse",
+            "descriptionLabel": "Beschreibung",
             "descriptionPlaceholder": "Beschreibung der Organisationseinheit eingeben",
+            "emailLabel": "E-Mail-Adresse",
+            "emailPlaceholder": "E-Mail-Adresse der Organisationseinheit eingeben",
             "employeesLabel": "Mitarbeiter zuweisen",
             "employeesPlaceholder": "Mitarbeiter suchen",
             "generalInformation": "Allgemeine Informationen",
@@ -720,7 +763,10 @@
             "paymentMethodsInheritTitle": "Verwendet standardmäßig die Zahlungsmethoden der übergeordneten Organisationseinheit. Deaktiviere die Vererbung, um diese Einstellung zu bearbeiten.",
             "paymentMethodsLabel": "Dieser Organisation den Zugang zu Zahlungsmethoden erlauben",
             "paymentMethodsTitle": "Zahlungsmethoden",
+            "requiredFieldsMessage": "Bitte fülle alle Pflichtfelder aus, bevor du die Organisationseinheit erstellst.",
             "saveButtonLabel": "Organisationseinheit erstellen",
+            "saveError": "Die Organisationseinheit konnte nicht gespeichert werden. Bitte überprüfe deine Eingaben.",
+            "saveSuccess": "Die Organisationseinheit wurde erfolgreich erstellt.",
             "shippingAddressLabel": "Dieser Organisation den Zugang zu Lieferadressen erlauben",
             "shippingAddressTitle": "Lieferadressen",
             "shippingAddressesDisinheritTitle": "Untergeordnete Organisationseinheiten mit aktivierter Vererbung verwenden automatisch diese Lieferadressen.",
@@ -730,11 +776,13 @@
             "shippingMethodsLabel": "Dieser Organisation den Zugang zu Versandarten erlauben",
             "shippingMethodsTitle": "Versandarten",
             "subUnitLabel": "Dies ist eine untergeordnete Organisationseinheit",
+            "technicalNameLabel": "Technischer Name",
             "technicalNamePlaceholder": "Technischen Namen eingeben",
             "title": "Neue Organisationseinheit erstellen"
         },
         "createButton": "Einheit erstellen",
         "detail": {
+            "saveSuccess": "Die Organisationseinheit wurde erfolgreich aktualisiert.",
             "title": "Details der Organisationseinheit"
         },
         "emptyDescription": "Erstelle eine neue Organisationseinheit.",
@@ -784,6 +832,9 @@
             "title": "Bestellfreigabe löschen"
         },
         "detail": {
+            "addItemLabel": "Position hinzufügen",
+            "addItemNoResults": "Keine Produkte gefunden",
+            "addItemPlaceholder": "Nach einem Produkt suchen",
             "approvalRuleTitle": "Genehmigungsregel:",
             "approveButton": "Bestellung genehmigen",
             "cartValueTitle": "Warenkorbwert:",
@@ -827,6 +878,10 @@
         "pendingOrderTitle": "Freigaberegel",
         "pendingOrdersInfoEmpty": "Keine zu genehmigenden Bestellungen.",
         "reason": "Budget %budgetName% überschritten.",
+        "removeItemModal": {
+            "description": "Möchten Sie %name% wirklich aus der Bestellfreigabe %number% entfernen?",
+            "title": "%name% entfernen"
+        },
         "shippingAddressHeader": "Lieferadresse"
     },
     "quickOrder": {
@@ -900,27 +955,38 @@
         "declinePlaceholderField": "Fügen Sie eine Nachricht hinzu ...",
         "deleteDraftSuccess": "Ihr Angebotsentwurf wurde erfolgreich gelöscht.",
         "details": {
+            "accepted": "Akzeptiert",
+            "cancelled": "Abgebrochen",
             "commentTitle": "Nachrichtenübersicht",
             "commentTitleHelpText": "Wenn sich der Angebotsstatus ändert, wird der Verlauf aktualisiert.",
             "created": "Angeboten am",
             "customerComment": "Sie",
+            "declined": "Abgelehnt",
+            "draft": "Entwurf",
             "expirationDate": "Gültig bis",
+            "expired": "Abgelaufen",
             "grandTotalGross": "Gesamtsumme (brutto)",
+            "historyAddedLabel": "Hinzugefügt:",
             "historyButtonLabel": "Verlauf anzeigen",
+            "historyChangeFallback": "Aktualisiert",
             "historyDiscountAbsolute": "Absolut %value%",
+            "historyDiscountLabel": "Rabatt:",
             "historyDiscountRelative": "Relativ %value%%",
             "historyEmpty": "Noch keine Verlaufseinträge vorhanden.",
             "historyError": "Der Verlauf konnte nicht geladen werden.",
             "historyExpiryDateLabel": "Gültig bis:",
             "historyGrandTotalGrossLabel": "Gesamtsumme (brutto):",
+            "historyItemsLabel": "Positionen:",
             "historyOrderCreatedLabel": "Bestellung erstellt:",
             "historySentLabel": "Gesendet:",
             "historySentQuoteValue": "Angebot #%quoteNumber%",
             "historyWithdrawnLabel": "Zurückgezogen:",
+            "in_review": "In Prüfung",
             "merchantComment": "Händler",
             "messageImmediateHint": "Nachrichten werden sofort an den Händler gesendet.",
             "netTotal": "Summe (netto)",
             "offer_sent": "Angebot gesendet",
+            "open": "Offen",
             "open_offer": "Offenes Angebot",
             "open_request": "Anfrage gesendet",
             "orderNumber": "Bestellnummer",
@@ -929,9 +995,13 @@
             "quoteHistoryMissingUrlError": "Die URL für den Angebotsverlauf fehlt.",
             "quoteHistoryReadError": "Der Angebotsverlauf konnte nicht als gesehen markiert werden.",
             "quoteMessageSendError": "Die Angebotsnachricht konnte nicht gesendet werden.",
+            "reopen": "Erneut geöffnet",
+            "replied": "Beantwortet",
+            "request_sent": "Anfrage gesendet",
             "requestedAt": "Erstellt am",
             "requestedBy": "Erstellt von",
             "response_received": "Antwort gesendet",
+            "response_sent": "Antwort gesendet",
             "status": "Status",
             "subtotal": "Zwischensumme (netto)",
             "total": "Gesamtsumme",
@@ -948,13 +1018,17 @@
             "columnQuantity": "Anzahl",
             "columnQuotedPrice": "Angebotspreis",
             "columnRequestedPrice": "Angefragter Preis",
-            "columnTotal": "Summe"
+            "columnTotal": "Summe",
+            "columnUnitPrice": "Stückpreis"
         },
         "list": {
+            "actionDeleteDraft": "Entwurf löschen",
             "deleteDraftConfirm": "Sind Sie sicher, dass Sie den Angebotsentwurf <strong>#%quoteNumber%</strong> löschen möchten?<br/>Diese Aktion kann nicht rückgängig gemacht werden.",
             "extendQuoteManagementText": "Angebote in dieser Übersicht verwenden das neue Angebotsmanagement mit Preisabfragen und positionsbezogenen Kommentaren."
         },
         "manageLineItems": {
+            "amount": "Menge",
+            "buttonManageLabel": "Positionen verwalten",
             "buttonViewLabel": "Positionen ansehen",
             "createDraftVersionFailed": "Das Erstellen der Angebotsentwurfsversion ist mit Status %status% fehlgeschlagen.",
             "createDraftVersionGenericFailed": "Das Erstellen der Angebotsentwurfsversion ist fehlgeschlagen. Die Positionsverwaltung funktioniert möglicherweise nicht wie erwartet.",
@@ -971,40 +1045,55 @@
             "history": {
                 "added": "Hinzugefügt",
                 "addedToQuote": "Zum Angebot hinzugefügt",
+                "changed": "Geändert",
+                "deleted": "Gelöscht",
+                "merchant": "Händler",
                 "notAvailable": "nicht verfügbar",
                 "removedFromQuote": "Aus dem Angebot entfernt",
                 "requestedAmount": "Angefragte Menge",
+                "requestedPrice": "Gewünschter Preis",
                 "requestedTax": "Angefragte Steuer"
             },
             "historyCountPlural": "(%count% Einträge)",
             "historyCountSingular": "(%count% Eintrag)",
             "historyEmpty": "Es gibt noch keine Anfragen.",
             "historyError": "Der Verlauf konnte gerade nicht geladen werden.",
+            "historyLoadMore": "Mehr laden",
             "historyLoading": "Verlauf wird geladen ...",
             "historyReadFailed": "Das Lesen des Angebotsverlaufs ist mit Status %status% fehlgeschlagen.",
+            "historyReply": "Antworten",
+            "historyTitle": "Verlauf",
+            "itemsPerPage": "Elemente pro Seite",
             "lineItemHistoryFailed": "Der Positionsverlauf des Angebots ist mit Status %status% fehlgeschlagen.",
+            "loadingLabel": "Wird geladen ...",
             "messageEditFailed": "Das Bearbeiten der Angebotsnachricht ist mit Status %status% fehlgeschlagen.",
             "messageRemoveFailed": "Das Entfernen der Angebotsnachricht ist mit Status %status% fehlgeschlagen.",
             "messageReplyFailed": "Das Antworten auf die Angebotsnachricht ist mit Status %status% fehlgeschlagen.",
             "messageSendFailed": "Das Senden der Angebotsnachricht ist mit Status %status% fehlgeschlagen.",
             "missingDraftVersionId": "Das Erstellen der Angebotsentwurfsversion hat keine versionId zurückgegeben.",
             "quickAddAlreadyPartOfQuote": "Dieser Artikel ist bereits Teil des Angebots.",
+            "quickAddNoProductFound": "Keine Produkte gefunden.",
             "quickAddPlaceholder": "Produkt nach Name oder Produktnummer einzeln hinzufügen ...",
             "quickAddReadOnlyMessage": "Benötigen Sie eine weitere Position? Fragen Sie den Händler per Nachricht.",
+            "quotedPrice": "Angebotspreis",
             "removeLineItemFailed": "Das Entfernen der Angebotsposition ist mit Status %status% fehlgeschlagen.",
+            "requestedPrice": "Gewünschter Preis",
             "requestedPriceHelpText": "Sie können einen Stückpreis für eine Position anfragen, dieser dient jedoch nur als Vorschlag. Händler sind nicht verpflichtet, ihn zu akzeptieren.",
             "requestedPricePlaceholder": "Preis eingeben ...",
             "saveDraftVersionFailed": "Das Speichern der Angebotsentwurfsversion ist mit Status %status% fehlgeschlagen.",
+            "searchPlaceholder": "Positionen suchen ...",
             "sortLabelAsc": "Sortieren nach: Position A-Z",
             "sortLabelDesc": "Sortieren nach: Position Z-A",
             "sortNewest": "Sortieren nach: Neueste Änderungen",
-            "sortOldest": "Sortieren nach: Älteste Änderungen"
+            "sortOldest": "Sortieren nach: Älteste Änderungen",
+            "title": "Positionen verwalten"
         },
         "notifications": {
             "recipientsLabel": "Zusätzliche Empfänger",
             "recipientsPlaceholder": "Benutzer auswählen ...",
             "saveNotificationEmployeesFailed": "Benachrichtigungsempfänger konnten nicht gespeichert werden. Statuscode: %status%",
-            "sendNotificationHelpText": "Die ausgewählten Mitarbeiter erhalten eine E-Mail-Benachrichtigung, wenn dieses Angebot aktualisiert wird. Der Ersteller des Angebots erhält Benachrichtigungen immer."
+            "sendNotificationHelpText": "Die ausgewählten Mitarbeiter erhalten eine E-Mail-Benachrichtigung, wenn dieses Angebot aktualisiert wird. Der Ersteller des Angebots erhält Benachrichtigungen immer.",
+            "title": "Benachrichtigungen"
         },
         "overviewCartHeader": "Warenkorb-Zusammenfassung",
         "overviewDetailsHeader": "Details",
@@ -1014,12 +1103,18 @@
         "quoteContextMenuDetail": "Details anzeigen",
         "quoteDetail": {
             "documentsActions": "Dokumentaktionen",
+            "documentsCreatedAt": "Erstellt am",
+            "documentsDownload": "Dokument herunterladen",
             "documentsEmpty": "Die Dokumente werden angezeigt, sobald der Administrator sie beim Versenden des Angebots hinzufügt.",
             "documentsEmptySearch": "Keine Dokumente für diese Suche gefunden.",
+            "documentsName": "Name",
+            "documentsOpen": "Dokument öffnen",
             "documentsPaginationLabel": "Dokument-Paginierung",
             "documentsPaginationNext": "Nächste Dokumentseite",
             "documentsPaginationPrevious": "Vorherige Dokumentseite",
             "documentsSearchLabel": "Dokumente suchen",
+            "documentsSearchPlaceholder": "Suchen ...",
+            "documentsTitle": "Dokumente",
             "draftDescription": "Dieses Angebot ist Teil des neuen Angebotsmanagements. Es befindet sich derzeit im Entwurf und wird für den Händler sichtbar, sobald es gesendet wird. Preisabfragen und Kommentare auf Positionsebene werden unterstützt.",
             "sentDescription": "Dieses Angebot ist Teil des neuen Angebotsmanagements. Preisabfragen und Kommentare auf Positionsebene werden jetzt unterstützt.",
             "titleItems": "Positionen",
@@ -1028,9 +1123,11 @@
         "quoteId": "Angebot #",
         "quoteItemActionAddComment": "Kommentar hinzufügen",
         "quoteItemActionDelete": "Position löschen",
+        "quoteItemActionEdit": "Position bearbeiten",
         "quoteItemActionShowHistory": "Positionsverlauf anzeigen",
         "quoteItemActionsLabel": "Aktionen für Angebotsposition",
         "quoteItemDeleteModalConfirmation": "Sind Sie sicher, dass Sie die Position \"%label%\" entfernen möchten? Alle Anfragen für diese Position werden aus dem Angebot entfernt.",
+        "quoteItemDeleteModalTitle": "Position entfernen",
         "quoteRequestConfirmModal": {
             "confirmButton": "Weiter",
             "title": "Warnung",
@@ -1062,6 +1159,18 @@
         "sendCommentPlaceholderField": "Kommentar senden ...",
         "sendQuoteRequestSuccess": "Ihre Angebotsanfrage wurde erfolgreich gesendet.",
         "sendRequestLink": "Angebotsanfrage senden",
+        "stateMachine": {
+            "accepted": "Akzeptiert",
+            "cancelled": "Storniert",
+            "declined": "Abgelehnt",
+            "draft": "Entwurf",
+            "expired": "Abgelaufen",
+            "open_offer": "Offenes Angebot",
+            "reopen": "Wiedereröffnet",
+            "request_sent": "Anfrage gesendet",
+            "response_sent": "Antwort gesendet",
+            "withdrawn": "Zurückgezogen"
+        },
         "withdrawnNotice": "Dieses Angebot wurde vom Händler zurückgezogen."
     },
     "search": {
@@ -1145,9 +1254,30 @@
     "swag-product-bundle": {
         "blocks": {
             "bundleItems": {
+                "applyErrorMessage": "Diese Auswahl konnte leider nicht übernommen werden. Bitte versuchen Sie es erneut.",
+                "applyLabel": "Übernehmen",
+                "configureLabel": "Konfigurieren",
+                "includeLabel": "Enthalten",
+                "limitedByIncludedProduct": "{1} Durch ein enthaltenes Produkt begrenzt|[0,Inf[ Durch enthaltene Produkte begrenzt",
+                "limitsBundleQuantity": "Begrenzt die Bundle-Anzahl",
+                "loadingLabel": "Wird geladen",
+                "reduceBundleQuantityToInclude": "Bundle-Anzahl reduzieren, um es hinzuzufügen",
+                "selectionError": "Diese Bundle-Konfiguration ist nicht verfügbar. Bitte passen Sie Ihre Auswahl an.",
+                "selectionUnavailable": "Auswahl nicht mehr verfügbar.",
                 "title": "Enthaltene Produkte",
-                "titleCounter": "%title% (%count%)"
+                "titleCounter": "%title% (%count%)",
+                "totalIncluded": "Insgesamt enthalten: %count%",
+                "variantInsufficientStockHeadline": "Nur %available% verfügbar.",
+                "variantInsufficientStockReduceBundles": "Ihre aktuelle Bundle-Anzahl erfordert %required%. Wählen Sie eine andere Konfiguration oder reduzieren Sie die Bundle-Anzahl auf %reduced%.",
+                "variantInsufficientStockReduceQuantity": "Ihre aktuelle Bundle-Anzahl erfordert %required%. Wählen Sie eine andere Konfiguration oder reduzieren Sie die Produktanzahl auf %reduced%."
+            },
+            "buyWidget": {
+                "maxDiscountReached": "Der maximale Rabatt von %amount% wurde erreicht.",
+                "minDiscountNotReached": "Fügen Sie Produkte im Wert von %amount% hinzu, um den Rabatt zu erhalten."
             }
+        },
+        "checkout": {
+            "removeBundleDiscount": "Bundle-Rabatt für \"%bundleName%\" entfernen"
         },
         "productCard": {
             "boxLabelDiscount": "Bundle-Rabatt",
