@@ -381,6 +381,7 @@
             "bulkEdit": "Mehrfachänderung",
             "cancel": "Abbrechen",
             "close": "Schliessen",
+            "configure": "Konfigurieren",
             "confirm": "Bestätigen",
             "copy": "Kopie",
             "delete": "Löschen",
@@ -478,7 +479,8 @@
             "tax_rule": "Steuerregel | Steuerregeln",
             "theme": "Theme | Themes",
             "unit": "Masseinheit | Masseinheiten",
-            "user": "Benutzer"
+            "user": "Benutzer",
+            "webhook": "Webhook | Webhooks"
         },
         "entity-components": {
             "deleteMessage": "Soll der Eintrag wirklich gelöscht werden? | Sollen diese {count} Einträge wirklich gelöscht werden?",
@@ -508,6 +510,8 @@
             "FRAMEWORK__MISSING_PRIVILEGE_ERROR": "Fehlende Berechtigungen.",
             "FRAMEWORK__RATE_LIMIT_EXCEEDED": "Zu viele Anfragen. Bitte warten Sie {seconds} Sekunden, bevor Sie es erneut versuchen.",
             "FRAMEWORK__ROUTE_BLOCKED_MESSAGE": "Die URL {path} steht in Konflikt mit der bestehenden Route {blockedSegment} und kann nicht verwendet werden.",
+            "INVALID_GARAN_GUARANTEE_MONTHS": "Die Garantiedauer muss leer sein oder ein Halbjahreswert zwischen 30 und 600 Monaten, z. B. 30, 36 oder 42.",
+            "INVALID_GARAN_GUARANTEE_TERMS_URL": "Die URL der Garantiebedingungen muss mit http:// oder https:// beginnen.",
             "INVALID_MAIL": "Bitte gib eine gültige E-Mail-Adresse ein.",
             "INVALID_MEDIA_URL": "Bitte gib eine gültige URL ein, um eine Datei hochzuladen.",
             "INVALID_URL": "Bitte gib eine gültige URL ein.",
@@ -515,6 +519,8 @@
             "SHOPWARE_INVALID_IP": "Bitte gib eine gültige IP-Adresse ein.",
             "SHOPWARE_INVALID_IP_CIDR": "Bitte gib eine gültige IP-Adresse oder eine IP-Adresse mit CIDR-Maske ein.",
             "THEME__INVALID_SCSS_VAR": "SCSS-Wert \"{value}\" ist nicht gültig für Typ \"{type}\".",
+            "USER__USERNAME_NOT_UNIQUE": "Dieser Benutzername wird bereits verwendet.",
+            "USER__USERNAME_WHITESPACE": "Der Benutzername darf keine führenden oder nachfolgenden Leerzeichen enthalten.",
             "c1051bb4-d103-4f74-8988-acbcafc7fdc3": "Dieses Feld darf nicht leer sein."
         },
         "notification": {
@@ -548,6 +554,7 @@
                 "updatesAvailableTitle": "Die neue Shopware-Version {version} ist verfügbar"
             },
             "title": "Mitteilungen",
+            "triggerAriaLabel": "Mitteilungen",
             "worker-listener": {
                 "category": {
                     "message": "Kategorie indexiert. | Noch eine Kategorie verbleibend ... | Circa {n} Kategorien verbleibend ...",
@@ -616,13 +623,16 @@
         },
         "sw-admin-menu": {
             "administrator": "Administrator",
+            "linkCloseMenu": "Menü schließen",
             "linkExpandMenu": "Menü ausklappen",
             "linkLogout": "Abmelden",
             "linkMinimizeMenu": "Menü einklappen",
             "navigation": {
                 "label": "Hauptnavigation",
+                "mainMenuItemAutomation": "Automation",
                 "mainMenuItemContent": "Inhalte",
                 "mainMenuItemMarketing": "Marketing",
+                "mainMenuItemProducts": "Produkte",
                 "mainMenuItemShopwarePayments": "Shopware Payments"
             },
             "textProjectName": "Administration",
@@ -638,6 +648,9 @@
             "sanitizedHint": "Einige Deiner Eingaben wurden bereinigt. Bitte prüfe Deine Inhalte."
         },
         "sw-condition": {
+            "cartLineItemWithQuantity": {
+                "id": "Produkt"
+            },
             "condition": {
                 "AddAndCondition": "UND-Bedingung hinzufügen",
                 "AddOrCondition": "ODER-Bedingung hinzufügen",
@@ -686,6 +699,10 @@
                 "daysSinceLastOrderRule": "Zeit seit letzter abgeschlossenen Bestellung",
                 "deleteAllConditions": "Alle Bedingungen entfernen",
                 "deleteConditions": "Container entfernen",
+                "deliveryCondition": {
+                    "cart": "Gesamter Warenkorb",
+                    "delivery": "Diese Lieferung"
+                },
                 "differentAddressesRule": "Kunde mit abweichender Lieferadresse",
                 "emailRule": {
                     "label": "Kunden-E-Mail-Adresse",
@@ -723,6 +740,7 @@
                 "lineItemCustomFieldRule": "Position mit Zusatzfeld",
                 "lineItemDimensionHeightRule": "Position mit Höhe",
                 "lineItemDimensionLengthRule": "Position mit Länge",
+                "lineItemDimensionLongestAndGirthRule": "Position mit längster Seite und Gurtmaß",
                 "lineItemDimensionVolumeRule": "Position mit Volumen",
                 "lineItemDimensionWeightRule": "Position mit Gewicht",
                 "lineItemDimensionWidthRule": "Position mit Breite",
@@ -767,6 +785,7 @@
                 "orderCountRule": "Anzahl abgeschlossener Bestellungen",
                 "orderCreatedByAdminRule": "Bestellung vom Administrator erstellt (Flow)",
                 "orderCustomFieldRule": "Bestellung mit Zusatzfeld",
+                "orderDaysSincePlacedRule": "Zeit seit Bestelldatum",
                 "orderDeliveryStatusRule": "Lieferstatus (Flow)",
                 "orderDocumentTypeRule": "Bestellung mit Dokument",
                 "orderDocumentTypeSentRule": "Bestellung mit gesendetem Dokument",
@@ -807,11 +826,25 @@
                 "prefix": "Ungültiger Wert:"
             },
             "field": {
+                "amount": "Betrag",
+                "categoryIds": "Kategorie",
+                "count": "Anzahl",
+                "identifiers": "Auswahl",
+                "isAlwaysValid": "Immer gültig",
                 "isNet": "Netto / Brutto",
                 "isNumeric": "Vergleichsmodus",
+                "operator": "Operator",
+                "quantity": "Menge",
+                "renderedField": "Zusatzfeld",
+                "renderedFieldValue": "Wert",
+                "selectedField": "Zusatzfeld",
+                "selectedFieldSet": "Zusatzfeld-Set",
                 "timezone": "Zeitzone",
                 "toDate": "Bis",
-                "useTime": "Zeitmodus"
+                "toTime": "Bis",
+                "type": "Bedingung",
+                "useTime": "Zeitmodus",
+                "zipCodes": "Postleitzahl"
             },
             "operator": {
                 "between": "Ist zwischen | Sind zwischen",
@@ -852,6 +885,14 @@
                     "options": {
                         "digital": "Digital",
                         "physical": "Physisch"
+                    }
+                }
+            },
+            "cartLineItemPurchasePrice": {
+                "type": {
+                    "options": {
+                        "gross": "Brutto",
+                        "net": "Netto"
                     }
                 }
             },
@@ -962,7 +1003,11 @@
             "tooltipListSettings": "Listeneinstellungen"
         },
         "sw-desktop": {
-            "stagingBarText": "Der Shop befindet sich im Staging-Modus."
+            "stagingBarText": "Der Shop befindet sich im Staging-Modus.",
+            "theme": {
+                "changed": "Erscheinungsbild zu \"{theme}\" geändert",
+                "saveError": "Erscheinungsbild konnte nicht gewechselt werden"
+            }
         },
         "sw-duplicated-media": {
             "buttonRename": "Datei umbenennen",
@@ -1485,6 +1530,7 @@
         "sw-sso-error": {
             "error-card": {
                 "button": "Mit anderem Account anmelden",
+                "loadingLabel": "Wird geladen ...",
                 "loggedInAsPrefix": "Angemeldet als:",
                 "logoAltText": "Shopware-Logo",
                 "text": "Deine Anmeldung war erfolgreich, aber Du hast keinen Zugriff auf diesen Shopware Shop.",
@@ -1523,6 +1569,13 @@
             "Reduced rate": "Ermässigter Satz",
             "Reduced rate 2": "Stark ermässigter Satz",
             "Standard rate": "Standard-Satz"
+        },
+        "theme": {
+            "names": {
+                "dark": "Dunkel",
+                "light": "Hell",
+                "system": "System"
+            }
         }
     },
     "help-center": {
@@ -1639,7 +1692,13 @@
                         "label": "Verkaufskanal-Domains"
                     }
                 },
+                "moveShopPermanently": {
+                    "confirm": "Shop-ID beibehalten",
+                    "text": "Tu das nur, wenn Du Deinen Live-Shop dauerhaft auf diese Installation umgezogen hast. Die Apps ziehen hierher um und funktionieren in der vorherigen Installation nicht mehr, auch wenn sie noch läuft. Wenn das eine Staging- oder Testkopie ist, brich ab und wähle stattdessen \"Neue Shop-ID generieren\".",
+                    "title": "Shop-ID beibehalten?"
+                },
                 "newValue": "Neuer Wert",
+                "noStrategySelected": "Wähle zuerst eine Option aus.",
                 "oldValue": "Alter Wert",
                 "remindMeLater": "Später erinnern",
                 "selectAnOption": "Lies die verfügbaren Optionen sorgfältig durch und wähle diejenige, die am besten zu Deinem Szenario passt:",
@@ -1661,9 +1720,16 @@
                 "title": "Änderung der Shop-ID wird vorgeschlagen"
             },
             "sw-app-wrong-app-url-modal": {
+                "checkAgain": "Wenn du das Problem behebst, ohne die APP_URL zu ändern, führe diesen Befehl aus, um diese Warnung zu entfernen:",
+                "checkIntro": "Prüfe, ob:",
+                "checkNotBlocked": "Anfragen an /api/app-system/shop/verify nicht blockiert werden (Firewall, HTTP-Authentifizierung, IP-Allowlist)",
+                "checkPointsToShop": "die APP_URL auf diesen Shop zeigt",
                 "explanation": "Erweiterungen können keine Verbindung zu deinem Shop aufbauen, aufgrund einer Fehlkonfiguration in deinem System.",
                 "labelLearnMoreButton": "Lerne mehr",
+                "labelReason": "Grund",
                 "linkToDocsArticle": "https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/hinweise-zur-app-url",
+                "reasonStatusCode": "Die APP_URL hat die Verifizierungsanfrage mit HTTP {statusCode} beantwortet.",
+                "reasonUnknown": "Führe den Befehl unten aus, um Details zu sehen.",
                 "title": "Fehlerhaft konfigurierte APP_URL"
             }
         }
@@ -1757,7 +1823,11 @@
                     "openLog": "Log-Datei öffnen"
                 },
                 "description": "Mehrfachänderung mit Fehlern abgeschlossen.",
-                "title": "Mehrfachänderung - Fehler"
+                "failedStatusChanges": "Die folgende Statusänderung ist fehlgeschlagen: | Die folgenden {count} Statusänderungen sind fehlgeschlagen:",
+                "orderLoadFailed": "Bestellung konnte nicht geladen werden. Es wurde keine Statusänderung versucht.",
+                "orderNotFound": "Bestellung nicht gefunden oder nicht mehr verfügbar.",
+                "title": "Mehrfachänderung - Fehler",
+                "transitionFailed": "Bei der Statusänderung ist ein Fehler aufgetreten. Prüfe den aktuellen Bestellstatus, bevor Du es erneut versuchst."
             },
             "messageBeforeTabLeave": "Mehrfachänderungen werden gerade durchgeführt. Wenn du den Tab schliesst, werden eventuell nicht alle Änderungen übernommen.",
             "process": {
@@ -1771,10 +1841,13 @@
                 "documentGenerationFailed": "{count} Dokument konnte nicht erzeugt werden. | {count} Dokumente konnten nicht erzeugt werden.",
                 "documentGenerationSkipped": "{count} Dokument wurde nicht erzeugt, weil es bereits existiert. | {count} Dokumente wurden nicht erzeugt, weil sie bereits existieren.",
                 "failedDocuments": {
+                    "columnDocumentType": "Dokumenttyp",
+                    "columnOrder": "Bestellung",
                     "documentTypes": {
                         "cancellationInvoice": "Stornorechnung",
                         "creditNote": "Gutschrift",
-                        "deliveryNote": "Lieferschein"
+                        "deliveryNote": "Lieferschein",
+                        "invoice": "Rechnung"
                     },
                     "downloadHeadline": "Fehlgeschlagene Dokumente",
                     "downloadResult": "Ergebnis herunterladen"
@@ -1827,7 +1900,9 @@
                     "helpText": "Diese Aktion erhöht den Wert des zugehörigen Nummernkreises.",
                     "label": "Erstellen: Rechnung",
                     "labelDatePicker": "Datum",
-                    "labelTextarea": "Kommentar"
+                    "labelFileFormats": "Dateiformate",
+                    "labelTextarea": "Kommentar",
+                    "placeholderFileFormats": "Dateiformate auswählen ..."
                 },
                 "warning": "Die Mehrfachänderung verwendet jetzt eine verbesserte Dokumentenerstellung. Eine oder mehrere Erweiterungen auf Deinem System könnten jedoch abweichende Ergebnisse mit der neuen Dokumentenerstellung erzeugen.\nÜberprüfe daher bitte, ob Deine Dokumente mit und ohne Verwendung der Mehrfachänderung Unterschiede aufweisen."
             },
@@ -1849,6 +1924,11 @@
                         "newest": "Neueste"
                     },
                     "skipSentDocuments": "Bereits verschickte Dokumente überspringen"
+                },
+                "failedFields": {
+                    "orderDeliveries": "Lieferstatus",
+                    "orderTransactions": "Zahlungsstatus",
+                    "orders": "Bestellstatus"
                 },
                 "order": {
                     "label": "Ändern: Bestellstatus",
@@ -1977,6 +2057,25 @@
                 "productPromotion": {
                     "changeLabel": "Ändern: Produkt hervorheben",
                     "switchLabel": "Produkt hervorheben"
+                }
+            },
+            "guarantee": {
+                "cardTitle": "Garantie (GARAN Label)",
+                "guaranteeConfirmed": {
+                    "changeLabel": "Ändern: Label in der Storefront anzeigen",
+                    "helpText": "Das Garantie-Label wird nur angezeigt, wenn eine gültige Garantiedauer, ein Hersteller und die Hersteller-Produktnummer angegeben sind.",
+                    "label": "Label in der Storefront anzeigen"
+                },
+                "guaranteeMonths": {
+                    "changeLabel": "Ändern: Dauer der herstellerseitigen Garantie",
+                    "helpText": "Zwischen 30 und 600 Monaten, in Schritten von 6.",
+                    "placeholder": "z. B. 30, 36 oder 42 Monate ..."
+                },
+                "guaranteeTermsMedia": {
+                    "changeLabel": "Ändern: Garantiebedingungen (PDF)"
+                },
+                "guaranteeTermsUrl": {
+                    "changeLabel": "Ändern: URL der Garantiebedingungen"
                 }
             },
             "labelling": {
@@ -2229,6 +2328,7 @@
                 "placeholderKeywords": "Gib ein oder mehrere Schlüsselwörter ein ...",
                 "placeholderMetaDescription": "Gib eine Beschreibung ein ...",
                 "placeholderMetaTitle": "Gib einen Meta-Titel ein ...",
+                "recommendedLength": "Empfohlen: max. {max} Zeichen ({count} verwendet)",
                 "title": "SEO"
             }
         },
@@ -2280,6 +2380,9 @@
         "blocks": {
             "blockDisableState": "Dieser Block ist auf keinem Gerät sichtbar. Sie können den Block bearbeiten, aber die Änderungen werden in Ihrem Shop nicht sichtbar sein. Bearbeiten Sie dieses Layout im Modul Einkaufserlebnisse, um die Sichtbarkeit des Blocks zu ändern.",
             "commerce": {
+                "categoryHeading": {
+                    "label": "Kategoriename"
+                },
                 "crossSelling": {
                     "label": "Cross Selling"
                 },
@@ -2655,6 +2758,9 @@
                     "tooltipSettingDisabled": "Die Produktdaten dieses Elements werden automatisch aus dem mit dem Layout verbundenen Produkt geladen. Der angezeigte Inhalt ist nur eine Beispielvorschau."
                 },
                 "label": "Buybox"
+            },
+            "categoryName": {
+                "label": "Kategoriename"
             },
             "crossSelling": {
                 "config": {
@@ -3097,7 +3203,8 @@
             "mainMenuItemGeneral": "Erlebniswelten",
             "moduleTitle": "Erlebniswelten",
             "placeholderSearchBar": "Layouts durchsuchen ...",
-            "privacyNotice": "Ich habe die <a href=\"%privacyUrl%\">Datenschutzbestimmungen</a> zur Kenntnis genommen und die <a href=\"%tosUrl%\">AGB</a> gelesen und bin mit ihnen einverstanden."
+            "privacyNotice": "Ich habe die <a href=\"%privacyUrl%\">Datenschutzbestimmungen</a> zur Kenntnis genommen und die <a href=\"%tosUrl%\">AGB</a> gelesen und bin mit ihnen einverstanden.",
+            "switchLayoutListMode": "Zwischen Raster- und Listenansicht wechseln"
         },
         "inherit": {
             "formBanner": "Dieses Layout erbt Felder. Das bedeutet, dass Inhalt geerbt wird, solange der Status aktiv ist. Die Vererbung dieser Felder kann durch Klicken auf das Verknüpfungssymbol aufgehoben, bzw. wiederhergestellt werden.",
@@ -3269,6 +3376,7 @@
             "labelCustomerNumber": "Kundennummer",
             "labelEmail": "E-Mail-Adresse",
             "labelFirstName": "Vorname",
+            "labelLanguage": "Sprache",
             "labelLastName": "Nachname",
             "labelPassword": "Passwort",
             "labelPaymentMethod": "Zahlungsart",
@@ -3281,6 +3389,7 @@
             "placeholderCustomerNumber": "Gib eine Kundennummer ein ...",
             "placeholderEmail": "Gib eine E-Mail-Adresse ein ...",
             "placeholderFirstName": "Gib einen Vornamen ein ...",
+            "placeholderLanguage": "Sprache auswählen ...",
             "placeholderLastName": "Gib einen Nachnamen ein ...",
             "placeholderPassword": "Gib ein Passwort ein ...",
             "placeholderPaymentMethod": "Wähle eine Zahlungsart ...",
@@ -3350,6 +3459,7 @@
             "manual": {
                 "button": "Passwort setzen",
                 "description": "Ein neues Passwort wird direkt für den Kunden festgelegt. Der Kunde wird nicht benachrichtigt.",
+                "passwordLabel": "Neues Passwort",
                 "title": "Passwort manuell setzen"
             },
             "modalTitle": "Benutzer konvertieren"
@@ -3388,6 +3498,7 @@
             "buttonAddAddress": "Adresse anlegen",
             "buttonSaveAndSelect": "Speichern und auswählen",
             "buttonSelect": "Auswahl",
+            "cardTitle": "Adressen",
             "columnActions": "Aktionen",
             "columnCity": "Stadt",
             "columnCompany": "Firma",
@@ -3399,6 +3510,7 @@
             "columnZipCode": "PLZ",
             "contextMenuDefaultBillingAddress": "Als Standard-Rechnungsadresse festlegen",
             "contextMenuDefaultShippingAddress": "Als Standard-Lieferadresse festlegen",
+            "filterPlaceholder": "Adressen durchsuchen …",
             "modalTitleAddAddress": "Adresse hinzufügen",
             "modalTitleAddress": "Adresse",
             "modalTitleEditAddress": "Adresse bearbeiten",
@@ -3431,6 +3543,9 @@
         },
         "error": {
             "COMPANY_IS_REQUIRED": "Bei gewerblichen Kunden ist die Firma ein Pflichtfeld",
+            "VIOLATION::CUSTOMER_EMAIL_NOT_UNIQUE": "Diese E-Mail-Adresse ist bereits registriert.",
+            "VIOLATION::PASSWORD_IS_TOO_LONG": "Das gewählte Passwort ist zu lang.",
+            "VIOLATION::PASSWORD_IS_TOO_SHORT": "Das gewählte Passwort ist zu kurz.",
             "passwordDoNotMatch": "Die Eingaben für Passwort und Passwortbestätigung stimmen nicht überein."
         },
         "filter": {
@@ -3707,6 +3822,7 @@
                 "message": "Stelle sicher, dass Deine Lizenzdomain korrekt gesetzt ist und Du mit Deinem Shopware Account angemeldet bist, auf welchen diese Erweiterung lizenziert ist.",
                 "title": "Die Lizenz dieser Erweiterung konnte nicht überprüft werden"
             },
+            "appValidationFailed": "Die App hat Validierungsfehler",
             "messageDeactivationFailedDependencies": "Die Erweiterung \"{dependency}\" konnte nicht deaktiviert werden, da es noch aktive Erweiterungen gibt, die von ihr abhängig sind. Bitte deaktiviere zuerst folgende Erweiterungen, bevor Du die Aktualisierung erneut startest: {dependantNames}",
             "messageDeactivationFailedThemeAssignment": "Das Theme \"{themeName}\" konnte nicht deaktiviert werden. Bitte entferne die folgenden Theme-Zuweisungen: {assignments}",
             "messageGenericFailure": "Das hat nicht funktioniert.",
@@ -3754,6 +3870,37 @@
                 "register": "Registriere Dich jetzt und werde Teil der Shopware-Community!",
                 "registerNow": "Jetzt registrieren",
                 "registerUrl": "https://account.shopware.com/register?lang=de"
+            },
+            "bulk": {
+                "activate": "Aktivieren",
+                "consent": {
+                    "extensionLabel": "{count} Erweiterung|{count} Erweiterungen",
+                    "installAction": "Akzeptieren und installieren",
+                    "installDescription": "Die ausgewählten Erweiterungen fordern die folgenden Berechtigungen an:",
+                    "installTitle": "{count} Erweiterung installieren|{count} Erweiterungen installieren",
+                    "updateAction": "Akzeptieren und aktualisieren",
+                    "updateDescription": "Für die Aktualisierung der ausgewählten Erweiterungen müssen die folgenden neuen Berechtigungen akzeptiert werden:",
+                    "updateTitle": "{count} Erweiterung aktualisieren|{count} Erweiterungen aktualisieren"
+                },
+                "deactivate": "Deaktivieren",
+                "deactivationModal": {
+                    "alert": "Möchtest Du die ausgewählten Erweiterungen wirklich deaktivieren?",
+                    "buttonLabel": "Deaktivieren",
+                    "description": "Die folgenden Erweiterungen erfordern eine monatliche Miete. Durch das Deaktivieren wird die Miete nicht beendet und Gebühren fallen weiter an:",
+                    "title": "{count} Erweiterung deaktivieren|{count} Erweiterungen deaktivieren"
+                },
+                "install": "Installieren",
+                "selectExtensionAria": "{name} auswählen",
+                "uninstall": "Deinstallieren",
+                "uninstallModal": {
+                    "alert": "Diese Aktion kann nicht rückgängig gemacht werden.",
+                    "buttonLabel": "Deinstallieren",
+                    "description": "Die folgenden Erweiterungen werden deinstalliert:",
+                    "helpTextRemovePluginData": "Achtung: Wenn aktiviert, werden alle von diesen Erweiterungen erstellten Daten unwiderruflich gelöscht.",
+                    "labelRemovePluginData": "Alle Daten jeder ausgewählten Erweiterung ebenfalls entfernen",
+                    "title": "{count} Erweiterung deinstallieren|{count} Erweiterungen deinstallieren"
+                },
+                "update": "Aktualisieren"
             },
             "fileUpload": {
                 "buttonFileUpload": "Erweiterung hochladen",
@@ -3857,6 +4004,7 @@
                 "allowDisableTooltip": "Diese App verwendet eigene Datenstrukturen, die sich auf Ihr System auswirken. Die App kann daher nicht deaktiviert werden.",
                 "contextMenu": {
                     "cancelAndRemoveLabel": "Kündigen und entfernen",
+                    "cancelSubscriptionLabel": "Miete kündigen",
                     "getHelpLabel": "Hilfe anfragen",
                     "openExtension": "Erweiterung öffnen",
                     "permissions": "Berechtigungen einsehen",
@@ -3973,10 +4121,13 @@
             },
             "sw-extension-removal-modal": {
                 "alertCancel": "Möchtest Du die Erweiterung wirklich kündigen und entfernen?",
+                "alertCancelSubscription": "Möchtest Du die Miete wirklich kündigen?",
                 "alertRemove": "Möchtest Du die Erweiterung wirklich entfernen?",
                 "description": "Wenn Du die Erweiterung entfernst, kannst Du sie nicht mehr nutzen.",
                 "labelCancel": "Kündigen und entfernen",
+                "labelCancelSubscription": "Miete kündigen",
                 "titleCancel": "\"{extensionName}\" kündigen und entfernen",
+                "titleCancelSubscription": "\"{extensionName}\" kündigen",
                 "titleRemove": "\"{extensionName}\" entfernen"
             },
             "sw-extension-uninstall-modal": {
@@ -4353,8 +4504,11 @@
             },
             "document": {
                 "labelDocumentType": "Dokumente",
+                "labelDocumentTypeSingle": "Dokumenttyp",
+                "labelFileFormats": "Dateiformate",
                 "placeholderDocumentType": "Dokumente auswählen ...",
                 "placeholderDocumentTypeSingle": "Dokumenttyp auswählen ...",
+                "placeholderFileFormats": "Dateiformate auswählen ...",
                 "titleCreateDocument": "Dokumente erzeugen"
             },
             "downloadAccess": {
@@ -4494,14 +4648,17 @@
             "chargeback": "Rückbuchung",
             "checkout": "Bestellabschluss",
             "completed": "Abgeschlossen",
+            "confirm": "Bestätigung",
             "contactForm": "Kontaktformular",
             "create": "Erstellen",
             "customer": "Kunde",
             "declined": "Abgelehnt",
             "deleted": "Gelöscht",
+            "document": "Dokument",
             "doubleOptInGuestOrder": "Double-Opt-In-Gastbestellung",
             "doubleOptInRegistration": "Double-Opt-In-Registrierung",
             "failed": "Fehlgeschlagen",
+            "generation": "Erzeugung",
             "group": "Gruppe",
             "guestRegister": "Gast registriert",
             "inProgress": "In Bearbeitung",
@@ -4534,6 +4691,7 @@
             "returned": "Zurückgeschickt",
             "returnedPartially": "Teilweise zurückgeschickt",
             "reviewForm": "Produktbewertung",
+            "revocationRequest": "Widerrufsantrag",
             "revocationRequestCustomer": "Widerrufsantrag gesendet",
             "revocationRequestMerchant": "Widerrufsantrag erhalten",
             "send": "Abschicken",
@@ -4834,6 +4992,7 @@
         "mcp": {
             "adminBanner": "Diese Integration verfügt über Administrator-Rechte. Alle MCP-Funktionen sind standardmäßig zugänglich. Du kannst den Zugriff hier auf bestimmte Tools, Ressourcen oder Prompts einschränken.",
             "allCapabilitiesLabel": "Alle Funktionen",
+            "allTypeLabel": "Alle",
             "cardTitle": "MCP-Allowlist",
             "collapseAll": "Alle einklappen",
             "coverageWarning": "{count} Tool(s) benötigen ACL-Rechte, die der zugewiesenen Rolle fehlen.",
@@ -4846,8 +5005,10 @@
             "missingDeps": "Abhängigkeit nicht ausgewählt: {deps}",
             "missingPrivilegesList": "Fehlend: {privileges}",
             "missingPrivilegesTooltip": "Fehlende Berechtigungen: {privileges}",
+            "modalTitle": "MCP-Allowlist",
             "noCapabilitiesDescription": "Es sind derzeit keine MCP-Tools, Ressourcen oder Prompts registriert.",
             "noCapabilitiesHeadline": "Keine Funktionen gefunden",
+            "noSelectionBanner": "Es sind keine Funktionen ausgewählt, daher ist derzeit nichts über MCP erreichbar. Wähle die benötigten Tools, Ressourcen und Prompts aus.",
             "privilegesLabel": "Benötigt:",
             "promptsGuidance": "Prompts sind System-Anweisungen, die den Kontext der KI bestimmen. Nicht benötigte Prompts verschwenden Kontextfenster und können die KI verwirren.",
             "promptsSection": "Prompts",
@@ -4913,6 +5074,7 @@
                 "actionsDisabledInLanguage": "Landingpages können nur in der Standardsprache erstellt werden."
             },
             "buttonCreate": "Landingpage hinzufügen",
+            "buttonLoadMore": "Mehr laden",
             "mainMenuItemIndex": "Landingpages",
             "placeholderSearchBar": "Durchsuche alle Landingpages ...",
             "treeHeadSelected": "{count} ausgewählt",
@@ -4939,12 +5101,14 @@
     },
     "sw-license-violation": {
         "alertText": "Für mindestens eine der Erweiterungen in dieser Installation liegt eine Lizenzverletzung vor. Buche ein Abonnement für die Erweiterung nach oder kaufe/miete die Erweiterung (je nach Art des Verstoßes), um die Lizenzverletzung zu beheben und rechtliche Konsequenzen zu vermeiden.\nNutzt Du die Erweiterung nicht mehr? Dann lösche sie vollständig. Falls Du keinen dieser Schritte vollziehst, behält sich die shopware AG vor, Strafgebühren für die Lizenzverletzung zu berechnen.",
+        "alreadyRemoved": "Erweiterung wurde bereits entfernt",
         "checkboxMessage": "Ich habe die Warnung gelesen und verstehe die möglichen Konsequenzen.",
         "closeModal": "Warnung schliessen",
         "deletePlugin": "Erweiterung vollständig entfernen",
         "ignorePlugin": "Dauerhaft ignorieren",
         "messageDeleteConfirm": "Möchtest Du die Erweiterung \"{pluginName}\" vollständig löschen?",
         "reload": "Neu laden",
+        "removeExternally": "Entferne die Erweiterung außerhalb der Administration, zum Beispiel mit Composer.",
         "successfullyDeleted": "Erweiterung wurde gelöscht",
         "table": {
             "plugin": "Erweiterung"
@@ -4955,6 +5119,8 @@
         "general": {
             "description": "Shopware-Login",
             "linkBackToLogin": "Zurück zur Anmeldung",
+            "loadingLabel": "Wird geladen ...",
+            "logoAlt": "Shopware-Logo",
             "mainMenuItemIndex": "Anmeldung"
         },
         "index": {
@@ -5169,6 +5335,7 @@
             "textMediaSelection": "Medienauswahl"
         },
         "general": {
+            "descriptionTextModule": "Verwaltung von Herstellern.",
             "mainMenuItemGeneral": "Hersteller",
             "mainMenuItemList": "Hersteller",
             "placeholderSearchBar": "Durchsuche alle Hersteller ..."
@@ -5177,6 +5344,7 @@
             "buttonAddManufacturer": "Hersteller anlegen",
             "columnLink": "Webseite",
             "columnName": "Hersteller",
+            "messageEmpty": "Noch keine Hersteller",
             "textManufacturerOverview": "Hersteller",
             "textTotalManufacturer": "Keine Hersteller | Ein Hersteller | {count} Hersteller"
         }
@@ -5225,6 +5393,7 @@
                 "replace": "Ersetzen",
                 "setCover": "Cover-Bild festlegen",
                 "settings": "Einstellungen",
+                "unselectAll": "Auswahl aufheben",
                 "vertical": "Vertikal"
             },
             "infoMissingFile": {
@@ -5353,6 +5522,32 @@
             "zipCode": "Postleitzahl"
         }
     },
+    "sw-not-found": {
+        "description": "Die gesuchte Seite konnte nicht gefunden werden. Möglicherweise wurde sie verschoben oder existiert nicht mehr.",
+        "title": "Seite nicht gefunden"
+    },
+    "sw-oauth-authorize": {
+        "consent": {
+            "approve": "Zugriff erlauben",
+            "deny": "Ablehnen",
+            "loggedInAs": "Angemeldet als {username}",
+            "permissionHint": "Die Anwendung kann in Deinem Namen auf Daten zugreifen und Aktionen ausführen. Dabei hat sie dieselben Berechtigungen wie Dein Benutzerkonto. Als Administrator gewährst Du ihr damit vollständigen Zugriff auf Deinen Shop.",
+            "permissionTitle": "Diese Anwendung erhält Deine Berechtigungen",
+            "redirectHint": "Du wirst weitergeleitet zu {host}",
+            "title": "{clientName} möchte auf {shopName} zugreifen",
+            "trustHint": "Erlaube den Zugriff nur, wenn Du dieser Anwendung vertraust und die Anfrage selbst gestartet hast."
+        },
+        "error": {
+            "generic": "Die Autorisierungsanfrage konnte nicht verarbeitet werden.",
+            "missingParameters": "Die Autorisierungsanfrage ist unvollständig. Bitte starte die Autorisierung erneut aus der Anwendung."
+        },
+        "general": {
+            "description": "Einer Anwendung Zugriff auf diesen Shopware Shop gewähren",
+            "title": "Anwendung autorisieren"
+        },
+        "loadingLabel": "Wird geladen ...",
+        "logoAltText": "Shopware-Logo"
+    },
     "sw-order": {
         "addressSelection": {
             "currentlySelected": "Aktuelle Auswahl",
@@ -5382,6 +5577,12 @@
         },
         "components": {
             "createDocumentModal": {
+                "documentTypes": {
+                    "cancellationInvoice": "Stornorechnung",
+                    "creditNote": "Gutschrift",
+                    "deliveryNote": "Lieferschein",
+                    "invoice": "Rechnung"
+                },
                 "emptyStateDescription": "Wähle einen Dokumenttyp aus, um das Dokument zu konfigurieren",
                 "emptyStateTitle": "Dokumenttyp fehlt",
                 "error": {
@@ -5391,14 +5592,20 @@
                     "loadUploadedDocument": "Das Laden der hochgeladenen Datei ist fehlgeschlagen."
                 },
                 "fileFormats": {
+                    "html": "HTML",
                     "pdf": "PDF",
                     "zugferdEmbeddedPdf": "PDF (ZUGFeRD eingebettet)",
                     "zugferdXml": "ZUGFeRD XML"
                 },
+                "generate": "Generieren",
                 "generateAndDownload": "Generieren und herunterladen",
                 "generateAndSend": "Generieren und senden",
+                "labelDocumentType": "Dokumenttyp",
+                "labelFileFormats": "Dateiformate",
                 "openButtonLabel": "Neues Dokument generieren",
                 "placeholderComment": "Kommentar schreiben ...",
+                "placeholderDocumentType": "Dokumenttyp auswählen ...",
+                "placeholderFileFormats": "Dateiformate auswählen ...",
                 "title": "Dokument generieren"
             },
             "selectDocumentTypeModal": {
@@ -5415,10 +5622,14 @@
                 "title": "Dokument erstellen"
             },
             "uploadDocumentModal": {
+                "buttonUploadFile": "Datei hochladen",
                 "helpTextFileFormat": "Wähle das Dateiformat der Datei aus, die hochgeladen werden soll.",
                 "labelDocumentUpload": "Dokumentenupload",
+                "labelFileFormat": "Dateiformat",
                 "openAction": "Dokument hochladen",
                 "placeholderFileFormat": "Dateiformat auswählen ...",
+                "title": "Dokument hochladen",
+                "upload": "Hochladen",
                 "uploadAndDownload": "Hochladen und herunterladen",
                 "uploadAndSend": "Hochladen und senden"
             }
@@ -5510,6 +5721,7 @@
             "labelPhoneNumber": "Telefonnummer",
             "labelPromotions": "Rabattaktionen",
             "labelSalesChannel": "Verkaufskanäle",
+            "labelSendOrderConfirmationMail": "Bestellbestätigung per E-Mail an Kunden senden",
             "labelShippingAddress": "Lieferadresse",
             "labelShippingCosts": "Versandkosten",
             "labelShippingMethod": "Versandart",
@@ -5645,6 +5857,7 @@
             "summaryLabelAmountTotal": "Gesamtsumme inkl. MwSt.",
             "summaryLabelAmountTotalRounded": "Gesamtsumme gerundet inkl. MwSt.",
             "summaryLabelAmountWithoutTaxes": "Gesamtsumme ohne MwSt.",
+            "summaryLabelShipmentShippingCosts": "Versandkosten Lieferung {count} ({shippingMethod})",
             "summaryLabelShippingCosts": "Versandkosten",
             "summaryLabelTaxes": "zzgl. {taxRate}% MwSt.",
             "tax": "Enthaltene Steuern:",
@@ -5701,8 +5914,12 @@
                 "createDocument": "Das Erstellen des Dokuments ist fehlgeschlagen.",
                 "downloadDocument": "Das Herunterladen des Dokuments ist fehlgeschlagen.",
                 "downloadDocumentArchive": "Das Herunterladen des Dokumentarchives ist fehlgeschlagen.",
+                "duplicateDocumentNumber": "Ein Dokument mit der Nummer \"{documentNumber}\" existiert bereits für den Dokumenttyp \"{documentType}\".",
                 "loadDocumentPreview": "Das Laden der Dokumentenvorschau ist fehlgeschlagen.",
+                "loadDocumentTypes": "Das Laden der verfügbaren Dokumenttypen ist fehlgeschlagen.",
                 "loadSendingDocument": "Das Laden des zu versendenden Dokumentes ist fehlgeschlagen.",
+                "missingCompanyInformation": "Das Feld \"{field}\" in Deinen Unternehmensinformationen (Einstellungen > Stammdaten) ist leer. Stelle bitte sicher, dass das Feld mit Deinen Daten gefüllt ist, bevor Dokumente generiert werden.",
+                "noUnprocessedCreditLineItems": "Zu allen Gutschriften in dieser Bestellung sind bereits Gutschriftdokumente erstellt worden.",
                 "openDocument": "Das Öffnen des ausgewählten Dokumentes ist fehlgeschlagen.",
                 "uploadDocument": "Das Hochladen des Dokumentes ist fehlgeschlagen."
             },
@@ -5818,7 +6035,8 @@
                     "lastQuarter": "Vorheriges Quartal",
                     "lastWeek": "Letzte Woche",
                     "previousYear": "Vorheriges Jahr",
-                    "today": "Heute"
+                    "today": "Heute",
+                    "yesterday": "Gestern"
                 }
             },
             "orderNumberFilter": {
@@ -5905,6 +6123,7 @@
                 "titleCustomerChanges": "Kunden ändern",
                 "titleSelectSalesChannel": "Verkaufskanal auswählen"
             },
+            "messageCancelCartError": "Der Warenkorb konnte nicht verworfen werden.",
             "options": {
                 "labelSameAsBillingAddress": "Lieferadresse ist gleich Rechnungsadresse",
                 "labelShippingCosts": "Versandkosten",
@@ -5999,6 +6218,7 @@
             "headlineDeliveryState": "Lieferstatus",
             "headlineOrderState": "Bestellstatus",
             "headlineTransactionState": "Zahlungsstatus",
+            "labelCustomer": "Kunde",
             "labelErrorNoAction": "Kein neuer Zustand gewählt.",
             "labelErrorStateChange": "Beim Setzen des Status ist ein Fehler aufgetreten:",
             "labelHistory": "Status geändert {time} von {author}",
@@ -6024,6 +6244,7 @@
                 "transaction": "Zahlung",
                 "user": "Geändert von"
             },
+            "labelCustomer": "Kunde",
             "labelIntegration": "Integration",
             "labelSystemUser": "System",
             "modalTitle": "Statusverlauf"
@@ -6034,7 +6255,8 @@
     },
     "sw-payments": {
         "general": {
-            "description": "Verwalte Shopware Payments."
+            "description": "Verwalte Shopware Payments.",
+            "mainMenuItemGeneral": "Shopware Payments"
         }
     },
     "sw-plugin-box": {
@@ -6055,7 +6277,8 @@
                 "label": "Apps"
             },
             "integration_mcp": {
-                "editor": "MCP-Allowlist bearbeiten"
+                "editor": "MCP-Allowlist bearbeiten",
+                "label": "Integrationen"
             },
             "marketing": {
                 "label": "Marketing",
@@ -6175,6 +6398,7 @@
                 "marketing": "Marketing",
                 "orders": "Bestellungen",
                 "other": "Andere",
+                "products": "Produkte",
                 "settings": "Einstellungen"
             },
             "payment": {
@@ -6227,6 +6451,9 @@
             },
             "state_machine": {
                 "label": "Statusmaschinen"
+            },
+            "sw-payments": {
+                "label": "Shopware Payments"
             },
             "tag": {
                 "label": "Tags"
@@ -6347,6 +6574,7 @@
             "restoreInheritanceConfirmTitle": "Cross Selling Vererbung wiederherstellen"
         },
         "detail": {
+            "buttonOpenInStorefront": "In der Storefront öffnen",
             "buttonSaveAndNew": "Speichern und neues erstellen",
             "buttonSaveDuplicate": "Speichern und duplizieren",
             "errorMinMaxPurchase": "Produkt konnte nicht gespeichert werden, die minimale Bestellmenge überschreitet die Maximalabnahme.",
@@ -6380,6 +6608,10 @@
             "cardTitleSeo": "SEO",
             "cardTitleSettings": "Auszeichnung",
             "cardTitleVisibilityStructure": "Sichtbarkeitsstruktur",
+            "downloadExternalManagementLabel": "Datei nicht erforderlich oder extern bereitgestellt",
+            "downloadExternalManagementTooltip": "Aktiviere diese Option, wenn das Produkt keine Datei hat, z. B. bei Lizenzen oder Zugangscodes, oder wenn Dateien extern hinzugefügt werden.",
+            "downloadsContextMenuDownloadFile": "Datei herunterladen",
+            "downloadsExternalManagementRequired": "Lade mindestens eine Datei hoch oder aktiviere unten „Datei nicht erforderlich oder extern bereitgestellt“.",
             "downloadsLabel": "Datei-Upload",
             "labelContextMenuAddToProduct": "Zu Produkt hinzufügen",
             "linkAdvancedPrices": "Erweiterte Preisansicht",
@@ -6467,6 +6699,7 @@
             "mainMenuItemAdd": "Produkt anlegen",
             "mainMenuItemGeneral": "Produkte",
             "mainMenuItemList": "Produkte",
+            "mainMenuItemOverview": "Übersicht",
             "placeholderSearchBar": "Durchsuche alle Produkte ...",
             "textAdvancedMode": "Erweiterter Modus",
             "tooltipModeSettings": "Moduseinstellungen"
@@ -6539,6 +6772,27 @@
         },
         "notification": {
             "notificationSaveErrorProductNoAlreadyExists": "Die Produktnummer \"{productNo}\" ist bereits vergeben."
+        },
+        "openInStorefrontModal": {
+            "checks": {
+                "hasDomain": "Verkaufskanal hat keine Domain.",
+                "inStock": "Produkt ist ausverkauft, und dieser Verkaufskanal blendet ausverkaufte Abverkaufsprodukte aus.",
+                "inStockPossibly": "Produkt ist ausverkauft, und dieser Verkaufskanal blendet ausverkaufte Abverkaufsprodukte möglicherweise aus.",
+                "maintenanceAllowlist": "Die Produkt-URLs können nicht geladen werden, da der Verkaufskanal im Wartungsmodus ist und Deine IP-Adresse nicht auf seiner Allowlist steht.",
+                "productActive": "Produkt ist inaktiv.",
+                "salesChannelActive": "Verkaufskanal ist inaktiv.",
+                "storefrontShowsProduct": "Dieser Verkaufskanal zeigt das Produkt nicht an, zum Beispiel aufgrund der Sichtbarkeit, des Lagerbestands oder einer installierten Erweiterung."
+            },
+            "description": "Wähle den Verkaufskanal, in dem Du das Produkt öffnen möchtest.",
+            "infoDomainsWithoutValidUrl": "Diese Domain hat keine gültige http- oder https-URL: {urls} | Diese Domains haben keine gültige http- oder https-URL: {urls}",
+            "infoNoSalesChannels": "Das Produkt ist keinem Storefront-Verkaufskanal zugewiesen.",
+            "infoUnsavedChanges": "Das Produkt hat ungespeicherte Änderungen. Die Storefront zeigt den zuletzt gespeicherten Stand.",
+            "labelDomains": "Domains",
+            "labelSalesChannel": "Verkaufskanal",
+            "maintenanceHint": "Verkaufskanal ist im Wartungsmodus. Nur IP-Adressen auf seiner Allowlist können ihn öffnen.",
+            "notificationOpenInStorefrontError": "Die Storefront-URLs des Produkts konnten nicht geladen werden.",
+            "placeholderSalesChannel": "Verkaufskanal auswählen ...",
+            "title": "In der Storefront öffnen"
         },
         "packagingForm": {
             "description": "Lege Verkaufseinheiten und Verpackungsdetails fest, die Kunden in der Storefront sehen.",
@@ -6660,13 +6914,19 @@
             "placeholderMetaTitle": "Gib einen Meta-Titel ein ...",
             "placeholderOpenGraphDescription": "Open-Graph-Beschreibung eingeben ...",
             "placeholderOpenGraphTitle": "Open-Graph-Titel eingeben ...",
+            "recommendedLength": "Empfohlen: max. {max} Zeichen ({count} verwendet)",
             "titleOpenGraph": "Open Graph"
         },
         "settingsForm": {
+            "helpTextAllowMultipleUnits": "Wenn mehrere Einheiten nicht erlaubt sind, können Kunden nur eine Einheit des digitalen Produkts pro Bestellung kaufen.",
             "helpTextGuaranteeConfirmed": "Das Garantie-Label wird nur angezeigt, wenn eine gültige Garantiedauer, ein Hersteller und die Hersteller-Produktnummer angegeben sind.",
             "helpTextGuaranteeMonths": "Mindestwert ist 30, in Schritten von 6.",
+            "helpTextGuaranteeTermsMedia": "Die Garantieerklärung des Herstellers. Sie wird unter dem Label in der Storefront verlinkt und an die Bestellbestätigung angehängt.",
+            "helpTextGuaranteeTermsUrl": "Optionale Webseite mit den Garantiebedingungen. Ist sie gesetzt, wird sie statt der PDF verlinkt.",
+            "helpTextMaxPurchaseDigital": "Lass das Feld leer, um die maximale Auswahlmenge aus den Warenkorb-Einstellungen zu verwenden.",
             "isCloseoutHelpText": "Keine Nachbestellungen möglich.",
             "labelActive": "Aktiv",
+            "labelAllowMultipleUnits": "Mehrere Einheiten pro Bestellung erlauben",
             "labelAvailableStock": "Verfügbarer Bestand",
             "labelCreatedAt": "Erstelldatum",
             "labelDeliveryTime": "Lieferzeit",
@@ -6674,6 +6934,8 @@
             "labelGuaranteeConfirmed": "Label in der Storefront anzeigen",
             "labelGuaranteeDescription": "Die Kennzeichnung steht für eine gewerbliche Haltbarkeitsgarantie, dargestellt in Jahren. Diese Garantie gewährt Ihnen der Hersteller ohne Zusatzkosten für die gesamte Ware und für eine Dauer von mehr als zwei Jahren.",
             "labelGuaranteeMonths": "Dauer der herstellerseitigen Garantie in Monaten",
+            "labelGuaranteeTermsMedia": "Garantiebedingungen (PDF)",
+            "labelGuaranteeTermsUrl": "URL der Garantiebedingungen",
             "labelHeight": "Höhe",
             "labelIsCloseout": "Abverkauf",
             "labelLength": "Länge",
@@ -6688,6 +6950,10 @@
             "labelStock": "Lagerbestand",
             "labelWeight": "Gewicht",
             "labelWidth": "Breite",
+            "noticeGuaranteeRequirementManufacturer": "{label}: in der Karte „{card}“.",
+            "noticeGuaranteeRequirementManufacturerNumber": "{label}: in der Karte „{card}“.",
+            "noticeGuaranteeRequirementMonths": "{label}: {minimum} bis {maximum} Monate, in Schritten von {step}.",
+            "noticeGuaranteeRequirements": "Das Label wird erst in der Storefront angezeigt, wenn folgende Angaben hinterlegt sind:",
             "placeholderCreatedAt": "Gib ein Erstelldatum ein ...",
             "placeholderDeliveryTime": "Gib die Lieferzeit an ...",
             "placeholderEan": "Gib die GTIN/EAN ein ...",
@@ -6743,6 +7009,7 @@
                 "title": "Varianten generieren",
                 "uploadAllButton": "Lade Dateien für alle digitalen Varianten hoch",
                 "uploadCardDescription": "Alle digitalen Varianten benötigen mindestens eine Datei, um gespeichert zu werden.",
+                "uploadCardExternalManagementDescription": "Digitale Varianten können ohne hochgeladene Dateien gespeichert werden, da „Datei nicht erforderlich oder extern bereitgestellt“ aktiviert ist.",
                 "uploadCardSearchPlaceholder": "Varianten durchsuchen ...",
                 "uploadInfoBoxCount": "{count} Varianten | {count} Variante | {count} Varianten",
                 "uploadInfoBoxCreateLabel": "werden erstellt, | wird erstellt, | werden erstellt,",
@@ -6996,6 +7263,7 @@
             "labelNewPassword": "Neues Passwort",
             "labelNewPasswordConfirm": "Passwort bestätigen",
             "labelOldPassword": "Altes Passwort",
+            "labelThemeField": "Erscheinungsbild",
             "labelTimezoneField": "Zeitzone",
             "labelUploadAvatar": "Profilbild",
             "labelUseAsAvatar": "Als Profilbild nutzen",
@@ -7006,6 +7274,7 @@
             "notificationSaveErrorMessage": "Deine Profilinformationen konnten nicht gespeichert werden.",
             "notificationSaveSuccessMessage": "Deine Profilinformationen wurden erfolgreich gespeichert.",
             "optionModuleIconColorsColored": "Farbig",
+            "optionModuleIconColorsNeutral": "Neutral",
             "placeholderNewPassword": "Gib ein neues Passwort ein ...",
             "placeholderNewPasswordConfirm": "Wiederhole Dein neues Passwort ...",
             "placeholderOldPassword": "Gib Dein altes Passwort ein ...",
@@ -7059,6 +7328,10 @@
                     "zipcode": "Postleitzahl"
                 },
                 "customer_group": {
+                    "name": "Name"
+                },
+                "flow": {
+                    "description": "Beschreibung",
                     "name": "Name"
                 },
                 "landing_page": {
@@ -7121,6 +7394,10 @@
                     "name": "Name"
                 },
                 "property_group": {
+                    "name": "Name"
+                },
+                "rule": {
+                    "description": "Beschreibung",
                     "name": "Name"
                 },
                 "sales_channel": {
@@ -7276,6 +7553,9 @@
                 "preConditions": {
                     "cardTitlePreConditions": "Voraussetzungen",
                     "cardTitleRuleConditions": "Regelbasierte Bedingungen",
+                    "helpTextCartConditionSelect": "Um eine individuelle Fehlermeldung anzuzeigen, wenn eine Warenkorb-Regel die Einlösung verhindert, kann ein Storefront-Snippet mit dem Schlüssel \"checkout.promotion-not-eligible-{ruleId}\" angelegt werden.",
+                    "helpTextCustomerSelect": "Wenn eine Kunden-Regel die Einlösung verhindert und kein Kunde angemeldet ist, wird automatisch ein Login-Hinweis angezeigt. Für alle anderen Fälle kann eine individuelle Meldung über ein Storefront-Snippet mit dem Schlüssel \"checkout.promotion-not-eligible-{ruleId}\" hinterlegt werden.",
+                    "helpTextOrderConditionSelect": "Um eine individuelle Fehlermeldung anzuzeigen, wenn eine Bestellungs-Regel die Einlösung verhindert, kann ein Storefront-Snippet mit dem Schlüssel \"checkout.promotion-not-eligible-{ruleId}\" angelegt werden.",
                     "helpTextPreventCombination": "Durch die Aktivierung dieser Option werden alle anderen Aktionen ausgeschlossen, unabhängig von der Kombinationsauswahl.",
                     "labelCartConditionSelect": "Warenkorb-Regeln",
                     "labelCustomerSelect": "Kunden-Regeln",
@@ -7501,6 +7781,8 @@
         "ratingTooltipText": "{actual} von {max} Sternen"
     },
     "sw-request-consent-modal": {
+        "acceptButton": "Zustimmen",
+        "declineButton": "Ablehnen",
         "message": "Die Erweiterung {appName} bittet um Ihre Zustimmung für das folgende Thema: {consentName}",
         "readMore": "Weitere Informationen finden Sie hier:",
         "title": "Zustimmung erforderlich",
@@ -7636,6 +7918,7 @@
             "agenticCommerce": {
                 "buttonResetTemplate": "Auf Standard zurücksetzen",
                 "deprecationBanner": {
+                    "installPlugin": "Erweiterung installieren",
                     "message": "Die integrierte Agentic-Commerce-Funktion wird in Shopware 6.8 entfernt. Dein Verkaufskanal läuft vorerst weiter. Installiere die \"Agentic Commerce\" Erweiterung, damit es zu keiner Unterbrechung kommt.",
                     "title": "Agentic Commerce wird zur Erweiterung"
                 },
@@ -7647,7 +7930,8 @@
                         "google": {
                             "cardTitle": "Google-Merchant-Center-Verbindung",
                             "introduction": {
-                                "description": "Dieser Verkaufskanal generiert einen XML-Produkt-Feed im Google-Merchant-Center-Format, damit Produkte in Google Shopping und in KI-Shopping-Oberflächen erscheinen können. Füge die unten stehende Export-URL im Merchant Center unter Einstellungen &rsaquo; Datenquellen als geplanten Dateiabruf hinzu."
+                                "description": "Dieser Verkaufskanal generiert einen XML-Produkt-Feed im Google-Merchant-Center-Format, damit Produkte in Google Shopping und in KI-Shopping-Oberflächen erscheinen können. Füge die unten stehende Export-URL im Merchant Center unter Einstellungen &rsaquo; Datenquellen als geplanten Dateiabruf hinzu.",
+                                "title": "Anleitung: Einrichten und verbinden"
                             },
                             "stepByStep": "<li>Erstelle ein Merchant-Center-Konto unter <a href=\"https://merchants.google.com\" target=\"_blank\" rel=\"noopener noreferrer\">merchants.google.com</a> und verifiziere die URL deines Onlineshops</li><li>Öffne im Merchant Center <em>Einstellungen &rsaquo; Datenquellen</em> und klicke auf <em>Produktquelle hinzufügen</em></li><li>Wähle <em>Datei</em>, dann <em>Geplanten Abruf von einer URL hinzufügen</em>, und füge die Export-URL (unten) als Datei-URL ein</li><li>Stelle sicher, dass die Export-URL öffentlich erreichbar ist (ohne Authentifizierung)</li><li>Prüfe die <a href=\"https://support.google.com/merchants/answer/7052112\" target=\"_blank\" rel=\"noopener noreferrer\">Google-Produktdaten-Spezifikation</a> und passe die Attribute bei Bedarf an</li>"
                         },
@@ -7667,13 +7951,18 @@
                 "tabIntegration": "Integration",
                 "templates": {
                     "template-label": {
+                        "google": "Google Shopping (XML)",
                         "open-ai": "OpenAI (JSONL)"
                     }
                 }
             },
             "agenticFiles": {
+                "actionDisable": "Deaktivieren",
                 "actionEnable": "Aktivieren",
                 "cardTitle": "Agentic-Dateien",
+                "columnDescription": "Beschreibung",
+                "columnEnabled": "Status",
+                "columnFileName": "Datei",
                 "description": "Verwalte KI-lesbare Dateien, die für diesen Verkaufskanal öffentlich ausgeliefert werden, zum Beispiel llms.txt, agents.md und ai-catalog.json. Sie geben Assistenten einen kompakten Überblick über Deinen Shop und Hinweise zur Nutzung öffentlicher Inhalte.",
                 "descriptions": {
                     "agentic": {
@@ -7685,7 +7974,10 @@
                 "detail": {
                     "actionEditOverride": "Überschreibung bearbeiten",
                     "actionEnablePublicPathPreview": "Aktiviere diese Datei zuerst, um den öffentlichen Pfad als Vorschau zu öffnen.",
+                    "actionPreviewPublicPath": "Vorschau",
                     "backToList": "Zurück zu Agentic-Dateien",
+                    "columnSourceRole": "Rolle",
+                    "columnTemplate": "Template",
                     "customNotesDescription": "Füge eigene Hinweise am Ende dieser Datei hinzu, ohne die Standardinhalte von Shopware oder Erweiterungen zu ersetzen.",
                     "customNotesPlaceholder": "Zusätzliche Hinweise für KI-Agents hinzufügen ...",
                     "customNotesTitle": "Eigene Hinweise",
@@ -7696,18 +7988,23 @@
                     "messagePreviewError": "Die Vorschau konnte nicht generiert werden.",
                     "overrideModalApply": "Überschreibung anwenden",
                     "overrideModalDescription": "Passe den Inhalt an, den dieses Template für diesen Verkaufskanal beiträgt. Die Änderung wird als Anpassung gespeichert und kann jederzeit auf den Standardinhalt des Templates zurückgesetzt werden.",
+                    "overrideModalFieldLabel": "Inhalt",
+                    "overrideModalReset": "Auf Standard zurücksetzen",
                     "overrideModalTitle": "{source} bearbeiten",
                     "previewDescription": "Dieser Inhalt wird aktuell für diesen Verkaufskanal ausgeliefert, einschließlich gespeicherter Anpassungen.",
                     "previewEmpty": "Keine Vorschau generiert.",
                     "previewTitle": "Generierte Vorschau",
                     "roleBase": "Basis-Template",
+                    "roleExtension": "Erweiterung",
                     "showContentSources": "Quellen anzeigen",
                     "templatesDescription": "Zeigt, welche Templates zum generierten Inhalt beitragen und ob ein Template angepasst wurde. Erfahrene Benutzer können einzelne Templates überschreiben, wenn eigene Hinweise nicht ausreichen.",
                     "templatesTitle": "Inhaltsquellen"
                 },
                 "emptyState": "Keine Agentic-Dateien gefunden",
                 "enabledState": {
-                    "custom": "Angepasst"
+                    "custom": "Angepasst",
+                    "disabled": "Deaktiviert",
+                    "enabled": "Aktiviert"
                 },
                 "messageLoadError": "Agentic-Dateien konnten nicht geladen werden."
             },
@@ -7834,6 +8131,7 @@
             "placeholderInputCategories": "Kategorien hinzufügen ...",
             "placeholderName": "Gib einen Namen für den Verkaufskanal ein ...",
             "productAssignmentModal": {
+                "buttonAddProducts": "Bis zu {productCount} Produkt hinzufügen | Bis zu {productCount} Produkte hinzufügen",
                 "categories": {
                     "emptySearchResults": "Keine Kategorien gefunden.",
                     "textInfo": "Die hier gemachten Zuweisungen sind nicht dynamisch und bilden nur den Produktstatus zum jetzigen Zeitpunkt ab. Nachfolgende Änderungen der Produktzusammensetzung in Kategorien beeinflussen die Zuweisung nicht.",
@@ -7849,6 +8147,7 @@
                     "titleNoProductStreamsMatching": "Keine passenden dynamischen Produktgruppen gefunden."
                 },
                 "singleProducts": "Produkt-Auswahl",
+                "singleProductsEmptyState": "Keine weiteren Produkte gefunden",
                 "title": "Produkte hinzufügen"
             },
             "productComparison": {
@@ -7957,10 +8256,17 @@
                 "columnProductName": "Produktname",
                 "columnProductNumber": "Produktnummer",
                 "inheritVariantNotRemovableTooltip": "Diese Variante erbt die Verkaufskanal-Zuweisung von ihrem Hauptprodukt.",
+                "messageCategoryLimitExceeded": "Du kannst maximal {limit} Kategorien auf einmal hinzufügen. Verkleinere Deine Auswahl und versuche es erneut.",
+                "messageProductLimitExceeded": "Du kannst maximal {limit} Produkte auf einmal hinzufügen. Verkleinere Deine Auswahl und versuche es erneut.",
+                "messageProductStreamLimitExceeded": "Du kannst maximal {limit} dynamische Produktgruppen auf einmal hinzufügen. Verkleinere Deine Auswahl und versuche es erneut.",
+                "messageProductsAssigned": "{count} Produkt dem Verkaufskanal zugewiesen. | {count} Produkte dem Verkaufskanal zugewiesen.",
+                "messageProductsAssignmentIncomplete": "Bisher {count} Produkt dem Verkaufskanal zugewiesen. Füge dieselbe Auswahl erneut hinzu, um die restlichen Produkte zuzuweisen. | Bisher {count} Produkte dem Verkaufskanal zugewiesen. Füge dieselbe Auswahl erneut hinzu, um die restlichen Produkte zuzuweisen.",
                 "titleEmptyState": "Keine weiteren Produkte gefunden",
                 "titleEmptyStateTable": "Keine passenden Produkte gefunden"
             },
             "serviceCategory": "Einstiegspunkt für die Footer-Service-Navigation",
+            "snippetSetGroupOther": "Weitere Textbaustein-Sets",
+            "tabAgenticFiles": "Agentic-Dateien",
             "tabAnalytics": "Analyse",
             "tabBase": "Allgemein",
             "tabProductComparison": "Template",
@@ -8091,7 +8397,10 @@
         "routeNames": {
             "frontend-detail-page": "Produktdetailseite",
             "frontend-landing-page": "Landingpage",
-            "frontend-navigation-page": "Kategorieseite"
+            "frontend-navigation-page": "Kategorieseite",
+            "store-api-category-detail": "Kategorieseite",
+            "store-api-landing-page-detail": "Landingpage",
+            "store-api-product-detail": "Produktdetailseite"
         }
     },
     "sw-settings": {
@@ -8120,7 +8429,8 @@
             "compileNotice": "Diese Konfiguration enthält Felder, die für das Theme verwendet werden. Damit die Änderungen sichtbar werden, muss das Theme neu kompiliert werden.",
             "inherited": "Vererbt",
             "labelSalesChannelSelect": "Verkaufskanal",
-            "scssHelpText": "SCSS Variablenname: "
+            "scssHelpText": "SCSS Variablenname: ",
+            "tabGeneral": "Allgemein"
         }
     },
     "sw-settings-basic-information": {
@@ -8227,6 +8537,7 @@
             "helpTextAdvancedPostalCodePattern": "Mögliche Formate:<ul><li>^\\d&#123;5&#125;$ - Genau 5 Ziffern, z. B. 12345</li><li>^(\\d&#123;4&#125;)\\s*([A-Z]&#123;2&#125;)$ - Genau 4 Ziffern und 2 Buchstaben, z. B. 1234 AB</li></ul>",
             "helpTextCheckPostalCodePattern": "Erlaubt die Validierung von Postleitzahlen für eine Auswahl an Ländern",
             "helpTextCheckVatIdFormat": "Überprüft das Format der europäischen USt-ID.",
+            "helpTextCheckVatIdFormatNoPattern": "Für dieses Land ist kein USt-ID-Format bekannt, gegen das geprüft werden kann.",
             "helpTextCompanyTaxFree": "Damit B2B-Geschäfte steuerfrei abgewickelt werden können, müssen die jeweiligen Kundenaccounts über eine valide USt-ID verfügen.",
             "helpTextIsEu": "Einschalten, um die Anzeige der innergemeinschaftlichen Lieferung zu aktivieren.",
             "helpTextLabelVatIdRequired": "Bitte den globalen Schalter unter \"Einstellungen > Login/Registrierung\" beachten.",
@@ -8325,6 +8636,7 @@
             "notificationCountryErrorMessage": "Beim Speichern der Ländereinstellung ist ein Fehler aufgetreten.",
             "notificationCountrySuccessMessage": "Ländereinstellungen erfoglreich gespeichert.",
             "notificationErrorMessage": "Fehler beim Speichern der Währung.",
+            "notificationIsoCodeAlreadyExists": "Der ISO-Code \"{isoCode}\" wird bereits verwendet.",
             "placeholderFactor": "Faktor eingeben ...",
             "placeholderIsoCode": "ISO-Code eingeben ...",
             "placeholderName": "Namen eingeben ...",
@@ -8498,7 +8810,22 @@
             "notificationErrorMessage": "Fehler beim Speichern der Kundengruppe.",
             "placeholderName": "Einen Namen eingeben ...",
             "placeholderNewCustomerGroup": "Neue Kundengruppe",
-            "registrationForm": "Benutzerdefiniertes Registrierungsformular"
+            "priceBasis": {
+                "grossDescription": "Bruttopreise bleiben gleich, wenn sich Steuersätze ändern. Bei Nettodarstellung werden Nettopreise aus dem Steuersatz des Kundenlandes abgeleitet. Bei steuerfreien Bestellungen wird immer der Nettopreis berechnet.",
+                "grossLabel": "Brutto bleibt konstant",
+                "label": "Preisbasis",
+                "netDescription": "Nettopreise bleiben gleich, wenn sich Steuersätze ändern. Bruttopreise werden aus dem Steuersatz des Kundenlandes abgeleitet und ergeben keine glatten Beträge (netto 10,00 € erscheint bei 19 % als 11,90 € und bei 20 % als 12,00 €).",
+                "netLabel": "Netto bleibt konstant"
+            },
+            "registrationForm": "Benutzerdefiniertes Registrierungsformular",
+            "registrationFormTitle": "Registrierungsformular",
+            "taxDisplay": {
+                "grossDescription": "Preise werden inklusive Steuer angezeigt.",
+                "grossLabel": "Brutto",
+                "label": "Steuerdarstellung",
+                "netDescription": "Preise werden exklusive Steuer angezeigt.",
+                "netLabel": "Netto"
+            }
         },
         "general": {
             "buttonCreate": "Kundengruppe anlegen",
@@ -8507,7 +8834,9 @@
         },
         "list": {
             "columnDisplayGross": "Steuerdarstellung",
-            "columnName": "Name"
+            "columnName": "Name",
+            "columnPriceBasis": "Preisbasis",
+            "columnRegistrationActive": "Benutzerdefiniertes Registrierungsformular"
         },
         "modal": {
             "seoUrl": {
@@ -8680,6 +9009,9 @@
             "textHeadline": "Neues Dokument"
         },
         "errors": {
+            "duplicateFilenameInfix": "Erzeugt denselben Dateinamen wie {formats}.",
+            "duplicateFilenameInfixInSalesChannelConfig": "Erzeugt in der Verkaufskanal-Konfiguration {configs} denselben Dateinamen wie {formats}.",
+            "duplicateFilenameInfixInherited": "Das geerbte Infix \"{infix}\" erzeugt denselben Dateinamen wie {formats}.",
             "invalidDueDateFormat": "Datums-Modifier ist nicht gültig."
         },
         "general": {
@@ -8700,16 +9032,20 @@
     },
     "sw-settings-language": {
         "addModal": {
+            "buttonAdd": "Sprache hinzufügen",
             "createCustomLanguage": "Eigene Sprache anlegen",
             "docsHint": "So funktionieren Übersetzungen in Shopware:",
+            "docsLinkLabel": "Mehr erfahren",
             "docsUrl": "https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/Uebersetzungen",
             "extensionStoreHint": "Nicht die passende Sprache gefunden? Durchstöbere verfügbare Sprachen im {extensionStoreLink}",
             "extensionStoreLink": "Extension Store",
+            "labelLanguage": "Sprache",
             "messageAddError": "Die Sprache konnte nicht hinzugefügt werden.",
             "messageAddSuccess": "Die Sprache wurde hinzugefügt.",
             "messageLanguagesLoadError": "Die vorhandenen Sprachen konnten nicht geladen werden.",
             "messageTranslationsLoadError": "Die verfügbaren Übersetzungen konnten nicht geladen werden.",
             "placeholderLanguage": "Sprache auswählen ...",
+            "title": "Sprache hinzufügen",
             "translationsAvailable": "Übersetzungen für diese Sprache sind verfügbar.",
             "translationsIncomplete": "Einige Übersetzungen für diese Sprache fehlen möglicherweise noch."
         },
@@ -8727,9 +9063,13 @@
             "placeholderName": "Namen eingeben ...",
             "placeholderPleaseSelect": "Bitte wählen ...",
             "salesChannels": {
+                "activateHint": "Aktiviere die Sprache und weise sie dann einem Verkaufskanal zu, um sie für Kunden verfügbar zu machen.",
                 "assignHint": "Weise die Sprache einem Verkaufskanal zu, um sie für Kunden verfügbar zu machen.",
                 "assignedIntro": "Die Sprache ist folgenden Verkaufskanälen zugewiesen:",
-                "openSettings": "Verkaufskanal-Einstellungen öffnen"
+                "openSettings": "Verkaufskanal-Einstellungen öffnen",
+                "showAll": "Alle anzeigen",
+                "showLess": "Weniger anzeigen",
+                "title": "Verkaufskanäle"
             },
             "snippetUpdates": {
                 "autoUpdate": "Automatisch aktualisieren",
@@ -8745,8 +9085,10 @@
                 "title": "Textbaustein-Updates",
                 "upToDate": "Die Textbausteine sind aktuell.",
                 "updateAvailable": "Neues Update verfügbar.",
+                "updateButton": "Aktualisieren",
                 "updateError": "Die Textbausteine dieser Sprache konnten nicht aktualisiert werden.",
-                "updating": "Textbausteine werden aktualisiert."
+                "updating": "Textbausteine werden aktualisiert.",
+                "updatingButton": "Wird aktualisiert ..."
             },
             "textAlertChangeParent": "Ein Wechsel der geerbten Sprache kann gegebenenfalls zu inkonsistenten Übersetzungen führen.",
             "textHeadline": "Neue Sprache",
@@ -8773,6 +9115,8 @@
             "columnIsoCode": "ISO-Code ",
             "columnLocaleName": "Lokalisierung",
             "columnName": "Name",
+            "columnSalesChannels": "Verkaufskanäle",
+            "columnSnippetStatus": "Textbaustein-Updates",
             "contextMenuUpdateSnippets": "Textbausteine aktualisieren",
             "defaultLabel": "Standard",
             "deleteError": "Die Sprachen konnten nicht gelöscht werden.",
@@ -8786,10 +9130,12 @@
             "messageDeleteSuccess": "Die Sprache \"{name}\" wurde erfolgreich gelöscht.",
             "salesChannelCount": "{count} Verkaufskanal | {count} Verkaufskanäle",
             "snippetStatus": {
-                "updateAvailable": "Update verfügbar"
+                "updateAvailable": "Update verfügbar",
+                "updating": "Wird aktualisiert ..."
             },
             "snippetStatusLoadError": "Die Textbaustein-Updates konnten nicht geladen werden.",
             "textHeadline": "Sprachen",
+            "titleSidebarItemRefresh": "Aktualisieren",
             "updateSnippetsError": "Die Textbausteine konnten nicht aktualisiert werden.",
             "updateSnippetsProgress": "Textbausteine werden aktualisiert ({processed}/{total})",
             "updateSnippetsSuccess": "Die Textbausteine wurden aktualisiert."
@@ -9077,6 +9423,8 @@
             "labelType": "Typ",
             "messageSaveError": "Der Nummernkreis \"{name}\" wurde nicht erfolgreich gespeichert.",
             "messageSaveSuccess": "Der Nummernkreis \"{name}\" wurde erfolgreich gespeichert.",
+            "patternCollisionWarning": "Das Pattern \"{pattern}\" wird auch von \"{names}\" für denselben Dokumenttyp verwendet. Dokumentnummern müssen pro Dokumenttyp eindeutig sein, daher können beide Nummernkreise irgendwann dieselbe Nummer erzeugen. Vergib jedem Nummernkreis ein eigenes Präfix oder Suffix.",
+            "patternCollisionWarningTitle": "Pattern wird bereits von einem anderen Nummernkreis verwendet",
             "placeholderDescription": "Beschreibung eingeben ...",
             "placeholderName": "Namen eingeben ...",
             "placeholderPattern": "Pattern eingeben ... \"prefix_{n}_suffix\"",
@@ -9103,6 +9451,7 @@
             "columnUsedIn": "Typ",
             "global": "Global",
             "messageDeleteSuccess": "Der Nummernkreis \"{name}\" wurde erfolgreich gelöscht.",
+            "messageEmpty": "Noch keine Nummernkreise",
             "textDeleteConfirm": "Bist Du sicher, dass Du den Nummernkreis \"{name}\" löschen möchtest?",
             "textHeadline": "Nummernkreise"
         }
@@ -9231,6 +9580,7 @@
             "cardTitle": "Werte",
             "createStateDescription": "Füge Werte hinzu, um wesentliche Merkmale zu definieren, die auf Dein Produktsortiment zugeschnitten sind.",
             "emptyStateDescription": "Füge Werte hinzu, um wesentliche Merkmale zu definieren, die auf Dein Produktsortiment zugeschnitten sind..",
+            "emptyStateTitle": "Noch keine Werte",
             "labelCreateNew": "Feld hinzufügen",
             "labelPosition": "Position",
             "labelType": "Typ",
@@ -9248,6 +9598,16 @@
         "detail": {
             "associations": {
                 "columns": {
+                    "active": "Aktiv",
+                    "description": "Beschreibung",
+                    "extension": "Erweiterung",
+                    "flow": "Flow",
+                    "manufacturer": "Hersteller",
+                    "name": "Name",
+                    "position": "Position",
+                    "taxCalculation": "Steuerberechnung",
+                    "trigger": "Trigger",
+                    "validFrom": "Gültig ab",
                     "validTo": "Gültig bis"
                 },
                 "flows": "Flow-Builders",
@@ -9266,6 +9626,8 @@
             },
             "associationsLoadingError": "Die Zuweisungen der Regel konnten nicht geladen werden.",
             "buttonAddAssignment": "Zuweisung hinzufügen",
+            "deprecatedConditionWarning": "Die Bedingung \"{label}\" ist veraltet und wird mit {version} entfernt. Bitte nutze stattdessen \"{replacement}\".",
+            "deprecatedConditionWarningNoReplacement": "Die Bedingung \"{label}\" ist veraltet und wird mit {version} entfernt.",
             "flowOnlyConditionsWarning": "Folgende Bedingungen dieser Regel benötigen einen Flow-Kontext: {conditions}. Außerhalb eines Flows (z. B. in Versandarten, Zahlungsarten oder Aktions-Zuweisungen) werden sie immer zu \"falsch\" ausgewertet.",
             "groups": {
                 "cart": "Warenkorb",
@@ -9401,6 +9763,8 @@
             "fieldDisplayNamePlaceholder": "Bitte gib eine Anrede an ...",
             "fieldLetterNameLabel": "Briefanrede",
             "fieldLetterNamePlaceholder": "Bitte gib eine Briefanrede an ...",
+            "fieldPositionLabel": "Position",
+            "fieldPositionPlaceholder": "Wähle eine Position ...",
             "fieldPositionTooltip": "Steuert die Anzeige-Reihenfolge in Auswahlfeldern; kleinere Zahlen stehen weiter oben.",
             "fieldSalutationKeyLabel": "Technischer Name",
             "fieldSalutationKeyPlaceholder": "Bitte gib einen technischen Namen an ...",
@@ -9416,6 +9780,7 @@
         "list": {
             "columnDisplayName": "Anrede",
             "columnLetterName": "Briefanrede",
+            "columnPosition": "Position",
             "columnSalutationKey": "Technischer Name"
         }
     },
@@ -9737,12 +10102,31 @@
             "requirements": "Systemvoraussetzungen",
             "updating": "Aktualisiere ..."
         },
+        "extensions": {
+            "actions": {
+                "deactivateAll": "Alle Erweiterungen deaktivieren.",
+                "deactivateIncompatible": "Inkompatible Erweiterungen deaktivieren.",
+                "deactivateNone": "Ich bin mir der potentiellen Gefahren bewusst und möchte trotzdem eine Aktualisierung durchführen, ohne die entsprechenden Erweiterungen vorher zu deaktivieren. Mir ist klar, dass Shopware keinerlei Garantie zur Funktionsweise meiner Installation nach einer inkompatiblen Aktualisierung geben kann.",
+                "openMyExtensions": "Zu meinen Erweiterungen",
+                "recommended": "(Empfohlen)"
+            },
+            "columns": {
+                "available": "Kompatibilität",
+                "name": "Erweiterung"
+            },
+            "emptyStateDescription": "Alle installierten Erweiterungen sind mit diesem Update kompatibel.",
+            "emptyStateHeadline": "Keine Kompatibilitätsprobleme",
+            "extensionNotInStore": "Diese Erweiterung ist im Store nicht verfügbar. Bitte kontaktiere den Erweiterungs-Hersteller.",
+            "extensionWillBeDeactivatedHint": "(Wird im Aktualisierungsprozess deaktiviert)"
+        },
         "general": {
             "menuTitle": "Shopware-Aktualisierungen",
             "title": "Shopware-Aktualisierung ({version})"
         },
         "infos": {
+            "autoUpdateDisabled": "Automatische Aktualisierungen sind deaktiviert (shopware.auto_update.enabled). Nutze die Shopware CLI zum Aktualisieren.",
             "backupCheckboxLabel": "Ich habe eine Datensicherung angelegt und möchte die Aktualisierung nun durchführen.",
+            "clusterSetupDisabled": "Aktualisierungen über die Administration sind in Cluster-Setups nicht möglich (shopware.deployment.cluster_setup). Nutze die Shopware CLI zum Aktualisieren.",
             "progress": {
                 "deactivate": "Erweiterungen werden deaktiviert ...",
                 "download": "Aktualisierung-Datei wird heruntergeladen ...",
@@ -9750,8 +10134,24 @@
             },
             "startUpdate": "Aktualisierung starten"
         },
+        "license": {
+            "bannerMessage": "Für Deine Shopware-Version konnte keine aktive Subscription ermittelt werden. Die automatische Aktualisierung kann somit nicht durchgeführt werden. Eine gültige Shopware-Subscription kannst Du jederzeit über den <a href=\"https://account.shopware.com\" target=\"_blank\">Shopware Account</a> buchen.",
+            "bannerTitle": "Keine aktive Shopware-Subscription"
+        },
+        "methodModal": {
+            "actions": {
+                "continue": "Weiter"
+            },
+            "cliDescription": "Die Shopware CLI bietet mehr Kontrolle und wiederholbare Deployments.",
+            "cliInstallHint": "Installiere die Shopware CLI und führe aus:",
+            "cliInstallLink": "Shopware CLI installieren",
+            "cliTitle": "Mit der Shopware CLI",
+            "subtitle": "Vor der Aktualisierung wird eine Datensicherung empfohlen.",
+            "title": "Shopware aktualisieren"
+        },
         "notifications": {
             "alreadyUpToDate": "Du bist bereits auf dem aktuellsten Stand.",
+            "checkFailed": "Die Update-Prüfung ist fehlgeschlagen.",
             "deactivationFailed": "Deaktivieren der Erweiterungen fehlgeschlagen",
             "downloadFailed": "Download fehlgeschlagen.",
             "unpackFailed": "Entpacken fehlgeschlagen.",
@@ -9768,6 +10168,23 @@
             "messageNotInStore": "Es sind Erweiterungen vorhanden, die nicht auf Kompatibilität geprüft werden konnten. Kontaktiere die Erweiterungs-Hersteller für weitere Informationen und stelle sicher, dass Du ein Datensicherung erstellt hast, bevor Du fortfährst.",
             "messageOkay": "Alle Voraussetzungen sind erfüllt. Bitte stelle sicher, dass Du eine aktuelle Datensicherung erstellt hast.",
             "messageUpdateCheck": "Die zurzeit installierte Shopware-Version kann auf Version {version} aktualisiert werden. Was möchtest Du tun?"
+        },
+        "versionCard": {
+            "badgeCheckFailed": "Update-Prüfung fehlgeschlagen",
+            "badgeUpToDate": "Auf dem aktuellen Stand",
+            "badgeUpdateAvailable": "Update verfügbar",
+            "changelogLink": "Changelog ansehen",
+            "cliRecommendedBadge": "Empfohlen",
+            "currentVersionLabel": "Installierte Version:",
+            "methodDivider": "oder weiter mit",
+            "methodsHeadline": "Jetzt aktualisieren",
+            "newVersionLabel": "Neueste Version:",
+            "retryCheck": "Erneut versuchen",
+            "title": "Shopware-Version",
+            "upToDateDescription": "Shopware {version} ist die neueste Version.",
+            "upToDateTitle": "Du bist auf dem neuesten Stand",
+            "webInstallerDescription": "Führe die geführte Aktualisierung direkt im Browser aus.",
+            "webInstallerTitle": "Mit dem Web-Installer"
         }
     },
     "sw-settings-sitemap": {
@@ -10088,6 +10505,7 @@
             "cardTitle": "Länder-Steuersätze",
             "createStateDescription": "Speichere zuerst den Steuersatz, um weitere Länder hinzufügen zu können.",
             "emptyStateDescription": "Füge Steuerraten für verschiedene Länder hinzu.",
+            "emptyStateTitle": "Noch keine länderspezifischen Steuersätze",
             "labelActiveFrom": "Aktiv ab",
             "labelAppliesOn": "Gilt für",
             "labelCountryName": "Land",
@@ -10107,7 +10525,14 @@
         "detail": {
             "fieldLabels": {
                 "name": "Name der Produkteinheit",
-                "shortCode": "Kurzform"
+                "shortCode": "Kurzform",
+                "uneceCode": "Einheitencode (UN/ECE)"
+            },
+            "helpTexts": {
+                "uneceCode": "Standardcode für E-Rechnungen und Schnittstellen, zum Beispiel KGM für Kilogramm."
+            },
+            "placeholders": {
+                "uneceCode": "Einheitencode auswählen ..."
             }
         },
         "empty-state": {
@@ -10122,11 +10547,54 @@
         },
         "grid": {
             "columnName": "Produkteinheit",
-            "columnShortCode": "Kurzform"
+            "columnShortCode": "Kurzform",
+            "columnUneceCode": "Einheitencode"
         },
         "notification": {
+            "errorLoadingUneceCodes": "Die Einheitencodes konnten nicht geladen werden.",
             "errorMessage": "Die Produkteinheit konnte nicht gespeichert werden. Überprüfe, ob alle Felder ausgefüllt sind.",
             "successMessage": "Die Produkteinheit wurde erfolgreich gespeichert."
+        },
+        "uneceCodes": {
+            "ANN": "Jahr",
+            "C62": "Eins (Einheit)",
+            "CLT": "Zentiliter",
+            "CMT": "Zentimeter",
+            "DAY": "Tag",
+            "DZN": "Dutzend",
+            "E48": "Leistungseinheit",
+            "FOT": "Fuß",
+            "GRM": "Gramm",
+            "H87": "Stück",
+            "HUR": "Stunde",
+            "INH": "Zoll",
+            "KGM": "Kilogramm",
+            "KMT": "Kilometer",
+            "KWH": "Kilowattstunde",
+            "LBR": "Pfund",
+            "LS": "Pauschale",
+            "LTR": "Liter",
+            "MGM": "Milligramm",
+            "MIN": "Minute",
+            "MLT": "Milliliter",
+            "MMT": "Millimeter",
+            "MON": "Monat",
+            "MTK": "Quadratmeter",
+            "MTQ": "Kubikmeter",
+            "MTR": "Meter",
+            "ONZ": "Unze",
+            "P1": "Prozent",
+            "PR": "Paar",
+            "SET": "Satz",
+            "TNE": "Tonne",
+            "WEE": "Woche",
+            "XBG": "Beutel",
+            "XBO": "Flasche",
+            "XBX": "Schachtel",
+            "XCA": "Dose",
+            "XCT": "Karton",
+            "XPK": "Packung",
+            "XPX": "Palette"
         }
     },
     "sw-settings-usage-data": {
@@ -10210,6 +10678,7 @@
         "functionAccessibilityCloseDialog": "Dialog schließen",
         "functionAccessibilityMoveFocusBackward": "Zum vorherigen fokussierbaren Element wechseln",
         "functionAccessibilityMoveFocusForward": "Zum nächsten fokussierbaren Element wechseln",
+        "functionAccessibilitySkipToContent": "Navigation überspringen",
         "functionAddCategory": "Kategorie hinzufügen",
         "functionAddCustomer": "Kunden hinzufügen",
         "functionAddManufacturer": "Hersteller hinzufügen",
@@ -10237,10 +10706,13 @@
         "functionGoToShoppingExperience": "Erlebniswelten öffnen",
         "functionGoToSnippets": "Textbausteine öffnen",
         "functionSpecialShortcutCancelDetailView": "Aktuelle Detailansicht abbrechen",
+        "functionSpecialShortcutClearCache": "Cache leeren",
+        "functionSpecialShortcutCycleTheme": "Erscheinungsbild ändern",
         "functionSpecialShortcutFocusSearch": "Fokussiere Suche",
         "functionSpecialShortcutOpenFilters": "Filter öffnen",
         "functionSpecialShortcutSaveDetailView": "Aktuelle Ansicht speichern",
         "functionSpecialShortcutShortcutListing": "Tastenkürzel-Übersicht",
+        "functionSpecialShortcutToggleNavigation": "Navigation umschalten",
         "iconTooltip": "Drücke die `{key}` Taste für die Tastenkürzel-Übersicht",
         "keyboardShortcut": "Tastenkürzel",
         "keyboardShortcutAccessibilityCloseDialog": "Esc",
@@ -10277,12 +10749,14 @@
         "keyboardShortcutSpecialShortcutClearCacheLinux": "alt c",
         "keyboardShortcutSpecialShortcutClearCacheMac": "control c",
         "keyboardShortcutSpecialShortcutClearCacheWindows": "alt c",
+        "keyboardShortcutSpecialShortcutCycleTheme": "C T",
         "keyboardShortcutSpecialShortcutFocusSearch": "f",
         "keyboardShortcutSpecialShortcutOpenFilters": "O F",
         "keyboardShortcutSpecialShortcutSaveDetailViewLinux": "alt s",
         "keyboardShortcutSpecialShortcutSaveDetailViewMac": "control s",
         "keyboardShortcutSpecialShortcutSaveDetailViewWindows": "alt s",
         "keyboardShortcutSpecialShortcutShortcutListing": "Shift ?",
+        "keyboardShortcutSpecialShortcutToggleNavigation": "S",
         "modalTitle": "Tastenkürzel",
         "sectionAccessibility": "Barrierefreiheit",
         "sectionAddingItems": "Hinzufügen von Elementen",
@@ -10297,6 +10771,11 @@
         "resetButton": "Alle zurücksetzen"
     },
     "sw-text-editor-toolbar": {
+        "childSearch": {
+            "label": "Einträge durchsuchen",
+            "noResults": "Keine Ergebnisse gefunden.",
+            "placeholder": "Suchen ..."
+        },
         "link": {
             "buttonVariant": "Buttontyp",
             "buttonVariantPrimary": "Primär",
@@ -10551,7 +11030,8 @@
             "mainMenuHeader": "Deine Themes",
             "mainMenuItemGeneral": "Themes",
             "messageSaveError": "Theme konnte dem Verkaufskanal nicht zugewiesen werden",
-            "placeholderSearchBar": "Suche nach verfügbaren Themes ..."
+            "placeholderSearchBar": "Suche nach verfügbaren Themes ...",
+            "switchThemeListMode": "Zwischen Raster- und Listenansicht wechseln"
         },
         "list": {
             "gridHeaderAssignment": "Zugewiesene Verkaufskanäle",
@@ -10633,19 +11113,23 @@
     },
     "sw-ui-shell-update-2026-modal": {
         "finishButton": "Verstanden",
+        "nextButton": "Weiter",
         "pages": {
             "adminNavigation": {
                 "description": "Die Shopware Administration ist gewachsen und damit auch die Anzahl der Funktionen und Navigationselemente. Deshalb haben wir die Navigation neu gestaltet, mit einer besseren Übersicht, klareren aktiven Zuständen, flüssigeren Untermenü-Animationen, verbesserter Lesbarkeit und optimierter Bedienung per Tastatur.",
-                "headline": "Eine klarere, übersichtlichere Navigation"
+                "headline": "Eine klarere, übersichtlichere Navigation",
+                "moduleColorsHint": "Lieber farbige Modul-Icons? Du kannst \"Modul-Farben\" jederzeit in {profileSettingsLink} wieder auf \"Farbig\" stellen."
             },
             "darkMode": {
                 "badge": "Experimentell",
                 "description": "Die Administration bietet jetzt ein dunkles Erscheinungsbild der Benutzeroberfläche, für bessere Barrierefreiheit und passend zu Deinen persönlichen Vorlieben.",
                 "headline": "Dunkles Erscheinungsbild",
                 "themeSaveError": "Das Erscheinungsbild konnte nicht gespeichert werden.",
-                "themeSelectHint": "Diese Einstellung kannst Du jederzeit in {profileSettingsLink} ändern."
+                "themeSelectHint": "Diese Einstellung kannst Du jederzeit in {profileSettingsLink} ändern.",
+                "themeSelectLabel": "Erscheinungsbild"
             }
         },
+        "profileSettingsLink": "Deinen Profileinstellungen",
         "seenSaveError": "Deine Auswahl konnte nicht gespeichert werden. Dieser Dialog wird Dir möglicherweise erneut angezeigt.",
         "title": "Ein neuer Look für Deine Administration"
     },
@@ -10688,8 +11172,10 @@
             "mcpModal": {
                 "description": "Die folgenden Tools sind in Integrationen erlaubt, die diese Rolle verwenden.",
                 "dynamicPrivilegeHint": "Diese Berechtigung hängt vom zur Laufzeit übergebenen Entitätsparameter ab.",
+                "grant": "Vergeben",
                 "grantAllMissing": "Alle fehlenden vergeben",
                 "legendDynamic": "dynamisch",
+                "legendDynamicHint": "Diese Berechtigung hängt vom zur Laufzeit übergebenen Entitätsparameter ab.",
                 "legendGranted": "vorhanden",
                 "legendGrantedHint": "Diese Berechtigung ist der Rolle bereits zugewiesen.",
                 "legendLabel": "Legende:",
@@ -10773,6 +11259,7 @@
                 "errorEmailUsed": "Diese E-Mail-Adresse wird schon benutzt.",
                 "errorUsernameUsed": "Dieser Benutzername wird schon benutzt.",
                 "labelAccessKey": "Zugangsschlüssel",
+                "labelActive": "Aktiv",
                 "labelAdministrator": "Administrator",
                 "labelButtonChangePassword": "Ändern",
                 "labelCard": "Basisinformationen",
@@ -10790,7 +11277,9 @@
                 "labelPermissions": "Berechtigungen",
                 "labelProfilePicture": "Profilbild",
                 "labelRoles": "Rollen",
+                "labelRolesPermissionsCard": "Rollen & Berechtigungen",
                 "labelTimezone": "Zeitzone",
+                "labelUserInterface": "Benutzeroberfläche",
                 "labelUsername": "Benutzername",
                 "mcpAllowlistSaveError": "Die MCP-Allowlist konnte nicht gespeichert werden.",
                 "mcpAllowlistTitle": "MCP-Tool-Allowlist",
